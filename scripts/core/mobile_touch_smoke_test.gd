@@ -61,7 +61,11 @@ func _run_device_profile() -> void:
     _check(GameState.current_screen == "expedition", "Touch La Porte must open expedition screen on %s" % active_device_name)
 
     _audit_visible_buttons("expedition")
-    _check(await _touch_button("RETOUR", true), "Touch must return from expedition setup on %s" % active_device_name)
+    # The guided P0 departure may present the explicit back action as RETOUR,
+    # RETOUR AU HUB or RETOUR AU SANCTUAIRE. The tactile contract is semantic:
+    # a visible return control containing RETOUR must be touchable and restore
+    # the Sanctuary, rather than depending on one exact copy variant.
+    _check(await _touch_button("RETOUR", false), "Touch must return from expedition setup on %s" % active_device_name)
     _check(GameState.current_screen == "sanctuary", "Touch Retour must restore Sanctuary on %s" % active_device_name)
 
     for screen_name_value in ["company", "market", "creatures", "infirmary", "chapel", "tavern", "memorial"]:
