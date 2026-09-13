@@ -82,9 +82,10 @@ func _audit_v09_mobile_contract() -> void:
     if tactical == null:
         GameSettings.set_text_scale(original_text_scale)
         GameSettings.set_ui_scale(original_ui_scale)
+        await _frames(2)
         return
+
     get_tree().root.add_child(tactical)
-    tactical.size = Vector2(720, 540)
     await _frames(2)
 
     tactical.bind_snapshot({
@@ -134,9 +135,11 @@ func _audit_v09_mobile_contract() -> void:
     })
     await _frames(2)
 
-    _check(tactical.has_method("apply_mobile_layout"), "v0.9 tactical UI must expose mobile layout on %s" % active_device_name)
-    tactical.apply_mobile_layout(active_window_size)
-    await _frames(2)
+    # Le contrat tactile courant est porté par VeilleursTacticalUI lui-même :
+    # contrôles 6x5, zones corporelles, compétences et actions >= 44 px.
+    # L'ancien helper apply_mobile_layout() n'existe plus ; la scène est ancrée
+    # en plein écran et suit directement la taille du viewport.
+    _check(tactical.touch_contract_ok(), "v0.9 tactical UI must satisfy its current touch contract on %s" % active_device_name)
 
     var interactive_count := 0
     for node_value in tactical.find_children("*", "Control", true, false):
