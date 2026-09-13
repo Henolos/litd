@@ -2,7 +2,7 @@
 name = "light-in-the-dark-tools"
 version = "1.0.0"
 requires-python = ">=3.11"
-dependencies = ["pytest>=8.0,<9", "PyYAML>=6.0,<7"]
+dependencies = ["pytest>=8.0,<9", "PyYAML>=6.0,<7", "psycopg[binary]>=3.2,<4"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests/python"]
@@ -13,3 +13,4 @@ markers = [
   "workflow: GitHub Actions tests",
   "save: save compatibility tests",
 ]
+
