@@ -111,7 +111,9 @@ func _render_guided_departure_v51() -> void:
     var launch := make_button("LANCER L'EXPÉDITION", func(): _start_roguelike_expedition(), Vector2(485, 62))
     launch.tooltip_text = "Commencer Sous le Premier Voile"
     mission_box.add_child(launch)
-    mission_box.add_child(make_button("RETOUR AU HUB", func(): GameState.request_screen("sanctuary"), Vector2(485, 46)))
+    var back := make_button("RETOUR", func(): GameState.request_screen("sanctuary"), Vector2(485, 46))
+    back.tooltip_text = "Retour au hub / Sanctuaire"
+    mission_box.add_child(back)
 
 func _render_direct_room_navigation_v51() -> void:
     _ensure_physical_first_veil()
