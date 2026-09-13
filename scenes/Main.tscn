@@ -1,5 +1,8 @@
 [gd_scene load_steps=18 format=3]
 
+; main_v51 active les corrections P0 issues du premier playtest externe :
+; action principale claire au hub, départ guidé et navigation de salle directe.
+; La macro-carte devient une vue d'ensemble optionnelle et non un passage obligé.
 ; main_v50 active le Combat Sandbox mobile réconcilié sans casser la chaîne UI canonique.
 ; Héritage pré-play conservé : res://scripts/ui/main_v49.gd
 ; main_v49 complète le contrat de ciblage joueur : sélection manuelle multi-cible,
@@ -50,7 +53,7 @@
 ; Héritage niveaux : res://scripts/ui/main_v25.gd
 ; Héritage roguelike : res://scripts/ui/main_v24.gd
 ; Héritage narratif : res://scripts/ui/main_v23.gd
-[ext_resource path="res://scripts/ui/main_v50.gd" type="Script" id="1"]
+[ext_resource path="res://scripts/ui/main_v51.gd" type="Script" id="1"]
 [ext_resource path="res://scripts/ui/ngplus_skill_tree_ui.gd" type="Script" id="2"]
 [ext_resource path="res://scripts/ui/main_v19.gd" type="Script" id="3"]
 [ext_resource path="res://scripts/ui/main_v18.gd" type="Script" id="4"]
