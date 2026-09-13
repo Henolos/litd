@@ -5,6 +5,7 @@ extends "res://scripts/core/mobile_touch_smoke_test.gd"
 # sémantique RETOUR afin de rester robuste aux variantes de libellé visibles.
 
 const TACTICAL_UI_SCENE := preload("res://scenes/veilleurs/v06_tactical_combat.tscn")
+const POSITION_RULES := preload("res://scripts/core/combat_position_rules.gd")
 
 func _run_device_profile() -> void:
     EndgameState.reset_profile_progress()
@@ -63,12 +64,41 @@ func _run_device_profile() -> void:
     await _frames(5)
     _check(GameState.current_screen == "combat", "Prototype combat must render for touch audit on %s" % active_device_name)
     await _audit_visible_buttons("combat")
-    # Garde est désormais la compétence équipée du slot 3 et son bouton affiche
-    # aussi ses rangs autorisés. Le test tactile cible donc le libellé visible actuel.
-    _check(await _touch_button("3 · Garde", false), "Touch must activate equipped Guard in combat on %s" % active_device_name)
-    _check(_log_contains("se met en garde"), "Combat touch must execute equipped Guard on %s" % active_device_name)
+    _audit_canonical_combat_contract()
+    _check(await _touch_button("3 · Parade courte", false), "Touch must activate Mathilde's canonical guard on %s" % active_device_name)
+    _check(_log_contains("se met en garde"), "Combat touch must execute Mathilde's guard on %s" % active_device_name)
 
     await _audit_v09_mobile_contract()
+
+func _audit_canonical_combat_contract() -> void:
+    var scene := get_tree().current_scene
+    _check(scene != null, "Canonical combat audit requires the Main scene")
+    if scene == null:
+        return
+
+    for canonical_id in ["mathilde", "marec", "anouk", "aurelien"]:
+        _check(scene.find_child("CanonicalCombatCard_%s" % canonical_id, true, false) != null, "Combat must render canonical identity card for %s" % canonical_id)
+
+    var visible_text := ""
+    for label_value in scene.find_children("*", "Label", true, false):
+        var label := label_value as Label
+        if label != null and label.is_visible_in_tree():
+            visible_text += "\n" + label.text
+    for forbidden_name in ["Mirelle", "Elara", "Rahkan", "Isolde"]:
+        _check(not visible_text.contains(forbidden_name), "Legacy hero name must never be visible in combat: %s" % forbidden_name)
+
+    for hero_value in GameState.party:
+        var hero: Dictionary = hero_value
+        var hero_id := str(hero.get("canonical_id", hero.get("id", ""))).to_lower()
+        if not hero_id in ["mathilde", "marec", "anouk", "aurelien"]:
+            continue
+        var has_hostile := false
+        for skill_id in HeroSkillManager.combat_loadout(hero):
+            var skill := HeroSkillManager.combat_skill(hero, skill_id)
+            if str(skill.get("target", "")) == "enemy" and POSITION_RULES.is_usable(hero, skill):
+                has_hostile = true
+                break
+        _check(has_hostile, "%s must have a usable hostile action from starting rank R%d" % [str(hero.get("name", hero_id)), int(hero.get("combat_position", 0)) + 1])
 
 func _audit_v09_mobile_contract() -> void:
     var original_text_scale := GameSettings.text_scale
@@ -135,10 +165,6 @@ func _audit_v09_mobile_contract() -> void:
     })
     await _frames(2)
 
-    # Le contrat tactile courant est porté par VeilleursTacticalUI lui-même :
-    # contrôles 6x5, zones corporelles, compétences et actions >= 44 px.
-    # L'ancien helper apply_mobile_layout() n'existe plus ; la scène est ancrée
-    # en plein écran et suit directement la taille du viewport.
     _check(tactical.touch_contract_ok(), "v0.9 tactical UI must satisfy its current touch contract on %s" % active_device_name)
 
     var interactive_count := 0

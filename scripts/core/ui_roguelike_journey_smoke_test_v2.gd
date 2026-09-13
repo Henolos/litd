@@ -3,6 +3,8 @@ extends "res://scripts/core/ui_roguelike_journey_smoke_test.gd"
 # v2 : une salle "créature" peut ne contenir qu'une cible. Si cette cible est
 # capturée, le combat est légitimement terminé et doit ouvrir les récompenses.
 
+const POSITION_RULES := preload("res://scripts/core/combat_position_rules.gd")
+
 func _exercise_capture_and_victory() -> void:
     if GameState.current_screen != "combat":
         return
@@ -50,8 +52,9 @@ func _exercise_capture_and_victory() -> void:
                 enemy["hp"] = 0
         _check(final_index >= 0, "At least one enemy must remain when capture does not finish the room")
         if final_index >= 0:
-            # Le smoke place explicitement la cible finale en E1 : il vérifie ainsi
-            # la nouvelle Frappe de mêlée dans une configuration tactiquement valide.
+            # La cible finale est placée en E1. Le smoke n'impose plus un nom de
+            # compétence : il utilise la première attaque hostile réellement
+            # équipée, visible et autorisée au rang courant du héros actif.
             var final_target: Dictionary = GameState.battle_enemies[final_index]
             var final_uid: String = str(final_target.get("combat_uid", ""))
             final_target["combat_position"] = 0
@@ -78,8 +81,47 @@ func _exercise_capture_and_victory() -> void:
             _check(final_index >= 0, "Repositioned final target must survive tactical HUD sorting")
             if final_index >= 0:
                 _check(await _select_enemy(final_index), "Player must select the final enemy")
-                _check(await _press_button("1 · Frappe", false), "Visible equipped strike must finish the combat")
+                _check(await _press_active_usable_hostile_skill(), "Active hero must expose and execute a usable hostile equipped skill")
 
     _check(GameState.current_screen == "rewards", "Roguelike victory must open the room reward screen")
     _check(_find_button("EXTRAIRE", false) != null, "Room rewards must offer explicit extraction")
     _check(ExpeditionManager.expedition_active, "Run must remain active while rewards are shown")
+
+func _press_active_usable_hostile_skill() -> bool:
+    var scene: Node = get_tree().current_scene
+    if scene == null or GameState.current_screen != "combat":
+        return false
+    var active_id := str(scene.get("combat_active_hero_id"))
+    var active_hero: Dictionary = {}
+    for hero_value in GameState.party:
+        var hero: Dictionary = hero_value
+        if str(hero.get("id", "")) == active_id:
+            active_hero = hero
+            break
+    if active_hero.is_empty():
+        return false
+
+    var loadout: Array[String] = HeroSkillManager.combat_loadout(active_hero)
+    for slot in range(loadout.size()):
+        var skill := HeroSkillManager.combat_skill(active_hero, loadout[slot])
+        if skill.is_empty():
+            continue
+        if str(skill.get("target", "")) != "enemy":
+            continue
+        if not POSITION_RULES.is_usable(active_hero, skill):
+            continue
+        var prefix := "%d · %s" % [slot + 1, str(skill.get("name", ""))]
+        # Ignore queued/hidden controls from the previous render. This is the
+        # actual player-facing button currently available on screen.
+        for node_value in scene.find_children("*", "Button", true, false):
+            var button := node_value as Button
+            if button == null or button.is_queued_for_deletion():
+                continue
+            if button.disabled or not button.is_visible_in_tree():
+                continue
+            if not button.text.contains(prefix):
+                continue
+            button.pressed.emit()
+            await _frames(5)
+            return true
+    return false

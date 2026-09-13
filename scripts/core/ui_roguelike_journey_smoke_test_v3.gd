@@ -88,7 +88,8 @@ func _reach_combat_room() -> void:
 
     _check(GameState.current_screen == "combat", "Physical route must eventually start combat without requiring the macro map")
     if GameState.current_screen == "combat":
-        _check(_find_button("1 · Frappe", false) != null, "Dungeon combat must expose the first equipped tactical skill")
+        _check(_find_button("1 · Trait net", false) != null, "Dungeon combat must expose Mathilde's canonical first tactical skill")
+        _check(_find_button("1 · Frappe", false) == null, "Canonical quartet must not fall back to the generic Frappe starter")
         _check(_find_button("CAPTURER", true) != null, "Dungeon combat must expose capture")
         _check(GameState.battle_enemies.size() >= 1, "Combat room must create enemies")
 
