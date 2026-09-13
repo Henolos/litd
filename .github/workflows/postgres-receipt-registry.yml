@@ -6,6 +6,7 @@ on:
       - 'tools/quality/postgres_receipt_consumption_registry.py'
       - 'tools/quality/receipt_registry_factory.py'
       - 'supabase/migrations/**'
+      - 'tests/fixtures/postgres_supabase_roles.sql'
       - 'tests/python/test_postgres_receipt_consumption_registry.py'
       - '.github/workflows/postgres-receipt-registry.yml'
       - 'requirements-dev.txt'
@@ -46,9 +47,9 @@ jobs:
         env:
           PGPASSWORD: postgres
         run: |
+          psql -h localhost -U postgres -d postgres -v ON_ERROR_STOP=1 -f tests/fixtures/postgres_supabase_roles.sql
           psql -h localhost -U postgres -d postgres -v ON_ERROR_STOP=1 -c 'create schema if not exists extensions'
           psql -h localhost -U postgres -d postgres -v ON_ERROR_STOP=1 -f supabase/migrations/20260912162000_governance_receipt_registry.sql
           psql -h localhost -U postgres -d postgres -v ON_ERROR_STOP=1 -f supabase/migrations/20260913093000_governance_receipt_registry_runtime.sql
       - name: Prove atomic replay protection on PostgreSQL
         run: python -m pytest -q tests/python/test_postgres_receipt_consumption_registry.py
-
