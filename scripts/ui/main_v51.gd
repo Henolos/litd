@@ -114,13 +114,14 @@ func _render_guided_departure_v51() -> void:
     mission_box.add_child(make_button("RETOUR AU HUB", func(): GameState.request_screen("sanctuary"), Vector2(485, 46)))
 
 func _render_direct_room_navigation_v51() -> void:
+    _ensure_physical_first_veil()
     var runtime: Node = ExpeditionManager.roguelike_runtime
     if runtime == null:
         GameState.add_log("Le runtime roguelike est indisponible.")
         return
 
     var active_run: Dictionary = runtime.active_run
-    var dungeon: Array = ExpeditionManager.dungeon_layout()
+    var dungeon: Array = first_veil_dungeon.visible_layout(runtime)
     var current_room_id := str(active_run.get("current_room_id", ""))
     var visited: Array = active_run.get("visited", [])
     var risk: Dictionary = ExpeditionManager.current_risk_profile()
@@ -149,10 +150,10 @@ func _render_direct_room_navigation_v51() -> void:
         CANON_TEXT
     ))
 
-    var current := _dungeon_room_by_id(current_room_id, dungeon)
+    var current: Dictionary = first_veil_dungeon.room_by_id(runtime, current_room_id)
     var current_name := "Entrée du donjon"
     if not current.is_empty():
-        current_name = _room_type_label(str(current.get("type", "unknown")))
+        current_name = str(current.get("name", _room_type_label(str(current.get("type", "unknown")))))
     status.add_child(make_label("POSITION ACTUELLE\n%s" % current_name, 15, CANON_TEXT))
 
     var map_button := make_button("VOIR LA MACRO-CARTE", func(): _open_macro_map_v51(), Vector2(360, 48))
@@ -186,7 +187,8 @@ func _render_direct_room_navigation_v51() -> void:
             var room_id := str(room.get("id", ""))
             var room_type := str(room.get("type", "unknown"))
             var depth := int(room.get("depth", 1))
-            var label := "ENTRER DANS LE DONJON" if visited.is_empty() else "SORTIE %d · %s · PROFONDEUR %d" % [index, _room_type_label(room_type), depth]
+            var room_name := str(room.get("name", _room_type_label(room_type)))
+            var label := "ENTRER DANS LE DONJON · %s" % room_name if visited.is_empty() else "SORTIE %d · %s · PROFONDEUR %d" % [index, room_name, depth]
             var room_button := make_button(label, func(id_value = room_id): _enter_roguelike_room(str(id_value)), Vector2(570, 64))
             room_button.alignment = HORIZONTAL_ALIGNMENT_LEFT
             exits_panel.add_child(room_button)
