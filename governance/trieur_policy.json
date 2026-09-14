@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "allowed_statuses": [
     "canonical",
     "active",
@@ -21,7 +21,14 @@
     "superseded_requires_replacement": true,
     "archived_must_live_under_archive_root": false,
     "duplicate_canonical_keys_forbidden": true,
-    "runtime_must_not_reference_inactive_entries": true
+    "runtime_must_not_reference_inactive_entries": true,
+    "archive_requires_explicit_opt_in": true,
+    "archive_requires_target": true,
+    "archive_target_must_be_under_archive_root": true,
+    "archive_apply_forbidden_on_main": true,
+    "archive_destination_collision_forbidden": true,
+    "archive_integrity_verification_required": true,
+    "automatic_delete_forbidden": true
   },
   "entries": []
 }
