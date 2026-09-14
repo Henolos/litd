@@ -26,6 +26,11 @@ def load(path: Path) -> dict:
     return data
 
 
+def is_under_managed_root(path: str, managed_roots: set[str]) -> bool:
+    normalized = path.replace("\\", "/").lstrip("./")
+    return any(normalized == root or normalized.startswith(root + "/") for root in managed_roots)
+
+
 def main() -> None:
     trieur = load(TRIEUR)
     sorter = load(MANIFEST)
@@ -45,6 +50,13 @@ def main() -> None:
     if not isinstance(entries, list):
         fail("Trieur entries must be a list")
 
+    managed_roots = {
+        str(root).replace("\\", "/").strip("/")
+        for root in trieur.get("managed_roots", [])
+        if str(root).strip()
+    }
+    canonical_registry_paths: set[str] = set()
+
     for entry in entries:
         if not isinstance(entry, dict):
             continue
@@ -55,6 +67,7 @@ def main() -> None:
             continue
 
         if status == "canonical":
+            canonical_registry_paths.add(path)
             if path not in canonical_paths:
                 fail(f"canonical Trieur entry {entry_id} is not protected by file sorter canonical_paths: {path}")
             if path in obsolete_paths:
@@ -62,6 +75,17 @@ def main() -> None:
 
         if status in {"superseded", "archived"} and path in canonical_paths:
             fail(f"inactive Trieur entry {entry_id} is still protected as canonical by file sorter: {path}")
+
+    unmanaged_by_trieur = sorted(
+        path
+        for path in canonical_paths
+        if is_under_managed_root(path, managed_roots) and path not in canonical_registry_paths
+    )
+    if unmanaged_by_trieur:
+        fail(
+            "file sorter canonical_paths inside Trieur managed_roots are missing canonical registry entries: "
+            + ", ".join(unmanaged_by_trieur)
+        )
 
     required_infra = {
         "governance/trieur_policy.json",
@@ -74,7 +98,9 @@ def main() -> None:
     if missing:
         fail("governance infrastructure missing from canonical_paths: " + ", ".join(missing))
 
-    print("TRIEUR_SORTER_BRIDGE_OK: lifecycle canon and physical file-sorter protections are aligned.")
+    print(
+        "TRIEUR_SORTER_BRIDGE_OK: lifecycle canon and physical file-sorter protections are bidirectionally aligned for managed roots."
+    )
 
 
 if __name__ == "__main__":
