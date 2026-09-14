@@ -2,6 +2,9 @@ name: Governance PostgreSQL Live Certification
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - cert/governance-postgres-live-proof-20260914
 
 permissions:
   contents: read
