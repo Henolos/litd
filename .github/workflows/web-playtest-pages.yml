@@ -3,10 +3,12 @@ name: LITD Web Playtest PWA
 on:
   push:
     branches: [main]
-    paths-ignore:
-      - '.github/**'
-      - 'docs/**'
-      - '**/*.md'
+    paths:
+      - '**'
+      - '!docs/**'
+      - '!**/*.md'
+      - '!.github/**'
+      - '.github/workflows/web-playtest-pages.yml'
   workflow_dispatch:
 
 permissions:
