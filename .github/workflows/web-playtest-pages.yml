@@ -50,14 +50,41 @@ jobs:
           test -f "$EXPECTED_TEMPLATES/web_nothreads_debug.zip"
           echo "WEB_CI_ENV_OK templates=$EXPECTED_TEMPLATES"
 
-      - name: Export Web release
+      - name: Export Web release (verbose)
         shell: bash
         env:
           HOME: /root
         run: |
           set -euo pipefail
-          mkdir -p build/web
-          godot --headless --path . --export-release "Web" build/web/index.html
+          mkdir -p build/web build/logs
+          set +e
+          godot --headless --verbose --path . --export-release "Web" build/web/index.html 2>&1 | tee build/logs/godot-web-export.log
+          GODOT_STATUS=${PIPESTATUS[0]}
+          set -e
+
+          echo "" | tee -a build/logs/godot-web-export.log
+          echo "===== GODOT DIAGNOSTIC SUMMARY =====" | tee -a build/logs/godot-web-export.log
+          grep -Ein '(^|[^A-Za-z])(ERROR|WARNING|SCRIPT ERROR|Parse Error|Failed|Invalid|Orphan|Leak)([^A-Za-z]|$)' build/logs/godot-web-export.log \
+            | tee build/logs/godot-diagnostics.log || true
+
+          echo "" | tee -a build/logs/godot-web-export.log
+          echo "===== REFERENCED PROJECT FILES =====" | tee -a build/logs/godot-web-export.log
+          grep -Eo 'res://[^[:space:]"'\''<>)]+' build/logs/godot-web-export.log \
+            | sed 's/[,:;.]$//' \
+            | sort -u \
+            | tee build/logs/godot-referenced-files.log || true
+
+          echo "Godot exit code: $GODOT_STATUS" | tee -a build/logs/godot-web-export.log
+          exit "$GODOT_STATUS"
+
+      - name: Upload Godot diagnostic logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: godot-web-diagnostics-${{ github.run_number }}
+          path: build/logs
+          if-no-files-found: warn
+          retention-days: 14
 
       - name: Validate Web payload
         shell: bash
