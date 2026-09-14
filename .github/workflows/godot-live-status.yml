@@ -1,0 +1,29 @@
+name: Godot Live Status
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  statuses: write
+
+concurrency:
+  group: godot-live-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  live-godot:
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.7.2
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publier la progression Godot en direct
+        env:
+          GODOT_PROGRESS_TOKEN: ${{ github.token }}
+          GODOT_PROGRESS_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          GODOT_PROGRESS_TARGET_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: python3 tools/ci/godot_progress_bridge.py
