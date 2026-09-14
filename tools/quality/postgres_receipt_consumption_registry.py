@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """PostgreSQL adapter for durable governance single-use receipt consumption.
 
-The adapter intentionally accepts an already-open DB-API compatible connection.
-It never reads credentials, opens network connections, writes a Core, merges code,
-or applies governed changes. Connection ownership remains with the caller.
+This adapter targets the already-governed `governance_private` Supabase schema.
+It uses only the server-role RPC functions exposed by the migration: no direct
+reads or writes to private tables, no secret loading, no Core write, no merge,
+and no application authority are introduced here.
 """
 from __future__ import annotations
 
@@ -27,7 +28,7 @@ class ConsumptionResult:
 
 
 class PostgresReceiptConsumptionRegistry:
-    """Durable multi-project receipt registry backed by PostgreSQL/Supabase."""
+    """DB-API adapter for the durable Supabase/PostgreSQL registry contract."""
 
     def __init__(self, connection: Any, *, project_id: str, target_route: str):
         if not project_id or not project_id.strip():
@@ -53,26 +54,25 @@ class PostgresReceiptConsumptionRegistry:
         for label, value in (("receipt_hash", receipt_hash), ("source_hash", source_hash), ("context_hash", context_hash)):
             if not _hex64(value):
                 raise ValueError(f"{label} must be 64 lowercase hex")
-        with self.connection.cursor() as cursor:
-            cursor.execute(
-                """
-                insert into governance.registered_receipts(
-                    project_id,target_route,receipt_hash,receipt_id,receipt_kind,
-                    source_hash,context_hash,expected_consumer
-                ) values (%s,%s,%s,%s,%s,%s,%s,%s)
-                """,
-                (
-                    self.project_id,
-                    self.target_route,
-                    receipt_hash,
-                    receipt_id.strip(),
-                    receipt_kind.strip(),
-                    source_hash,
-                    context_hash,
-                    expected_consumer.strip(),
-                ),
-            )
-        self.connection.commit()
+        try:
+            with self.connection.cursor() as cursor:
+                cursor.execute(
+                    "select governance_private.register_receipt(%s,%s,%s,%s,%s,%s,%s,%s)",
+                    (
+                        receipt_id.strip(),
+                        receipt_hash,
+                        receipt_kind.strip(),
+                        self.project_id,
+                        self.target_route,
+                        source_hash,
+                        context_hash,
+                        expected_consumer.strip(),
+                    ),
+                )
+            self.connection.commit()
+        except Exception:
+            self.connection.rollback()
+            raise
 
     def invalidate_receipt(
         self,
@@ -93,25 +93,24 @@ class PostgresReceiptConsumptionRegistry:
             raise ValueError("supersession requires replacement receipt hash")
         if replacement_receipt_hash is not None and not _hex64(replacement_receipt_hash):
             raise ValueError("replacement receipt hash must be 64 lowercase hex")
-        with self.connection.cursor() as cursor:
-            cursor.execute(
-                """
-                insert into governance.receipt_invalidations(
-                    project_id,target_route,receipt_hash,invalidation_kind,reason,
-                    replacement_receipt_hash,actor
-                ) values (%s,%s,%s,%s,%s,%s,%s)
-                """,
-                (
-                    self.project_id,
-                    self.target_route,
-                    receipt_hash,
-                    kind,
-                    reason.strip(),
-                    replacement_receipt_hash,
-                    actor.strip(),
-                ),
-            )
-        self.connection.commit()
+        try:
+            with self.connection.cursor() as cursor:
+                cursor.execute(
+                    "select governance_private.invalidate_receipt(%s,%s,%s,%s,%s,%s,%s)",
+                    (
+                        receipt_hash,
+                        self.project_id,
+                        self.target_route,
+                        kind,
+                        reason.strip(),
+                        actor.strip(),
+                        replacement_receipt_hash,
+                    ),
+                )
+            self.connection.commit()
+        except Exception:
+            self.connection.rollback()
+            raise
 
     def consume(
         self,
@@ -131,13 +130,13 @@ class PostgresReceiptConsumptionRegistry:
             with self.connection.cursor() as cursor:
                 cursor.execute(
                     """
-                    select accepted,status,reason,receipt_hash,audit_entry_hash
-                    from governance.consume_receipt_once(%s,%s,%s,%s,%s,%s)
+                    select accepted,status,reason,audit_entry_hash
+                    from governance_private.consume_receipt(%s,%s,%s,%s,%s,%s)
                     """,
                     (
+                        receipt_hash,
                         self.project_id,
                         self.target_route,
-                        receipt_hash,
                         consumer.strip(),
                         actor.strip(),
                         current_context_hash,
@@ -145,24 +144,15 @@ class PostgresReceiptConsumptionRegistry:
                 )
                 row = cursor.fetchone()
             if row is None:
-                raise RuntimeError("consume_receipt_once returned no result")
+                raise RuntimeError("governance_private.consume_receipt returned no result")
             self.connection.commit()
-            return ConsumptionResult(bool(row[0]), str(row[1]), str(row[2]), str(row[3]), str(row[4]))
+            return ConsumptionResult(
+                accepted=bool(row[0]),
+                status=str(row[1]),
+                reason=str(row[2]),
+                receipt_hash=receipt_hash,
+                audit_entry_hash=str(row[3]),
+            )
         except Exception:
             self.connection.rollback()
             raise
-
-    def consumption_count(self, receipt_hash: str) -> int:
-        if not _hex64(receipt_hash):
-            raise ValueError("receipt_hash must be 64 lowercase hex")
-        with self.connection.cursor() as cursor:
-            cursor.execute(
-                """
-                select count(*)
-                from governance.receipt_consumptions
-                where project_id=%s and target_route=%s and receipt_hash=%s
-                """,
-                (self.project_id, self.target_route, receipt_hash),
-            )
-            row = cursor.fetchone()
-        return int(row[0])
