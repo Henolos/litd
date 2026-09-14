@@ -1,5 +1,5 @@
 {
-  "schema_version": 3,
+  "schema_version": 4,
   "policy": {
     "principle": "A file is never deleted from a heuristic alone.",
     "minimum_delete_confidence": 0.95,
@@ -16,19 +16,26 @@
       "manual invocation with --apply --allow-delete"
     ],
     "review_rule": "Heuristics may only classify a file as review; they never authorize deletion.",
-    "rollback_rule": "Deletion must happen in a dedicated Git commit/PR so Git history remains the rollback mechanism."
+    "rollback_rule": "Deletion must happen in a dedicated Git commit/PR so Git history remains the rollback mechanism.",
+    "trieur_bridge_rule": "Canonical lifecycle entries from governance/trieur_policy.json must also be protected by canonical_paths."
   },
   "canonical_paths": [
     "project.godot",
     "export_presets.cfg",
+    "data/heroes.json",
+    "data/maintenance/canonical_files.json",
+    "governance/trieur_policy.json",
     "docs/BIBLE_UX_UI_LITD.md",
+    "docs/governance/TRIEUR_V2.md",
     "docs/knowledge/README.md",
     "docs/knowledge/guardian-rules.yml",
     "docs/knowledge/dependencies.yml",
     "docs/knowledge/decisions/ADR-0001-guardian-progressif.md",
     "tools/quality/validate_knowledge.py",
     "tools/maintenance/litd_file_sorter.py",
-    "data/maintenance/canonical_files.json"
+    "tools/ci/trieur_governance_gate.py",
+    "tools/ci/trieur_safe_archive.py",
+    "tools/ci/trieur_file_sorter_bridge.py"
   ],
   "protected_patterns": [
     ".github/**",
@@ -37,8 +44,10 @@
     "addons/**",
     "data/veilleurs/skills/**",
     "docs/knowledge/**",
+    "governance/**",
     "tools/quality/**",
     "tools/maintenance/**",
+    "tools/ci/trieur_*.py",
     "tests/**",
     "test/**",
     "project.godot",
