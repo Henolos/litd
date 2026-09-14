@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "allowed_statuses": [
+    "canonical",
+    "active",
+    "superseded",
+    "archived"
+  ],
+  "runtime_forbidden_statuses": [
+    "superseded",
+    "archived"
+  ],
+  "managed_roots": [
+    "data",
+    "scenes",
+    "scripts",
+    "docs"
+  ],
+  "archive_root": "archive",
+  "rules": {
+    "superseded_requires_replacement": true,
+    "archived_must_live_under_archive_root": false,
+    "duplicate_canonical_keys_forbidden": true,
+    "runtime_must_not_reference_inactive_entries": true
+  },
+  "entries": []
+}

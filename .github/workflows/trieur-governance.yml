@@ -1,0 +1,39 @@
+name: Trieur Governance
+
+on:
+  pull_request:
+    paths:
+      - 'governance/trieur_policy.json'
+      - 'tools/ci/trieur_governance_gate.py'
+      - 'data/**'
+      - 'scenes/**'
+      - 'scripts/**'
+      - 'docs/**'
+      - '.github/workflows/trieur-governance.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'governance/trieur_policy.json'
+      - 'tools/ci/trieur_governance_gate.py'
+      - 'data/**'
+      - 'scenes/**'
+      - 'scripts/**'
+      - 'docs/**'
+      - '.github/workflows/trieur-governance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  trieur-governance:
+    name: Trieur Governance Gate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate lifecycle registry and runtime references
+        run: python tools/ci/trieur_governance_gate.py
