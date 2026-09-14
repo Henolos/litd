@@ -1,0 +1,106 @@
+name: Governance PostgreSQL Live Proof
+
+on:
+  workflow_dispatch:
+    inputs:
+      apply_migration:
+        description: "Apply canonical governance migration before proof"
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+
+env:
+  MIGRATION_FILE: supabase/migrations/20260912162000_governance_receipt_registry.sql
+  PROOF_SCRIPT: scripts/governance/run_postgres_receipt_live_proof.sh
+
+jobs:
+  live-proof:
+    name: Live PostgreSQL governance proof
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: governance-production
+
+    steps:
+      - name: Checkout exact main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+
+      - name: Require production database secret
+        shell: bash
+        env:
+          GOVERNANCE_DATABASE_URL: ${{ secrets.GOVERNANCE_DATABASE_URL }}
+        run: |
+          set -euo pipefail
+          if [[ -z "${GOVERNANCE_DATABASE_URL:-}" ]]; then
+            echo "GOVERNANCE_DATABASE_URL is required in the governance-production environment." >&2
+            exit 1
+          fi
+
+      - name: Install PostgreSQL client
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+          psql --version
+
+      - name: Verify required repository artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f "$MIGRATION_FILE"
+          test -f "$PROOF_SCRIPT"
+          test -s "$MIGRATION_FILE"
+          test -s "$PROOF_SCRIPT"
+
+      - name: Apply canonical governance migration
+        if: ${{ inputs.apply_migration }}
+        shell: bash
+        env:
+          GOVERNANCE_DATABASE_URL: ${{ secrets.GOVERNANCE_DATABASE_URL }}
+        run: |
+          set -euo pipefail
+          psql "$GOVERNANCE_DATABASE_URL" -X -v ON_ERROR_STOP=1 -f "$MIGRATION_FILE"
+
+      - name: Execute adversarial live proof
+        shell: bash
+        env:
+          GOVERNANCE_DATABASE_URL: ${{ secrets.GOVERNANCE_DATABASE_URL }}
+          GOVERNANCE_EVIDENCE_DIR: artifacts/governance-postgres-proof/${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          set -euo pipefail
+          chmod +x "$PROOF_SCRIPT"
+          "$PROOF_SCRIPT"
+
+      - name: Record immutable run metadata
+        if: ${{ always() }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/governance-postgres-proof/run-metadata
+          {
+            echo "repository=${GITHUB_REPOSITORY}"
+            echo "workflow=${GITHUB_WORKFLOW}"
+            echo "run_id=${GITHUB_RUN_ID}"
+            echo "run_attempt=${GITHUB_RUN_ATTEMPT}"
+            echo "ref=${GITHUB_REF}"
+            echo "sha=${GITHUB_SHA}"
+            echo "actor=${GITHUB_ACTOR}"
+            echo "server_url=${GITHUB_SERVER_URL}"
+            echo "run_url=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+            date -u +"recorded_at=%Y-%m-%dT%H:%M:%SZ"
+          } > artifacts/governance-postgres-proof/run-metadata/run.txt
+
+      - name: Upload governance proof evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: governance-postgres-proof-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/governance-postgres-proof/
+          if-no-files-found: error
+          retention-days: 90
