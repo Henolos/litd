@@ -79,6 +79,40 @@ jobs:
           echo "Godot exit code: $GODOT_STATUS" | tee -a build/logs/godot-web-export.log
           exit "$GODOT_STATUS"
 
+      - name: Force fresh PWA takeover
+        shell: bash
+        run: |
+          set -euo pipefail
+          SERVICE_WORKER="$(find build/web -maxdepth 1 -type f \( -name '*service*worker*.js' -o -name '*service_worker*.js' \) -print -quit)"
+          if [[ -z "$SERVICE_WORKER" ]]; then
+            echo "Godot PWA service worker not found" >&2
+            find build/web -maxdepth 1 -type f -printf '%f\n' | sort
+            exit 1
+          fi
+
+          cat >> "$SERVICE_WORKER" <<'EOF'
+
+// LITD playtest freshness guard: activate the newest build immediately.
+self.addEventListener('install', () => {
+  self.skipWaiting();
+});
+self.addEventListener('activate', (event) => {
+  event.waitUntil((async () => {
+    await self.clients.claim();
+    const windows = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+    for (const client of windows) {
+      if ('navigate' in client) {
+        client.navigate(client.url);
+      }
+    }
+  })());
+});
+EOF
+
+          grep -q 'self.skipWaiting()' "$SERVICE_WORKER"
+          grep -q 'self.clients.claim()' "$SERVICE_WORKER"
+          echo "PWA_FRESHNESS_GUARD_OK service_worker=$SERVICE_WORKER"
+
       - name: Upload Godot diagnostic logs
         if: always()
         uses: actions/upload-artifact@v4
