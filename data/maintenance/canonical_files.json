@@ -34,7 +34,8 @@
     "tools/quality/validate_knowledge.py",
     "tools/maintenance/litd_file_sorter.py",
     "tools/ci/trieur_governance_gate.py",
-    "tools/ci/trieur_safe_archive.py"
+    "tools/ci/trieur_safe_archive.py",
+    "tools/ci/trieur_file_sorter_bridge.py"
   ],
   "protected_patterns": [
     ".github/**",
