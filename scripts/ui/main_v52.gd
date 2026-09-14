@@ -7,6 +7,7 @@ extends "res://scripts/ui/main_v51.gd"
 
 const LEGACY_CARD_PREFIX := "res://assets/heroes/"
 const CANONICAL_HERO_IDS := ["mathilde", "marec", "anouk", "aurelien"]
+const GENERIC_STARTER_IDS := ["basic_strike", "heavy_blow", "guard_stance", "field_aid"]
 const CANONICAL_ROLES := {
     "mathilde": "Duelliste",
     "marec": "Briseur",
@@ -21,8 +22,33 @@ const CANONICAL_PORTRAITS := {
 }
 
 func show_combat() -> void:
+    # Human playtest guard: a stale save or partially migrated runtime must never
+    # reintroduce the generic LITD1 action bar for the canonical quartet. Do this
+    # before the inherited renderer asks for the loadout so R3/R4 heroes receive
+    # their real starter techniques immediately.
+    _enforce_canonical_combat_loadouts_v52()
     super.show_combat()
     _replace_legacy_hero_cards_v52()
+
+func _enforce_canonical_combat_loadouts_v52() -> void:
+    for hero_value: Variant in GameState.party:
+        if hero_value is not Dictionary:
+            continue
+        var hero: Dictionary = hero_value
+        var hero_id := str(hero.get("canonical_id", hero.get("id", ""))).to_lower()
+        if not CANONICAL_HERO_IDS.has(hero_id):
+            continue
+
+        HeroSkillManager.prepare_hero(hero)
+        var loadout: Array[String] = HeroSkillManager.combat_loadout(hero)
+        var contains_generic := false
+        for skill_id in loadout:
+            if GENERIC_STARTER_IDS.has(skill_id):
+                contains_generic = true
+                break
+        if contains_generic or loadout.size() != HeroSkillManager.COMBAT_LOADOUT_SIZE:
+            hero["combat_loadout"] = HeroSkillManager.starter_loadout(hero)
+            HeroSkillManager.prepare_hero(hero)
 
 func _replace_legacy_hero_cards_v52() -> void:
     if not is_instance_valid(content):
