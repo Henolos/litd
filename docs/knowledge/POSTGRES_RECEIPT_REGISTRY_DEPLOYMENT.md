@@ -51,6 +51,7 @@ Database protections were also verified:
 - `anon` and `authenticated` cannot execute the registry functions
 - `service_role` can execute them
 - RLS is enabled on all four registry tables
+- SSL enforcement is enabled for incoming database connections
 
 The atomic concurrency proof scheduled eight distinct consumers against one synthetic
 receipt. The first wave produced exactly 8 calls: 1 accepted, 7 rejected with
@@ -64,5 +65,5 @@ and runtime wiring still need to be standardized before deployment.
 
 This staging proof validates PostgreSQL behavior but does not close the production
 deployment gate. The Free staging plan does not provide production-grade backup/PITR
-evidence, and SSL enforcement plus network restrictions must be explicitly verified
-before either stacked PR is prepared for merge.
+evidence. Network restrictions remain open until the fixed outbound IP of the Hetzner
+worker is provisioned; restricting access earlier would block the required runtime.
