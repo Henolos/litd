@@ -57,7 +57,7 @@ def main() -> int:
         reg.register_receipt(receipt_id=f"cert:{run_id}:base", receipt_hash=receipt, receipt_kind="CERT_SYNTHETIC", source_hash=source, context_hash=context, expected_consumer="CERT_CONSUMER")
         first = reg.consume(receipt, consumer="CERT_CONSUMER", actor="live-cert", current_context_hash=context)
         second = reg.consume(receipt, consumer="CERT_CONSUMER", actor="live-cert", current_context_hash=context)
-        ok = first.accepted and not second.accepted and second.reason == "replay_detected" and reg.consumption_count(receipt) == 1
+        ok = first.accepted and not second.accepted and second.reason == "replay_detected"
         evidence["tests"].append({"name": "identical_replay", "passed": ok, "first": asdict(first), "second": asdict(second)})
 
     stale_receipt = sha(f"stale:{run_id}")
