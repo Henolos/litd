@@ -12,7 +12,18 @@ on:
       - 'scenes/**'
       - 'scripts/**'
       - 'assets/**'
-      - 'data/veilleurs/**'
+      - 'data/**'
+      - 'tools/ci/canon_freshness_gate.py'
+  pull_request:
+    paths:
+      - '.github/workflows/build.yml'
+      - 'project.godot'
+      - 'export_presets.cfg'
+      - 'scenes/**'
+      - 'scripts/**'
+      - 'assets/**'
+      - 'data/**'
+      - 'tools/ci/canon_freshness_gate.py'
 
 concurrency:
   group: builds-${{ github.ref }}
@@ -22,7 +33,19 @@ permissions:
   contents: read
 
 jobs:
+  canon-freshness:
+    name: Canon Freshness Gate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Reject stale runtime canon
+        run: python tools/ci/canon_freshness_gate.py
+
   export:
+    needs: canon-freshness
     strategy:
       fail-fast: false
       matrix:
@@ -42,10 +65,10 @@ jobs:
     env:
       HOME: /root
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
       - run: mkdir -p "${{ matrix.path }}"
       - run: godot --headless --path . --export-release "${{ matrix.preset }}"
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: ${{ matrix.artifact }}
           path: ${{ matrix.path }}
