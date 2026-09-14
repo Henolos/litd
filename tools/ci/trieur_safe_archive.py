@@ -1,16 +1,5 @@
 #!/usr/bin/env python3
-"""Plan and safely apply Trieur archival moves.
-
-Default mode is dry-run. Applying an archive requires all guardrails:
-- entry status must already be archived;
-- entry must opt in with archive_enabled=true and provide archive_target;
-- archive_target must stay under archive_root;
-- destination must not already exist;
-- apply is forbidden on main/master;
-- TRIEUR_ARCHIVE_ACK must equal I_UNDERSTAND_ARCHIVE_MOVE;
-- copied bytes are SHA-256 verified before the source is removed;
-- this tool never permanently deletes content: it only moves it under archive/.
-"""
+"""Plan and safely apply Trieur archival moves with registry consistency."""
 from __future__ import annotations
 
 import argparse
@@ -42,14 +31,19 @@ def load_policy() -> dict:
     return data
 
 
+def save_policy(policy: dict) -> None:
+    temp = POLICY_FILE.with_suffix(".json.tmp")
+    text = json.dumps(policy, ensure_ascii=False, indent=2) + "\n"
+    temp.write_text(text, encoding="utf-8")
+    os.replace(temp, POLICY_FILE)
+
+
 def current_branch() -> str:
     env_ref = os.getenv("GITHUB_REF_NAME", "").strip()
     if env_ref:
         return env_ref
     try:
-        return subprocess.check_output(
-            ["git", "branch", "--show-current"], cwd=ROOT, text=True
-        ).strip()
+        return subprocess.check_output(["git", "branch", "--show-current"], cwd=ROOT, text=True).strip()
     except Exception:
         return "unknown"
 
@@ -60,6 +54,15 @@ def resolved_inside(path: Path, parent: Path) -> bool:
         return True
     except ValueError:
         return False
+
+
+def reject_symlinks(entry_id: str, source: Path) -> None:
+    if source.is_symlink():
+        fail(f"{entry_id}: symlink sources are forbidden")
+    if source.is_dir():
+        for child in source.rglob("*"):
+            if child.is_symlink():
+                fail(f"{entry_id}: symlink inside archive source is forbidden: {child.relative_to(ROOT)}")
 
 
 def file_hash(path: Path) -> str:
@@ -80,14 +83,14 @@ def tree_hash(path: Path) -> str:
     return digest.hexdigest()
 
 
-def archive_candidates(policy: dict) -> list[tuple[str, Path, Path]]:
+def archive_candidates(policy: dict) -> list[tuple[int, str, Path, Path]]:
     archive_root = ROOT / str(policy.get("archive_root", "archive"))
     entries = policy.get("entries", [])
     if not isinstance(entries, list):
         fail("entries must be a list")
 
-    candidates: list[tuple[str, Path, Path]] = []
-    for entry in entries:
+    candidates: list[tuple[int, str, Path, Path]] = []
+    for index, entry in enumerate(entries):
         if not isinstance(entry, dict):
             continue
         if entry.get("status") != "archived" or entry.get("archive_enabled") is not True:
@@ -111,12 +114,27 @@ def archive_candidates(policy: dict) -> list[tuple[str, Path, Path]]:
             fail(f"{entry_id}: archive destination already exists: {target_text}")
         if source.resolve() == target.resolve():
             fail(f"{entry_id}: source and target are identical")
-        candidates.append((entry_id, source, target))
+        reject_symlinks(entry_id, source)
+        candidates.append((index, entry_id, source, target))
     return candidates
 
 
-def apply_move(entry_id: str, source: Path, target: Path) -> None:
+def remove_path(path: Path) -> None:
+    if path.is_dir():
+        shutil.rmtree(path)
+    else:
+        path.unlink()
+
+
+def restore_path(target: Path, source: Path) -> None:
+    source.parent.mkdir(parents=True, exist_ok=True)
+    shutil.move(str(target), str(source))
+
+
+def apply_move(policy: dict, index: int, entry_id: str, source: Path, target: Path) -> None:
     before = tree_hash(source)
+    source_rel = str(source.relative_to(ROOT))
+    target_rel = str(target.relative_to(ROOT))
     target.parent.mkdir(parents=True, exist_ok=True)
 
     if source.is_dir():
@@ -126,17 +144,30 @@ def apply_move(entry_id: str, source: Path, target: Path) -> None:
 
     after = tree_hash(target)
     if before != after:
-        if target.is_dir():
-            shutil.rmtree(target)
-        else:
-            target.unlink(missing_ok=True)
+        remove_path(target)
         fail(f"{entry_id}: integrity verification failed; copied target rolled back")
 
-    if source.is_dir():
-        shutil.rmtree(source)
-    else:
-        source.unlink()
-    print(f"ARCHIVED {entry_id}: {source.relative_to(ROOT)} -> {target.relative_to(ROOT)} sha256={after}")
+    remove_path(source)
+
+    entry = policy["entries"][index]
+    previous = dict(entry)
+    entry["previous_path"] = source_rel
+    entry["path"] = target_rel
+    entry["archive_state"] = "moved"
+    entry["archive_enabled"] = False
+    entry["archived_sha256"] = after
+
+    try:
+        save_policy(policy)
+    except Exception as exc:
+        policy["entries"][index] = previous
+        try:
+            restore_path(target, source)
+        except Exception as rollback_exc:
+            fail(f"{entry_id}: registry update failed ({exc}) and filesystem rollback also failed ({rollback_exc})")
+        fail(f"{entry_id}: registry update failed; archive move rolled back: {exc}")
+
+    print(f"ARCHIVED {entry_id}: {source_rel} -> {target_rel} sha256={after}; registry updated")
 
 
 def main() -> None:
@@ -151,7 +182,7 @@ def main() -> None:
         print("TRIEUR_ARCHIVE_OK: no archive-enabled entries to move.")
         return
 
-    for entry_id, source, target in candidates:
+    for _, entry_id, source, target in candidates:
         print(f"PLAN {entry_id}: {source.relative_to(ROOT)} -> {target.relative_to(ROOT)}")
 
     if not args.apply:
@@ -164,10 +195,10 @@ def main() -> None:
     if os.getenv("TRIEUR_ARCHIVE_ACK") != ACK:
         fail(f"archive apply requires TRIEUR_ARCHIVE_ACK={ACK}")
 
-    for entry_id, source, target in candidates:
-        apply_move(entry_id, source, target)
+    for index, entry_id, source, target in candidates:
+        apply_move(policy, index, entry_id, source, target)
 
-    print(f"TRIEUR_ARCHIVE_APPLIED: {len(candidates)} move(s) completed with integrity verification.")
+    print(f"TRIEUR_ARCHIVE_APPLIED: {len(candidates)} move(s) completed with integrity verification and registry updates.")
 
 
 if __name__ == "__main__":
