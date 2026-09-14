@@ -3,10 +3,12 @@ name: LITD Web Playtest PWA
 on:
   push:
     branches: [main]
-    paths-ignore:
-      - '.github/**'
-      - 'docs/**'
-      - '**/*.md'
+    paths:
+      - '**'
+      - '!docs/**'
+      - '!**/*.md'
+      - '!.github/**'
+      - '.github/workflows/web-playtest-pages.yml'
   workflow_dispatch:
 
 permissions:
@@ -26,7 +28,7 @@ jobs:
       image: barichello/godot-ci:4.7.2
     steps:
       - name: Checkout
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
 
       - name: Prepare Godot Web exporter
         shell: bash
@@ -50,14 +52,41 @@ jobs:
           test -f "$EXPECTED_TEMPLATES/web_nothreads_debug.zip"
           echo "WEB_CI_ENV_OK templates=$EXPECTED_TEMPLATES"
 
-      - name: Export Web release
+      - name: Export Web release (verbose)
         shell: bash
         env:
           HOME: /root
         run: |
           set -euo pipefail
-          mkdir -p build/web
-          godot --headless --path . --export-release "Web" build/web/index.html
+          mkdir -p build/web build/logs
+          set +e
+          godot --headless --verbose --path . --export-release "Web" build/web/index.html 2>&1 | tee build/logs/godot-web-export.log
+          GODOT_STATUS=${PIPESTATUS[0]}
+          set -e
+
+          echo "" | tee -a build/logs/godot-web-export.log
+          echo "===== GODOT DIAGNOSTIC SUMMARY =====" | tee -a build/logs/godot-web-export.log
+          grep -Ein '(^|[^A-Za-z])(ERROR|WARNING|SCRIPT ERROR|Parse Error|Failed|Invalid|Orphan|Leak)([^A-Za-z]|$)' build/logs/godot-web-export.log \
+            | tee build/logs/godot-diagnostics.log || true
+
+          echo "" | tee -a build/logs/godot-web-export.log
+          echo "===== REFERENCED PROJECT FILES =====" | tee -a build/logs/godot-web-export.log
+          grep -Eo 'res://[^[:space:]"'\''<>)]+' build/logs/godot-web-export.log \
+            | sed 's/[,:;.]$//' \
+            | sort -u \
+            | tee build/logs/godot-referenced-files.log || true
+
+          echo "Godot exit code: $GODOT_STATUS" | tee -a build/logs/godot-web-export.log
+          exit "$GODOT_STATUS"
+
+      - name: Upload Godot diagnostic logs
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: godot-web-diagnostics-${{ github.run_number }}
+          path: build/logs
+          if-no-files-found: warn
+          retention-days: 14
 
       - name: Validate Web payload
         shell: bash
@@ -71,7 +100,7 @@ jobs:
           find build/web -maxdepth 1 -type f -printf '%f\n' | sort
 
       - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b
         with:
           path: build/web
 
@@ -84,8 +113,8 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Configure GitHub Pages
-        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e
