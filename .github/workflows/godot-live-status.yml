@@ -21,6 +21,10 @@ jobs:
       image: barichello/godot-ci:4.7.2
     steps:
       - uses: actions/checkout@v4
+      - name: Installer Python pour le pont de progression
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends python3 ca-certificates
       - name: Publier la progression Godot en direct
         env:
           GODOT_PROGRESS_TOKEN: ${{ github.token }}
