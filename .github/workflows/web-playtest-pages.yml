@@ -79,6 +79,32 @@ jobs:
           echo "Godot exit code: $GODOT_STATUS" | tee -a build/logs/godot-web-export.log
           exit "$GODOT_STATUS"
 
+      - name: Enforce immediate playtest PWA refresh
+        shell: bash
+        run: |
+          set -euo pipefail
+          SW="build/web/index.service.worker.js"
+          test -s "$SW"
+          cat >> "$SW" <<'EOF'
+
+          // LITD playtest freshness contract.
+          // A newly deployed playtest must replace a stale worker immediately,
+          // claim already-open tabs and reload them onto the new cache version.
+          self.addEventListener('install', (event) => {
+            event.waitUntil(self.skipWaiting());
+          });
+
+          self.addEventListener('activate', (event) => {
+            event.waitUntil(
+              self.clients.claim()
+                .then(() => self.clients.matchAll({ type: 'window', includeUncontrolled: true }))
+                .then((clients) => Promise.all(clients.map((client) => client.navigate(client.url))))
+            );
+          });
+          EOF
+          grep -F "self.skipWaiting()" "$SW"
+          grep -F "client.navigate(client.url)" "$SW"
+
       - name: Upload Godot diagnostic logs
         if: always()
         uses: actions/upload-artifact@v4
@@ -96,6 +122,9 @@ jobs:
           test -n "$(find build/web -maxdepth 1 -type f -name '*.wasm' -print -quit)"
           test -n "$(find build/web -maxdepth 1 -type f \( -name '*.pck' -o -name '*.zip' \) -print -quit)"
           test -n "$(find build/web -maxdepth 1 -type f -name '*manifest*.json' -o -name '*.webmanifest' -print -quit)" || true
+          test -s build/web/index.service.worker.js
+          grep -F "self.skipWaiting()" build/web/index.service.worker.js
+          grep -F "client.navigate(client.url)" build/web/index.service.worker.js
           echo "Web export files:"
           find build/web -maxdepth 1 -type f -printf '%f\n' | sort
 
