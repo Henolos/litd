@@ -4,6 +4,13 @@ extends "res://scripts/core/ui_roguelike_journey_smoke_test_v2.gd"
 # déplacements salle par salle sans imposer la macro-carte. La carte reste testée
 # comme vue d'ensemble optionnelle, puis la progression reprend par les passages.
 
+const CANONICAL_PORTRAIT_PATHS := [
+    "res://assets/heroes/canonical/mathilde.svg",
+    "res://assets/heroes/canonical/marec.svg",
+    "res://assets/heroes/canonical/anouk.svg",
+    "res://assets/heroes/canonical/aurelien.svg"
+]
+
 func _drive_title_and_departure() -> void:
     _check(await _press_button("NOUVELLE PARTIE", true), "Player must start a new game through the UI")
     _check(ContentScopeDirector.grant_capability("capture"), "Advanced roguelike journey must unlock capture explicitly")
@@ -53,6 +60,7 @@ func _enter_first_room() -> void:
     _check(_find_physical_passage_button() != null, "Cleared entrance must expose a physical passage without requiring the macro map")
 
 func _reach_combat_room() -> void:
+    var physical_passages_taken := 0
     for _step in range(40):
         if GameState.current_screen == "combat":
             break
@@ -64,6 +72,7 @@ func _reach_combat_room() -> void:
             await _frames(4)
             continue
         if GameState.current_screen == "dungeon_room":
+            _check(not _macro_map_open_v51(), "Room-to-room traversal must not silently reopen the macro map state")
             var action_button: Button = _find_physical_room_action_button()
             if action_button != null:
                 action_button.pressed.emit()
@@ -73,10 +82,12 @@ func _reach_combat_room() -> void:
             _check(passage_button != null, "Cleared physical room must expose a passage to continue without the macro map")
             if passage_button == null:
                 break
+            physical_passages_taken += 1
             passage_button.pressed.emit()
             await _frames(5)
             continue
         if GameState.current_screen == "expedition":
+            _check(not _macro_map_open_v51(), "Direct navigation may appear between rooms but must not switch to the macro map")
             var direct_button: Button = _find_direct_room_button()
             _check(direct_button != null, "Direct navigation must keep an unexplored reachable room available")
             if direct_button == null:
@@ -86,12 +97,57 @@ func _reach_combat_room() -> void:
             continue
         break
 
+    # Le seed de test peut légitimement placer un combat dès la salle atteinte
+    # après le premier passage. Le contrat P0 est donc vérifié sur la propriété
+    # essentielle : au moins une transition physique salle→passage→salle sans
+    # réouverture de la macro-carte, puis arrivée en combat par ce même flux.
+    _check(physical_passages_taken >= 1, "Player must traverse physical rooms through at least one direct passage without opening the macro map")
     _check(GameState.current_screen == "combat", "Physical route must eventually start combat without requiring the macro map")
     if GameState.current_screen == "combat":
+        _check(_canonical_portraits_visible(), "Combat must render dedicated portraits for Mathilde, Marec, Anouk and Aurélien")
+        _check(_legacy_hero_portraits_hidden(), "Legacy hero/class portraits must stay hidden when the canonical quartet is rendered")
         _check(_find_button("1 · Trait net", false) != null, "Dungeon combat must expose Mathilde's canonical first tactical skill")
         _check(_find_button("1 · Frappe", false) == null, "Canonical quartet must not fall back to the generic Frappe starter")
         _check(_find_button("CAPTURER", true) != null, "Dungeon combat must expose capture")
         _check(GameState.battle_enemies.size() >= 1, "Combat room must create enemies")
+
+func _macro_map_open_v51() -> bool:
+    var scene: Node = get_tree().current_scene
+    if scene == null:
+        return false
+    return bool(scene.get("expedition_macro_map_open_v51"))
+
+func _canonical_portraits_visible() -> bool:
+    var scene: Node = get_tree().current_scene
+    if scene == null:
+        return false
+    var found: Dictionary = {}
+    for path_value in CANONICAL_PORTRAIT_PATHS:
+        found[str(path_value)] = false
+    for node_value in scene.find_children("*", "TextureRect", true, false):
+        var portrait := node_value as TextureRect
+        if portrait == null or portrait.texture == null or not portrait.is_visible_in_tree():
+            continue
+        var resource_path := str(portrait.texture.resource_path)
+        if found.has(resource_path):
+            found[resource_path] = true
+    for path_value in CANONICAL_PORTRAIT_PATHS:
+        if not bool(found.get(str(path_value), false)):
+            return false
+    return true
+
+func _legacy_hero_portraits_hidden() -> bool:
+    var scene: Node = get_tree().current_scene
+    if scene == null:
+        return false
+    for node_value in scene.find_children("*", "TextureRect", true, false):
+        var portrait := node_value as TextureRect
+        if portrait == null or portrait.texture == null or not portrait.is_visible_in_tree():
+            continue
+        var resource_path := str(portrait.texture.resource_path)
+        if resource_path.begins_with("res://assets/heroes/") and not resource_path.begins_with("res://assets/heroes/canonical/"):
+            return false
+    return true
 
 func _find_physical_room_action_button() -> Button:
     var fragments: Array[String] = [
