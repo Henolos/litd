@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "allowed_statuses": [
     "canonical",
     "active",
@@ -42,6 +42,62 @@
       "canonical_key": "litd.starting_quartet",
       "canon_version": 1,
       "description": "Canonical runtime source for the validated starting quartet: Mathilde, Marec, Anouk and Aurélien."
+    },
+    {
+      "id": "litd-file-sorter-manifest",
+      "path": "data/maintenance/canonical_files.json",
+      "status": "canonical",
+      "canonical_key": "litd.governance.file_sorter_manifest",
+      "canon_version": 1,
+      "description": "Canonical manifest for physical file classification, protected paths and evidence-backed obsolescence."
+    },
+    {
+      "id": "litd-ux-ui-bible",
+      "path": "docs/BIBLE_UX_UI_LITD.md",
+      "status": "canonical",
+      "canonical_key": "litd.design.ux_ui_bible",
+      "canon_version": 1,
+      "description": "Canonical UX/UI reference for LITD."
+    },
+    {
+      "id": "litd-trieur-governance-doc",
+      "path": "docs/governance/TRIEUR_V2.md",
+      "status": "canonical",
+      "canonical_key": "litd.governance.trieur_documentation",
+      "canon_version": 1,
+      "description": "Canonical documentation for Trieur governance and lifecycle rules."
+    },
+    {
+      "id": "litd-knowledge-readme",
+      "path": "docs/knowledge/README.md",
+      "status": "canonical",
+      "canonical_key": "litd.knowledge.overview",
+      "canon_version": 1,
+      "description": "Canonical overview of the LITD knowledge system."
+    },
+    {
+      "id": "litd-knowledge-guardian-rules",
+      "path": "docs/knowledge/guardian-rules.yml",
+      "status": "canonical",
+      "canonical_key": "litd.knowledge.guardian_rules",
+      "canon_version": 1,
+      "description": "Canonical Guardian rules for the LITD knowledge governance layer."
+    },
+    {
+      "id": "litd-knowledge-dependencies",
+      "path": "docs/knowledge/dependencies.yml",
+      "status": "canonical",
+      "canonical_key": "litd.knowledge.dependencies",
+      "canon_version": 1,
+      "description": "Canonical dependency map for LITD knowledge governance."
+    },
+    {
+      "id": "litd-knowledge-adr-0001",
+      "path": "docs/knowledge/decisions/ADR-0001-guardian-progressif.md",
+      "status": "canonical",
+      "canonical_key": "litd.knowledge.adr.0001",
+      "canon_version": 1,
+      "description": "Canonical ADR defining the progressive Guardian governance decision."
     }
   ]
 }
