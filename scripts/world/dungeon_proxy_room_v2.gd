@@ -17,11 +17,22 @@ func _rebuild() -> void:
     for child in get_children():
         child.free()
     super._rebuild()
+    _hide_proxy_ceiling_for_isometric_camera()
     architecture_summary = {}
     if room_spec.is_empty():
         return
     architecture_summary = architecture_kit.decorate(self, room_spec)
     _connect_explorer_interactions()
+
+func _hide_proxy_ceiling_for_isometric_camera() -> void:
+    # Le plafond fait partie du contrat géométrique de la salle, mais la caméra
+    # de visite est placée en vue isométrique intérieure. Le laisser rendu peut
+    # masquer entièrement la pièce, particulièrement sur le renderer Web/mobile.
+    # On ne touche donc ni à la géométrie canonique ni aux collisions : seule la
+    # représentation visuelle du plafond proxy est masquée.
+    var ceiling_mesh := get_node_or_null("Ceiling/Mesh") as MeshInstance3D
+    if ceiling_mesh != null:
+        ceiling_mesh.visible = false
 
 func _connect_explorer_interactions() -> void:
     if explorer == null:
