@@ -35,3 +35,4 @@ def test_harness_covers_required_p0_scenarios() -> None:
     assert "COMPANY_CERT_" in text
     assert "CERT_SYNTHETIC" in text
     assert "consumption_count(" not in text
+    assert 'cross.reason == "project_scope_mismatch"' in text

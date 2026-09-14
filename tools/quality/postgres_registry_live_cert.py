@@ -82,7 +82,7 @@ def main() -> int:
     with connect() as conn:
         company = PostgresReceiptConsumptionRegistry(conn, project_id=f"COMPANY_CERT_{run_id}", target_route="COMPANY_LIBRARY")
         cross = company.consume(cross_receipt, consumer="CERT_CONSUMER", actor="live-cert", current_context_hash=context)
-        evidence["tests"].append({"name": "cross_project_rejection", "passed": (not cross.accepted and cross.reason == "unknown_receipt"), "result": asdict(cross)})
+        evidence["tests"].append({"name": "cross_project_rejection", "passed": (not cross.accepted and cross.reason == "project_scope_mismatch"), "result": asdict(cross)})
 
     concurrent_receipt = sha(f"concurrent:{run_id}")
     with connect() as conn:
