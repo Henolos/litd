@@ -4,7 +4,10 @@ on:
   pull_request:
     paths:
       - 'governance/trieur_policy.json'
+      - 'data/maintenance/canonical_files.json'
       - 'tools/ci/trieur_governance_gate.py'
+      - 'tools/ci/trieur_safe_archive.py'
+      - 'tools/ci/trieur_file_sorter_bridge.py'
       - 'data/**'
       - 'scenes/**'
       - 'scripts/**'
@@ -15,7 +18,10 @@ on:
       - main
     paths:
       - 'governance/trieur_policy.json'
+      - 'data/maintenance/canonical_files.json'
       - 'tools/ci/trieur_governance_gate.py'
+      - 'tools/ci/trieur_safe_archive.py'
+      - 'tools/ci/trieur_file_sorter_bridge.py'
       - 'data/**'
       - 'scenes/**'
       - 'scripts/**'
@@ -37,3 +43,7 @@ jobs:
           python-version: '3.12'
       - name: Validate lifecycle registry and runtime references
         run: python tools/ci/trieur_governance_gate.py
+      - name: Cross-check Trieur canon against physical file sorter
+        run: python tools/ci/trieur_file_sorter_bridge.py
+      - name: Dry-run guarded physical archive planner
+        run: python tools/ci/trieur_safe_archive.py
