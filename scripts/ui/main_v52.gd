@@ -3,8 +3,7 @@ extends "res://scripts/ui/main_v51.gd"
 # v52 — P0 identité + tours utiles.
 # Les anciennes cartes de classe contiennent des noms imprimés (Mirelle, Elara,
 # Rahkan, Isolde). Elles ne doivent jamais représenter le quatuor canonique.
-# Tant que les portraits individuels définitifs ne sont pas branchés, le combat
-# affiche une carte neutre portant uniquement l'identité réelle du Veilleur.
+# Les quatre Veilleurs disposent désormais de portraits canoniques dédiés.
 
 const LEGACY_CARD_PREFIX := "res://assets/heroes/"
 const CANONICAL_HERO_IDS := ["mathilde", "marec", "anouk", "aurelien"]
@@ -13,6 +12,12 @@ const CANONICAL_ROLES := {
     "marec": "Briseur",
     "anouk": "Mystique",
     "aurelien": "Chirurgien"
+}
+const CANONICAL_PORTRAITS := {
+    "mathilde": "res://assets/heroes/canonical/mathilde.svg",
+    "marec": "res://assets/heroes/canonical/marec.svg",
+    "anouk": "res://assets/heroes/canonical/anouk.svg",
+    "aurelien": "res://assets/heroes/canonical/aurelien.svg"
 }
 
 func show_combat() -> void:
@@ -30,7 +35,7 @@ func _replace_legacy_hero_cards_v52() -> void:
         if texture_rect == null or texture_rect.texture == null:
             continue
         var resource_path := str(texture_rect.texture.resource_path)
-        if resource_path.begins_with(LEGACY_CARD_PREFIX):
+        if resource_path.begins_with(LEGACY_CARD_PREFIX) and not resource_path.begins_with("res://assets/heroes/canonical/"):
             texture_rect.visible = false
 
     var ordered_heroes: Array[Dictionary] = _heroes_by_position()
@@ -42,28 +47,43 @@ func _replace_legacy_hero_cards_v52() -> void:
         var active := str(hero.get("id", "")) == combat_active_hero_id
         var panel := PanelContainer.new()
         panel.name = "CanonicalCombatCard_%s" % hero_id
-        panel.position = Vector2(35 + index * 132, 160)
-        panel.size = Vector2(138, 250)
+        panel.position = Vector2(35 + index * 132, 132)
+        panel.size = Vector2(138, 286)
         panel.z_index = 30
+        # This card is visual-only. It must never intercept clicks/touches meant
+        # for the combat controls rendered underneath it.
+        panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
         panel.add_theme_stylebox_override("panel", panel_style(Color(0.012, 0.014, 0.020, 0.96)))
         content.add_child(panel)
 
         var box := VBoxContainer.new()
         box.alignment = BoxContainer.ALIGNMENT_CENTER
-        box.add_theme_constant_override("separation", 8)
+        box.mouse_filter = Control.MOUSE_FILTER_IGNORE
+        box.add_theme_constant_override("separation", 5)
         panel.add_child(box)
-        var initial := str(hero.get("name", "V")).left(1).to_upper()
-        var initial_label := make_label(initial, 54, CANON_GOLD if active else CANON_TEXT)
-        initial_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-        box.add_child(initial_label)
+
+        var portrait_path := str(CANONICAL_PORTRAITS.get(hero_id, ""))
+        var portrait_texture := load(portrait_path) as Texture2D
+        if portrait_texture != null:
+            var portrait := TextureRect.new()
+            portrait.name = "CanonicalPortrait_%s" % hero_id
+            portrait.texture = portrait_texture
+            portrait.custom_minimum_size = Vector2(118, 166)
+            portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+            portrait.mouse_filter = Control.MOUSE_FILTER_IGNORE
+            box.add_child(portrait)
+
         var name_label := make_label(str(hero.get("name", "Veilleur")), 18, CANON_GOLD if active else CANON_TEXT)
         name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+        name_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
         box.add_child(name_label)
         var role_label := make_label(str(CANONICAL_ROLES.get(hero_id, "Veilleur")), 12, CANON_MUTED)
         role_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+        role_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
         box.add_child(role_label)
         var rank_label := make_label("R%d" % (int(hero.get("combat_position", 0)) + 1), 13, CANON_MUTED)
         rank_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+        rank_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
         box.add_child(rank_label)
 
 func show_hero_skills() -> void:
