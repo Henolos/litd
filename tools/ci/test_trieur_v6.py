@@ -34,6 +34,14 @@ class TrieurV6BridgeTests(unittest.TestCase):
             "tools/ci/trieur_file_sorter_bridge.py",
         ]
 
+    @property
+    def manifest_entry(self) -> dict[str, str]:
+        return {
+            "id": "file-sorter-manifest",
+            "path": "data/maintenance/canonical_files.json",
+            "status": "canonical",
+        }
+
     def run_bridge(self, trieur: dict, sorter: dict) -> None:
         self.trieur_path.write_text(json.dumps(trieur), encoding="utf-8")
         self.manifest_path.write_text(json.dumps(sorter), encoding="utf-8")
@@ -43,13 +51,19 @@ class TrieurV6BridgeTests(unittest.TestCase):
             bridge.main()
 
     def test_managed_sorter_canonical_requires_trieur_entry(self) -> None:
-        trieur = {"managed_roots": ["data", "docs"], "entries": []}
+        trieur = {
+            "managed_roots": ["data", "docs"],
+            "entries": [self.manifest_entry],
+        }
         sorter = {"canonical_paths": self.infra + ["docs/canon.md"], "obsolete_records": []}
         with self.assertRaises(SystemExit):
             self.run_bridge(trieur, sorter)
 
     def test_external_infra_canonical_does_not_require_lifecycle_entry(self) -> None:
-        trieur = {"managed_roots": ["data", "docs"], "entries": []}
+        trieur = {
+            "managed_roots": ["data", "docs"],
+            "entries": [self.manifest_entry],
+        }
         sorter = {"canonical_paths": self.infra, "obsolete_records": []}
         self.run_bridge(trieur, sorter)
 
@@ -57,7 +71,8 @@ class TrieurV6BridgeTests(unittest.TestCase):
         trieur = {
             "managed_roots": ["data", "docs"],
             "entries": [
-                {"id": "doc", "path": "docs/canon.md", "status": "canonical"}
+                self.manifest_entry,
+                {"id": "doc", "path": "docs/canon.md", "status": "canonical"},
             ],
         }
         sorter = {"canonical_paths": self.infra + ["docs/canon.md"], "obsolete_records": []}
