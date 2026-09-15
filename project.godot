@@ -1,7 +1,7 @@
 [application]
 config/name="Light in the Dark"
 run/main_scene="res://scenes/Main.tscn"
-config/features=PackedStringArray("4.3")
+config/features=PackedStringArray("4.7")
 
 [autoload]
 GameSettings="*res://scripts/core/game_settings.gd"
@@ -11,7 +11,9 @@ EquipmentManager="*res://scripts/core/equipment_manager.gd"
 CombatLoadoutManager="*res://scripts/core/combat_loadout_manager.gd"
 CreatureManager="*res://scripts/core/creature_manager.gd"
 CharacterTraitDirector="*res://scripts/core/character_trait_director.gd"
-HeroSkillManager="*res://scripts/core/hero_skill_manager.gd"
+VeilleursSkillCatalog="*res://scripts/core/veilleurs_skill_catalog.gd"
+VeilleursSkillResolverRouter="*res://scripts/core/veilleurs_skill_resolver_router.gd"
+HeroSkillManager="*res://scripts/core/hero_skill_manager_v2.gd"
 DismembermentRuntime="*res://scripts/core/dismemberment_runtime.gd"
 AnatomyRuntime="*res://scripts/core/anatomy_runtime.gd"
 CaptureWoundRuntime="*res://scripts/core/capture_wound_runtime.gd"
@@ -48,8 +50,11 @@ EffectTooltipFormatter="*res://scripts/core/effect_tooltip_formatter.gd"
 ExpeditionReportDirector="*res://scripts/core/expedition_report_director.gd"
 ExpeditionPreparationDirector="*res://scripts/core/expedition_preparation_director.gd"
 CampaignMemoryDirector="*res://scripts/core/campaign_memory_director.gd"
+RemanenceRuntime="*res://scripts/core/remanence_runtime.gd"
 BodyStateDirector="*res://scripts/core/body_state_director.gd"
 CombatBodyPresentation="*res://scripts/ui/combat_body_presentation.gd"
+RemanenceCombatBridge="*res://scripts/core/remanence_combat_bridge.gd"
+VeilleursCorpseInteractionRuntime="*res://scripts/core/veilleurs_corpse_interaction_runtime.gd"
 EnemyBodyDirector="*res://scripts/core/enemy_body_director.gd"
 MovementRegistry="*res://scripts/core/movement_registry.gd"
 RelationshipRuntime="*res://scripts/core/relationship_runtime.gd"
@@ -64,6 +69,10 @@ SfxLibrary="*res://scripts/core/sfx_library.gd"
 PrototypeAudioBank="*res://scripts/core/prototype_audio_bank.gd"
 SfxRuntime="*res://scripts/core/sfx_runtime.gd"
 CommunityRuntime="*res://scripts/core/community_runtime.gd"
+SystemicCrossRuntime="*res://scripts/core/systemic_cross_runtime.gd"
+SystemicCrossNarrativeRuntime="*res://scripts/core/systemic_cross_narrative_runtime.gd"
+SystemicCrossAfterlifeRuntime="*res://scripts/core/systemic_cross_afterlife_runtime.gd"
+LegendarySevenRelationshipRuntime="*res://scripts/core/legendary_seven_relationship_runtime.gd"
 SanctuaryState="*res://scripts/core/sanctuary_state.gd"
 HUDDirector="*res://scripts/ui/hud_director.gd"
 ContextHUD="*res://scripts/ui/context_hud.gd"
@@ -71,6 +80,7 @@ PoliticalUI="*res://scripts/ui/political_ui.gd"
 QuestJournalUI="*res://scripts/ui/quest_journal_ui.gd"
 BaseGameSideStoryUI="*res://scripts/ui/base_game_side_story_ui.gd"
 GameMenuUI="*res://scripts/ui/game_menu_ui.gd"
+RemanenceArchivesUI="*res://scripts/ui/remanence_archives_ui.gd"
 AccessibilityDirector="*res://scripts/ui/accessibility_director.gd"
 CombatantInspectionUI="*res://scripts/ui/combatant_inspection_ui.gd"
 QuestGiverPresentation="*res://scripts/ui/quest_giver_presentation.gd"
@@ -78,7 +88,7 @@ Chapter08JournalUI="*res://scripts/ui/chapter_08_journal_ui.gd"
 Chapter09JournalUI="*res://scripts/ui/chapter_09_journal_ui.gd"
 Chapter10JournalUI="*res://scripts/ui/chapter_10_journal_ui.gd"
 DeepVestigeUI="*res://scripts/ui/deep_vestige_ui.gd"
-ContextMenuUI="*res://scripts/ui/context_menu_ui_v2.gd"
+ContextMenuUI="*res://scripts/ui/context_menu_ui_v3.gd"
 SaveManager="*res://scripts/core/save_manager.gd"
 EndgameUI="*res://scripts/ui/endgame_ui.gd"
 ExpeditionManager="*res://scripts/core/expedition_manager.gd"
@@ -88,6 +98,10 @@ AshlandsSceneRouter="*res://scripts/world/ashlands_scene_router.gd"
 Chapter01EncounterInjector="*res://scripts/world/chapter_01_encounter_injector.gd"
 FieldEncounterInjector="*res://scripts/world/field_encounter_injector.gd"
 AshlandsCombatBridge="*res://scripts/world/ashlands_combat_bridge.gd"
+VeilleursRuntime="*res://scripts/core/veilleurs_runtime.gd"
+VeilleursPlayableBridge="*res://scripts/world/veilleurs_playable_bridge.gd"
+VeilleursVS001WorldRuntime="*res://scripts/world/veilleurs_vs001_world_runtime.gd"
+VeilleursVS001PlayableBridge="*res://scripts/world/veilleurs_vs001_playable_bridge.gd"
 AudioDirector="*res://scripts/core/audio_director.gd"
 NarrativeAudioDirector="*res://scripts/core/narrative_audio_director.gd"
 AdaptiveMusicDirector="*res://scripts/core/adaptive_music_director.gd"
@@ -109,6 +123,9 @@ DeepVestigeBossRuntime="*res://scripts/world/deep_vestige_boss_runtime_v2.gd"
 AshlandsPlaytestSession="*res://scripts/world/ashlands_playtest_session.gd"
 QATestRoomState="*res://scripts/qa/qa_test_room_state.gd"
 
+[editor_plugins]
+enabled=PackedStringArray("res://addons/veilleurs_pipeline/plugin.cfg")
+
 [display]
 window/size/viewport_width=1280
 window/size/viewport_height=720
@@ -116,12 +133,13 @@ window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep"
-window/handheld/orientation=1
+window/handheld/orientation=0
 
 [rendering]
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/default_filters/use_nearest_mipmap_filter=false
+textures/vram_compression/import_etc2_astc=true
 
 [input]
 confirm={"deadzone":0.5,"events":[Object(InputEventKey,"physical_keycode":4194309),Object(InputEventKey,"physical_keycode":32)]}

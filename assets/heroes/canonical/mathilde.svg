@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 420">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#11141b"/><stop offset="1" stop-color="#2b2020"/></linearGradient></defs>
+  <rect width="320" height="420" rx="22" fill="url(#bg)"/>
+  <circle cx="160" cy="118" r="88" fill="#171b23" stroke="#c5a65b" stroke-width="4"/>
+  <path d="M88 137c8-72 33-104 78-104 51 0 77 39 74 104-19-13-40-20-65-21-38-2-62 7-87 21z" fill="#3b2a26"/>
+  <path d="M111 116c5 60 17 99 50 99 35 0 51-42 52-101-25-13-74-13-102 2z" fill="#c99d7c"/>
+  <path d="M128 140h22M174 140h21" stroke="#271d1b" stroke-width="6" stroke-linecap="round"/>
+  <path d="M150 181c9 6 20 6 31 0" fill="none" stroke="#6d3b37" stroke-width="5" stroke-linecap="round"/>
+  <path d="M71 386c10-99 40-154 89-154s81 55 90 154" fill="#242b35" stroke="#c5a65b" stroke-width="4"/>
+  <path d="M114 251l46 45 46-45" fill="none" stroke="#9b8148" stroke-width="8"/>
+  <path d="M160 298v88" stroke="#9b8148" stroke-width="5"/>
+  <circle cx="160" cy="324" r="9" fill="#c5a65b"/>
+  <text x="160" y="406" text-anchor="middle" font-family="sans-serif" font-size="24" letter-spacing="4" fill="#e7d8ae">MATHILDE</text>
+</svg>

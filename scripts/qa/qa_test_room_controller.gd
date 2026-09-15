@@ -5,6 +5,9 @@ const PARTY_SCENE := preload("res://scenes/world/terre_des_cendres/exploration_p
 const NPC_SCRIPT := preload("res://scripts/qa/qa_test_dialogue_npc.gd")
 const CHEST_SCRIPT := preload("res://scripts/qa/qa_test_loot_chest.gd")
 const MAIN_SCENE := "res://scenes/Main.tscn"
+const VEILLEURS_V061_TACTICAL_SCENE := "res://scenes/veilleurs/v061_tactical_demo.tscn"
+const VEILLEURS_KHAR_SEN_SCENE := "res://scenes/veilleurs/v061_khar_sen_slice.tscn"
+const VEILLEURS_V09_VERTICAL_SLICE_SCENE := "res://scenes/veilleurs/v09_vertical_slice_qa.tscn"
 
 var status_label: Label
 var checklist_label: Label
@@ -114,15 +117,18 @@ func _build_panel() -> void:
     style.content_margin_bottom = 10
     panel.add_theme_stylebox_override("panel", style)
     var column := VBoxContainer.new()
-    column.add_theme_constant_override("separation", 6)
+    column.add_theme_constant_override("separation", 5)
     panel.add_child(column)
     column.add_child(_label("SALLE DE VALIDATION", 20, Color("#d5b26c")))
     column.add_child(_label("Environnement isolé — aucune progression de campagne.", 12, Color("#a49884")))
     status_label = _label("", 13, Color("#e5dccb"))
     column.add_child(status_label)
     checklist_label = _label("", 12, Color("#c9c0b1"))
-    checklist_label.custom_minimum_size = Vector2(300, 210)
+    checklist_label.custom_minimum_size = Vector2(300, 185)
     column.add_child(checklist_label)
+    column.add_child(_button("VERTICAL SLICE v0.9 — 6 DONJONS", _open_veilleurs_v09_vertical_slice))
+    column.add_child(_button("KHAR-SEN — SLICE JOUABLE", _open_khar_sen))
+    column.add_child(_button("COMBAT VEILLEURS v0.6.1", _open_veilleurs_v061_tactical))
     column.add_child(_button("POSTURES PEUR / ESPOIR", _inject_psychology))
     column.add_child(_button("BLESSURE PERSISTANTE", _inject_injury))
     column.add_child(_button("DEMANDER LES CENDRES", _test_ash_guidance))
@@ -130,6 +136,27 @@ func _build_panel() -> void:
     column.add_child(_button("CHARGER SNAPSHOT QA", _load_qa_snapshot))
     column.add_child(_button("RÉINITIALISER LA SALLE", _reset_room))
     column.add_child(_button("RETOUR AU MENU", _return_to_title))
+
+func _open_veilleurs_v09_vertical_slice() -> void:
+    _open_veilleurs_scene(VEILLEURS_V09_VERTICAL_SLICE_SCENE, "qa_veilleurs_v09", "vertical slice v0.9 — 6 donjons")
+
+func _open_veilleurs_v061_tactical() -> void:
+    _open_veilleurs_scene(VEILLEURS_V061_TACTICAL_SCENE, "qa_veilleurs_v061", "combat Veilleurs v0.6.1")
+
+func _open_khar_sen() -> void:
+    _open_veilleurs_scene(VEILLEURS_KHAR_SEN_SCENE, "qa_veilleurs_khar_sen", "slice jouable Khar-Sen")
+
+func _open_veilleurs_scene(scene_path: String, screen_id: String, label: String) -> void:
+    if not ResourceLoader.exists(scene_path):
+        _set_status("Prototype %s introuvable." % label)
+        return
+    QATestRoomState.active = false
+    GameState.current_screen = screen_id
+    var error := get_tree().change_scene_to_file(scene_path)
+    if error != OK:
+        QATestRoomState.active = true
+        GameState.current_screen = "exploration"
+        _set_status("Impossible d'ouvrir %s." % label)
 
 func _inject_psychology() -> void:
     if GameState.party.size() < 2:
@@ -256,7 +283,7 @@ func _add_visual(parent: Node3D, pos: Vector3, size: Vector3, color: Color) -> v
 func _button(text: String, callback: Callable) -> Button:
     var button := Button.new()
     button.text = text
-    button.custom_minimum_size = Vector2(300, 36)
+    button.custom_minimum_size = Vector2(300, 33)
     button.pressed.connect(callback)
     return button
 
