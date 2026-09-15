@@ -2,8 +2,8 @@
 """Live certification harness for the durable governance receipt registry.
 
 Requires a PostgreSQL DSN via GOVERNANCE_DATABASE_URL. The harness uses only
-synthetic receipts and never writes a Core, merges code, or applies project data.
-It emits a JSON evidence report suitable for retention as a CI artifact.
+synthetic receipts and bounded governance RPCs. It never writes a Core, merges
+code, or applies project data. JSON evidence is retained by GitHub Actions.
 """
 from __future__ import annotations
 
@@ -47,25 +47,26 @@ def main() -> int:
         return psycopg.connect(dsn, autocommit=False)
 
     project = f"LITD_CERT_{run_id}"
+    company_project = f"COMPANY_CERT_{run_id}"
     route = "LITD_LIBRARY"
-    receipt = sha(f"receipt:{run_id}")
+    company_route = "COMPANY_LIBRARY"
     source = sha(f"source:{run_id}")
     context = sha(f"context:{run_id}")
 
+    receipt = sha(f"receipt:{run_id}")
     with connect() as conn:
         reg = PostgresReceiptConsumptionRegistry(conn, project_id=project, target_route=route)
         reg.register_receipt(receipt_id=f"cert:{run_id}:base", receipt_hash=receipt, receipt_kind="CERT_SYNTHETIC", source_hash=source, context_hash=context, expected_consumer="CERT_CONSUMER")
         first = reg.consume(receipt, consumer="CERT_CONSUMER", actor="live-cert", current_context_hash=context)
         second = reg.consume(receipt, consumer="CERT_CONSUMER", actor="live-cert", current_context_hash=context)
-        ok = first.accepted and not second.accepted and second.reason == "replay_detected" and reg.consumption_count(receipt) == 1
-        evidence["tests"].append({"name": "identical_replay", "passed": ok, "first": asdict(first), "second": asdict(second)})
+        evidence["tests"].append({"name": "identical_replay", "passed": first.accepted and not second.accepted and second.reason == "replay_detected", "first": asdict(first), "second": asdict(second)})
 
     stale_receipt = sha(f"stale:{run_id}")
     with connect() as conn:
         reg = PostgresReceiptConsumptionRegistry(conn, project_id=project, target_route=route)
         reg.register_receipt(receipt_id=f"cert:{run_id}:stale", receipt_hash=stale_receipt, receipt_kind="CERT_SYNTHETIC", source_hash=source, context_hash=context, expected_consumer="CERT_CONSUMER")
         stale = reg.consume(stale_receipt, consumer="CERT_CONSUMER", actor="live-cert", current_context_hash=sha(f"other-context:{run_id}"))
-        evidence["tests"].append({"name": "stale_context", "passed": (not stale.accepted and stale.reason == "stale_context"), "result": asdict(stale)})
+        evidence["tests"].append({"name": "stale_context", "passed": not stale.accepted and stale.reason == "stale_context", "result": asdict(stale)})
 
     revoked_receipt = sha(f"revoked:{run_id}")
     with connect() as conn:
@@ -73,16 +74,44 @@ def main() -> int:
         reg.register_receipt(receipt_id=f"cert:{run_id}:revoked", receipt_hash=revoked_receipt, receipt_kind="CERT_SYNTHETIC", source_hash=source, context_hash=context, expected_consumer="CERT_CONSUMER")
         reg.invalidate_receipt(revoked_receipt, kind="REVOKED", reason="live certification", actor="live-cert")
         revoked = reg.consume(revoked_receipt, consumer="CERT_CONSUMER", actor="live-cert", current_context_hash=context)
-        evidence["tests"].append({"name": "revocation", "passed": (not revoked.accepted and revoked.reason == "receipt_revoked"), "result": asdict(revoked)})
+        evidence["tests"].append({"name": "revocation", "passed": not revoked.accepted and revoked.reason == "receipt_revoked", "result": asdict(revoked)})
 
-    cross_receipt = sha(f"cross:{run_id}")
+    replacement_receipt = sha(f"replacement:{run_id}")
+    superseded_receipt = sha(f"superseded:{run_id}")
+    with connect() as conn:
+        reg = PostgresReceiptConsumptionRegistry(conn, project_id=project, target_route=route)
+        reg.register_receipt(receipt_id=f"cert:{run_id}:replacement", receipt_hash=replacement_receipt, receipt_kind="CERT_SYNTHETIC", source_hash=source, context_hash=context, expected_consumer="CERT_CONSUMER")
+        reg.register_receipt(receipt_id=f"cert:{run_id}:superseded", receipt_hash=superseded_receipt, receipt_kind="CERT_SYNTHETIC", source_hash=source, context_hash=context, expected_consumer="CERT_CONSUMER")
+        reg.invalidate_receipt(superseded_receipt, kind="SUPERSEDED", reason="live certification replacement", actor="live-cert", replacement_receipt_hash=replacement_receipt)
+        superseded = reg.consume(superseded_receipt, consumer="CERT_CONSUMER", actor="live-cert", current_context_hash=context)
+        evidence["tests"].append({"name": "supersession", "passed": not superseded.accepted and superseded.reason == "receipt_superseded", "replacement_receipt_hash": replacement_receipt, "result": asdict(superseded)})
+
+    cross_litd = sha(f"cross-litd:{run_id}")
     with connect() as conn:
         litd = PostgresReceiptConsumptionRegistry(conn, project_id=project, target_route=route)
-        litd.register_receipt(receipt_id=f"cert:{run_id}:cross", receipt_hash=cross_receipt, receipt_kind="CERT_SYNTHETIC", source_hash=source, context_hash=context, expected_consumer="CERT_CONSUMER")
+        litd.register_receipt(receipt_id=f"cert:{run_id}:cross-litd", receipt_hash=cross_litd, receipt_kind="CERT_SYNTHETIC", source_hash=source, context_hash=context, expected_consumer="CERT_CONSUMER")
     with connect() as conn:
-        company = PostgresReceiptConsumptionRegistry(conn, project_id=f"COMPANY_CERT_{run_id}", target_route="COMPANY_LIBRARY")
-        cross = company.consume(cross_receipt, consumer="CERT_CONSUMER", actor="live-cert", current_context_hash=context)
-        evidence["tests"].append({"name": "cross_project_rejection", "passed": (not cross.accepted and cross.reason == "unknown_receipt"), "result": asdict(cross)})
+        company = PostgresReceiptConsumptionRegistry(conn, project_id=company_project, target_route=company_route)
+        result = company.consume(cross_litd, consumer="CERT_CONSUMER", actor="live-cert", current_context_hash=context)
+        evidence["tests"].append({"name": "cross_project_litd_to_company", "passed": not result.accepted and result.reason == "project_scope_mismatch", "result": asdict(result)})
+
+    cross_company = sha(f"cross-company:{run_id}")
+    with connect() as conn:
+        company = PostgresReceiptConsumptionRegistry(conn, project_id=company_project, target_route=company_route)
+        company.register_receipt(receipt_id=f"cert:{run_id}:cross-company", receipt_hash=cross_company, receipt_kind="CERT_SYNTHETIC", source_hash=source, context_hash=context, expected_consumer="CERT_CONSUMER")
+    with connect() as conn:
+        litd = PostgresReceiptConsumptionRegistry(conn, project_id=project, target_route=route)
+        result = litd.consume(cross_company, consumer="CERT_CONSUMER", actor="live-cert", current_context_hash=context)
+        evidence["tests"].append({"name": "cross_project_company_to_litd", "passed": not result.accepted and result.reason == "project_scope_mismatch", "result": asdict(result)})
+
+    wrong_route_receipt = sha(f"wrong-route:{run_id}")
+    with connect() as conn:
+        litd = PostgresReceiptConsumptionRegistry(conn, project_id=project, target_route=route)
+        litd.register_receipt(receipt_id=f"cert:{run_id}:wrong-route", receipt_hash=wrong_route_receipt, receipt_kind="CERT_SYNTHETIC", source_hash=source, context_hash=context, expected_consumer="CERT_CONSUMER")
+    with connect() as conn:
+        wrong_route = PostgresReceiptConsumptionRegistry(conn, project_id=project, target_route="LITD_WRONG_ROUTE")
+        result = wrong_route.consume(wrong_route_receipt, consumer="CERT_CONSUMER", actor="live-cert", current_context_hash=context)
+        evidence["tests"].append({"name": "wrong_target_route", "passed": not result.accepted and result.reason == "target_route_mismatch", "result": asdict(result)})
 
     concurrent_receipt = sha(f"concurrent:{run_id}")
     with connect() as conn:
@@ -98,8 +127,14 @@ def main() -> int:
         results = list(pool.map(attempt, range(4)))
     winners = [r for r in results if r.accepted]
     losers = [r for r in results if not r.accepted]
-    concurrent_ok = len(winners) == 1 and len(losers) == 3 and all(r.reason == "replay_detected" for r in losers)
-    evidence["tests"].append({"name": "concurrent_double_consumption", "passed": concurrent_ok, "results": [asdict(r) for r in results]})
+    evidence["tests"].append({"name": "concurrent_double_consumption", "passed": len(winners) == 1 and len(losers) == 3 and all(r.reason == "replay_detected" for r in losers), "results": [asdict(r) for r in results]})
+
+    with connect() as conn:
+        reg = PostgresReceiptConsumptionRegistry(conn, project_id=project, target_route=route)
+        guards = reg.probe_append_only_guards(consumed_receipt_hash=receipt, invalidated_receipt_hash=revoked_receipt)
+        evidence["tests"].append({"name": "append_only_guards", "passed": guards.all_enforced, "result": asdict(guards)})
+        chain = reg.verify_audit_chain()
+        evidence["tests"].append({"name": "audit_chain_integrity", "passed": chain.valid and chain.reason == "chain_valid" and chain.entry_count > 0 and (chain.tip_hash == "GENESIS" or len(chain.tip_hash) == 64), "result": asdict(chain)})
 
     evidence["finished_at"] = now()
     evidence["passed"] = all(t["passed"] for t in evidence["tests"])

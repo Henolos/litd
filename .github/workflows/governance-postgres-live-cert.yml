@@ -41,7 +41,7 @@ jobs:
       - name: Run synthetic live certification
         env:
           GOVERNANCE_DATABASE_URL: ${{ secrets.GOVERNANCE_DATABASE_URL }}
-        run: python tools/quality/postgres_registry_live_cert.py
+        run: python -m tools.quality.postgres_registry_live_cert
 
       - name: Upload certification evidence
         if: always()
