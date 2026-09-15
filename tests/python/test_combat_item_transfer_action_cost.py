@@ -1,4 +1,5 @@
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -15,8 +16,37 @@ def test_item_use_costs_action_but_transfer_is_free_for_both_sides():
     assert transfer["heroes_and_enemies_share_rule"] is True
 
 
-def test_v34_separates_use_from_give_and_keeps_give_action_free():
+def _active_main_ui_chain(scene: str) -> list[str]:
+    ui_script = r"(?:main_v\d+(?:_ge01)?|combat_sandbox_ui_v\d+)\.gd"
+    match = re.search(
+        rf'\[ext_resource path="(res://scripts/ui/{ui_script})" type="Script" id="1"\]',
+        scene,
+    )
+    assert match is not None, "Main.tscn must expose a versioned main UI script as ext_resource id=1"
+
+    chain: list[str] = []
+    current = match.group(1)
+    for _ in range(32):
+        chain.append(current)
+        file_path = ROOT / current.removeprefix("res://")
+        source = file_path.read_text(encoding="utf-8")
+        parent = re.search(
+            rf'^extends "(res://scripts/ui/{ui_script})"',
+            source,
+            re.MULTILINE,
+        )
+        if parent is None:
+            break
+        current = parent.group(1)
+    return chain
+
+
+def test_v34_item_rules_survive_the_current_main_ui_layer():
     ui = (ROOT / "scripts/ui/main_v34.gd").read_text(encoding="utf-8")
+    clinical_manual = (ROOT / "scripts/ui/main_v35.gd").read_text(encoding="utf-8")
+    clinical_reactions = (ROOT / "scripts/ui/main_v36.gd").read_text(encoding="utf-8")
+    hemocorde_layer = (ROOT / "scripts/ui/main_v37.gd").read_text(encoding="utf-8")
+    canonical_ui = (ROOT / "scripts/ui/main_v38.gd").read_text(encoding="utf-8")
     scene = (ROOT / "scenes/Main.tscn").read_text(encoding="utf-8")
 
     for marker in (
@@ -43,7 +73,17 @@ def test_v34_separates_use_from_give_and_keeps_give_action_free():
     use_body = ui[use_start:use_end]
     assert "battle_locked = true" in use_body
     assert "_complete_active_hero_turn()" in use_body
-    assert 'res://scripts/ui/main_v34.gd' in scene
+
+    chain = _active_main_ui_chain(scene)
+    assert "res://scripts/ui/main_v38.gd" in chain
+    assert "res://scripts/ui/main_v37.gd" in chain
+    assert "res://scripts/ui/main_v34.gd" in chain
+    assert 'extends "res://scripts/ui/main_v37.gd"' in canonical_ui
+    assert 'extends "res://scripts/ui/main_v36.gd"' in hemocorde_layer
+    assert 'extends "res://scripts/ui/main_v35.gd"' in clinical_reactions
+    assert 'extends "res://scripts/ui/main_v34.gd"' in clinical_manual
+    assert "_enemy_try_use_healing_item" in clinical_reactions
+    assert "_enemy_try_free_item_transfer" in clinical_reactions
 
 
 def test_transfer_changes_carrier_without_applying_item_effect():

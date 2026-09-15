@@ -9,12 +9,16 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   quality:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-python@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
         with:
           python-version: '3.12'
           cache: pip
@@ -22,14 +26,66 @@ jobs:
         run: python -m pip install -r requirements-dev.txt
       - name: Préparer les rapports QA
         run: mkdir -p reports
-      - name: Tests Python
+      - name: Tests Python rapides
         run: python -m pytest -q --tb=short --junitxml=reports/pytest.xml
+
+  quality-full:
+    if: ${{ github.event_name != 'pull_request' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Installer les dépendances QA
+        run: python -m pip install -r requirements-dev.txt
+      - name: Préparer les rapports QA
+        run: mkdir -p reports
       - name: Audit des données de base
         run: python -m tools.qa.audit
       - name: Audit transversal campagne et systèmes
         run: python -m tools.qa.cross_system_audit
       - name: Audit continuité du lore LITD Universe
         run: python -m tools.qa.lore_universe_audit --report reports/lore-universe.json
+      - name: Audit système linguistique LITD Universe
+        run: python -m tools.qa.language_system_audit
+      - name: Audit écoles martiales régionales LITD Universe
+        run: python -m tools.qa.regional_martial_schools_audit
+      - name: Audit traditions artistiques et musicales LITD Universe
+        run: python -m tools.qa.artistic_musical_traditions_audit
+      - name: Audit religions et croyances LITD Universe
+        run: python -m tools.qa.religions_beliefs_audit
+      - name: Audit rites, funérailles et coutumes LITD Universe
+        run: python -m tools.qa.rituals_funerals_customs_audit
+      - name: Audit cultures rurales et nomades LITD Universe
+        run: python -m tools.qa.rural_nomadic_cultures_audit
+      - name: Audit consciences non humaines LITD Universe
+        run: python -m tools.qa.nonhuman_consciousness_audit
+      - name: Audit croyances, rites et quêtes contextuels LITD Universe
+        run: python -m tools.qa.contextual_beliefs_rites_quests_audit
+      - name: Audit neuf quêtes contextuelles théâtrales LITD 1
+        run: python -m tools.qa.theatrical_contextual_quests_audit
+      - name: Audit ramifications différées des neuf quêtes LITD 1
+        run: python -m tools.qa.contextual_quest_ramifications_audit
+      - name: Audit croisements systémiques des neuf quêtes LITD 1
+        run: python -m tools.qa.systemic_cross_ramifications_audit
+      - name: Audit runtime des croisements systémiques LITD 1
+        run: python -m tools.qa.systemic_cross_runtime_audit
+      - name: Audit mise en scène des croisements au Sanctuaire LITD 1
+        run: python -m tools.qa.systemic_cross_narrative_audit
+      - name: Audit conséquences différées, relations, rumeurs et Rémanences LITD 1
+        run: python -m tools.qa.systemic_cross_afterlife_audit
+      - name: Audit relations évolutives des Sept LITD 1
+        run: python -m tools.qa.legendary_seven_relationships_audit
+      - name: Audit mémoires contextuelles des Sept LITD 1
+        run: python -m tools.qa.legendary_seven_memory_context_audit
+      - name: Audit formation théâtrale des Sept LITD 1
+        run: python -m tools.qa.legendary_seven_formation_audit
+      - name: Audit arcs relationnels causaux des Sept LITD 1
+        run: python -m tools.qa.legendary_seven_causal_arcs_audit
+      - name: Audit scènes majeures rupture réparation deuil des Sept LITD 1
+        run: python -m tools.qa.legendary_seven_major_scenes_audit
       - name: Audit bibliothèque picturale et droits
         run: python -m tools.qa.art_reference_library_audit
       - name: Audit progression, économie et NG+
@@ -130,7 +186,7 @@ jobs:
         run: python -m tools.blender.generate_dismemberment_jobs --output reports/dismemberment-jobs.json
       - name: Simulation combat v2, économie et cycles NG+
         run: python -m tools.qa.combat_economy_sim_v2
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
           name: qa-reports
@@ -139,9 +195,9 @@ jobs:
   godot-smoke:
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:4.3
+      image: barichello/godot-ci:4.7.2
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
       # Le wrapper lance godot --headless et couvre notamment res://scripts/core/smoke_test.gd via la scène core_smoke.tscn, puis les parcours critiques supplémentaires.
       - name: Compilation stricte et parcours critique Godot
         run: bash tools/build/run_godot_ci.sh

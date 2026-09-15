@@ -1,0 +1,57 @@
+name: Trieur Governance
+
+on:
+  pull_request:
+    paths:
+      - 'governance/trieur_policy.json'
+      - 'data/maintenance/canonical_files.json'
+      - 'tools/ci/trieur_governance_gate.py'
+      - 'tools/ci/trieur_safe_archive.py'
+      - 'tools/ci/trieur_file_sorter_bridge.py'
+      - 'tools/ci/test_trieur_v5.py'
+      - 'tools/ci/test_trieur_v6.py'
+      - 'data/**'
+      - 'scenes/**'
+      - 'scripts/**'
+      - 'docs/**'
+      - '.github/workflows/trieur-governance.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'governance/trieur_policy.json'
+      - 'data/maintenance/canonical_files.json'
+      - 'tools/ci/trieur_governance_gate.py'
+      - 'tools/ci/trieur_safe_archive.py'
+      - 'tools/ci/trieur_file_sorter_bridge.py'
+      - 'tools/ci/test_trieur_v5.py'
+      - 'tools/ci/test_trieur_v6.py'
+      - 'data/**'
+      - 'scenes/**'
+      - 'scripts/**'
+      - 'docs/**'
+      - '.github/workflows/trieur-governance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  trieur-governance:
+    name: Trieur Governance Gate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run Trieur V5 safety regression suite
+        run: python -m unittest tools.ci.test_trieur_v5 -v
+      - name: Run Trieur V6 canonical coverage suite
+        run: python -m unittest tools.ci.test_trieur_v6 -v
+      - name: Validate lifecycle registry and runtime references
+        run: python tools/ci/trieur_governance_gate.py
+      - name: Cross-check Trieur canon against physical file sorter
+        run: python tools/ci/trieur_file_sorter_bridge.py
+      - name: Dry-run guarded physical archive planner
+        run: python tools/ci/trieur_safe_archive.py

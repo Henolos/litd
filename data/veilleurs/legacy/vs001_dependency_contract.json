@@ -1,0 +1,87 @@
+{
+  "schema_version": 3,
+  "legacy_id": "VS001",
+  "status": "contained_active_compatibility",
+  "purpose": "Preserve the original playable vertical-slice implementation only while canonical Les Veilleurs runtime/save/UI bindings are migrated away from VS001 names and contracts.",
+  "authoritative_rule": "No new production system may depend directly on a VS001 symbol, path or save key. Existing dependencies must shrink monotonically until removal.",
+  "canonical_runtime_facade": "scripts/core/veilleurs_runtime.gd",
+  "canonical_runtime_singleton": "VeilleursRuntime",
+  "canonical_runtime_implementation": "scripts/core/veilleurs_vertical_slice_runtime_v09.gd",
+  "canonical_player_bridge": "scripts/world/veilleurs_playable_bridge.gd",
+  "canonical_player_scene": "scenes/veilleurs/vertical_slice.tscn",
+  "canonical_player_ui": "scripts/ui/veilleurs_vertical_slice.gd",
+  "canonical_save_key": "veilleurs",
+  "legacy_read_key": "veilleurs_vs001",
+  "runtime_critical": [
+    "scripts/core/veilleurs_vs001_runtime.gd",
+    "scripts/core/veilleurs_vs001_session_runtime.gd",
+    "scripts/world/veilleurs_vs001_world_runtime.gd",
+    "scripts/world/veilleurs_vs001_playable_bridge.gd",
+    "scripts/world/veilleurs_vs001_persistence_bridge.gd",
+    "scripts/world/veilleurs_vs001_playable_world.gd",
+    "scenes/world/veilleurs/voices_under_sanctuary_playable.tscn"
+  ],
+  "persistence_critical": [
+    "scripts/core/save_manager.gd",
+    "scripts/world/veilleurs_vs001_playable_bridge.gd",
+    "scripts/world/veilleurs_vs001_persistence_bridge.gd"
+  ],
+  "project_bootstrap_critical": [
+    "project.godot"
+  ],
+  "qa_compatibility": [
+    "data/veilleurs/vs001_balance.json",
+    "data/veilleurs/vs001_playtest_guardrails.json",
+    "data/veilleurs/vs001_runtime_contract.json",
+    "tools/qa/veilleurs_vs001_balance_sim.py",
+    "scenes/tests/veilleurs_vs001_smoke.tscn",
+    "scenes/tests/veilleurs_vs001_playable_smoke.tscn",
+    "scenes/tests/veilleurs_vs001_physical_smoke.tscn",
+    "scenes/tests/veilleurs_vs001_persistence_ui_smoke.tscn"
+  ],
+  "external_consumer_allowlist": [
+    "project.godot",
+    "scripts/core/save_manager.gd",
+    ".github/workflows/balance-telemetry.yml"
+  ],
+  "legacy_namespace_prefixes": [
+    "data/veilleurs/vs001_",
+    "data/veilleurs/legacy/vs001_",
+    "scripts/core/veilleurs_vs001_",
+    "scripts/world/veilleurs_vs001_",
+    "scripts/ui/veilleurs_vs001_",
+    "scripts/qa/veilleurs_vs001_",
+    "tools/qa/veilleurs_vs001_",
+    "scenes/tests/veilleurs_vs001_",
+    "tests/test_veilleurs_vs001_"
+  ],
+  "completed_migration_steps": [
+    "canonical neutral VeilleursRuntime facade added over v0.9 runtime",
+    "canonical VeilleursRuntime singleton added to project autoloads",
+    "new saves write Les Veilleurs state under neutral veilleurs key",
+    "legacy veilleurs_vs001 top-level save payloads migrate into veilleurs.legacy_vs001 on load",
+    "new saves no longer write a top-level veilleurs_vs001 key",
+    "canonical VeilleursPlayableBridge is the only normal player launch entry",
+    "canonical player scene uses VeilleursRuntime and SaveManager instead of a versioned save bridge",
+    "legacy playable bridge no longer installs or exposes a VS001 launch button",
+    "legacy playable bridge remains available only for save-resume compatibility and regression coverage"
+  ],
+  "migration_order": [
+    "introduce canonical runtime facade and make new code depend only on it",
+    "write new saves under a neutral veilleurs key while retaining read compatibility for veilleurs_vs001",
+    "move project autoload consumers to canonical singleton names",
+    "move playable scene and UI bindings to canonical names",
+    "rename or replace VS001 QA entry points after equivalent canonical regression coverage exists",
+    "remove compatibility aliases only after PC playtest and save-resume migration validation"
+  ],
+  "removal_gates": [
+    "zero VS001 autoloads in project.godot",
+    "zero new-save writes using veilleurs_vs001",
+    "old veilleurs_vs001 saves still load through explicit migration",
+    "zero normal player launch controls using VS001",
+    "zero production scene references to veilleurs_vs001 scripts",
+    "canonical smoke coverage replaces VS001 smoke entry points",
+    "all GitHub Actions green",
+    "Godot 4.7 PC playtest passes launch, exploration, combat, extraction, save and resume"
+  ]
+}

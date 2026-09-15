@@ -1,0 +1,29 @@
+name: Trieur Safe Archive
+
+on:
+  pull_request:
+    paths:
+      - 'governance/trieur_policy.json'
+      - 'tools/ci/trieur_safe_archive.py'
+      - 'archive/**'
+      - 'data/**'
+      - 'scenes/**'
+      - 'scripts/**'
+      - 'docs/**'
+      - '.github/workflows/trieur-safe-archive.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  archive-dry-run:
+    name: Trieur Archive Dry Run
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate archive plan without changing files
+        run: python tools/ci/trieur_safe_archive.py

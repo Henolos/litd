@@ -13,8 +13,14 @@ var light := 75
 var supplies := 8
 var expedition_room := 0
 var expedition_rooms := 4
-var party: Array = []
+var _party: Array = []
+var party: Array:
+    get:
+        return _party
+    set(value):
+        _party = value
 var battle_enemies: Array = []
+var battle_rounds := 0
 var selected_hero := 0
 var log_lines: Array[String] = []
 
@@ -53,7 +59,14 @@ func reset_new_game() -> void:
         var prepared_hero: Dictionary = hero.duplicate(true)
         HeroSkillManager.prepare_hero(prepared_hero)
         prepared_hero["player_owned"] = true
-        CharacterTraitDirector.prepare_character(prepared_hero, str(prepared_hero.get("id", "")), str(prepared_hero.get("id", "")) == "aurelien")
+        # Starting-quartet canon is intentionally unassigned. Technical slot IDs
+        # are stable QA seeds only and must not imply identity, ethnicity, role,
+        # class, equipment or any previous quartet inheritance.
+        CharacterTraitDirector.prepare_character(
+            prepared_hero,
+            str(prepared_hero.get("id", "")),
+            false
+        )
         EnemyFearDirector.prepare_hero(prepared_hero)
         PersistentInjuryRuntime.prepare_character(prepared_hero)
         party.append(prepared_hero)
@@ -63,6 +76,7 @@ func reset_new_game() -> void:
     supplies = 8
     expedition_room = 0
     battle_enemies = []
+    battle_rounds = 0
     log_lines = ["Le Sanctuaire attend."]
     new_game_reset.emit()
     state_changed.emit()

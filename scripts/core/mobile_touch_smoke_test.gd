@@ -61,7 +61,11 @@ func _run_device_profile() -> void:
     _check(GameState.current_screen == "expedition", "Touch La Porte must open expedition screen on %s" % active_device_name)
 
     _audit_visible_buttons("expedition")
-    _check(await _touch_button("RETOUR", true), "Touch must return from expedition setup on %s" % active_device_name)
+    # The guided P0 departure may present the explicit back action as RETOUR,
+    # RETOUR AU HUB or RETOUR AU SANCTUAIRE. The tactile contract is semantic:
+    # a visible return control containing RETOUR must be touchable and restore
+    # the Sanctuary, rather than depending on one exact copy variant.
+    _check(await _touch_button("RETOUR", false), "Touch must return from expedition setup on %s" % active_device_name)
     _check(GameState.current_screen == "sanctuary", "Touch Retour must restore Sanctuary on %s" % active_device_name)
 
     for screen_name_value in ["company", "market", "creatures", "infirmary", "chapel", "tavern", "memorial"]:
@@ -145,9 +149,7 @@ func _find_button(fragment: String, exact: bool) -> Button:
         var button := node_value as Button
         if button == null or button.is_queued_for_deletion() or not button.is_visible_in_tree():
             continue
-        if exact and button.text == fragment:
-            return button
-        if not exact and button.text.contains(fragment):
+        if _button_matches(button, fragment, exact):
             return button
     return null
 
@@ -160,11 +162,22 @@ func _count_buttons(fragment: String, exact: bool) -> int:
         var button := node_value as Button
         if button == null or button.is_queued_for_deletion() or not button.is_visible_in_tree():
             continue
-        if exact and button.text == fragment:
-            count += 1
-        elif not exact and button.text.contains(fragment):
+        if _button_matches(button, fragment, exact):
             count += 1
     return count
+
+func _button_matches(button: Button, fragment: String, exact: bool) -> bool:
+    var searchable: Array[String] = [button.text, button.tooltip_text]
+    if button.has_meta("litd_location_name"):
+        searchable.append(str(button.get_meta("litd_location_name")))
+    if button.has_meta("litd_location_original_text"):
+        searchable.append(str(button.get_meta("litd_location_original_text")))
+    for candidate in searchable:
+        if exact and candidate == fragment:
+            return true
+        if not exact and candidate.contains(fragment):
+            return true
+    return false
 
 func _log_contains(fragment: String) -> bool:
     var needle := fragment.to_lower()

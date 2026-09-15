@@ -23,6 +23,9 @@ func archetype(enemy: Dictionary) -> String:
     return String(enemy.get("archetype", "any"))
 
 func choose_action(enemy: Dictionary, heroes: Array) -> Dictionary:
+    var flee_action := _ge01_flee_action(enemy)
+    if not flee_action.is_empty():
+        return flee_action
     var candidates: Array[Dictionary] = []
     var enemy_archetype := archetype(enemy)
     for skill_value: Variant in skills:
@@ -36,13 +39,64 @@ func choose_action(enemy: Dictionary, heroes: Array) -> Dictionary:
             candidates.append(skill)
     if candidates.is_empty():
         var fallback := {"id":"basic_attack","name":"Attaque","power":1.0,"target":"random"}
+        fallback = _apply_remanence_action(enemy, fallback)
         fallback = NgPlusCycleDirector.modify_enemy_action(fallback, enemy, heroes)
         fallback["target_index"] = _target_index(heroes, String(fallback.get("target", "random")))
         return fallback
     var chosen: Dictionary = candidates[randi() % candidates.size()].duplicate(true)
+    chosen = _apply_remanence_action(enemy, chosen)
     chosen = NgPlusCycleDirector.modify_enemy_action(chosen, enemy, heroes)
     chosen["target_index"] = _target_index(heroes, String(chosen.get("target", "random")))
     return chosen
+
+func _ge01_flee_action(enemy: Dictionary) -> Dictionary:
+    if not bool(enemy.get("ge01_can_flee", false)) or bool(enemy.get("ge01_fled", false)):
+        return {}
+    if bool(enemy.get("boss", false)) or bool(enemy.get("is_boss", false)) or bool(enemy.get("remanence_protected", false)):
+        return {}
+    var hp_before := int(enemy.get("hp", 0))
+    var hp_ratio := float(hp_before) / maxf(1.0, float(enemy.get("max_hp", hp_before)))
+    var limb_lost := not (enemy.get("dismembered_parts", []) as Array).is_empty()
+    var allies_dead := false
+    for other_value: Variant in GameState.battle_enemies:
+        var other: Dictionary = other_value
+        if other == enemy:
+            continue
+        if int(other.get("hp", 0)) <= 0 and not bool(other.get("ge01_fled", false)):
+            allies_dead = true
+            break
+    if hp_ratio > 0.30 and not limb_lost and not allies_dead:
+        return {}
+    if not bool(enemy.get("ge01_escape_route", true)) or bool(enemy.get("immobilized", false)):
+        return {}
+    var default_chances := {"ghoul_hungry": 35, "emaciated": 15, "ash_roamer": 55, "ash_bearer": 40, "ghoul_voracious": 10}
+    var species_id := str(enemy.get("species_id", ""))
+    var chance := clampi(int(enemy.get("ge01_flee_chance", default_chances.get(species_id, 0))), 0, 100)
+    if chance <= 0 or randi_range(1, 100) > chance:
+        return {}
+    var runtime := get_node_or_null("/root/GE01Runtime")
+    if runtime == null or not runtime.has_method("try_flee_enemy"):
+        return {}
+    var result: Dictionary = runtime.call("try_flee_enemy", enemy, 0)
+    if not bool(result.get("success", false)):
+        return {}
+    enemy["hp"] = hp_before
+    enemy["captured"] = false
+    enemy["ge01_fled"] = true
+    GameState.battle_enemies.erase(enemy)
+    GameState.add_log("%s rompt le combat et disparaît dans les galeries." % str(enemy.get("name", "La créature")))
+    return {"id": "ge01_flee", "name": "Fuite", "power": 0.0, "target": "none", "ge01_flee": true, "reason": "wounded" if hp_ratio <= 0.30 else ("mutilated" if limb_lost else "allies_lost")}
+
+func _apply_remanence_action(enemy: Dictionary, action: Dictionary) -> Dictionary:
+    var result := action.duplicate(true)
+    var target_mode := str(enemy.get("remanence_target_mode", ""))
+    if target_mode != "":
+        result["target"] = target_mode
+    var memory_multiplier := maxf(0.1, float(enemy.get("remanence_damage_multiplier", 1.0)))
+    if not is_equal_approx(memory_multiplier, 1.0):
+        result["power"] = float(result.get("power", 1.0)) * memory_multiplier
+        result["remanence_modified"] = true
+    return result
 
 func apply_secondary(action: Dictionary, enemy: Dictionary, target: Dictionary, all_targets: Array) -> Array[String]:
     var messages: Array[String] = []
@@ -64,6 +118,9 @@ func apply_secondary(action: Dictionary, enemy: Dictionary, target: Dictionary, 
 func intent_preview(enemy: Dictionary) -> String:
     var enemy_archetype := archetype(enemy)
     var fear := int(enemy.get("enemy_fear", enemy.get("fear_gauge", 0)))
+    var target_mode := str(enemy.get("remanence_target_mode", ""))
+    if target_mode == "weakest":
+        return "Mémoire tactique · cible le Veilleur le plus vulnérable"
     if fear >= 70:
         return "Panique probable · intention instable"
     if enemy_archetype == "spider":

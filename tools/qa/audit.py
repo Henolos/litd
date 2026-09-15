@@ -15,6 +15,10 @@ class Audit:
     @property
     def failed(self): return [r for r in self.results if not r["ok"]]
 
+def _is_generated_output_ref(ref: str) -> bool:
+    """Runtime QA reports are write destinations, not source dependencies."""
+    return ref.startswith('res://reports/')
+
 def run(root=ROOT):
     a=Audit(); data_dir=root/'data'
     loaded={}
@@ -51,6 +55,11 @@ def run(root=ROOT):
     for p in list(root.rglob('*.gd'))+list(root.rglob('*.tscn'))+list(root.rglob('*.godot')):
         text=p.read_text(encoding='utf-8',errors='replace')
         for ref in resource_pattern.findall(text):
+            # `res://reports/` is deliberately written by QA runners during execution.
+            # It must not be mistaken for an asset/script dependency that should exist
+            # in source control. Every other res:// reference remains strict.
+            if _is_generated_output_ref(ref):
+                continue
             target=root/ref.removeprefix('res://')
             if not target.exists(): broken.append(f"{p.relative_to(root)} -> {ref}")
     a.check('Références res:// valides', not broken, '; '.join(broken[:10]))
@@ -67,6 +76,53 @@ def run(root=ROOT):
         try: yaml.safe_load(p.read_text(encoding='utf-8'))
         except Exception as exc: yaml_errors.append(f"{p.name}: {exc}")
     a.check('Workflows YAML valides', not yaml_errors, '; '.join(yaml_errors))
+
+    # Le gate de validation joueur est structurellement vérifiable en CI, mais
+    # son audit interdit explicitement de fabriquer une preuve humaine.
+    try:
+        from tools.qa.veilleurs_player_validation_audit import main as player_validation_main
+        a.check('Gate joueur vertical Les Veilleurs', player_validation_main() == 0)
+    except Exception as exc:
+        a.check('Gate joueur vertical Les Veilleurs', False, str(exc))
+
+    # La maturité d'un système ne peut progresser que lorsque les catégories de
+    # preuves correspondant au niveau déclaré existent réellement.
+    try:
+        from tools.qa.veilleurs_system_maturity_audit import main as maturity_main
+        a.check('Maturité des systèmes Les Veilleurs', maturity_main() == 0)
+    except Exception as exc:
+        a.check('Maturité des systèmes Les Veilleurs', False, str(exc))
+
+    # Le kit de premier playtest doit rester reproductible sans pouvoir
+    # fabriquer de PASS humain ou revenir à une ancienne version de Godot.
+    try:
+        from tools.qa.veilleurs_first_playtest_kit_audit import main as first_playtest_main
+        a.check('Kit premier playtest Les Veilleurs', first_playtest_main() == 0)
+    except Exception as exc:
+        a.check('Kit premier playtest Les Veilleurs', False, str(exc))
+
+    # Le readiness Wave 2 vérifie les outils de mesure, les cinq sessions naïves,
+    # l'accessibilité/localisation statiques et les budgets de performance sans
+    # jamais promouvoir un gate humain ou matériel.
+    try:
+        from tools.qa.veilleurs_playtest_readiness_audit import main as readiness_main
+        a.check('Readiness playtest Wave 2 Les Veilleurs', readiness_main() == 0)
+    except Exception as exc:
+        a.check('Readiness playtest Wave 2 Les Veilleurs', False, str(exc))
+
+    # Le dashboard doit rester une projection fidèle du registre canonique :
+    # il vérifie les prochains gates et ne peut pas promouvoir un système.
+    try:
+        from tools.qa.veilleurs_maturity_dashboard import main as maturity_dashboard_main
+        old_argv = sys.argv[:]
+        try:
+            sys.argv = ['veilleurs_maturity_dashboard', '--check']
+            result = maturity_dashboard_main()
+        finally:
+            sys.argv = old_argv
+        a.check('Tableau de maturité Les Veilleurs', result == 0)
+    except Exception as exc:
+        a.check('Tableau de maturité Les Veilleurs', False, str(exc))
     return a
 
 def write_reports(a, outdir):

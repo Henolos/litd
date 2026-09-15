@@ -11,12 +11,14 @@ const QA_SNAPSHOT_PATH := "user://litd_qa_snapshot.json"
 
 var active_slot := 0
 var last_status := ""
+var last_operation := ""
 var session_started_ms := 0
 
 func _ready() -> void:
     session_started_ms = Time.get_ticks_msec()
 
 func save_game(slot: int = active_slot) -> bool:
+    last_operation = "save"
     slot = _valid_slot(slot)
     save_started.emit(slot)
     last_status = "Sauvegarde en cours…"
@@ -37,6 +39,7 @@ func save_game(slot: int = active_slot) -> bool:
     return success
 
 func save_qa_snapshot() -> bool:
+    last_operation = "qa_save"
     var payload := _build_payload()
     payload["qa_snapshot"] = true
     var body := JSON.stringify(payload)
@@ -44,6 +47,7 @@ func save_qa_snapshot() -> bool:
     return _atomic_write(QA_SNAPSHOT_PATH, JSON.stringify(envelope))
 
 func load_qa_snapshot() -> bool:
+    last_operation = "qa_load"
     var payload := _read_payload(QA_SNAPSHOT_PATH)
     if payload.is_empty() or not bool(payload.get("qa_snapshot", false)):
         return false
@@ -67,6 +71,7 @@ func autosave(reason: String = "") -> bool:
     return success
 
 func load_game(slot: int = active_slot) -> bool:
+    last_operation = "load"
     slot = _valid_slot(slot)
     var recovered := false
     var payload: Dictionary = _read_payload(SAVE_PATH) if slot == 0 else {}
@@ -121,13 +126,28 @@ func delete_slot(slot: int) -> bool:
             removed = DirAccess.remove_absolute(ProjectSettings.globalize_path(path)) == OK or removed
     return removed
 
+func _build_veilleurs_payload() -> Dictionary:
+    var payload: Dictionary = VeilleursRuntime.serialize()
+    if VeilleursVS001WorldRuntime.is_active():
+        payload["compatibility_mode"] = "legacy_vs001"
+        payload["legacy_vs001"] = VeilleursVS001PlayableBridge.serialize()
+    return payload
+
 func _build_payload() -> Dictionary:
+    var veilleurs_active := VeilleursRuntime.is_active() or VeilleursVS001WorldRuntime.is_active()
+    var veilleurs_runtime := ""
+    if VeilleursVS001WorldRuntime.is_active():
+        veilleurs_runtime = "legacy_vs001"
+    elif VeilleursRuntime.is_active():
+        veilleurs_runtime = "0.9.0"
     return {
         "version": SAVE_VERSION,
         "metadata": {
             "timestamp": Time.get_datetime_string_from_system(),
             "chapter": CampaignState.current_chapter_number(),
             "zone": AshlandsRuntime.current_zone_id,
+            "mode": "veilleurs" if veilleurs_active else "litd1",
+            "veilleurs_runtime": veilleurs_runtime,
             "party": GameState.party.map(func(hero: Dictionary): return {"id":hero.get("id", ""),"name":hero.get("name", ""),"hp":hero.get("hp", 0),"max_hp":hero.get("max_hp", 0)}),
             "play_seconds": int((Time.get_ticks_msec() - session_started_ms) / 1000),
             "screen": GameState.current_screen
@@ -144,8 +164,12 @@ func _build_payload() -> Dictionary:
         "chapter_08": Chapter08Runtime.serialize(), "chapter_09": Chapter09Runtime.serialize(), "chapter_10": Chapter10Runtime.serialize(),
         "endgame": EndgameState.serialize(), "deep_vestiges": DeepVestigeRuntime.serialize(), "expedition_room": GameState.expedition_room,
         "ashlands": AshlandsRuntime.serialize(), "expedition": ExpeditionManager.serialize(), "field_encounters": FieldEncounterRuntime.serialize(),
-        "community": CommunityRuntime.serialize(), "ashlands_minibosses": AshlandsMinibossDirector.serialize(),
+        "community": CommunityRuntime.serialize(), "systemic_cross": SystemicCrossRuntime.serialize(),
+        "systemic_cross_narrative": SystemicCrossNarrativeRuntime.serialize(),
+        "ashlands_minibosses": AshlandsMinibossDirector.serialize(),
         "ashlands_combat": AshlandsCombatBridge.serialize(), "campaign_memory": CampaignMemoryDirector.serialize(),
+        "remanence": RemanenceRuntime.serialize(),
+        "veilleurs": _build_veilleurs_payload(),
         "expedition_reports": ExpeditionReportDirector.serialize(), "preparation_presets": ExpeditionPreparationDirector.serialize(),
         "living_exploration": ExplorationDirector.serialize(),
         "progression_scope": ContentScopeDirector.serialize()
@@ -172,8 +196,14 @@ func _apply_payload(payload: Dictionary) -> void:
     Chapter09Runtime.deserialize(payload.get("chapter_09",{})); Chapter10Runtime.deserialize(payload.get("chapter_10",{}))
     EndgameState.deserialize(payload.get("endgame",{})); DeepVestigeRuntime.deserialize(payload.get("deep_vestiges",{}))
     ExpeditionManager.deserialize(payload.get("expedition",{})); FieldEncounterRuntime.deserialize(payload.get("field_encounters",{}))
-    CommunityRuntime.deserialize(payload.get("community",{})); AshlandsMinibossDirector.deserialize(payload.get("ashlands_minibosses",{}))
+    CommunityRuntime.deserialize(payload.get("community",{})); SystemicCrossRuntime.deserialize(payload.get("systemic_cross",{}))
+    SystemicCrossNarrativeRuntime.deserialize(payload.get("systemic_cross_narrative",{}))
+    AshlandsMinibossDirector.deserialize(payload.get("ashlands_minibosses",{}))
     AshlandsCombatBridge.deserialize(payload.get("ashlands_combat",{})); CampaignMemoryDirector.deserialize(payload.get("campaign_memory",{}))
+    RemanenceRuntime.deserialize(payload.get("remanence",{}))
+    var veilleurs_payload: Dictionary = payload.get("veilleurs",{})
+    VeilleursRuntime.deserialize(veilleurs_payload)
+    VeilleursVS001PlayableBridge.deserialize(veilleurs_payload.get("legacy_vs001",{}))
     ExpeditionReportDirector.deserialize(payload.get("expedition_reports",{})); ExpeditionPreparationDirector.deserialize(payload.get("preparation_presets",{}))
     ExplorationDirector.deserialize(payload.get("living_exploration",{}))
     ContentScopeDirector.deserialize(payload.get("progression_scope",{}))
@@ -187,12 +217,27 @@ func _migrate(payload: Dictionary) -> Dictionary:
     if version != SAVE_VERSION:
         return {}
     payload["campaign_memory"] = payload.get("campaign_memory",{})
+    payload["remanence"] = payload.get("remanence",{})
+    var veilleurs_payload: Dictionary = payload.get("veilleurs",{})
+    if veilleurs_payload.is_empty():
+        var old_vs001: Dictionary = payload.get("veilleurs_vs001",{})
+        if not old_vs001.is_empty():
+            veilleurs_payload = {
+                "schema_version": 1,
+                "runtime_version": "legacy_vs001",
+                "compatibility_mode": "legacy_vs001",
+                "legacy_vs001": old_vs001.duplicate(true)
+            }
+    payload["veilleurs"] = veilleurs_payload
+    payload.erase("veilleurs_vs001")
     payload["expedition_reports"] = payload.get("expedition_reports",{})
     payload["preparation_presets"] = payload.get("preparation_presets",{})
     payload["living_exploration"] = payload.get("living_exploration",{})
     payload["progression_scope"] = payload.get("progression_scope",{})
     payload["main_narrative_script"] = payload.get("main_narrative_script",{})
     payload["base_game_enrichment"] = payload.get("base_game_enrichment",{})
+    payload["systemic_cross"] = payload.get("systemic_cross",{})
+    payload["systemic_cross_narrative"] = payload.get("systemic_cross_narrative",{})
     return payload
 
 func _atomic_write(path: String, text: String) -> bool:

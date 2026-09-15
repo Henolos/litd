@@ -5,12 +5,32 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$ROOT_DIR"
 
 ERROR_PATTERN='SCRIPT ERROR:|ERROR: Failed to load script|ERROR: Failed to create an autoload|ERROR: Failed to instantiate an autoload|ERROR: FATAL:|handle_crash: Program crashed'
+TOTAL_STEPS="$(grep -cE '^run_checked "' "${BASH_SOURCE[0]}")"
+CURRENT_STEP=0
+
+progress_file_from_args() {
+  local arg
+  for arg in "$@"; do
+    if [[ "$arg" == res://* ]]; then
+      printf '%s' "$arg"
+      return 0
+    fi
+  done
+  printf '%s' 'PROJECT_IMPORT'
+}
 
 run_checked() {
   local label="$1"
   shift
-  local log_file
+  local log_file source_file repo_file percent
   log_file="$(mktemp)"
+  source_file="$(progress_file_from_args "$@")"
+  repo_file="${source_file#res://}"
+  CURRENT_STEP=$((CURRENT_STEP + 1))
+  percent=$((CURRENT_STEP * 100 / TOTAL_STEPS))
+
+  echo "::group::[GODOT ${CURRENT_STEP}/${TOTAL_STEPS} - ${percent}%] ${label}"
+  echo "GODOT_PROGRESS step=${CURRENT_STEP}/${TOTAL_STEPS} percent=${percent} status=START file=${source_file}"
   echo "==> ${label}"
 
   set +e
@@ -19,19 +39,35 @@ run_checked() {
   set -e
 
   if [[ $command_status -ne 0 ]]; then
+    echo "GODOT_PROGRESS step=${CURRENT_STEP}/${TOTAL_STEPS} percent=${percent} status=ERROR file=${source_file} exit_code=${command_status}" >&2
+    if [[ "$source_file" == res://* ]]; then
+      echo "::error file=${repo_file}::Godot a quitté avec le code ${command_status} pendant: ${label}" >&2
+    else
+      echo "::error::Godot a quitté avec le code ${command_status} pendant: ${label}" >&2
+    fi
     echo "Godot a quitté avec le code ${command_status} pendant: ${label}" >&2
     rm -f "$log_file"
+    echo "::endgroup::"
     return "$command_status"
   fi
 
   if grep -E "$ERROR_PATTERN" "$log_file" >/dev/null; then
+    echo "GODOT_PROGRESS step=${CURRENT_STEP}/${TOTAL_STEPS} percent=${percent} status=ERROR file=${source_file} detected=strict_error_pattern" >&2
+    if [[ "$source_file" == res://* ]]; then
+      echo "::error file=${repo_file}::Erreurs GDScript/autoload détectées pendant: ${label}" >&2
+    else
+      echo "::error::Erreurs GDScript/autoload détectées pendant: ${label}" >&2
+    fi
     echo "Des erreurs GDScript/autoload ont été détectées pendant: ${label}" >&2
     grep -E "$ERROR_PATTERN" "$log_file" >&2 || true
     rm -f "$log_file"
+    echo "::endgroup::"
     return 1
   fi
 
+  echo "GODOT_PROGRESS step=${CURRENT_STEP}/${TOTAL_STEPS} percent=${percent} status=DONE file=${source_file}"
   rm -f "$log_file"
+  echo "::endgroup::"
 }
 
 run_checked "Import strict du projet" godot --headless --path . --import --quit
@@ -42,6 +78,10 @@ run_checked "Mémoire : décisions, convictions et conséquences différées" go
 run_checked "Mémoire de terrain : recrutement, retraite, boss et réévaluation" godot --headless --path . res://scenes/tests/field_memory_smoke.tscn
 run_checked "Monde réactif : survivants, ressources et retours différés" godot --headless --path . res://scenes/tests/field_encounter_smoke.tscn
 run_checked "Sanctuaire vivant : personnes, rumeurs et quêtes émergentes" godot --headless --path . res://scenes/tests/community_network_smoke.tscn
+run_checked "Croisements systémiques : choix, cascades, mémoire, routes, économie et anti-rejeu" godot --headless --path . res://scenes/tests/systemic_cross_smoke.tscn
+run_checked "Mise en scène des croisements : retour au Sanctuaire, silences, mortalité et anti-rejeu" godot --headless --path . res://scenes/tests/systemic_cross_narrative_smoke.tscn
+run_checked "Conséquences différées : relations, rumeurs, Rémanence et priorité des scènes" godot --headless --path . res://scenes/tests/systemic_cross_afterlife_smoke.tscn
+run_checked "Relations des Sept : ouverture, friction, rupture, réparation, lien durable et deuil" godot --headless --path . res://scenes/tests/legendary_seven_relationship_smoke.tscn
 run_checked "Narration : bibliothèque transmédiatique, dialogues et mise en scène" godot --headless --path . res://scenes/tests/narrative_library_smoke.tscn
 run_checked "Musique : bibliothèque, licences et accompagnement narratif" godot --headless --path . res://scenes/tests/music_library_smoke.tscn
 run_checked "Bruitages : bibliothèque, licences et sound design" godot --headless --path . res://scenes/tests/sfx_library_smoke.tscn
@@ -62,11 +102,24 @@ run_checked "Vertical slice runtime : import, animations et mini-combat" godot -
 run_checked "Parcours campagne I→X, fin, postgame et NG+" godot --headless --path . res://scenes/tests/campaign_e2e_smoke.tscn
 run_checked "Opérations joueur : scènes, expédition, équipement, capture et sauvegarde disque" godot --headless --path . res://scenes/tests/runtime_player_smoke.tscn
 run_checked "Première Descente : tentative unique, chronique et anti-farm" godot --headless --path . res://scenes/tests/first_descent_smoke.tscn
+run_checked "Les Veilleurs VS001 : recrutement, lumière, bruit, Goules et loot" godot --headless --path . res://scenes/tests/veilleurs_vs001_smoke.tscn
+run_checked "Les Veilleurs VS001 physique : S1-S8, collisions, retour et passage secret" timeout 60s godot --headless --path . res://scenes/tests/veilleurs_vs001_physical_smoke.tscn
+run_checked "Les Veilleurs VS001 jouable : quatuor, exploration physique, interactions, combats et secret S8" timeout 90s godot --headless --path . res://scenes/tests/veilleurs_vs001_playable_smoke.tscn
+run_checked "Les Veilleurs VS001 persistance : corps, blessures, recrue, carte et reprise" timeout 90s godot --headless --path . res://scenes/tests/veilleurs_vs001_persistence_ui_smoke.tscn
+run_checked "Les Veilleurs canon : 180 compétences, 12 ultimes, resolvers et cadavres" timeout 90s godot --headless --path . res://scenes/tests/veilleurs_canonical_skills_corpses_smoke.tscn
+run_checked "Les Veilleurs jouables : Entaille, Anatomie et Suture" timeout 90s godot --headless --path . res://scenes/tests/veilleurs_entaille_anatomie_suture_smoke.tscn
+run_checked "Les Veilleurs réactions cliniques : six hooks, transformations et postures" timeout 90s godot --headless --path . res://scenes/tests/veilleurs_clinical_reactions_smoke.tscn
+run_checked "Les Veilleurs Hémocorde : anatomie, hémorragie, choc et garde-fous" timeout 90s godot --headless --path . res://scenes/tests/veilleurs_hemocorde_smoke.tscn
+run_checked "Les Veilleurs Hémocorde réactions : Retour sanguin, Pointe réflexe et budget partagé" timeout 90s godot --headless --path . res://scenes/tests/veilleurs_hemocorde_reactions_smoke.tscn
 run_checked "Hall des Descendants : chronique, morts, relique et retour au Sanctuaire" timeout 60s godot --headless --path . res://scenes/tests/descendants_hall_smoke.tscn
 run_checked "Donjon physique : salles réelles, fog of war et secrets cachés" timeout 60s godot --headless --path . res://scenes/tests/physical_dungeon_smoke.tscn
 run_checked "Blockout 3D : dimensions, collisions, ancres et passages secrets" timeout 60s godot --headless --path . res://scenes/tests/first_veil_proxy_smoke.tscn
 run_checked "Guidage : cendres vers boss et quêtes, couleur selon proximité" timeout 60s godot --headless --path . res://scenes/tests/ash_guidance_smoke.tscn
 run_checked "Parcours UI joueur : Sanctuaire, exploration, combat, récompenses et retour" timeout 90s godot --headless --path . res://scenes/tests/ui_player_journey_smoke.tscn
+run_checked "Interface canonique Les Veilleurs : 10 écrans, hotspots sans rectangles et HUD réel" timeout 90s godot --headless --path . res://scenes/tests/canonical_ui_smoke.tscn
+run_checked "Finition UX canonique : feedbacks, aide contextuelle, états rares et tactile" timeout 90s godot --headless --path . res://scenes/tests/canonical_ux_smoke.tscn
+run_checked "Direction artistique canonique v41 : tokens, slots, morphologies et amputations" timeout 90s godot --headless --path . res://scenes/tests/canonical_art_v41_smoke.tscn
+run_checked "Corps visuel systemique v42 : F3, F4, equipement, transfert d'arme et morphologies" timeout 90s godot --headless --path . res://scenes/tests/body_visual_v42_smoke.tscn
 run_checked "Bâtiments du Sanctuaire : Chapelle, Taverne et Mémorial" timeout 60s godot --headless --path . res://scenes/tests/sanctuary_buildings_smoke.tscn
 run_checked "Mobile tactile : formats iPhone, cibles tactiles et ScreenTouch" timeout 90s godot --headless --path . res://scenes/tests/mobile_touch_smoke.tscn
 
