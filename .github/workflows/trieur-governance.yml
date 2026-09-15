@@ -9,6 +9,7 @@ on:
       - 'tools/ci/trieur_safe_archive.py'
       - 'tools/ci/trieur_file_sorter_bridge.py'
       - 'tools/ci/test_trieur_v5.py'
+      - 'tools/ci/test_trieur_v6.py'
       - 'data/**'
       - 'scenes/**'
       - 'scripts/**'
@@ -24,6 +25,7 @@ on:
       - 'tools/ci/trieur_safe_archive.py'
       - 'tools/ci/trieur_file_sorter_bridge.py'
       - 'tools/ci/test_trieur_v5.py'
+      - 'tools/ci/test_trieur_v6.py'
       - 'data/**'
       - 'scenes/**'
       - 'scripts/**'
@@ -45,6 +47,8 @@ jobs:
           python-version: '3.12'
       - name: Run Trieur V5 safety regression suite
         run: python -m unittest tools.ci.test_trieur_v5 -v
+      - name: Run Trieur V6 canonical coverage suite
+        run: python -m unittest tools.ci.test_trieur_v6 -v
       - name: Validate lifecycle registry and runtime references
         run: python tools/ci/trieur_governance_gate.py
       - name: Cross-check Trieur canon against physical file sorter
