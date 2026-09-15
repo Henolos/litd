@@ -45,5 +45,5 @@ def test_direction_does_not_force_created_player_performance():
 def test_chapter_one_additional_givers_have_full_profiles():
     data = load(DIRECTION)
     required = {"emotion", "posture", "gaze", "gesture", "breath", "voice", "subtext", "script_note"}
-    for giver in ["ilyan_orme", "naima_sol", "tarek_vann", "eno_kesh"]:
+    for giver in ["ilyan_orme", "naima_sol", "mathilde", "eno_kesh"]:
         assert required <= set(data["additional_giver_profiles"][giver])
