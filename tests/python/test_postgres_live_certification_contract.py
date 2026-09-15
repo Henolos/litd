@@ -2,6 +2,7 @@ from pathlib import Path
 
 
 WORKFLOW = Path(".github/workflows/governance-postgres-live-cert.yml")
+MIGRATION_WORKFLOW = Path(".github/workflows/governance-postgres-apply-migration.yml")
 HARNESS = Path("tools/quality/postgres_registry_live_cert.py")
 PROOF_MIGRATION = Path("supabase/migrations/20260915064500_governance_audit_chain_verification.sql")
 PROJECT_ROUTE_MIGRATION = Path("supabase/migrations/20260915110500_governance_authorized_project_routes.sql")
@@ -23,6 +24,17 @@ def test_live_certification_retains_evidence() -> None:
     assert "postgres-live-certification.json" in text
     assert "retention-days: 90" in text
     assert "if-no-files-found: error" in text
+
+
+def test_migration_workflow_targets_exact_company_boundary_migration() -> None:
+    text = MIGRATION_WORKFLOW.read_text(encoding="utf-8")
+    assert "workflow_dispatch:" in text
+    assert "APPLY_GOVERNANCE_MIGRATION_20260915110500" in text
+    assert "20260915110500_governance_authorized_project_routes.sql" in text
+    assert "is_project_route_authorized('LITD','LITD_LIBRARY')" in text
+    assert "is_project_route_authorized('COMPANY','COMPANY_LIBRARY')" in text
+    assert "is_project_route_authorized('COMPANY','LITD_LIBRARY')" in text
+    assert "retention-days: 90" in text
 
 
 def test_harness_covers_complete_p0_registry_scenarios() -> None:
