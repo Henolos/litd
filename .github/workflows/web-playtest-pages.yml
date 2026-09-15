@@ -3,10 +3,12 @@ name: LITD Web Playtest PWA
 on:
   push:
     branches: [main]
-    paths-ignore:
-      - '.github/**'
-      - 'docs/**'
-      - '**/*.md'
+    paths:
+      - '**'
+      - '!docs/**'
+      - '!**/*.md'
+      - '!.github/**'
+      - '.github/workflows/web-playtest-pages.yml'
   workflow_dispatch:
 
 permissions:
@@ -96,6 +98,36 @@ jobs:
           test -n "$(find build/web -maxdepth 1 -type f -name '*manifest*.json' -o -name '*.webmanifest' -print -quit)" || true
           echo "Web export files:"
           find build/web -maxdepth 1 -type f -printf '%f\n' | sort
+
+      - name: Force fresh PWA service-worker takeover
+        shell: bash
+        run: |
+          set -euo pipefail
+          SERVICE_WORKER="$(find build/web -maxdepth 1 -type f \( -name '*.service.worker.js' -o -name '*service-worker*.js' -o -name '*service_worker*.js' \) -print -quit)"
+          if [[ -z "$SERVICE_WORKER" ]]; then
+            echo "Godot PWA service worker not found" >&2
+            find build/web -maxdepth 1 -type f -printf '%f\n' | sort >&2
+            exit 1
+          fi
+
+          {
+            printf '%s\n' ''
+            printf '%s\n' '// LITD playtest freshness guard: a newly deployed build must take control immediately.'
+            printf '%s\n' "self.addEventListener('install', () => {"
+            printf '%s\n' '  self.skipWaiting();'
+            printf '%s\n' '});'
+            printf '%s\n' "self.addEventListener('activate', (event) => {"
+            printf '%s\n' '  event.waitUntil((async () => {'
+            printf '%s\n' '    await self.clients.claim();'
+            printf '%s\n' "    const windows = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });"
+            printf '%s\n' '    await Promise.all(windows.map((client) => client.navigate(client.url)));'
+            printf '%s\n' '  })());'
+            printf '%s\n' '});'
+          } >> "$SERVICE_WORKER"
+
+          grep -Fq "self.skipWaiting();" "$SERVICE_WORKER"
+          grep -Fq "await self.clients.claim();" "$SERVICE_WORKER"
+          echo "PWA_FRESH_TAKEOVER_OK service_worker=$SERVICE_WORKER"
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v4

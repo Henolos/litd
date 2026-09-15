@@ -1,69 +1,77 @@
-# Trieur V2 — gouvernance du cycle de vie
+# Trieur V4 — gouvernance canonique et cycle de vie
 
-Le Trieur V2 complète le Canon Freshness Gate. Son rôle est de gérer explicitement le cycle de vie des contenus afin qu'une ancienne vérité ne puisse pas redevenir active par accident.
+Le Trieur V4 unifie trois niveaux auparavant séparés :
 
-## Statuts
+1. le **Canon Freshness Gate**, qui empêche une build de rejouer un canon périmé ;
+2. le **Trieur lifecycle**, qui décide si un contenu est `canonical`, `active`, `superseded` ou `archived` ;
+3. le **LITD File Sorter**, qui analyse physiquement les fichiers, leurs versions, références et éventuels candidats à l'archivage/suppression.
 
-- `canonical` : source de vérité officielle pour une clé canonique donnée.
-- `active` : contenu valide et utilisable, sans être l'unique source canonique.
-- `superseded` : contenu remplacé. Il doit déclarer `replaced_by`.
-- `archived` : contenu conservé pour historique, non utilisable comme vérité runtime.
+Le principe central est qu'aucune heuristique de classement ne peut, à elle seule, déclasser ou supprimer une vérité canonique.
 
-## Registre
+## Registre vivant
 
-Le fichier `governance/trieur_policy.json` est le registre de politique. Les contenus nécessitant un suivi de cycle de vie y sont déclarés avec au minimum :
+`governance/trieur_policy.json` est désormais un registre réel, et non plus vide. La première source gouvernée est `data/heroes.json`, enregistrée sous la clé canonique `litd.starting_quartet` pour Mathilde, Marec, Anouk et Aurélien.
 
-- `id`
-- `path`
-- `status`
+Chaque entrée possède au minimum :
 
-Les entrées peuvent aussi déclarer :
+- `id` ;
+- `path` ;
+- `status`.
 
-- `canonical_key` pour garantir qu'une seule entrée est canonique pour un sujet donné ;
-- `replaced_by` pour relier une version remplacée à son successeur ;
-- `runtime_tokens` pour empêcher les fichiers runtime de continuer à référencer une entrée inactive ;
-- `archive_enabled: true` pour autoriser explicitement un déplacement physique ;
-- `archive_target` pour indiquer la destination sous `archive/`.
+Elle peut aussi déclarer :
 
-## Contrôles CI
+- `canonical_key` et `canon_version` ;
+- `replaced_by` ;
+- `runtime_tokens` ;
+- `archive_enabled` et `archive_target` ;
+- `archive_state`, `previous_path` et `archived_sha256` après déplacement.
 
-`tools/ci/trieur_governance_gate.py` vérifie :
+## Validation du cycle de vie
 
-1. la validité des statuts ;
-2. l'unicité des identifiants ;
-3. l'existence des chemins déclarés ;
-4. l'unicité des clés canoniques ;
-5. la présence d'un remplacement pour toute entrée `superseded` ;
-6. l'absence de références runtime déclarées vers des contenus `superseded` ou `archived`.
+`tools/ci/trieur_governance_gate.py` vérifie notamment :
 
-Le workflow `Trieur Governance` s'exécute sur les changements touchant le registre, les données, les scènes, les scripts et la documentation gouvernée.
+- statuts et identifiants ;
+- chemins relatifs confinés au dépôt et aux racines gouvernées ;
+- unicité des clés canoniques ;
+- existence des cibles `replaced_by` ;
+- interdiction des auto-remplacements et cycles de remplacement ;
+- cohérence des champs d'archive ;
+- confinement des contenus déjà déplacés sous `archive/` ;
+- absence de références runtime déclarées vers des contenus inactifs.
+
+## Pont avec le File Sorter
+
+`tools/ci/trieur_file_sorter_bridge.py` impose que toute entrée `canonical` du Trieur soit également présente dans `data/maintenance/canonical_files.json` sous `canonical_paths`.
+
+Inversement, une entrée `superseded` ou `archived` du Trieur ne peut pas rester protégée comme canonique par le File Sorter. Une même ressource ne peut donc plus être « canonique » pour un système et « obsolète » pour l'autre.
+
+Le manifeste du File Sorter protège également les fichiers de gouvernance du Trieur eux-mêmes.
 
 ## Archivage physique sécurisé
 
-`tools/ci/trieur_safe_archive.py` est en **dry-run par défaut**. Il ne déplace rien tant que `--apply` n'est pas demandé.
+`tools/ci/trieur_safe_archive.py` reste en dry-run par défaut. L'application réelle exige toujours :
 
-Un déplacement physique n'est autorisé que si toutes les conditions suivantes sont vraies :
+1. `status: archived` ;
+2. `archive_enabled: true` ;
+3. une destination sous `archive/` ;
+4. aucune collision ;
+5. une branche autre que `main` / `master` ;
+6. `TRIEUR_ARCHIVE_ACK=I_UNDERSTAND_ARCHIVE_MOVE` ;
+7. une vérification SHA-256 de la copie.
 
-1. l'entrée est déjà marquée `archived` ;
-2. `archive_enabled` vaut explicitement `true` ;
-3. `archive_target` est présent et reste strictement sous `archive/` ;
-4. la source existe et reste à l'intérieur du dépôt ;
-5. la destination n'existe pas encore ;
-6. l'application ne s'exécute pas sur `main` ou `master` ;
-7. la variable `TRIEUR_ARCHIVE_ACK` vaut exactement `I_UNDERSTAND_ARCHIVE_MOVE` ;
-8. la copie est vérifiée par SHA-256 avant retrait de la source.
+V4 ajoute deux protections :
 
-Le workflow `Trieur Safe Archive` n'exécute **que le dry-run** en CI. Il valide le plan mais n'a pas de permission d'écriture.
+- les sources ou descendants symboliques sont refusés ;
+- après un déplacement réussi, le registre est mis à jour automatiquement (`previous_path`, nouveau `path`, `archive_state: moved`, `archive_enabled: false`, SHA-256). Si cette mise à jour échoue, le déplacement est restauré vers sa source.
 
-## Garde-fou principal
+## CI
 
-Le Trieur ne supprime jamais définitivement un contenu. Un archivage physique est un déplacement vers `archive/`, réalisé uniquement sur une branche dédiée et destiné à passer par une PR révisable. Si une vérification d'intégrité échoue, la copie cible est annulée et la source reste intacte.
+Le workflow `Trieur Governance` exécute désormais dans la même chaîne :
 
-Cette architecture sépare volontairement :
+1. le contrôle lifecycle ;
+2. le pont Trieur ↔ File Sorter ;
+3. le dry-run de l'archivage physique.
 
-- la décision de cycle de vie (`canonical` / `active` / `superseded` / `archived`) ;
-- la validation CI ;
-- le déplacement physique ;
-- la fusion finale dans `main`.
+Le workflow `LITD File Sorter Audit` conserve en parallèle ses tests de maintenance, son audit d'intelligence du dépôt et ses garanties anti-suppression automatique.
 
-Ainsi, une erreur du trieur ne peut pas directement effacer une donnée canonique du projet.
+Cette séparation des responsabilités reste volontaire : le Trieur décide du statut canonique, le File Sorter inspecte la réalité physique, et la CI bloque toute contradiction entre les deux.
