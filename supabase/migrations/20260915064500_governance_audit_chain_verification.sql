@@ -1,6 +1,12 @@
 -- P0 #331/#333 live proof helpers for the durable governance receipt registry.
 -- These SECURITY DEFINER RPCs expose only aggregate verification results and
 -- safe trigger probes. They do not expose private rows or grant table access.
+--
+-- Staging can already contain the legacy boolean-returning proof helper from
+-- earlier certification work. PostgreSQL cannot change a function's return
+-- type with CREATE OR REPLACE, so remove only that zero-argument helper first.
+-- No CASCADE is used: any unexpected dependency must fail closed.
+drop function if exists governance_private.verify_consumption_audit_chain();
 
 create or replace function governance_private.verify_consumption_audit_chain()
 returns table(valid boolean, entry_count bigint, tip_hash text, reason text)
