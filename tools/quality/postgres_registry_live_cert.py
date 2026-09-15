@@ -18,6 +18,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from tools.quality.company_postgres_receipt_consumption_registry import CompanyPostgresReceiptConsumptionRegistry
 from tools.quality.postgres_receipt_consumption_registry import PostgresReceiptConsumptionRegistry
 
 
@@ -46,10 +47,8 @@ def main() -> int:
     def connect():
         return psycopg.connect(dsn, autocommit=False)
 
-    project = f"LITD_CERT_{run_id}"
-    company_project = f"COMPANY_CERT_{run_id}"
+    project = "LITD"
     route = "LITD_LIBRARY"
-    company_route = "COMPANY_LIBRARY"
     source = sha(f"source:{run_id}")
     context = sha(f"context:{run_id}")
 
@@ -86,18 +85,36 @@ def main() -> int:
         superseded = reg.consume(superseded_receipt, consumer="CERT_CONSUMER", actor="live-cert", current_context_hash=context)
         evidence["tests"].append({"name": "supersession", "passed": not superseded.accepted and superseded.reason == "receipt_superseded", "replacement_receipt_hash": replacement_receipt, "result": asdict(superseded)})
 
+    company_native_receipt = sha(f"company-native:{run_id}")
+    with connect() as conn:
+        company = CompanyPostgresReceiptConsumptionRegistry(conn)
+        company_scope_authorized = company.verify_company_scope_authorized()
+        company.register_receipt(receipt_id=f"cert:{run_id}:company-native", receipt_hash=company_native_receipt, receipt_kind="CERT_SYNTHETIC", source_hash=source, context_hash=context, expected_consumer="CERT_CONSUMER")
+        company_result = company.consume(company_native_receipt, consumer="CERT_CONSUMER", actor="live-cert", current_context_hash=context)
+        evidence["tests"].append({"name": "company_native_consumption", "passed": company_scope_authorized and company_result.accepted and company_result.reason == "consumed_once", "scope_authorized": company_scope_authorized, "result": asdict(company_result)})
+
+    unauthorized_receipt = sha(f"unauthorized-route:{run_id}")
+    unauthorized_error = ""
+    try:
+        with connect() as conn:
+            bad_scope = PostgresReceiptConsumptionRegistry(conn, project_id="COMPANY", target_route="LITD_LIBRARY")
+            bad_scope.register_receipt(receipt_id=f"cert:{run_id}:unauthorized-route", receipt_hash=unauthorized_receipt, receipt_kind="CERT_SYNTHETIC", source_hash=source, context_hash=context, expected_consumer="CERT_CONSUMER")
+    except Exception as exc:
+        unauthorized_error = str(exc)
+    evidence["tests"].append({"name": "unauthorized_project_route_registration", "passed": "unauthorized_project_route" in unauthorized_error, "error": unauthorized_error})
+
     cross_litd = sha(f"cross-litd:{run_id}")
     with connect() as conn:
         litd = PostgresReceiptConsumptionRegistry(conn, project_id=project, target_route=route)
         litd.register_receipt(receipt_id=f"cert:{run_id}:cross-litd", receipt_hash=cross_litd, receipt_kind="CERT_SYNTHETIC", source_hash=source, context_hash=context, expected_consumer="CERT_CONSUMER")
     with connect() as conn:
-        company = PostgresReceiptConsumptionRegistry(conn, project_id=company_project, target_route=company_route)
+        company = CompanyPostgresReceiptConsumptionRegistry(conn)
         result = company.consume(cross_litd, consumer="CERT_CONSUMER", actor="live-cert", current_context_hash=context)
         evidence["tests"].append({"name": "cross_project_litd_to_company", "passed": not result.accepted and result.reason == "project_scope_mismatch", "result": asdict(result)})
 
     cross_company = sha(f"cross-company:{run_id}")
     with connect() as conn:
-        company = PostgresReceiptConsumptionRegistry(conn, project_id=company_project, target_route=company_route)
+        company = CompanyPostgresReceiptConsumptionRegistry(conn)
         company.register_receipt(receipt_id=f"cert:{run_id}:cross-company", receipt_hash=cross_company, receipt_kind="CERT_SYNTHETIC", source_hash=source, context_hash=context, expected_consumer="CERT_CONSUMER")
     with connect() as conn:
         litd = PostgresReceiptConsumptionRegistry(conn, project_id=project, target_route=route)
