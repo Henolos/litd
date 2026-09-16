@@ -10,6 +10,14 @@ ROOT = Path(__file__).resolve().parents[2]
 TRIEUR = ROOT / "governance" / "trieur_policy.json"
 MANIFEST = ROOT / "data" / "maintenance" / "canonical_files.json"
 
+REQUIRED_INFRA = {
+    "governance/trieur_policy.json",
+    "data/maintenance/canonical_files.json",
+    "tools/ci/trieur_governance_gate.py",
+    "tools/ci/trieur_safe_archive.py",
+    "tools/ci/trieur_file_sorter_bridge.py",
+}
+
 
 def fail(message: str) -> None:
     print(f"TRIEUR_SORTER_BRIDGE_ERROR: {message}", file=sys.stderr)
@@ -76,10 +84,14 @@ def main() -> None:
         if status in {"superseded", "archived"} and path in canonical_paths:
             fail(f"inactive Trieur entry {entry_id} is still protected as canonical by file sorter: {path}")
 
+    # Governance infrastructure is protected canonically by the physical sorter,
+    # but it is not lifecycle-managed content. Exclude it from V6 coverage.
     unmanaged_by_trieur = sorted(
         path
         for path in canonical_paths
-        if is_under_managed_root(path, managed_roots) and path not in canonical_registry_paths
+        if path not in REQUIRED_INFRA
+        and is_under_managed_root(path, managed_roots)
+        and path not in canonical_registry_paths
     )
     if unmanaged_by_trieur:
         fail(
@@ -87,14 +99,7 @@ def main() -> None:
             + ", ".join(unmanaged_by_trieur)
         )
 
-    required_infra = {
-        "governance/trieur_policy.json",
-        "data/maintenance/canonical_files.json",
-        "tools/ci/trieur_governance_gate.py",
-        "tools/ci/trieur_safe_archive.py",
-        "tools/ci/trieur_file_sorter_bridge.py",
-    }
-    missing = sorted(required_infra - canonical_paths)
+    missing = sorted(REQUIRED_INFRA - canonical_paths)
     if missing:
         fail("governance infrastructure missing from canonical_paths: " + ", ".join(missing))
 
