@@ -79,6 +79,6 @@ def test_runbook_requires_independent_human_recovery_and_no_automatic_resume():
     assert "indépendante" in runbook
     assert "service_role" in runbook
     assert "décision humaine" in runbook
-    assert "aucun Core" in runbook
+    assert "aucun droit d'écriture dans un Core" in runbook
     assert "LITD" in runbook and "COMPANY" in runbook
     assert "rollback" in runbook.lower()
