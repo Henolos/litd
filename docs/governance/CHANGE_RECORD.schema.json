@@ -4,40 +4,14 @@
   "title": "Global Governance Change Record",
   "type": "object",
   "additionalProperties": false,
-  "required": [
-    "change_id",
-    "project_domain",
-    "risk_class",
-    "initial_real_state",
-    "objective",
-    "research",
-    "comparison",
-    "risks",
-    "core_decision",
-    "guardian_authorization",
-    "execution",
-    "verification",
-    "evidence",
-    "rollback",
-    "final_real_state",
-    "closure_state"
-  ],
+  "required": ["change_id", "project_domain", "risk_class", "initial_real_state", "objective", "research", "comparison", "risks", "core_decision", "guardian_authorization", "execution", "verification", "evidence", "rollback", "final_real_state", "closure_state"],
   "properties": {
     "change_id": {"type": "string", "minLength": 1},
     "project_domain": {"type": "string", "minLength": 1},
     "risk_class": {"enum": ["NORMAL", "SENSITIVE", "CRITICAL"]},
     "initial_real_state": {"type": "string", "minLength": 1},
     "objective": {"type": "string", "minLength": 1},
-    "research": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["required", "rationale", "sources"],
-      "properties": {
-        "required": {"type": "boolean"},
-        "rationale": {"type": "string", "minLength": 1},
-        "sources": {"type": "array", "items": {"type": "string"}}
-      }
-    },
+    "research": {"type": "object", "additionalProperties": false, "required": ["required", "rationale", "sources"], "properties": {"required": {"type": "boolean"}, "rationale": {"type": "string", "minLength": 1}, "sources": {"type": "array", "items": {"type": "string"}}}},
     "comparison": {"type": "string", "minLength": 1},
     "risks": {"type": "array", "items": {"type": "string"}},
     "core_decision": {"type": "string", "minLength": 1},

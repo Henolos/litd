@@ -46,10 +46,11 @@ def post_status(state: str, description: str) -> None:
         print(f"GODOT_PROGRESS_BRIDGE_WARNING {exc}", file=sys.stderr, flush=True)
 
 
-def state_for(status: str) -> str:
+def state_for(status: str, percent: int) -> str:
+    """Keep intermediate file completions pending; only global completion is success."""
     if status == "ERROR":
         return "failure"
-    if status == "DONE":
+    if status == "DONE" and percent >= 100:
         return "success"
     return "pending"
 
@@ -77,7 +78,7 @@ def main() -> int:
             f"{data['step']}/{data['total']} {data['percent']}% "
             f"{data['status']} {data['file']}"
         )
-        post_status(state_for(data["status"]), description)
+        post_status(state_for(data["status"], int(data["percent"])), description)
 
     return_code = process.wait()
     if return_code == 0:
