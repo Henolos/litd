@@ -101,7 +101,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python tools/ci/generate_build_provenance.py \
+          python3 tools/ci/generate_build_provenance.py \
             --output build/web/build-provenance.json \
             --sha "$GITHUB_SHA" \
             --branch "$GITHUB_REF_NAME" \
@@ -117,7 +117,7 @@ jobs:
           test -s build/web/build-provenance.json
           test -s build/web/godot-status.html
           test -s build/web/godot-status.json
-          python - <<'PY'
+          python3 - <<'PY'
           import json, os
           from pathlib import Path
           p = json.loads(Path('build/web/build-provenance.json').read_text(encoding='utf-8'))
