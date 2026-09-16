@@ -17,7 +17,4 @@ static func resolve(actor: Dictionary, action: Dictionary, target: Dictionary, z
     }
 
 static func stable_roll(seed_text: String) -> int:
-    var hash_value := 2166136261
-    for byte in seed_text.to_utf8_buffer():
-        hash_value = int((hash_value ^ int(byte)) * 16777619) & 0x7fffffff
-    return int(hash_value % 100)
+    return absi(hash(seed_text)) % 100
