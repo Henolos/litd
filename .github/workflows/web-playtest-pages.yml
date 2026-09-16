@@ -79,6 +79,38 @@ jobs:
           echo "Godot exit code: $GODOT_STATUS" | tee -a build/logs/godot-web-export.log
           exit "$GODOT_STATUS"
 
+      - name: Generate build provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/ci/generate_build_provenance.py \
+            --output build/web/build-provenance.json \
+            --sha "$GITHUB_SHA" \
+            --branch "$GITHUB_REF_NAME" \
+            --run-id "$GITHUB_RUN_ID"
+
+      - name: Validate Web payload and provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s build/web/index.html
+          test -n "$(find build/web -maxdepth 1 -type f -name '*.wasm' -print -quit)"
+          test -n "$(find build/web -maxdepth 1 -type f \( -name '*.pck' -o -name '*.zip' \) -print -quit)"
+          test -s build/web/build-provenance.json
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          p = json.loads(Path('build/web/build-provenance.json').read_text(encoding='utf-8'))
+          expected = os.environ['GITHUB_SHA']
+          if p.get('git_sha') != expected:
+              raise SystemExit(f"STALE_BUILD_BLOCKED: provenance={p.get('git_sha')} expected={expected}")
+          if not isinstance(p.get('canon_version'), int):
+              raise SystemExit('BUILD_PROVENANCE_ERROR: canon_version missing')
+          print(f"PLAYTEST_PROVENANCE_VERIFIED sha={expected} canon={p['canon_version']}")
+          PY
+          echo "Web export files:"
+          find build/web -maxdepth 1 -type f -printf '%f\n' | sort
+
       - name: Upload Godot diagnostic logs
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
@@ -87,17 +119,6 @@ jobs:
           path: build/logs
           if-no-files-found: warn
           retention-days: 14
-
-      - name: Validate Web payload
-        shell: bash
-        run: |
-          set -euo pipefail
-          test -s build/web/index.html
-          test -n "$(find build/web -maxdepth 1 -type f -name '*.wasm' -print -quit)"
-          test -n "$(find build/web -maxdepth 1 -type f \( -name '*.pck' -o -name '*.zip' \) -print -quit)"
-          test -n "$(find build/web -maxdepth 1 -type f -name '*manifest*.json' -o -name '*.webmanifest' -print -quit)" || true
-          echo "Web export files:"
-          find build/web -maxdepth 1 -type f -printf '%f\n' | sort
 
       - name: Force fresh PWA service-worker takeover
         shell: bash
