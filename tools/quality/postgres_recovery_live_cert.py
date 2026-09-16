@@ -65,6 +65,11 @@ def run() -> dict:
         },
     }
 
+    mutation_sql = (
+        "select accepted,reason,active_hash,capability_generation,phase "
+        "from governance_private.attempt_recovery_drill_mutation(%s,%s,%s,%s,%s,%s,%s,%s)"
+    )
+
     with psycopg.connect(database_url) as connection:
         with connection.cursor() as cursor:
             current_user = one(cursor, "select current_user")[0]
@@ -72,16 +77,43 @@ def run() -> dict:
 
             generation_1 = int(one(
                 cursor,
-                "select governance_private.begin_recovery_drill(%s,%s,%s,%s,%s)",
-                (drill_id, PROJECT_ID, TARGET_ROUTE, baseline, actor),
+                "select governance_private.begin_recovery_drill(%s,%s,%s,%s,%s,%s)",
+                (drill_id, PROJECT_ID, TARGET_ROUTE, git_sha, baseline, actor),
             )[0])
+            connection.commit()
+
+            stale_sha = one(
+                cursor,
+                mutation_sql,
+                (drill_id, PROJECT_ID, TARGET_ROUTE, "0" * 40, generation_1, baseline, attack, actor),
+            )
+            if stale_sha[0] or stale_sha[1] != "stale_source_sha" or stale_sha[2] != baseline:
+                raise RuntimeError(f"stale SHA did not fail closed: {stale_sha!r}")
+            evidence["scenarios"]["stale_source_sha"] = {
+                "accepted": False,
+                "reason": str(stale_sha[1]),
+                "state_hash": str(stale_sha[2]),
+            }
+            connection.commit()
+
+            substituted_hash = one(
+                cursor,
+                mutation_sql,
+                (drill_id, PROJECT_ID, TARGET_ROUTE, git_sha, generation_1, attack, attack, actor),
+            )
+            if substituted_hash[0] or substituted_hash[1] != "active_hash_mismatch" or substituted_hash[2] != baseline:
+                raise RuntimeError(f"active-hash substitution did not fail closed: {substituted_hash!r}")
+            evidence["scenarios"]["hash_substitution"] = {
+                "accepted": False,
+                "reason": str(substituted_hash[1]),
+                "state_hash": str(substituted_hash[2]),
+            }
             connection.commit()
 
             accepted, reason, active_hash, generation, phase = one(
                 cursor,
-                "select accepted,reason,active_hash,capability_generation,phase "
-                "from governance_private.attempt_recovery_drill_mutation(%s,%s,%s,%s,%s,%s)",
-                (drill_id, PROJECT_ID, TARGET_ROUTE, generation_1, changed, actor),
+                mutation_sql,
+                (drill_id, PROJECT_ID, TARGET_ROUTE, git_sha, generation_1, baseline, changed, actor),
             )
             if not accepted or reason != "change_applied" or active_hash != changed or phase != "ACTIVE":
                 raise RuntimeError("representative governed change did not apply")
@@ -100,14 +132,24 @@ def run() -> dict:
             )[0])
             if generation_2 <= generation_1:
                 raise RuntimeError("containment did not rotate capability generation")
+            evidence["scenarios"]["containment_capability_rotation"] = {
+                "before_generation": generation_1,
+                "after_generation": generation_2,
+            }
             connection.commit()
 
-            def rejected(name: str, project: str, route: str, generation_value: int, expected_reason: str) -> None:
+            def rejected(
+                name: str,
+                project: str,
+                route: str,
+                generation_value: int,
+                expected_reason: str,
+                expected_hash: str = changed,
+            ) -> None:
                 row = one(
                     cursor,
-                    "select accepted,reason,active_hash,capability_generation,phase "
-                    "from governance_private.attempt_recovery_drill_mutation(%s,%s,%s,%s,%s,%s)",
-                    (drill_id, project, route, generation_value, attack, actor),
+                    mutation_sql,
+                    (drill_id, project, route, git_sha, generation_value, expected_hash, attack, actor),
                 )
                 accepted_value, reason_value, state_hash, gen_value, phase_value = row
                 if accepted_value or reason_value != expected_reason or state_hash != changed:
@@ -121,8 +163,43 @@ def run() -> dict:
                 connection.commit()
 
             rejected("contained_stale_capability", PROJECT_ID, TARGET_ROUTE, generation_1, "global_containment_active")
-            rejected("contained_cross_project", "LITD", TARGET_ROUTE, generation_2, "project_scope_mismatch")
+            rejected("contained_target_project_change", "LITD", TARGET_ROUTE, generation_2, "project_scope_mismatch")
             rejected("contained_wrong_route", PROJECT_ID, "LITD_LIBRARY", generation_2, "target_route_mismatch")
+
+            try:
+                cursor.execute(
+                    "update governance_private.recovery_audit set event_type=event_type where drill_id=%s",
+                    (drill_id,),
+                )
+                connection.commit()
+                raise RuntimeError("recovery audit tamper unexpectedly succeeded")
+            except psycopg.Error as exc:
+                connection.rollback()
+                if exc.sqlstate != "55000":
+                    raise
+                evidence["scenarios"]["ledger_tamper"] = {
+                    "accepted": False,
+                    "reason": "append_only_trigger_rejected",
+                    "sqlstate": exc.sqlstate,
+                }
+
+            try:
+                one(
+                    cursor,
+                    "select governance_private.rollback_recovery_drill(%s,%s,%s)",
+                    (drill_id, attack, actor),
+                )
+                connection.commit()
+                raise RuntimeError("rollback hash substitution unexpectedly succeeded")
+            except psycopg.Error as exc:
+                connection.rollback()
+                if exc.sqlstate != "55000" or "rollback_source_hash_mismatch" not in str(exc):
+                    raise
+                evidence["scenarios"]["rollback_hash_substitution"] = {
+                    "accepted": False,
+                    "reason": "rollback_source_hash_mismatch",
+                    "sqlstate": exc.sqlstate,
+                }
 
             restored_hash = str(one(
                 cursor,
@@ -131,13 +208,16 @@ def run() -> dict:
             )[0])
             if restored_hash != baseline:
                 raise RuntimeError("rollback did not restore baseline")
+            evidence["scenarios"]["rollback_restored_baseline"] = {
+                "before": changed,
+                "after": restored_hash,
+            }
             connection.commit()
 
             recovering = one(
                 cursor,
-                "select accepted,reason,active_hash,capability_generation,phase "
-                "from governance_private.attempt_recovery_drill_mutation(%s,%s,%s,%s,%s,%s)",
-                (drill_id, PROJECT_ID, TARGET_ROUTE, generation_2, attack, actor),
+                mutation_sql,
+                (drill_id, PROJECT_ID, TARGET_ROUTE, git_sha, generation_2, baseline, attack, actor),
             )
             if recovering[0] or recovering[1] != "global_containment_active" or recovering[2] != baseline or recovering[4] != "RECOVERING":
                 raise RuntimeError("mutation was not blocked during recovery")
@@ -159,9 +239,8 @@ def run() -> dict:
 
             stale_after_resume = one(
                 cursor,
-                "select accepted,reason,active_hash,capability_generation,phase "
-                "from governance_private.attempt_recovery_drill_mutation(%s,%s,%s,%s,%s,%s)",
-                (drill_id, PROJECT_ID, TARGET_ROUTE, generation_1, attack, actor),
+                mutation_sql,
+                (drill_id, PROJECT_ID, TARGET_ROUTE, git_sha, generation_1, baseline, attack, actor),
             )
             if stale_after_resume[0] or stale_after_resume[1] != "stale_capability_generation" or stale_after_resume[2] != baseline:
                 raise RuntimeError("pre-containment capability replay was not rejected after resume")
@@ -174,9 +253,8 @@ def run() -> dict:
 
             safe_noop = one(
                 cursor,
-                "select accepted,reason,active_hash,capability_generation,phase "
-                "from governance_private.attempt_recovery_drill_mutation(%s,%s,%s,%s,%s,%s)",
-                (drill_id, PROJECT_ID, TARGET_ROUTE, generation_3, baseline, actor),
+                mutation_sql,
+                (drill_id, PROJECT_ID, TARGET_ROUTE, git_sha, generation_3, baseline, baseline, actor),
             )
             if not safe_noop[0] or safe_noop[1] != "change_applied" or safe_noop[2] != baseline:
                 raise RuntimeError("post-recovery capability was not usable in bounded path")
@@ -196,17 +274,26 @@ def run() -> dict:
 
             state = one(
                 cursor,
-                "select project_id,target_route,baseline_hash,active_hash,phase,capability_generation,baseline_restored "
+                "select project_id,target_route,source_commit_sha,baseline_hash,active_hash,phase,capability_generation,baseline_restored "
                 "from governance_private.verify_recovery_drill(%s)",
                 (drill_id,),
             )
-            if state[0] != PROJECT_ID or state[1] != TARGET_ROUTE or state[2] != baseline or state[3] != baseline or state[4] != "CLOSED" or not state[6]:
-                raise RuntimeError("final recovery state is not closed on verified baseline")
+            if (
+                state[0] != PROJECT_ID
+                or state[1] != TARGET_ROUTE
+                or state[2] != git_sha
+                or state[3] != baseline
+                or state[4] != baseline
+                or state[5] != "CLOSED"
+                or not state[7]
+            ):
+                raise RuntimeError("final recovery state is not closed on verified SHA-bound baseline")
             evidence["final_state"] = {
-                "phase": str(state[4]),
-                "capability_generation": int(state[5]),
+                "source_commit_sha": str(state[2]),
+                "phase": str(state[5]),
+                "capability_generation": int(state[6]),
                 "closed_generation": closed_generation,
-                "baseline_restored": bool(state[6]),
+                "baseline_restored": bool(state[7]),
             }
 
             audit = one(
@@ -225,8 +312,8 @@ def run() -> dict:
             privileges = one(
                 cursor,
                 "select "
-                "has_function_privilege('service_role','governance_private.attempt_recovery_drill_mutation(text,text,text,bigint,text,text)','EXECUTE'),"
-                "has_function_privilege('service_role','governance_private.begin_recovery_drill(text,text,text,text,text)','EXECUTE'),"
+                "has_function_privilege('service_role','governance_private.attempt_recovery_drill_mutation(text,text,text,text,bigint,text,text,text)','EXECUTE'),"
+                "has_function_privilege('service_role','governance_private.begin_recovery_drill(text,text,text,text,text,text)','EXECUTE'),"
                 "has_function_privilege('service_role','governance_private.contain_recovery_drill(text,text)','EXECUTE'),"
                 "has_function_privilege('service_role','governance_private.rollback_recovery_drill(text,text,text)','EXECUTE'),"
                 "has_function_privilege('service_role','governance_private.resume_recovery_drill(text,text,text)','EXECUTE'),"
@@ -242,6 +329,14 @@ def run() -> dict:
                 "service_role_rollback": False,
                 "service_role_resume": False,
                 "service_role_close": False,
+            }
+            evidence["scenarios"]["source_compromise_emergency_bypass"] = {
+                "accepted": False,
+                "reason": "normal_service_role_has_no_emergency_recovery_authority",
+            }
+            evidence["scenarios"]["bypass_attempt"] = {
+                "accepted": False,
+                "reason": "emergency_functions_not_executable_by_service_role",
             }
 
             direct = one(
