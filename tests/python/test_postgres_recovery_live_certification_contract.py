@@ -12,15 +12,18 @@ def text(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
 
-def test_recovery_schema_is_private_and_scope_bound():
+def test_recovery_schema_is_private_scope_and_sha_bound():
     sql = text(MIGRATION)
     assert "governance_private.recovery_drill_state" in sql
     assert "governance_private.recovery_audit" in sql
+    assert "source_commit_sha" in sql
     assert "authorized_project_routes" in sql
     assert "enable row level security" in sql
     assert "revoke all on governance_private.recovery_drill_state from public, anon, authenticated, service_role" in sql
     assert "revoke all on governance_private.recovery_audit from public, anon, authenticated, service_role" in sql
     assert "recovery_audit_append_only" in sql
+    assert "stale_source_sha" in sql
+    assert "active_hash_mismatch" in sql
 
 
 def test_recovery_authority_is_split_from_normal_service_role():
@@ -37,16 +40,24 @@ def test_recovery_authority_is_split_from_normal_service_role():
     assert "automatic_core_write_allowed" not in sql
 
 
-def test_live_runner_executes_real_rollback_and_rotates_capability_generation():
+def test_live_runner_covers_rollback_recovery_and_all_p0_adversarial_cases():
     source = text(RUNNER)
     for required in (
+        "stale_source_sha",
+        "hash_substitution",
         "representative_change",
+        "containment_capability_rotation",
         "contained_stale_capability",
-        "contained_cross_project",
+        "contained_target_project_change",
         "contained_wrong_route",
+        "ledger_tamper",
+        "rollback_hash_substitution",
+        "rollback_restored_baseline",
         "mutation_during_recovery",
         "pre_containment_capability_replay",
         "post_recovery_bounded_path",
+        "source_compromise_emergency_bypass",
+        "bypass_attempt",
         "rollback_recovery_drill",
         "resume_recovery_drill",
         "verify_recovery_audit_chain",
@@ -70,6 +81,8 @@ def test_workflows_are_manual_fail_closed_sha_bound_and_retain_evidence():
     assert "ref: ${{ github.sha }}" in migration
     assert "ref: ${{ github.sha }}" in cert
     assert "GOVERNANCE_DATABASE_URL" in migration and "GOVERNANCE_DATABASE_URL" in cert
+    assert "attempt_recovery_drill_mutation(text,text,text,text,bigint,text,text,text)" in migration
+    assert "begin_recovery_drill(text,text,text,text,text,text)" in migration
     assert "retention-days: 90" in migration
     assert "retention-days: 90" in cert
 
