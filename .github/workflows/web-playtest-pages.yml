@@ -83,7 +83,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python tools/ci/generate_build_provenance.py \
+          python3 tools/ci/generate_build_provenance.py \
             --output build/web/build-provenance.json \
             --sha "$GITHUB_SHA" \
             --branch "$GITHUB_REF_NAME" \
@@ -97,7 +97,7 @@ jobs:
           test -n "$(find build/web -maxdepth 1 -type f -name '*.wasm' -print -quit)"
           test -n "$(find build/web -maxdepth 1 -type f \( -name '*.pck' -o -name '*.zip' \) -print -quit)"
           test -s build/web/build-provenance.json
-          python - <<'PY'
+          python3 - <<'PY'
           import json, os
           from pathlib import Path
           p = json.loads(Path('build/web/build-provenance.json').read_text(encoding='utf-8'))
