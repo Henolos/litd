@@ -2,6 +2,7 @@ extends SceneTree
 
 const HitResolver := preload("res://scripts/core/combat/veilleurs_hit_resolver.gd")
 const DamageResolver := preload("res://scripts/core/combat/veilleurs_damage_resolver.gd")
+const LegacyRuntime := preload("res://scripts/core/veilleurs_combat_sandbox_runtime.gd")
 
 func _init() -> void:
     var target := {"id":"target","name":"Cible"}
@@ -12,6 +13,10 @@ func _init() -> void:
     assert(int(normal.get("accuracy", 0)) == 75, "Base accuracy contract changed")
     assert(int(coordinated.get("accuracy", 0)) == 91, "Coordination + precision accuracy contract changed")
     assert(int(normal.get("roll", -1)) == int(coordinated.get("roll", -2)), "Posture/coordination must not perturb deterministic roll seed")
+
+    var legacy_runtime := LegacyRuntime.new()
+    for seed in ["", "combat-parity-01", "mathildeporte_cendrefrappe_torso1", "aureliencharognardprecisionhead12"]:
+        assert(HitResolver.stable_roll(seed) == legacy_runtime._stable_roll(seed), "Stable-roll parity changed for seed: %s" % seed)
 
     var light := DamageResolver.resolve({"posture":"none"}, {"power":7}, target, "torso")
     var medium := DamageResolver.resolve({"posture":"none"}, {"power":8}, target, "torso")
