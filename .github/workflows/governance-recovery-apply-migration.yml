@@ -28,10 +28,7 @@ jobs:
           CONFIRMATION: ${{ inputs.confirmation }}
         run: |
           set -euo pipefail
-          test "$CONFIRMATION" = "APPLY_GOVERNANCE_RECOVERY_MIGRATION_20260916061000" || {
-            echo "Explicit recovery migration confirmation did not match. Failing closed." >&2
-            exit 2
-          }
+          test "$CONFIRMATION" = "APPLY_GOVERNANCE_RECOVERY_MIGRATION_20260916061000" || exit 2
 
       - name: Checkout exact dispatched revision
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
@@ -44,10 +41,7 @@ jobs:
           GOVERNANCE_DATABASE_URL: ${{ secrets.GOVERNANCE_DATABASE_URL }}
         run: |
           set -euo pipefail
-          test -n "$GOVERNANCE_DATABASE_URL" || {
-            echo "GOVERNANCE_DATABASE_URL is not configured for governance-live-cert" >&2
-            exit 2
-          }
+          test -n "$GOVERNANCE_DATABASE_URL" || exit 2
 
       - name: Apply exact governed recovery migration transactionally
         shell: bash
@@ -58,10 +52,7 @@ jobs:
           migration="supabase/migrations/20260916061000_governance_recovery_containment.sql"
           test -f "$migration"
           sha256sum "$migration" | tee /tmp/governance-recovery-migration.sha256
-          psql "$GOVERNANCE_DATABASE_URL" \
-            --set=ON_ERROR_STOP=1 \
-            --single-transaction \
-            --file="$migration"
+          psql "$GOVERNANCE_DATABASE_URL" --set=ON_ERROR_STOP=1 --single-transaction --file="$migration"
 
       - name: Verify recovery authority separation
         shell: bash
@@ -69,17 +60,20 @@ jobs:
           GOVERNANCE_DATABASE_URL: ${{ secrets.GOVERNANCE_DATABASE_URL }}
         run: |
           set -euo pipefail
-          mutation="$(psql "$GOVERNANCE_DATABASE_URL" -Atqc "select has_function_privilege('service_role','governance_private.attempt_recovery_drill_mutation(text,text,text,bigint,text,text)','EXECUTE')")"
+          mutation="$(psql "$GOVERNANCE_DATABASE_URL" -Atqc "select has_function_privilege('service_role','governance_private.attempt_recovery_drill_mutation(text,text,text,text,bigint,text,text,text)','EXECUTE')")"
+          begin_drill="$(psql "$GOVERNANCE_DATABASE_URL" -Atqc "select has_function_privilege('service_role','governance_private.begin_recovery_drill(text,text,text,text,text,text)','EXECUTE')")"
           contain="$(psql "$GOVERNANCE_DATABASE_URL" -Atqc "select has_function_privilege('service_role','governance_private.contain_recovery_drill(text,text)','EXECUTE')")"
           rollback="$(psql "$GOVERNANCE_DATABASE_URL" -Atqc "select has_function_privilege('service_role','governance_private.rollback_recovery_drill(text,text,text)','EXECUTE')")"
           resume="$(psql "$GOVERNANCE_DATABASE_URL" -Atqc "select has_function_privilege('service_role','governance_private.resume_recovery_drill(text,text,text)','EXECUTE')")"
+          close_drill="$(psql "$GOVERNANCE_DATABASE_URL" -Atqc "select has_function_privilege('service_role','governance_private.close_recovery_drill(text,text)','EXECUTE')")"
           test "$mutation" = "t"
+          test "$begin_drill" = "f"
           test "$contain" = "f"
           test "$rollback" = "f"
           test "$resume" = "f"
+          test "$close_drill" = "f"
           migration_sha="$(cut -d' ' -f1 /tmp/governance-recovery-migration.sha256)"
-          printf '{"migration":"20260916061000_governance_recovery_containment.sql","migration_sha256":"%s","git_sha":"%s","bounded_mutation_service_role":true,"contain_service_role":false,"rollback_service_role":false,"resume_service_role":false}\n' \
-            "$migration_sha" "$GITHUB_SHA" > governance-recovery-migration-evidence.json
+          printf '{"migration":"20260916061000_governance_recovery_containment.sql","migration_sha256":"%s","git_sha":"%s","bounded_mutation_service_role":true,"emergency_service_role":false}\n' "$migration_sha" "$GITHUB_SHA" > governance-recovery-migration-evidence.json
 
       - name: Upload migration evidence
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
