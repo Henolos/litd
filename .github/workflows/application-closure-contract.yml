@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'tools/quality/application_closure_contract.py'
+      - 'tools/quality/guardian_authority_contract.py'
       - 'tests/python/test_application_closure_contract.py'
       - '.github/workflows/application-closure-contract.yml'
   workflow_dispatch:
@@ -25,10 +26,11 @@ jobs:
         run: python -m pip install -r requirements-dev.txt
       - name: Run application closure contract tests
         run: python -m pytest -q tests/python/test_application_closure_contract.py
-      - name: Verify closure authority boundaries
+      - name: Verify closure canonical authority and evidence protections
         run: |
           grep -q 'APPLIED_MEASURED_PROVENANCE_VERIFIED' tools/quality/application_closure_contract.py
-          grep -q 'automatic_merge_allowed.*False' tools/quality/application_closure_contract.py
-          grep -q 'automatic_rollback_allowed.*False' tools/quality/application_closure_contract.py
-          grep -q 'automatic_target_change_allowed.*False' tools/quality/application_closure_contract.py
+          grep -q 'assert_authority_equivalent' tools/quality/application_closure_contract.py
+          grep -q 'CANONICAL_AUTHORITY' tools/quality/application_closure_contract.py
+          grep -q 'automatic_rollback_allowed' tools/quality/guardian_authority_contract.py
           grep -q 'checkpoint_transparency_log_verified' tools/quality/application_closure_contract.py
+          grep -q 'rollback_review_required' tools/quality/application_closure_contract.py
