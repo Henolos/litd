@@ -32,19 +32,11 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-          from tools.quality.guardian_authority_contract import CANONICAL_AUTHORITY, REQUIRED_GUARANTEES
           text = Path('tools/quality/guardian_change_gate.py').read_text(encoding='utf-8')
           assert 'READY_FOR_BOUNDED_IMPLEMENTATION_PR' in text
-          required_authority = (
-              'core_write_allowed',
-              'automatic_code_write_allowed',
-              'automatic_merge_allowed',
-              'automatic_target_change_allowed',
-          )
-          for invariant in required_authority:
-              expected = CANONICAL_AUTHORITY[invariant]
-              assert f'\"{invariant}\": {expected}' in text, invariant
-          for invariant, expected in REQUIRED_GUARANTEES.items():
-              assert f'\"{invariant}\": {expected}' in text, invariant
-          print('Guardian canonical authority equivalence OK')
+          for invariant in ('core_write_allowed','automatic_code_write_allowed','automatic_merge_allowed','automatic_target_change_allowed'):
+              assert f'CANONICAL_AUTHORITY["{invariant}"]' in text, invariant
+          for invariant in ('tests_must_pass_before_application','rollback_evidence_required'):
+              assert f'REQUIRED_GUARANTEES["{invariant}"]' in text, invariant
+          print('Guardian canonical authority binding OK')
           PY
