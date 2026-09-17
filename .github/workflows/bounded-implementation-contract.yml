@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'tools/quality/bounded_implementation_contract.py'
+      - 'tools/quality/guardian_authority_contract.py'
       - 'tests/python/test_bounded_implementation_contract.py'
       - '.github/workflows/bounded-implementation-contract.yml'
   workflow_dispatch:
@@ -28,6 +29,7 @@ jobs:
       - name: Verify hard authority boundaries
         run: |
           grep -q 'READY_FOR_APPLICATION_REVIEW' tools/quality/bounded_implementation_contract.py
-          grep -q 'automatic_application_allowed.*False' tools/quality/bounded_implementation_contract.py
-          grep -q 'automatic_merge_allowed.*False' tools/quality/bounded_implementation_contract.py
-          grep -q 'automatic_target_change_allowed.*False' tools/quality/bounded_implementation_contract.py
+          grep -q 'assert_authority_equivalent' tools/quality/bounded_implementation_contract.py
+          grep -q 'CANONICAL_AUTHORITY\["automatic_application_allowed"\]' tools/quality/bounded_implementation_contract.py
+          grep -q 'CANONICAL_AUTHORITY\["automatic_merge_allowed"\]' tools/quality/bounded_implementation_contract.py
+          grep -q 'CANONICAL_AUTHORITY\["automatic_target_change_allowed"\]' tools/quality/bounded_implementation_contract.py
