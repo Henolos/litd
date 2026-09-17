@@ -1,4 +1,5 @@
 from pathlib import Path
+import re
 
 
 SCRIPT = Path("tools/quality/run_postgres_receipt_registry_live_proof.py")
@@ -39,7 +40,7 @@ def test_live_proof_retains_hashed_evidence_artifact():
     workflow = WORKFLOW.read_text(encoding="utf-8")
     assert 'evidence["evidence_hash"]' in script
     assert 'reports/postgres-receipt-registry-live-proof.json' in workflow
-    assert 'actions/upload-artifact@v6' in workflow
+    assert re.search(r'actions/upload-artifact@[0-9a-f]{40}\s+# v6', workflow)
     assert 'retention-days: 30' in workflow
 
 
