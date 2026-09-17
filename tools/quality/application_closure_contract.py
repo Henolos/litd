@@ -13,9 +13,12 @@ from hashlib import sha256
 from pathlib import Path
 from typing import Any
 
+from tools.quality.guardian_authority_contract import CANONICAL_AUTHORITY, assert_authority_equivalent
 from tools.quality.veilleur_v2_ingest import PROJECT_ID, TARGET_ROUTE
 
 EXPECTED_ISSUER = "https://token.actions.githubusercontent.com"
+DECISION_AUTHORITY_KEYS = ("core_write_allowed", "automatic_merge_allowed", "automatic_application_allowed", "automatic_target_change_allowed")
+CLOSURE_AUTHORITY_KEYS = ("core_write_allowed", "automatic_merge_allowed", "automatic_rollback_allowed", "automatic_target_change_allowed")
 
 
 def _hash(payload: dict[str, Any]) -> str:
@@ -58,9 +61,7 @@ def evaluate(decision: dict[str, Any], evidence: dict[str, Any]) -> dict[str, An
         raise ValueError("post-merge measurement invariant missing")
     if decision.get("provenance_checkpoint_required") is not True:
         raise ValueError("provenance checkpoint invariant missing")
-    for key in ("core_write_allowed", "automatic_merge_allowed", "automatic_application_allowed", "automatic_target_change_allowed"):
-        if decision.get(key) is not False:
-            raise ValueError(f"application decision authority violation:{key}")
+    assert_authority_equivalent(decision, require=DECISION_AUTHORITY_KEYS)
 
     required = {
         "application_decision_hash", "repository", "merged_source_commit_sha",
@@ -166,12 +167,10 @@ def evaluate(decision: dict[str, Any], evidence: dict[str, Any]) -> dict[str, An
         "checkpoint_evidence_refs": list(evidence["checkpoint_evidence_refs"]),
         "blockers": blockers,
         "rollback_review_required": "post_merge_measurement_not_acceptable" in blockers,
-        "core_write_allowed": False,
-        "automatic_merge_allowed": False,
-        "automatic_rollback_allowed": False,
-        "automatic_target_change_allowed": False,
+        **{key: CANONICAL_AUTHORITY[key] for key in CLOSURE_AUTHORITY_KEYS},
         "authority": "post_merge_closure_receipt_only_no_automatic_mutation",
     }
+    assert_authority_equivalent(result, require=CLOSURE_AUTHORITY_KEYS)
     result["closure_hash"] = _hash(result)
     return result
 
