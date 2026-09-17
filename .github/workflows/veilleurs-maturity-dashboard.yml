@@ -24,6 +24,10 @@ on:
       - '.github/workflows/veilleurs-maturity-dashboard.yml'
   workflow_dispatch:
 
+concurrency:
+  group: veilleurs-maturity-dashboard-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
