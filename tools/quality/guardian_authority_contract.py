@@ -29,7 +29,7 @@ def assert_authority_equivalent(payload: dict[str, Any], *, require: tuple[str, 
         if key not in CANONICAL_AUTHORITY:
             raise ValueError(f"unknown canonical authority invariant:{key}")
         if payload.get(key) is not CANONICAL_AUTHORITY[key]:
-            raise ValueError(f"authority invariant mismatch:{key}")
+            raise ValueError(f"authority violation:{key}")
 
 
 def assert_guarantees_equivalent(payload: dict[str, Any], *, require: tuple[str, ...] = ()) -> None:
