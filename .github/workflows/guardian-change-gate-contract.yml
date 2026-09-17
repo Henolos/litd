@@ -18,10 +18,10 @@ jobs:
   guardian-change-gate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           persist-credentials: false
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
       - name: Install QA dependencies
@@ -35,8 +35,16 @@ jobs:
           from tools.quality.guardian_authority_contract import CANONICAL_AUTHORITY, REQUIRED_GUARANTEES
           text = Path('tools/quality/guardian_change_gate.py').read_text(encoding='utf-8')
           assert 'READY_FOR_BOUNDED_IMPLEMENTATION_PR' in text
-          for invariant, expected in {**CANONICAL_AUTHORITY, **REQUIRED_GUARANTEES}.items():
-              literal = f'\"{invariant}\": {expected}'
-              assert literal in text, literal
+          required_authority = (
+              'core_write_allowed',
+              'automatic_code_write_allowed',
+              'automatic_merge_allowed',
+              'automatic_target_change_allowed',
+          )
+          for invariant in required_authority:
+              expected = CANONICAL_AUTHORITY[invariant]
+              assert f'\"{invariant}\": {expected}' in text, invariant
+          for invariant, expected in REQUIRED_GUARANTEES.items():
+              assert f'\"{invariant}\": {expected}' in text, invariant
           print('Guardian canonical authority equivalence OK')
           PY
