@@ -1,11 +1,5 @@
 #!/usr/bin/env python3
-"""Final governed application decision for bounded LITD implementations.
-
-This gate consumes a READY_FOR_APPLICATION_REVIEW evaluation, verifies that it
-belongs to the LITD project boundary and records a governed decision. Even
-APPLY_CHANGE only authorizes a later separate merge/application action; this
-module never merges, deploys, edits Core, or changes canonical targets.
-"""
+"""Final governed application decision for bounded LITD implementations."""
 from __future__ import annotations
 
 import argparse
@@ -15,10 +9,12 @@ from hashlib import sha256
 from pathlib import Path
 from typing import Any
 
+from tools.quality.guardian_authority_contract import CANONICAL_AUTHORITY, assert_authority_equivalent
 from tools.quality.veilleur_v2_ingest import PROJECT_ID, TARGET_ROUTE
 
 ALLOWED_DECISIONS = {"APPLY_CHANGE", "REJECT_IMPLEMENTATION", "REQUEST_MORE_EVIDENCE"}
 ALLOWED_MEASUREMENT_ASSESSMENTS = {"NO_BLOCKING_REGRESSION", "BLOCKING_REGRESSION", "INCONCLUSIVE"}
+AUTHORITY_KEYS = ("core_write_allowed", "automatic_merge_allowed", "automatic_application_allowed", "automatic_target_change_allowed")
 
 
 def _hash(payload: dict[str, Any]) -> str:
@@ -67,9 +63,7 @@ def evaluate(evaluation: dict[str, Any], decision: dict[str, Any]) -> dict[str, 
         raise ValueError("application review requires zero blockers")
     if evaluation.get("measurements_comparable") is not True:
         raise ValueError("application review requires comparable measurements")
-    for key in ("core_write_allowed", "automatic_merge_allowed", "automatic_application_allowed", "automatic_target_change_allowed"):
-        if evaluation.get(key) is not False:
-            raise ValueError(f"implementation evaluation authority violation:{key}")
+    assert_authority_equivalent(evaluation, require=AUTHORITY_KEYS)
     if evaluation.get("application_requires_separate_decision") is not True:
         raise ValueError("separate application decision invariant missing")
     if evaluation.get("rollback_verification_required_before_application") is not True:
@@ -154,10 +148,10 @@ def evaluate(evaluation: dict[str, Any], decision: dict[str, Any]) -> dict[str, 
         "merge_must_be_separate_action": True,
         "post_merge_measurement_required": choice == "APPLY_CHANGE",
         "provenance_checkpoint_required": choice == "APPLY_CHANGE",
-        "core_write_allowed": False,
-        "automatic_merge_allowed": False,
-        "automatic_application_allowed": False,
-        "automatic_target_change_allowed": False,
+        "core_write_allowed": CANONICAL_AUTHORITY["core_write_allowed"],
+        "automatic_merge_allowed": CANONICAL_AUTHORITY["automatic_merge_allowed"],
+        "automatic_application_allowed": CANONICAL_AUTHORITY["automatic_application_allowed"],
+        "automatic_target_change_allowed": CANONICAL_AUTHORITY["automatic_target_change_allowed"],
         "authority": "application_authorization_receipt_only_separate_merge_and_post_merge_verification_required",
     }
     receipt["application_decision_hash"] = _hash(receipt)
