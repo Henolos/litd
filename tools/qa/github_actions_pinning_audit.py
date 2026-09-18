@@ -16,7 +16,7 @@ def git(*args: str) -> str:
 
 
 def changed_workflows(base: str, head: str) -> list[pathlib.Path]:
-    out = git("diff", "--name-only", f"{base}...{head}", "--", ".github/workflows")
+    out = git("diff", "--name-only", f"{base}...{head}", "--", str(WORKFLOWS_DIR))
     return [pathlib.Path(p) for p in out.splitlines() if p.endswith((".yml", ".yaml"))]
 
 
@@ -57,7 +57,7 @@ def main() -> int:
             print(f"- {item}", file=sys.stderr)
         return 1
 
-    print(f"GitHub Actions pinning audit: PASS ({len(files)} workflow(s) modifies)")
+    print(f"GitHub Actions pinning audit: PASS ({scope}, {len(files)} workflow(s))")
     return 0
 
 
