@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Canonical fail-closed authority contract owned by Guardian.
 
-Phase 2 centralizes duplicated authority invariants without removing legacy
-checks. Consumers can compare their receipts against this contract before the
-legacy definitions are retired in later bounded phases.
+Authority invariants live here once and are consumed by governed stages. Receipt
+field names remain stable while duplicated literal definitions are retired only
+after fail-closed equivalence has been established.
 """
 from __future__ import annotations
 
@@ -14,6 +14,7 @@ CANONICAL_AUTHORITY = {
     "automatic_code_write_allowed": False,
     "automatic_merge_allowed": False,
     "automatic_application_allowed": False,
+    "automatic_rollback_allowed": False,
     "automatic_target_change_allowed": False,
 }
 

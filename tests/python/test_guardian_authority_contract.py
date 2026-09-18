@@ -16,6 +16,7 @@ def test_canonical_authority_is_fail_closed() -> None:
         "automatic_code_write_allowed": False,
         "automatic_merge_allowed": False,
         "automatic_application_allowed": False,
+        "automatic_rollback_allowed": False,
         "automatic_target_change_allowed": False,
     }
 
