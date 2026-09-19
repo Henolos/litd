@@ -5,6 +5,8 @@ const BRIDGE_PATH := "res://data/veilleurs/combat_sandbox_quartet_bridge.json"
 const ZONES := ["head", "torso", "left_arm", "right_arm", "left_leg", "right_leg"]
 const HIT_RESOLVER := preload("res://scripts/core/combat/veilleurs_hit_resolver.gd")
 const DAMAGE_RESOLVER := preload("res://scripts/core/combat/veilleurs_damage_resolver.gd")
+const ANATOMY_RESOLVER := preload("res://scripts/core/combat/veilleurs_anatomy_resolver.gd")
+const STATUS_RESOLVER := preload("res://scripts/core/combat/veilleurs_status_resolver.gd")
 
 var heroes: Array[Dictionary] = []
 var enemies: Array[Dictionary] = []
@@ -209,20 +211,22 @@ func _resolve_enemy_action(hero: Dictionary, action: Dictionary, target: Diction
         return {"ok":true,"kind":"attack","hit":false,"roll":int(hit_result.get("roll", 0)),"accuracy":int(hit_result.get("accuracy", 75)),"zone":normalized,"target":str(target.get("id"))}
     var damage_result: Dictionary = DAMAGE_RESOLVER.resolve(hero, action, target, normalized)
     var damage := int(damage_result.get("damage", 1)); var severity := int(damage_result.get("severity", 1)); var armor_factor := float(damage_result.get("armor_factor", 1.0))
-    target["hp"] = maxi(0, int(target.get("hp", 0)) - damage)
-    var anatomy: Dictionary = target.get("anatomy", {}); var zone_state: Dictionary = anatomy.get(normalized, {})
-    zone_state["state"] = "injured"; zone_state["function"] = "impaired" if severity >= 2 else "functional"; zone_state["armor"] = "strong" if armor_factor < 0.8 else "weak"
-    var injuries: Array = zone_state.get("injuries", []); injuries.append({"severity":severity,"impact":str(action.get("impact", "unknown")),"source":str(action.get("id", ""))}); zone_state["injuries"] = injuries
-    anatomy[normalized] = zone_state; target["anatomy"] = anatomy
-    target["pain_state"] = "severe" if severity >= 3 else "strong"
-    if str(action.get("impact", "")) == "slashing": target["bleeding_state"] = "important" if severity >= 2 else "light"
-    target["public_vital_state"] = _vital_label(target); target["vital_state"] = target["public_vital_state"]
+    var resulting_hp := maxi(0, int(target.get("hp", 0)) - damage)
+    var anatomy_result: Dictionary = ANATOMY_RESOLVER.resolve(target.get("anatomy", {}), normalized, severity, armor_factor, action)
+    var status_result: Dictionary = STATUS_RESOLVER.resolve_after_hit(target, action, severity, resulting_hp)
+    target["hp"] = resulting_hp
+    target["anatomy"] = anatomy_result.get("anatomy", {})
+    target["pain_state"] = status_result.get("pain_state", "strong")
+    target["bleeding_state"] = status_result.get("bleeding_state", target.get("bleeding_state", "none"))
+    target["public_vital_state"] = status_result.get("public_vital_state", "stable")
+    target["vital_state"] = status_result.get("vital_state", target["public_vital_state"])
+    var zone_state: Dictionary = anatomy_result.get("zone_state", {})
     VeilleursCombatContextRuntime.record_enemy_observation(party_knowledge, str(target.get("id", "")), "vital_state", target["vital_state"])
     VeilleursCombatContextRuntime.record_enemy_observation(party_knowledge, str(target.get("id", "")), "pain_state", target["pain_state"])
     VeilleursCombatContextRuntime.record_enemy_observation(party_knowledge, str(target.get("id", "")), "bleeding_state", target["bleeding_state"])
     VeilleursCombatContextRuntime.record_enemy_zone(party_knowledge, str(target.get("id", "")), normalized, zone_state)
     if str(hero.get("posture", "none")) == "force_cost": _apply_effort_cost(hero)
-    return {"ok":true,"kind":"attack","hit":true,"damage":damage,"severity":severity,"zone":normalized,"target":str(target.get("id")),"functional_loss":str(zone_state.get("function"))}
+    return {"ok":true,"kind":"attack","hit":true,"damage":damage,"severity":severity,"zone":normalized,"target":str(target.get("id")),"functional_loss":str(anatomy_result.get("functional_loss", "functional"))}
 
 func _apply_trame_cost(hero: Dictionary, action: Dictionary, result: Dictionary) -> void:
     var cost := int(action.get("trame_cost", 0)); if cost <= 0: return
