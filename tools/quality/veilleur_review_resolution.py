@@ -14,6 +14,10 @@ from hashlib import sha256
 from pathlib import Path
 from typing import Any
 
+from tools.quality.guardian_authority_contract import (
+    CANONICAL_AUTHORITY,
+    assert_authority_equivalent,
+)
 from tools.quality.veilleur_v2_ingest import PROJECT_ID, TARGET_ROUTE
 
 ALLOWED_DECISIONS = {
@@ -24,6 +28,15 @@ ALLOWED_DECISIONS = {
     "PROPOSE_SUPERSESSION",
     "PROPOSE_LITD_CHANGE_CANDIDATE",
 }
+
+VEILLEUR_CANONICAL_AUTHORITY = (
+    "core_write_allowed",
+    "automatic_code_write_allowed",
+    "automatic_merge_allowed",
+    "automatic_application_allowed",
+    "automatic_rollback_allowed",
+    "automatic_target_change_allowed",
+)
 
 
 def _hash(payload: dict[str, Any]) -> str:
@@ -50,6 +63,12 @@ def _aware_iso(value: Any) -> bool:
     return dt.tzinfo is not None and dt.utcoffset() is not None
 
 
+def _canonical_authority_payload() -> dict[str, bool]:
+    payload = {key: CANONICAL_AUTHORITY[key] for key in VEILLEUR_CANONICAL_AUTHORITY}
+    assert_authority_equivalent(payload, require=VEILLEUR_CANONICAL_AUTHORITY)
+    return payload
+
+
 def resolve_candidate(candidate: dict[str, Any], resolution: dict[str, Any]) -> dict[str, Any]:
     _verify_embedded_hash(candidate, "candidate_hash")
     if candidate.get("kind") != "LITD_LIBRARY_REVIEW_CANDIDATE":
@@ -58,8 +77,7 @@ def resolve_candidate(candidate: dict[str, Any], resolution: dict[str, Any]) -> 
         raise ValueError("candidate project scope mismatch")
     if candidate.get("target_route") != TARGET_ROUTE:
         raise ValueError("candidate route scope mismatch")
-    if candidate.get("core_write_allowed") is not False:
-        raise ValueError("candidate attempted Core authority")
+    assert_authority_equivalent(candidate, require=("core_write_allowed",))
     if candidate.get("automatic_library_write_allowed") is not False:
         raise ValueError("candidate attempted library authority")
 
@@ -114,11 +132,11 @@ def resolve_candidate(candidate: dict[str, Any], resolution: dict[str, Any]) -> 
         "supersedes_record_id": resolution.get("supersedes_record_id"),
         "requires_guardian_review": decision == "PROPOSE_LITD_CHANGE_CANDIDATE",
         "library_write_allowed": False,
-        "core_write_allowed": False,
         "automatic_obsolescence_allowed": False,
-        "automatic_target_change_allowed": False,
         "authority": "governed_resolution_receipt_only_application_is_separate",
+        **_canonical_authority_payload(),
     }
+    assert_authority_equivalent(receipt, require=VEILLEUR_CANONICAL_AUTHORITY)
     receipt["receipt_hash"] = _hash(receipt)
     return receipt
 
