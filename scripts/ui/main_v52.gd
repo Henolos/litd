@@ -106,6 +106,23 @@ func _replace_legacy_hero_cards_v52() -> void:
         rank_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
         labels.add_child(rank_label)
 
+# P0-1 (#401): once a room is resolved, skip the legacy rewards/intermediate
+# screen and return directly to the reachable-room chooser. Boss victory keeps
+# its dedicated extraction path.
+func show_rewards() -> void:
+    if ExpeditionManager.expedition_active:
+        var runtime: Node = ExpeditionManager.roguelike_runtime
+        if runtime != null:
+            var active_run: Dictionary = runtime.active_run
+            var room: Dictionary = _current_roguelike_room()
+            var room_cleared := not room.is_empty() and bool(room.get("cleared", false))
+            var boss_defeated := bool(active_run.get("boss_defeated", false))
+            if room_cleared and not boss_defeated:
+                expedition_macro_map_open_v51 = false
+                show_screen("expedition")
+                return
+    super.show_rewards()
+
 func show_hero_skills() -> void:
     var hero: Dictionary = _selected_skill_hero()
     if hero.is_empty():
