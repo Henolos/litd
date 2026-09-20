@@ -52,3 +52,17 @@ def test_combatant_inspection_remains_bound_to_heroes_and_enemies():
     assert "func open_detail(combatant: Dictionary, enemy: bool)" in inspection
     assert "ÉTAT DU CORPS ET EFFETS" in inspection
     assert "COMPÉTENCES" in inspection
+
+
+def test_resolved_room_skips_legacy_rewards_screen():
+    ui = read("scripts/ui/main_v52.gd")
+
+    assert "func show_rewards() -> void:" in ui
+    assert 'room_cleared and not boss_defeated' in ui
+    assert 'expedition_macro_map_open_v51 = false' in ui
+    assert 'show_screen("expedition")' in ui
+
+    legacy = read("scripts/ui/main_v27.gd")
+    assert "RETOURNER DANS LA SALLE" in legacy
+    assert "OUVRIR LA CARTE MACRO" in legacy
+    assert "EXTRAIRE ET SÉCURISER" in legacy
