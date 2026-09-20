@@ -149,9 +149,6 @@ func _exercise_capture_and_victory() -> void:
     _check(ExpeditionManager.expedition_active, "Run must remain active while rewards are shown")
 
 func _extract_back_to_sanctuary() -> void:
-    # P0-1 removes the legacy reward screen for ordinary resolved rooms.
-    # Extraction is no longer part of this journey smoke unless a dedicated
-    # extraction surface is actually active.
     if GameState.current_screen != "rewards":
         return
     var runtime: Variant = ExpeditionManager.roguelike_runtime
