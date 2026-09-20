@@ -54,10 +54,10 @@ func _enter_first_room() -> void:
     _check(GameState.current_screen == "dungeon_room", "Direct room choice must open a real physical room")
     _check(_node_tree_contains_text(get_tree().current_scene, "ISSUES ET PASSAGES"), "Physical room must expose its passages")
     _check(await _press_button("FRANCHIR ET INSPECTER LE SEUIL", true), "Player must resolve the entrance from inside the room")
-    _check(GameState.current_screen == "rewards", "Resolved room must open rewards")
-    _check(await _press_button("RETOURNER DANS LA SALLE", true), "Rewards must return to the physical room")
-    _check(GameState.current_screen == "dungeon_room", "Player must physically return to the cleared room")
-    _check(_find_physical_passage_button() != null, "Cleared entrance must expose a physical passage without requiring the macro map")
+    _check(GameState.current_screen == "expedition", "Resolved room must return directly to room choices")
+    _check(not _macro_map_open_v51(), "Resolved room must not open the macro map")
+    _check(_node_tree_contains_text(get_tree().current_scene, "SORTIES ACCESSIBLES"), "Resolved room must expose direct next-room choices")
+    _check(_find_direct_room_button() != null, "Resolved entrance must expose a reachable next room without the macro map")
 
 func _reach_combat_room() -> void:
     var physical_passages_taken := 0
@@ -97,12 +97,10 @@ func _reach_combat_room() -> void:
             continue
         break
 
-    # Le seed de test peut légitimement placer un combat dès la salle atteinte
-    # après le premier passage. Le contrat P0 est donc vérifié sur la propriété
-    # essentielle : au moins une transition physique salle→passage→salle sans
-    # réouverture de la macro-carte, puis arrivée en combat par ce même flux.
-    _check(physical_passages_taken >= 1, "Player must traverse physical rooms through at least one direct passage without opening the macro map")
-    _check(GameState.current_screen == "combat", "Physical route must eventually start combat without requiring the macro map")
+    # P0-1 intentionally returns resolved rooms to the direct destination chooser.
+    # A physical passage may still be used from a cleared room, but it is no longer
+    # mandatory for the canonical post-resolution journey.
+    _check(GameState.current_screen == "combat", "Direct room navigation must eventually start combat without requiring the macro map")
     if GameState.current_screen == "combat":
         _check(_canonical_portraits_visible(), "Combat must render dedicated portraits for Mathilde, Marec, Anouk and Aurélien")
         _check(_legacy_hero_portraits_hidden(), "Legacy hero/class portraits must stay hidden when the canonical quartet is rendered")
