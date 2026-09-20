@@ -83,9 +83,9 @@ func _exercise_capture_and_victory() -> void:
                 _check(await _select_enemy(final_index), "Player must select the final enemy")
                 _check(await _press_active_usable_hostile_skill(), "Active hero must expose and execute a usable hostile equipped skill")
 
-    _check(GameState.current_screen == "rewards", "Roguelike victory must open the room reward screen")
-    _check(_find_button("EXTRAIRE", false) != null, "Room rewards must offer explicit extraction")
-    _check(ExpeditionManager.expedition_active, "Run must remain active while rewards are shown")
+    _check(GameState.current_screen == "expedition", "Roguelike victory must return directly to reachable room choices")
+    _check(_node_tree_contains_text(get_tree().current_scene, "SORTIES ACCESSIBLES"), "Post-victory navigation must expose direct next-room choices")
+    _check(ExpeditionManager.expedition_active, "Run must remain active after room resolution")
 
 func _press_active_usable_hostile_skill() -> bool:
     var scene: Node = get_tree().current_scene
