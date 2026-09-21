@@ -56,6 +56,7 @@ permissions:
 
 jobs:
   content-contracts:
+    if: ${{ github.actor != 'dependabot[bot]' || !startsWith(github.head_ref, 'dependabot/github_actions/') }}
     name: Content contracts and production index
     runs-on: ubuntu-latest
     steps:
@@ -83,6 +84,7 @@ jobs:
           if-no-files-found: warn
 
   godot-quick-gate:
+    if: ${{ github.actor != 'dependabot[bot]' || !startsWith(github.head_ref, 'dependabot/github_actions/') }}
     name: Godot 4.7 pre-PC production smokes
     runs-on: ubuntu-latest
     container:
@@ -170,6 +172,7 @@ jobs:
           if-no-files-found: warn
 
   android-debug-export:
+    if: ${{ github.actor != 'dependabot[bot]' || !startsWith(github.head_ref, 'dependabot/github_actions/') }}
     name: Android debug APK export
     runs-on: ubuntu-latest
     container:
