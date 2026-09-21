@@ -4,6 +4,9 @@ extends "res://scripts/ui/main_v51.gd"
 # Les anciennes cartes de classe contiennent des noms imprimés (Mirelle, Elara,
 # Rahkan, Isolde). Elles ne doivent jamais représenter le quatuor canonique.
 # Les quatre Veilleurs disposent désormais de portraits canoniques dédiés.
+#
+# P0 iPhone (#401): les cartes canoniques sont une bande compacte responsive.
+# Aucun panneau visuel ne doit recouvrir la zone d'actions de combat.
 
 const LEGACY_CARD_PREFIX := "res://assets/heroes/"
 const CANONICAL_HERO_IDS := ["mathilde", "marec", "anouk", "aurelien"]
@@ -28,8 +31,6 @@ func _replace_legacy_hero_cards_v52() -> void:
     if not is_instance_valid(content):
         return
 
-    # Hide every legacy class-card texture. Enemy portraits and the background
-    # use other asset roots and are therefore left untouched.
     for node_value in content.find_children("*", "TextureRect", true, false):
         var texture_rect := node_value as TextureRect
         if texture_rect == null or texture_rect.texture == null:
@@ -39,28 +40,41 @@ func _replace_legacy_hero_cards_v52() -> void:
             texture_rect.visible = false
 
     var ordered_heroes: Array[Dictionary] = _heroes_by_position()
-    for index in range(ordered_heroes.size()):
-        var hero: Dictionary = ordered_heroes[index]
+    if ordered_heroes.is_empty():
+        return
+
+    # Responsive top strip: deliberately kept above the central/action zone.
+    # Containers own child placement; no per-card absolute positioning.
+    var viewport_width := get_viewport_rect().size.x
+    var strip_width := clampf(viewport_width - 32.0, 520.0, 760.0)
+    var strip := HBoxContainer.new()
+    strip.name = "CanonicalCombatStripV52"
+    strip.position = Vector2(16, 70)
+    strip.size = Vector2(strip_width, 96)
+    strip.z_index = 30
+    strip.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    strip.add_theme_constant_override("separation", 6)
+    content.add_child(strip)
+
+    var card_width := maxf(118.0, (strip_width - 18.0) / 4.0)
+    for hero_value in ordered_heroes:
+        var hero: Dictionary = hero_value
         var hero_id := str(hero.get("canonical_id", hero.get("id", ""))).to_lower()
         if not CANONICAL_HERO_IDS.has(hero_id):
             continue
         var active := str(hero.get("id", "")) == combat_active_hero_id
         var panel := PanelContainer.new()
         panel.name = "CanonicalCombatCard_%s" % hero_id
-        panel.position = Vector2(35 + index * 132, 132)
-        panel.size = Vector2(138, 286)
-        panel.z_index = 30
-        # This card is visual-only. It must never intercept clicks/touches meant
-        # for the combat controls rendered underneath it.
+        panel.custom_minimum_size = Vector2(card_width, 92)
+        panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
         panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
-        panel.add_theme_stylebox_override("panel", panel_style(Color(0.012, 0.014, 0.020, 0.96)))
-        content.add_child(panel)
+        panel.add_theme_stylebox_override("panel", panel_style(Color(0.012, 0.014, 0.020, 0.94)))
+        strip.add_child(panel)
 
-        var box := VBoxContainer.new()
-        box.alignment = BoxContainer.ALIGNMENT_CENTER
-        box.mouse_filter = Control.MOUSE_FILTER_IGNORE
-        box.add_theme_constant_override("separation", 5)
-        panel.add_child(box)
+        var row := HBoxContainer.new()
+        row.mouse_filter = Control.MOUSE_FILTER_IGNORE
+        row.add_theme_constant_override("separation", 5)
+        panel.add_child(row)
 
         var portrait_path := str(CANONICAL_PORTRAITS.get(hero_id, ""))
         var portrait_texture := load(portrait_path) as Texture2D
@@ -68,23 +82,29 @@ func _replace_legacy_hero_cards_v52() -> void:
             var portrait := TextureRect.new()
             portrait.name = "CanonicalPortrait_%s" % hero_id
             portrait.texture = portrait_texture
-            portrait.custom_minimum_size = Vector2(118, 166)
+            portrait.custom_minimum_size = Vector2(54, 76)
+            portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
             portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+            portrait.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+            portrait.size_flags_vertical = Control.SIZE_EXPAND_FILL
             portrait.mouse_filter = Control.MOUSE_FILTER_IGNORE
-            box.add_child(portrait)
+            row.add_child(portrait)
 
-        var name_label := make_label(str(hero.get("name", "Veilleur")), 18, CANON_GOLD if active else CANON_TEXT)
-        name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+        var labels := VBoxContainer.new()
+        labels.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+        labels.alignment = BoxContainer.ALIGNMENT_CENTER
+        labels.mouse_filter = Control.MOUSE_FILTER_IGNORE
+        row.add_child(labels)
+
+        var name_label := make_label(str(hero.get("name", "Veilleur")), 13, CANON_GOLD if active else CANON_TEXT)
         name_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-        box.add_child(name_label)
-        var role_label := make_label(str(CANONICAL_ROLES.get(hero_id, "Veilleur")), 12, CANON_MUTED)
-        role_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+        labels.add_child(name_label)
+        var role_label := make_label(str(CANONICAL_ROLES.get(hero_id, "Veilleur")), 10, CANON_MUTED)
         role_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-        box.add_child(role_label)
-        var rank_label := make_label("R%d" % (int(hero.get("combat_position", 0)) + 1), 13, CANON_MUTED)
-        rank_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+        labels.add_child(role_label)
+        var rank_label := make_label("R%d" % (int(hero.get("combat_position", 0)) + 1), 10, CANON_MUTED)
         rank_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-        box.add_child(rank_label)
+        labels.add_child(rank_label)
 
 func show_hero_skills() -> void:
     var hero: Dictionary = _selected_skill_hero()
