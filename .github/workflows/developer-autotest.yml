@@ -26,6 +26,7 @@ concurrency:
 
 jobs:
   fast-contracts:
+    if: ${{ github.actor != 'dependabot[bot]' || !startsWith(github.head_ref, 'dependabot/github_actions/') }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     container:
@@ -68,6 +69,7 @@ jobs:
             reports/player-bot-v13-regression-baseline.json
 
   combat-core:
+    if: ${{ github.actor != 'dependabot[bot]' || !startsWith(github.head_ref, 'dependabot/github_actions/') }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     container:
