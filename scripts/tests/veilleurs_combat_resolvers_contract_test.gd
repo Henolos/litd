@@ -2,6 +2,8 @@ extends SceneTree
 
 const HitResolver := preload("res://scripts/core/combat/veilleurs_hit_resolver.gd")
 const DamageResolver := preload("res://scripts/core/combat/veilleurs_damage_resolver.gd")
+const ReactionResolver := preload("res://scripts/core/combat/veilleurs_reaction_resolver.gd")
+const CombatEvent := preload("res://scripts/core/combat/veilleurs_combat_event.gd")
 const LegacyRuntime := preload("res://scripts/core/veilleurs_combat_sandbox_runtime.gd")
 
 func _init() -> void:
@@ -27,6 +29,24 @@ func _init() -> void:
 
     var force := DamageResolver.resolve({"posture":"force_cost"}, {"power":10}, target, "torso")
     assert(int(force.get("damage", 0)) == 13, "Force-cost +3 power contract changed")
+
+    var enemy := {"id":"enemy","observed_patterns":{}}
+    var hero := {"id":"hero"}
+    var first_reaction := ReactionResolver.observe_enemy(enemy, hero, "left_arm", {"hit":true,"functional_loss":"impaired"})
+    assert((enemy.get("observed_patterns", {}) as Dictionary).is_empty(), "ReactionResolver must remain pure")
+    assert(str((first_reaction.get("reaction", {}) as Dictionary).get("decision", "")) == "exploit_wounded_actor", "Functional injury reaction contract changed")
+    var observed_enemy := enemy.duplicate(true)
+    observed_enemy["observed_patterns"] = first_reaction.get("patterns", {})
+    var second_reaction := ReactionResolver.observe_enemy(observed_enemy, hero, "left_arm", {"hit":true,"functional_loss":"impaired"})
+    assert(str((second_reaction.get("reaction", {}) as Dictionary).get("decision", "")) == "guard_zone", "Repeated-zone reaction contract changed")
+    assert(str(second_reaction.get("guarded_zone", "")) == "left_arm", "Guarded-zone contract changed")
+
+    var attack_result := {"ok":true,"kind":"attack","hit":true,"damage":7}
+    var event := CombatEvent.from_attack(hero, target, attack_result)
+    assert(str(event.get("type", "")) == "attack_hit", "CombatEvent hit type changed")
+    assert(str(event.get("actor_id", "")) == "hero" and str(event.get("target_id", "")) == "target", "CombatEvent identity contract changed")
+    attack_result["damage"] = 99
+    assert(int((event.get("payload", {}) as Dictionary).get("damage", 0)) == 7, "CombatEvent payload must be an immutable snapshot")
 
     print("VEILLEURS_COMBAT_RESOLVERS_CONTRACT_OK")
     quit(0)
