@@ -28,63 +28,44 @@ func _replace_legacy_hero_cards_v52() -> void:
     if not is_instance_valid(content):
         return
 
-    # Hide every legacy class-card texture. Enemy portraits and the background
-    # use other asset roots and are therefore left untouched.
+    # Reuse the four portrait slots created by the inherited combat layout.
+    # The mobile post-processing already knows how to size/reflow those slots.
+    # Creating a second visual card layer here used to cover the skill and
+    # context-action rows on narrow Safari viewports.
+    var legacy_portraits: Array[TextureRect] = []
     for node_value in content.find_children("*", "TextureRect", true, false):
         var texture_rect := node_value as TextureRect
         if texture_rect == null or texture_rect.texture == null:
             continue
         var resource_path := str(texture_rect.texture.resource_path)
         if resource_path.begins_with(LEGACY_CARD_PREFIX) and not resource_path.begins_with("res://assets/heroes/canonical/"):
-            texture_rect.visible = false
+            legacy_portraits.append(texture_rect)
 
     var ordered_heroes: Array[Dictionary] = _heroes_by_position()
-    for index in range(ordered_heroes.size()):
+    for index in range(legacy_portraits.size()):
+        var portrait_slot := legacy_portraits[index]
+        if index >= ordered_heroes.size():
+            portrait_slot.visible = false
+            continue
+
         var hero: Dictionary = ordered_heroes[index]
         var hero_id := str(hero.get("canonical_id", hero.get("id", ""))).to_lower()
         if not CANONICAL_HERO_IDS.has(hero_id):
+            portrait_slot.visible = false
             continue
-        var active := str(hero.get("id", "")) == combat_active_hero_id
-        var panel := PanelContainer.new()
-        panel.name = "CanonicalCombatCard_%s" % hero_id
-        panel.position = Vector2(35 + index * 132, 132)
-        panel.size = Vector2(138, 286)
-        panel.z_index = 30
-        # This card is visual-only. It must never intercept clicks/touches meant
-        # for the combat controls rendered underneath it.
-        panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
-        panel.add_theme_stylebox_override("panel", panel_style(Color(0.012, 0.014, 0.020, 0.96)))
-        content.add_child(panel)
-
-        var box := VBoxContainer.new()
-        box.alignment = BoxContainer.ALIGNMENT_CENTER
-        box.mouse_filter = Control.MOUSE_FILTER_IGNORE
-        box.add_theme_constant_override("separation", 5)
-        panel.add_child(box)
 
         var portrait_path := str(CANONICAL_PORTRAITS.get(hero_id, ""))
         var portrait_texture := load(portrait_path) as Texture2D
-        if portrait_texture != null:
-            var portrait := TextureRect.new()
-            portrait.name = "CanonicalPortrait_%s" % hero_id
-            portrait.texture = portrait_texture
-            portrait.custom_minimum_size = Vector2(118, 166)
-            portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-            portrait.mouse_filter = Control.MOUSE_FILTER_IGNORE
-            box.add_child(portrait)
+        if portrait_texture == null:
+            # Never fall back to a legacy card with an obsolete printed identity.
+            portrait_slot.visible = false
+            continue
 
-        var name_label := make_label(str(hero.get("name", "Veilleur")), 18, CANON_GOLD if active else CANON_TEXT)
-        name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-        name_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-        box.add_child(name_label)
-        var role_label := make_label(str(CANONICAL_ROLES.get(hero_id, "Veilleur")), 12, CANON_MUTED)
-        role_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-        role_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-        box.add_child(role_label)
-        var rank_label := make_label("R%d" % (int(hero.get("combat_position", 0)) + 1), 13, CANON_MUTED)
-        rank_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-        rank_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-        box.add_child(rank_label)
+        portrait_slot.texture = portrait_texture
+        portrait_slot.visible = true
+        portrait_slot.mouse_filter = Control.MOUSE_FILTER_IGNORE
+        portrait_slot.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+        portrait_slot.set_meta("canonical_hero_id", hero_id)
 
 func show_hero_skills() -> void:
     var hero: Dictionary = _selected_skill_hero()

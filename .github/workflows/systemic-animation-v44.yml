@@ -34,15 +34,20 @@ on:
       - '.github/workflows/systemic-animation-v44.yml'
   workflow_dispatch:
 
+concurrency:
+  group: systemic-animation-v44-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
 jobs:
   animation-v44-static:
+    if: ${{ github.actor != 'dependabot[bot]' || !startsWith(github.head_ref, 'dependabot/github_actions/') }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-python@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
         with:
           python-version: '3.12'
       - name: Compiler les scripts v44
@@ -53,7 +58,7 @@ jobs:
         run: python -m tools.blender.generate_systemic_animation_v44 --output systemic_animation_jobs_v44.json
       - name: Vérifier le plan d'un Veilleur sans Blender
         run: python -m tools.blender.systemic_animation_v44 --job-id aurelien --print-plan > v44_aurelien_plan.json
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: systemic-animation-v44-jobs
           path: |
@@ -61,11 +66,12 @@ jobs:
             v44_aurelien_plan.json
 
   animation-v44-godot:
+    if: ${{ github.actor != 'dependabot[bot]' || !startsWith(github.head_ref, 'dependabot/github_actions/') }}
     runs-on: ubuntu-latest
     container:
       image: barichello/godot-ci:4.7.2
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
       - name: Importer le projet
         run: godot --headless --path . --import --quit
       - name: Tester le runtime corporel v44
