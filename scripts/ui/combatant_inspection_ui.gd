@@ -6,7 +6,7 @@ const MUTED := Color("#a49884")
 const WARNING := Color("#d8a07c")
 const PANEL := Color(0.025, 0.028, 0.038, 0.98)
 const BASE_PREVIEW_SIZE := Vector2(440, 126)
-const BASE_DETAIL_SIZE := Vector2(860, 580)
+const BASE_DETAIL_SIZE := Vector2(620, 260)
 const SAFE_GUTTER := 12.0
 const META_BASE_FONT := "litd_inspection_base_font_size"
 const BODY_ZONE_ORDER: Array[String] = ["head", "torso", "left_arm", "right_arm", "left_leg", "right_leg"]
@@ -146,10 +146,10 @@ func _build_preview() -> void:
 func _build_detail() -> void:
     detail_overlay = Control.new()
     detail_overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-    detail_overlay.mouse_filter = Control.MOUSE_FILTER_STOP
+    # Contextual inspection must not swallow combat controls outside the panel.\n    detail_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
     add_child(detail_overlay)
     var dim := ColorRect.new()
-    dim.color = Color(0.005, 0.006, 0.010, 0.91)
+    # Keep the battlefield and action controls fully visible while inspecting.\n    dim.color = Color(0.005, 0.006, 0.010, 0.0)\n    dim.mouse_filter = Control.MOUSE_FILTER_IGNORE
     dim.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     detail_overlay.add_child(dim)
 
@@ -209,16 +209,16 @@ func _apply_layout() -> void:
     var desired_detail := BASE_DETAIL_SIZE * ui_scale
     var detail_size := Vector2(
         minf(desired_detail.x, safe_size.x),
-        minf(desired_detail.y, safe_size.y)
+        minf(desired_detail.y, safe_size.y * 0.40)
     )
     detail_frame.size = detail_size
     detail_frame.position = safe_origin + Vector2(
         maxf(0.0, (safe_size.x - detail_size.x) * 0.5),
-        maxf(0.0, (safe_size.y - detail_size.y) * 0.5)
+        0.0
     )
     detail_content.custom_minimum_size = Vector2(
         maxf(220.0, detail_size.x - 70.0),
-        maxf(180.0, detail_size.y - 92.0)
+        maxf(120.0, detail_size.y - 92.0)
     )
     if detail_close_button != null:
         detail_close_button.custom_minimum_size = Vector2(
