@@ -7,6 +7,8 @@ const HIT_RESOLVER := preload("res://scripts/core/combat/veilleurs_hit_resolver.
 const DAMAGE_RESOLVER := preload("res://scripts/core/combat/veilleurs_damage_resolver.gd")
 const ANATOMY_RESOLVER := preload("res://scripts/core/combat/veilleurs_anatomy_resolver.gd")
 const STATUS_RESOLVER := preload("res://scripts/core/combat/veilleurs_status_resolver.gd")
+const REACTION_RESOLVER := preload("res://scripts/core/combat/veilleurs_reaction_resolver.gd")
+const COMBAT_EVENT := preload("res://scripts/core/combat/veilleurs_combat_event.gd")
 
 var heroes: Array[Dictionary] = []
 var enemies: Array[Dictionary] = []
@@ -76,6 +78,8 @@ func perform_action(action_id: String, target_index: int, zone: String = "torso"
         hero["ap"] = int(hero.get("ap", 0)) - cost
         result["remaining_ap"] = hero["ap"]
         _apply_trame_cost(hero, action, result)
+        if str(result.get("kind", "")) == "attack":
+            result["combat_event"] = COMBAT_EVENT.from_attack(hero, {"id":str(result.get("target", ""))}, result)
     return result
 
 func move_hero(hero_index: int, destination_slot: int, ap_cost: int = 1) -> Dictionary:
@@ -244,11 +248,10 @@ func _apply_effort_cost(hero: Dictionary) -> void:
     anatomy["right_arm"] = shoulder; hero["anatomy"] = anatomy
 
 func _enemy_observe_and_react(enemy: Dictionary, hero: Dictionary, action: Dictionary, zone: String, result: Dictionary) -> Dictionary:
-    var patterns: Dictionary = enemy.get("observed_patterns", {}); var key := "%s:%s" % [str(hero.get("id", "")), zone]
-    patterns[key] = int(patterns.get(key, 0)) + 1; enemy["observed_patterns"] = patterns
-    if int(patterns[key]) >= 2: enemy["guarded_zone"] = zone; return {"observed":true,"hypothesis":"repeated_zone","confidence":"medium","decision":"guard_zone","zone":zone}
-    if bool(result.get("hit", false)) and str(result.get("functional_loss", "")) == "impaired": return {"observed":true,"hypothesis":"functional_injury","confidence":"low","decision":"exploit_wounded_actor","hero":str(hero.get("id"))}
-    return {"observed":true,"hypothesis":"insufficient_pattern","confidence":"low","decision":"none"}
+    var resolved: Dictionary = REACTION_RESOLVER.observe_enemy(enemy, hero, zone, result)
+    enemy["observed_patterns"] = resolved.get("patterns", {})
+    if resolved.has("guarded_zone"): enemy["guarded_zone"] = resolved.get("guarded_zone", zone)
+    return resolved.get("reaction", {})
 
 func _enemy_phase() -> void:
     var alive: Array[Dictionary] = []
