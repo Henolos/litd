@@ -6,6 +6,7 @@ extends "res://scripts/ui/context_menu_ui_v2.gd"
 const P0_MIN_TOUCH_HEIGHT := 48.0
 const P0_MAX_UI_SCALE := 1.4
 const P0_MAX_TEXT_SCALE := 1.5
+const VEILLEURS_UI_STATE_ADAPTER := preload("res://scripts/ui/veilleurs_ui_state_adapter.gd")
 
 var _p0_focus_before_menu: Control
 var _p0_focus_by_tab: Dictionary = {}
@@ -90,7 +91,7 @@ func _p0_compact_pane(parent: VBoxContainer) -> VBoxContainer:
     return column
 
 func _compact_hero_selector(parent: VBoxContainer) -> void:
-    if not _p0_is_compact_layout():
+    if not _p0_is_compact_layout() and not VEILLEURS_UI_STATE_ADAPTER.is_active():
         super._compact_hero_selector(parent)
         return
     var grid := GridContainer.new()
@@ -98,7 +99,8 @@ func _compact_hero_selector(parent: VBoxContainer) -> void:
     grid.add_theme_constant_override("h_separation", 6)
     grid.add_theme_constant_override("v_separation", 6)
     parent.add_child(grid)
-    for hero_value in GameState.party:
+    var menu_party: Array = VEILLEURS_UI_STATE_ADAPTER.party() if VEILLEURS_UI_STATE_ADAPTER.is_active() else GameState.party
+    for hero_value in menu_party:
         var hero: Dictionary = hero_value
         var hero_id := str(hero.get("id", ""))
         var selected := hero_id == selected_hero_id
