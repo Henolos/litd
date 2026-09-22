@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
           persist-credentials: false
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
         with:
           python-version: '3.12'
       - name: Install live proof dependency
@@ -32,7 +32,7 @@ jobs:
           GOVERNANCE_DATABASE_URL: ${{ secrets.GOVERNANCE_DATABASE_URL }}
         run: python tools/quality/run_postgres_receipt_registry_live_proof.py
       - name: Upload retained governance evidence
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         with:
           name: postgres-receipt-registry-live-proof
           path: reports/postgres-receipt-registry-live-proof.json

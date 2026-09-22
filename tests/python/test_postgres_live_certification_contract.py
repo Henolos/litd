@@ -20,7 +20,7 @@ def test_live_certification_is_manual_and_fail_closed() -> None:
 
 def test_live_certification_retains_evidence() -> None:
     text = WORKFLOW.read_text(encoding="utf-8")
-    assert "actions/upload-artifact@v4" in text
+    assert "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02" in text
     assert "postgres-live-certification.json" in text
     assert "retention-days: 90" in text
     assert "if-no-files-found: error" in text
