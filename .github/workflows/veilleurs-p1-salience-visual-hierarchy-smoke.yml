@@ -20,7 +20,7 @@ jobs:
     container:
       image: barichello/godot-ci:4.7.2
     steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
       - name: Strict Godot import
         run: godot --headless --path . --import --quit
       - name: Interaction salience visual hierarchy smoke

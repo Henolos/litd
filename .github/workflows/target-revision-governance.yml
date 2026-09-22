@@ -57,10 +57,10 @@ jobs:
   guard-target-revisions:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
           fetch-depth: 0
-      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
         with:
           python-version: '3.12'
       - name: Install QA dependencies
@@ -178,7 +178,7 @@ jobs:
           assert policy['invented_default_budget_forbidden'] is True
           assert policy['core_write_allowed'] is False
       - name: Upload target revision guard evidence
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
           name: target-revision-governance-${{ github.run_id }}-${{ github.run_attempt }}
