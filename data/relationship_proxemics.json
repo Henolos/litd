@@ -1,0 +1,70 @@
+{
+  "version": 2,
+  "design_source": "physical_cinematic_direction_pass_32+legendary_quartet_migration_2026-09-10",
+  "distance_bands_m": {
+    "intimate": [0.0, 0.45],
+    "close_social": [0.45, 1.2],
+    "medium_social": [1.2, 2.4],
+    "public": [2.4, 5.0],
+    "tactical": [2.0, 6.0]
+  },
+  "rules": {
+    "distance_is_relationship_plus_situation": true,
+    "approach_is_an_action_not_idle_motion": true,
+    "crossing_another_character_axis_requires_reason": true,
+    "touch_never_substitutes_for_subtext": true,
+    "yielding_path_can_signal_care_or_defeat_without_dialogue": true,
+    "turning_back_is_high_value_and_should_be_rare": true
+  },
+  "pair_defaults": {
+    "mathilde:aurelien": {
+      "neutral_distance":"medium_social",
+      "trust_shift":"moves_toward_close_social_during_shared_problem_solving",
+      "conflict_shift":"Mathilde holds axis while Aurélien circles evidence",
+      "care_signal":"Mathilde clears danger path rather than touching",
+      "rupture_signal":"Mathilde allows passage but withholds eye contact"
+    },
+    "mathilde:marec": {
+      "neutral_distance":"medium_social",
+      "trust_shift":"parallel stance with shared threat axis",
+      "conflict_shift":"both become more still rather than closing distance",
+      "care_signal":"equipment or position adjustment",
+      "rupture_signal":"one stops mirroring the other's tactical orientation"
+    },
+    "mathilde:anouk": {
+      "neutral_distance":"medium_social",
+      "trust_shift":"Anouk may enter close_social while Mathilde remains planted",
+      "conflict_shift":"Anouk breaks frontal confrontation by changing angle",
+      "care_signal":"shared silence with released guard boundary",
+      "rupture_signal":"Mathilde re-establishes her guard between them"
+    },
+    "aurelien:marec": {
+      "neutral_distance":"medium_social",
+      "trust_shift":"Aurélien can enter Marec's working radius without correction",
+      "conflict_shift":"Marec reduces answers and keeps object/task between them",
+      "care_signal":"Marec solves a practical problem without announcing concern",
+      "rupture_signal":"Aurélien stops offering evidence or explanation"
+    },
+    "aurelien:anouk": {
+      "neutral_distance":"medium_social",
+      "trust_shift":"shared orientation toward object then mutual glance",
+      "conflict_shift":"Anouk preserves space instead of pursuing",
+      "care_signal":"Anouk lets silence complete the thought",
+      "rupture_signal":"both look at the same thing but not at each other"
+    },
+    "marec:anouk": {
+      "neutral_distance":"medium_social",
+      "trust_shift":"Anouk can remain nearby while Marec works in silence",
+      "conflict_shift":"Marec turns task-side away; Anouk does not invade",
+      "care_signal":"brief eye contact after practical assistance",
+      "rupture_signal":"functional cooperation without shared orientation"
+    }
+  },
+  "creature_rules": {
+    "hungry_ghoul": {
+      "party_distance":"tactical",
+      "capture_window":"distance may increase as ghoul chooses exit; party should not automatically close",
+      "trust_after_capture":"never jump directly to close_social; progression must earn proximity"
+    }
+  }
+}

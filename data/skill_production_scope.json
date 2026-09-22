@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "policy": "Production may expose a staged subset while development is incomplete, but the canonical design remains three exclusive trees of fifteen nodes for every hero, enemy and capturable creature. A production subset is an implementation status, never a lore/design redefinition.",
+  "canonical_design": {
+    "branches_per_character": 3,
+    "nodes_per_branch": 15,
+    "total_nodes_per_character": 45,
+    "tree_choice_exclusive": true,
+    "applies_to": ["heroes","enemies","captured_creatures"]
+  },
+  "heroes": {
+    "catalog_nodes_per_branch": 15,
+    "currently_targeted_runtime_nodes_per_branch": 10,
+    "equipped_slots": 4,
+    "remaining_nodes_status": "authored_or_pending_production_not_removed_from_canon",
+    "future_activation_requires": "implementation and playtest completion; no new canon decision required"
+  },
+  "enemies": {
+    "canonical_nodes_per_branch": 15,
+    "canonical_branches": 3,
+    "currently_targeted_runtime_subset": [4,8],
+    "runtime_subset_status": "temporary implementation gap",
+    "diversity_sources": ["chosen_skill_tree","ai_orientation","fear_posture","injury_state","combat_rank","environment","family_identity"]
+  },
+  "rules": {
+    "do_not_delete_canonical_nodes": true,
+    "do_not_present_incomplete_runtime_subset_as_final_design": true,
+    "reserve_or_unimplemented_nodes_hidden_until_ready": true,
+    "no_new_major_system_before_pc_loop_validation": true
+  }
+}

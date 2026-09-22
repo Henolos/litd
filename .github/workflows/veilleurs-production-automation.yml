@@ -1,0 +1,273 @@
+name: Veilleurs Godot Production Automation
+
+on:
+  pull_request:
+    paths:
+      - 'data/veilleurs/**'
+      - 'assets/**'
+      - 'scenes/veilleurs/**'
+      - 'scenes/tests/**'
+      - 'scripts/core/**'
+      - 'scripts/ui/**'
+      - 'scripts/world/**'
+      - 'scripts/qa/**'
+      - 'addons/veilleurs_pipeline/**'
+      - 'tools/godot/**'
+      - 'tools/qa/**'
+      - 'tools/art/**'
+      - 'tools/animation/**'
+      - 'tools/audio/**'
+      - 'tools/blender/**'
+      - 'tools/cinematics/**'
+      - 'tools/music_pipeline/**'
+      - 'tools/voice/**'
+      - 'tools/workstation/**'
+      - 'docs/veilleurs/**'
+      - 'project.godot'
+      - 'export_presets.cfg'
+      - '.github/workflows/veilleurs-production-automation.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/veilleurs/**'
+      - 'assets/**'
+      - 'scenes/**'
+      - 'scripts/**'
+      - 'addons/**'
+      - 'tools/**'
+      - 'docs/veilleurs/**'
+      - 'project.godot'
+      - 'export_presets.cfg'
+      - '.github/workflows/veilleurs-production-automation.yml'
+  workflow_dispatch:
+    inputs:
+      full_suite:
+        description: 'Lancer toute la suite Godot historique après le gate rapide'
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: veilleurs-production-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  content-contracts:
+    if: ${{ github.actor != 'dependabot[bot]' || !startsWith(github.head_ref, 'dependabot/github_actions/') }}
+    name: Content contracts and production index
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.12'
+      - name: Run production contract gate
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            git fetch origin "${{ github.base_ref }}"
+            python tools/godot/veilleurs_pipeline.py --mode changed --base-ref "origin/${{ github.base_ref }}" --skip-godot
+          else
+            python tools/godot/veilleurs_pipeline.py --mode quick --skip-godot
+          fi
+      - name: Upload production report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: veilleurs-production-contract-report
+          path: build/automation/
+          if-no-files-found: warn
+
+  godot-quick-gate:
+    if: ${{ github.actor != 'dependabot[bot]' || !startsWith(github.head_ref, 'dependabot/github_actions/') }}
+    name: Godot 4.7 pre-PC production smokes
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.7.2
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Prepare logs
+        shell: bash
+        run: mkdir -p build/automation
+      - name: Strict Godot import
+        shell: bash
+        run: |
+          set -o pipefail
+          godot --headless --path . --import --quit 2>&1 | tee build/automation/godot-import.log
+          if grep -E 'SCRIPT ERROR:|ERROR: Failed to load script|ERROR: Failed to create an autoload|ERROR: Failed to instantiate an autoload|ERROR: FATAL:|handle_crash: Program crashed' build/automation/godot-import.log; then
+            exit 1
+          fi
+      - name: Veilleurs v0.6 tactical smoke
+        shell: bash
+        run: |
+          set -o pipefail
+          timeout 90s godot --headless --path . res://scenes/tests/veilleurs_v06_tactical_smoke.tscn 2>&1 | tee build/automation/veilleurs-v06-smoke.log
+          if grep -E 'SCRIPT ERROR:|ERROR: Failed to load script|ERROR: FATAL:|handle_crash: Program crashed|VEILLEURS_V06_TACTICAL_SMOKE_FAILED' build/automation/veilleurs-v06-smoke.log; then
+            exit 1
+          fi
+          grep -F 'VEILLEURS_V06_TACTICAL_SMOKE_OK' build/automation/veilleurs-v06-smoke.log
+      - name: Veilleurs v0.7 production smoke
+        shell: bash
+        run: |
+          set -o pipefail
+          timeout 90s godot --headless --path . res://scenes/tests/veilleurs_v07_production_smoke.tscn 2>&1 | tee build/automation/veilleurs-v07-smoke.log
+          if grep -E 'SCRIPT ERROR:|ERROR: Failed to load script|ERROR: FATAL:|handle_crash: Program crashed|VEILLEURS_V07_PRODUCTION_SMOKE_FAILED' build/automation/veilleurs-v07-smoke.log; then
+            exit 1
+          fi
+          grep -F 'VEILLEURS_V07_PRODUCTION_SMOKE_OK' build/automation/veilleurs-v07-smoke.log
+      - name: Veilleurs v0.8 Wave 2 smoke
+        shell: bash
+        run: |
+          set -o pipefail
+          timeout 120s godot --headless --path . res://scenes/tests/veilleurs_v08_wave2_smoke.tscn 2>&1 | tee build/automation/veilleurs-v08-smoke.log
+          if grep -E 'SCRIPT ERROR:|ERROR: Failed to load script|ERROR: FATAL:|handle_crash: Program crashed|VEILLEURS_V08_WAVE2_SMOKE_FAILED' build/automation/veilleurs-v08-smoke.log; then
+            exit 1
+          fi
+          grep -F 'VEILLEURS_V08_WAVE2_SMOKE_OK' build/automation/veilleurs-v08-smoke.log
+      - name: Veilleurs v0.9 Wave 3 smoke
+        shell: bash
+        run: |
+          set -o pipefail
+          timeout 120s godot --headless --path . res://scenes/tests/veilleurs_v09_wave3_smoke.tscn 2>&1 | tee build/automation/veilleurs-v09-smoke.log
+          if grep -E 'SCRIPT ERROR:|ERROR: Failed to load script|ERROR: FATAL:|handle_crash: Program crashed|VEILLEURS_V09_WAVE3_SMOKE_FAILED' build/automation/veilleurs-v09-smoke.log; then
+            exit 1
+          fi
+          grep -F 'VEILLEURS_V09_WAVE3_SMOKE_OK' build/automation/veilleurs-v09-smoke.log
+      - name: Six-dungeon QA scene
+        shell: bash
+        run: |
+          set -o pipefail
+          timeout 30s godot --headless --path . --quit-after 5 res://scenes/veilleurs/v09_vertical_slice_qa.tscn 2>&1 | tee build/automation/veilleurs-v09-qa.log
+          if grep -E 'SCRIPT ERROR:|ERROR: Failed to load script|ERROR: FATAL:|handle_crash: Program crashed' build/automation/veilleurs-v09-qa.log; then
+            exit 1
+          fi
+      - name: Mobile touch regression
+        shell: bash
+        run: |
+          set -o pipefail
+          timeout 90s godot --headless --path . res://scenes/tests/mobile_touch_smoke.tscn 2>&1 | tee build/automation/mobile-touch.log
+          if grep -E 'SCRIPT ERROR:|ERROR: Failed to load script|ERROR: FATAL:|handle_crash: Program crashed' build/automation/mobile-touch.log; then
+            exit 1
+          fi
+          grep -F 'MOBILE_TOUCH_SMOKE_OK' build/automation/mobile-touch.log
+      - name: Player UI journey regression
+        shell: bash
+        run: |
+          set -o pipefail
+          timeout 90s godot --headless --path . res://scenes/tests/ui_player_journey_smoke.tscn 2>&1 | tee build/automation/ui-player-journey.log
+          if grep -E 'SCRIPT ERROR:|ERROR: Failed to load script|ERROR: FATAL:|handle_crash: Program crashed' build/automation/ui-player-journey.log; then
+            exit 1
+          fi
+      - name: Upload Godot logs
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: veilleurs-godot-quick-gate
+          path: build/automation/
+          if-no-files-found: warn
+
+  android-debug-export:
+    if: ${{ github.actor != 'dependabot[bot]' || !startsWith(github.head_ref, 'dependabot/github_actions/') }}
+    name: Android debug APK export
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.7.2
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Configure Android exporter
+        shell: bash
+        env:
+          HOME: /root
+        run: |
+          set -euo pipefail
+          EXPECTED_TEMPLATES="$HOME/.local/share/godot/export_templates/4.7.2.stable"
+          if [[ ! -f "$EXPECTED_TEMPLATES/android_debug.apk" ]]; then
+            SOURCE_DEBUG="$(find /root/.local/share/godot /opt /usr/local /usr/share -type f -name android_debug.apk -print -quit 2>/dev/null || true)"
+            if [[ -z "$SOURCE_DEBUG" ]]; then
+              echo "Android debug export template not found in godot-ci image" >&2
+              find /root/.local/share/godot /opt /usr/local /usr/share -maxdepth 6 -type f -name '*android*' -print 2>/dev/null | head -200 || true
+              exit 1
+            fi
+            SOURCE_TEMPLATES="$(dirname "$SOURCE_DEBUG")"
+            mkdir -p "$(dirname "$EXPECTED_TEMPLATES")"
+            cp -a "$SOURCE_TEMPLATES" "$EXPECTED_TEMPLATES"
+          fi
+
+          JAVA_BIN="$(command -v java || true)"
+          if [[ -z "$JAVA_BIN" ]]; then
+            JAVA_BIN="$(find /usr/lib/jvm -type f -path '*/bin/java' -print -quit 2>/dev/null || true)"
+          fi
+          test -n "$JAVA_BIN"
+          JAVA_BIN="$(readlink -f "$JAVA_BIN")"
+          JAVA_HOME_DETECTED="$(dirname "$(dirname "$JAVA_BIN")")"
+          KEYTOOL="$JAVA_HOME_DETECTED/bin/keytool"
+          test -x "$KEYTOOL"
+
+          mkdir -p "$HOME/.config/godot" "$HOME/.android"
+          SETTINGS="$(find "$HOME/.config/godot" -maxdepth 1 -type f -name 'editor_settings-4*.tres' -print -quit 2>/dev/null || true)"
+          if [[ -z "$SETTINGS" ]]; then
+            SETTINGS="$HOME/.config/godot/editor_settings-4.7.tres"
+            printf '[gd_resource format=3]\n\n[resource]\n' > "$SETTINGS"
+          fi
+          sed -i '/^export\/android\/java_sdk_path = /d;/^export\/android\/android_sdk_path = /d' "$SETTINGS"
+          printf 'export/android/java_sdk_path = "%s"\n' "$JAVA_HOME_DETECTED" >> "$SETTINGS"
+          printf 'export/android/android_sdk_path = "/usr/lib/android-sdk"\n' >> "$SETTINGS"
+
+          if [[ ! -f "$HOME/.android/debug.keystore" ]]; then
+            "$KEYTOOL" -genkeypair -v \
+              -keystore "$HOME/.android/debug.keystore" \
+              -storepass android -alias androiddebugkey -keypass android \
+              -dname "CN=Android Debug,O=Android,C=US" \
+              -keyalg RSA -keysize 2048 -validity 10000
+          fi
+
+          test -f "$EXPECTED_TEMPLATES/android_debug.apk"
+          test -x "$JAVA_BIN"
+          test -f "$HOME/.android/debug.keystore"
+          echo "ANDROID_CI_ENV_OK java=$JAVA_HOME_DETECTED template=$EXPECTED_TEMPLATES/android_debug.apk"
+      - name: Export Android debug APK
+        shell: bash
+        env:
+          HOME: /root
+          GODOT_ANDROID_KEYSTORE_DEBUG_PATH: /root/.android/debug.keystore
+          GODOT_ANDROID_KEYSTORE_DEBUG_USER: androiddebugkey
+          GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD: android
+        run: |
+          set -o pipefail
+          mkdir -p build/android build/automation
+          godot --headless --path . --export-debug "Android" build/android/LightInTheDark.apk 2>&1 | tee build/automation/android-export.log
+          test -s build/android/LightInTheDark.apk
+          if grep -E 'SCRIPT ERROR:|ERROR: Failed to load script|ERROR: FATAL:|handle_crash: Program crashed' build/automation/android-export.log; then
+            exit 1
+          fi
+      - name: Publish Android debug APK
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: veilleurs-android-debug-apk
+          path: build/android/LightInTheDark.apk
+          if-no-files-found: error
+      - name: Publish Android export log
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: veilleurs-android-export-log
+          path: build/automation/android-export.log
+          if-no-files-found: warn
+
+  full-regression:
+    name: Full Godot regression suite
+    if: ${{ github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.full_suite) }}
+    needs: [content-contracts, godot-quick-gate, android-debug-export]
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.7.2
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Run complete repository Godot suite
+        shell: bash
+        run: bash tools/build/run_godot_ci.sh

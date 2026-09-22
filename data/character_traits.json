@@ -1,0 +1,599 @@
+{
+  "schema_version": 1,
+  "max_positive": 2,
+  "max_negative": 2,
+  "starter_rules": {
+    "manual_choice": true,
+    "two_positive_requires_negative": 1,
+    "can_choose_zero_positive": true,
+    "can_choose_zero_negative": true
+  },
+  "random_rules": {
+    "minimum_positive": 1,
+    "maximum_positive": 2,
+    "minimum_negative": 0,
+    "maximum_negative": 2,
+    "deterministic_from_character_seed": true,
+    "no_reroll_after_save": true
+  },
+  "evolution_rules": {
+    "negative_is_removed": true,
+    "evolved_positive_is_added": true,
+    "positive_cap_is_preserved": true,
+    "when_positive_slots_full": "ask_player_which_positive_to_replace",
+    "progress_is_persistent_for_heroes": true,
+    "progress_is_persistent_for_captured_enemies": true,
+    "no_automatic_player_trait_deletion": true
+  },
+  "positives": [
+    {
+      "id": "courage",
+      "name": "Courage",
+      "polarity": "positive",
+      "description": "Courage",
+      "effects": {
+        "fear_resistance": 12
+      }
+    },
+    {
+      "id": "temerity",
+      "name": "Témérité",
+      "polarity": "positive",
+      "description": "Témérité",
+      "effects": {
+        "damage_bonus": 9,
+        "guard_power": -4
+      }
+    },
+    {
+      "id": "steadfast",
+      "name": "Inébranlable",
+      "polarity": "positive",
+      "description": "Inébranlable",
+      "effects": {
+        "panic_resistance": 18
+      }
+    },
+    {
+      "id": "protective",
+      "name": "Protecteur",
+      "polarity": "positive",
+      "description": "Protecteur",
+      "effects": {
+        "guard_power": 10
+      }
+    },
+    {
+      "id": "resourceful",
+      "name": "Débrouillard",
+      "polarity": "positive",
+      "description": "Débrouillard",
+      "effects": {
+        "item_efficiency": 12
+      }
+    },
+    {
+      "id": "hopeful",
+      "name": "Porte-espoir",
+      "polarity": "positive",
+      "description": "Porte-espoir",
+      "effects": {
+        "hope_gain": 10
+      }
+    },
+    {
+      "id": "survivor",
+      "name": "Survivant",
+      "polarity": "positive",
+      "description": "Survivant",
+      "effects": {
+        "critical_survival": 12
+      }
+    },
+    {
+      "id": "disciplined",
+      "name": "Discipliné",
+      "polarity": "positive",
+      "description": "Discipliné",
+      "effects": {
+        "accuracy": 7,
+        "madness_resistance": 5
+      }
+    },
+    {
+      "id": "empathetic",
+      "name": "Empathique",
+      "polarity": "positive",
+      "description": "Empathique",
+      "effects": {
+        "party_fear_relief": 3
+      }
+    },
+    {
+      "id": "relentless",
+      "name": "Implacable",
+      "polarity": "positive",
+      "description": "Implacable",
+      "effects": {
+        "damage_vs_wounded": 12
+      }
+    },
+    {
+      "id": "arachnid_fighter",
+      "name": "Combattant d’arachnides",
+      "polarity": "positive",
+      "description": "Combattant d’arachnides",
+      "effects": {
+        "damage_vs_arachnid": 15,
+        "fear_resistance_arachnid": 25
+      }
+    },
+    {
+      "id": "night_hardened",
+      "name": "Aguerri des ténèbres",
+      "polarity": "positive",
+      "description": "Aguerri des ténèbres",
+      "effects": {
+        "accuracy_darkness": 10,
+        "fear_resistance_darkness": 25
+      }
+    },
+    {
+      "id": "undead_hunter",
+      "name": "Chasseur de morts-vivants",
+      "polarity": "positive",
+      "description": "Chasseur de morts-vivants",
+      "effects": {
+        "damage_vs_undead": 15,
+        "fear_resistance_undead": 25
+      }
+    },
+    {
+      "id": "blood_hardened",
+      "name": "Endurci au sang",
+      "polarity": "positive",
+      "description": "Endurci au sang",
+      "effects": {
+        "bleed_resistance": 15,
+        "fear_resistance_blood": 25
+      }
+    },
+    {
+      "id": "firewalker",
+      "name": "Marche-feu",
+      "polarity": "positive",
+      "description": "Marche-feu",
+      "effects": {
+        "fire_resistance": 15,
+        "fear_resistance_fire": 25
+      }
+    },
+    {
+      "id": "delver",
+      "name": "Explorateur des profondeurs",
+      "polarity": "positive",
+      "description": "Explorateur des profondeurs",
+      "effects": {
+        "fear_resistance_confined": 25,
+        "trap_awareness": 10
+      }
+    },
+    {
+      "id": "stoic",
+      "name": "Stoïque",
+      "polarity": "positive",
+      "description": "Résiste mieux à la Folie lorsque la situation se dégrade.",
+      "effects": {
+        "madness_resistance": 10
+      }
+    },
+    {
+      "id": "duelist_instinct",
+      "name": "Instinct du duelliste",
+      "polarity": "positive",
+      "description": "Saisit plus souvent l’occasion d’une riposte.",
+      "effects": {
+        "riposte_chance": 8
+      }
+    },
+    {
+      "id": "healer_touch",
+      "name": "Main secourable",
+      "polarity": "positive",
+      "description": "Prodigue des soins plus efficaces.",
+      "effects": {
+        "healing_power": 10
+      }
+    },
+    {
+      "id": "inspiring",
+      "name": "Inspirant",
+      "polarity": "positive",
+      "description": "Rassure le groupe et accélère le retour de l’Espoir.",
+      "effects": {
+        "party_fear_relief": 2,
+        "hope_gain": 6
+      }
+    },
+    {
+      "id": "ambidextrous",
+      "name": "Ambidextre",
+      "polarity": "positive",
+      "description": "Combat sans pénalité avec l’autre bras si le bras dominant est inutilisable. Ne permet jamais d’utiliser une arme à deux mains avec un seul bras.",
+      "effects": {
+        "ignore_one_handed_arm_penalty": 1
+      },
+      "contexts": [
+        "arm_injured",
+        "arm_lost",
+        "one_handed_weapon"
+      ]
+    },
+    {
+      "id": "alternate_support",
+      "name": "Appui alterné",
+      "polarity": "positive",
+      "description": "Compense partiellement une blessure à une jambe et conserve un changement de rang ralenti.",
+      "effects": {
+        "leg_injury_dodge_recovery": 8,
+        "leg_injury_movement_recovery": 10
+      },
+      "contexts": [
+        "leg_injured"
+      ]
+    },
+    {
+      "id": "pain_endurance",
+      "name": "Endurance à la douleur",
+      "polarity": "positive",
+      "description": "Réduit les malus immédiats des blessures sans les soigner ni empêcher leur aggravation.",
+      "effects": {
+        "persistent_injury_debuff_reduction_percent": 25
+      },
+      "contexts": [
+        "injured"
+      ]
+    },
+    {
+      "id": "improviser",
+      "name": "Improvisateur",
+      "polarity": "positive",
+      "description": "Conserve une attaque minimale lorsque son arme ou son bras armé devient inutilisable.",
+      "effects": {
+        "unarmed_fallback_damage_percent": 65
+      },
+      "contexts": [
+        "weapon_disabled",
+        "arm_injured"
+      ]
+    },
+    {
+      "id": "ground_fighter",
+      "name": "Combat au sol",
+      "polarity": "positive",
+      "description": "Conserve une garde, une attaque et un repli limités après une chute ou avec une jambe inutilisable.",
+      "effects": {
+        "ground_guard_recovery": 8,
+        "ground_action_access": 1
+      },
+      "contexts": [
+        "knocked_down",
+        "leg_critical"
+      ]
+    }
+  ],
+  "negatives": [
+    {
+      "id": "arachnophobia",
+      "name": "Arachnophobie",
+      "polarity": "negative",
+      "description": "Arachnophobie",
+      "effects": {
+        "fear_gain_arachnid": 14,
+        "accuracy_vs_arachnid": -10
+      },
+      "evolution": {
+        "exposure": "arachnid",
+        "threshold": 12,
+        "evolves_to": "arachnid_fighter"
+      }
+    },
+    {
+      "id": "nyctophobia",
+      "name": "Peur du noir",
+      "polarity": "negative",
+      "description": "Peur du noir",
+      "effects": {
+        "fear_gain_darkness": 12,
+        "accuracy_darkness": -8
+      },
+      "evolution": {
+        "exposure": "darkness",
+        "threshold": 15,
+        "evolves_to": "night_hardened"
+      }
+    },
+    {
+      "id": "necrophobia",
+      "name": "Peur des morts",
+      "polarity": "negative",
+      "description": "Peur des morts",
+      "effects": {
+        "fear_gain_undead": 12,
+        "damage_vs_undead": -8
+      },
+      "evolution": {
+        "exposure": "undead",
+        "threshold": 15,
+        "evolves_to": "undead_hunter"
+      }
+    },
+    {
+      "id": "hemophobia",
+      "name": "Peur du sang",
+      "polarity": "negative",
+      "description": "Peur du sang",
+      "effects": {
+        "fear_gain_blood": 10,
+        "bleed_resistance": -10
+      },
+      "evolution": {
+        "exposure": "blood",
+        "threshold": 20,
+        "evolves_to": "blood_hardened"
+      }
+    },
+    {
+      "id": "pyrophobia",
+      "name": "Peur du feu",
+      "polarity": "negative",
+      "description": "Peur du feu",
+      "effects": {
+        "fear_gain_fire": 14,
+        "fire_resistance": -12
+      },
+      "evolution": {
+        "exposure": "fire",
+        "threshold": 12,
+        "evolves_to": "firewalker"
+      }
+    },
+    {
+      "id": "claustrophobia",
+      "name": "Claustrophobie",
+      "polarity": "negative",
+      "description": "Claustrophobie",
+      "effects": {
+        "fear_gain_confined": 10,
+        "dodge_chance": -5
+      },
+      "evolution": {
+        "exposure": "confined",
+        "threshold": 20,
+        "evolves_to": "delver"
+      }
+    },
+    {
+      "id": "fragile",
+      "name": "Fragile",
+      "polarity": "negative",
+      "description": "Fragile",
+      "effects": {
+        "max_hp_percent": -8
+      },
+      "evolution": null
+    },
+    {
+      "id": "impulsive",
+      "name": "Impulsif",
+      "polarity": "negative",
+      "description": "Impulsif",
+      "effects": {
+        "accuracy": -7,
+        "damage_bonus": 5
+      },
+      "evolution": null
+    },
+    {
+      "id": "cowardly",
+      "name": "Couard",
+      "polarity": "negative",
+      "description": "Couard",
+      "effects": {
+        "panic_resistance": -15,
+        "retreat_bias": 15
+      },
+      "evolution": null
+    },
+    {
+      "id": "distrustful",
+      "name": "Méfiant",
+      "polarity": "negative",
+      "description": "Méfiant",
+      "effects": {
+        "creature_synergy": -10
+      },
+      "evolution": null
+    },
+    {
+      "id": "superstitious",
+      "name": "Superstitieux",
+      "polarity": "negative",
+      "description": "Superstitieux",
+      "effects": {
+        "madness_resistance": -8,
+        "ritual_power": 5
+      },
+      "evolution": null
+    },
+    {
+      "id": "slow_recovery",
+      "name": "Récupération lente",
+      "polarity": "negative",
+      "description": "Récupération lente",
+      "effects": {
+        "recovery_speed": -12
+      },
+      "evolution": null
+    },
+    {
+      "id": "myopic",
+      "name": "Myope",
+      "polarity": "negative",
+      "description": "Distingue mal les cibles éloignées.",
+      "effects": {
+        "precision": -8
+      },
+      "evolution": null
+    },
+    {
+      "id": "clumsy",
+      "name": "Maladroit",
+      "polarity": "negative",
+      "description": "Se replace et esquive moins efficacement.",
+      "effects": {
+        "dodge_chance": -7
+      },
+      "evolution": null
+    },
+    {
+      "id": "vulnerable",
+      "name": "Vulnérable",
+      "polarity": "negative",
+      "description": "Encaisse moins bien les impacts physiques.",
+      "effects": {
+        "physical_resistance": -8
+      },
+      "evolution": null
+    },
+    {
+      "id": "weak_willed",
+      "name": "Volonté fragile",
+      "polarity": "negative",
+      "description": "Cède plus vite à la Folie.",
+      "effects": {
+        "madness_resistance": -10
+      },
+      "evolution": null
+    },
+    {
+      "id": "pessimistic",
+      "name": "Pessimiste",
+      "polarity": "negative",
+      "description": "Retrouve plus lentement l’Espoir.",
+      "effects": {
+        "hope_gain": -10
+      },
+      "evolution": null
+    },
+    {
+      "id": "selfish",
+      "name": "Égoïste",
+      "polarity": "negative",
+      "description": "Apaise moins efficacement la Peur de ses alliés.",
+      "effects": {
+        "party_fear_relief": -2
+      },
+      "evolution": null
+    },
+    {
+      "id": "reckless",
+      "name": "Inconscient",
+      "polarity": "negative",
+      "description": "Frappe plus fort mais néglige sa garde.",
+      "effects": {
+        "damage_bonus": 4,
+        "guard_power": -9
+      },
+      "evolution": null
+    },
+    {
+      "id": "sickly",
+      "name": "Maladif",
+      "polarity": "negative",
+      "description": "Résiste mal aux gaz et aux poisons.",
+      "effects": {
+        "poison_resistance": -12
+      },
+      "evolution": null
+    },
+    {
+      "id": "hemophiliac",
+      "name": "Hémophile",
+      "polarity": "negative",
+      "description": "Subit plus durement les effets de saignement.",
+      "effects": {
+        "bleed_resistance": -15
+      },
+      "evolution": null
+    },
+    {
+      "id": "heavy_sleeper",
+      "name": "Sommeil lourd",
+      "polarity": "negative",
+      "description": "Réagit tardivement aux pièges et aux embuscades.",
+      "effects": {
+        "trap_awareness": -10
+      },
+      "evolution": null
+    },
+    {
+      "id": "vindictive",
+      "name": "Rancunier",
+      "polarity": "negative",
+      "description": "Cherche la riposte au détriment des soins.",
+      "effects": {
+        "riposte_chance": 4,
+        "healing_power": -6
+      },
+      "evolution": null
+    },
+    {
+      "id": "shaky_hands",
+      "name": "Mains tremblantes",
+      "polarity": "negative",
+      "description": "Manque de précision dans les instants décisifs.",
+      "effects": {
+        "critical_chance": -4,
+        "precision": -5
+      },
+      "evolution": null
+    },
+    {
+      "id": "exhaustible",
+      "name": "Épuisable",
+      "polarity": "negative",
+      "description": "Récupère lentement et supporte moins bien les longues épreuves.",
+      "effects": {
+        "recovery_speed": -10,
+        "max_hp_percent": -4
+      },
+      "evolution": null
+    }
+  ],
+  "exposure_sources": {
+    "arachnid": "Combattre ou survivre à une rencontre avec des arachnides",
+    "darkness": "Traverser des salles dans l’obscurité",
+    "undead": "Combattre des morts-vivants",
+    "blood": "Voir des saignements ou mutilations",
+    "fire": "Subir ou traverser un danger de feu",
+    "confined": "Terminer une salle étroite ou souterraine"
+  },
+  "enemy_family_map": {
+    "4": "confined",
+    "10": "arachnid",
+    "14": "arachnid",
+    "15": "undead",
+    "17": "arachnid",
+    "20": "undead",
+    "29": "confined",
+    "32": "arachnid",
+    "33": "undead"
+  },
+  "catalog_rules": {
+    "minimum_positive_catalog": 20,
+    "maximum_positive_catalog": 30,
+    "minimum_negative_catalog": 20,
+    "maximum_negative_catalog": 30
+  }
+}

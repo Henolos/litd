@@ -1,0 +1,897 @@
+{
+  "version": 1,
+  "generator": "tools/blender/generate_prop_jobs.py",
+  "jobs": [
+    {
+      "job_id": "prop_ritual_dagger",
+      "prop_id": "ritual_dagger",
+      "name": "Dague rituelle",
+      "category": "equipment",
+      "dimensions_m": [
+        1.05,
+        0.08,
+        0.12
+      ],
+      "material_profile": "iron_tarnished",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_grip",
+      "output": "builds/props/equipment/ritual_dagger",
+      "equipment_slot": "weapon"
+    },
+    {
+      "job_id": "prop_occult_staff",
+      "prop_id": "occult_staff",
+      "name": "Bâton occulte",
+      "category": "equipment",
+      "dimensions_m": [
+        1.05,
+        0.08,
+        0.12
+      ],
+      "material_profile": "iron_tarnished",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_grip",
+      "output": "builds/props/equipment/occult_staff",
+      "equipment_slot": "weapon"
+    },
+    {
+      "job_id": "prop_reinforced_robe",
+      "prop_id": "reinforced_robe",
+      "name": "Robe renforcée",
+      "category": "equipment",
+      "dimensions_m": [
+        0.65,
+        0.95,
+        0.3
+      ],
+      "material_profile": "cloth_soot",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_spine",
+      "output": "builds/props/equipment/reinforced_robe",
+      "equipment_slot": "armor"
+    },
+    {
+      "job_id": "prop_great_axe",
+      "prop_id": "great_axe",
+      "name": "Grande hache",
+      "category": "equipment",
+      "dimensions_m": [
+        1.05,
+        0.08,
+        0.12
+      ],
+      "material_profile": "iron_tarnished",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_grip",
+      "output": "builds/props/equipment/great_axe",
+      "equipment_slot": "weapon"
+    },
+    {
+      "job_id": "prop_war_hammer",
+      "prop_id": "war_hammer",
+      "name": "Marteau de guerre",
+      "category": "equipment",
+      "dimensions_m": [
+        1.05,
+        0.08,
+        0.12
+      ],
+      "material_profile": "iron_tarnished",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_grip",
+      "output": "builds/props/equipment/war_hammer",
+      "equipment_slot": "weapon"
+    },
+    {
+      "job_id": "prop_bone_harness",
+      "prop_id": "bone_harness",
+      "name": "Harnois d’os",
+      "category": "equipment",
+      "dimensions_m": [
+        0.65,
+        0.95,
+        0.3
+      ],
+      "material_profile": "cloth_soot",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_spine",
+      "output": "builds/props/equipment/bone_harness",
+      "equipment_slot": "armor"
+    },
+    {
+      "job_id": "prop_ceremonial_mace",
+      "prop_id": "ceremonial_mace",
+      "name": "Masse cérémonielle",
+      "category": "equipment",
+      "dimensions_m": [
+        1.05,
+        0.08,
+        0.12
+      ],
+      "material_profile": "iron_tarnished",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_grip",
+      "output": "builds/props/equipment/ceremonial_mace",
+      "equipment_slot": "weapon"
+    },
+    {
+      "job_id": "prop_sacred_staff",
+      "prop_id": "sacred_staff",
+      "name": "Bâton sacré",
+      "category": "equipment",
+      "dimensions_m": [
+        1.05,
+        0.08,
+        0.12
+      ],
+      "material_profile": "iron_tarnished",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_grip",
+      "output": "builds/props/equipment/sacred_staff",
+      "equipment_slot": "weapon"
+    },
+    {
+      "job_id": "prop_reinforced_habit",
+      "prop_id": "reinforced_habit",
+      "name": "Habit renforcé",
+      "category": "equipment",
+      "dimensions_m": [
+        0.65,
+        0.95,
+        0.3
+      ],
+      "material_profile": "cloth_soot",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_spine",
+      "output": "builds/props/equipment/reinforced_habit",
+      "equipment_slot": "armor"
+    },
+    {
+      "job_id": "prop_watcher_mace",
+      "prop_id": "watcher_mace",
+      "name": "Masse d’armes",
+      "category": "equipment",
+      "dimensions_m": [
+        1.05,
+        0.08,
+        0.12
+      ],
+      "material_profile": "iron_tarnished",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_grip",
+      "output": "builds/props/equipment/watcher_mace",
+      "equipment_slot": "weapon"
+    },
+    {
+      "job_id": "prop_guard_spear",
+      "prop_id": "guard_spear",
+      "name": "Lance de garde",
+      "category": "equipment",
+      "dimensions_m": [
+        1.05,
+        0.08,
+        0.12
+      ],
+      "material_profile": "iron_tarnished",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_grip",
+      "output": "builds/props/equipment/guard_spear",
+      "equipment_slot": "weapon"
+    },
+    {
+      "job_id": "prop_lamellar_armor",
+      "prop_id": "lamellar_armor",
+      "name": "Armure lamellaire",
+      "category": "equipment",
+      "dimensions_m": [
+        0.65,
+        0.95,
+        0.3
+      ],
+      "material_profile": "cloth_soot",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_spine",
+      "output": "builds/props/equipment/lamellar_armor",
+      "equipment_slot": "armor"
+    },
+    {
+      "job_id": "prop_void_seal_ring",
+      "prop_id": "void_seal_ring",
+      "name": "Anneau du sceau vide",
+      "category": "equipment",
+      "dimensions_m": [
+        0.06,
+        0.02,
+        0.06
+      ],
+      "material_profile": "bone_old",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_finger",
+      "output": "builds/props/equipment/void_seal_ring",
+      "equipment_slot": "ring"
+    },
+    {
+      "job_id": "prop_whisper_ring",
+      "prop_id": "whisper_ring",
+      "name": "Anneau des murmures",
+      "category": "equipment",
+      "dimensions_m": [
+        0.06,
+        0.02,
+        0.06
+      ],
+      "material_profile": "bone_old",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_finger",
+      "output": "builds/props/equipment/whisper_ring",
+      "equipment_slot": "ring"
+    },
+    {
+      "job_id": "prop_black_star_necklace",
+      "prop_id": "black_star_necklace",
+      "name": "Collier de l’étoile noire",
+      "category": "equipment",
+      "dimensions_m": [
+        0.22,
+        0.32,
+        0.05
+      ],
+      "material_profile": "iron_tarnished",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_neck",
+      "output": "builds/props/equipment/black_star_necklace",
+      "equipment_slot": "necklace"
+    },
+    {
+      "job_id": "prop_shatter_ring",
+      "prop_id": "shatter_ring",
+      "name": "Anneau du fracas",
+      "category": "equipment",
+      "dimensions_m": [
+        0.06,
+        0.02,
+        0.06
+      ],
+      "material_profile": "bone_old",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_finger",
+      "output": "builds/props/equipment/shatter_ring",
+      "equipment_slot": "ring"
+    },
+    {
+      "job_id": "prop_iron_blood_ring",
+      "prop_id": "iron_blood_ring",
+      "name": "Anneau du sang de fer",
+      "category": "equipment",
+      "dimensions_m": [
+        0.06,
+        0.02,
+        0.06
+      ],
+      "material_profile": "bone_old",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_finger",
+      "output": "builds/props/equipment/iron_blood_ring",
+      "equipment_slot": "ring"
+    },
+    {
+      "job_id": "prop_bone_torc",
+      "prop_id": "bone_torc",
+      "name": "Torque d’os",
+      "category": "equipment",
+      "dimensions_m": [
+        0.22,
+        0.32,
+        0.05
+      ],
+      "material_profile": "iron_tarnished",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_neck",
+      "output": "builds/props/equipment/bone_torc",
+      "equipment_slot": "necklace"
+    },
+    {
+      "job_id": "prop_dawn_ring",
+      "prop_id": "dawn_ring",
+      "name": "Anneau de l’aube",
+      "category": "equipment",
+      "dimensions_m": [
+        0.06,
+        0.02,
+        0.06
+      ],
+      "material_profile": "bone_old",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_finger",
+      "output": "builds/props/equipment/dawn_ring",
+      "equipment_slot": "ring"
+    },
+    {
+      "job_id": "prop_vow_ring",
+      "prop_id": "vow_ring",
+      "name": "Anneau du vœu",
+      "category": "equipment",
+      "dimensions_m": [
+        0.06,
+        0.02,
+        0.06
+      ],
+      "material_profile": "bone_old",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_finger",
+      "output": "builds/props/equipment/vow_ring",
+      "equipment_slot": "ring"
+    },
+    {
+      "job_id": "prop_reliquary_necklace",
+      "prop_id": "reliquary_necklace",
+      "name": "Collier-reliquaire",
+      "category": "equipment",
+      "dimensions_m": [
+        0.22,
+        0.32,
+        0.05
+      ],
+      "material_profile": "iron_tarnished",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_neck",
+      "output": "builds/props/equipment/reliquary_necklace",
+      "equipment_slot": "necklace"
+    },
+    {
+      "job_id": "prop_sentinel_ring",
+      "prop_id": "sentinel_ring",
+      "name": "Anneau de la sentinelle",
+      "category": "equipment",
+      "dimensions_m": [
+        0.06,
+        0.02,
+        0.06
+      ],
+      "material_profile": "bone_old",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_finger",
+      "output": "builds/props/equipment/sentinel_ring",
+      "equipment_slot": "ring"
+    },
+    {
+      "job_id": "prop_counter_ring",
+      "prop_id": "counter_ring",
+      "name": "Anneau de contre-garde",
+      "category": "equipment",
+      "dimensions_m": [
+        0.06,
+        0.02,
+        0.06
+      ],
+      "material_profile": "bone_old",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_finger",
+      "output": "builds/props/equipment/counter_ring",
+      "equipment_slot": "ring"
+    },
+    {
+      "job_id": "prop_watch_necklace",
+      "prop_id": "watch_necklace",
+      "name": "Collier de veille",
+      "category": "equipment",
+      "dimensions_m": [
+        0.22,
+        0.32,
+        0.05
+      ],
+      "material_profile": "iron_tarnished",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_neck",
+      "output": "builds/props/equipment/watch_necklace",
+      "equipment_slot": "necklace"
+    },
+    {
+      "job_id": "prop_rust_blade",
+      "prop_id": "rust_blade",
+      "name": "Lame rouillée",
+      "category": "equipment",
+      "dimensions_m": [
+        1.05,
+        0.08,
+        0.12
+      ],
+      "material_profile": "iron_tarnished",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_grip",
+      "output": "builds/props/equipment/rust_blade",
+      "equipment_slot": "weapon"
+    },
+    {
+      "job_id": "prop_veil_armor",
+      "prop_id": "veil_armor",
+      "name": "Armure du Voile",
+      "category": "equipment",
+      "dimensions_m": [
+        0.65,
+        0.95,
+        0.3
+      ],
+      "material_profile": "cloth_soot",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_spine",
+      "output": "builds/props/equipment/veil_armor",
+      "equipment_slot": "armor"
+    },
+    {
+      "job_id": "prop_bone_ring",
+      "prop_id": "bone_ring",
+      "name": "Anneau d’os",
+      "category": "equipment",
+      "dimensions_m": [
+        0.06,
+        0.02,
+        0.06
+      ],
+      "material_profile": "bone_old",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_finger",
+      "output": "builds/props/equipment/bone_ring",
+      "equipment_slot": "ring"
+    },
+    {
+      "job_id": "prop_campfire",
+      "prop_id": "campfire",
+      "name": "Feu de camp",
+      "category": "gameplay",
+      "dimensions_m": [
+        1.2,
+        1.0,
+        1.2
+      ],
+      "material_profile": "ember_emissive",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_interact",
+      "output": "builds/props/gameplay/campfire"
+    },
+    {
+      "job_id": "prop_resource_cache",
+      "prop_id": "resource_cache",
+      "name": "Cache de ressources",
+      "category": "gameplay",
+      "dimensions_m": [
+        1.0,
+        0.8,
+        0.8
+      ],
+      "material_profile": "wood_charred",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_loot",
+      "output": "builds/props/gameplay/resource_cache"
+    },
+    {
+      "job_id": "prop_shortcut_gate",
+      "prop_id": "shortcut_gate",
+      "name": "Porte de raccourci",
+      "category": "architecture",
+      "dimensions_m": [
+        2.4,
+        3.0,
+        0.35
+      ],
+      "material_profile": "iron_tarnished",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_interact",
+      "output": "builds/props/architecture/shortcut_gate"
+    },
+    {
+      "job_id": "prop_abbey_teleporter",
+      "prop_id": "abbey_teleporter",
+      "name": "Téléporteur ancestral",
+      "category": "gameplay",
+      "dimensions_m": [
+        3.0,
+        0.45,
+        3.0
+      ],
+      "material_profile": "stone_ash",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_teleport",
+      "output": "builds/props/gameplay/abbey_teleporter"
+    },
+    {
+      "job_id": "prop_harvestable_corpse",
+      "prop_id": "harvestable_corpse",
+      "name": "Cadavre récoltable",
+      "category": "gameplay",
+      "dimensions_m": [
+        1.8,
+        0.45,
+        0.65
+      ],
+      "material_profile": "cloth_soot",
+      "collections": [
+        "PROP",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "convex",
+      "socket": "SOCKET_harvest",
+      "output": "builds/props/gameplay/harvestable_corpse"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 420">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#111419"/><stop offset="1" stop-color="#1e2929"/></linearGradient></defs>
+  <rect width="320" height="420" rx="22" fill="url(#bg)"/>
+  <circle cx="160" cy="118" r="88" fill="#161c20" stroke="#c5a65b" stroke-width="4"/>
+  <path d="M98 102c12-49 35-72 65-72 39 0 64 27 70 78-32-10-87-13-135-6z" fill="#322b27"/>
+  <path d="M109 111c3 62 18 104 52 104 37 0 52-44 51-105-27-13-77-12-103 1z" fill="#d1aa88"/>
+  <path d="M126 140h22M175 140h21" stroke="#261c19" stroke-width="6" stroke-linecap="round"/>
+  <path d="M135 136c-10-11-24-12-34-3M188 136c10-11 24-12 34-3" fill="none" stroke="#8f7846" stroke-width="4"/>
+  <path d="M150 181c9 6 19 6 29 0" fill="none" stroke="#6a4038" stroke-width="5" stroke-linecap="round"/>
+  <path d="M69 386c11-99 43-154 92-154 50 0 83 55 91 154" fill="#233033" stroke="#c5a65b" stroke-width="4"/>
+  <path d="M108 255l52 41 52-41" fill="none" stroke="#c7c8bd" stroke-width="8"/>
+  <path d="M160 296v90" stroke="#768d88" stroke-width="5"/>
+  <path d="M146 327h28M160 313v28" stroke="#c5a65b" stroke-width="5" stroke-linecap="round"/>
+  <text x="160" y="406" text-anchor="middle" font-family="sans-serif" font-size="24" letter-spacing="3" fill="#e7d8ae">AURÉLIEN</text>
+</svg>

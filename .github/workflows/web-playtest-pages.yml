@@ -1,0 +1,229 @@
+name: LITD Web Playtest PWA
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**'
+      - '!docs/**'
+      - '!**/*.md'
+      - '!.github/**'
+      - 'docs/ci-status/**'
+      - '.github/workflows/web-playtest-pages.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/web-playtest-pages.yml'
+      - 'tools/ci/generate_godot_status.py'
+      - 'tools/ci/generate_build_provenance.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: litd-web-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    if: ${{ github.actor != 'dependabot[bot]' || !startsWith(github.head_ref, 'dependabot/github_actions/') }}
+    name: Export Godot Web PWA
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.7.2
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Prepare Godot Web exporter
+        shell: bash
+        env:
+          HOME: /root
+        run: |
+          set -euo pipefail
+          EXPECTED_TEMPLATES="$HOME/.local/share/godot/export_templates/4.7.2.stable"
+          if [[ ! -f "$EXPECTED_TEMPLATES/web_nothreads_release.zip" ]]; then
+            SOURCE_RELEASE="$(find /root/.local/share/godot /opt /usr/local /usr/share -type f -name 'web_nothreads_release.zip' -print -quit 2>/dev/null || true)"
+            if [[ -z "$SOURCE_RELEASE" ]]; then
+              echo "Godot Web export templates not found in godot-ci image" >&2
+              find /root/.local/share/godot /opt /usr/local /usr/share -maxdepth 7 -type f -name 'web*' -print 2>/dev/null | head -200 || true
+              exit 1
+            fi
+            SOURCE_TEMPLATES="$(dirname "$SOURCE_RELEASE")"
+            mkdir -p "$EXPECTED_TEMPLATES"
+            cp -a "$SOURCE_TEMPLATES"/. "$EXPECTED_TEMPLATES"/
+          fi
+          test -f "$EXPECTED_TEMPLATES/web_nothreads_release.zip"
+          test -f "$EXPECTED_TEMPLATES/web_nothreads_debug.zip"
+          echo "WEB_CI_ENV_OK templates=$EXPECTED_TEMPLATES"
+
+      - name: Prepare Python CI tooling
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! command -v python3 >/dev/null 2>&1; then
+            apt-get update
+            apt-get install -y --no-install-recommends python3
+            rm -rf /var/lib/apt/lists/*
+          fi
+          python3 --version
+
+      - name: Export Web release (verbose)
+        shell: bash
+        env:
+          HOME: /root
+        run: |
+          set -euo pipefail
+          mkdir -p build/web build/logs
+          set +e
+          godot --headless --verbose --path . --export-release "Web" build/web/index.html 2>&1 | tee build/logs/godot-web-export.log
+          GODOT_STATUS=${PIPESTATUS[0]}
+          set -e
+
+          echo "" | tee -a build/logs/godot-web-export.log
+          echo "===== GODOT DIAGNOSTIC SUMMARY =====" | tee -a build/logs/godot-web-export.log
+          grep -Ein '(^|[^A-Za-z])(ERROR|WARNING|SCRIPT ERROR|Parse Error|Failed|Invalid|Orphan|Leak)([^A-Za-z]|$)' build/logs/godot-web-export.log \
+            | tee build/logs/godot-diagnostics.log || true
+
+          echo "" | tee -a build/logs/godot-web-export.log
+          echo "===== REFERENCED PROJECT FILES =====" | tee -a build/logs/godot-web-export.log
+          grep -Eo 'res://[^[:space:]"'\''<>)]+' build/logs/godot-web-export.log \
+            | sed 's/[,:;.]$//' \
+            | sort -u \
+            | tee build/logs/godot-referenced-files.log || true
+
+          echo "Godot exit code: $GODOT_STATUS" | tee -a build/logs/godot-web-export.log
+          exit "$GODOT_STATUS"
+
+      - name: Generate Godot control dashboard
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/ci/generate_godot_status.py \
+            --log build/logs/godot-web-export.log \
+            --diagnostics build/logs/godot-diagnostics.log \
+            --refs build/logs/godot-referenced-files.log \
+            --output-html build/web/godot-status.html \
+            --output-json build/web/godot-status.json \
+            --repo "$GITHUB_REPOSITORY" \
+            --workflow web-playtest-pages.yml \
+            --run-number "$GITHUB_RUN_NUMBER" \
+            --run-id "$GITHUB_RUN_ID" \
+            --sha "$GITHUB_SHA"
+
+      - name: Generate build provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/ci/generate_build_provenance.py \
+            --output build/web/build-provenance.json \
+            --sha "$GITHUB_SHA" \
+            --branch "$GITHUB_REF_NAME" \
+            --run-id "$GITHUB_RUN_ID"
+
+      - name: Validate Web payload, provenance and dashboard
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s build/web/index.html
+          test -n "$(find build/web -maxdepth 1 -type f -name '*.wasm' -print -quit)"
+          test -n "$(find build/web -maxdepth 1 -type f \( -name '*.pck' -o -name '*.zip' \) -print -quit)"
+          test -s build/web/build-provenance.json
+          test -s build/web/godot-status.html
+          test -s build/web/godot-status.json
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          p = json.loads(Path('build/web/build-provenance.json').read_text(encoding='utf-8'))
+          expected = os.environ['GITHUB_SHA']
+          if p.get('git_sha') != expected:
+              raise SystemExit(f"STALE_BUILD_BLOCKED: provenance={p.get('git_sha')} expected={expected}")
+          if not isinstance(p.get('canon_version'), int):
+              raise SystemExit('BUILD_PROVENANCE_ERROR: canon_version missing')
+          status = json.loads(Path('build/web/godot-status.json').read_text(encoding='utf-8'))
+          if status.get('exit_code') != 0 or status.get('progress') != 100:
+              raise SystemExit(f"GODOT_DASHBOARD_INVALID: exit={status.get('exit_code')} progress={status.get('progress')}")
+          if not isinstance(status.get('project_files_count'), int):
+              raise SystemExit('GODOT_DASHBOARD_INVALID: project_files_count missing')
+          print(f"PLAYTEST_PROVENANCE_VERIFIED sha={expected} canon={p['canon_version']}")
+          print(f"GODOT_DASHBOARD_VERIFIED files={status['project_files_count']} errors={len(status.get('errors', []))} warnings={len(status.get('warnings', []))}")
+          PY
+          echo "Web export files:"
+          find build/web -maxdepth 1 -type f -printf '%f\n' | sort
+
+      - name: Upload Godot diagnostic logs
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: godot-web-diagnostics-${{ github.run_number }}
+          path: |
+            build/logs
+            build/web/godot-status.html
+            build/web/godot-status.json
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Force fresh PWA service-worker takeover
+        shell: bash
+        run: |
+          set -euo pipefail
+          SERVICE_WORKER="$(find build/web -maxdepth 1 -type f \( -name '*.service.worker.js' -o -name '*service-worker*.js' -o -name '*service_worker*.js' \) -print -quit)"
+          if [[ -z "$SERVICE_WORKER" ]]; then
+            echo "Godot PWA service worker not found" >&2
+            find build/web -maxdepth 1 -type f -printf '%f\n' | sort >&2
+            exit 1
+          fi
+
+          {
+            printf '%s\n' ''
+            printf '%s\n' '// LITD playtest freshness guard: a newly deployed build must take control immediately.'
+            printf '%s\n' "self.addEventListener('install', () => {"
+            printf '%s\n' '  self.skipWaiting();'
+            printf '%s\n' '});'
+            printf '%s\n' "self.addEventListener('activate', (event) => {"
+            printf '%s\n' '  event.waitUntil((async () => {'
+            printf '%s\n' '    await self.clients.claim();'
+            printf '%s\n' "    const windows = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });"
+            printf '%s\n' '    await Promise.all(windows.map((client) => client.navigate(client.url)));'
+            printf '%s\n' '  })());'
+            printf '%s\n' '});'
+          } >> "$SERVICE_WORKER"
+
+          grep -Fq "self.skipWaiting();" "$SERVICE_WORKER"
+          grep -Fq "await self.clients.claim();" "$SERVICE_WORKER"
+          echo "PWA_FRESH_TAKEOVER_OK service_worker=$SERVICE_WORKER"
+
+      - name: Include CI status dashboard in Pages artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s docs/ci-status/index.html
+          mkdir -p build/web/ci-status
+          cp -a docs/ci-status/. build/web/ci-status/
+          test -s build/web/ci-status/index.html
+          echo "CI_STATUS_PAGE_INCLUDED path=build/web/ci-status/index.html"
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b
+        with:
+          path: build/web
+
+  deploy:
+    name: Publish iPhone playtest
+    needs: build
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e

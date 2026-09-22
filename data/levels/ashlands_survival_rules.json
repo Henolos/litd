@@ -1,0 +1,71 @@
+{
+  "version": 4,
+  "expedition_inventory": {
+    "food": 8,
+    "water": 8,
+    "bandages": 4,
+    "light": 8,
+    "camp_tools": 3,
+    "medicine": 2,
+    "grenades": 2
+  },
+  "maxima": {
+    "food": 12,
+    "water": 12,
+    "bandages": 8,
+    "light": 10,
+    "camp_tools": 6,
+    "medicine": 6,
+    "grenades": 4
+  },
+  "zone_entry_cost": {
+    "food": 1,
+    "water": 1
+  },
+  "campfire_cost": {
+    "food": 1,
+    "water": 1,
+    "camp_tools": 1
+  },
+  "campfire_effects": {
+    "party_heal_ratio": 0.15,
+    "stress_reduction": 10,
+    "light_restore": 2
+  },
+  "combat_items": {
+    "bandages": {"label": "Bandage", "effect": "heal", "heal": 18, "target": "ally"},
+    "medicine": {"label": "Médecine", "effect": "heal", "heal": 35, "fear_reduction": 6, "target": "ally"},
+    "grenades": {"label": "Grenade", "effect": "damage_all", "damage": [12, 18], "target": "all_enemies"}
+  },
+  "combat_item_transfer": {
+    "personal_carriers": true,
+    "using_item_on_ally_costs_action": true,
+    "giving_item_to_ally_costs_action": false,
+    "transfer_applies_item_effect": false,
+    "heroes_and_enemies_share_rule": true
+  },
+  "ash_pressure": {
+    "light_cost_on_dense_crossing": 1,
+    "stress_on_unlit_crossing": 4
+  },
+  "corpse_harvest": {
+    "crow": [{"item":"food","min":1,"max":2,"label":"Viande de corbeau"},{"item":"craft_feather","min":1,"max":3,"label":"Plumes noires"}],
+    "dog": [{"item":"food","min":1,"max":3,"label":"Viande"},{"item":"craft_hide","min":0,"max":1,"label":"Peau"}],
+    "humanoid": [{"item":"bandages","min":0,"max":1,"label":"Bandage"},{"item":"food","min":0,"max":1,"label":"Ration"},{"item":"craft_scrap","min":1,"max":3,"label":"Ferraille"}],
+    "undead": [{"item":"craft_bone","min":1,"max":3,"label":"Os"},{"item":"craft_funeral_residue","min":0,"max":1,"label":"Résidu funéraire"}]
+  },
+  "principles": {
+    "hub_only_full_resupply": true,
+    "field_loot_extends_but_never_replaces_resupply": true,
+    "zero_resources_increase_risk_not_instant_game_over": true,
+    "campfire_is_not_free_resupply": true,
+    "campfire_restores_control_but_not_full_health": true,
+    "combat_items_are_separate_from_skill_loadout": true,
+    "position_change_costs_turn": true,
+    "passing_costs_turn": true,
+    "using_healing_item_on_ally_costs_action": true,
+    "giving_item_to_ally_is_free_action": true,
+    "item_transfer_never_triggers_item_effect": true,
+    "enemy_item_action_cost_matches_heroes": true
+  }
+}

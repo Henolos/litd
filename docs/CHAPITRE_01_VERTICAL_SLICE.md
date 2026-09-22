@@ -1,0 +1,130 @@
+# Chapitre I — Verticale jouable
+
+## Objectif
+
+Le Chapitre I — **Survivre aux Terres de Cendre** — sert de référence de production pour tous les chapitres suivants.
+
+La boucle complète est :
+
+**Sanctuaire → exploration → survivants → feu de camp → créature → mini-boss → enquête → boss narratif → décision → retour au Sanctuaire.**
+
+L'interface permanente reste absente pendant l'exploration. Le HUD n'apparaît que dans les contextes utiles : combat, marchand, feu de camp ou interaction contextuelle explicite.
+
+### Couche de tension à prototyper
+
+La verticale doit également tester une boucle courte répétée à l'intérieur de l'expédition :
+
+**Lumière → exploration → risque → combat/événement → Folie/Espoir → butin → continuer ou extraire.**
+
+Cette couche ne remplace pas la structure narrative du chapitre. Elle lui donne une pression ludique continue.
+
+Pour le premier prototype :
+
+- la **Lumière** est une ressource de pression qui agit sur l'information disponible, le danger, la psychologie et certaines opportunités de récompense ;
+- une faible Lumière doit être **tentante et dangereuse**, jamais uniquement punitive ;
+- les combats et événements peuvent laisser une dette de Folie/Peur ou un gain d'Espoir qui influence la suite de l'expédition ;
+- le butin important trouvé pendant la run doit être visible comme **sécurisé** ou **encore exposé** ;
+- des jalons de la verticale doivent permettre de tester la décision **continuer / retourner au Sanctuaire**, sans présenter automatiquement le retour anticipé comme un échec ;
+- les séquences narratives obligatoires peuvent limiter ponctuellement l'extraction, mais la restriction doit être explicitée avant que le joueur engage la ressource concernée ;
+- le joueur doit pouvoir expliquer après une défaite quelles décisions ont progressivement créé la situation dangereuse.
+
+Les valeurs numériques sont volontairement laissées au prototype et au playtest. Les critères de mesure sont définis dans `docs/research/ROGUELIKE_DUNGEON_CRAWLER_BENCHMARK.md` et `docs/veilleurs/PLAYTEST_PROTOCOL.md`.
+
+## Les huit étapes
+
+1. **La route sous la cendre** — première exploration et découverte de la route.
+2. **Des voix dans la poussière** — secours aux survivants et premier combat standard.
+3. **Une lumière pour la nuit** — premier feu de camp, récupération et préparation.
+4. **Ce qui n'attaque plus** — première situation de coexistence/recrutement d'une créature.
+5. **Le Gardien du passage** — premier mini-boss et pic de difficulté.
+6. **La borne qui ne devrait pas être là** — trois archives obligatoires prouvent l'existence de traces du Voile antérieures à la Chute.
+7. **Le Témoin des Cendres** — boss final narratif du chapitre.
+8. **Ce que nous rapportons** — retour au Sanctuaire et résolution d'au moins deux décisions civiques.
+
+## Quêtes principales synchronisées
+
+### Sous les cendres
+Valide les étapes 1, 2, 3 et 5. Elle représente la survie matérielle et la sécurisation de la première route.
+
+### Les voix derrière les murs
+Valide les étapes 4 et 8. Elle relie directement les choix de coexistence aux premières crises politiques du Sanctuaire.
+
+### La borne qui ne devrait pas être là
+Valide les étapes 6 et 7. Elle introduit le mystère principal : certaines traces du Voile sont plus anciennes que la catastrophe actuelle.
+
+## Archives
+
+Le niveau conserve les **40 archives** prévues pour les Terres de Cendre.
+
+Trois seulement sont nécessaires à la progression principale. Huit constituent la cible recommandée d'une première verticale complète. Les autres restent facultatives afin de récompenser l'exploration, les retours et la curiosité sans bloquer la campagne.
+
+## Boss — Le Témoin des Cendres
+
+Le Témoin était un citoyen. Sa transformation provient d'une zone de réalité instable ; il n'est pas présenté comme un démon naturellement mauvais.
+
+### Phase 1 — Fragments de mémoire
+Le boss répète des gestes de sa vie antérieure. Le joueur qui attaque sans observer augmente inutilement la Peur du groupe.
+
+### Phase 2 — Glissement du réel
+La géométrie du combat devient instable. Certaines positions changent de valeur et la Lumière permet de stabiliser temporairement des zones.
+
+### Phase 3 — Reconnaissance
+Sous 25 % de vie, les actions non létales permettent de comprendre qu'une part du Témoin répond encore au monde commun.
+
+### Signature
+**Dernier Souvenir du Jour** : pendant quelques secondes, l'arène apparaît telle qu'elle existait avant la Chute, puis la vision se fissure.
+
+### Trois issues
+
+- **Achever le Témoin** — solution immédiate, légère perte d'intégrité de justice.
+- **Le stabiliser** — récompense la connaissance du Voile et la relation aux créatures/consciences altérées.
+- **Extraire sa mémoire** — apporte davantage de connaissances mais augmente la tension du Sanctuaire.
+
+Aucune issue n'est définie comme la réponse universellement correcte.
+
+## Retour au Sanctuaire
+
+La verticale ne se termine pas avec le boss. Le joueur doit revenir, consulter ce qu'il a appris et résoudre au moins deux crises locales. Le chapitre démontre ainsi que l'exploration et la politique font partie de la même boucle de jeu.
+
+## Récompense de chapitre
+
+Une verticale terminée donne des ressources, valide les trois quêtes principales du Chapitre I et ouvre le Chapitre II — **Les traces d'avant la Chute**.
+
+Révélation inscrite au journal :
+
+> **La Chute actuelle n'explique pas toutes les traces du Voile.**
+
+## Contrat pour les chapitres suivants
+
+Chaque chapitre majeur doit au minimum posséder :
+
+- une boucle exploration/retour complète ;
+- une mécanique ou situation nouvelle ;
+- un feu de camp ou espace de respiration lorsqu'il est pertinent ;
+- une découverte facultative et une découverte nécessaire ;
+- au moins un affrontement servant le récit ;
+- un boss dont les mécaniques racontent quelque chose ;
+- une conséquence au Sanctuaire ou dans le monde ;
+- une révélation qui ne repose pas sur une source unique ;
+- une progression enregistrée dans le journal ;
+- des embranchements persistants plutôt qu'un simple choix cosmétique.
+
+## Première carte de test — scénario détaillé
+
+**La Route sous la cendre** commence lorsque la compagnie quitte le Sanctuaire pour rouvrir une chaussée ensevelie. Une cloche sonne sous terre, des survivants se cachent dans les ruines et une borne porte des traces du Voile antérieures à la Chute. Le parcours se déroule en trois actes : sécuriser la route, confronter trois sources contradictoires, puis affronter le Témoin des Cendres et décider de son sort.
+
+Cinq fils secondaires complètent cette progression :
+
+1. **La cloche ensevelie** — sauvetage et choix d’usage collectif ;
+2. **Les noms dans la cendre** — mémoire des morts et Mémorial ;
+3. **Le dernier nécessaire** — ressources médicales et respect des dépouilles ;
+4. **Ce qui n’attaque plus** — coexistence, capture ou mise à mort d’une créature ;
+5. **Trois vérités pour une borne** — enquête par sources indépendantes ;
+
+Ces cinq quêtes sont toutes disponibles dans la carte de test ; leurs choix et contraintes préparent des variantes pour les prochaines visites.
+
+## Contrats de chasse rejouables
+
+Chaque donjon possède un tableau de trois primes générées à partir des ennemis réellement présents. Deux contrats peuvent être actifs simultanément. Les familles de contrats couvrent élimination, élite, capture, anatomie, victoire sans perte et chasse sous Peur.
+
+La graine est sauvegardée : recharger ne relance pas le tableau. Les contrats expirent après plusieurs expéditions et leurs récompenses suivent le niveau du donjon, la difficulté et une série de réussites plafonnée. La campagne ajoute deux contrats longs portant sur plusieurs donjons ou un chapitre entier.

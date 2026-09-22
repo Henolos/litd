@@ -1,0 +1,40 @@
+# Godot
+.godot/
+.import/
+*.translation
+
+# Builds and QA outputs
+build/
+reports/*.html
+reports/*.json
+reports/*.xml
+!reports/.gitkeep
+
+# Local voice references and consent registry
+local/voice_refs/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Local nested Git placeholder
+LITD/
+# Local SFX source library: raw licensed files, working derivatives, receipts and licence snapshots.
+# Only metadata contracts/registries are committed under data/audio/.
+local/audio_library/
+local/backups/
+local/reports/
+local/blender/
+local/music_pipeline/
+unreal/LITDValidation/Binaries/
+unreal/LITDValidation/DerivedDataCache/
+unreal/LITDValidation/Intermediate/
+unreal/LITDValidation/Saved/
+unreal/LITDValidation/.vs/

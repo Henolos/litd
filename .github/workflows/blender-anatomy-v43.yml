@@ -1,0 +1,54 @@
+name: Blender Anatomy v43
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'data/body_visual_runtime_v42.json'
+      - 'data/blender/anatomical_pipeline_v43.json'
+      - 'data/blender/character_jobs.json'
+      - 'data/combat_anatomy_v2.json'
+      - 'tools/blender/generate_anatomical_pipeline_v43.py'
+      - 'tools/blender/anatomical_pipeline_v43.py'
+      - 'tools/qa/anatomical_pipeline_v43_audit.py'
+      - '.github/workflows/blender-anatomy-v43.yml'
+  pull_request:
+    paths:
+      - 'data/body_visual_runtime_v42.json'
+      - 'data/blender/anatomical_pipeline_v43.json'
+      - 'data/blender/character_jobs.json'
+      - 'data/combat_anatomy_v2.json'
+      - 'tools/blender/generate_anatomical_pipeline_v43.py'
+      - 'tools/blender/anatomical_pipeline_v43.py'
+      - 'tools/qa/anatomical_pipeline_v43_audit.py'
+      - '.github/workflows/blender-anatomy-v43.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: blender-anatomy-v43-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  anatomy-v43-static:
+    if: ${{ github.actor != 'dependabot[bot]' || !startsWith(github.head_ref, 'dependabot/github_actions/') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.12'
+      - name: Compiler les scripts v43
+        run: python -m py_compile tools/blender/generate_anatomical_pipeline_v43.py tools/blender/anatomical_pipeline_v43.py tools/qa/anatomical_pipeline_v43_audit.py
+      - name: Auditer le pipeline anatomique v43
+        run: python -m tools.qa.anatomical_pipeline_v43_audit
+      - name: Générer le plan complet héros créatures boss
+        run: python -m tools.blender.generate_anatomical_pipeline_v43 --output anatomical_pipeline_jobs_v43.json
+      - name: Vérifier le plan d'un Veilleur sans Blender
+        run: python -m tools.blender.anatomical_pipeline_v43 --job-id aurelien --jobs anatomical_pipeline_jobs_v43.json --print-plan
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: anatomical-pipeline-v43-jobs
+          path: anatomical_pipeline_jobs_v43.json

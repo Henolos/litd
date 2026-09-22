@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "litd://governance/specialized-learning/lesson-record/v1",
+  "title": "Specialized Learning Lesson Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "domain", "status", "claim", "scope", "assumptions",
+    "evidence", "limitations", "version_context", "updated_at"
+  ],
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "domain": {"enum": ["litd_game_engineering", "henolos_software_engineering"]},
+    "status": {"enum": ["candidate", "experimenting", "proven", "rejected"]},
+    "claim": {"type": "string", "minLength": 1},
+    "scope": {"type": "string", "minLength": 1},
+    "assumptions": {"type": "array", "items": {"type": "string"}},
+    "sources": {"type": "array", "items": {"type": "string"}, "default": []},
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["baseline", "experiment", "result", "checks"],
+      "properties": {
+        "baseline": {"type": "string"},
+        "experiment": {"type": "string"},
+        "result": {"type": "string"},
+        "checks": {"type": "array", "items": {"type": "string"}},
+        "artifacts": {"type": "array", "items": {"type": "string"}, "default": []},
+        "counter_evidence": {"type": "array", "items": {"type": "string"}, "default": []}
+      }
+    },
+    "limitations": {"type": "array", "items": {"type": "string"}},
+    "version_context": {
+      "type": "object",
+      "additionalProperties": {"type": "string"},
+      "minProperties": 1
+    },
+    "projects": {"type": "array", "items": {"type": "string"}, "default": []},
+    "supersedes": {"type": ["string", "null"]},
+    "updated_at": {"type": "string", "format": "date-time"}
+  }
+}
