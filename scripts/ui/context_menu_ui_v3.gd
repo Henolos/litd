@@ -15,6 +15,7 @@ var _p0_reflow_guard := false
 
 func _ready() -> void:
     super._ready()
+    EquipmentManager.set_roster_provider(_p0_active_roster)
     var viewport := get_viewport()
     if viewport != null and not viewport.size_changed.is_connected(_p0_on_viewport_size_changed):
         viewport.size_changed.connect(_p0_on_viewport_size_changed)
@@ -310,3 +311,8 @@ func _p0_neighbor_path(origin: Control, controls: Array[Control], direction: Vec
             best_score = score
             best = candidate
     return origin.get_path_to(best if best != null else fallback)
+
+func _p0_active_roster() -> Array:
+    if VEILLEURS_UI_STATE_ADAPTER.is_active():
+        return VEILLEURS_UI_STATE_ADAPTER.party()
+    return GameState.party
