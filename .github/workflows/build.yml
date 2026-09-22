@@ -34,6 +34,7 @@ permissions:
 
 jobs:
   canon-freshness:
+    if: ${{ github.actor != 'dependabot[bot]' || !startsWith(github.head_ref, 'dependabot/github_actions/') }}
     name: Canon Freshness Gate
     runs-on: ubuntu-latest
     steps:
@@ -45,6 +46,7 @@ jobs:
         run: python tools/ci/canon_freshness_gate.py
 
   export:
+    if: ${{ github.actor != 'dependabot[bot]' || !startsWith(github.head_ref, 'dependabot/github_actions/') }}
     needs: canon-freshness
     strategy:
       fail-fast: false

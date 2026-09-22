@@ -2,11 +2,12 @@ name: Remanence Smoke
 
 on:
   pull_request:
+  merge_group:
   workflow_dispatch:
 
 concurrency:
-  group: remanence-smoke-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref || github.run_id }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+  group: remanence-smoke-${{ github.event_name }}-${{ github.event.pull_request.number || github.event.merge_group.head_sha || github.ref || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' || github.event_name == 'merge_group' }}
 
 permissions:
   contents: read

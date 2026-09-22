@@ -37,6 +37,7 @@ permissions:
 
 jobs:
   canonical-animation-production-v46:
+    if: ${{ github.actor != 'dependabot[bot]' || !startsWith(github.head_ref, 'dependabot/github_actions/') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
