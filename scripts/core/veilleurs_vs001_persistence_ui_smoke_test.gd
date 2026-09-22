@@ -21,6 +21,19 @@ func _run() -> void:
     _check(_party_ids(GameState.party) == ["Marec", "Mathilde", "Aurélien", "Anouk"], "VS001 must start with the canonical four Watchers")
     _check(not _party_ids(GameState.party).has("aurelien"), "Aurélien must never enter the Watcher party")
 
+    # Shared equipment integration: canonical Watcher roster, class compatibility,
+    # stat comparison and save/reload persistence must use the real managers.
+    EquipmentManager.set_roster_provider(func(): return GameState.party)
+    var duelist_item := EquipmentManager.add_generated_item("duelist_sabre", "common", "vs001_equipment_smoke")
+    _check(not duelist_item.is_empty(), "Mathilde must receive a real duelist equipment item")
+    var mathilde_id := str(GameState.party[1].get("id", ""))
+    var before_damage := int(EquipmentManager.bonuses_for_hero(mathilde_id).get("damage_bonus", 0))
+    _check(EquipmentManager.equip(mathilde_id, str(duelist_item.get("instance_id", ""))), "Mathilde must equip class-compatible duelist gear")
+    var after_damage := int(EquipmentManager.bonuses_for_hero(mathilde_id).get("damage_bonus", 0))
+    _check(after_damage > before_damage, "Equipment comparison must expose the equipped damage increase")
+    var equipped_instance := str((EquipmentManager.equipped_by_hero.get(mathilde_id, {}) as Dictionary).get("weapon", ""))
+    _check(equipped_instance == str(duelist_item.get("instance_id", "")), "Equipment slot must reference the selected inventory instance")
+
     _check(bool(VeilleursVS001WorldRuntime.enter_room("s2_rope_gallery").get("success", false)), "S1→S2 must remain reachable")
     _check(bool(VeilleursVS001WorldRuntime.enter_room("s3_sleepers").get("success", false)), "S2→S3 must remain reachable")
 
@@ -101,6 +114,7 @@ func _run() -> void:
     _check(saved_position.distance_to(expected_position) < 0.05, "Saved physical position must match the live party position")
     var saved_corpse_ids := persistence.corpse_scar_ids.duplicate()
     var saved_wound_count := persistence.wound_history.size()
+    var saved_equipment_instance := equipped_instance
 
     playable.queue_free()
     await get_tree().process_frame
@@ -120,6 +134,9 @@ func _run() -> void:
     _check(VeilleursVS001PlayableBridge.persistence_bridge.corpse_scar_ids == saved_corpse_ids, "Reload must restore persistent corpse scar references")
     _check(VeilleursVS001PlayableBridge.persistence_bridge.wound_history.size() == saved_wound_count, "Reload must restore Watcher wound history")
     _check(VeilleursVS001PlayableBridge.has_saved_party_position(), "Reload must restore physical party position metadata")
+    var reloaded_slots: Dictionary = EquipmentManager.equipped_by_hero.get(mathilde_id, {})
+    _check(str(reloaded_slots.get("weapon", "")) == saved_equipment_instance, "Reload must preserve Mathilde equipped weapon instance")
+    _check(not EquipmentManager.get_instance(saved_equipment_instance).is_empty(), "Reload must preserve the equipped inventory item")
 
     var resumed: Node3D = PLAYABLE_SCENE.instantiate() as Node3D
     add_child(resumed)
