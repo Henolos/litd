@@ -34,15 +34,20 @@ on:
       - '.github/workflows/p0-animation-pipeline-v50.yml'
   workflow_dispatch:
 
+concurrency:
+  group: p0-animation-pipeline-v50-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
 jobs:
   p0-animation-pipeline-v50:
+    if: ${{ github.actor != 'dependabot[bot]' || !startsWith(github.head_ref, 'dependabot/github_actions/') }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-python@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
         with:
           python-version: '3.12'
       - name: Compiler les scripts v47-v50
@@ -73,7 +78,7 @@ jobs:
           python -m tools.godot.generate_animation_import_manifest_v49 --output animation_import_manifest_v49.json
       - name: Vérifier l'orchestrateur en mode sec
         run: python -m tools.pipeline.run_p0_animation_pipeline_v50 --dry-run --blender blender --godot godot --report p0_animation_pipeline_v50_report.json
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: p0-animation-pipeline-v50-handoff
           path: |

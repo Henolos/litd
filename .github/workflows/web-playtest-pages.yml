@@ -29,6 +29,7 @@ concurrency:
 
 jobs:
   build:
+    if: ${{ github.actor != 'dependabot[bot]' || !startsWith(github.head_ref, 'dependabot/github_actions/') }}
     name: Export Godot Web PWA
     runs-on: ubuntu-latest
     container:
