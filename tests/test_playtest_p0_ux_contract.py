@@ -52,3 +52,13 @@ def test_combatant_inspection_remains_bound_to_heroes_and_enemies():
     assert "func open_detail(combatant: Dictionary, enemy: bool)" in inspection
     assert "ÉTAT DU CORPS ET EFFETS" in inspection
     assert "COMPÉTENCES" in inspection
+
+
+def test_combatant_inspection_is_contextual_and_keeps_controls_available():
+    inspection = read("scripts/ui/combatant_inspection_ui.gd")
+
+    assert "const BASE_DETAIL_SIZE := Vector2(620, 260)" in inspection
+    assert "detail_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE" in inspection
+    assert "dim.mouse_filter = Control.MOUSE_FILTER_IGNORE" in inspection
+    assert "detail_frame.mouse_filter = Control.MOUSE_FILTER_STOP" in inspection
+    assert "minf(desired_detail.y, safe_size.y * 0.40)" in inspection

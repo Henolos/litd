@@ -15,6 +15,7 @@ from hashlib import sha256
 from pathlib import Path, PurePosixPath
 from typing import Any
 
+from tools.quality.guardian_authority_contract import CANONICAL_AUTHORITY, REQUIRED_GUARANTEES
 from tools.quality.veilleur_v2_ingest import PROJECT_ID, TARGET_ROUTE
 
 ALLOWED_DECISIONS = {"ACCEPT_FOR_IMPLEMENTATION", "REJECT_CHANGE", "REQUEST_MORE_EVIDENCE"}
@@ -143,12 +144,12 @@ def evaluate(receipt: dict[str, Any], submission: dict[str, Any]) -> dict[str, A
         } if accepted else None,
         "implementation_pr_allowed": accepted,
         "implementation_must_be_separate": True,
-        "tests_must_pass_before_application": True,
-        "rollback_evidence_required": True,
-        "core_write_allowed": False,
-        "automatic_code_write_allowed": False,
-        "automatic_merge_allowed": False,
-        "automatic_target_change_allowed": False,
+        "tests_must_pass_before_application": REQUIRED_GUARANTEES["tests_must_pass_before_application"],
+        "rollback_evidence_required": REQUIRED_GUARANTEES["rollback_evidence_required"],
+        "core_write_allowed": CANONICAL_AUTHORITY["core_write_allowed"],
+        "automatic_code_write_allowed": CANONICAL_AUTHORITY["automatic_code_write_allowed"],
+        "automatic_merge_allowed": CANONICAL_AUTHORITY["automatic_merge_allowed"],
+        "automatic_target_change_allowed": CANONICAL_AUTHORITY["automatic_target_change_allowed"],
         "authority": "guardian_gate_plan_only_separate_implementation_and_ci_required",
     }
     plan["gate_receipt_hash"] = _hash(plan)

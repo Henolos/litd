@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
-"""Validate bounded implementation evidence produced after Guardian approval.
-
-The contract checks the LITD project boundary, Guardian-approved path scope,
-required tests, comparable measurements and rollback evidence. It never merges
-code or writes to Core/targets.
-"""
+"""Validate bounded implementation evidence produced after Guardian approval."""
 from __future__ import annotations
 
 import argparse
@@ -13,7 +8,10 @@ from hashlib import sha256
 from pathlib import Path
 from typing import Any
 
+from tools.quality.guardian_authority_contract import CANONICAL_AUTHORITY, assert_authority_equivalent
 from tools.quality.veilleur_v2_ingest import PROJECT_ID, TARGET_ROUTE
+
+AUTHORITY_KEYS = ("core_write_allowed", "automatic_code_write_allowed", "automatic_merge_allowed", "automatic_target_change_allowed")
 
 
 def _hash(payload: dict[str, Any]) -> str:
@@ -48,9 +46,7 @@ def evaluate(gate: dict[str, Any], evidence: dict[str, Any]) -> dict[str, Any]:
         raise ValueError("Guardian gate route scope mismatch")
     if gate.get("status") != "READY_FOR_BOUNDED_IMPLEMENTATION_PR" or gate.get("implementation_pr_allowed") is not True:
         raise ValueError("Guardian gate does not authorize bounded implementation")
-    for key in ("core_write_allowed", "automatic_code_write_allowed", "automatic_merge_allowed", "automatic_target_change_allowed"):
-        if gate.get(key) is not False:
-            raise ValueError(f"Guardian gate authority violation:{key}")
+    assert_authority_equivalent(gate, require=AUTHORITY_KEYS)
 
     plan = gate.get("implementation_plan")
     if not isinstance(plan, dict):
@@ -96,13 +92,9 @@ def evaluate(gate: dict[str, Any], evidence: dict[str, Any]) -> dict[str, Any]:
         raise ValueError("measurements must be objects")
     identity_keys = ("metric_family", "model_version", "scenario", "seed_policy", "seed_value")
     identities_complete = all(k in pre and k in post and pre[k] is not None and post[k] is not None for k in identity_keys)
-    pre_identity = {k: pre.get(k) for k in identity_keys}
-    post_identity = {k: post.get(k) for k in identity_keys}
-    comparable = identities_complete and pre_identity == post_identity
-    if not _lower_hex(pre.get("artifact_hash"), 64):
-        raise ValueError("pre measurement artifact_hash must be 64 lowercase hex")
-    if not _lower_hex(post.get("artifact_hash"), 64):
-        raise ValueError("post measurement artifact_hash must be 64 lowercase hex")
+    comparable = identities_complete and {k: pre.get(k) for k in identity_keys} == {k: post.get(k) for k in identity_keys}
+    if not _lower_hex(pre.get("artifact_hash"), 64) or not _lower_hex(post.get("artifact_hash"), 64):
+        raise ValueError("measurement artifact_hash must be 64 lowercase hex")
 
     rollback_refs = evidence["rollback_evidence_refs"]
     if not _nonempty_strings(rollback_refs):
@@ -112,38 +104,20 @@ def evaluate(gate: dict[str, Any], evidence: dict[str, Any]) -> dict[str, Any]:
         raise ValueError("implementation_commit_sha must be 40 lowercase hex")
 
     blockers = []
-    if unexpected:
-        blockers.append("unexpected_changed_paths")
-    if missing_tests:
-        blockers.append("missing_required_tests")
-    if failed_tests:
-        blockers.append("failed_required_tests")
-    if not comparable:
-        blockers.append("measurements_not_comparable")
-
+    if unexpected: blockers.append("unexpected_changed_paths")
+    if missing_tests: blockers.append("missing_required_tests")
+    if failed_tests: blockers.append("failed_required_tests")
+    if not comparable: blockers.append("measurements_not_comparable")
     status = "READY_FOR_APPLICATION_REVIEW" if not blockers else "IMPLEMENTATION_BLOCKED"
     result = {
-        "kind": "LITD_BOUNDED_IMPLEMENTATION_EVALUATION",
-        "project_id": PROJECT_ID,
-        "target_route": TARGET_ROUTE,
-        "status": status,
-        "source_gate_receipt_hash": gate["gate_receipt_hash"],
-        "source_candidate_hash": gate.get("source_candidate_hash"),
-        "implementation_commit_sha": sha,
-        "unexpected_changed_paths": unexpected,
-        "missing_required_tests": missing_tests,
-        "failed_required_tests": failed_tests,
-        "measurements_comparable": comparable,
-        "pre_measurement_hash": pre["artifact_hash"],
-        "post_measurement_hash": post["artifact_hash"],
-        "rollback_evidence_refs": list(rollback_refs),
-        "blockers": blockers,
-        "application_requires_separate_decision": True,
-        "rollback_verification_required_before_application": True,
-        "core_write_allowed": False,
-        "automatic_merge_allowed": False,
-        "automatic_application_allowed": False,
-        "automatic_target_change_allowed": False,
+        "kind": "LITD_BOUNDED_IMPLEMENTATION_EVALUATION", "project_id": PROJECT_ID, "target_route": TARGET_ROUTE,
+        "status": status, "source_gate_receipt_hash": gate["gate_receipt_hash"], "source_candidate_hash": gate.get("source_candidate_hash"),
+        "implementation_commit_sha": sha, "unexpected_changed_paths": unexpected, "missing_required_tests": missing_tests,
+        "failed_required_tests": failed_tests, "measurements_comparable": comparable, "pre_measurement_hash": pre["artifact_hash"],
+        "post_measurement_hash": post["artifact_hash"], "rollback_evidence_refs": list(rollback_refs), "blockers": blockers,
+        "application_requires_separate_decision": True, "rollback_verification_required_before_application": True,
+        "core_write_allowed": CANONICAL_AUTHORITY["core_write_allowed"], "automatic_merge_allowed": CANONICAL_AUTHORITY["automatic_merge_allowed"],
+        "automatic_application_allowed": CANONICAL_AUTHORITY["automatic_application_allowed"], "automatic_target_change_allowed": CANONICAL_AUTHORITY["automatic_target_change_allowed"],
         "authority": "implementation_evidence_only_separate_application_decision_required",
     }
     result["evaluation_hash"] = _hash(result)
@@ -151,20 +125,10 @@ def evaluate(gate: dict[str, Any], evidence: dict[str, Any]) -> dict[str, Any]:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--gate", required=True)
-    parser.add_argument("--evidence", required=True)
-    parser.add_argument("--output", default="reports/bounded-implementation-evaluation.json")
-    args = parser.parse_args()
-    gate = json.loads(Path(args.gate).read_text(encoding="utf-8"))
-    evidence = json.loads(Path(args.evidence).read_text(encoding="utf-8"))
-    result = evaluate(gate, evidence)
-    out = Path(args.output)
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    print(json.dumps({"status": result["status"], "blockers": result["blockers"]}, sort_keys=True))
-    return 0 if result["status"] == "READY_FOR_APPLICATION_REVIEW" else 2
+    parser = argparse.ArgumentParser(); parser.add_argument("--gate", required=True); parser.add_argument("--evidence", required=True); parser.add_argument("--output", default="reports/bounded-implementation-evaluation.json")
+    args = parser.parse_args(); result = evaluate(json.loads(Path(args.gate).read_text(encoding="utf-8")), json.loads(Path(args.evidence).read_text(encoding="utf-8")))
+    out = Path(args.output); out.parent.mkdir(parents=True, exist_ok=True); out.write_text(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    print(json.dumps({"status": result["status"], "blockers": result["blockers"]}, sort_keys=True)); return 0 if result["status"] == "READY_FOR_APPLICATION_REVIEW" else 2
 
 
-if __name__ == "__main__":
-    raise SystemExit(main())
+if __name__ == "__main__": raise SystemExit(main())
