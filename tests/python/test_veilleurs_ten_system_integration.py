@@ -89,7 +89,7 @@ def test_05_equipment_and_loot_share_persistent_item_instances() -> None:
         assert token in equipment
     assert "func generate_roguelike_loot(" in expedition
     assert '"equipment": EquipmentManager.serialize()' in save
-    assert "EquipmentManager.deserialize(payload.get("equipment",{}))" in save
+    assert 'EquipmentManager.deserialize(payload.get("equipment",{}))' in save
 
 
 def test_06_inventory_has_one_authority_instead_of_a_duplicate_manager() -> None:
@@ -125,7 +125,7 @@ def test_07_expeditions_connect_generation_inventory_and_save_state() -> None:
     ):
         assert token in expedition
     assert '"expedition": ExpeditionManager.serialize()' in save
-    assert "ExpeditionManager.deserialize(payload.get("expedition",{}))" in save
+    assert 'ExpeditionManager.deserialize(payload.get("expedition",{}))' in save
 
 
 def test_08_save_and_remanence_round_trip_the_systemic_state() -> None:
@@ -139,7 +139,7 @@ def test_08_save_and_remanence_round_trip_the_systemic_state() -> None:
     ):
         assert token in project
     assert '"remanence": RemanenceRuntime.serialize()' in save
-    assert "RemanenceRuntime.deserialize(payload.get("remanence",{}))" in save
+    assert 'RemanenceRuntime.deserialize(payload.get("remanence",{}))' in save
     assert '"veilleurs": _build_veilleurs_payload()' in save
     assert "VeilleursRuntime.deserialize(veilleurs_payload)" in save
 
