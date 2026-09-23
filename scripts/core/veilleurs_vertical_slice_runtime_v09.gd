@@ -195,6 +195,14 @@ func _apply_equipment_bonuses(watcher_id: String, row: Dictionary) -> Dictionary
 
 func _equipment_hero_id(watcher_id: String) -> String:
     var suffix := watcher_id.trim_prefix("ENT_WATCHER_").to_lower()
+    # EquipmentManager stores slots under the active roster identity (for the
+    # playable Watchers this is e.g. "Mathilde"), while DataLoader catalogue
+    # ids are lowercase. Resolve against equipped state first so the runtime
+    # reads the same canonical key that equip() wrote.
+    for hero_id_value: Variant in EquipmentManager.equipped_by_hero.keys():
+        var equipped_hero_id := str(hero_id_value)
+        if equipped_hero_id.to_lower() == suffix:
+            return equipped_hero_id
     for hero_value: Variant in DataLoader.heroes:
         if hero_value is Dictionary:
             var hero_id := str((hero_value as Dictionary).get("id", ""))
