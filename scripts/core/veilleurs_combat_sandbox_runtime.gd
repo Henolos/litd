@@ -9,6 +9,8 @@ const ANATOMY_RESOLVER := preload("res://scripts/core/combat/veilleurs_anatomy_r
 const STATUS_RESOLVER := preload("res://scripts/core/combat/veilleurs_status_resolver.gd")
 const REACTION_RESOLVER := preload("res://scripts/core/combat/veilleurs_reaction_resolver.gd")
 const COMBAT_EVENT := preload("res://scripts/core/combat/veilleurs_combat_event.gd")
+const COMBAT_COMMAND := preload("res://scripts/core/combat/veilleurs_combat_command.gd")
+const TARGET_RESOLVER := preload("res://scripts/core/combat/veilleurs_target_resolver.gd")
 
 var heroes: Array[Dictionary] = []
 var enemies: Array[Dictionary] = []
@@ -59,21 +61,26 @@ func perform_action(action_id: String, target_index: int, zone: String = "torso"
     var cost := int(action.get("ap", 1))
     if int(hero.get("ap", 0)) < cost: return {"ok":false,"reason":"not_enough_ap"}
     var target_type := str(action.get("target", "enemy"))
+    var target_side := "enemy" if target_type.begins_with("enemy") else target_type
+    if target_side not in ["enemy", "ally", "self"]: return {"ok":false,"reason":"unsupported_target_type"}
+    var command: Dictionary = COMBAT_COMMAND.make(str(hero.get("id", "")), action_id, target_side, target_index, TARGET_RESOLVER.normalize_zone(zone))
+    var command_validation: Dictionary = COMBAT_COMMAND.validate(command)
+    if not bool(command_validation.get("ok", false)): return command_validation
     var result: Dictionary = {}
-    if target_type.begins_with("enemy"):
-        if target_index < 0 or target_index >= enemies.size(): return {"ok":false,"reason":"invalid_target"}
-        var target: Dictionary = enemies[target_index]
+    if target_side == "enemy":
+        var target_resolution: Dictionary = TARGET_RESOLVER.validate_index(enemies, int(command.get("target_index", -1)))
+        if not bool(target_resolution.get("ok", false)): return target_resolution
+        var target: Dictionary = target_resolution.get("target", {})
         if int(target.get("hp", 0)) <= 0: return {"ok":false,"reason":"target_dead"}
-        result = _resolve_enemy_action(hero, action, target, zone)
+        result = _resolve_enemy_action(hero, action, target, str(command.get("zone", "torso")))
         if bool(result.get("ok", false)):
-            result["ai_reaction"] = _enemy_observe_and_react(target, hero, action, zone, result)
-    elif target_type == "ally":
-        if target_index < 0 or target_index >= heroes.size(): return {"ok":false,"reason":"invalid_target"}
-        result = _resolve_ally_action(hero, action, heroes[target_index], zone)
-    elif target_type == "self":
-        result = _resolve_self_action(hero, action)
+            result["ai_reaction"] = _enemy_observe_and_react(target, hero, action, str(command.get("zone", "torso")), result)
+    elif target_side == "ally":
+        var ally_resolution: Dictionary = TARGET_RESOLVER.validate_index(heroes, int(command.get("target_index", -1)))
+        if not bool(ally_resolution.get("ok", false)): return ally_resolution
+        result = _resolve_ally_action(hero, action, ally_resolution.get("target", {}), str(command.get("zone", "torso")))
     else:
-        return {"ok":false,"reason":"unsupported_target_type"}
+        result = _resolve_self_action(hero, action)
     if bool(result.get("ok", false)):
         hero["ap"] = int(hero.get("ap", 0)) - cost
         result["remaining_ap"] = hero["ap"]
