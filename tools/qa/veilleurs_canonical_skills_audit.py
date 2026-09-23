@@ -7,10 +7,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 SKILL_DIR = ROOT / "data" / "veilleurs" / "skills"
 WATCHERS = {
-    "Marec": ("Marec", ["Bastion", "Brisure", "Serment"]),
-    "Mathilde": ("Mathilde", ["Traque", "Entaille", "Disparition"]),
-    "Aurélien": ("Aurélien", ["Anatomie", "Suture", "Hémocorde"]),
-    "Anouk": ("Anouk", ["Sentence", "Concorde", "Dissidence"]),
+    "Marec": ("Marec", "marec", ["Bastion", "Brisure", "Serment"]),
+    "Mathilde": ("Mathilde", "mathilde", ["Traque", "Entaille", "Disparition"]),
+    "Aurélien": ("Aurélien", "aurelien", ["Anatomie", "Suture", "Hémocorde"]),
+    "Anouk": ("Anouk", "anouk", ["Sentence", "Concorde", "Dissidence"]),
 }
 EXPECTED_LEVELS = [1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 35, 39, 44, 49]
 SOURCE_SHA = "0b543d9b9433405ecc230f86de5c522f16b7a29d9db9d60f301b6d45a2b5b1b4"
@@ -72,10 +72,10 @@ def audit() -> list[str]:
     skill_rows: dict[str, dict] = {}
     total_skills = total_trees = total_ults = 0
 
-    for watcher_id, (watcher_name, trees) in WATCHERS.items():
-        path = SKILL_DIR / f"{watcher_id}.json"
+    for watcher_id, (watcher_name, runtime_id, trees) in WATCHERS.items():
+        path = SKILL_DIR / f"{runtime_id}.json"
         data = _load(path)
-        if data.get("watcher_id") != watcher_id:
+        if data.get("watcher_id") != runtime_id:
             errors.append(f"wrong_watcher_id:{watcher_id}")
         if data.get("watcher_name") != watcher_name:
             errors.append(f"wrong_watcher_name:{watcher_id}")
