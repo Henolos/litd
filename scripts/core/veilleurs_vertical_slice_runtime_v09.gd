@@ -4,8 +4,10 @@ class_name VeilleursVerticalSliceRuntimeV09
 const TACTICAL_V09_SCRIPT := preload("res://scripts/core/veilleurs_tactical_combat_runtime_v09.gd")
 const AUTHORED_V09_SCRIPT := preload("res://scripts/core/veilleurs_authored_encounter_runtime_v09.gd")
 const NEMESIS_SCRIPT := preload("res://scripts/core/veilleurs_nemesis_return_director_v09.gd")
+const KNOWLEDGE_ADAPTER_SCRIPT := preload("res://scripts/core/veilleurs_combat_knowledge_adapter.gd")
 
 var nemesis_director: VeilleursNemesisReturnDirectorV09
+var knowledge_adapter: VeilleursCombatKnowledgeAdapter
 var expedition_watcher_state: Dictionary = {}
 var last_materialized_encounter: Dictionary = {}
 var pending_recruit_candidates: Array[Dictionary] = []
@@ -14,6 +16,7 @@ var recruitment_decisions: Array[Dictionary] = []
 func _init() -> void:
     super()
     nemesis_director = NEMESIS_SCRIPT.new() as VeilleursNemesisReturnDirectorV09
+    knowledge_adapter = KNOWLEDGE_ADAPTER_SCRIPT.new() as VeilleursCombatKnowledgeAdapter
 
 func start_dungeon(dungeon_id: String, seed: int = 0) -> Dictionary:
     expedition_watcher_state.clear()
@@ -61,7 +64,18 @@ func resolve_active_combat(outcome: String, extra_context: Dictionary = {}) -> D
     if combat == null:
         return {"ok":false, "reason":"no_active_combat"}
     expedition_watcher_state = _watcher_aftermath().duplicate(true)
+    var combat_actions: Array = combat.action_log.duplicate(true)
+    var combatants_snapshot: Dictionary = combat.combatants.duplicate(true)
+    var resolved_node_id := combat_node_id
+    var combat_round := int(combat.round_index)
     var result: Dictionary = super.resolve_active_combat(outcome, extra_context)
+    var knowledge_result := knowledge_adapter.capture(combat_actions, combatants_snapshot, campaign.archives, {
+        "combat_node_id":resolved_node_id,
+        "round":combat_round,
+        "outcome":outcome
+    })
+    result["knowledge"] = knowledge_result
+    last_resolution = result.duplicate(true)
     _sync_expedition_progress_to_campaign()
     if outcome in ["victory", "cleared"]:
         pending_recruit_candidates = _build_recruit_candidates(result.get("enemy_aftermath", []))
