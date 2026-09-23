@@ -40,10 +40,11 @@ def audit() -> list[str]:
     scene = _text("scene")
 
     for token in (
-        '"veilleurs_vs001": VeilleursVS001PlayableBridge.serialize()',
-        'VeilleursVS001PlayableBridge.deserialize(payload.get("veilleurs_vs001",{}))',
-        'payload["veilleurs_vs001"] = payload.get("veilleurs_vs001",{})',
-        '"mode": "veilleurs_vs001" if VeilleursVS001WorldRuntime.is_active() else "litd1"',
+        '"veilleurs": _build_veilleurs_payload()',
+        'VeilleursRuntime.deserialize(veilleurs_payload)',
+        'VeilleursVS001PlayableBridge.deserialize(veilleurs_payload.get("legacy_vs001",{}))',
+        'payload.erase("veilleurs_vs001")',
+        '"mode": "veilleurs" if veilleurs_active else "litd1"',
     ):
         if token not in save:
             errors.append(f"save_contract:{token}")
@@ -53,10 +54,10 @@ def audit() -> list[str]:
         if f'"id": "{watcher_id}"' not in bridge:
             errors.append(f"watcher_missing:{watcher_id}")
     watcher_defs = bridge.split("const WATCHER_DEFS", 1)[1].split("]", 1)[0]
-    if "aurelien" in watcher_defs.lower():
-        errors.append("aurelien_must_not_be_watcher")
+    if '"id": "aurelien"' in watcher_defs:
+        errors.append("legacy_aurelien_id_must_not_be_watcher")
     for token in (
-        "LES VEILLEURS · VS001",
+        "func start_playable()",
         "func resume_playable()",
         "func serialize()",
         "func deserialize(payload: Dictionary)",
