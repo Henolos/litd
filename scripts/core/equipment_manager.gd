@@ -15,6 +15,25 @@ var equipped_by_hero: Dictionary = {}
 var drop_counter: int = 0
 var generation_seed: int = DEFAULT_SEED
 var last_rewards: Array[Dictionary] = []
+var roster_provider: Callable = Callable()
+
+func set_roster_provider(provider: Callable = Callable()) -> void:
+    roster_provider = provider
+
+func _active_roster() -> Array:
+    if roster_provider.is_valid():
+        var provided: Variant = roster_provider.call()
+        if provided is Array:
+            return provided
+    return GameState.party
+
+func _hero_from_active_roster(hero_id: String) -> Dictionary:
+    for hero_value in _active_roster():
+        if hero_value is Dictionary:
+            var hero: Dictionary = hero_value
+            if str(hero.get("id", hero.get("entity_id", hero.get("runtime_id", "")))) == hero_id:
+                return hero
+    return {}
 
 func _ready() -> void:
     reset_new_game()
@@ -125,12 +144,13 @@ func generate_random_weapon(class_id: String, rarity_id: String, context: String
     return generate_item(str(selected.get("id", "")), rarity_id, context)
 
 func grant_random_party_weapon(rarity_id: String, context: String) -> Dictionary:
-    if GameState.party.is_empty():
+    if _active_roster().is_empty():
         return {}
     var selection_seed: int = _preview_seed("party", rarity_id, context, drop_counter + 1)
     var rng := RandomNumberGenerator.new()
     rng.seed = selection_seed
-    var hero: Dictionary = GameState.party[rng.randi_range(0, GameState.party.size() - 1)]
+    var active_roster := _active_roster()
+    var hero: Dictionary = active_roster[rng.randi_range(0, active_roster.size() - 1)]
     var item: Dictionary = generate_random_weapon(str(hero.get("class_id", "")), rarity_id, context)
     return add_item(item)
 
@@ -138,7 +158,9 @@ func equip(hero_id: String, instance_id: String) -> bool:
     var item: Dictionary = get_instance(instance_id)
     if item.is_empty():
         return false
-    var hero: Dictionary = DataLoader.find_by_id(DataLoader.heroes, hero_id)
+    var hero: Dictionary = _hero_from_active_roster(hero_id)
+    if hero.is_empty():
+        hero = DataLoader.find_by_id(DataLoader.heroes, hero_id)
     var item_class_id: String = str(item.get("class_id", ""))
     if hero.is_empty() or (item_class_id != "" and item_class_id != str(hero.get("class_id", ""))):
         return false
@@ -151,7 +173,7 @@ func equip(hero_id: String, instance_id: String) -> bool:
     var new_hp_bonus: int = int(effective_bonuses(item).get("hp_bonus", 0))
     slots[slot] = instance_id
     equipped_by_hero[hero_id] = slots
-    for party_hero_value in GameState.party:
+    for party_hero_value in _active_roster():
         var party_hero: Dictionary = party_hero_value
         if str(party_hero.get("id", "")) == hero_id:
             var hp_delta: int = new_hp_bonus - old_hp_bonus
@@ -234,7 +256,7 @@ func effective_bonuses_for_level(item: Dictionary, level: int) -> Dictionary:
     return result
 
 func level_for_class(class_id: String) -> int:
-    for hero_value in GameState.party:
+    for hero_value in _active_roster():
         var hero: Dictionary = hero_value
         if str(hero.get("class_id", "")) == class_id:
             return maxi(1, int(hero.get("level", 1)))
@@ -243,7 +265,7 @@ func level_for_class(class_id: String) -> int:
 func bonuses_for_hero(hero_id: String) -> Dictionary:
     var result: Dictionary = {}
     var hero_level: int = 1
-    for hero_value in GameState.party:
+    for hero_value in _active_roster():
         var hero: Dictionary = hero_value
         if str(hero.get("id", "")) == hero_id:
             hero_level = maxi(1, int(hero.get("level", 1)))
