@@ -120,6 +120,22 @@ func reveal_recruitment_clue(entry_id: String, clue: String) -> Dictionary:
 func dossier(entry_id: String) -> Dictionary:
     return (entries.get(entry_id, {}) as Dictionary).duplicate(true)
 
+func archive_level(entry_id: String) -> int:
+    return clampi(int((entries.get(entry_id, {}) as Dictionary).get("knowledge_level", 0)), 0, 3)
+
+func knowledge_summary(entry_id: String) -> Dictionary:
+    var row: Dictionary = dossier(entry_id)
+    var level := archive_level(entry_id)
+    return {
+        "entry_id": entry_id,
+        "knowledge_level": level,
+        "knowledge_label": ["Inconnu", "Observé", "Étudié", "Documenté"][level],
+        "display_name": str(row.get("display_name", (row.get("identity", {}) as Dictionary).get("name", ""))),
+        "observations": (row.get("observations", []) as Array).duplicate(true),
+        "traces": (row.get("traces", []) as Array).duplicate(true),
+        "read_only": true
+    }
+
 func serialize() -> Dictionary:
     return {"entries": entries.duplicate(true)}
 
