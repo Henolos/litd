@@ -231,16 +231,18 @@ func _fill_entities() -> void:
         if not _entity_matches_filters(record):
             continue
         var entity_id := str(record.get("id", ""))
+        var knowledge := VeilleursRuntime.knowledge_summary(entity_id)
         var prefix := "[ARCHIVÉ] " if bool(record.get("archived", false)) else ""
-        var row := "%s%s · %s · %s · score %d" % [
+        var row := "%s%s · %s · %s · %s · score %d" % [
             prefix,
             str(record.get("name", "Adversaire")),
+            str(knowledge.get("knowledge_label", "Inconnu")),
             _stage_name(str(record.get("stage", "normal"))),
             _status_name(str(record.get("status", "active"))),
             int(record.get("score", 0))
         ]
         var index := list.add_item(row)
-        list.set_item_metadata(index, {"kind": "entity", "id": entity_id, "record": record})
+        list.set_item_metadata(index, {"kind": "entity", "id": entity_id, "record": record, "knowledge": knowledge})
 
 func _fill_scars() -> void:
     var rows: Array[Dictionary] = []
@@ -323,8 +325,17 @@ func _show_entity(metadata: Dictionary) -> void:
     var entity_id := str(metadata.get("id", record.get("id", "")))
     if RemanenceRuntime.entities.has(entity_id):
         record = RemanenceRuntime.entity_state(entity_id)
+    var knowledge := VeilleursRuntime.knowledge_summary(entity_id)
     var lines: Array[String] = []
     lines.append(str(record.get("name", "Adversaire")).to_upper())
+    lines.append("Connaissance : %s" % str(knowledge.get("knowledge_label", "Inconnu")))
+    lines.append("Observations : %d · preuves : %d" % [
+        int(knowledge.get("observation_count", 0)),
+        int(knowledge.get("proof_count", 0))
+    ])
+    var observed_skills: Array = knowledge.get("observed_skills", [])
+    if not observed_skills.is_empty():
+        lines.append("Comportements observés : %s" % ", ".join(observed_skills))
     lines.append("Stade : %s" % _stage_name(str(record.get("stage", "normal"))))
     lines.append("Statut : %s" % _status_name(str(record.get("status", "inconnu"))))
     lines.append("Score mémoriel : %d" % int(record.get("score", 0)))
