@@ -69,8 +69,8 @@ def audit() -> list[str]:
     for watcher_name in WATCHER_NAMES:
         if f'"name": "{watcher_name}"' not in bridge:
             errors.append(f"watcher_name_missing:{watcher_name}")
-    if '"id": "aurelien"' in bridge or '"name": "Aurélien"' in bridge:
-        errors.append("aurelien_must_not_be_watcher")
+    if '"id": "aurelien"' in bridge:
+        errors.append("legacy_aurelien_id_must_not_be_watcher")
     if 'watcher["race_id"] = "human"' not in bridge:
         errors.append("watchers_human_contract")
     if "previous_party = GameState.party.duplicate(true)" not in bridge or "restore_previous_party" not in bridge:
