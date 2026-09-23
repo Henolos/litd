@@ -38,6 +38,21 @@ func resolve_recruitment_decision(candidate_index: int, action: String, context:
 func current_snapshot() -> Dictionary:
     return runtime.current_snapshot()
 
+func archive_level(entity_id: String) -> int:
+    if runtime == null or runtime.campaign == null or runtime.campaign.archives == null:
+        return 0
+    return runtime.campaign.archives.archive_level(entity_id)
+
+func knowledge_summary(entity_id: String) -> Dictionary:
+    if runtime == null or runtime.campaign == null or runtime.campaign.archives == null:
+        return {
+            "entry_id":entity_id,
+            "knowledge_level":0,
+            "knowledge_label":"Inconnu",
+            "read_only":true
+        }
+    return runtime.campaign.archives.knowledge_summary(entity_id)
+
 func is_active() -> bool:
     if runtime == null or runtime.campaign == null:
         return false
