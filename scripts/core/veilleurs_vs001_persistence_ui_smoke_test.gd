@@ -39,6 +39,20 @@ func _run() -> void:
     var equipped_instance := str((EquipmentManager.equipped_by_hero.get(mathilde_id, {}) as Dictionary).get("weapon", ""))
     _check(equipped_instance == str(duelist_item.get("instance_id", "")), "Equipment slot must reference the selected inventory instance")
 
+    # Gameplay bridge: equipped bonuses must alter the canonical Veilleurs combat row,
+    # not only the menu comparison.
+    var combat_runtime := VeilleursTacticalCombatRuntimeV09.new()
+    var combat_setup := combat_runtime.setup_first_combat()
+    _check(bool(combat_setup.get("ok", false)), "Equipment smoke must build a canonical Veilleurs combat")
+    var runtime := VeilleursVerticalSliceRuntimeV09.new()
+    runtime.combat = combat_runtime
+    runtime.campaign.watcher_progress["ENT_WATCHER_mathilde"] = {"level":3}
+    var base_weapon_power := int((combat_runtime.combatants.get("ENT_WATCHER_mathilde", {}) as Dictionary).get("weapon_power", 0))
+    runtime.call("_apply_campaign_progress_to_combat")
+    var equipped_combat_row: Dictionary = combat_runtime.combatants.get("ENT_WATCHER_mathilde", {})
+    _check(int(equipped_combat_row.get("weapon_power", 0)) == base_weapon_power + after_damage, "Equipped damage bonus must modify Mathilde combat weapon power")
+    _check(int((equipped_combat_row.get("equipment_bonuses", {}) as Dictionary).get("damage_bonus", 0)) == after_damage, "Combat row must expose the canonical equipment bonus snapshot")
+
     _check(bool(VeilleursVS001WorldRuntime.enter_room("s2_rope_gallery").get("success", false)), "S1→S2 must remain reachable")
     _check(bool(VeilleursVS001WorldRuntime.enter_room("s3_sleepers").get("success", false)), "S2→S3 must remain reachable")
 
