@@ -170,7 +170,37 @@ func _apply_campaign_progress_to_combat() -> void:
         row["level"] = int(progress.get("level", row.get("level", 1)))
         row["chosen_tree"] = str(progress.get("chosen_tree", row.get("chosen_tree", "")))
         row["ultimate_charges"] = int(progress.get("ultimate_charges", row.get("ultimate_charges", 0)))
+        row = _apply_equipment_bonuses(watcher_id, row)
         combat.combatants[watcher_id] = row
+
+func _apply_equipment_bonuses(watcher_id: String, row: Dictionary) -> Dictionary:
+    var hero_id := _equipment_hero_id(watcher_id)
+    if hero_id == "":
+        return row
+    var bonuses: Dictionary = EquipmentManager.bonuses_for_hero(hero_id)
+    if bonuses.is_empty():
+        row["equipment_bonuses"] = {}
+        return row
+    var result := row.duplicate(true)
+    var damage_bonus := int(bonuses.get("damage_bonus", 0))
+    var hp_bonus := int(bonuses.get("hp_bonus", 0))
+    if damage_bonus != 0:
+        result["weapon_power"] = int(result.get("weapon_power", 0)) + damage_bonus
+    if hp_bonus != 0:
+        result["max_hp"] = maxi(1, int(result.get("max_hp", 1)) + hp_bonus)
+        result["hp"] = clampi(int(result.get("hp", 0)) + hp_bonus, 0, int(result["max_hp"]))
+    result["equipment_hero_id"] = hero_id
+    result["equipment_bonuses"] = bonuses.duplicate(true)
+    return result
+
+func _equipment_hero_id(watcher_id: String) -> String:
+    var suffix := watcher_id.trim_prefix("ENT_WATCHER_").to_lower()
+    for hero_value: Variant in DataLoader.heroes:
+        if hero_value is Dictionary:
+            var hero_id := str((hero_value as Dictionary).get("id", ""))
+            if hero_id.to_lower() == suffix:
+                return hero_id
+    return ""
 
 func _restore_expedition_watcher_state() -> void:
     if combat == null or expedition_watcher_state.is_empty():
