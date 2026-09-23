@@ -75,3 +75,4 @@ def test_enemy_inspection_uses_canonical_knowledge_before_revealing_details():
     assert "KnowledgeDiscoveryUIContract.LEVEL_STUDIED" in inspection
     assert "KnowledgeDiscoveryUIContract.LEVEL_DOCUMENTED" in inspection
     assert 'combatant.get("skills", combatant.get("observed_skills"' in inspection
+    assert "if not enemy or _knowledge_level(combatant) >= KnowledgeDiscoveryUIContract.LEVEL_DOCUMENTED:" in inspection
