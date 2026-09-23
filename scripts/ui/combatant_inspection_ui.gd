@@ -83,6 +83,7 @@ func show_preview(combatant: Dictionary, enemy: bool) -> void:
     if detail_open or combatant.is_empty():
         return
     var presented := _inspection_combatant(combatant, enemy)
+    var observable := _observable_combatant(combatant, presented, enemy)
     _clear(preview_content)
     preview_content.add_child(_label(_title(presented, enemy), 17, GOLD))
     if enemy:
@@ -91,7 +92,7 @@ func show_preview(combatant: Dictionary, enemy: bool) -> void:
     var capture_summary := _capture_summary(combatant) if enemy and _knowledge_level(presented) >= KnowledgeDiscoveryUIContract.LEVEL_DOCUMENTED else ""
     if capture_summary != "":
         preview_content.add_child(_label(capture_summary, 12, _capture_color(combatant)))
-    preview_content.add_child(_label("État : " + _affliction_summary(combatant, enemy, 3), 12, MUTED))
+    preview_content.add_child(_label("État : " + _affliction_summary(observable, enemy, 3), 12, MUTED))
     preview_content.add_child(_label("Compétences : " + _skill_summary(presented, enemy, 3), 12, MUTED))
     preview_panel.visible = true
     call_deferred("_apply_layout")
@@ -104,6 +105,7 @@ func open_detail(combatant: Dictionary, enemy: bool) -> void:
     if combatant.is_empty():
         return
     var presented := _inspection_combatant(combatant, enemy)
+    var observable := _observable_combatant(combatant, presented, enemy)
     detail_open = true
     preview_panel.visible = false
     detail_overlay.visible = true
@@ -120,7 +122,7 @@ func open_detail(combatant: Dictionary, enemy: bool) -> void:
         detail_content.add_child(_label("CAPTURE", 18, GOLD))
         detail_content.add_child(_label(capture_summary, 15, _capture_color(combatant)))
     detail_content.add_child(_label("ÉTAT DU CORPS ET EFFETS", 18, GOLD))
-    for line in _affliction_lines(combatant, enemy):
+    for line in _affliction_lines(observable, enemy):
         detail_content.add_child(_label("• " + line, 14, _affliction_color(line)))
     detail_content.add_child(_label("COMPÉTENCES", 18, GOLD))
     for line in _skill_lines(presented, enemy):
@@ -295,6 +297,13 @@ func _inspection_combatant(combatant: Dictionary, enemy: bool) -> Dictionary:
     visible["_knowledge_label"] = str(view.get("knowledge_label", "Inconnu"))
     return visible
 
+func _observable_combatant(combatant: Dictionary, presented: Dictionary, enemy: bool) -> Dictionary:
+    var observable := combatant.duplicate(true)
+    if enemy:
+        observable["_knowledge_level"] = _knowledge_level(presented)
+        observable["_knowledge_label"] = _knowledge_label(presented)
+    return observable
+
 func _knowledge_level(combatant: Dictionary) -> int:
     return int(combatant.get("_knowledge_level", KnowledgeDiscoveryUIContract.LEVEL_DOCUMENTED))
 
@@ -371,11 +380,12 @@ func _affliction_lines(combatant: Dictionary, enemy: bool) -> Array[String]:
 
     _append_functional_lines(result, combatant)
 
-    var traits := CharacterTraitDirector.trait_names(combatant)
-    for value: Variant in traits.get("positive", []):
-        result.append("Trait favorable : " + String(value))
-    for value: Variant in traits.get("negative", []):
-        result.append("Trait défavorable : " + String(value))
+    if not enemy or _knowledge_level(combatant) >= KnowledgeDiscoveryUIContract.LEVEL_DOCUMENTED:
+        var traits := CharacterTraitDirector.trait_names(combatant)
+        for value: Variant in traits.get("positive", []):
+            result.append("Trait favorable : " + String(value))
+        for value: Variant in traits.get("negative", []):
+            result.append("Trait défavorable : " + String(value))
     for value: Variant in combatant.get("buffs", []):
         result.append("Effet favorable : " + _effect_name(value))
     for value: Variant in combatant.get("debuffs", []):
