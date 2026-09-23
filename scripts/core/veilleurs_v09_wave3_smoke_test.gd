@@ -34,6 +34,30 @@ func _run() -> void:
     var nemesis_id := _seed_nemesis()
     _check(nemesis_id != "", "Nemesis fixture receives persistent identity")
 
+    # Canonical knowledge authority: combat evidence is read back through the
+    # Archives facade and remains identical after serialization/reload.
+    var knowledge_archives := VeilleursArchivesRuntime.new()
+    var knowledge_adapter := VeilleursCombatKnowledgeAdapter.new()
+    var ghoul_id := "ENT_ENEMY_GOULE_AFFAMEE"
+    var knowledge_result := knowledge_adapter.capture([{
+        "ok":true, "action":"attack", "attacker":ghoul_id,
+        "target":"ENT_WATCHER_mathilde", "attack_kind":"claw",
+        "zone":"left_arm", "hit":true, "damage":7,
+        "status_applied":"BLEEDING", "decision_reason":"blood_scent"
+    }], {
+        ghoul_id:{"team":"enemy", "definition_id":ghoul_id, "name":"Goule affamée", "family":"goule"}
+    }, knowledge_archives, {"combat_node_id":"vs001_s3_goules", "round":2})
+    _check(int(knowledge_result.get("recorded", 0)) == 1, "Combat knowledge adapter records the enemy observation")
+    var knowledge_before := knowledge_archives.knowledge_summary(ghoul_id)
+    _check(int(knowledge_before.get("knowledge_level", 0)) == 2, "Proof-backed combat knowledge is Studied")
+    _check(str(knowledge_before.get("knowledge_label", "")) == "Étudié", "Canonical Archives facade labels Studied knowledge")
+    _check((knowledge_before.get("observations", []) as Array).size() == 1, "Canonical Archives facade exposes the observation")
+    _check((knowledge_before.get("traces", []) as Array).size() == 1, "Canonical Archives facade exposes the proof")
+    var restored_knowledge_archives := VeilleursArchivesRuntime.new()
+    restored_knowledge_archives.deserialize(knowledge_archives.serialize())
+    var knowledge_after := restored_knowledge_archives.knowledge_summary(ghoul_id)
+    _check(knowledge_after == knowledge_before, "Save/reload preserves the exact canonical knowledge view")
+
     for dungeon_id: String in DUNGEONS:
         var probe: VeilleursVerticalSliceRuntimeV09 = SLICE_SCRIPT.new() as VeilleursVerticalSliceRuntimeV09
         var start_probe: Dictionary = probe.start_dungeon(dungeon_id, 9090)
