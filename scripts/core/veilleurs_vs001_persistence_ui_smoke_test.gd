@@ -53,6 +53,45 @@ func _run() -> void:
     _check(int(equipped_combat_row.get("weapon_power", 0)) == base_weapon_power + after_damage, "Equipped damage bonus must modify Mathilde combat weapon power")
     _check(int((equipped_combat_row.get("equipment_bonuses", {}) as Dictionary).get("damage_bonus", 0)) == after_damage, "Combat row must expose the canonical equipment bonus snapshot")
 
+    # Knowledge slice: an observable enemy hit becomes an observation plus a
+    # durable proof in the Archives, and survives serialization/reload.
+    var knowledge_archives := VeilleursArchivesRuntime.new()
+    var knowledge_adapter := VeilleursCombatKnowledgeAdapter.new()
+    var ghoul_id := "ENT_ENEMY_GOULE_AFFAMEE"
+    var knowledge_result := knowledge_adapter.capture([{
+        "ok":true,
+        "action":"attack",
+        "attacker":ghoul_id,
+        "target":"ENT_WATCHER_mathilde",
+        "attack_kind":"claw",
+        "zone":"left_arm",
+        "hit":true,
+        "damage":7,
+        "status_applied":"BLEEDING",
+        "decision_reason":"blood_scent"
+    }], {
+        ghoul_id:{
+            "team":"enemy",
+            "definition_id":ghoul_id,
+            "name":"Goule affamée",
+            "family":"goule"
+        }
+    }, knowledge_archives, {
+        "combat_node_id":"vs001_s3_goules",
+        "round":2
+    })
+    _check(int(knowledge_result.get("recorded", 0)) == 1, "Combat knowledge adapter must record one enemy observation")
+    _check(int(knowledge_result.get("traces", 0)) == 1, "A successful enemy hit must create one proof trace")
+    var ghoul_dossier := knowledge_archives.dossier(ghoul_id)
+    _check(int(ghoul_dossier.get("knowledge_level", 0)) >= 2, "A proved Goule pattern must raise Archives knowledge")
+    _check((ghoul_dossier.get("observations", []) as Array).size() == 1, "Goule dossier must expose the combat observation")
+    _check((ghoul_dossier.get("traces", []) as Array).size() == 1, "Goule dossier must expose the combat proof")
+    var restored_archives := VeilleursArchivesRuntime.new()
+    restored_archives.deserialize(knowledge_archives.serialize())
+    var restored_ghoul_dossier := restored_archives.dossier(ghoul_id)
+    _check((restored_ghoul_dossier.get("observations", []) as Array).size() == 1, "Reload must preserve the Goule observation")
+    _check((restored_ghoul_dossier.get("traces", []) as Array).size() == 1, "Reload must preserve the Goule proof")
+
     _check(bool(VeilleursVS001WorldRuntime.enter_room("s2_rope_gallery").get("success", false)), "S1→S2 must remain reachable")
     _check(bool(VeilleursVS001WorldRuntime.enter_room("s3_sleepers").get("success", false)), "S2→S3 must remain reachable")
 
