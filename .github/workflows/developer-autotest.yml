@@ -55,7 +55,7 @@ jobs:
         if: always()
         run: timeout 90s godot --headless --path . res://scenes/tests/player_bot_v13_regression_baseline.tscn
       - name: Publier les rapports rapides
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         if: always()
         with:
           name: developer-autotest-fast-contracts
@@ -89,7 +89,7 @@ jobs:
         if: always()
         run: timeout 180s godot --headless --path . res://scenes/tests/player_bot_v2_autotest.tscn
       - name: Publier les rapports combat core
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         if: always()
         with:
           name: developer-autotest-combat-core
@@ -120,7 +120,7 @@ jobs:
           BOT_SHARD_INDEX: ${{ matrix.shard }}
         run: timeout 360s godot --headless --path . res://scenes/tests/player_bot_v3_shard_runner.tscn
       - name: Publier le shard v3
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         if: always()
         with:
           name: developer-autotest-v3-shard-${{ matrix.shard }}
@@ -148,7 +148,7 @@ jobs:
           BOT_SHARD_INDEX: ${{ matrix.shard }}
         run: timeout 540s godot --headless --path . res://scenes/tests/player_bot_v4_shard_runner.tscn
       - name: Publier le shard v4
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         if: always()
         with:
           name: developer-autotest-v4-shard-${{ matrix.shard }}
@@ -176,7 +176,7 @@ jobs:
       - name: Agréger et vérifier la couverture v3/v4
         run: python tools/qa/bot_matrix_shard_aggregate.py
       - name: Publier les matrices agrégées
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         if: always()
         with:
           name: developer-autotest-combat-matrices
@@ -203,7 +203,7 @@ jobs:
         if: always()
         run: timeout 540s godot --headless --path . res://scenes/tests/player_bot_v6_real_campaign.tscn
       - name: Publier les rapports campagne
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         if: always()
         with:
           name: developer-autotest-campaigns
@@ -230,7 +230,7 @@ jobs:
         if: always()
         run: timeout 240s godot --headless --path . res://scenes/tests/player_bot_v19_economy_stress.tscn
       - name: Publier les rapports Sanctuaire
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         if: always()
         with:
           name: developer-autotest-sanctuary
@@ -264,7 +264,7 @@ jobs:
               --strict
           done
       - name: Publier la télémétrie déterministe
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         if: always()
         with:
           name: developer-autotest-telemetry
@@ -346,7 +346,7 @@ jobs:
         if: always()
         run: python tools/qa/bot_v31_fleet_efficiency.py
       - name: Publier les diagnostics v14-v31
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         if: always()
         with:
           name: developer-autotest-regression-analysis

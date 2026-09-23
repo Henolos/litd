@@ -33,6 +33,6 @@ def test_migration_runner_verifies_project_routes_and_retains_evidence() -> None
     assert "is_project_route_authorized('COMPANY','LITD_LIBRARY')" in text
     assert "governance-postgres-migration-evidence.json" in text
     assert "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1" in text
-    assert "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02" in text
+    assert "actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a" in text
     assert "retention-days: 90" in text
     assert "if-no-files-found: error" in text
