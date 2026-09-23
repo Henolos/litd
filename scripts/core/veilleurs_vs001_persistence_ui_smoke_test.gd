@@ -26,7 +26,12 @@ func _run() -> void:
     EquipmentManager.set_roster_provider(func(): return GameState.party)
     var duelist_item := EquipmentManager.add_generated_item("duelist_sabre", "common", "vs001_equipment_smoke")
     _check(not duelist_item.is_empty(), "Mathilde must receive a real duelist equipment item")
-    var mathilde_id := str(GameState.party[1].get("id", ""))
+    var mathilde_id := "Mathilde"
+    for watcher_value: Variant in GameState.party:
+        if watcher_value is Dictionary and str((watcher_value as Dictionary).get("class_id", "")) == "duelist":
+            mathilde_id = str((watcher_value as Dictionary).get("id", ""))
+            break
+    _check(mathilde_id == "Mathilde", "VS001 duelist identity must resolve to canonical Mathilde")
     var before_damage := int(EquipmentManager.bonuses_for_hero(mathilde_id).get("damage_bonus", 0))
     _check(EquipmentManager.equip(mathilde_id, str(duelist_item.get("instance_id", ""))), "Mathilde must equip class-compatible duelist gear")
     var after_damage := int(EquipmentManager.bonuses_for_hero(mathilde_id).get("damage_bonus", 0))
