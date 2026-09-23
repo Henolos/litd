@@ -4,6 +4,7 @@ const SLICE_SCRIPT := preload("res://scripts/core/veilleurs_vertical_slice_runti
 const TACTICAL_SCRIPT := preload("res://scripts/core/veilleurs_tactical_combat_runtime_v09.gd")
 const SAVE_SCRIPT := preload("res://scripts/core/veilleurs_vertical_slice_save_v09.gd")
 const BODY_SCRIPT := preload("res://scripts/core/veilleurs_body_component.gd")
+const UI_STATE_ADAPTER := preload("res://scripts/ui/veilleurs_ui_state_adapter.gd")
 const QA_SCENE := preload("res://scenes/veilleurs/v09_vertical_slice_qa.tscn")
 const PERSISTENCE_WATCHER_ID := "ENT_WATCHER_marec"
 
@@ -23,6 +24,13 @@ func _ready() -> void:
 
 func _run() -> void:
     RemanenceRuntime.reset_new_game()
+    VeilleursRuntime.reset_new_game()
+    _check(bool(VeilleursRuntime.start_dungeon("DUNGEON_KHAR_SEN", 9089).get("ok", false)), "Canonical Veilleurs runtime starts for shared menu adapter")
+    var menu_party := UI_STATE_ADAPTER.party()
+    _check(_party_values(menu_party, "id") == ["ENT_WATCHER_marec", "ENT_WATCHER_mathilde", "ENT_WATCHER_aurelien", "ENT_WATCHER_anouk"], "Shared menu adapter exposes stable canonical Watcher identities")
+    _check(_party_values(menu_party, "name") == ["Marec", "Mathilde", "Aurélien", "Anouk"], "Shared menu adapter exposes canonical Watcher display names")
+    _check(_party_values(menu_party, "class_id") == ["breaker", "duelist", "surgeon", "mystic"], "Shared menu adapter exposes compatible equipment classes")
+    _check(UI_STATE_ADAPTER.current_dungeon_id() == "DUNGEON_KHAR_SEN", "Shared menu adapter reads the authoritative campaign snapshot")
     var nemesis_id := _seed_nemesis()
     _check(nemesis_id != "", "Nemesis fixture receives persistent identity")
 
@@ -210,6 +218,12 @@ func _resolve_remaining_candidates(slice: VeilleursVerticalSliceRuntimeV09) -> v
         if bool((options[index] as Dictionary).get("resolved", false)):
             continue
         slice.resolve_recruitment_decision(index, "leave")
+
+func _party_values(party: Array[Dictionary], key: String) -> Array[String]:
+    var result: Array[String] = []
+    for hero: Dictionary in party:
+        result.append(str(hero.get(key, "")))
+    return result
 
 func _check(condition: bool, message: String) -> void:
     if not condition:

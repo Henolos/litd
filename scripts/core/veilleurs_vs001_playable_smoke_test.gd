@@ -17,6 +17,7 @@ func _run() -> void:
     _check(watcher_ids == ["Marec", "Mathilde", "Aurélien", "Anouk"], "VS001 must use the four canonical Watcher identities")
     _check(not watcher_ids.has("aurelien"), "Aurélien must never be a Watcher in VS001")
     _check(_party_names(watchers) == ["Marec", "Mathilde", "Aurélien", "Anouk"], "Watcher display names must stay locked")
+    _check(_party_classes(watchers) == ["breaker", "duelist", "surgeon", "mystic"], "Watchers must keep their canonical combat classes")
     for hero_value: Variant in watchers:
         var hero: Dictionary = hero_value
         _check(bool(hero.get("vs001_watcher", false)), "Every VS001 party member must be tagged as a Watcher")
@@ -124,6 +125,13 @@ func _party_names(party_value: Array) -> Array[String]:
     for value: Variant in party_value:
         if value is Dictionary:
             result.append(str((value as Dictionary).get("name", "")))
+    return result
+
+func _party_classes(party_value: Array) -> Array[String]:
+    var result: Array[String] = []
+    for value: Variant in party_value:
+        if value is Dictionary:
+            result.append(str((value as Dictionary).get("class_id", "")))
     return result
 
 func _enemy_profiles(enemies: Array) -> Array[String]:
