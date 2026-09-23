@@ -42,6 +42,7 @@ jobs:
           python - <<'PY'
           import json
           import os
+          import urllib.parse
           import urllib.request
           from pathlib import Path
           from zipfile import ZipFile
@@ -71,9 +72,20 @@ jobs:
               raise SystemExit(0)
 
           latest = max(artifacts, key=lambda artifact: artifact.get('created_at', ''))
+          class SafeArtifactRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self, req, fp, code, msg, response_headers, newurl):
+                  redirected = super().redirect_request(req, fp, code, msg, response_headers, newurl)
+                  if redirected is not None:
+                      source = urllib.parse.urlsplit(req.full_url).netloc
+                      target = urllib.parse.urlsplit(newurl).netloc
+                      if source != target:
+                          redirected.remove_header('Authorization')
+                  return redirected
+
           download = urllib.request.Request(latest['archive_download_url'], headers=headers)
           archive_path = Path('/tmp/veilleur-ledger.zip')
-          with urllib.request.urlopen(download, timeout=30) as response:
+          opener = urllib.request.build_opener(SafeArtifactRedirect())
+          with opener.open(download, timeout=30) as response:
               archive_path.write_bytes(response.read())
 
           destination = Path('reports/veilleur-evidence-ledger.sqlite3')
