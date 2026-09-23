@@ -2,11 +2,12 @@ name: Remanence Smoke
 
 on:
   pull_request:
+  merge_group:
   workflow_dispatch:
 
 concurrency:
-  group: remanence-smoke-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref || github.run_id }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+  group: remanence-smoke-${{ github.event_name }}-${{ github.event.pull_request.number || github.event.merge_group.head_sha || github.ref || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' || github.event_name == 'merge_group' }}
 
 permissions:
   contents: read
@@ -17,7 +18,7 @@ jobs:
     container:
       image: barichello/godot-ci:4.7.2
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       - name: Import strict du projet
         run: godot --headless --path . --import --quit
       - name: Rémanence des Veilleurs

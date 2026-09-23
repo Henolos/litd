@@ -1,5 +1,7 @@
 import pytest
 
+from tools.quality import veilleur_review_resolution as review
+from tools.quality.guardian_authority_contract import CANONICAL_AUTHORITY
 from tools.quality.veilleur_review_resolution import _hash, resolve_candidate
 
 
@@ -39,6 +41,29 @@ def test_litd_change_candidate_requires_guardian_and_never_writes_core():
     assert receipt["requires_guardian_review"] is True
     assert receipt["core_write_allowed"] is False
     assert receipt["library_write_allowed"] is False
+
+
+def test_receipt_consumes_every_canonical_veilleur_authority_invariant():
+    receipt = resolve_candidate(candidate(), resolution())
+    for key in review.VEILLEUR_CANONICAL_AUTHORITY:
+        assert receipt[key] is CANONICAL_AUTHORITY[key]
+
+
+@pytest.mark.parametrize("key", review.VEILLEUR_CANONICAL_AUTHORITY)
+def test_weakened_canonical_authority_fails_closed(monkeypatch, key):
+    weakened = dict(CANONICAL_AUTHORITY)
+    weakened[key] = True
+    monkeypatch.setattr(review, "CANONICAL_AUTHORITY", weakened)
+    with pytest.raises(ValueError, match=f"authority violation:{key}"):
+        resolve_candidate(candidate(), resolution())
+
+
+def test_missing_canonical_authority_fails_closed(monkeypatch):
+    incomplete = dict(CANONICAL_AUTHORITY)
+    incomplete.pop("automatic_rollback_allowed")
+    monkeypatch.setattr(review, "CANONICAL_AUTHORITY", incomplete)
+    with pytest.raises(KeyError):
+        resolve_candidate(candidate(), resolution())
 
 
 def test_general_knowledge_cannot_propose_litd_change_candidate():
@@ -108,7 +133,7 @@ def test_candidate_authority_escalation_is_rejected():
     bad = candidate()
     bad["core_write_allowed"] = True
     bad["candidate_hash"] = _hash({k: v for k, v in bad.items() if k != "candidate_hash"})
-    with pytest.raises(ValueError, match="Core authority"):
+    with pytest.raises(ValueError, match="authority violation:core_write_allowed"):
         resolve_candidate(bad, resolution(item=bad))
 
 

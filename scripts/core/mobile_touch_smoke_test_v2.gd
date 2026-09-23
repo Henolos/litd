@@ -76,8 +76,18 @@ func _audit_canonical_combat_contract() -> void:
     if scene == null:
         return
 
+    var rendered_canonical_portraits: Array[String] = []
+    for texture_value in scene.find_children("*", "TextureRect", true, false):
+        var texture := texture_value as TextureRect
+        if texture == null or not texture.visible:
+            continue
+        var canonical_id := str(texture.get_meta("canonical_hero_id", ""))
+        if canonical_id != "" and not rendered_canonical_portraits.has(canonical_id):
+            rendered_canonical_portraits.append(canonical_id)
+
     for canonical_id in ["mathilde", "marec", "anouk", "aurelien"]:
-        _check(scene.find_child("CanonicalCombatCard_%s" % canonical_id, true, false) != null, "Combat must render canonical identity card for %s" % canonical_id)
+        _check(rendered_canonical_portraits.has(canonical_id), "Combat must render canonical responsive portrait for %s" % canonical_id)
+        _check(scene.find_child("CanonicalCombatCard_%s" % canonical_id, true, false) == null, "Combat must not reintroduce overlay identity card for %s" % canonical_id)
 
     var visible_text := ""
     for label_value in scene.find_children("*", "Label", true, false):

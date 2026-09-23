@@ -39,7 +39,7 @@ def test_live_proof_retains_hashed_evidence_artifact():
     workflow = WORKFLOW.read_text(encoding="utf-8")
     assert 'evidence["evidence_hash"]' in script
     assert 'reports/postgres-receipt-registry-live-proof.json' in workflow
-    assert 'actions/upload-artifact@v6' in workflow
+    assert 'actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a' in workflow
     assert 'retention-days: 30' in workflow
 
 

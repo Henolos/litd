@@ -1,0 +1,84 @@
+name: Governance Recovery Apply Migration
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: "Type APPLY_GOVERNANCE_RECOVERY_MIGRATION_20260916061000"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: governance-recovery-schema-migration
+  cancel-in-progress: false
+
+jobs:
+  apply-migration:
+    name: Apply governance recovery migration
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: governance-live-cert
+    steps:
+      - name: Require explicit migration confirmation
+        shell: bash
+        env:
+          CONFIRMATION: ${{ inputs.confirmation }}
+        run: |
+          set -euo pipefail
+          test "$CONFIRMATION" = "APPLY_GOVERNANCE_RECOVERY_MIGRATION_20260916061000" || exit 2
+
+      - name: Checkout exact dispatched revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+
+      - name: Fail closed when database secret is absent
+        shell: bash
+        env:
+          GOVERNANCE_DATABASE_URL: ${{ secrets.GOVERNANCE_DATABASE_URL }}
+        run: |
+          set -euo pipefail
+          test -n "$GOVERNANCE_DATABASE_URL" || exit 2
+
+      - name: Apply exact governed recovery migration transactionally
+        shell: bash
+        env:
+          GOVERNANCE_DATABASE_URL: ${{ secrets.GOVERNANCE_DATABASE_URL }}
+        run: |
+          set -euo pipefail
+          migration="supabase/migrations/20260916061000_governance_recovery_containment.sql"
+          test -f "$migration"
+          sha256sum "$migration" | tee /tmp/governance-recovery-migration.sha256
+          psql "$GOVERNANCE_DATABASE_URL" --set=ON_ERROR_STOP=1 --single-transaction --file="$migration"
+
+      - name: Verify recovery authority separation
+        shell: bash
+        env:
+          GOVERNANCE_DATABASE_URL: ${{ secrets.GOVERNANCE_DATABASE_URL }}
+        run: |
+          set -euo pipefail
+          mutation="$(psql "$GOVERNANCE_DATABASE_URL" -Atqc "select has_function_privilege('service_role','governance_private.attempt_recovery_drill_mutation(text,text,text,text,bigint,text,text,text)','EXECUTE')")"
+          begin_drill="$(psql "$GOVERNANCE_DATABASE_URL" -Atqc "select has_function_privilege('service_role','governance_private.begin_recovery_drill(text,text,text,text,text,text)','EXECUTE')")"
+          contain="$(psql "$GOVERNANCE_DATABASE_URL" -Atqc "select has_function_privilege('service_role','governance_private.contain_recovery_drill(text,text)','EXECUTE')")"
+          rollback="$(psql "$GOVERNANCE_DATABASE_URL" -Atqc "select has_function_privilege('service_role','governance_private.rollback_recovery_drill(text,text,text)','EXECUTE')")"
+          resume="$(psql "$GOVERNANCE_DATABASE_URL" -Atqc "select has_function_privilege('service_role','governance_private.resume_recovery_drill(text,text,text)','EXECUTE')")"
+          close_drill="$(psql "$GOVERNANCE_DATABASE_URL" -Atqc "select has_function_privilege('service_role','governance_private.close_recovery_drill(text,text)','EXECUTE')")"
+          test "$mutation" = "t"
+          test "$begin_drill" = "f"
+          test "$contain" = "f"
+          test "$rollback" = "f"
+          test "$resume" = "f"
+          test "$close_drill" = "f"
+          migration_sha="$(cut -d' ' -f1 /tmp/governance-recovery-migration.sha256)"
+          printf '{"migration":"20260916061000_governance_recovery_containment.sql","migration_sha256":"%s","git_sha":"%s","bounded_mutation_service_role":true,"emergency_service_role":false}\n' "$migration_sha" "$GITHUB_SHA" > governance-recovery-migration-evidence.json
+
+      - name: Upload migration evidence
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: governance-recovery-migration-${{ github.sha }}
+          path: governance-recovery-migration-evidence.json
+          if-no-files-found: error
+          retention-days: 90

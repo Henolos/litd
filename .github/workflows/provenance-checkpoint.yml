@@ -21,12 +21,12 @@ jobs:
       id-token: write
     steps:
       - name: Checkout exact measured commit
-        uses: actions/checkout@v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           ref: ${{ github.event.workflow_run.head_sha }}
           persist-credentials: false
 
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
         with:
           python-version: '3.12'
 
@@ -34,7 +34,7 @@ jobs:
         run: python -m pip install -r requirements-dev.txt
 
       - name: Download exact Measurement Provenance artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -81,7 +81,7 @@ jobs:
           --certificate-oidc-issuer="https://token.actions.githubusercontent.com"
 
       - name: Upload signed checkpoint and Sigstore verification bundle
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: signed-provenance-checkpoint-${{ github.event.workflow_run.id }}-${{ github.event.workflow_run.run_attempt }}
           path: |

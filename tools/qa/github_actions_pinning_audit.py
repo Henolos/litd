@@ -9,6 +9,7 @@ import sys
 
 SHA_RE = re.compile(r"^[0-9a-fA-F]{40}$")
 USES_RE = re.compile(r"^\s*-?\s*uses:\s*([^\s#]+)")
+WORKFLOWS_DIR = pathlib.Path(".github/workflows")
 
 
 def git(*args: str) -> str:
@@ -16,8 +17,16 @@ def git(*args: str) -> str:
 
 
 def changed_workflows(base: str, head: str) -> list[pathlib.Path]:
-    out = git("diff", "--name-only", f"{base}...{head}", "--", ".github/workflows")
+    out = git("diff", "--name-only", f"{base}...{head}", "--", str(WORKFLOWS_DIR))
     return [pathlib.Path(p) for p in out.splitlines() if p.endswith((".yml", ".yaml"))]
+
+
+def all_workflows() -> list[pathlib.Path]:
+    return sorted(
+        path
+        for path in WORKFLOWS_DIR.rglob("*")
+        if path.is_file() and path.suffix in (".yml", ".yaml")
+    )
 
 
 def validate(path: pathlib.Path) -> list[str]:
@@ -44,20 +53,22 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--base", default="origin/main")
     parser.add_argument("--head", default="HEAD")
+    parser.add_argument("--all", action="store_true", help="audit every workflow in .github/workflows")
     args = parser.parse_args()
 
-    files = changed_workflows(args.base, args.head)
+    files = all_workflows() if args.all else changed_workflows(args.base, args.head)
     failures: list[str] = []
     for path in files:
         failures.extend(validate(path))
 
+    scope = "repository-wide" if args.all else "changed-workflows"
     if failures:
-        print("GitHub Actions pinning audit: FAIL", file=sys.stderr)
+        print(f"GitHub Actions pinning audit: FAIL ({scope})", file=sys.stderr)
         for item in failures:
             print(f"- {item}", file=sys.stderr)
         return 1
 
-    print(f"GitHub Actions pinning audit: PASS ({len(files)} workflow(s) modifies)")
+    print(f"GitHub Actions pinning audit: PASS ({scope}, {len(files)} workflow(s))")
     return 0
 
 

@@ -3,7 +3,27 @@ name: Godot Live Status
 on:
   push:
     branches: [main, develop]
+    paths:
+      - 'project.godot'
+      - 'export_presets.cfg'
+      - 'addons/**'
+      - 'assets/**'
+      - 'data/**'
+      - 'scenes/**'
+      - 'scripts/**'
+      - 'tools/ci/godot_progress_bridge.py'
+      - '.github/workflows/godot-live-status.yml'
   pull_request:
+    paths:
+      - 'project.godot'
+      - 'export_presets.cfg'
+      - 'addons/**'
+      - 'assets/**'
+      - 'data/**'
+      - 'scenes/**'
+      - 'scripts/**'
+      - 'tools/ci/godot_progress_bridge.py'
+      - '.github/workflows/godot-live-status.yml'
   workflow_dispatch:
 
 permissions:
@@ -20,7 +40,7 @@ jobs:
     container:
       image: barichello/godot-ci:4.7.2
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Installer Python pour le pont de progression
         run: |
           apt-get update

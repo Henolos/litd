@@ -6,6 +6,7 @@ extends "res://scripts/ui/context_menu_ui_v2.gd"
 const P0_MIN_TOUCH_HEIGHT := 48.0
 const P0_MAX_UI_SCALE := 1.4
 const P0_MAX_TEXT_SCALE := 1.5
+const VEILLEURS_UI_STATE_ADAPTER := preload("res://scripts/ui/veilleurs_ui_state_adapter.gd")
 
 var _p0_focus_before_menu: Control
 var _p0_focus_by_tab: Dictionary = {}
@@ -14,6 +15,7 @@ var _p0_reflow_guard := false
 
 func _ready() -> void:
     super._ready()
+    EquipmentManager.set_roster_provider(_p0_active_roster)
     var viewport := get_viewport()
     if viewport != null and not viewport.size_changed.is_connected(_p0_on_viewport_size_changed):
         viewport.size_changed.connect(_p0_on_viewport_size_changed)
@@ -38,6 +40,9 @@ func open_menu(tab: String = "") -> void:
     var focused := get_viewport().gui_get_focus_owner()
     if focused != null and is_instance_valid(focused) and (overlay == null or not overlay.is_ancestor_of(focused)):
         _p0_focus_before_menu = focused
+    var active_roster := _p0_active_roster()
+    if not active_roster.is_empty() and _hero_by_id(selected_hero_id).is_empty():
+        selected_hero_id = str((active_roster[0] as Dictionary).get("id", ""))
     super.open_menu(tab)
     call_deferred("_p0_finalize_menu_contract")
 
@@ -62,6 +67,12 @@ func _input(event: InputEvent) -> void:
         get_viewport().set_input_as_handled()
         return
     super._input(event)
+
+func _hero_by_id(hero_id: String) -> Dictionary:
+    for hero_value: Variant in _p0_active_roster():
+        if hero_value is Dictionary and str((hero_value as Dictionary).get("id", "")) == hero_id:
+            return hero_value
+    return {}
 
 func _two_panes(left_width: float = 520.0) -> Array:
     if not _p0_is_compact_layout():
@@ -90,7 +101,7 @@ func _p0_compact_pane(parent: VBoxContainer) -> VBoxContainer:
     return column
 
 func _compact_hero_selector(parent: VBoxContainer) -> void:
-    if not _p0_is_compact_layout():
+    if not _p0_is_compact_layout() and not VEILLEURS_UI_STATE_ADAPTER.is_active():
         super._compact_hero_selector(parent)
         return
     var grid := GridContainer.new()
@@ -98,7 +109,8 @@ func _compact_hero_selector(parent: VBoxContainer) -> void:
     grid.add_theme_constant_override("h_separation", 6)
     grid.add_theme_constant_override("v_separation", 6)
     parent.add_child(grid)
-    for hero_value in GameState.party:
+    var menu_party: Array = VEILLEURS_UI_STATE_ADAPTER.party() if VEILLEURS_UI_STATE_ADAPTER.is_active() else GameState.party
+    for hero_value in menu_party:
         var hero: Dictionary = hero_value
         var hero_id := str(hero.get("id", ""))
         var selected := hero_id == selected_hero_id
@@ -308,3 +320,8 @@ func _p0_neighbor_path(origin: Control, controls: Array[Control], direction: Vec
             best_score = score
             best = candidate
     return origin.get_path_to(best if best != null else fallback)
+
+func _p0_active_roster() -> Array:
+    if VEILLEURS_UI_STATE_ADAPTER.is_active():
+        return VEILLEURS_UI_STATE_ADAPTER.party()
+    return GameState.party

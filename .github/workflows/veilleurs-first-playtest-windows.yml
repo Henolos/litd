@@ -47,11 +47,12 @@ permissions:
 
 jobs:
   audit-kit:
+    if: ${{ github.actor != 'dependabot[bot]' || !startsWith(github.head_ref, 'dependabot/github_actions/') }}
     name: Audit first-playtest kit
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
         with:
           python-version: '3.12'
       - name: Validate kit contract
@@ -61,13 +62,14 @@ jobs:
           python tools/playtest/run_veilleurs_first_playtest.py --check
 
   windows-debug-playtest:
+    if: ${{ github.actor != 'dependabot[bot]' || !startsWith(github.head_ref, 'dependabot/github_actions/') }}
     name: Export Windows first-playtest build
     needs: audit-kit
     runs-on: ubuntu-latest
     container:
       image: barichello/godot-ci:4.7.2
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
 
       - name: Validate player-facing vertical slice before export
         shell: bash
@@ -144,7 +146,7 @@ jobs:
           )
 
       - name: Publish Windows playtest build
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: veilleurs-windows-first-playtest
           path: build/playtest/windows/
@@ -152,7 +154,7 @@ jobs:
 
       - name: Publish playtest validation logs
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: veilleurs-windows-first-playtest-log
           path: build/automation/

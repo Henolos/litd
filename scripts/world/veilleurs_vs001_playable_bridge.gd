@@ -3,10 +3,10 @@ extends Node
 const PERSISTENCE_SCRIPT := preload("res://scripts/world/veilleurs_vs001_persistence_bridge.gd")
 
 const WATCHER_DEFS: Array[Dictionary] = [
-    {"id": "Marec", "name": "Marec", "role": "La Garde", "template_index": 3},
-    {"id": "Mathilde", "name": "Mathilde", "role": "Le Pisteur", "template_index": 1},
-    {"id": "Aurélien", "name": "Aurélien", "role": "L’Anatomiste", "template_index": 2},
-    {"id": "Anouk", "name": "Anouk", "role": "Le Médiateur", "template_index": 0}
+    {"id": "Marec", "canonical_id": "marec", "name": "Marec", "role": "La Garde"},
+    {"id": "Mathilde", "canonical_id": "mathilde", "name": "Mathilde", "role": "Le Pisteur"},
+    {"id": "Aurélien", "canonical_id": "aurelien", "name": "Aurélien", "role": "L’Anatomiste"},
+    {"id": "Anouk", "canonical_id": "anouk", "name": "Anouk", "role": "Le Médiateur"}
 ]
 
 var previous_party: Array = []
@@ -160,14 +160,12 @@ func _capture_party_position() -> Array:
 func _build_watchers_party() -> Array:
     var watchers: Array = []
     for watcher_def: Dictionary in WATCHER_DEFS:
-        var template_index := int(watcher_def.get("template_index", -1))
-        if template_index < 0 or template_index >= DataLoader.heroes.size():
+        var canonical_id := str(watcher_def.get("canonical_id", ""))
+        var raw_value: Dictionary = DataLoader.find_by_id(DataLoader.heroes, canonical_id)
+        if raw_value.is_empty():
             push_error("VeilleursVS001PlayableBridge: missing combat shell for %s" % str(watcher_def.get("id", "watcher")))
             continue
-        var raw_value: Variant = DataLoader.heroes[template_index]
-        if not (raw_value is Dictionary):
-            continue
-        var watcher: Dictionary = (raw_value as Dictionary).duplicate(true)
+        var watcher: Dictionary = raw_value.duplicate(true)
         watcher["id"] = str(watcher_def.get("id", "watcher"))
         watcher["name"] = str(watcher_def.get("name", "Veilleur"))
         watcher["display_name"] = str(watcher_def.get("name", "Veilleur"))
