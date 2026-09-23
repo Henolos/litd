@@ -40,6 +40,9 @@ func open_menu(tab: String = "") -> void:
     var focused := get_viewport().gui_get_focus_owner()
     if focused != null and is_instance_valid(focused) and (overlay == null or not overlay.is_ancestor_of(focused)):
         _p0_focus_before_menu = focused
+    var active_roster := _p0_active_roster()
+    if not active_roster.is_empty() and _hero_by_id(selected_hero_id).is_empty():
+        selected_hero_id = str((active_roster[0] as Dictionary).get("id", ""))
     super.open_menu(tab)
     call_deferred("_p0_finalize_menu_contract")
 
@@ -64,6 +67,12 @@ func _input(event: InputEvent) -> void:
         get_viewport().set_input_as_handled()
         return
     super._input(event)
+
+func _hero_by_id(hero_id: String) -> Dictionary:
+    for hero_value: Variant in _p0_active_roster():
+        if hero_value is Dictionary and str((hero_value as Dictionary).get("id", "")) == hero_id:
+            return hero_value
+    return {}
 
 func _two_panes(left_width: float = 520.0) -> Array:
     if not _p0_is_compact_layout():
