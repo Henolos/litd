@@ -82,14 +82,18 @@ func bind_combatant(control: Control, combatant: Dictionary, enemy: bool) -> voi
 func show_preview(combatant: Dictionary, enemy: bool) -> void:
     if detail_open or combatant.is_empty():
         return
+    var presented := _inspection_combatant(combatant, enemy)
+    var observable := _observable_combatant(combatant, presented, enemy)
     _clear(preview_content)
-    preview_content.add_child(_label(_title(combatant, enemy), 17, GOLD))
-    preview_content.add_child(_label(_stat_line(combatant, enemy), 13, TEXT))
-    var capture_summary := _capture_summary(combatant) if enemy else ""
+    preview_content.add_child(_label(_title(presented, enemy), 17, GOLD))
+    if enemy:
+        preview_content.add_child(_label("Connaissance : " + _knowledge_label(presented), 12, GOLD))
+    preview_content.add_child(_label(_stat_line(presented, enemy), 13, TEXT))
+    var capture_summary := _capture_summary(combatant) if enemy and _knowledge_level(presented) >= KnowledgeDiscoveryUIContract.LEVEL_DOCUMENTED else ""
     if capture_summary != "":
         preview_content.add_child(_label(capture_summary, 12, _capture_color(combatant)))
-    preview_content.add_child(_label("État : " + _affliction_summary(combatant, enemy, 3), 12, MUTED))
-    preview_content.add_child(_label("Compétences : " + _skill_summary(combatant, enemy, 3), 12, MUTED))
+    preview_content.add_child(_label("État : " + _affliction_summary(observable, enemy, 3), 12, MUTED))
+    preview_content.add_child(_label("Compétences : " + _skill_summary(presented, enemy, 3), 12, MUTED))
     preview_panel.visible = true
     call_deferred("_apply_layout")
 
@@ -100,23 +104,28 @@ func hide_preview() -> void:
 func open_detail(combatant: Dictionary, enemy: bool) -> void:
     if combatant.is_empty():
         return
+    var presented := _inspection_combatant(combatant, enemy)
+    var observable := _observable_combatant(combatant, presented, enemy)
     detail_open = true
     preview_panel.visible = false
     detail_overlay.visible = true
     HUDDirector.set_disclosure_level(HUDDirector.LEVEL_INSPECTION)
     _clear(detail_content)
-    detail_content.add_child(_label(_title(combatant, enemy), 25, GOLD))
+    detail_content.add_child(_label(_title(presented, enemy), 25, GOLD))
+    if enemy:
+        detail_content.add_child(_label("CONNAISSANCE", 18, GOLD))
+        detail_content.add_child(_label(_knowledge_label(presented), 15, TEXT))
     detail_content.add_child(_label("STATISTIQUES", 18, GOLD))
-    detail_content.add_child(_label(_stat_line(combatant, enemy), 15, TEXT))
-    var capture_summary := _capture_summary(combatant) if enemy else ""
+    detail_content.add_child(_label(_stat_line(presented, enemy), 15, TEXT))
+    var capture_summary := _capture_summary(combatant) if enemy and _knowledge_level(presented) >= KnowledgeDiscoveryUIContract.LEVEL_DOCUMENTED else ""
     if capture_summary != "":
         detail_content.add_child(_label("CAPTURE", 18, GOLD))
         detail_content.add_child(_label(capture_summary, 15, _capture_color(combatant)))
     detail_content.add_child(_label("ÉTAT DU CORPS ET EFFETS", 18, GOLD))
-    for line in _affliction_lines(combatant, enemy):
+    for line in _affliction_lines(observable, enemy):
         detail_content.add_child(_label("• " + line, 14, _affliction_color(line)))
     detail_content.add_child(_label("COMPÉTENCES", 18, GOLD))
-    for line in _skill_lines(combatant, enemy):
+    for line in _skill_lines(presented, enemy):
         detail_content.add_child(_label("• " + line, 14, TEXT))
     call_deferred("_apply_layout")
 
@@ -279,11 +288,38 @@ func _logical_safe_insets(reference_size: Vector2) -> Vector4:
         maxf(0.0, (content_end.y - clipped_bottom) / content_scale)
     )
 
+func _inspection_combatant(combatant: Dictionary, enemy: bool) -> Dictionary:
+    if not enemy:
+        return combatant.duplicate(true)
+    var view := VeilleursUIStateAdapter.enemy_knowledge_view(combatant)
+    var visible: Dictionary = (view.get("visible", {}) as Dictionary).duplicate(true)
+    visible["_knowledge_level"] = int(view.get("knowledge_level", KnowledgeDiscoveryUIContract.LEVEL_UNKNOWN))
+    visible["_knowledge_label"] = str(view.get("knowledge_label", "Inconnu"))
+    return visible
+
+func _observable_combatant(combatant: Dictionary, presented: Dictionary, enemy: bool) -> Dictionary:
+    var observable := combatant.duplicate(true)
+    if enemy:
+        observable["_knowledge_level"] = _knowledge_level(presented)
+        observable["_knowledge_label"] = _knowledge_label(presented)
+    return observable
+
+func _knowledge_level(combatant: Dictionary) -> int:
+    return int(combatant.get("_knowledge_level", KnowledgeDiscoveryUIContract.LEVEL_DOCUMENTED))
+
+func _knowledge_label(combatant: Dictionary) -> String:
+    return str(combatant.get("_knowledge_label", "Documenté"))
+
 func _title(combatant: Dictionary, enemy: bool) -> String:
     var side := "ENNEMI" if enemy else "HÉROS"
-    return "%s — %s · niveau %d" % [side, String(combatant.get("name", "Inconnu")), int(combatant.get("level", 1))]
+    var name := String(combatant.get("name", "Inconnu"))
+    if enemy and _knowledge_level(combatant) == KnowledgeDiscoveryUIContract.LEVEL_UNKNOWN:
+        return "%s — %s" % [side, name]
+    return "%s — %s · niveau %d" % [side, name, int(combatant.get("level", 1))]
 
 func _stat_line(combatant: Dictionary, enemy: bool) -> String:
+    if enemy and _knowledge_level(combatant) < KnowledgeDiscoveryUIContract.LEVEL_STUDIED:
+        return "État visible : %s" % _vital_state_name(str(combatant.get("public_vital_state", combatant.get("vital_state", "unknown"))))
     var parts: Array[String] = [
         "PV %d/%d" % [int(combatant.get("hp", 0)), int(combatant.get("max_hp", combatant.get("hp", 0)))],
         "DGT %s" % _damage_text(combatant.get("damage", combatant.get("damage_bonus", 0))),
@@ -344,11 +380,12 @@ func _affliction_lines(combatant: Dictionary, enemy: bool) -> Array[String]:
 
     _append_functional_lines(result, combatant)
 
-    var traits := CharacterTraitDirector.trait_names(combatant)
-    for value: Variant in traits.get("positive", []):
-        result.append("Trait favorable : " + String(value))
-    for value: Variant in traits.get("negative", []):
-        result.append("Trait défavorable : " + String(value))
+    if not enemy or _knowledge_level(combatant) >= KnowledgeDiscoveryUIContract.LEVEL_DOCUMENTED:
+        var traits := CharacterTraitDirector.trait_names(combatant)
+        for value: Variant in traits.get("positive", []):
+            result.append("Trait favorable : " + String(value))
+        for value: Variant in traits.get("negative", []):
+            result.append("Trait défavorable : " + String(value))
     for value: Variant in combatant.get("buffs", []):
         result.append("Effet favorable : " + _effect_name(value))
     for value: Variant in combatant.get("debuffs", []):
@@ -418,7 +455,7 @@ func _append_functional_lines(result: Array[String], combatant: Dictionary) -> v
 func _skill_lines(combatant: Dictionary, enemy: bool) -> Array[String]:
     var result: Array[String] = []
     if enemy:
-        for value: Variant in combatant.get("skills", combatant.get("abilities", [])):
+        for value: Variant in combatant.get("skills", combatant.get("observed_skills", combatant.get("abilities", []))):
             result.append(_skill_name(value))
     else:
         for value: Variant in HeroSkillManager.known_combat_skills(combatant):
@@ -462,6 +499,17 @@ func _status_name(status: String) -> String:
         "burning":"Brûlure",
         "guarding":"Garde"
     }.get(status.to_lower(), status.replace("_", " ").capitalize())
+
+func _vital_state_name(value: String) -> String:
+    return {
+        "unknown":"Inconnu",
+        "healthy":"Stable",
+        "stable":"Stable",
+        "wounded":"Blessé",
+        "critical":"Critique",
+        "subdued":"Soumis",
+        "dead":"Mort",
+    }.get(value.to_lower(), value.replace("_", " ").capitalize())
 
 func _zone_name(zone: String) -> String:
     return str(BODY_ZONE_LABELS.get(zone, zone.replace("_", " ").capitalize()))

@@ -62,3 +62,17 @@ def test_combatant_inspection_is_contextual_and_keeps_controls_available():
     assert "dim.mouse_filter = Control.MOUSE_FILTER_IGNORE" in inspection
     assert "detail_frame.mouse_filter = Control.MOUSE_FILTER_STOP" in inspection
     assert "minf(desired_detail.y, safe_size.y * 0.40)" in inspection
+
+
+def test_enemy_inspection_uses_canonical_knowledge_before_revealing_details():
+    adapter = read("scripts/ui/veilleurs_ui_state_adapter.gd")
+    inspection = read("scripts/ui/combatant_inspection_ui.gd")
+
+    assert "static func enemy_knowledge_view(combatant: Dictionary) -> Dictionary" in adapter
+    assert "VeilleursRuntime.knowledge_summary(entry_id)" in adapter
+    assert "KnowledgeDiscoveryUIContract.enemy_view(" in adapter
+    assert "VeilleursUIStateAdapter.enemy_knowledge_view(combatant)" in inspection
+    assert "KnowledgeDiscoveryUIContract.LEVEL_STUDIED" in inspection
+    assert "KnowledgeDiscoveryUIContract.LEVEL_DOCUMENTED" in inspection
+    assert 'combatant.get("skills", combatant.get("observed_skills"' in inspection
+    assert "if not enemy or _knowledge_level(combatant) >= KnowledgeDiscoveryUIContract.LEVEL_DOCUMENTED:" in inspection

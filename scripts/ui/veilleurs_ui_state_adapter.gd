@@ -99,3 +99,51 @@ static func menu_context() -> Dictionary:
 		"current_dungeon_id": current_dungeon_id(),
 		"expedition_active": expedition_active()
 	}
+
+static func enemy_knowledge_view(combatant: Dictionary) -> Dictionary:
+	var source := combatant.duplicate(true)
+	var entry_id := str(source.get("remanence_id", source.get("definition_id", source.get("entity_id", source.get("id", "")))))
+	if entry_id == "":
+		return KnowledgeDiscoveryUIContract.enemy_view(source)
+	var definition_id := str(source.get("definition_id", source.get("entity_id", entry_id)))
+	source["id"] = definition_id
+	if not source.has("name"):
+		source["name"] = str(source.get("display_name", definition_id))
+	if not is_active():
+		return KnowledgeDiscoveryUIContract.enemy_view(source)
+	var summary: Dictionary = VeilleursRuntime.knowledge_summary(entry_id)
+	var level := int(summary.get("knowledge_level", 0))
+	var observed_ids: Array = summary.get("observed_skills", [])
+	var campaign_entry := {
+		"knowledge": level,
+		"observed_skills": _observed_skill_rows(source, observed_ids),
+	}
+	return KnowledgeDiscoveryUIContract.enemy_view(
+		source,
+		campaign_entry,
+		{"knowledge_level": level},
+		{},
+		false,
+		(summary.get("evidence", []) as Array).duplicate(true)
+	)
+
+static func _observed_skill_rows(combatant: Dictionary, observed_ids: Array) -> Array:
+	var result: Array = []
+	var skills_value: Variant = combatant.get("skills", combatant.get("abilities", []))
+	var skills: Array = skills_value if skills_value is Array else []
+	for id_value: Variant in observed_ids:
+		var observed_id := str(id_value)
+		var matched := false
+		for skill_value: Variant in skills:
+			if not (skill_value is Dictionary):
+				continue
+			var skill: Dictionary = skill_value
+			var skill_id := str(skill.get("skill_id", skill.get("id", "")))
+			if skill_id != observed_id:
+				continue
+			result.append(skill.duplicate(true))
+			matched = true
+			break
+		if not matched and observed_id != "":
+			result.append(observed_id)
+	return result
