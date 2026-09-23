@@ -67,6 +67,26 @@ func _run() -> void:
     _check(str(world.get("knowledge_label", "")) == "Documenté", "world knowledge uses the same levels")
     _check(str(world.get("display_name", "")) == "Archive de S8", "known world subject reveals its name")
 
+    var archive_store := VeilleursArchivesRuntime.new()
+    archive_store.record_identity("hungry_ghoul", "enemy", {"name":"Goule affamée"})
+    archive_store.record_combat_observation("hungry_ghoul", {
+        "observation_id":"combat:ghoul:1",
+        "skill_id":"ash_bite"
+    })
+    archive_store.record_trace("hungry_ghoul", {
+        "trace_id":"proof:combat:ghoul:1",
+        "source":"combat_runtime"
+    })
+    var archive_summary := archive_store.knowledge_summary("hungry_ghoul")
+    _check(archive_store.archive_level("hungry_ghoul") == KnowledgeDiscoveryUIContract.LEVEL_STUDIED, "archive facade exposes studied level")
+    _check(str(archive_summary.get("knowledge_label", "")) == "Étudié", "archive facade exposes canonical label")
+    _check((archive_summary.get("observed_skills", []) as Array).has("ash_bite"), "archive facade exposes observed skill")
+    _check(int(archive_summary.get("proof_count", 0)) == 1, "archive facade exposes proof count")
+    _check(bool(archive_summary.get("read_only", false)), "archive facade remains read-only")
+    var restored_store := VeilleursArchivesRuntime.new()
+    restored_store.deserialize(archive_store.serialize())
+    _check(restored_store.knowledge_summary("hungry_ghoul") == archive_summary, "archive summary survives reload")
+
     _check(enemy == original, "presentation contract never mutates source data")
     _check(bool(documented.get("read_only", false)), "view explicitly remains read-only")
     _finish()

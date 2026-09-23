@@ -120,6 +120,54 @@ func reveal_recruitment_clue(entry_id: String, clue: String) -> Dictionary:
 func dossier(entry_id: String) -> Dictionary:
     return (entries.get(entry_id, {}) as Dictionary).duplicate(true)
 
+func archive_level(entry_id: String) -> int:
+    var row: Dictionary = entries.get(entry_id, {})
+    return clampi(int(row.get("knowledge_level", 0)), 0, 3)
+
+func knowledge_summary(entry_id: String) -> Dictionary:
+    var row := dossier(entry_id)
+    var level := archive_level(entry_id)
+    var observations: Array = row.get("observations", [])
+    var traces: Array = row.get("traces", [])
+    var observed_skills: Array[String] = []
+    var evidence: Array[Dictionary] = []
+    for index in range(observations.size()):
+        var value: Variant = observations[index]
+        if not (value is Dictionary):
+            continue
+        var observation: Dictionary = value
+        var skill_id := str(observation.get("skill_id", ""))
+        if skill_id != "" and not observed_skills.has(skill_id):
+            observed_skills.append(skill_id)
+        evidence.append({
+            "evidence_id":str(observation.get("observation_id", "observation:%s:%d" % [entry_id, index])),
+            "source":"combat_observation",
+            "label":"Observation de combat",
+            "subject_id":entry_id
+        })
+    for index in range(traces.size()):
+        var value: Variant = traces[index]
+        if not (value is Dictionary):
+            continue
+        var trace: Dictionary = value
+        evidence.append({
+            "evidence_id":str(trace.get("trace_id", "trace:%s:%d" % [entry_id, index])),
+            "source":"repeated_pattern",
+            "label":"Preuve corroborée",
+            "subject_id":entry_id
+        })
+    return {
+        "entry_id":entry_id,
+        "knowledge_level":level,
+        "knowledge_label":["Inconnu", "Observé", "Étudié", "Documenté"][level],
+        "observed_skills":observed_skills,
+        "observation_count":observations.size(),
+        "proof_count":traces.size(),
+        "evidence":evidence,
+        "archive_entry":row,
+        "read_only":true
+    }
+
 func serialize() -> Dictionary:
     return {"entries": entries.duplicate(true)}
 
