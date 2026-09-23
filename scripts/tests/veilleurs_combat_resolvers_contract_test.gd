@@ -4,6 +4,8 @@ const HitResolver := preload("res://scripts/core/combat/veilleurs_hit_resolver.g
 const DamageResolver := preload("res://scripts/core/combat/veilleurs_damage_resolver.gd")
 const ReactionResolver := preload("res://scripts/core/combat/veilleurs_reaction_resolver.gd")
 const CombatEvent := preload("res://scripts/core/combat/veilleurs_combat_event.gd")
+const CombatCommand := preload("res://scripts/core/combat/veilleurs_combat_command.gd")
+const TargetResolver := preload("res://scripts/core/combat/veilleurs_target_resolver.gd")
 const LegacyRuntime := preload("res://scripts/core/veilleurs_combat_sandbox_runtime.gd")
 
 func _init() -> void:
@@ -47,6 +49,15 @@ func _init() -> void:
     assert(str(event.get("actor_id", "")) == "hero" and str(event.get("target_id", "")) == "target", "CombatEvent identity contract changed")
     attack_result["damage"] = 99
     assert(int((event.get("payload", {}) as Dictionary).get("damage", 0)) == 7, "CombatEvent payload must be an immutable snapshot")
+
+    var command := CombatCommand.make("hero", "strike", "enemy", 0, TargetResolver.normalize_zone("invalid_zone"))
+    assert(bool(CombatCommand.validate(command).get("ok", false)), "Canonical combat command must validate")
+    assert(str(command.get("zone", "")) == "torso", "TargetResolver zone normalization contract changed")
+    assert(not bool(CombatCommand.validate({"actor_id":"hero"}).get("ok", true)), "Incomplete combat command must fail closed")
+    var targets: Array = [{"id":"enemy"}]
+    var valid_target := TargetResolver.validate_index(targets, 0)
+    assert(bool(valid_target.get("ok", false)) and str((valid_target.get("target", {}) as Dictionary).get("id", "")) == "enemy", "TargetResolver valid-index contract changed")
+    assert(str(TargetResolver.validate_index(targets, 1).get("reason", "")) == "invalid_target", "TargetResolver invalid-index contract changed")
 
     print("VEILLEURS_COMBAT_RESOLVERS_CONTRACT_OK")
     quit(0)
