@@ -59,14 +59,16 @@ func _init() -> void:
     assert((runtime.inspect_actor("enemy", 0).afflictions as Dictionary).size() == 10)
     runtime.active_hero_index = 0
     runtime.heroes[0].afflictions = {"stun":1}
+    var ap_before: int = int(runtime.heroes[0].ap)
     var blocked: Dictionary = runtime.perform_action("MATH-LAM-01", 0)
-    assert(not blocked.ok and blocked.reason == "stunned" and int(runtime.heroes[0].ap) == 17)
+    assert(not blocked.ok and blocked.reason == "stunned" and int(runtime.heroes[0].ap) == ap_before)
     assert(runtime.move_hero(0, 2).reason == "movement_blocked")
     runtime.heroes[0].afflictions = {}
     runtime.active_hero_index = 2
     runtime.heroes[2].afflictions = {"silence":1}
+    ap_before = int(runtime.heroes[2].ap)
     assert(runtime.perform_action("ANOU-TRA-02", 0).reason == "silenced")
-    assert(int(runtime.heroes[2].ap) == 17)
+    assert(int(runtime.heroes[2].ap) == ap_before)
 
     runtime = Runtime.new()
     assert(runtime.setup().ok)
