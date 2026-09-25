@@ -42,11 +42,15 @@ func _init() -> void:
 
     var runtime := Runtime.new()
     assert(runtime.setup().ok)
-    var names := {"poison":"MATH-AFF-01","bleed":"MATH-AFF-02","blind":"MATH-AFF-03", "stun":"MARC-AFF-01","vulnerability":"MARC-AFF-02","weakness":"MARC-AFF-03", "burn":"ANOU-AFF-01","freeze":"ANOU-AFF-02","silence":"ANOU-AFF-03", "snare":"AURE-AFF-01"}
+    var names := {"poison":"MATH-AFF-01","bleed":"MA-ENT-01","blind":"MA-DIS-09", "stun":"MR-BRI-01","vulnerability":"MR-BRI-05","weakness":"AN-DIS-08", "burn":"ANOU-AFF-01","freeze":"ANOU-AFF-02","silence":"AN-DIS-06", "snare":"AN-SEN-06"}
+    var canonical_build_actions := {"MA-ENT-01":"Entaille","MA-DIS-09":"Disparition","MR-BRI-01":"Brisure","MR-BRI-05":"Brisure","AN-DIS-08":"Dissidence","AN-DIS-06":"Dissidence","AN-SEN-06":"Sentence"}
     for i in range(runtime.heroes.size()):
         for action: Dictionary in runtime.heroes[i].sandbox_actions:
             if names.has(str(action.get("affliction", ""))):
                 assert(str(action.get("id")) == names[str(action.affliction)])
+                if canonical_build_actions.has(str(action.get("id"))):
+                    assert(str(action.get("tree", "")) == canonical_build_actions[str(action.get("id"))], "canonical affliction action must declare its tree")
+                    assert(str(action.get("build_role", "")) != "", "canonical affliction action must declare a build role")
                 runtime.active_hero_index = i
                 runtime.heroes[i].ap = 20
                 for round_number in range(1, 30):
