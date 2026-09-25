@@ -66,8 +66,8 @@
   "first_encounter": {
     "id": "combat_sandbox_01",
     "enemies": [
-      {"id":"charognard_sandbox","name":"Charognard des Failles","max_hp":58,"formation_slot":1},
-      {"id":"porte_cendre_sandbox","name":"Porte-Cendre","max_hp":96,"formation_slot":2}
+      {"id":"charognard_sandbox","name":"Charognard des Failles","max_hp":58,"formation_slot":1,"affliction_resistances":{"bleed":{"damage":-50,"duration":-50}}},
+      {"id":"porte_cendre_sandbox","name":"Porte-Cendre","max_hp":96,"formation_slot":2,"affliction_resistances":{"burn":{"damage":50,"duration":50}}}
     ]
   }
 }

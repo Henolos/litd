@@ -173,13 +173,14 @@ func inspect_actor(side: String, index: int) -> Dictionary:
     if side == "hero":
         if index < 0 or index >= heroes.size(): return {"ok":false,"reason":"invalid_actor"}
         var detail := VeilleursCombatContextRuntime.detailed_inspection(heroes[index])
-        detail["posture"] = heroes[index].get("posture", "none"); detail["reaction"] = heroes[index].get("reaction", "none"); detail["trame_overload"] = heroes[index].get("trame_overload", 0); detail["trame_symptom"] = heroes[index].get("trame_symptom", "none"); detail["coordination_bonus"] = heroes[index].get("coordination_bonus", 0); detail["formation_slot"] = heroes[index].get("formation_slot", index + 1); detail["synergy_state"] = heroes[index].get("synergy_state", "none"); detail["ultimate_uses"] = heroes[index].get("ultimate_uses", {}); detail["afflictions"] = (heroes[index].get("afflictions", {}) as Dictionary).duplicate(true)
+        detail["posture"] = heroes[index].get("posture", "none"); detail["reaction"] = heroes[index].get("reaction", "none"); detail["trame_overload"] = heroes[index].get("trame_overload", 0); detail["trame_symptom"] = heroes[index].get("trame_symptom", "none"); detail["coordination_bonus"] = heroes[index].get("coordination_bonus", 0); detail["formation_slot"] = heroes[index].get("formation_slot", index + 1); detail["synergy_state"] = heroes[index].get("synergy_state", "none"); detail["ultimate_uses"] = heroes[index].get("ultimate_uses", {}); detail["afflictions"] = (heroes[index].get("afflictions", {}) as Dictionary).duplicate(true); detail["affliction_resistances"] = (heroes[index].get("affliction_resistances", {}) as Dictionary).duplicate(true)
         return detail
     if side == "enemy":
         if index < 0 or index >= enemies.size(): return {"ok":false,"reason":"invalid_actor"}
         var enemy_detail := VeilleursCombatContextRuntime.detailed_inspection(enemies[index], party_knowledge)
         enemy_detail["control_state"] = enemies[index].get("control_state", "none"); enemy_detail["control_rounds"] = enemies[index].get("control_rounds", 0)
         enemy_detail["afflictions"] = (enemies[index].get("afflictions", {}) as Dictionary).duplicate(true)
+        enemy_detail["affliction_resistances"] = (enemies[index].get("affliction_resistances", {}) as Dictionary).duplicate(true)
         return enemy_detail
     return {"ok":false,"reason":"invalid_side"}
 
@@ -238,7 +239,7 @@ func _resolve_enemy_action(hero: Dictionary, action: Dictionary, target: Diction
             return {"ok":true,"kind":"affliction","hit":false,"target":str(target.get("id")),"roll":affliction_hit.get("roll", 0)}
         var applied: Dictionary = STATUS_RESOLVER.apply_affliction(target, kind, turns)
         target["afflictions"] = applied["afflictions"]
-        return {"ok":true,"kind":"affliction","hit":true,"target":str(target.get("id")),"affliction":kind,"turns":applied["turns"]}
+        return {"ok":true,"kind":"affliction","hit":true,"target":str(target.get("id")),"affliction":kind,"turns":applied["turns"],"resisted":applied["resisted"]}
 
     var normalized := zone if zone in ZONES else "torso"
     var hit_result: Dictionary = HIT_RESOLVER.resolve(hero, action, target, normalized, round)

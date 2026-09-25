@@ -25,6 +25,24 @@ func _init() -> void:
     actor.afflictions = Status.apply_affliction(actor, "poison", 3).afflictions
     actor.afflictions = Status.apply_affliction(actor, "poison", 1).afflictions
     assert(int(actor.afflictions.poison) == 3, "reapplication must not shorten duration")
+    var resistant := {"hp":40, "afflictions":{}, "affliction_resistances":{"poison":{"damage":50,"duration":50}}}
+    var sensitive := {"hp":40, "afflictions":{}, "affliction_resistances":{"poison":{"damage":-50,"duration":-50}}}
+    resistant.afflictions = Status.apply_affliction(resistant, "poison", 2).afflictions
+    sensitive.afflictions = Status.apply_affliction(sensitive, "poison", 2).afflictions
+    assert(int(resistant.afflictions.poison) == 1 and int(Status.start_turn(resistant).damage) == 2)
+    assert(int(sensitive.afflictions.poison) == 3 and int(Status.start_turn(sensitive).damage) == 5)
+    assert(int(Status.start_turn(actor).damage) == 3, "missing resistance keeps the baseline")
+    var immune := {"hp":40, "afflictions":{}, "affliction_resistances":{"stun":{"duration":100},"burn":{"damage":100}}}
+    var resisted: Dictionary = Status.apply_affliction(immune, "stun", 2)
+    assert(resisted.ok and resisted.resisted and resisted.afflictions.is_empty())
+    immune.afflictions = {"burn":1}
+    assert(int(Status.start_turn(immune).damage) == 0, "damage immunity does not remove duration")
+    immune.afflictions = {"stun":3}
+    assert(int(Status.apply_affliction(immune, "stun", 2).turns) == 3, "resistance must not cleanse an existing effect")
+    var clamped := {"hp":40, "afflictions":{}, "affliction_resistances":{"poison":{"damage":-500,"duration":-500}}}
+    assert(int(Status.apply_affliction(clamped, "poison", 2).turns) == 4)
+    clamped.afflictions = {"poison":1}
+    assert(int(Status.start_turn(clamped).damage) == 6, "negative resistance capped at double damage")
     actor.afflictions = {"stun":1}
     assert(Status.action_block(actor, {}) == "stunned")
     assert(Status.movement_block(actor))
@@ -42,6 +60,8 @@ func _init() -> void:
 
     var runtime := Runtime.new()
     assert(runtime.setup().ok)
+    assert(int(runtime.enemies[0].affliction_resistances.bleed.duration) == -50)
+    assert(int(runtime.inspect_actor("enemy", 1).affliction_resistances.burn.damage) == 50)
     var names := {"poison":"MATH-AFF-01","bleed":"MATH-AFF-02","blind":"MATH-AFF-03", "stun":"MARC-AFF-01","vulnerability":"MARC-AFF-02","weakness":"MARC-AFF-03", "burn":"ANOU-AFF-01","freeze":"ANOU-AFF-02","silence":"ANOU-AFF-03", "snare":"AURE-AFF-01"}
     for i in range(runtime.heroes.size()):
         for action: Dictionary in runtime.heroes[i].sandbox_actions:
@@ -56,6 +76,8 @@ func _init() -> void:
                 var action_result: Dictionary = runtime.perform_action(str(action.id), 0)
                 assert(action_result.ok and action_result.hit, "action not usable: %s" % str(action.id))
                 assert(Status.has(runtime.enemies[0], str(action.affliction)), "effect not stored: %s" % str(action.affliction))
+                if str(action.affliction) == "bleed":
+                    assert(int(action_result.turns) == 3, "sandbox sensitivity must lengthen bleed")
     assert((runtime.inspect_actor("enemy", 0).afflictions as Dictionary).size() == 10)
     runtime.active_hero_index = 0
     runtime.heroes[0].afflictions = {"stun":1}

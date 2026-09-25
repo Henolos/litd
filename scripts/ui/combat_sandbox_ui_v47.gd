@@ -248,6 +248,9 @@ func _render_sandbox_inspection() -> void:
     var affliction_label := make_label(_sandbox_afflictions_text(details.get("afflictions", {})), 12, CANON_TEXT)
     affliction_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     box.add_child(affliction_label)
+    var resistances_label := make_label(_sandbox_resistances_text(details.get("affliction_resistances", {})), 12, CANON_TEXT)
+    resistances_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+    box.add_child(resistances_label)
     box.add_child(make_label("CORPS", 12, CANON_GOLD))
     var lines: Array[String] = []
     for zone_value: Variant in details.get("anatomy", []):
@@ -268,12 +271,23 @@ func _sandbox_afflictions_text(statuses: Dictionary) -> String:
             active.append("%s (%d tour%s)" % [str(AFFLICTION_LABELS.get(kind, kind)), turns, "s" if turns > 1 else ""])
     return "Afflictions : %s" % ("aucune" if active.is_empty() else ", ".join(active))
 
+func _sandbox_resistances_text(resistances: Dictionary) -> String:
+    var entries: Array[String] = []
+    for kind: String in VeilleursStatusResolver.AFFLICTIONS:
+        var damage := VeilleursStatusResolver.resistance({"affliction_resistances": resistances}, kind, "damage")
+        var duration := VeilleursStatusResolver.resistance({"affliction_resistances": resistances}, kind, "duration")
+        if damage != 0 or duration != 0:
+            entries.append("%s : dégâts %+d%%, durée %+d%%" % [str(AFFLICTION_LABELS.get(kind, kind)), damage, duration])
+    return "Résistances (+) / sensibilités (−) : %s" % ("aucune" if entries.is_empty() else "; ".join(entries))
+
 func _sandbox_result_text(result: Dictionary) -> String:
     if not bool(result.get("ok", false)):
         return "Action impossible · %s" % str(result.get("reason", "raison inconnue"))
     if str(result.get("kind", "")) == "affliction":
         if not bool(result.get("hit", false)):
             return "AFFLICTION RATÉE · aucun effet appliqué."
+        if bool(result.get("resisted", false)):
+            return "%s résistée par %s · aucune nouvelle durée." % [str(AFFLICTION_LABELS.get(str(result.get("affliction", "")), "Affliction")), str(result.get("target", "la cible"))]
         return "%s appliquée à %s · %d tour(s)." % [str(AFFLICTION_LABELS.get(str(result.get("affliction", "")), "Affliction")), str(result.get("target", "la cible")), int(result.get("turns", 0))]
     if result.has("hit") and not bool(result.get("hit", false)):
         return "ÉCHEC · zone %s · jet %d / précision %d." % [_zone_label_context(str(result.get("zone", "torso"))), int(result.get("roll", 0)), int(result.get("accuracy", 0))]
