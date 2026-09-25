@@ -24,7 +24,7 @@ static func ensure_enemy_positions(enemies: Array) -> void:
         used.append(int(enemy["combat_position"]))
 
 static func target_positions(hero: Dictionary, skill: Dictionary) -> Array[int]:
-    if str(skill.get("effect", "")) != "attack":
+    if str(skill.get("effect", "")) not in ["attack", "affliction"]:
         return []
     var skill_id := str(skill.get("id", ""))
     if skill_id == "heavy_blow":
@@ -33,7 +33,7 @@ static func target_positions(hero: Dictionary, skill: Dictionary) -> Array[int]:
         return ENEMY_FRONT.duplicate()
 
     var source_stat := str(skill.get("source_stat", ""))
-    var status := str(skill.get("status", ""))
+    var status := str(skill.get("status", ""))\n    var affliction := str(skill.get("affliction", ""))
     var class_id := str(hero.get("class_id", ""))
     var branch := str(skill.get("branch", ""))
 
@@ -41,9 +41,9 @@ static func target_positions(hero: Dictionary, skill: Dictionary) -> Array[int]:
         return ENEMY_ALL.duplicate()
     if class_id == "occultist" and branch == "special":
         return ENEMY_ALL.duplicate()
-    if status in ["break", "stun"] or source_stat in ["break_chance", "stun_chance", "execute_percent"]:
+    if status in ["break", "stun"] or affliction in ["stun", "snare"] or source_stat in ["break_chance", "stun_chance", "execute_percent"]:
         return ENEMY_FRONT.duplicate()
-    if status == "bleed" or source_stat == "bleed_chance":
+    if status == "bleed" or affliction == "bleed" or source_stat == "bleed_chance":
         return ENEMY_FRONT_MID.duplicate()
     return ENEMY_FRONT_MID.duplicate()
 
