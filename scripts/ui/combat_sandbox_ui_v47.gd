@@ -3,6 +3,7 @@ extends "res://scripts/ui/main_v50_ge01.gd"
 # Combat Sandbox 0.1 interactif, isolé au-dessus de la pile UI actuelle.
 
 const SANDBOX_RUNTIME_SCRIPT := preload("res://scripts/core/veilleurs_combat_sandbox_runtime.gd")
+const AFFLICTION_LABELS := {"poison":"Poison", "burn":"Brûlure", "bleed":"Saignement", "freeze":"Gel", "stun":"Étourdissement", "blind":"Cécité", "silence":"Silence", "weakness":"Faiblesse", "vulnerability":"Vulnérabilité", "snare":"Entrave"}
 
 var _sandbox: RefCounted = SANDBOX_RUNTIME_SCRIPT.new()
 var _sandbox_started := false
@@ -244,6 +245,9 @@ func _render_sandbox_inspection() -> void:
     panel.add_child(box)
     box.add_child(make_label("%s · EXAMEN · 0 PA" % str(details.get("name", "Combattant")), 20, CANON_GOLD))
     box.add_child(make_label("État %s · douleur %s · saignement %s · psyché %s" % [_fr_state(str(details.get("vital_state", "unknown"))), _fr_state(str(details.get("pain_state", "unknown"))), _fr_state(str(details.get("bleeding_state", "unknown"))), _fr_state(str(details.get("psych_state", "unknown")))], 12, CANON_TEXT))
+    var affliction_label := make_label(_sandbox_afflictions_text(details.get("afflictions", {})), 12, CANON_TEXT)
+    affliction_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+    box.add_child(affliction_label)
     box.add_child(make_label("CORPS", 12, CANON_GOLD))
     var lines: Array[String] = []
     for zone_value: Variant in details.get("anatomy", []):
@@ -256,9 +260,21 @@ func _render_sandbox_inspection() -> void:
     box.add_child(anatomy)
     box.add_child(make_button("FERMER", func(): _sandbox_close_inspection(), Vector2(150, 48)))
 
+func _sandbox_afflictions_text(statuses: Dictionary) -> String:
+    var active: Array[String] = []
+    for kind: String in VeilleursStatusResolver.AFFLICTIONS:
+        var turns := int(statuses.get(kind, 0))
+        if turns > 0:
+            active.append("%s (%d tour%s)" % [str(AFFLICTION_LABELS.get(kind, kind)), turns, "s" if turns > 1 else ""])
+    return "Afflictions : %s" % ("aucune" if active.is_empty() else ", ".join(active))
+
 func _sandbox_result_text(result: Dictionary) -> String:
     if not bool(result.get("ok", false)):
         return "Action impossible · %s" % str(result.get("reason", "raison inconnue"))
+    if str(result.get("kind", "")) == "affliction":
+        if not bool(result.get("hit", false)):
+            return "AFFLICTION RATÉE · aucun effet appliqué."
+        return "%s appliquée à %s · %d tour(s)." % [str(AFFLICTION_LABELS.get(str(result.get("affliction", "")), "Affliction")), str(result.get("target", "la cible")), int(result.get("turns", 0))]
     if result.has("hit") and not bool(result.get("hit", false)):
         return "ÉCHEC · zone %s · jet %d / précision %d." % [_zone_label_context(str(result.get("zone", "torso"))), int(result.get("roll", 0)), int(result.get("accuracy", 0))]
     if bool(result.get("hit", false)):
