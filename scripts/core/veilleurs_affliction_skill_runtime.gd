@@ -27,14 +27,18 @@ func profile_for(_hero: Dictionary, node: Dictionary) -> Dictionary:
     return profile
 
 func resolve(hero: Dictionary, target: Dictionary, skill: Dictionary, damage: int = 0, _party: Array = []) -> Dictionary:
-    if target.is_empty() or int(target.get("hp", 0)) <= 0:
+    if target.is_empty():
+        return {"ok": false, "reason": "target_required", "skill_id": str(skill.get("id", ""))}
+    var delivery := str(skill.get("affliction_delivery", "control"))
+    if int(target.get("hp", 0)) <= 0:
+        if delivery == "attack" and damage > 0:
+            return {"ok": true, "action": "affliction", "skill_id": str(skill.get("id", "")), "hit": true, "applied": false, "reason": "target_defeated"}
         return {"ok": false, "reason": "target_required", "skill_id": str(skill.get("id", ""))}
     var kind := str(skill.get("affliction", ""))
     var turns := int(skill.get("affliction_duration", skill.get("duration", 0)))
     if kind not in STATUS_RESOLVER.AFFLICTIONS or turns <= 0:
         return {"ok": false, "reason": "invalid_affliction", "skill_id": str(skill.get("id", ""))}
 
-    var delivery := str(skill.get("affliction_delivery", "control"))
     var hit := true
     var roll := -1
     var accuracy := int(skill.get("accuracy", skill.get("base_accuracy_pct", 85)))
