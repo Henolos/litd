@@ -42,9 +42,9 @@ func _use_combat_skill(slot: int) -> void:
         return
 
     var effect := str(skill.get("effect", "attack")).to_lower()
-    var manual_hostile := effect in ["attack", "diagnostic"] and _requires_manual_hostile_choice_v49(skill)
+    var manual_hostile := effect in ["attack", "affliction", "diagnostic"] and _requires_manual_hostile_choice_v49(skill)
     if manual_hostile:
-        if effect == "attack" and not COMBAT_POSITION_RULES.is_usable(hero, skill):
+        if effect in ["attack", "affliction"] and not COMBAT_POSITION_RULES.is_usable(hero, skill):
             super._use_combat_skill(slot)
             return
         var candidates: Array[int] = COMBAT_TARGETING_RULES.targetable_indices(hero, skill, GameState.battle_enemies)
