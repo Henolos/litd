@@ -59,7 +59,7 @@
         {"id":"AURE-CHI-13","name":"Attelle","ap":1,"target":"ally","effect":"anatomical_splint"},
         {"id":"AURE-COO-01","name":"Donner le cadre","ap":1,"target":"ally","effect":"coordinate_ally"},
         {"id":"AURE-COO-10","name":"Réaffecter","ap":0,"target":"ally","effect":"reaction_reassign"},
-        {"id":"AU-ANA-11","name":"Neutraliser l’appui","tree":"Anatomie","build_role":"entrave","ap":1,"target":"enemy","effect":"inflict_affliction","affliction":"snare","duration":2,"accuracy":90}
+        {"id":"AU-ANA-06","name":"Section contrôlée","tree":"Anatomie","build_role":"entrave","ap":1,"target":"enemy","effect":"inflict_affliction","affliction":"snare","duration":2,"accuracy":90}
       ]
     }
   ],
