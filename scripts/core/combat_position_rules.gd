@@ -45,8 +45,8 @@ static func allowed_positions(hero: Dictionary, skill: Dictionary) -> Array[int]
     if effect in ["heal", "support"]:
         return MID_BACK.duplicate()
 
-    if effect == "attack":
-        if status in ["stun", "break"] or source_stat in ["break_chance", "stun_chance", "execute_percent"]:
+    if effect in ["attack", "affliction"]:
+        if status in ["stun", "break"] or affliction in ["stun", "snare"] or source_stat in ["break_chance", "stun_chance", "execute_percent"]:
             return FRONT.duplicate()
         if status == "bleed" or affliction == "bleed" or source_stat == "bleed_chance":
             return FRONT_MID.duplicate()
