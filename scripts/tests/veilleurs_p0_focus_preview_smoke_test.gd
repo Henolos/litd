@@ -4,6 +4,11 @@ const UI_SCRIPT := preload("res://scripts/ui/combat_sandbox_ui_v51.gd")
 
 func _ready() -> void:
     var ui := UI_SCRIPT.new()
+    var affliction_result: String = ui.call("_sandbox_result_text", {"ok":true,"kind":"affliction","hit":true,"affliction":"poison","target":"ennemi","turns":2})
+    _check(affliction_result.contains("Poison appliquée") and not affliction_result.contains("0 dégâts"), "affliction feedback describes the effect")
+    _check(str(ui.call("_sandbox_result_text", {"ok":true,"kind":"affliction","hit":false})).contains("RATÉE"), "missed affliction does not report an impact")
+    var inspected: String = ui.call("_sandbox_afflictions_text", {"poison":2,"stun":1})
+    _check(inspected.contains("Poison (2 tours)") and inspected.contains("Étourdissement (1 tour)"), "inspection shows timed afflictions")
     _check(ui.has_method("_sandbox_build_preview_v51"), "missing non-destructive preview builder")
     _check(ui.has_method("_sandbox_confirm_prepared_v51"), "missing explicit confirmation step")
     _check(ui.has_method("_restore_sandbox_focus_v51"), "missing deterministic focus restoration")

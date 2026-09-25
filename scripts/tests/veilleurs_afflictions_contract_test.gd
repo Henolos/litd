@@ -4,7 +4,6 @@ const Status := preload("res://scripts/core/combat/veilleurs_status_resolver.gd"
 const Hit := preload("res://scripts/core/combat/veilleurs_hit_resolver.gd")
 const Damage := preload("res://scripts/core/combat/veilleurs_damage_resolver.gd")
 const Runtime := preload("res://scripts/core/veilleurs_combat_sandbox_runtime.gd")
-const SandboxUI := preload("res://scripts/ui/combat_sandbox_ui_v50.gd")
 
 func _init() -> void:
     var actor := {"id":"actor", "hp":40, "max_hp":40, "afflictions":{}}
@@ -84,12 +83,5 @@ func _init() -> void:
     runtime.end_active_turn(); runtime.end_active_turn(); runtime.end_active_turn()
     assert(next_hero.afflictions.is_empty(), "hero effect expired at end of actor turn")
     assert(enemy.afflictions.is_empty(), "enemy stun expired after skipped enemy phase")
-    var ui := SandboxUI.new()
-    assert(str(ui.call("_sandbox_result_text", {"ok":true,"kind":"affliction","hit":true,"affliction":"poison","target":"ennemi","turns":2})).contains("Poison appliquée"))
-    assert(not str(ui.call("_sandbox_result_text", {"ok":true,"kind":"affliction","hit":true,"affliction":"poison","turns":2})).contains("0 dégâts"))
-    assert(str(ui.call("_sandbox_result_text", {"ok":true,"kind":"affliction","hit":false})).contains("RATÉE"))
-    assert(str(ui.call("_sandbox_afflictions_text", {"poison":2,"stun":1})).contains("Poison (2 tours)"))
-    assert(str(ui.call("_sandbox_afflictions_text", {"poison":2,"stun":1})).contains("Étourdissement (1 tour)"))
-    ui.free()
     print("VEILLEURS_AFFLICTIONS_CONTRACT_OK")
     quit(0)
