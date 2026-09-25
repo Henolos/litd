@@ -65,6 +65,8 @@ jobs:
         run: timeout 60s godot --headless --path . res://scenes/tests/veilleurs_combat_context_smoke.tscn
       - name: Combat Sandbox 0.1 - boucle de combat complete
         run: timeout 60s godot --headless --path . res://scenes/tests/veilleurs_combat_sandbox_loop_smoke.tscn
+      - name: Combat Sandbox 0.1 - dix afflictions
+        run: timeout 60s godot --headless --path . --script res://scripts/tests/veilleurs_afflictions_contract_test.gd
       - name: Combat Sandbox 0.1 - familles de competences systemiques
         run: timeout 60s godot --headless --path . res://scenes/tests/veilleurs_systemic_skill_families_smoke.tscn
       - name: Combat Sandbox 0.1 - formation controle synergies et ultimes

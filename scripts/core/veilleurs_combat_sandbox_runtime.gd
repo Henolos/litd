@@ -29,6 +29,7 @@ func setup() -> Dictionary:
         var hero: Dictionary = (hero_value as Dictionary).duplicate(true)
         hero["hp"] = int(hero.get("max_hp", 1)); hero["ap"] = 2; hero["side"] = "hero"
         hero["vital_state"] = "stable"; hero["pain_state"] = "controlled"; hero["bleeding_state"] = "none"; hero["psych_state"] = "stable"
+        hero["afflictions"] = {}
         hero["anatomy"] = _fresh_anatomy(); hero["posture"] = "none"; hero["reaction"] = "none"; hero["protected_by"] = ""
         hero["coordination_bonus"] = 0; hero["trame_overload"] = 0; hero["trame_symptom"] = "none"
         hero["formation_slot"] = heroes.size() + 1
@@ -41,6 +42,7 @@ func setup() -> Dictionary:
         var enemy: Dictionary = (enemy_value as Dictionary).duplicate(true)
         enemy["hp"] = int(enemy.get("max_hp", 1)); enemy["side"] = "enemy"; enemy["vital_state"] = "stable"; enemy["public_vital_state"] = "stable"
         enemy["pain_state"] = "controlled"; enemy["bleeding_state"] = "none"; enemy["psych_state"] = "stable"; enemy["anatomy"] = _fresh_anatomy()
+        enemy["afflictions"] = {}
         enemy["observed_patterns"] = {}; enemy["control_state"] = "none"; enemy["control_rounds"] = 0
         enemies.append(enemy)
     active_hero_index = 0; round = 1
@@ -56,8 +58,11 @@ func available_actions() -> Array:
 func perform_action(action_id: String, target_index: int, zone: String = "torso") -> Dictionary:
     var hero := active_hero()
     if hero.is_empty(): return {"ok":false,"reason":"no_active_hero"}
+    if int(hero.get("hp", 0)) <= 0: return {"ok":false,"reason":"actor_dead"}
     var action := _find_action(hero, action_id)
     if action.is_empty(): return {"ok":false,"reason":"unknown_action"}
+    var blocked: String = STATUS_RESOLVER.action_block(hero, action)
+    if not blocked.is_empty(): return {"ok":false,"reason":blocked}
     var cost := int(action.get("ap", 1))
     if int(hero.get("ap", 0)) < cost: return {"ok":false,"reason":"not_enough_ap"}
     var target_type := str(action.get("target", "enemy"))
@@ -73,7 +78,7 @@ func perform_action(action_id: String, target_index: int, zone: String = "torso"
         var target: Dictionary = target_resolution.get("target", {})
         if int(target.get("hp", 0)) <= 0: return {"ok":false,"reason":"target_dead"}
         result = _resolve_enemy_action(hero, action, target, str(command.get("zone", "torso")))
-        if bool(result.get("ok", false)):
+        if bool(result.get("ok", false)) and str(result.get("kind", "")) == "attack":
             result["ai_reaction"] = _enemy_observe_and_react(target, hero, action, str(command.get("zone", "torso")), result)
     elif target_side == "ally":
         var ally_resolution: Dictionary = TARGET_RESOLVER.validate_index(heroes, int(command.get("target_index", -1)))
@@ -93,6 +98,7 @@ func move_hero(hero_index: int, destination_slot: int, ap_cost: int = 1) -> Dict
     if hero_index < 0 or hero_index >= heroes.size(): return {"ok":false,"reason":"invalid_hero"}
     if destination_slot < 1 or destination_slot > heroes.size(): return {"ok":false,"reason":"invalid_slot"}
     var hero: Dictionary = heroes[hero_index]
+    if STATUS_RESOLVER.movement_block(hero): return {"ok":false,"reason":"movement_blocked"}
     if int(hero.get("ap", 0)) < ap_cost: return {"ok":false,"reason":"not_enough_ap"}
     var origin := int(hero.get("formation_slot", hero_index + 1))
     if origin == destination_slot: return {"ok":true,"kind":"formation","from":origin,"to":destination_slot,"swapped":false}
@@ -152,24 +158,28 @@ func use_tree_ultimate(hero_index: int, tree_id: String, level: int, target_inde
 
 func end_active_turn() -> Dictionary:
     if heroes.is_empty(): return {"ok":false}
+    var previous: Dictionary = active_hero()
+    previous["afflictions"] = STATUS_RESOLVER.finish_turn(previous)
     active_hero_index += 1
     if active_hero_index >= heroes.size():
         active_hero_index = 0; round += 1; _enemy_phase(); _tick_persistent_controls()
         for hero in heroes:
             hero["ap"] = 2; hero["coordination_bonus"] = maxi(0, int(hero.get("coordination_bonus", 0)) - 5); hero["synergy_state"] = "none"
     else: heroes[active_hero_index]["ap"] = 2
+    _start_afflicted_turn(active_hero())
     return {"ok":true,"round":round,"active_hero":active_hero()}
 
 func inspect_actor(side: String, index: int) -> Dictionary:
     if side == "hero":
         if index < 0 or index >= heroes.size(): return {"ok":false,"reason":"invalid_actor"}
         var detail := VeilleursCombatContextRuntime.detailed_inspection(heroes[index])
-        detail["posture"] = heroes[index].get("posture", "none"); detail["reaction"] = heroes[index].get("reaction", "none"); detail["trame_overload"] = heroes[index].get("trame_overload", 0); detail["trame_symptom"] = heroes[index].get("trame_symptom", "none"); detail["coordination_bonus"] = heroes[index].get("coordination_bonus", 0); detail["formation_slot"] = heroes[index].get("formation_slot", index + 1); detail["synergy_state"] = heroes[index].get("synergy_state", "none"); detail["ultimate_uses"] = heroes[index].get("ultimate_uses", {})
+        detail["posture"] = heroes[index].get("posture", "none"); detail["reaction"] = heroes[index].get("reaction", "none"); detail["trame_overload"] = heroes[index].get("trame_overload", 0); detail["trame_symptom"] = heroes[index].get("trame_symptom", "none"); detail["coordination_bonus"] = heroes[index].get("coordination_bonus", 0); detail["formation_slot"] = heroes[index].get("formation_slot", index + 1); detail["synergy_state"] = heroes[index].get("synergy_state", "none"); detail["ultimate_uses"] = heroes[index].get("ultimate_uses", {}); detail["afflictions"] = (heroes[index].get("afflictions", {}) as Dictionary).duplicate(true)
         return detail
     if side == "enemy":
         if index < 0 or index >= enemies.size(): return {"ok":false,"reason":"invalid_actor"}
         var enemy_detail := VeilleursCombatContextRuntime.detailed_inspection(enemies[index], party_knowledge)
         enemy_detail["control_state"] = enemies[index].get("control_state", "none"); enemy_detail["control_rounds"] = enemies[index].get("control_rounds", 0)
+        enemy_detail["afflictions"] = (enemies[index].get("afflictions", {}) as Dictionary).duplicate(true)
         return enemy_detail
     return {"ok":false,"reason":"invalid_side"}
 
@@ -191,6 +201,8 @@ func _resolve_ally_action(hero: Dictionary, action: Dictionary, ally: Dictionary
     match effect:
         "stabilize":
             ally["bleeding_state"] = "light" if str(ally.get("bleeding_state", "none")) in ["important", "critical"] else "none"
+            var afflictions: Dictionary = (ally.get("afflictions", {}) as Dictionary).duplicate(true)
+            afflictions.erase("bleed"); ally["afflictions"] = afflictions
             if str(ally.get("pain_state", "controlled")) in ["severe", "unbearable"]: ally["pain_state"] = "strong"
             return {"ok":true,"kind":"stabilize","target":str(ally.get("id"))}
         "anatomical_splint":
@@ -216,6 +228,18 @@ func _resolve_enemy_action(hero: Dictionary, action: Dictionary, target: Diction
         return {"ok":true,"kind":"observe","target":str(target.get("id"))}
     if effect == "trame_control": return apply_persistent_control(enemies.find(target), "deviated", int(action.get("control_rounds", 1)), 10)
 
+    if effect == "inflict_affliction":
+        var kind := str(action.get("affliction", ""))
+        var turns := int(action.get("duration", 0))
+        if kind not in STATUS_RESOLVER.AFFLICTIONS or turns <= 0:
+            return {"ok":false,"reason":"invalid_affliction"}
+        var affliction_hit: Dictionary = HIT_RESOLVER.resolve(hero, action, target, zone, round)
+        if not bool(affliction_hit.get("hit", false)):
+            return {"ok":true,"kind":"affliction","hit":false,"target":str(target.get("id")),"roll":affliction_hit.get("roll", 0)}
+        var applied: Dictionary = STATUS_RESOLVER.apply_affliction(target, kind, turns)
+        target["afflictions"] = applied["afflictions"]
+        return {"ok":true,"kind":"affliction","hit":true,"target":str(target.get("id")),"affliction":kind,"turns":applied["turns"]}
+
     var normalized := zone if zone in ZONES else "torso"
     var hit_result: Dictionary = HIT_RESOLVER.resolve(hero, action, target, normalized, round)
     if not bool(hit_result.get("hit", false)):
@@ -231,13 +255,16 @@ func _resolve_enemy_action(hero: Dictionary, action: Dictionary, target: Diction
     target["bleeding_state"] = status_result.get("bleeding_state", target.get("bleeding_state", "none"))
     target["public_vital_state"] = status_result.get("public_vital_state", "stable")
     target["vital_state"] = status_result.get("vital_state", target["public_vital_state"])
+    if action.has("affliction"):
+        var applied: Dictionary = STATUS_RESOLVER.apply_affliction(target, str(action["affliction"]), int(action.get("duration", 2)))
+        if bool(applied.get("ok", false)): target["afflictions"] = applied["afflictions"]
     var zone_state: Dictionary = anatomy_result.get("zone_state", {})
     VeilleursCombatContextRuntime.record_enemy_observation(party_knowledge, str(target.get("id", "")), "vital_state", target["vital_state"])
     VeilleursCombatContextRuntime.record_enemy_observation(party_knowledge, str(target.get("id", "")), "pain_state", target["pain_state"])
     VeilleursCombatContextRuntime.record_enemy_observation(party_knowledge, str(target.get("id", "")), "bleeding_state", target["bleeding_state"])
     VeilleursCombatContextRuntime.record_enemy_zone(party_knowledge, str(target.get("id", "")), normalized, zone_state)
     if str(hero.get("posture", "none")) == "force_cost": _apply_effort_cost(hero)
-    return {"ok":true,"kind":"attack","hit":true,"damage":damage,"severity":severity,"zone":normalized,"target":str(target.get("id")),"functional_loss":str(anatomy_result.get("functional_loss", "functional"))}
+    return {"ok":true,"kind":"attack","hit":true,"damage":damage,"severity":severity,"zone":normalized,"target":str(target.get("id")),"functional_loss":str(anatomy_result.get("functional_loss", "functional")),"affliction":str(action.get("affliction", ""))}
 
 func _apply_trame_cost(hero: Dictionary, action: Dictionary, result: Dictionary) -> void:
     var cost := int(action.get("trame_cost", 0)); if cost <= 0: return
@@ -267,16 +294,35 @@ func _enemy_phase() -> void:
     if alive.is_empty(): return
     for enemy in enemies:
         if int(enemy.get("hp", 0)) <= 0: continue
+        _start_afflicted_turn(enemy)
+        if int(enemy.get("hp", 0)) <= 0: continue
+        if STATUS_RESOLVER.has(enemy, "stun"):
+            enemy["afflictions"] = STATUS_RESOLVER.finish_turn(enemy)
+            continue
+        var impairment: int = STATUS_RESOLVER.accuracy_penalty(enemy)
+        if impairment > 0 and HIT_RESOLVER.stable_roll(str(enemy.get("id", "")) + str(round)) < impairment:
+            enemy["afflictions"] = STATUS_RESOLVER.finish_turn(enemy)
+            continue
         var target: Dictionary = alive[0]
         for candidate in alive:
             if int(candidate.get("hp", 0)) < int(target.get("hp", 0)): target = candidate
         var damage := 6 if str(enemy.get("id")) == "charognard_sandbox" else 9; damage = maxi(1, damage - int(enemy.get("accuracy_penalty", 0)) / 5)
+        damage = maxi(1, int(round(float(damage) * STATUS_RESOLVER.outgoing_factor(enemy) * STATUS_RESOLVER.incoming_factor(target))))
+        if STATUS_RESOLVER.has(enemy, "snare"): damage = maxi(1, int(round(float(damage) * 0.5)))
         var protector := _hero_by_id(str(target.get("protected_by", "")))
         if not protector.is_empty() and str(protector.get("reaction", "none")) in ["protect", "intercept"]:
             var absorbed := mini(4, damage - 1); damage -= absorbed; protector["hp"] = maxi(0, int(protector.get("hp", 0)) - absorbed); protector["reaction"] = "none"; target["protected_by"] = ""
         elif str(target.get("reaction", "none")) == "parry": damage = maxi(1, damage - 4); target["reaction"] = "none"
         if str(target.get("posture", "none")) == "guard": damage = maxi(1, damage - 2)
         target["hp"] = maxi(0, int(target.get("hp", 0)) - damage); target["vital_state"] = _vital_label(target); target["pain_state"] = "strong" if damage >= 8 else str(target.get("pain_state", "controlled"))
+        enemy["afflictions"] = STATUS_RESOLVER.finish_turn(enemy)
+
+func _start_afflicted_turn(actor: Dictionary) -> void:
+    if int(actor.get("hp", 0)) <= 0: return
+    var tick: Dictionary = STATUS_RESOLVER.start_turn(actor)
+    actor["hp"] = maxi(0, int(actor.get("hp", 0)) - int(tick.get("damage", 0)))
+    actor["vital_state"] = _vital_label(actor)
+    if str(actor.get("side", "")) == "enemy": actor["public_vital_state"] = actor["vital_state"]
 
 func _tick_persistent_controls() -> void:
     for enemy in enemies:

@@ -22,7 +22,10 @@
         {"id":"MATH-LAM-01","name":"Trait net","ap":1,"target":"enemy_zone","impact":"slashing","power":7,"accuracy":88},
         {"id":"MATH-LAM-10","name":"Parade courte","ap":0,"target":"self","effect":"reaction_parry"},
         {"id":"MATH-GAR-01","name":"Se placer devant","ap":1,"target":"ally","effect":"protect_ally"},
-        {"id":"MATH-LAM-28","name":"Respiration du duel","ap":1,"target":"self","effect":"stance_precision"}
+        {"id":"MATH-LAM-28","name":"Respiration du duel","ap":1,"target":"self","effect":"stance_precision"},
+        {"id":"MATH-AFF-01","name":"Lame toxique","ap":1,"target":"enemy","effect":"inflict_affliction","affliction":"poison","duration":2,"accuracy":90},
+        {"id":"MATH-AFF-02","name":"Entaille persistante","ap":1,"target":"enemy","effect":"inflict_affliction","affliction":"bleed","duration":2,"accuracy":90},
+        {"id":"MATH-AFF-03","name":"Poussière aveuglante","ap":1,"target":"enemy","effect":"inflict_affliction","affliction":"blind","duration":2,"accuracy":90}
       ]
     },
     {
@@ -31,7 +34,10 @@
         {"id":"MARC-FOR-01","name":"Heurt franc","ap":1,"target":"enemy_zone","impact":"blunt","power":10,"accuracy":82},
         {"id":"MARC-GAR-01","name":"Tenir devant","ap":1,"target":"self","effect":"guard_stance"},
         {"id":"MARC-GAR-10","name":"Interception","ap":0,"target":"ally","effect":"reaction_intercept"},
-        {"id":"MARC-FOR-28","name":"Corps en avant","ap":1,"target":"self","effect":"stance_force_cost"}
+        {"id":"MARC-FOR-28","name":"Corps en avant","ap":1,"target":"self","effect":"stance_force_cost"},
+        {"id":"MARC-AFF-01","name":"Coup assommant","ap":1,"target":"enemy","effect":"inflict_affliction","affliction":"stun","duration":2,"accuracy":90},
+        {"id":"MARC-AFF-02","name":"Brise-garde","ap":1,"target":"enemy","effect":"inflict_affliction","affliction":"vulnerability","duration":2,"accuracy":90},
+        {"id":"MARC-AFF-03","name":"Coup épuisant","ap":1,"target":"enemy","effect":"inflict_affliction","affliction":"weakness","duration":2,"accuracy":90}
       ]
     },
     {
@@ -40,7 +46,10 @@
         {"id":"ANOU-TRA-02","name":"Point de tension","ap":1,"target":"enemy_zone","effect":"expose","accuracy":92,"trame_cost":1},
         {"id":"ANOU-TRA-13","name":"Déviation","ap":1,"target":"enemy","effect":"trame_control","power":4,"accuracy":88,"trame_cost":2},
         {"id":"ANOU-TRA-28","name":"Entre deux lignes","ap":1,"target":"self","effect":"trame_stance","trame_cost":1},
-        {"id":"ANOU-RET-01","name":"Couper le flux","ap":1,"target":"self","effect":"reduce_overload","overload_recovery":2}
+        {"id":"ANOU-RET-01","name":"Couper le flux","ap":1,"target":"self","effect":"reduce_overload","overload_recovery":2},
+        {"id":"ANOU-AFF-01","name":"Feu de trame","ap":1,"target":"enemy","effect":"inflict_affliction","affliction":"burn","duration":2,"accuracy":90},
+        {"id":"ANOU-AFF-02","name":"Prise de gel","ap":1,"target":"enemy","effect":"inflict_affliction","affliction":"freeze","duration":2,"accuracy":90},
+        {"id":"ANOU-AFF-03","name":"Sceau de silence","ap":1,"target":"enemy","effect":"inflict_affliction","affliction":"silence","duration":2,"accuracy":90}
       ]
     },
     {
@@ -49,7 +58,8 @@
         {"id":"AURE-CHI-01","name":"Compression ciblée","ap":1,"target":"ally","effect":"stabilize"},
         {"id":"AURE-CHI-13","name":"Attelle","ap":1,"target":"ally","effect":"anatomical_splint"},
         {"id":"AURE-COO-01","name":"Donner le cadre","ap":1,"target":"ally","effect":"coordinate_ally"},
-        {"id":"AURE-COO-10","name":"Réaffecter","ap":0,"target":"ally","effect":"reaction_reassign"}
+        {"id":"AURE-COO-10","name":"Réaffecter","ap":0,"target":"ally","effect":"reaction_reassign"},
+        {"id":"AURE-AFF-01","name":"Lien contraignant","ap":1,"target":"enemy","effect":"inflict_affliction","affliction":"snare","duration":2,"accuracy":90}
       ]
     }
   ],
