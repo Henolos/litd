@@ -126,6 +126,8 @@ func _log_clinical_result(hero: Dictionary, target: Dictionary, skill: Dictionar
             suffix += " · %d dégâts fonctionnels" % bonus_damage
         if result.has("circulatory_shock"):
             suffix += " · choc circulatoire %d" % int(result.get("circulatory_shock", 0))
+        if bool(result.get("affliction_applied", false)):
+            suffix += " · %s %d tour(s)" % [str(result.get("affliction", "")), int(result.get("affliction_turns", 0))]
         GameState.add_log("%s affecte %s%s." % [part_name, str(target.get("name", "la cible")), suffix])
     elif effect == "diagnostic":
         var diagnostic_suffix := ""
