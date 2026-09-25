@@ -3,6 +3,7 @@ class_name VeilleursTacticalCombatRuntimeV2
 
 const BEHAVIOR_SCRIPT := preload("res://scripts/core/veilleurs_skill_behavior_runtime.gd")
 const AI_V3_SCRIPT := preload("res://scripts/core/veilleurs_enemy_ai_v3.gd")
+const TARGET_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_target_resolver.gd")
 
 var skill_behavior: VeilleursSkillBehaviorRuntime
 
@@ -125,6 +126,7 @@ func behavior_coverage() -> Dictionary:
 func _resolve_damage_v2(attacker_id: String, target_id: String, skill: Dictionary, zone: String, forced_roll: int) -> Dictionary:
     var attacker: Dictionary = combatants[attacker_id]
     var target: Dictionary = combatants[target_id]
+    zone = TARGET_RESOLVER_SCRIPT.normalize_zone(zone)
     var chance := _hit_chance(attacker, target, skill, zone)
     chance += int(attacker.get("accuracy_bonus", 0))
     chance -= int(target.get("evasive_bonus", 0))
@@ -181,7 +183,7 @@ func _enemy_role_attack(attacker_id: String, target_id: String, decision: Dictio
     var stats: Dictionary = attacker.get("stats", {})
     var target_stats: Dictionary = target.get("stats", {})
     var attack_kind := str(decision.get("attack_kind", "physical"))
-    var zone := str(decision.get("zone", "torso"))
+    var zone := TARGET_RESOLVER_SCRIPT.normalize_zone(str(decision.get("zone", "torso")))
     var chance := 70 + int(round((float(stats.get("PRE", 50)) - float(target_stats.get("MOB", 50))) * 0.35))
     chance -= int(target.get("evasive_bonus", 0))
     chance = clampi(chance, 15, 95)
