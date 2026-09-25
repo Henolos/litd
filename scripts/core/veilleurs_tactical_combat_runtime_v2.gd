@@ -4,6 +4,7 @@ class_name VeilleursTacticalCombatRuntimeV2
 const BEHAVIOR_SCRIPT := preload("res://scripts/core/veilleurs_skill_behavior_runtime.gd")
 const AI_V3_SCRIPT := preload("res://scripts/core/veilleurs_enemy_ai_v3.gd")
 const TARGET_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_target_resolver.gd")
+const HIT_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_hit_resolver.gd")
 
 var skill_behavior: VeilleursSkillBehaviorRuntime
 
@@ -127,15 +128,13 @@ func _resolve_damage_v2(attacker_id: String, target_id: String, skill: Dictionar
     var attacker: Dictionary = combatants[attacker_id]
     var target: Dictionary = combatants[target_id]
     zone = TARGET_RESOLVER_SCRIPT.normalize_zone(zone)
-    var chance := _hit_chance(attacker, target, skill, zone)
-    chance += int(attacker.get("accuracy_bonus", 0))
-    chance -= int(target.get("evasive_bonus", 0))
-    if _has_status(target, "EXPOSED"):
-        chance += 8
+    var zone_mods: Dictionary = content_db.combat_constants.get("zone_accuracy_mod", {})
     var clamps: Dictionary = content_db.combat_constants.get("hit_clamp", {})
-    chance = clampi(chance, int(clamps.get("min_percent", 10)), int(clamps.get("max_percent", 97)))
-    var roll := forced_roll if forced_roll >= 1 else _deterministic_roll(attacker_id, target_id, str(skill.get("skill_id", "")))
-    var result := {"ok":true, "hit":roll <= chance, "roll":roll, "hit_chance":chance, "attacker":attacker_id, "target":target_id, "skill_id":str(skill.get("skill_id", "")), "zone":zone, "action":skill_behavior.effective_action(skill)}
+    var roll_seed := attacker_id + "|" + target_id + "|" + str(skill.get("skill_id", "")) + "|" + str(round_index)
+    var hit_result: Dictionary = HIT_RESOLVER_SCRIPT.resolve_tactical(attacker, skill, target, zone, zone_mods, clamps, int(attacker.get("accuracy_bonus", 0)), int(target.get("evasive_bonus", 0)), _has_status(target, "EXPOSED"), forced_roll, roll_seed)
+    var chance := int(hit_result.get("accuracy", 0))
+    var roll := int(hit_result.get("roll", 100))
+    var result := {"ok":true, "hit":bool(hit_result.get("hit", false)), "roll":roll, "hit_chance":chance, "attacker":attacker_id, "target":target_id, "skill_id":str(skill.get("skill_id", "")), "zone":zone, "action":skill_behavior.effective_action(skill)}
     if not bool(result["hit"]):
         action_log.append(result.duplicate(true))
         return result
