@@ -1,15 +1,15 @@
 extends Node
 
 const CONTRACT_PATH := "res://data/veilleurs/skills/resolver_contract.json"
-const OVERRIDES_PATH := "res://data/veilleurs/skills/canonical_overrides.json"
+const OVERRIDES_PATH := "res://data/veilleurs/skills/canonical_overrides.json"\nconst AFFLICTION_BUILDS_PATH := "res://data/veilleurs/skills/affliction_builds.json"
 const CLINICAL_RUNTIME_SCRIPT := preload("res://scripts/core/veilleurs_clinical_combat_runtime.gd")
-const HEMOCORDE_RUNTIME_SCRIPT := preload("res://scripts/core/veilleurs_hemocorde_runtime.gd")
+const HEMOCORDE_RUNTIME_SCRIPT := preload("res://scripts/core/veilleurs_hemocorde_runtime.gd")\nconst AFFLICTION_RUNTIME_SCRIPT := preload("res://scripts/core/veilleurs_affliction_skill_runtime.gd")\nconst STATUS_RESOLVER := preload("res://scripts/core/combat/veilleurs_status_resolver.gd")
 
 var contract: Dictionary = {}
-var overrides: Dictionary = {}
+var overrides: Dictionary = {}\nvar affliction_builds: Dictionary = {}
 var load_errors: Array[String] = []
 var clinical_runtime: Node = null
-var hemocorde_runtime: Node = null
+var hemocorde_runtime: Node = null\nvar affliction_runtime: Node = null
 
 func _ready() -> void:
     clinical_runtime = CLINICAL_RUNTIME_SCRIPT.new()
@@ -23,7 +23,7 @@ func _ready() -> void:
 func reload() -> void:
     load_errors.clear()
     contract = _load_dictionary(CONTRACT_PATH)
-    overrides = _load_dictionary(OVERRIDES_PATH)
+    overrides = _load_dictionary(OVERRIDES_PATH)\n    affliction_builds = _load_dictionary(AFFLICTION_BUILDS_PATH)
     if contract.is_empty():
         load_errors.append("resolver_contract_missing")
     if overrides.is_empty():
@@ -175,7 +175,7 @@ func summary() -> Dictionary:
         "tree_families": (contract.get("tree_families", {}) as Dictionary).size(),
         "skill_overrides": (contract.get("skill_overrides", {}) as Dictionary).size(),
         "clinical_runtime": clinical_runtime != null,
-        "hemocorde_runtime": hemocorde_runtime != null,
+        "hemocorde_runtime": hemocorde_runtime != null,\n        "affliction_runtime": affliction_runtime != null,\n        "affliction_bindings": (affliction_builds.get("bindings", {}) as Dictionary).size(),
         "load_errors": load_errors.duplicate()
     }
 
@@ -187,6 +187,25 @@ func _runtime_for(skill: Dictionary) -> Node:
     if hemocorde != null and hemocorde.has_method("handles") and bool(hemocorde.call("handles", skill)):
         return hemocorde
     return null
+
+func _affliction_runtime() -> Node:
+    if affliction_runtime == null:
+        affliction_runtime = get_node_or_null("AfflictionRuntime")
+    return affliction_runtime
+
+func _apply_affliction_overlay(target: Dictionary, skill: Dictionary, damage: int, result: Dictionary) -> void:
+    var kind := str(skill.get("affliction", ""))
+    var turns := int(skill.get("affliction_duration", 0))
+    if kind == "" or turns <= 0 or damage <= 0 or target.is_empty() or int(target.get("hp", 0)) <= 0:
+        return
+    var applied: Dictionary = STATUS_RESOLVER.apply_affliction(target, kind, turns)
+    if not bool(applied.get("ok", false)):
+        return
+    target["afflictions"] = applied.get("afflictions", {})
+    result["affliction"] = kind
+    result["affliction_turns"] = int(applied.get("turns", turns))
+    result["affliction_applied"] = true
+    result["build_role"] = str(skill.get("build_role", ""))
 
 func _clinical_runtime() -> Node:
     if clinical_runtime == null:
