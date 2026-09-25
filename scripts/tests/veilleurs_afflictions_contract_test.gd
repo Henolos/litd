@@ -42,8 +42,8 @@ func _init() -> void:
 
     var runtime := Runtime.new()
     assert(runtime.setup().ok)
-    var names := {"poison":"MATH-AFF-01","bleed":"MA-ENT-01","blind":"MA-DIS-09", "stun":"MR-BRI-01","vulnerability":"MR-BRI-05","weakness":"AN-DIS-08", "burn":"ANOU-AFF-01","freeze":"ANOU-AFF-02","silence":"AN-DIS-06", "snare":"AN-SEN-06"}
-    var canonical_build_actions := {"MA-ENT-01":"Entaille","MA-DIS-09":"Disparition","MR-BRI-01":"Brisure","MR-BRI-05":"Brisure","AN-DIS-08":"Dissidence","AN-DIS-06":"Dissidence","AN-SEN-06":"Sentence"}
+    var names := {"poison":"MATH-AFF-01","bleed":"MA-ENT-01","blind":"MA-DIS-09", "stun":"MR-BRI-01","vulnerability":"MR-BRI-05","weakness":"MR-BRI-09", "burn":"ANOU-AFF-01","freeze":"ANOU-AFF-02","silence":"AN-DIS-06", "snare":"AU-ANA-11"}
+    var canonical_build_actions := {"MA-ENT-01":"Entaille","MA-DIS-09":"Disparition","MR-BRI-01":"Brisure","MR-BRI-05":"Brisure","MR-BRI-09":"Brisure","AN-DIS-06":"Dissidence","AU-ANA-11":"Anatomie"}
     for i in range(runtime.heroes.size()):
         for action: Dictionary in runtime.heroes[i].sandbox_actions:
             if names.has(str(action.get("affliction", ""))):
