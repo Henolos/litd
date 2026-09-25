@@ -36,7 +36,8 @@ static func allowed_positions(hero: Dictionary, skill: Dictionary) -> Array[int]
 
     var effect := str(skill.get("effect", "attack"))
     var source_stat := str(skill.get("source_stat", ""))
-    var status := str(skill.get("status", ""))\n    var affliction := str(skill.get("affliction", ""))
+    var status := str(skill.get("status", ""))
+    var affliction := str(skill.get("affliction", ""))
     var class_id := str(hero.get("class_id", ""))
 
     if effect == "guard":
