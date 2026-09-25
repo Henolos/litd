@@ -157,6 +157,10 @@ func _render_sandbox_turn_banner_v50() -> void:
 
 func _feedback_from_result_v50(result: Dictionary) -> String:
     if not bool(result.get("ok", false)): return "Impossible · %s" % str(result.get("reason", "action refusée"))
+    if str(result.get("kind", "")) == "affliction":
+        if not bool(result.get("hit", false)): return "Affliction ratée"
+        var labels := {"poison":"Poison", "burn":"Brûlure", "bleed":"Saignement", "freeze":"Gel", "stun":"Étourdissement", "blind":"Cécité", "silence":"Silence", "weakness":"Faiblesse", "vulnerability":"Vulnérabilité", "snare":"Entrave"}
+        return "%s appliquée · %d tour(s)" % [str(labels.get(str(result.get("affliction", "")), "Affliction")), int(result.get("turns", 0))]
     if result.has("hit"):
         if not bool(result.get("hit", false)): return "Raté · %s" % _zone_label_context(str(result.get("zone", "torso")))
         var parts: Array[String] = ["%s touché" % _zone_label_context(str(result.get("zone", "torso")))]

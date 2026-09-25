@@ -115,6 +115,13 @@ func _render_sandbox_actions() -> void:
     content.add_child(box)
     box.add_child(make_label("ACTIONS · %s" % str(active.get("name", "Veilleur")), 14, CANON_GOLD))
     box.add_child(make_label("PROTOTYPE — ces noms ne sont pas canoniques", 10, CANON_MUTED))
+    var scroll := ScrollContainer.new()
+    scroll.custom_minimum_size = Vector2(380, 160)
+    scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+    box.add_child(scroll)
+    var action_list := VBoxContainer.new()
+    action_list.add_theme_constant_override("separation", 6)
+    scroll.add_child(action_list)
     for action_value: Variant in actions:
         if not action_value is Dictionary:
             continue
@@ -125,7 +132,7 @@ func _render_sandbox_actions() -> void:
         var button := make_button(label, func(id = action_id): _sandbox_select_action(str(id)), Vector2(370, 44))
         button.alignment = HORIZONTAL_ALIGNMENT_LEFT
         button.tooltip_text = str(action.get("description", "Action prototype"))
-        box.add_child(button)
+        action_list.add_child(button)
 
 func _render_sandbox_targets() -> void:
     var label := make_label("CIBLE · touchez un ennemi ci-dessus", 12, CANON_TEXT)
