@@ -4,7 +4,8 @@ extends "res://scripts/ui/main_v34.gd"
 # Toutes les compétences LITD1 et toutes les familles Veilleurs encore non résolues
 # continuent de passer par v34/v30 sans changement de comportement.
 
-const CLINICAL_RESOLVERS := ["anatomical_lesion", "anatomical_diagnostic", "medical_treatment", "vascular_bleeding"]\nconst AFFLICTION_RESOLVERS := ["generic_affliction_attack", "generic_affliction_control"]
+const CLINICAL_RESOLVERS := ["anatomical_lesion", "anatomical_diagnostic", "medical_treatment", "vascular_bleeding"]
+const AFFLICTION_RESOLVERS := ["generic_affliction_attack", "generic_affliction_control"]
 
 func _use_combat_skill(slot: int) -> void:
     if battle_locked:
@@ -25,6 +26,8 @@ func _use_combat_skill(slot: int) -> void:
     match str(skill.get("effect", "")):
         "attack":
             _resolve_skill_attack(hero, skill)
+        "affliction":
+            _resolve_affliction_skill(hero, skill)
         "diagnostic":
             _resolve_clinical_diagnostic(hero, skill)
         "medical":
@@ -39,7 +42,7 @@ func _use_combat_skill(slot: int) -> void:
     _complete_active_hero_turn()
 
 func _resolve_skill_attack(hero: Dictionary, skill: Dictionary) -> void:
-    if not _is_clinical_skill(skill):
+    if not (_is_clinical_skill(skill) or _is_affliction_skill(skill)):
         super._resolve_skill_attack(hero, skill)
         return
     var target := _selected_living_enemy()
@@ -50,7 +53,10 @@ func _resolve_skill_attack(hero: Dictionary, skill: Dictionary) -> void:
     super._resolve_skill_attack(hero, skill)
     var direct_damage := maxi(0, hp_before - int(target.get("hp", 0)))
     var result := VeilleursSkillResolverRouter.resolve_combat(hero, target, skill, direct_damage, GameState.party)
-    _log_clinical_result(hero, target, skill, result)
+    if _is_affliction_skill(skill):
+        _log_affliction_result(hero, target, skill, result)
+    else:
+        _log_clinical_result(hero, target, skill, result)
 
 func _resolve_affliction_skill(hero: Dictionary, skill: Dictionary) -> void:
     var target := _selected_living_enemy()
