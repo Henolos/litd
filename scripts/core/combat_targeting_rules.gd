@@ -42,9 +42,13 @@ static func target_positions(hero: Dictionary, skill: Dictionary) -> Array[int]:
         return ENEMY_ALL.duplicate()
     if class_id == "occultist" and branch == "special":
         return ENEMY_ALL.duplicate()
-    if status in ["break", "stun"] or affliction in ["stun", "snare"] or source_stat in ["break_chance", "stun_chance", "execute_percent"]:
+    if affliction in ["stun", "snare"]:
         return ENEMY_FRONT.duplicate()
-    if status == "bleed" or affliction == "bleed" or source_stat == "bleed_chance":
+    if status in ["break", "stun"] or source_stat in ["break_chance", "stun_chance", "execute_percent"]:
+        return ENEMY_FRONT.duplicate()
+    if affliction == "bleed":
+        return ENEMY_FRONT_MID.duplicate()
+    if status == "bleed" or source_stat == "bleed_chance":
         return ENEMY_FRONT_MID.duplicate()
     return ENEMY_FRONT_MID.duplicate()
 
