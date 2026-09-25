@@ -36,7 +36,7 @@ static func allowed_positions(hero: Dictionary, skill: Dictionary) -> Array[int]
 
     var effect := str(skill.get("effect", "attack"))
     var source_stat := str(skill.get("source_stat", ""))
-    var status := str(skill.get("status", ""))
+    var status := str(skill.get("status", ""))\n    var affliction := str(skill.get("affliction", ""))
     var class_id := str(hero.get("class_id", ""))
 
     if effect == "guard":
@@ -47,7 +47,7 @@ static func allowed_positions(hero: Dictionary, skill: Dictionary) -> Array[int]
     if effect == "attack":
         if status in ["stun", "break"] or source_stat in ["break_chance", "stun_chance", "execute_percent"]:
             return FRONT.duplicate()
-        if status == "bleed" or source_stat == "bleed_chance":
+        if status == "bleed" or affliction == "bleed" or source_stat == "bleed_chance":
             return FRONT_MID.duplicate()
         if source_stat in ["precision", "critical_chance"]:
             return MID_BACK.duplicate()
