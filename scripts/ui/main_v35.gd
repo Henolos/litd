@@ -5,6 +5,7 @@ extends "res://scripts/ui/main_v34.gd"
 # continuent de passer par v34/v30 sans changement de comportement.
 
 const CLINICAL_RESOLVERS := ["anatomical_lesion", "anatomical_diagnostic", "medical_treatment", "vascular_bleeding"]
+const AFFLICTION_RESOLVERS := ["generic_affliction_attack", "generic_affliction_control"]
 
 func _use_combat_skill(slot: int) -> void:
     if battle_locked:
@@ -17,7 +18,7 @@ func _use_combat_skill(slot: int) -> void:
     if slot < 0 or slot >= loadout.size():
         return
     var skill: Dictionary = HeroSkillManager.combat_skill(hero, loadout[slot])
-    if skill.is_empty() or not _is_clinical_skill(skill):
+    if skill.is_empty() or not (_is_clinical_skill(skill) or _is_affliction_skill(skill)):
         super._use_combat_skill(slot)
         return
 
@@ -25,6 +26,8 @@ func _use_combat_skill(slot: int) -> void:
     match str(skill.get("effect", "")):
         "attack":
             _resolve_skill_attack(hero, skill)
+        "affliction":
+            _resolve_affliction_skill(hero, skill)
         "diagnostic":
             _resolve_clinical_diagnostic(hero, skill)
         "medical":
@@ -39,7 +42,7 @@ func _use_combat_skill(slot: int) -> void:
     _complete_active_hero_turn()
 
 func _resolve_skill_attack(hero: Dictionary, skill: Dictionary) -> void:
-    if not _is_clinical_skill(skill):
+    if not (_is_clinical_skill(skill) or _is_affliction_skill(skill)):
         super._resolve_skill_attack(hero, skill)
         return
     var target := _selected_living_enemy()
@@ -50,7 +53,17 @@ func _resolve_skill_attack(hero: Dictionary, skill: Dictionary) -> void:
     super._resolve_skill_attack(hero, skill)
     var direct_damage := maxi(0, hp_before - int(target.get("hp", 0)))
     var result := VeilleursSkillResolverRouter.resolve_combat(hero, target, skill, direct_damage, GameState.party)
-    _log_clinical_result(hero, target, skill, result)
+    if _is_affliction_skill(skill):
+        _log_affliction_result(hero, target, skill, result)
+    else:
+        _log_clinical_result(hero, target, skill, result)
+
+func _resolve_affliction_skill(hero: Dictionary, skill: Dictionary) -> void:
+    var target := _selected_living_enemy()
+    if target.is_empty():
+        return
+    var result := VeilleursSkillResolverRouter.resolve_combat(hero, target, skill, 0, GameState.party)
+    _log_affliction_result(hero, target, skill, result)
 
 func _resolve_clinical_diagnostic(hero: Dictionary, skill: Dictionary) -> void:
     var target := _selected_living_enemy()
@@ -83,6 +96,20 @@ func _selected_living_enemy() -> Dictionary:
 func _is_clinical_skill(skill: Dictionary) -> bool:
     return str(skill.get("resolver_id", "")) in CLINICAL_RESOLVERS and str(skill.get("resolver_status", "")) == "prototype_bridge"
 
+func _is_affliction_skill(skill: Dictionary) -> bool:
+    return str(skill.get("resolver_id", "")) in AFFLICTION_RESOLVERS and str(skill.get("resolver_status", "")) == "implemented"
+
+func _log_affliction_result(hero: Dictionary, target: Dictionary, skill: Dictionary, result: Dictionary) -> void:
+    if not bool(result.get("ok", false)):
+        GameState.add_log("%s : %s." % [str(skill.get("name", "Technique")), _clinical_failure_text(str(result.get("reason", "échec")))])
+        return
+    if not bool(result.get("hit", result.get("affliction_applied", false))):
+        GameState.add_log("%s manque %s." % [str(hero.get("name", "Le Veilleur")), str(target.get("name", "la cible"))])
+        return
+    var kind := str(result.get("affliction", skill.get("affliction", "")))
+    var turns := int(result.get("turns", result.get("affliction_turns", skill.get("affliction_duration", 0))))
+    GameState.add_log("%s applique %s à %s pour %d tour(s)." % [str(skill.get("name", "Technique")), kind, str(target.get("name", "la cible")), turns])
+
 func _log_clinical_result(hero: Dictionary, target: Dictionary, skill: Dictionary, result: Dictionary) -> void:
     if not bool(result.get("ok", false)):
         GameState.add_log("%s : %s." % [str(skill.get("name", "Technique")), _clinical_failure_text(str(result.get("reason", "échec")))])
@@ -99,6 +126,8 @@ func _log_clinical_result(hero: Dictionary, target: Dictionary, skill: Dictionar
             suffix += " · %d dégâts fonctionnels" % bonus_damage
         if result.has("circulatory_shock"):
             suffix += " · choc circulatoire %d" % int(result.get("circulatory_shock", 0))
+        if bool(result.get("affliction_applied", false)):
+            suffix += " · %s %d tour(s)" % [str(result.get("affliction", "")), int(result.get("affliction_turns", 0))]
         GameState.add_log("%s affecte %s%s." % [part_name, str(target.get("name", "la cible")), suffix])
     elif effect == "diagnostic":
         var diagnostic_suffix := ""

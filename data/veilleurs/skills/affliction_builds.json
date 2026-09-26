@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "policy": {
+    "single_status_resolver": "VeilleursStatusResolver",
+    "no_second_combat_engine": true,
+    "canonical_active_or_mastery_only": true
+  },
+  "bindings": {
+    "MA-ENT-01": {"tree":"Entaille","affliction":"bleed","duration":2,"delivery":"attack","build_role":"saignement"},
+    "MA-DIS-09": {"tree":"Disparition","affliction":"blind","duration":2,"delivery":"control","build_role":"cécité"},
+    "MR-BRI-01": {"tree":"Brisure","affliction":"stun","duration":2,"delivery":"attack","build_role":"étourdissement"},
+    "MR-BRI-05": {"tree":"Brisure","affliction":"vulnerability","duration":2,"delivery":"attack","build_role":"vulnérabilité"},
+    "MR-BRI-09": {"tree":"Brisure","affliction":"weakness","duration":2,"delivery":"attack","build_role":"faiblesse"},
+    "AN-DIS-06": {"tree":"Dissidence","affliction":"silence","duration":2,"delivery":"control","build_role":"silence"},
+    "AU-ANA-06": {"tree":"Anatomie","affliction":"snare","duration":2,"delivery":"attack","build_role":"entrave"}
+  }
+}

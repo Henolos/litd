@@ -2,14 +2,19 @@ extends Node
 
 const CONTRACT_PATH := "res://data/veilleurs/skills/resolver_contract.json"
 const OVERRIDES_PATH := "res://data/veilleurs/skills/canonical_overrides.json"
+const AFFLICTION_BUILDS_PATH := "res://data/veilleurs/skills/affliction_builds.json"
 const CLINICAL_RUNTIME_SCRIPT := preload("res://scripts/core/veilleurs_clinical_combat_runtime.gd")
 const HEMOCORDE_RUNTIME_SCRIPT := preload("res://scripts/core/veilleurs_hemocorde_runtime.gd")
+const AFFLICTION_RUNTIME_SCRIPT := preload("res://scripts/core/veilleurs_affliction_skill_runtime.gd")
+const STATUS_RESOLVER := preload("res://scripts/core/combat/veilleurs_status_resolver.gd")
 
 var contract: Dictionary = {}
 var overrides: Dictionary = {}
+var affliction_builds: Dictionary = {}
 var load_errors: Array[String] = []
 var clinical_runtime: Node = null
 var hemocorde_runtime: Node = null
+var affliction_runtime: Node = null
 
 func _ready() -> void:
     clinical_runtime = CLINICAL_RUNTIME_SCRIPT.new()
@@ -18,16 +23,22 @@ func _ready() -> void:
     hemocorde_runtime = HEMOCORDE_RUNTIME_SCRIPT.new()
     hemocorde_runtime.name = "HemocordeRuntime"
     add_child(hemocorde_runtime)
+    affliction_runtime = AFFLICTION_RUNTIME_SCRIPT.new()
+    affliction_runtime.name = "AfflictionRuntime"
+    add_child(affliction_runtime)
     reload()
 
 func reload() -> void:
     load_errors.clear()
     contract = _load_dictionary(CONTRACT_PATH)
     overrides = _load_dictionary(OVERRIDES_PATH)
+    affliction_builds = _load_dictionary(AFFLICTION_BUILDS_PATH)
     if contract.is_empty():
         load_errors.append("resolver_contract_missing")
     if overrides.is_empty():
         load_errors.append("canonical_overrides_missing")
+    if affliction_builds.is_empty():
+        load_errors.append("affliction_builds_missing")
 
 func normalize_node(node: Dictionary) -> Dictionary:
     var result := node.duplicate(true)
@@ -46,6 +57,13 @@ func normalize_node(node: Dictionary) -> Dictionary:
                 if clean != "" and not tags.has(clean):
                     tags.append(clean)
     result["canonical_tags"] = tags
+    var build_bindings: Dictionary = affliction_builds.get("bindings", {})
+    if build_bindings.has(skill_id):
+        var binding: Dictionary = build_bindings[skill_id]
+        result["affliction"] = str(binding.get("affliction", ""))
+        result["affliction_duration"] = int(binding.get("duration", 0))
+        result["affliction_delivery"] = str(binding.get("delivery", ""))
+        result["build_role"] = str(binding.get("build_role", ""))
     var resolver := contract_for(result)
     result["resolver_id"] = str(resolver.get("resolver_id", ""))
     result["resolver_status"] = str(resolver.get("status", "required"))
@@ -105,7 +123,11 @@ func combat_profile(hero: Dictionary, node: Dictionary) -> Dictionary:
         "resolver_coverage": (normalized.get("resolver_coverage", {}) as Dictionary).duplicate(true),
         "activation_mode": str(normalized.get("activation_mode", "action")),
         "runtime_entrypoint": str(normalized.get("runtime_entrypoint", "")),
-        "manual_combat_usable": can_manual_equip(normalized)
+        "manual_combat_usable": can_manual_equip(normalized),
+        "affliction": str(normalized.get("affliction", "")),
+        "affliction_duration": int(normalized.get("affliction_duration", 0)),
+        "affliction_delivery": str(normalized.get("affliction_delivery", "")),
+        "build_role": str(normalized.get("build_role", ""))
     }
     if not bool(result.get("manual_combat_usable", false)):
         result["effect"] = "resolver_required"
@@ -128,7 +150,10 @@ func resolve_combat(hero: Dictionary, target: Dictionary, skill: Dictionary, dam
     var runtime := _runtime_for(skill)
     if runtime == null or not runtime.has_method("resolve"):
         return {"ok": false, "reason": "specialized_runtime_unavailable", "skill_id": str(skill.get("id", ""))}
-    return runtime.call("resolve", hero, target, skill, damage, party)
+    var result: Dictionary = runtime.call("resolve", hero, target, skill, damage, party)
+    if runtime != _affliction_runtime() and bool(result.get("ok", false)):
+        _apply_affliction_overlay(target, skill, damage, result)
+    return result
 
 func select_medical_target(party: Array) -> Dictionary:
     var runtime := _clinical_runtime()
@@ -176,10 +201,15 @@ func summary() -> Dictionary:
         "skill_overrides": (contract.get("skill_overrides", {}) as Dictionary).size(),
         "clinical_runtime": clinical_runtime != null,
         "hemocorde_runtime": hemocorde_runtime != null,
+        "affliction_runtime": affliction_runtime != null,
+        "affliction_bindings": (affliction_builds.get("bindings", {}) as Dictionary).size(),
         "load_errors": load_errors.duplicate()
     }
 
 func _runtime_for(skill: Dictionary) -> Node:
+    var affliction := _affliction_runtime()
+    if affliction != null and affliction.has_method("handles") and bool(affliction.call("handles", skill)):
+        return affliction
     var clinical := _clinical_runtime()
     if clinical != null and clinical.has_method("handles") and bool(clinical.call("handles", skill)):
         return clinical
@@ -187,6 +217,25 @@ func _runtime_for(skill: Dictionary) -> Node:
     if hemocorde != null and hemocorde.has_method("handles") and bool(hemocorde.call("handles", skill)):
         return hemocorde
     return null
+
+func _affliction_runtime() -> Node:
+    if affliction_runtime == null:
+        affliction_runtime = get_node_or_null("AfflictionRuntime")
+    return affliction_runtime
+
+func _apply_affliction_overlay(target: Dictionary, skill: Dictionary, damage: int, result: Dictionary) -> void:
+    var kind := str(skill.get("affliction", ""))
+    var turns := int(skill.get("affliction_duration", 0))
+    if kind == "" or turns <= 0 or damage <= 0 or target.is_empty() or int(target.get("hp", 0)) <= 0:
+        return
+    var applied: Dictionary = STATUS_RESOLVER.apply_affliction(target, kind, turns)
+    if not bool(applied.get("ok", false)):
+        return
+    target["afflictions"] = applied.get("afflictions", {})
+    result["affliction"] = kind
+    result["affliction_turns"] = int(applied.get("turns", turns))
+    result["affliction_applied"] = true
+    result["build_role"] = str(skill.get("build_role", ""))
 
 func _clinical_runtime() -> Node:
     if clinical_runtime == null:

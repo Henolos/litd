@@ -1,5 +1,5 @@
 {
-  "version": 5,
+  "version": 6,
   "policy": {
     "no_silent_generic_fallback": true,
     "unlock_without_runtime_execution_allowed": true,
@@ -16,27 +16,238 @@
     "Transformation": "passive_hook"
   },
   "tree_families": {
-    "Bastion": {"resolver_id":"guard_interception_position","status":"required","systems":["formation","guard","interception","body_function","environment"]},
-    "Brisure": {"resolver_id":"impact_environment_anatomy","status":"required","systems":["contact","armor","anatomy","push","environment","user_risk"]},
-    "Serment": {"resolver_id":"formation_guard_commitment","status":"required","systems":["formation","ally_state","interception","fear_hope","relationship","extraction"]},
-    "Traque": {"resolver_id":"tracking_knowledge_remanence","status":"required","systems":["perception","uncertainty","bestiarity_knowledge","remanence","intent_preview"]},
-    "Entaille": {"resolver_id":"anatomical_lesion","status":"prototype_bridge","entrypoint":"VeilleursClinicalCombatRuntime.resolve","reaction_entrypoint":"VeilleursClinicalReactionRuntime","systems":["anatomy","lesion","tendon","bleeding","functional_consequence","dismemberment"],"coverage":{"manual_actions":true,"posture":true,"passive_readthrough":true,"reaction_hooks":true,"transformation_hooks":true}},
-    "Disparition": {"resolver_id":"stealth_position_environment","status":"required","systems":["position","cover","light","noise","perception_certainty","enemy_targeting"]},
-    "Anatomie": {"resolver_id":"anatomical_diagnostic","status":"prototype_bridge","entrypoint":"VeilleursClinicalCombatRuntime.resolve","reaction_entrypoint":"VeilleursClinicalReactionRuntime","systems":["anatomy","diagnostic","weakness","knowledge","functional_consequence"],"coverage":{"manual_actions":true,"posture":true,"corpse_action":true,"passive_readthrough":true,"reaction_hooks":true,"transformation_hooks":true}},
-    "Suture": {"resolver_id":"medical_treatment","status":"prototype_bridge","entrypoint":"VeilleursClinicalCombatRuntime.resolve","reaction_entrypoint":"VeilleursClinicalReactionRuntime","systems":["injury","persistent_injury","bleeding","fracture","resources","time"],"coverage":{"manual_actions":true,"posture":true,"passive_readthrough":true,"reaction_hooks":true,"transformation_hooks":true}},
-    "Hémocorde": {"resolver_id":"vascular_bleeding","status":"prototype_bridge","entrypoint":"VeilleursHemocordeRuntime.resolve","reaction_entrypoint":"VeilleursClinicalReactionRuntime","systems":["blood_flow","bleeding","shock","anatomy","user_risk"],"coverage":{"manual_actions":true,"posture":true,"passive_readthrough":true,"reaction_hooks":true,"transformation_hooks":true}},
-    "Sentence": {"resolver_id":"authority_intent_timeline","status":"required","systems":["intent","timeline","interrupt","priority","decision_memory"]},
-    "Concorde": {"resolver_id":"formation_coordination","status":"required","systems":["formation","initiative","shared_reaction","guard","team_state"]},
-    "Dissidence": {"resolver_id":"enemy_intention_disruption","status":"required","systems":["enemy_intent","certainty","priority","timeline","ai_memory"]}
+    "Bastion": {
+      "resolver_id": "guard_interception_position",
+      "status": "required",
+      "systems": [
+        "formation",
+        "guard",
+        "interception",
+        "body_function",
+        "environment"
+      ]
+    },
+    "Brisure": {
+      "resolver_id": "impact_environment_anatomy",
+      "status": "required",
+      "systems": [
+        "contact",
+        "armor",
+        "anatomy",
+        "push",
+        "environment",
+        "user_risk"
+      ]
+    },
+    "Serment": {
+      "resolver_id": "formation_guard_commitment",
+      "status": "required",
+      "systems": [
+        "formation",
+        "ally_state",
+        "interception",
+        "fear_hope",
+        "relationship",
+        "extraction"
+      ]
+    },
+    "Traque": {
+      "resolver_id": "tracking_knowledge_remanence",
+      "status": "required",
+      "systems": [
+        "perception",
+        "uncertainty",
+        "bestiarity_knowledge",
+        "remanence",
+        "intent_preview"
+      ]
+    },
+    "Entaille": {
+      "resolver_id": "anatomical_lesion",
+      "status": "prototype_bridge",
+      "entrypoint": "VeilleursClinicalCombatRuntime.resolve",
+      "reaction_entrypoint": "VeilleursClinicalReactionRuntime",
+      "systems": [
+        "anatomy",
+        "lesion",
+        "tendon",
+        "bleeding",
+        "functional_consequence",
+        "dismemberment"
+      ],
+      "coverage": {
+        "manual_actions": true,
+        "posture": true,
+        "passive_readthrough": true,
+        "reaction_hooks": true,
+        "transformation_hooks": true
+      }
+    },
+    "Disparition": {
+      "resolver_id": "stealth_position_environment",
+      "status": "required",
+      "systems": [
+        "position",
+        "cover",
+        "light",
+        "noise",
+        "perception_certainty",
+        "enemy_targeting"
+      ]
+    },
+    "Anatomie": {
+      "resolver_id": "anatomical_diagnostic",
+      "status": "prototype_bridge",
+      "entrypoint": "VeilleursClinicalCombatRuntime.resolve",
+      "reaction_entrypoint": "VeilleursClinicalReactionRuntime",
+      "systems": [
+        "anatomy",
+        "diagnostic",
+        "weakness",
+        "knowledge",
+        "functional_consequence"
+      ],
+      "coverage": {
+        "manual_actions": true,
+        "posture": true,
+        "corpse_action": true,
+        "passive_readthrough": true,
+        "reaction_hooks": true,
+        "transformation_hooks": true
+      }
+    },
+    "Suture": {
+      "resolver_id": "medical_treatment",
+      "status": "prototype_bridge",
+      "entrypoint": "VeilleursClinicalCombatRuntime.resolve",
+      "reaction_entrypoint": "VeilleursClinicalReactionRuntime",
+      "systems": [
+        "injury",
+        "persistent_injury",
+        "bleeding",
+        "fracture",
+        "resources",
+        "time"
+      ],
+      "coverage": {
+        "manual_actions": true,
+        "posture": true,
+        "passive_readthrough": true,
+        "reaction_hooks": true,
+        "transformation_hooks": true
+      }
+    },
+    "Hémocorde": {
+      "resolver_id": "vascular_bleeding",
+      "status": "prototype_bridge",
+      "entrypoint": "VeilleursHemocordeRuntime.resolve",
+      "reaction_entrypoint": "VeilleursClinicalReactionRuntime",
+      "systems": [
+        "blood_flow",
+        "bleeding",
+        "shock",
+        "anatomy",
+        "user_risk"
+      ],
+      "coverage": {
+        "manual_actions": true,
+        "posture": true,
+        "passive_readthrough": true,
+        "reaction_hooks": true,
+        "transformation_hooks": true
+      }
+    },
+    "Sentence": {
+      "resolver_id": "authority_intent_timeline",
+      "status": "required",
+      "systems": [
+        "intent",
+        "timeline",
+        "interrupt",
+        "priority",
+        "decision_memory"
+      ]
+    },
+    "Concorde": {
+      "resolver_id": "formation_coordination",
+      "status": "required",
+      "systems": [
+        "formation",
+        "initiative",
+        "shared_reaction",
+        "guard",
+        "team_state"
+      ]
+    },
+    "Dissidence": {
+      "resolver_id": "enemy_intention_disruption",
+      "status": "required",
+      "systems": [
+        "enemy_intent",
+        "certainty",
+        "priority",
+        "timeline",
+        "ai_memory"
+      ]
+    }
   },
   "skill_overrides": {
-    "AU-ANA-12": {"resolver_id":"corpse_interaction","status":"implemented","activation_mode":"context_action","entrypoint":"VeilleursCorpseInteractionRuntime.study_aurelien"},
-    "MA-DIS-12": {"resolver_id":"corpse_interaction","status":"implemented","activation_mode":"context_action","entrypoint":"VeilleursCorpseInteractionRuntime.cover_mathilde"}
+    "AU-ANA-12": {
+      "resolver_id": "corpse_interaction",
+      "status": "implemented",
+      "activation_mode": "context_action",
+      "entrypoint": "VeilleursCorpseInteractionRuntime.study_aurelien"
+    },
+    "MA-DIS-12": {
+      "resolver_id": "corpse_interaction",
+      "status": "implemented",
+      "activation_mode": "context_action",
+      "entrypoint": "VeilleursCorpseInteractionRuntime.cover_mathilde"
+    },
+    "MA-DIS-09": {
+      "resolver_id": "generic_affliction_control",
+      "status": "implemented",
+      "activation_mode": "action",
+      "entrypoint": "VeilleursAfflictionSkillRuntime.resolve"
+    },
+    "MR-BRI-01": {
+      "resolver_id": "generic_affliction_attack",
+      "status": "implemented",
+      "activation_mode": "action",
+      "entrypoint": "VeilleursAfflictionSkillRuntime.resolve"
+    },
+    "MR-BRI-05": {
+      "resolver_id": "generic_affliction_attack",
+      "status": "implemented",
+      "activation_mode": "action",
+      "entrypoint": "VeilleursAfflictionSkillRuntime.resolve"
+    },
+    "MR-BRI-09": {
+      "resolver_id": "generic_affliction_attack",
+      "status": "implemented",
+      "activation_mode": "action",
+      "entrypoint": "VeilleursAfflictionSkillRuntime.resolve"
+    },
+    "AN-DIS-06": {
+      "resolver_id": "generic_affliction_control",
+      "status": "implemented",
+      "activation_mode": "action",
+      "entrypoint": "VeilleursAfflictionSkillRuntime.resolve"
+    }
   },
   "ultimate_family": {
     "resolver_id": "ultimate_sequence",
     "status": "required",
-    "systems": ["charges","encounter_limit","body_functions","timeline","animation","haptics","audio","camera"]
+    "systems": [
+      "charges",
+      "encounter_limit",
+      "body_functions",
+      "timeline",
+      "animation",
+      "haptics",
+      "audio",
+      "camera"
+    ]
   },
   "semantic_guardrails": {
     "Traque": "L'information reste incertaine et acquise; aucune omniscience.",
