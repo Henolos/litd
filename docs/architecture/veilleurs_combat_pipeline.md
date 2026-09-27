@@ -27,6 +27,8 @@ Decision architecture remains separate:
 
 `VeilleursStatusResolver` is the single authority for timed afflictions on heroes and enemies. The `afflictions` dictionary stores remaining **actor turns** by identifier. Reapplication refreshes to the longer duration; distinct effects coexist. An effect is active for its final turn and expires at its end. Damage over time happens at the start of the affected actor's turn and cannot reduce HP below zero. Failed hits do not apply an effect or spend extra resources beyond the action's normal AP cost.
 
+An actor may define `affliction_resistances` per ID with independent signed `damage` and `duration` percentages, for example `{"poison":{"damage":50,"duration":-50}}`. Positive values reduce the corresponding effect; negative values increase it. Both are clamped to −100…+100, so +100 duration prevents a new application and +100 damage suppresses its periodic damage, while −100 doubles the corresponding value. Duration is adjusted when applied, rounded to whole actor turns, then compared with the existing duration; resistance never cleanses an active effect. Periodic damage is adjusted separately for each effect at each turn start and rounded to whole damage. Missing values default to zero. This damage facet applies to poison, burn and bleed ticks, not direct weapon hits or the separate `vulnerability` combat modifier. The sandbox inspection shows the signed characteristics; the Charognard is sensitive to bleeding and Porte-Cendre resists burning.
+
 | ID | Display name | Effect while active |
 | --- | --- | --- |
 | `poison` | Poison | 3 damage per turn |

@@ -5,12 +5,21 @@ class_name VeilleursStatusResolver
 const AFFLICTIONS := ["poison", "burn", "bleed", "freeze", "stun", "blind", "silence", "weakness", "vulnerability", "snare"]
 const PERIODIC_DAMAGE := {"poison": 3, "burn": 4, "bleed": 2}
 
+# Signed percentages by affliction and facet: positive resists, negative amplifies.
+# Example: {"burn": {"damage": 50, "duration": -50}}.
+static func resistance(actor: Dictionary, kind: String, facet: String) -> int:
+    var all_resistances: Dictionary = actor.get("affliction_resistances", {})
+    var entry: Dictionary = all_resistances.get(kind, {})
+    return clampi(int(entry.get(facet, 0)), -100, 100)
+
 static func apply_affliction(target: Dictionary, kind: String, turns: int) -> Dictionary:
     if kind not in AFFLICTIONS or turns <= 0:
         return {"ok": false, "reason": "invalid_affliction"}
     var statuses: Dictionary = (target.get("afflictions", {}) as Dictionary).duplicate(true)
-    statuses[kind] = maxi(int(statuses.get(kind, 0)), turns)
-    return {"ok": true, "afflictions": statuses, "kind": kind, "turns": statuses[kind]}
+    var adjusted_turns := maxi(0, int(round(float(turns) * (1.0 - float(resistance(target, kind, "duration")) / 100.0))))
+    if adjusted_turns > 0:
+        statuses[kind] = maxi(int(statuses.get(kind, 0)), adjusted_turns)
+    return {"ok": true, "afflictions": statuses, "kind": kind, "turns": int(statuses.get(kind, 0)), "resisted": adjusted_turns == 0}
 
 static func has(actor: Dictionary, kind: String) -> bool:
     return int((actor.get("afflictions", {}) as Dictionary).get(kind, 0)) > 0
@@ -41,7 +50,8 @@ static func start_turn(actor: Dictionary) -> Dictionary:
         var remaining := int(statuses.get(kind, 0))
         if remaining <= 0:
             continue
-        damage += int(PERIODIC_DAMAGE.get(kind, 0))
+        var base_damage := int(PERIODIC_DAMAGE.get(kind, 0))
+        damage += maxi(0, int(round(float(base_damage) * (1.0 - float(resistance(actor, kind, "damage")) / 100.0))))
         # The effect remains active for this turn, even when its last turn starts.
     return {"damage": mini(maxi(0, int(actor.get("hp", 0))), damage), "afflictions": statuses}
 
