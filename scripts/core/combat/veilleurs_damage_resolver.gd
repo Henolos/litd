@@ -15,3 +15,17 @@ static func resolve(actor: Dictionary, action: Dictionary, target: Dictionary, z
         "severity": severity,
         "armor_factor": armor_factor,
     }
+
+static func resolve_tactical_skill(actor: Dictionary, action: Dictionary, target: Dictionary, exposed: bool = false) -> Dictionary:
+    var actor_stats: Dictionary = actor.get("stats", {})
+    var effect: Dictionary = action.get("effect_spec", {})
+    var multiplier := float(effect.get("damage_multiplier", 0.0))
+    if multiplier <= 0.0:
+        multiplier = 0.75 + float(maxi(1, int(action.get("skill_index", 1))) - 1) / 28.0
+    var attack_power := float(actor.get("weapon_power", 25)) * multiplier * (0.70 + float(actor_stats.get("FOR", 50)) / 200.0)
+    var armor := float(target.get("armor", 0)) + float(target.get("guard_bonus", 0))
+    if exposed:
+        armor *= 0.80
+    var reduction := armor / (armor + 100.0)
+    var damage := maxi(1, int(round(attack_power * (1.0 - reduction))))
+    return {"damage":damage,"attack_power":attack_power,"effective_armor":armor,"reduction":reduction}
