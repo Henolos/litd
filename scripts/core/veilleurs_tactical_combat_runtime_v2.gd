@@ -5,6 +5,7 @@ const BEHAVIOR_SCRIPT := preload("res://scripts/core/veilleurs_skill_behavior_ru
 const AI_V3_SCRIPT := preload("res://scripts/core/veilleurs_enemy_ai_v3.gd")
 const TARGET_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_target_resolver.gd")
 const HIT_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_hit_resolver.gd")
+const DAMAGE_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_damage_resolver.gd")
 
 var skill_behavior: VeilleursSkillBehaviorRuntime
 
@@ -139,7 +140,8 @@ func _resolve_damage_v2(attacker_id: String, target_id: String, skill: Dictionar
         action_log.append(result.duplicate(true))
         return result
 
-    var damage := _skill_damage(attacker, target, skill)
+    var damage_result: Dictionary = DAMAGE_RESOLVER_SCRIPT.resolve_tactical_skill(attacker, skill, target, _has_status(target, "EXPOSED"))
+    var damage := int(damage_result.get("damage", 1))
     var redirected := _redirect_damage_if_protected(target_id, damage)
     damage = int(redirected.get("remaining", damage))
     target = combatants[target_id]
