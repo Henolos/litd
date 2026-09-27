@@ -1,6 +1,7 @@
 extends Node
 
 const MAIN_SCENE := "res://scenes/Main.tscn"
+const TACTICAL_UI := preload("res://scripts/ui/veilleurs_tactical_ui.gd")
 const MIN_TOUCH := Vector2(96.0, 48.0)
 var failures: Array[String] = []
 
@@ -10,6 +11,22 @@ func run() -> void:
     EquipmentManager.reset_new_game(9301)
     CreatureManager.reset_new_game(9302)
     await _frames(2)
+
+    var tactical_ui := TACTICAL_UI.new()
+    tactical_ui.set("runtime_snapshot", {
+        "round": 3,
+        "combatants": {
+            "ENT_WATCHER_marec": {"name":"Marec","team":"watcher","hp":10,"max_hp":10},
+            "ENT_ENEMY_probe": {"name":"Molosse","team":"enemy","hp":8,"max_hp":8},
+        }
+    })
+    tactical_ui.set("selected_watcher", "ENT_WATCHER_marec")
+    tactical_ui.set("selected_target", "ENT_ENEMY_probe")
+    var tactical_hint := str(tactical_ui.call("_normal_status_text"))
+    _check(tactical_hint.contains("▶ Marec"), "Tactical HUD must name the selected Watcher")
+    _check(tactical_hint.contains("◎ Molosse"), "Tactical HUD must name the selected target")
+    _check(tactical_hint.contains("second clic") and tactical_hint.contains("Inspecter"), "Tactical HUD must expose the inspection gesture and button")
+    tactical_ui.free()
 
     var error := get_tree().change_scene_to_file(MAIN_SCENE)
     _check(error == OK, "Main scene must load for canonical UI smoke")
