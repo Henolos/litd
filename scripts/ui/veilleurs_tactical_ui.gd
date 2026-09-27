@@ -274,7 +274,22 @@ func _update_status_label() -> void:
         else:
             status_label.text = "CHOISISSEZ UNE CIBLE — ▶ %s attaque · ○ cible possible · × hors portée" % attacker_name
         return
-    status_label.text = "Round %d — %d combattants" % [int(runtime_snapshot.get("round", 1)), (runtime_snapshot.get("combatants", {}) as Dictionary).size()]
+    status_label.text = _normal_status_text()
+
+func _normal_status_text() -> String:
+    var combatants: Dictionary = runtime_snapshot.get("combatants", {})
+    var watcher_name := _short_display_name(selected_watcher)
+    var target_name := _short_display_name(selected_target)
+    var selection_parts: Array[String] = []
+    if watcher_name != "":
+        selection_parts.append("▶ %s" % watcher_name)
+    if target_name != "":
+        selection_parts.append("◎ %s" % target_name)
+    var selection := " · ".join(selection_parts)
+    var prefix := "Round %d — %d combattants" % [int(runtime_snapshot.get("round", 1)), combatants.size()]
+    if selection != "":
+        prefix += " · " + selection
+    return prefix + " — sélectionner : clic · inspecter : second clic ou bouton Inspecter"
 
 func _entity_badge(entity_id: String) -> String:
     if entity_id == "":
