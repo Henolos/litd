@@ -334,7 +334,51 @@ func _render_equipment() -> void:
             _render_current_tab(), Vector2(430, 44)))
     if selected_item_id != "":
         right.add_child(HSeparator.new())
+        _render_equipment_comparison(right, hero, selected_item_id)
         _render_item_detail(right, selected_item_id, true)
+
+func _render_equipment_comparison(parent: VBoxContainer, hero: Dictionary, candidate_id: String) -> void:
+    var candidate := EquipmentManager.get_instance(candidate_id)
+    if candidate.is_empty():
+        return
+    var slots: Dictionary = EquipmentManager.equipped_by_hero.get(selected_hero_id, {})
+    var current := EquipmentManager.get_instance(str(slots.get(selected_equipment_slot, "")))
+    parent.add_child(_label("COMPARAISON ÉQUIPÉ → SÉLECTIONNÉ", 15, Color("#d5b26c")))
+    parent.add_child(_label("Équipé : %s" % ("emplacement vide" if current.is_empty() else str(current.get("name", "Objet"))), 12, Color("#a49884")))
+    var level := int(hero.get("level", 1))
+    var current_bonuses: Dictionary = {} if current.is_empty() else EquipmentManager.effective_bonuses_for_level(current, level)
+    var candidate_bonuses: Dictionary = EquipmentManager.effective_bonuses_for_level(candidate, level)
+    var rows := _equipment_delta_rows(current_bonuses, candidate_bonuses)
+    if rows.is_empty():
+        parent.add_child(_label("Aucune statistique ne change.", 13, Color("#a49884")))
+        return
+    for row_value in rows:
+        var row: Dictionary = row_value
+        var delta := int(row.get("delta", 0))
+        var delta_text := "%+d" % delta
+        var color := Color("#8fd0a4") if delta > 0 else Color("#d99a8d")
+        parent.add_child(_label("%s : %+d → %+d (%s)" % [
+            _short_stat_label(str(row.get("stat", ""))),
+            int(row.get("before", 0)),
+            int(row.get("after", 0)),
+            delta_text
+        ], 13, color))
+
+func _equipment_delta_rows(current_bonuses: Dictionary, candidate_bonuses: Dictionary) -> Array[Dictionary]:
+    var stat_keys: Array = current_bonuses.keys()
+    for key_value in candidate_bonuses.keys():
+        if not stat_keys.has(key_value):
+            stat_keys.append(key_value)
+    stat_keys.sort()
+    var rows: Array[Dictionary] = []
+    for key_value in stat_keys:
+        var key := str(key_value)
+        var before := int(current_bonuses.get(key, 0))
+        var after := int(candidate_bonuses.get(key, 0))
+        if before == after:
+            continue
+        rows.append({"stat": key, "before": before, "after": after, "delta": after - before})
+    return rows
 
 func _add_slot_button(parent: GridContainer, slot_name: String, slots: Dictionary) -> void:
     var item := EquipmentManager.get_instance(str(slots.get(slot_name, "")))
