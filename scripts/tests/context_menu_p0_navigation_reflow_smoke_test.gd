@@ -74,6 +74,18 @@ func _run() -> void:
     ui.current_screen = "combat"
     _check(ui.current_screen == "combat", "menu state can retain combat as its gameplay context")
 
+    var comparison_rows: Array = ui.call("_equipment_delta_rows",
+        {"damage_bonus": 2, "guard_power": 4},
+        {"damage_bonus": 5, "guard_power": 1, "precision": 3})
+    _check(comparison_rows.size() == 3, "equipment comparison reports every changed stat")
+    var comparison_by_stat := {}
+    for row_value in comparison_rows:
+        var row: Dictionary = row_value
+        comparison_by_stat[str(row.get("stat", ""))] = int(row.get("delta", 0))
+    _check(int(comparison_by_stat.get("damage_bonus", 0)) == 3, "equipment comparison exposes positive delta")
+    _check(int(comparison_by_stat.get("guard_power", 0)) == -3, "equipment comparison exposes negative delta")
+    _check(int(comparison_by_stat.get("precision", 0)) == 3, "equipment comparison exposes newly introduced stat")
+
     host.free()
     ui.free()
     _finish()
