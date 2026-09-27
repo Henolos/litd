@@ -1,0 +1,34 @@
+name: HENOLOS Control Center Refresh
+
+on:
+  schedule:
+    - cron: "17,47 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+  actions: read
+
+concurrency:
+  group: control-center-refresh
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Refresh read-only snapshot
+        env:
+          CONTROL_CENTER_REPOSITORY: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python tools/quality/control_center_refresh.py
+      - name: Upload immutable snapshot
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: control-center-snapshot-${{ github.run_id }}
+          path: reports/control-center-snapshot.json
+          if-no-files-found: error
+          retention-days: 30
