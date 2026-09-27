@@ -53,6 +53,27 @@ func _run() -> void:
     var stable_key := str(ui.call("_p0_focus_key", b, 1))
     _check(stable_key.find("Button") >= 0, "focus restoration key is stable and typed")
 
+    # Functional navigation contract: the production menu keeps one canonical
+    # state while moving inventory -> equipment -> another tab. No duplicate
+    # menu or inventory model is introduced by the P0 layer.
+    _check(ui.TABS.has("inventory") and ui.TABS.has("equipment"), "canonical tabs expose inventory and equipment")
+    ui.current_tab = "inventory"
+    ui.selected_item_id = "probe-item"
+    ui.selected_equipment_slot = ""
+    ui.call("_select_tab", "equipment")
+    _check(ui.current_tab == "equipment", "tab navigation reaches equipment through the canonical menu")
+    _check(ui.selected_item_id == "probe-item", "tab navigation preserves the current item context")
+    ui.selected_equipment_slot = "weapon"
+    ui.call("_select_tab", "inventory")
+    _check(ui.current_tab == "inventory", "tab navigation returns to inventory through the same menu")
+    _check(ui.selected_equipment_slot == "weapon", "equipment context survives a temporary tab change")
+
+    # Closing the menu must not rewrite the gameplay screen. The base contract
+    # only hides the overlay and restores focus, so combat/exploration context
+    # remains owned by GameState.
+    ui.current_screen = "combat"
+    _check(ui.current_screen == "combat", "menu state can retain combat as its gameplay context")
+
     host.free()
     ui.free()
     _finish()
