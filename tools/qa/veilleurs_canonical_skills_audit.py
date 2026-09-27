@@ -15,6 +15,8 @@ WATCHERS = {
 EXPECTED_LEVELS = [1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 35, 39, 44, 49]
 SOURCE_SHA = "0b543d9b9433405ecc230f86de5c522f16b7a29d9db9d60f301b6d45a2b5b1b4"
 CORPSE_SKILLS = {"AU-ANA-12", "MA-DIS-12"}
+GENERIC_AFFLICTION_SKILLS = {"MA-DIS-09", "MR-BRI-01", "MR-BRI-05", "MR-BRI-09", "AN-DIS-06"}
+EXPECTED_SKILL_OVERRIDES = CORPSE_SKILLS | GENERIC_AFFLICTION_SKILLS
 EXPECTED_TREE_RESOLVERS = {
     "Bastion", "Brisure", "Serment", "Traque", "Entaille", "Disparition",
     "Anatomie", "Suture", "Hémocorde", "Sentence", "Concorde", "Dissidence",
@@ -54,6 +56,7 @@ def audit() -> list[str]:
     contract = _load(SKILL_DIR / "source_contract.json")
     resolver = _load(SKILL_DIR / "resolver_contract.json")
     overrides = _load(SKILL_DIR / "canonical_overrides.json")
+    affliction_builds = _load(SKILL_DIR / "affliction_builds.json")
     polish = _load(ROOT / "data" / "veilleurs" / "polish_manifest.json")
     skill_overrides = overrides.get("skill_overrides", {})
 
@@ -168,12 +171,21 @@ def audit() -> list[str]:
     if not all_types <= set(activation):
         errors.append(f"resolver_types_missing:{sorted(all_types - set(activation))}")
     exact = resolver.get("skill_overrides", {})
-    if set(exact) != CORPSE_SKILLS:
+    if set(exact) != EXPECTED_SKILL_OVERRIDES:
         errors.append(f"implemented_skill_override_set:{sorted(exact)}")
     for skill_id in CORPSE_SKILLS:
         item = exact.get(skill_id, {})
         if item.get("status") != "implemented" or item.get("activation_mode") != "context_action":
             errors.append(f"corpse_resolver_not_implemented:{skill_id}")
+    affliction_bindings = affliction_builds.get("bindings", {})
+    for skill_id in GENERIC_AFFLICTION_SKILLS:
+        item = exact.get(skill_id, {})
+        if item.get("status") != "implemented" or item.get("activation_mode") != "action":
+            errors.append(f"affliction_resolver_not_implemented:{skill_id}")
+        if item.get("entrypoint") != "VeilleursAfflictionSkillRuntime.resolve":
+            errors.append(f"affliction_entrypoint:{skill_id}")
+        if skill_id not in affliction_bindings:
+            errors.append(f"affliction_binding_missing:{skill_id}")
     if str(skill_rows.get("AU-ANA-12", {}).get("Cible", "")).lower() != "cadavre":
         errors.append("aurelien_corpse_target_changed")
     mathilde_tags = _tags(skill_overrides.get("MA-DIS-12", {}).get("Tags", skill_rows.get("MA-DIS-12", {}).get("Tags", "")))

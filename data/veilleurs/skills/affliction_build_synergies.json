@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "policy": {
+    "purpose": "Define build identity and affliction synergies without duplicating combat resolution.",
+    "single_status_resolver": "VeilleursStatusResolver",
+    "cross_tree_synergies_allowed": true,
+    "prototype_afflictions": ["poison", "burn", "freeze"]
+  },
+  "builds": {
+    "mathilde_hemorrhage": {
+      "hero": "Mathilde",
+      "name": "Prédateur hémorragique",
+      "primary_tree": "Entaille",
+      "afflictions": ["bleed"],
+      "opener": ["MA-ENT-01", "MA-ENT-02"],
+      "payoffs": ["MA-ENT-05", "MA-ENT-09", "MA-ENT-14"],
+      "support": ["MA-ENT-03", "MA-ENT-07", "MA-ENT-10"],
+      "loop": "Créer une plaie, entretenir le saignement, puis exploiter la zone déjà blessée."
+    },
+    "mathilde_shadow": {
+      "hero": "Mathilde",
+      "name": "Ombre perturbatrice",
+      "primary_tree": "Disparition",
+      "afflictions": ["blind"],
+      "opener": ["MA-DIS-02", "MA-DIS-09"],
+      "payoffs": ["MA-DIS-05", "MA-DIS-14"],
+      "support": ["MA-DIS-08", "MA-DIS-10", "MA-DIS-11"],
+      "loop": "Rompre le ciblage adverse, aveugler, se repositionner puis exploiter la perte d'information."
+    },
+    "marec_breaker": {
+      "hero": "Marec",
+      "name": "Briseur",
+      "primary_tree": "Brisure",
+      "afflictions": ["stun", "vulnerability", "weakness"],
+      "opener": ["MR-BRI-01", "MR-BRI-05"],
+      "payoffs": ["MR-BRI-06", "MR-BRI-12", "MR-BRI-14"],
+      "support": ["MR-BRI-03", "MR-BRI-09", "MR-BRI-11"],
+      "loop": "Déstabiliser, ouvrir la défense, affaiblir l'appui puis convertir l'ouverture en contrôle lourd."
+    },
+    "anouk_disruptor": {
+      "hero": "Anouk",
+      "name": "Dissidente",
+      "primary_tree": "Dissidence",
+      "afflictions": ["silence"],
+      "opener": ["AN-DIS-02", "AN-DIS-06"],
+      "payoffs": ["AN-DIS-08", "AN-DIS-12", "AN-DIS-14"],
+      "support": ["AN-DIS-07", "AN-DIS-09", "AN-DIS-10"],
+      "loop": "Déstabiliser l'intention, couper la Trame, puis punir l'échec de coordination."
+    },
+    "aurelien_anatomical_control": {
+      "hero": "Aurélien",
+      "name": "Contrôle anatomique",
+      "primary_tree": "Anatomie",
+      "afflictions": ["snare"],
+      "opener": ["AU-ANA-01", "AU-ANA-05", "AU-ANA-06"],
+      "payoffs": ["AU-ANA-09", "AU-ANA-14"],
+      "support": ["AU-ANA-07", "AU-ANA-10", "AU-ANA-11"],
+      "loop": "Diagnostiquer, exposer ou entraver une fonction, puis exploiter la lésion créée."
+    },
+    "aurelien_hemocorde": {
+      "hero": "Aurélien",
+      "name": "Hémocorde",
+      "primary_tree": "Hémocorde",
+      "afflictions": ["bleed"],
+      "opener": ["AÏ-HÉM-01", "AÏ-HÉM-06"],
+      "payoffs": ["AÏ-HÉM-05", "AÏ-HÉM-09", "AÏ-HÉM-12", "AÏ-HÉM-14"],
+      "support": ["AÏ-HÉM-07", "AÏ-HÉM-10", "AÏ-HÉM-11"],
+      "loop": "Créer une ouverture vasculaire, maintenir l'hémorragie puis provoquer l'effondrement d'une cible déjà compromise."
+    }
+  },
+  "cross_build_synergies": [
+    {
+      "id": "open_wound_team",
+      "setup": ["bleed", "lesion"],
+      "contributors": ["Mathilde", "Aurélien"],
+      "effect": "Les compétences qui exigent une lésion ou une plaie existante peuvent exploiter le même état corporel; aucun multiplicateur gratuit n'est ajouté."
+    },
+    {
+      "id": "breaker_execution_window",
+      "setup": ["vulnerability", "weakness"],
+      "contributors": ["Marec", "Mathilde", "Aurélien"],
+      "effect": "Marec crée une fenêtre défensive; les spécialistes de précision ou de lésion peuvent ensuite l'exploiter avec leurs règles existantes."
+    },
+    {
+      "id": "control_window",
+      "setup": ["stun", "silence", "snare", "blind"],
+      "contributors": ["Marec", "Anouk", "Aurélien", "Mathilde"],
+      "effect": "Les contrôles ont des rôles distincts et complémentaires; ils ne se convertissent pas automatiquement les uns dans les autres."
+    }
+  ]
+}

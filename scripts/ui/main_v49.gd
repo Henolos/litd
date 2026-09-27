@@ -42,9 +42,9 @@ func _use_combat_skill(slot: int) -> void:
         return
 
     var effect := str(skill.get("effect", "attack")).to_lower()
-    var manual_hostile := effect in ["attack", "diagnostic"] and _requires_manual_hostile_choice_v49(skill)
+    var manual_hostile := effect in ["attack", "affliction", "diagnostic"] and _requires_manual_hostile_choice_v49(skill)
     if manual_hostile:
-        if effect == "attack" and not COMBAT_POSITION_RULES.is_usable(hero, skill):
+        if effect in ["attack", "affliction"] and not COMBAT_POSITION_RULES.is_usable(hero, skill):
             super._use_combat_skill(slot)
             return
         var candidates: Array[int] = COMBAT_TARGETING_RULES.targetable_indices(hero, skill, GameState.battle_enemies)
@@ -183,10 +183,14 @@ func _confirm_multi_target_v49() -> void:
         return
     var slot := pending_multi_target_skill_slot
     forced_manual_group_indices = pending_multi_target_selected.duplicate()
+    var previous_selected_for_choice := selected_enemy
+    if forced_manual_group_indices.size() == 1:
+        selected_enemy = int(forced_manual_group_indices[0])
     _clear_multi_target_v49()
     forcing_manual_group_execution = true
     super._use_combat_skill(slot)
     forcing_manual_group_execution = false
+    _restore_selected_enemy_v49(previous_selected_for_choice)
     forced_manual_group_indices.clear()
 
 func _cancel_multi_target_v49() -> void:
