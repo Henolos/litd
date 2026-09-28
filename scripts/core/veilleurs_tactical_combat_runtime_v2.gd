@@ -184,18 +184,6 @@ func _resolve_damage_v2(attacker_id: String, target_id: String, skill: Dictionar
     action_log.append(result.duplicate(true))
     return result
 
-func _skill_damage(attacker: Dictionary, target: Dictionary, skill: Dictionary) -> int:
-    var attacker_stats: Dictionary = attacker.get("stats", {})
-    var effect: Dictionary = skill.get("effect_spec", {})
-    var multiplier := float(effect.get("damage_multiplier", 0.0))
-    if multiplier <= 0.0:
-        multiplier = 0.75 + float(maxi(1, int(skill.get("skill_index", 1))) - 1) / 28.0
-    var attack_power := float(attacker.get("weapon_power", 25)) * multiplier * (0.70 + float(attacker_stats.get("FOR", 50)) / 200.0)
-    var armor := float(target.get("armor", 0)) + float(target.get("guard_bonus", 0))
-    if _has_status(target, "EXPOSED"):
-        armor *= 0.80
-    var reduction := armor / (armor + 100.0)
-    return maxi(1, int(round(attack_power * (1.0 - reduction))))
 
 func _enemy_role_attack(attacker_id: String, target_id: String, decision: Dictionary) -> Dictionary:
     var attacker: Dictionary = combatants[attacker_id]
