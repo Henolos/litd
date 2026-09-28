@@ -38,6 +38,57 @@ func _on_load() -> void:
     else:
         message_label.text = "La sauvegarde chargée n'est pas une expédition Les Veilleurs."
 
+func _render_node() -> void:
+    super._render_node()
+    if slice == null:
+        return
+    var snapshot := slice.current_snapshot()
+    var node: Dictionary = snapshot.get("dungeon", {})
+    var progress: Dictionary = snapshot.get("progress", {})
+    status_label.text = _player_status_text(node, progress)
+
+    var generic_action := _find_button_with_text(self, "Résoudre ce lieu")
+    if generic_action != null:
+        generic_action.text = _player_primary_action_label(node)
+    _set_dungeon_selector_visible(false)
+
+func _extract() -> void:
+    super._extract()
+    _set_dungeon_selector_visible(true)
+
+func _player_status_text(node: Dictionary, progress: Dictionary) -> String:
+    var dungeon_name := str(DUNGEONS.get(str(progress.get("dungeon_id", "")), str(progress.get("dungeon_id", ""))))
+    var place_name := str(node.get("title_fr", "Lieu inconnu"))
+    var extraction := "Extraction disponible" if bool(progress.get("can_extract", false)) else "Extraction indisponible"
+    return "%s — %s\nProgression %d/%d · %s" % [
+        dungeon_name,
+        place_name,
+        int(progress.get("visited_count", 0)),
+        int(progress.get("total_nodes", 0)),
+        extraction
+    ]
+
+func _player_primary_action_label(node: Dictionary) -> String:
+    match str(node.get("kind", "")):
+        "archive":
+            return "EXAMINER LES ARCHIVES"
+        "event":
+            return "EXAMINER LA SITUATION"
+        "choice":
+            return "ÉTUDIER LES PASSAGES"
+        "extraction":
+            return "SÉCURISER LA SORTIE"
+        "objective":
+            return "EXAMINER L'OBJECTIF"
+        _:
+            return "EXPLORER LE LIEU"
+
+func _set_dungeon_selector_visible(value: bool) -> void:
+    for dungeon_name_value: Variant in DUNGEONS.values():
+        var button := _find_button_with_text(self, str(dungeon_name_value))
+        if button != null:
+            button.visible = value
+
 func _promote_shell() -> void:
     var labels := find_children("*", "Label", true, false)
     for value: Node in labels:
