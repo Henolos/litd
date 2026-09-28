@@ -88,7 +88,7 @@ jobs:
     name: Godot 4.7 pre-PC production smokes
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:4.7.2
+      image: barichello/godot-ci:4.7.2@sha256:cdcca31e9194fd59a68a63f4b1b9c3981716819c520cd6f7966c5d72ca7246bd
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       - name: Prepare logs
@@ -176,7 +176,7 @@ jobs:
     name: Android debug APK export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:4.7.2
+      image: barichello/godot-ci:4.7.2@sha256:cdcca31e9194fd59a68a63f4b1b9c3981716819c520cd6f7966c5d72ca7246bd
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       - name: Configure Android exporter
@@ -265,7 +265,7 @@ jobs:
     needs: [content-contracts, godot-quick-gate, android-debug-export]
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:4.7.2
+      image: barichello/godot-ci:4.7.2@sha256:cdcca31e9194fd59a68a63f4b1b9c3981716819c520cd6f7966c5d72ca7246bd
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       - name: Run complete repository Godot suite
