@@ -7,6 +7,7 @@ const CLINICAL_RUNTIME_SCRIPT := preload("res://scripts/core/veilleurs_clinical_
 const HEMOCORDE_RUNTIME_SCRIPT := preload("res://scripts/core/veilleurs_hemocorde_runtime.gd")
 const AFFLICTION_RUNTIME_SCRIPT := preload("res://scripts/core/veilleurs_affliction_skill_runtime.gd")
 const STATUS_RESOLVER := preload("res://scripts/core/combat/veilleurs_status_resolver.gd")
+const SYNERGY_RUNTIME := preload("res://scripts/core/combat/veilleurs_affliction_synergy_runtime.gd")
 
 var contract: Dictionary = {}
 var overrides: Dictionary = {}
@@ -150,9 +151,12 @@ func resolve_combat(hero: Dictionary, target: Dictionary, skill: Dictionary, dam
     var runtime := _runtime_for(skill)
     if runtime == null or not runtime.has_method("resolve"):
         return {"ok": false, "reason": "specialized_runtime_unavailable", "skill_id": str(skill.get("id", ""))}
-    var result: Dictionary = runtime.call("resolve", hero, target, skill, damage, party)
+    var resolved_skill: Dictionary = SYNERGY_RUNTIME.decorate_action(hero, target, skill)
+    var result: Dictionary = runtime.call("resolve", hero, target, resolved_skill, damage, party)
     if runtime != _affliction_runtime() and bool(result.get("ok", false)):
-        _apply_affliction_overlay(target, skill, damage, result)
+        _apply_affliction_overlay(target, resolved_skill, damage, result)
+    if bool(result.get("ok", false)):
+        result["synergy"] = SYNERGY_RUNTIME.result_receipt(target, resolved_skill)
     return result
 
 func select_medical_target(party: Array) -> Dictionary:
