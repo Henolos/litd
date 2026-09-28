@@ -1,6 +1,13 @@
 name: HENOLOS Control Center Refresh
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/control-center-refresh.yml"
+      - "tools/quality/control_center_*.py"
+      - "docs/knowledge/governance/registry/evidence_registry.json"
   schedule:
     - cron: "17,47 * * * *"
   workflow_dispatch:
