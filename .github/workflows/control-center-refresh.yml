@@ -1,6 +1,13 @@
 name: HENOLOS Control Center Refresh
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/control-center-refresh.yml"
+      - "tools/quality/control_center_*.py"
+      - "docs/knowledge/governance/registry/evidence_registry.json"
   schedule:
     - cron: "17,47 * * * *"
   workflow_dispatch:
@@ -25,10 +32,14 @@ jobs:
           CONTROL_CENTER_REPOSITORY: ${{ github.repository }}
           GITHUB_TOKEN: ${{ github.token }}
         run: python tools/quality/control_center_refresh.py
-      - name: Upload immutable snapshot
+      - name: Render read-only web surface
+        run: python tools/quality/control_center_web.py
+      - name: Upload immutable Control Center bundle
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: control-center-snapshot-${{ github.run_id }}
-          path: reports/control-center-snapshot.json
+          path: |
+            reports/control-center-snapshot.json
+            reports/control-center/index.html
           if-no-files-found: error
           retention-days: 30

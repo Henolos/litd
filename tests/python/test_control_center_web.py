@@ -1,0 +1,49 @@
+import pytest
+
+from tools.quality.control_center_web import render
+
+
+def _snapshot():
+    return {
+        "authority": "read_only_control_center_snapshot",
+        "project": "HENOLOS_CONTROL_CENTER",
+        "change_record": "PR-474",
+        "phase": "verification",
+        "status": "WAITING_CI",
+        "pr": 474,
+        "head_sha": "a" * 40,
+        "checks": {"passed": 5, "total": 6},
+        "last_evidence": "closure:" + "b" * 64,
+        "blocker": None,
+        "needs_human": False,
+        "updated_at": "2026-09-28T02:04:26Z",
+        "sources": {
+            "github": "github_api_read_only",
+            "memory": "repository_memory_read_only",
+        },
+    }
+
+
+def test_renders_operational_fields_and_sources():
+    page = render(_snapshot())
+    assert "HENOLOS Control Center" in page
+    assert "WAITING_CI" in page
+    assert "5/6" in page
+    assert "github_api_read_only" in page
+    assert "repository_memory_read_only" in page
+    assert "<script" not in page.lower()
+
+
+def test_escapes_untrusted_values():
+    snapshot = _snapshot()
+    snapshot["blocker"] = "<script>alert(1)</script>"
+    page = render(snapshot)
+    assert "<script>alert(1)</script>" not in page
+    assert "&lt;script&gt;alert(1)&lt;/script&gt;" in page
+
+
+def test_refuses_non_read_only_snapshot():
+    snapshot = _snapshot()
+    snapshot["authority"] = "write_capable"
+    with pytest.raises(ValueError):
+        render(snapshot)
