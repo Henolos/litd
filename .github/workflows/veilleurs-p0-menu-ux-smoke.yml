@@ -8,6 +8,9 @@ on:
       - 'scripts/ui/context_menu_ui_v3.gd'
       - 'scripts/tests/context_menu_p0_navigation_reflow_smoke_test.gd'
       - 'scenes/tests/context_menu_p0_navigation_reflow_smoke.tscn'
+      - 'scripts/ui/veilleurs_vertical_slice.gd'
+      - 'scripts/tests/veilleurs_player_shell_ux_smoke_test.gd'
+      - 'scenes/tests/veilleurs_player_shell_ux_smoke.tscn'
       - '.github/workflows/veilleurs-p0-menu-ux-smoke.yml'
   workflow_dispatch:
 
@@ -25,3 +28,5 @@ jobs:
         run: godot --headless --path . --import --quit
       - name: P0 menu navigation and responsive reflow
         run: timeout 60s godot --headless --path . res://scenes/tests/context_menu_p0_navigation_reflow_smoke.tscn
+      - name: Veilleurs player exploration shell
+        run: timeout 60s godot --headless --path . res://scenes/tests/veilleurs_player_shell_ux_smoke.tscn
