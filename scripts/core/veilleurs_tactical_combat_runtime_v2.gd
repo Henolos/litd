@@ -6,6 +6,10 @@ const AI_V3_SCRIPT := preload("res://scripts/core/veilleurs_enemy_ai_v3.gd")
 const TARGET_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_target_resolver.gd")
 const HIT_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_hit_resolver.gd")
 const DAMAGE_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_damage_resolver.gd")
+const ANATOMY_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_anatomy_resolver.gd")
+const STATUS_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_status_resolver.gd")
+const REACTION_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_reaction_resolver.gd")
+const COMBAT_EVENT_SCRIPT := preload("res://scripts/core/combat/veilleurs_combat_event.gd")
 
 var skill_behavior: VeilleursSkillBehaviorRuntime
 
@@ -155,6 +159,21 @@ func _resolve_damage_v2(attacker_id: String, target_id: String, skill: Dictionar
     result["damage"] = damage
     result["target_hp"] = int(target["hp"])
     result["body"] = body_result
+    var severity := 3 if damage >= 13 else (2 if damage >= 8 else 1)
+    var anatomy_snapshot := _body_as_canonical_anatomy(body)
+    var canonical_action := {"id":str(skill.get("skill_id", "")), "impact":str(effect.get("impact", effect.get("damage_type", "unknown")))}
+    var anatomy_result: Dictionary = ANATOMY_RESOLVER_SCRIPT.resolve(anatomy_snapshot, zone, severity, 1.0, canonical_action)
+    result["canonical_anatomy"] = anatomy_result
+    result["functional_loss"] = str(anatomy_result.get("functional_loss", "functional"))
+    result["canonical_status"] = STATUS_RESOLVER_SCRIPT.resolve_after_hit(target, canonical_action, severity, int(target["hp"]))
+    var reaction_enemy := target.duplicate(true)
+    reaction_enemy["id"] = target_id
+    var reaction_hero := attacker.duplicate(true)
+    reaction_hero["id"] = attacker_id
+    result["canonical_reaction"] = REACTION_RESOLVER_SCRIPT.observe_enemy(reaction_enemy, reaction_hero, zone, result)
+    var event_actor := {"id":attacker_id}
+    var event_target := {"id":target_id}
+    result["canonical_event"] = COMBAT_EVENT_SCRIPT.from_attack(event_actor, event_target, result)
     if bool(redirected.get("redirected", false)):
         result["protection_redirect"] = redirected
     var forced_move := int(effect.get("forced_move", 0))
@@ -248,3 +267,13 @@ func _add_status(statuses_value: Variant, status: String, duration: int, strengt
     var statuses: Dictionary = statuses_value.duplicate(true) if statuses_value is Dictionary else {}
     statuses[status] = {"remaining":duration, "strength":strength}
     return statuses
+
+func _body_as_canonical_anatomy(body: VeilleursBodyComponent) -> Dictionary:
+    var anatomy: Dictionary = {}
+    for zone_name: String in VeilleursBodyComponent.ZONES:
+        anatomy[zone_name] = {
+            "state": str(body.states.get(zone_name, "L0")),
+            "function": "impaired" if not body._zone_below(zone_name, "L3") else "functional",
+            "injuries": []
+        }
+    return anatomy
