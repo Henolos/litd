@@ -31,9 +31,9 @@ jobs:
         env:
           CONTROL_CENTER_REPOSITORY: ${{ github.repository }}
           GITHUB_TOKEN: ${{ github.token }}
-        run: python tools/quality/control_center_refresh.py
+        run: python -m tools.quality.control_center_refresh
       - name: Render read-only web surface
-        run: python tools/quality/control_center_web.py
+        run: python -m tools.quality.control_center_web
       - name: Upload immutable Control Center bundle
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
