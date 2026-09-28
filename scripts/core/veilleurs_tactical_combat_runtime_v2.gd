@@ -3,6 +3,13 @@ class_name VeilleursTacticalCombatRuntimeV2
 
 const BEHAVIOR_SCRIPT := preload("res://scripts/core/veilleurs_skill_behavior_runtime.gd")
 const AI_V3_SCRIPT := preload("res://scripts/core/veilleurs_enemy_ai_v3.gd")
+const TARGET_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_target_resolver.gd")
+const HIT_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_hit_resolver.gd")
+const DAMAGE_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_damage_resolver.gd")
+const ANATOMY_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_anatomy_resolver.gd")
+const STATUS_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_status_resolver.gd")
+const REACTION_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_reaction_resolver.gd")
+const COMBAT_EVENT_SCRIPT := preload("res://scripts/core/combat/veilleurs_combat_event.gd")
 
 var skill_behavior: VeilleursSkillBehaviorRuntime
 
@@ -125,20 +132,20 @@ func behavior_coverage() -> Dictionary:
 func _resolve_damage_v2(attacker_id: String, target_id: String, skill: Dictionary, zone: String, forced_roll: int) -> Dictionary:
     var attacker: Dictionary = combatants[attacker_id]
     var target: Dictionary = combatants[target_id]
-    var chance := _hit_chance(attacker, target, skill, zone)
-    chance += int(attacker.get("accuracy_bonus", 0))
-    chance -= int(target.get("evasive_bonus", 0))
-    if _has_status(target, "EXPOSED"):
-        chance += 8
+    zone = TARGET_RESOLVER_SCRIPT.normalize_zone(zone)
+    var zone_mods: Dictionary = content_db.combat_constants.get("zone_accuracy_mod", {})
     var clamps: Dictionary = content_db.combat_constants.get("hit_clamp", {})
-    chance = clampi(chance, int(clamps.get("min_percent", 10)), int(clamps.get("max_percent", 97)))
-    var roll := forced_roll if forced_roll >= 1 else _deterministic_roll(attacker_id, target_id, str(skill.get("skill_id", "")))
-    var result := {"ok":true, "hit":roll <= chance, "roll":roll, "hit_chance":chance, "attacker":attacker_id, "target":target_id, "skill_id":str(skill.get("skill_id", "")), "zone":zone, "action":skill_behavior.effective_action(skill)}
+    var roll_seed := attacker_id + "|" + target_id + "|" + str(skill.get("skill_id", "")) + "|" + str(round_index)
+    var hit_result: Dictionary = HIT_RESOLVER_SCRIPT.resolve_tactical(attacker, skill, target, zone, zone_mods, clamps, int(attacker.get("accuracy_bonus", 0)), int(target.get("evasive_bonus", 0)), _has_status(target, "EXPOSED"), forced_roll, roll_seed)
+    var chance := int(hit_result.get("accuracy", 0))
+    var roll := int(hit_result.get("roll", 100))
+    var result := {"ok":true, "hit":bool(hit_result.get("hit", false)), "roll":roll, "hit_chance":chance, "attacker":attacker_id, "target":target_id, "skill_id":str(skill.get("skill_id", "")), "zone":zone, "action":skill_behavior.effective_action(skill)}
     if not bool(result["hit"]):
         action_log.append(result.duplicate(true))
         return result
 
-    var damage := _skill_damage(attacker, target, skill)
+    var damage_result: Dictionary = DAMAGE_RESOLVER_SCRIPT.resolve_tactical_skill(attacker, skill, target, _has_status(target, "EXPOSED"))
+    var damage := int(damage_result.get("damage", 1))
     var redirected := _redirect_damage_if_protected(target_id, damage)
     damage = int(redirected.get("remaining", damage))
     target = combatants[target_id]
@@ -152,6 +159,21 @@ func _resolve_damage_v2(attacker_id: String, target_id: String, skill: Dictionar
     result["damage"] = damage
     result["target_hp"] = int(target["hp"])
     result["body"] = body_result
+    var severity := 3 if damage >= 13 else (2 if damage >= 8 else 1)
+    var anatomy_snapshot := _body_as_canonical_anatomy(body)
+    var canonical_action := {"id":str(skill.get("skill_id", "")), "impact":str(effect.get("impact", effect.get("damage_type", "unknown")))}
+    var anatomy_result: Dictionary = ANATOMY_RESOLVER_SCRIPT.resolve(anatomy_snapshot, zone, severity, 1.0, canonical_action)
+    result["canonical_anatomy"] = anatomy_result
+    result["functional_loss"] = str(anatomy_result.get("functional_loss", "functional"))
+    result["canonical_status"] = STATUS_RESOLVER_SCRIPT.resolve_after_hit(target, canonical_action, severity, int(target["hp"]))
+    var reaction_enemy := target.duplicate(true)
+    reaction_enemy["id"] = target_id
+    var reaction_hero := attacker.duplicate(true)
+    reaction_hero["id"] = attacker_id
+    result["canonical_reaction"] = REACTION_RESOLVER_SCRIPT.observe_enemy(reaction_enemy, reaction_hero, zone, result)
+    var event_actor := {"id":attacker_id}
+    var event_target := {"id":target_id}
+    result["canonical_event"] = COMBAT_EVENT_SCRIPT.from_attack(event_actor, event_target, result)
     if bool(redirected.get("redirected", false)):
         result["protection_redirect"] = redirected
     var forced_move := int(effect.get("forced_move", 0))
@@ -162,18 +184,6 @@ func _resolve_damage_v2(attacker_id: String, target_id: String, skill: Dictionar
     action_log.append(result.duplicate(true))
     return result
 
-func _skill_damage(attacker: Dictionary, target: Dictionary, skill: Dictionary) -> int:
-    var attacker_stats: Dictionary = attacker.get("stats", {})
-    var effect: Dictionary = skill.get("effect_spec", {})
-    var multiplier := float(effect.get("damage_multiplier", 0.0))
-    if multiplier <= 0.0:
-        multiplier = 0.75 + float(maxi(1, int(skill.get("skill_index", 1))) - 1) / 28.0
-    var attack_power := float(attacker.get("weapon_power", 25)) * multiplier * (0.70 + float(attacker_stats.get("FOR", 50)) / 200.0)
-    var armor := float(target.get("armor", 0)) + float(target.get("guard_bonus", 0))
-    if _has_status(target, "EXPOSED"):
-        armor *= 0.80
-    var reduction := armor / (armor + 100.0)
-    return maxi(1, int(round(attack_power * (1.0 - reduction))))
 
 func _enemy_role_attack(attacker_id: String, target_id: String, decision: Dictionary) -> Dictionary:
     var attacker: Dictionary = combatants[attacker_id]
@@ -181,7 +191,7 @@ func _enemy_role_attack(attacker_id: String, target_id: String, decision: Dictio
     var stats: Dictionary = attacker.get("stats", {})
     var target_stats: Dictionary = target.get("stats", {})
     var attack_kind := str(decision.get("attack_kind", "physical"))
-    var zone := str(decision.get("zone", "torso"))
+    var zone := TARGET_RESOLVER_SCRIPT.normalize_zone(str(decision.get("zone", "torso")))
     var chance := 70 + int(round((float(stats.get("PRE", 50)) - float(target_stats.get("MOB", 50))) * 0.35))
     chance -= int(target.get("evasive_bonus", 0))
     chance = clampi(chance, 15, 95)
@@ -245,3 +255,13 @@ func _add_status(statuses_value: Variant, status: String, duration: int, strengt
     var statuses: Dictionary = statuses_value.duplicate(true) if statuses_value is Dictionary else {}
     statuses[status] = {"remaining":duration, "strength":strength}
     return statuses
+
+func _body_as_canonical_anatomy(body: VeilleursBodyComponent) -> Dictionary:
+    var anatomy: Dictionary = {}
+    for zone_name: String in VeilleursBodyComponent.ZONES:
+        anatomy[zone_name] = {
+            "state": str(body.states.get(zone_name, "L0")),
+            "function": "impaired" if not body._zone_below(zone_name, "L3") else "functional",
+            "injuries": []
+        }
+    return anatomy

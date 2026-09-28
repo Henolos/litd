@@ -32,6 +32,17 @@ func _init() -> void:
     var force := DamageResolver.resolve({"posture":"force_cost"}, {"power":10}, target, "torso")
     assert(int(force.get("damage", 0)) == 13, "Force-cost +3 power contract changed")
 
+    var tactical_actor := {"weapon_power":30,"stats":{"FOR":50}}
+    var tactical_target := {"armor":20,"guard_bonus":8}
+    var tactical_action := {"skill_index":1,"effect_spec":{"damage_multiplier":1.0}}
+    var tactical_damage := DamageResolver.resolve_tactical_skill(tactical_actor, tactical_action, tactical_target, false)
+    var expected_attack_power := 30.0 * (0.70 + 50.0 / 200.0)
+    var expected_reduction := 28.0 / 128.0
+    var expected_damage := maxi(1, int(round(expected_attack_power * (1.0 - expected_reduction))))
+    assert(int(tactical_damage.get("damage", 0)) == expected_damage, "Tactical damage parity changed")
+    var exposed_damage := DamageResolver.resolve_tactical_skill(tactical_actor, tactical_action, tactical_target, true)
+    assert(int(exposed_damage.get("damage", 0)) >= expected_damage, "EXPOSED must not reduce tactical damage")
+
     var enemy := {"id":"enemy","observed_patterns":{}}
     var hero := {"id":"hero"}
     var first_reaction := ReactionResolver.observe_enemy(enemy, hero, "left_arm", {"hit":true,"functional_loss":"impaired"})
