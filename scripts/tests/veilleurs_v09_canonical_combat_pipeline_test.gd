@@ -12,6 +12,27 @@ func _init() -> void:
 
     var tactical := TacticalV09.new()
     assert(tactical is TacticalV2, "Boss tactical V09 must inherit the canonical V2 combat pipeline")
+    assert(bool(tactical.setup_first_combat().get("ok", false)), "Tactical V09 setup must succeed")
+    var mathilde := "ENT_WATCHER_mathilde"
+    var aurelien := "ENT_WATCHER_aurelien"
+    var enemy := "ENT_ENEMY_GOULE_AFFAMEE"
+    var enemy_row: Dictionary = tactical.combatants[enemy]
+    enemy_row["afflictions"] = {"bleed":2}
+    tactical.combatants[enemy] = enemy_row
+    var no_lesion := tactical.skill_synergy_preview(mathilde, enemy, "MA-ENT-09")
+    assert(int(no_lesion.get("accuracy_bonus", -1)) == 0, "Pristine L0 anatomy must not activate open-wound synergy")
+    var body: VeilleursBodyComponent = (tactical.combatants[enemy] as Dictionary).get("body") as VeilleursBodyComponent
+    body.apply_trauma("left_leg", 8)
+    enemy_row = tactical.combatants[enemy]
+    enemy_row["body"] = body
+    tactical.combatants[enemy] = enemy_row
+    var wound_window := tactical.skill_synergy_preview(mathilde, enemy, "MA-ENT-09")
+    assert(int(wound_window.get("accuracy_bonus", 0)) == 5, "Canonical open-wound synergy must be consumed by V09")
+    enemy_row = tactical.combatants[enemy]
+    enemy_row["afflictions"] = {"vulnerability":2, "weakness":2}
+    tactical.combatants[enemy] = enemy_row
+    var breaker_window := tactical.skill_synergy_preview(aurelien, enemy, "AU-ANA-09")
+    assert(int(breaker_window.get("accuracy_bonus", 0)) == 10, "Canonical breaker window must be consumed by V09")
 
     var authored := AuthoredV09.new()
     assert(authored is TacticalV2, "Authored V09 must inherit the canonical V2 combat pipeline")
@@ -25,6 +46,8 @@ func _init() -> void:
         "STATUS_RESOLVER_SCRIPT.resolve_after_hit",
         "REACTION_RESOLVER_SCRIPT.observe_enemy",
         "COMBAT_EVENT_SCRIPT.from_attack",
+        "SYNERGY_RUNTIME_SCRIPT.decorate_action",
+        "skill_synergy_preview",
     ]:
         assert(source.contains(symbol), "Canonical production combat pipeline missing: %s" % symbol)
 
