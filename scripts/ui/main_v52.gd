@@ -3,7 +3,7 @@ extends "res://scripts/ui/main_v51.gd"
 # v52 — P0 identité + tours utiles.
 # Les anciennes cartes de classe contiennent des noms imprimés (Mirelle, Elara,
 # Rahkan, Isolde). Elles ne doivent jamais représenter le quatuor canonique.
-# Les quatre Veilleurs disposent désormais de portraits canoniques dédiés.
+# Les quatre Veilleurs utilisent des portraits dédiés dans le playtest.
 
 const LEGACY_CARD_PREFIX := "res://assets/heroes/"
 const CANONICAL_HERO_IDS := ["mathilde", "marec", "anouk", "aurelien"]
