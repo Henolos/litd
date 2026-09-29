@@ -72,6 +72,36 @@ func enemy_move_action(enemy: Dictionary, enemies: Array) -> Dictionary:
         return {}
     return {"id": "tactical_move", "name": "Repositionnement", "target": "none", "power": 0.0, "tactical_move": true, "from": current, "to": destination}
 
+func compact_enemy_formation(enemies: Array) -> bool:
+    # Keep living enemies packed toward R1 after casualties. Targeting reads
+    # combat_position, so updating the canonical positions immediately makes
+    # attack ranges follow the surviving formation instead of stale spawn slots.
+    var living: Array[Dictionary] = []
+    for value: Variant in enemies:
+        if not value is Dictionary:
+            continue
+        var enemy: Dictionary = value
+        if int(enemy.get("hp", 0)) > 0:
+            living.append(enemy)
+    living.sort_custom(func(left: Dictionary, right: Dictionary):
+        return position_of(left) < position_of(right)
+    )
+
+    var changed := false
+    for rank in range(living.size()):
+        var enemy: Dictionary = living[rank]
+        var origin := position_of(enemy)
+        if origin != rank:
+            enemy["combat_position"] = rank
+            enemy["last_combat_move"] = {
+                "from": origin,
+                "to": rank,
+                "side": "enemy",
+                "source": "formation_compaction"
+            }
+            changed = true
+    return changed
+
 func formation_snapshot(characters: Array, side: String) -> Dictionary:
     var result := {0: [], 1: [], 2: [], 3: []}
     for value: Variant in characters:

@@ -8,6 +8,15 @@ extends "res://scripts/ui/main_v46.gd"
 #   réel de chaque héros : mêlée / contrôle devant, soin / soutien / distance derrière.
 
 const FORMATION_V47_MARKER := "formation_v47_initialized"
+const COMBAT_POSITION_RUNTIME_V47 := preload("res://scripts/core/combat_position_runtime.gd")
+var _combat_position_runtime_v47: Node = COMBAT_POSITION_RUNTIME_V47.new()
+
+func show_combat() -> void:
+    # Repack survivors before the inherited HUD/targeting pass. This guarantees
+    # that a former E4 becomes E3/E2/E1 as front enemies die.
+    _combat_position_runtime_v47.compact_enemy_formation(GameState.battle_enemies)
+    super.show_combat()
+
 
 func _ensure_combat_positions() -> void:
     super._ensure_combat_positions()
