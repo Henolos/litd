@@ -33,9 +33,11 @@ static func decorate_action(actor: Dictionary, target: Dictionary, action: Dicti
     var hero_name := str(actor.get("name", actor.get("id", "")))
 
     # Existing wound/lesion mechanics are shared between Mathilde and Aurélien.
+    # A prepared wound improves reliability only; it never adds a free damage multiplier.
     if bool(state.get("open_wound_team", false)) and hero_name in ["Mathilde", "Aurélien", "aurelien", "mathilde"]:
         if _has_any_tag(tags, ["SAIGNEMENT", "MEMBRE_BLESSÉ", "LÉSION", "HÉMORRAGIE", "VASCULAIRE"]):
             result["synergy_open_wound"] = true
+            result["accuracy"] = mini(100, int(result.get("accuracy", result.get("base_accuracy_pct", 75))) + 5)
 
     # Marec's vulnerability+weakness window is consumable by precision/lesion skills.
     if bool(state.get("breaker_execution_window", false)) and hero_name in ["Mathilde", "Aurélien", "mathilde", "aurelien"]:
@@ -44,10 +46,15 @@ static func decorate_action(actor: Dictionary, target: Dictionary, action: Dicti
             # Accuracy only: vulnerability already owns the damage multiplier.
             result["accuracy"] = mini(100, int(result.get("accuracy", result.get("base_accuracy_pct", 75))) + 10)
 
-    # Control effects remain distinct. This marker is informational for UI/AI.
+    # A controlled target creates a short tactical opportunity for skills that
+    # explicitly exploit precision, exposure, interruption or compromised support.
+    # Control identities stay distinct and are never converted into one another.
     if bool(state.get("control_window", false)):
         result["synergy_control_window"] = true
         result["active_controls"] = state.get("active_controls", [])
+        if _has_any_tag(tags, ["PRÉCISION", "EXPOSÉ", "INTERROMPU", "TENDON", "MEMBRE_BLESSÉ"]):
+            result["synergy_control_exploit"] = true
+            result["accuracy"] = mini(100, int(result.get("accuracy", result.get("base_accuracy_pct", 75))) + 5)
 
     result["synergy_skill_id"] = skill_id
     return result
@@ -58,6 +65,7 @@ static func result_receipt(target: Dictionary, action: Dictionary) -> Dictionary
         "open_wound_team": bool(action.get("synergy_open_wound", false)),
         "breaker_execution_window": bool(action.get("synergy_breaker_window", false)),
         "control_window": bool(action.get("synergy_control_window", false)),
+        "control_exploit": bool(action.get("synergy_control_exploit", false)),
         "active_controls": state.get("active_controls", [])
     }
 
