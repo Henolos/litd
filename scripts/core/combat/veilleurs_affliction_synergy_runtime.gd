@@ -73,7 +73,7 @@ static func _has_lesion(anatomy: Dictionary) -> bool:
     for value in anatomy.values():
         if value is Dictionary:
             var zone: Dictionary = value
-            if str(zone.get("state", "healthy")) not in ["", "healthy", "intact", "normal"]:
+            if str(zone.get("state", "healthy")) not in ["", "healthy", "intact", "normal", "L0"]:
                 return true
             if str(zone.get("function", "functional")) not in ["", "functional"]:
                 return true
