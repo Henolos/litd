@@ -14,10 +14,10 @@ const CANONICAL_ROLES := {
     "aurelien": "Chirurgien"
 }
 const CANONICAL_PORTRAITS := {
-    "mathilde": "res://assets/heroes/canonical/mathilde.svg",
-    "marec": "res://assets/heroes/canonical/marec.svg",
-    "anouk": "res://assets/heroes/canonical/anouk.svg",
-    "aurelien": "res://assets/heroes/canonical/aurelien.svg"
+    "mathilde": "res://assets/heroes/duelist.webp",
+    "marec": "res://assets/heroes/breaker.webp",
+    "anouk": "res://assets/heroes/mystic.webp",
+    "aurelien": "res://assets/heroes/surgeon.webp"
 }
 
 func show_combat() -> void:
@@ -38,7 +38,7 @@ func _replace_legacy_hero_cards_v52() -> void:
         if texture_rect == null or texture_rect.texture == null:
             continue
         var resource_path := str(texture_rect.texture.resource_path)
-        if resource_path.begins_with(LEGACY_CARD_PREFIX) and not resource_path.begins_with("res://assets/heroes/canonical/"):
+        if resource_path.begins_with(LEGACY_CARD_PREFIX) :
             legacy_portraits.append(texture_rect)
 
     var ordered_heroes: Array[Dictionary] = _heroes_by_position()
