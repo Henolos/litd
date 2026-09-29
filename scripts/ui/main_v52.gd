@@ -20,6 +20,38 @@ const CANONICAL_PORTRAITS := {
     "aurelien": "res://assets/heroes/canonical/aurelien.svg"
 }
 
+func _show_hero_profile() -> void:
+    super._show_hero_profile()
+    _replace_hero_profile_portrait_v52()
+
+func _replace_hero_profile_portrait_v52() -> void:
+    if not is_instance_valid(content):
+        return
+    var hero: Dictionary = _selected_hero()
+    if hero.is_empty():
+        return
+    var hero_id := str(hero.get("canonical_id", hero.get("id", ""))).to_lower()
+    if not CANONICAL_HERO_IDS.has(hero_id):
+        return
+    var portrait_texture := load(str(CANONICAL_PORTRAITS.get(hero_id, ""))) as Texture2D
+    if portrait_texture == null:
+        return
+
+    # The inherited profile still asks hero_art(), which may resolve to an old
+    # class card carrying another character's printed identity. Replace that
+    # slot with the same canonical portrait source used by combat.
+    for node_value in content.find_children("*", "TextureRect", true, false):
+        var portrait_slot := node_value as TextureRect
+        if portrait_slot == null:
+            continue
+        if portrait_slot.position == Vector2(52, 170) and portrait_slot.size == Vector2(360, 390):
+            portrait_slot.texture = portrait_texture
+            portrait_slot.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+            portrait_slot.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+            portrait_slot.mouse_filter = Control.MOUSE_FILTER_IGNORE
+            portrait_slot.set_meta("canonical_hero_id", hero_id)
+            return
+
 func show_combat() -> void:
     super.show_combat()
     _replace_legacy_hero_cards_v52()
