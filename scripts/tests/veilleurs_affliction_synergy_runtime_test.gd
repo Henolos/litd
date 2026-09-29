@@ -21,6 +21,14 @@ func _init() -> void:
     if int(wound_decorated.get("accuracy", 0)) != 85:
         failures.append("open_wound_accuracy_not_applied")
 
+    var pristine := {
+        "hp": 50,
+        "afflictions": {"bleed": 2},
+        "anatomy": {"left_leg": {"state": "L0", "function": "functional"}}
+    }
+    if bool(SYNERGY.inspect(pristine).get("open_wound_team", false)):
+        failures.append("pristine_l0_detected_as_lesion")
+
     var breaker_target := {"hp": 50, "afflictions": {"vulnerability": 2, "weakness": 2}}
     var precision := {"id":"AU-ANA-09","accuracy":80,"canonical_tags":["PRÉCISION","LÉSION"]}
     var decorated := SYNERGY.decorate_action({"name":"Aurélien"}, breaker_target, precision)
