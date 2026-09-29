@@ -13,16 +13,22 @@ const CANONICAL_ROLES := {
     "anouk": "Mystique",
     "aurelien": "Chirurgien"
 }
-const CANONICAL_PORTRAITS := {
-    "mathilde": "res://assets/heroes/duelist.webp",
-    "marec": "res://assets/heroes/breaker.webp",
-    "anouk": "res://assets/heroes/mystic.webp",
-    "aurelien": "res://assets/heroes/surgeon.webp"
+const VALIDATED_CHARACTER_ATLAS := "res://assets/art/validated/playtest_character_atlas.webp"
+const VALIDATED_PORTRAIT_CELLS := {
+    "mathilde": Vector2i(0, 0),
+    "marec": Vector2i(1, 0),
+    "anouk": Vector2i(2, 0),
+    "aurelien": Vector2i(3, 0),
+    "goule affamée": Vector2i(0, 1),
+    "oni": Vector2i(1, 1),
+    "jorōgumo": Vector2i(2, 1),
+    "ange inversé": Vector2i(3, 1)
 }
 
 func show_combat() -> void:
     super.show_combat()
     _replace_legacy_hero_cards_v52()
+    _replace_enemy_cards_with_validated_art_v52()
 
 func _replace_legacy_hero_cards_v52() -> void:
     if not is_instance_valid(content):
@@ -54,8 +60,7 @@ func _replace_legacy_hero_cards_v52() -> void:
             portrait_slot.visible = false
             continue
 
-        var portrait_path := str(CANONICAL_PORTRAITS.get(hero_id, ""))
-        var portrait_texture := load(portrait_path) as Texture2D
+        var portrait_texture := _validated_portrait_texture_v52(hero_id)
         if portrait_texture == null:
             # Never fall back to a legacy card with an obsolete printed identity.
             portrait_slot.visible = false
@@ -149,3 +154,38 @@ func show_hero_skills() -> void:
     var back := make_button("RETOUR", func(): GameState.request_screen("company"), Vector2(180,45))
     back.position = Vector2(24, 640)
     content.add_child(back)
+
+
+func _validated_portrait_texture_v52(character_key: String) -> Texture2D:
+    var key := character_key.to_lower()
+    if not VALIDATED_PORTRAIT_CELLS.has(key):
+        return null
+    var source := load(VALIDATED_CHARACTER_ATLAS) as Texture2D
+    if source == null:
+        return null
+    var cell: Vector2i = VALIDATED_PORTRAIT_CELLS[key]
+    var atlas_texture := AtlasTexture.new()
+    atlas_texture.atlas = source
+    atlas_texture.region = Rect2(cell.x * 160, cell.y * 200, 160, 200)
+    return atlas_texture
+
+func _replace_enemy_cards_with_validated_art_v52() -> void:
+    if not is_instance_valid(content):
+        return
+    var enemy_slots: Array[TextureRect] = []
+    for node_value in content.find_children("*", "TextureRect", true, false):
+        var slot := node_value as TextureRect
+        if slot == null or slot.texture == null:
+            continue
+        if str(slot.texture.resource_path).begins_with("res://assets/enemies/"):
+            enemy_slots.append(slot)
+    for index in range(mini(enemy_slots.size(), GameState.battle_enemies.size())):
+        var enemy: Dictionary = GameState.battle_enemies[index]
+        var enemy_key := str(enemy.get("name", "")).to_lower()
+        var validated := _validated_portrait_texture_v52(enemy_key)
+        if validated == null:
+            continue
+        enemy_slots[index].texture = validated
+        enemy_slots[index].stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+        enemy_slots[index].mouse_filter = Control.MOUSE_FILTER_IGNORE
+        enemy_slots[index].set_meta("validated_enemy_portrait", enemy_key)
