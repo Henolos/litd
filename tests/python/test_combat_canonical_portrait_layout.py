@@ -33,3 +33,16 @@ def test_skill_and_context_rows_remain_below_hero_area():
     base = (ROOT / "scripts/ui/main_v30.gd").read_text(encoding="utf-8")
     assert "loadout_row.position = Vector2(24, 510)" in base
     assert "extra_row.position = Vector2(24, 580)" in base
+
+
+def test_hero_profile_reuses_canonical_portraits_without_cropping():
+    layer = (ROOT / "scripts/ui/main_v52.gd").read_text(encoding="utf-8")
+
+    assert "func _show_hero_profile() -> void:" in layer
+    assert "_replace_hero_profile_portrait_v52()" in layer
+    assert 'var hero: Dictionary = _selected_hero()' in layer
+    validated_portraits = {"mathilde":"duelist","marec":"breaker","anouk":"mystic","aurelien":"surgeon"}
+    for hero_id, asset_id in validated_portraits.items():
+        assert f'"{hero_id}": "res://assets/heroes/{asset_id}.webp"' in layer
+    assert "portrait_slot.texture = portrait_texture" in layer
+    assert "portrait_slot.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED" in layer
