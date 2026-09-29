@@ -14,6 +14,13 @@ func _init() -> void:
     if not bool(open_state.get("open_wound_team", false)):
         failures.append("open_wound_team_not_detected")
 
+    var wound_skill := {"id":"MA-ENT-09","accuracy":80,"canonical_tags":["SAIGNEMENT","MEMBRE_BLESSÉ","EXPOSÉ"]}
+    var wound_decorated := SYNERGY.decorate_action({"name":"Mathilde"}, wounded, wound_skill)
+    if not bool(wound_decorated.get("synergy_open_wound", false)):
+        failures.append("open_wound_not_consumable")
+    if int(wound_decorated.get("accuracy", 0)) != 85:
+        failures.append("open_wound_accuracy_not_applied")
+
     var breaker_target := {"hp": 50, "afflictions": {"vulnerability": 2, "weakness": 2}}
     var precision := {"id":"AU-ANA-09","accuracy":80,"canonical_tags":["PRÉCISION","LÉSION"]}
     var decorated := SYNERGY.decorate_action({"name":"Aurélien"}, breaker_target, precision)
@@ -28,6 +35,20 @@ func _init() -> void:
         failures.append("control_window_not_detected")
     if (control_state.get("active_controls", []) as Array).size() != 2:
         failures.append("control_roles_collapsed")
+
+    var control_skill := {"id":"MA-TRA-13","accuracy":82,"canonical_tags":["PRÉCISION","EXPOSÉ"]}
+    var control_decorated := SYNERGY.decorate_action({"name":"Mathilde"}, control_target, control_skill)
+    if not bool(control_decorated.get("synergy_control_exploit", false)):
+        failures.append("control_window_not_exploitable")
+    if int(control_decorated.get("accuracy", 0)) != 87:
+        failures.append("control_window_accuracy_not_applied")
+
+    var plain_skill := {"id":"TEST-PLAIN","accuracy":82,"canonical_tags":["GARDE"]}
+    var plain_decorated := SYNERGY.decorate_action({"name":"Marec"}, control_target, plain_skill)
+    if bool(plain_decorated.get("synergy_control_exploit", false)):
+        failures.append("control_window_applied_to_unrelated_skill")
+    if int(plain_decorated.get("accuracy", 0)) != 82:
+        failures.append("control_window_changed_unrelated_accuracy")
 
     if failures.is_empty():
         print("VEILLEURS_AFFLICTION_SYNERGY_RUNTIME_OK")
