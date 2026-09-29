@@ -55,6 +55,42 @@ func _replace_hero_profile_portrait_v52() -> void:
 func show_combat() -> void:
     super.show_combat()
     _replace_legacy_hero_cards_v52()
+    _show_skill_target_reach_v52()
+
+func _show_skill_target_reach_v52() -> void:
+    if GameState.current_screen != "combat" or not is_instance_valid(content) or battle_locked:
+        return
+    var hero: Dictionary = _active_combat_hero()
+    if hero.is_empty():
+        return
+    var loadout: Array[String] = HeroSkillManager.combat_loadout(hero)
+    var buttons := content.find_children("*", "Button", true, false)
+    for slot in range(mini(HeroSkillManager.COMBAT_LOADOUT_SIZE, loadout.size())):
+        var skill: Dictionary = HeroSkillManager.combat_skill(hero, loadout[slot])
+        if skill.is_empty() or str(skill.get("effect", "")).to_lower() not in ["attack", "affliction", "diagnostic"]:
+            continue
+        var prefix := "%d · " % (slot + 1)
+        for node_value: Variant in buttons:
+            var button := node_value as Button
+            if button == null or not button.text.begins_with(prefix):
+                continue
+            var summary := ""
+            var names: Array[String] = []
+            if not COMBAT_POSITION_RULES.is_usable(hero, skill):
+                summary = "CIBLES : rang du héros incompatible"
+            else:
+                var indices: Array[int] = COMBAT_TARGETING_RULES.targetable_indices(hero, skill, GameState.battle_enemies)
+                var ranks: Array[String] = []
+                for enemy_index: int in indices:
+                    if enemy_index < 0 or enemy_index >= GameState.battle_enemies.size():
+                        continue
+                    var enemy: Dictionary = GameState.battle_enemies[enemy_index]
+                    ranks.append("E%d" % (int(enemy.get("combat_position", 0)) + 1))
+                    names.append("%s (E%d)" % [str(enemy.get("name", "Ennemi")), int(enemy.get("combat_position", 0)) + 1])
+                summary = "CIBLES : %s" % (", ".join(ranks) if not ranks.is_empty() else "aucune à portée")
+            button.text = "%s\n%s" % [button.text, summary]
+            button.tooltip_text += "\n%s" % (", ".join(names) if not names.is_empty() else summary)
+            break
 
 func _replace_legacy_hero_cards_v52() -> void:
     if not is_instance_valid(content):
