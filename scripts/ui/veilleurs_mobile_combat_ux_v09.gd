@@ -273,8 +273,15 @@ func _show_preview(slot: int) -> void:
         var damage := 0
         if runtime.has_method("_skill_damage"):
             damage = int(runtime.call("_skill_damage", attacker, target, skill))
+        var synergy_text := _synergy_preview_text(runtime, qa.selected_watcher, target_id, skill_id)
+        if synergy_text != "":
+            chance += int(_synergy_accuracy_bonus(runtime, qa.selected_watcher, target_id, skill_id))
+            var clamps: Dictionary = runtime.content_db.combat_constants.get("hit_clamp", {})
+            chance = clampi(chance, int(clamps.get("min_percent", 10)), int(clamps.get("max_percent", 97)))
         var range_text := "%d/%d" % [distance, required_range] if required_range > 0 else str(distance)
         second_line = "Toucher %d%% · dégâts ~%d · distance %s" % [chance, damage, range_text]
+        if synergy_text != "":
+            second_line += "\n" + synergy_text
         if required_range > 0 and (distance < 0 or distance > required_range):
             second_line = "HORS PORTÉE · " + second_line
     else:
@@ -285,6 +292,30 @@ func _show_preview(slot: int) -> void:
     var confirm_text := "Retouchez la compétence pour exécuter." if _slot_requires_enemy_target(slot) else "Touchez à nouveau la compétence pour confirmer."
     preview_label.text = "%s\n%s\n%s" % [first_line, second_line, confirm_text]
     preview_panel.visible = true
+
+func _synergy_accuracy_bonus(runtime: Variant, attacker_id: String, target_id: String, skill_id: String) -> int:
+    if runtime == null or not runtime.has_method("skill_synergy_preview"):
+        return 0
+    var preview: Dictionary = runtime.call("skill_synergy_preview", attacker_id, target_id, skill_id)
+    if not bool(preview.get("ok", false)):
+        return 0
+    return int(preview.get("accuracy_bonus", 0))
+
+func _synergy_preview_text(runtime: Variant, attacker_id: String, target_id: String, skill_id: String) -> String:
+    if runtime == null or not runtime.has_method("skill_synergy_preview"):
+        return ""
+    var preview: Dictionary = runtime.call("skill_synergy_preview", attacker_id, target_id, skill_id)
+    if not bool(preview.get("ok", false)):
+        return ""
+    var receipt: Dictionary = preview.get("receipt", {})
+    var bonus := int(preview.get("accuracy_bonus", 0))
+    if bool(receipt.get("breaker_execution_window", false)):
+        return "SYNERGIE · Fenêtre de brisure : +%d précision" % bonus
+    if bool(receipt.get("open_wound_team", false)):
+        return "SYNERGIE · Plaie ouverte : +%d précision" % bonus
+    if bool(receipt.get("control_exploit", false)):
+        return "SYNERGIE · Cible contrôlée : +%d précision" % bonus
+    return ""
 
 func _zone_label(zone: String) -> String:
     return {
