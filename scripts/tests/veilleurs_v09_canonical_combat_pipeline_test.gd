@@ -5,6 +5,7 @@ const VerticalV09 := preload("res://scripts/core/veilleurs_vertical_slice_runtim
 const TacticalV09 := preload("res://scripts/core/veilleurs_tactical_combat_runtime_v09.gd")
 const AuthoredV09 := preload("res://scripts/core/veilleurs_authored_encounter_runtime_v09.gd")
 const TacticalV2 := preload("res://scripts/core/veilleurs_tactical_combat_runtime_v2.gd")
+const MobileCombatUX := preload("res://scripts/ui/veilleurs_mobile_combat_ux_v09.gd")
 
 func _init() -> void:
     var facade := ProductionRuntime.new()
@@ -33,6 +34,13 @@ func _init() -> void:
     tactical.combatants[enemy] = enemy_row
     var breaker_window := tactical.skill_synergy_preview(aurelien, enemy, "AU-ANA-09")
     assert(int(breaker_window.get("accuracy_bonus", 0)) == 10, "Canonical breaker window must be consumed by V09")
+
+    var mobile_ux := MobileCombatUX.new()
+    var wound_text := str(mobile_ux.call("_synergy_preview_text", tactical, mathilde, enemy, "MA-ENT-09"))
+    assert(wound_text.contains("Plaie ouverte") and wound_text.contains("+5"), "Mobile preview must explain open-wound synergy")
+    var breaker_text := str(mobile_ux.call("_synergy_preview_text", tactical, aurelien, enemy, "AU-ANA-09"))
+    assert(breaker_text.contains("Fenêtre de brisure") and breaker_text.contains("+10"), "Mobile preview must explain breaker synergy")
+    mobile_ux.free()
 
     var authored := AuthoredV09.new()
     assert(authored is TacticalV2, "Authored V09 must inherit the canonical V2 combat pipeline")
