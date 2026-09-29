@@ -228,11 +228,11 @@ func _apply_selection_visuals() -> void:
                 marker = "◎"
                 button.self_modulate = Color(1.0, 0.70, 0.64, 1.0)
             elif target_candidate_ids.has(entity_id):
-                marker = "○"
+                marker = "○ CIBLE "
                 button.self_modulate = Color(1.0, 0.92, 0.58, 1.0)
             elif blocked_target_ids.has(entity_id):
-                marker = "×"
-                button.self_modulate = Color(0.58, 0.58, 0.62, 0.78)
+                marker = "× "
+                button.self_modulate = Color(0.46, 0.46, 0.50, 0.62)
             else:
                 button.self_modulate = Color.WHITE
         elif entity_id != "" and entity_id == selected_target:
@@ -241,6 +241,8 @@ func _apply_selection_visuals() -> void:
         else:
             button.self_modulate = Color.WHITE
         button.text = marker + _entity_badge(entity_id) if entity_id != "" else "·"
+        if target_selection_mode and entity_id != "":
+            button.tooltip_text = ("Cible attaquable — touchez pour sélectionner" if target_candidate_ids.has(entity_id) else ("Hors portée / protégée" if blocked_target_ids.has(entity_id) else _entity_tooltip(entity_id)))
 
     for button: Button in zone_buttons:
         var zone := str(button.get_meta("zone", ""))
