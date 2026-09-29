@@ -90,10 +90,11 @@ func compact_enemy_formation(enemies: Array) -> bool:
     var changed := false
     for rank in range(living.size()):
         var enemy: Dictionary = living[rank]
-        if position_of(enemy) != rank:
+        var origin := position_of(enemy)
+        if origin != rank:
             enemy["combat_position"] = rank
             enemy["last_combat_move"] = {
-                "from": position_of(enemy),
+                "from": origin,
                 "to": rank,
                 "side": "enemy",
                 "source": "formation_compaction"
