@@ -10,6 +10,7 @@ const ANATOMY_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_an
 const STATUS_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_status_resolver.gd")
 const REACTION_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_reaction_resolver.gd")
 const COMBAT_EVENT_SCRIPT := preload("res://scripts/core/combat/veilleurs_combat_event.gd")
+const SYNERGY_RUNTIME_SCRIPT := preload("res://scripts/core/combat/veilleurs_affliction_synergy_runtime.gd")
 
 var skill_behavior: VeilleursSkillBehaviorRuntime
 
@@ -29,6 +30,8 @@ func setup_first_combat(enemy_ids: Array[String] = ["ENT_ENEMY_GOULE_AFFAMEE", "
         var stats: Dictionary = row.get("stats", {})
         row["resolve_current"] = int(stats.get("RES", 60))
         row["statuses"] = {}
+        row["afflictions"] = (row.get("afflictions", {}) as Dictionary).duplicate(true)
+        row["affliction_resistances"] = (row.get("affliction_resistances", {}) as Dictionary).duplicate(true)
         row["passive_effects"] = {}
         row["observed_by"] = {}
         row["guard_bonus"] = 0
@@ -113,6 +116,16 @@ func apply_remanence_state(enemy_id: String, remanence_id: String) -> void:
     row["adaptations"] = (state.get("adaptations", []) as Array).duplicate()
     combatants[enemy_id] = row
 
+func skill_synergy_preview(attacker_id: String, target_id: String, skill_id: String) -> Dictionary:
+    if not combatants.has(attacker_id) or not combatants.has(target_id):
+        return {"ok":false, "reason":"unknown_combatant"}
+    var skill: Dictionary = content_db.skill(skill_id)
+    if skill.is_empty() or str(skill.get("entity_id", "")) != attacker_id:
+        return {"ok":false, "reason":"skill_not_owned"}
+    var preview := _canonical_synergy_preview(combatants[attacker_id], combatants[target_id], skill)
+    preview["ok"] = true
+    return preview
+
 func behavior_coverage() -> Dictionary:
     var actions: Dictionary = {}
     var passives := 0
@@ -135,11 +148,15 @@ func _resolve_damage_v2(attacker_id: String, target_id: String, skill: Dictionar
     zone = TARGET_RESOLVER_SCRIPT.normalize_zone(zone)
     var zone_mods: Dictionary = content_db.combat_constants.get("zone_accuracy_mod", {})
     var clamps: Dictionary = content_db.combat_constants.get("hit_clamp", {})
+    var synergy: Dictionary = _canonical_synergy_preview(attacker, target, skill)
+    var synergy_accuracy_bonus := int(synergy.get("accuracy_bonus", 0))
     var roll_seed := attacker_id + "|" + target_id + "|" + str(skill.get("skill_id", "")) + "|" + str(round_index)
-    var hit_result: Dictionary = HIT_RESOLVER_SCRIPT.resolve_tactical(attacker, skill, target, zone, zone_mods, clamps, int(attacker.get("accuracy_bonus", 0)), int(target.get("evasive_bonus", 0)), _has_status(target, "EXPOSED"), forced_roll, roll_seed)
+    var hit_result: Dictionary = HIT_RESOLVER_SCRIPT.resolve_tactical(attacker, skill, target, zone, zone_mods, clamps, int(attacker.get("accuracy_bonus", 0)) + synergy_accuracy_bonus, int(target.get("evasive_bonus", 0)), _has_status(target, "EXPOSED"), forced_roll, roll_seed)
     var chance := int(hit_result.get("accuracy", 0))
     var roll := int(hit_result.get("roll", 100))
     var result := {"ok":true, "hit":bool(hit_result.get("hit", false)), "roll":roll, "hit_chance":chance, "attacker":attacker_id, "target":target_id, "skill_id":str(skill.get("skill_id", "")), "zone":zone, "action":skill_behavior.effective_action(skill)}
+    result["synergy"] = (synergy.get("receipt", {}) as Dictionary).duplicate(true)
+    result["synergy_accuracy_bonus"] = synergy_accuracy_bonus
     if not bool(result["hit"]):
         action_log.append(result.duplicate(true))
         return result
@@ -255,6 +272,24 @@ func _add_status(statuses_value: Variant, status: String, duration: int, strengt
     var statuses: Dictionary = statuses_value.duplicate(true) if statuses_value is Dictionary else {}
     statuses[status] = {"remaining":duration, "strength":strength}
     return statuses
+
+func _canonical_synergy_preview(attacker: Dictionary, target: Dictionary, skill: Dictionary) -> Dictionary:
+    var action := {
+        "id": str(skill.get("skill_id", "")),
+        "accuracy": int(skill.get("canonical_accuracy_pct", 75)),
+        "base_accuracy_pct": int(skill.get("canonical_accuracy_pct", 75)),
+        "canonical_tags": (skill.get("canonical_tags", []) as Array).duplicate()
+    }
+    var target_view := target.duplicate(true)
+    var body: VeilleursBodyComponent = target.get("body") as VeilleursBodyComponent
+    if body != null:
+        target_view["anatomy"] = _body_as_canonical_anatomy(body)
+    target_view["afflictions"] = (target.get("afflictions", {}) as Dictionary).duplicate(true)
+    var decorated: Dictionary = SYNERGY_RUNTIME_SCRIPT.decorate_action(attacker, target_view, action)
+    return {
+        "accuracy_bonus": int(decorated.get("accuracy", action["accuracy"])) - int(action["accuracy"]),
+        "receipt": SYNERGY_RUNTIME_SCRIPT.result_receipt(target_view, decorated)
+    }
 
 func _body_as_canonical_anatomy(body: VeilleursBodyComponent) -> Dictionary:
     var anatomy: Dictionary = {}
