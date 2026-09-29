@@ -1,10 +1,11 @@
 {
-  "version": 1,
+  "version": 2,
   "policy": {
     "purpose": "Define build identity and affliction synergies without duplicating combat resolution.",
     "single_status_resolver": "VeilleursStatusResolver",
     "cross_tree_synergies_allowed": true,
-    "prototype_afflictions": ["poison", "burn", "freeze"]
+    "prototype_afflictions": ["poison", "burn", "freeze"],
+    "no_free_damage_multiplier": true
   },
   "builds": {
     "mathilde_hemorrhage": {
@@ -73,19 +74,19 @@
       "id": "open_wound_team",
       "setup": ["bleed", "lesion"],
       "contributors": ["Mathilde", "Aurélien"],
-      "effect": "Les compétences qui exigent une lésion ou une plaie existante peuvent exploiter le même état corporel; aucun multiplicateur gratuit n'est ajouté."
+      "effect": "Les compétences portant explicitement les tags de plaie, lésion ou vasculaire gagnent +5 précision sur une cible qui saigne et présente déjà une lésion; aucun multiplicateur de dégâts n'est ajouté."
     },
     {
       "id": "breaker_execution_window",
       "setup": ["vulnerability", "weakness"],
       "contributors": ["Marec", "Mathilde", "Aurélien"],
-      "effect": "Marec crée une fenêtre défensive; les spécialistes de précision ou de lésion peuvent ensuite l'exploiter avec leurs règles existantes."
+      "effect": "Marec crée une fenêtre défensive; les techniques de précision/lésion de Mathilde ou Aurélien gagnent +10 précision. Vulnérabilité reste la seule source de multiplicateur de dégâts."
     },
     {
       "id": "control_window",
       "setup": ["stun", "silence", "snare", "blind"],
       "contributors": ["Marec", "Anouk", "Aurélien", "Mathilde"],
-      "effect": "Les contrôles ont des rôles distincts et complémentaires; ils ne se convertissent pas automatiquement les uns dans les autres."
+      "effect": "Les contrôles restent distincts. Une technique portant un tag d'exploitation tactique explicite (PRÉCISION, EXPOSÉ, INTERROMPU, TENDON ou MEMBRE_BLESSÉ) gagne +5 précision sans convertir ni prolonger le contrôle."
     }
   ]
 }
