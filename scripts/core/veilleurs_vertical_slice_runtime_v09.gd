@@ -203,6 +203,13 @@ func _apply_equipment_bonuses(watcher_id: String, row: Dictionary) -> Dictionary
     if hp_bonus != 0:
         result["max_hp"] = maxi(1, int(result.get("max_hp", 1)) + hp_bonus)
         result["hp"] = clampi(int(result.get("hp", 0)) + hp_bonus, 0, int(result["max_hp"]))
+    result["accuracy_bonus"] = int(result.get("accuracy_bonus", 0)) + int(bonuses.get("precision", 0))
+    result["critical_chance"] = int(result.get("critical_chance", 0)) + int(bonuses.get("critical_chance", 0))
+    result["healing_power"] = int(result.get("healing_power", 0)) + int(bonuses.get("healing_power", 0))
+    result["equipment_guard_power"] = int(result.get("equipment_guard_power", 0)) + int(bonuses.get("guard_power", 0))
+    result["physical_resistance"] = int(result.get("physical_resistance", 0)) + int(bonuses.get("physical_resistance", 0))
+    result["fear_resistance"] = int(result.get("fear_resistance", 0)) + int(bonuses.get("fear_resistance", 0))
+    result["madness_resistance"] = int(result.get("madness_resistance", 0)) + int(bonuses.get("madness_resistance", 0))
     result["equipment_hero_id"] = hero_id
     result["equipment_bonuses"] = bonuses.duplicate(true)
     return result
