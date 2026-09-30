@@ -192,11 +192,11 @@ func _enemy_role_attack(attacker_id: String, target_id: String, decision: Dictio
     var target_stats: Dictionary = target.get("stats", {})
     var attack_kind := str(decision.get("attack_kind", "physical"))
     var zone := TARGET_RESOLVER_SCRIPT.normalize_zone(str(decision.get("zone", "torso")))
-    var chance := 70 + int(round((float(stats.get("PRE", 50)) - float(target_stats.get("MOB", 50))) * 0.35))
-    chance -= int(target.get("evasive_bonus", 0))
-    chance = clampi(chance, 15, 95)
-    var roll := _deterministic_roll(attacker_id, target_id, "%s:%s" % [attack_kind, zone])
-    var result := {"ok":true, "action":"attack", "attacker":attacker_id, "target":target_id, "attack_kind":attack_kind, "zone":zone, "roll":roll, "hit_chance":chance, "hit":roll <= chance, "decision_reason":str(decision.get("reason", "tactical_attack")), "memory_used":bool(decision.get("memory_used", false))}
+    var roll_seed := attacker_id + "|" + target_id + "|" + attack_kind + ":" + zone + "|" + str(round_index)
+    var hit_result: Dictionary = HIT_RESOLVER_SCRIPT.resolve_enemy_role(attacker, target, int(target.get("evasive_bonus", 0)), -1, roll_seed)
+    var chance := int(hit_result.get("accuracy", 0))
+    var roll := int(hit_result.get("roll", 100))
+    var result := {"ok":true, "action":"attack", "attacker":attacker_id, "target":target_id, "attack_kind":attack_kind, "zone":zone, "roll":roll, "hit_chance":chance, "hit":bool(hit_result.get("hit", false)), "decision_reason":str(decision.get("reason", "tactical_attack")), "memory_used":bool(decision.get("memory_used", false))}
     if not bool(result["hit"]):
         action_log.append(result.duplicate(true))
         return result
@@ -212,11 +212,8 @@ func _enemy_role_attack(attacker_id: String, target_id: String, decision: Dictio
         action_log.append(result.duplicate(true))
         return result
 
-    var role := str(attacker.get("combat_role", "assault"))
-    var role_multiplier := 1.15 if role in ["brute", "execution"] else (0.92 if role == "ranged" else 1.0)
-    var armor := float(target.get("armor", 0)) + float(target.get("guard_bonus", 0))
-    var reduction := armor / (armor + 100.0)
-    var damage := maxi(1, int(round(float(attacker.get("weapon_power", 20)) * role_multiplier * (1.0 - reduction))))
+    var damage_result: Dictionary = DAMAGE_RESOLVER_SCRIPT.resolve_enemy_role(attacker, target)
+    var damage := int(damage_result.get("damage", 1))
     var redirected := _redirect_damage_if_protected(target_id, damage)
     damage = int(redirected.get("remaining", damage))
     target = combatants[target_id]
