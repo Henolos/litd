@@ -41,7 +41,8 @@ def test_hero_profile_reuses_canonical_portraits_without_cropping():
     assert "func _show_hero_profile() -> void:" in layer
     assert "_replace_hero_profile_portrait_v52()" in layer
     assert 'var hero: Dictionary = _selected_hero()' in layer
-    for hero_id in ("mathilde", "marec", "anouk", "aurelien"):
-        assert f'"{hero_id}": "res://assets/heroes/canonical/{hero_id}.svg"' in layer
+    approved_portraits = {"mathilde": "duelist", "marec": "breaker", "anouk": "mystic", "aurelien": "surgeon"}
+    for hero_id, asset_id in approved_portraits.items():
+        assert f'"{hero_id}": "res://assets/heroes/{asset_id}.webp"' in layer
     assert "portrait_slot.texture = portrait_texture" in layer
     assert "portrait_slot.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED" in layer
