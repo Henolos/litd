@@ -31,3 +31,13 @@ static func resolve_tactical_skill(actor: Dictionary, action: Dictionary, target
     var reduction := armor / (armor + 100.0)
     var damage := maxi(1, int(round(attack_power * (1.0 - reduction))))
     return {"damage":damage,"attack_power":attack_power,"effective_armor":armor,"reduction":reduction}
+
+
+## Canonical enemy-role damage path. Preserves the legacy tactical enemy formula exactly.
+static func resolve_enemy_role(actor: Dictionary, target: Dictionary) -> Dictionary:
+    var role := str(actor.get("combat_role", "assault"))
+    var role_multiplier := 1.15 if role in ["brute", "execution"] else (0.92 if role == "ranged" else 1.0)
+    var armor := float(target.get("armor", 0)) + float(target.get("guard_bonus", 0))
+    var reduction := armor / (armor + 100.0)
+    var damage := maxi(1, int(round(float(actor.get("weapon_power", 20)) * role_multiplier * (1.0 - reduction))))
+    return {"damage":damage, "role_multiplier":role_multiplier, "effective_armor":armor, "reduction":reduction}
