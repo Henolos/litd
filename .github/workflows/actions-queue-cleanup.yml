@@ -6,6 +6,8 @@ on:
     paths:
       - '.github/workflows/actions-queue-cleanup.yml'
   workflow_dispatch:
+  schedule:
+    - cron: '17,47 * * * *'
 
 concurrency:
   group: actions-queue-cleanup
@@ -218,6 +220,17 @@ jobs:
               if current is None or stamp > (current.get('created_at') or '', int(current.get('id', 0))):
                   newest_critical[key] = run
           for run in newest_critical.values():
+              # Only protect a critical PR run while its PR is still open and
+              # this run still represents the current PR head. A closed PR is
+              # obsolete even if its last CI run is the newest run for that
+              # historical branch family.
+              if run.get('event') == 'pull_request':
+                  if pr_heads is None:
+                      protected.add(int(run['id']))
+                      continue
+                  expected = pr_heads.get(run.get('head_branch'))
+                  if expected is None or run.get('head_sha') != expected:
+                      continue
               protected.add(int(run['id']))
 
           def replacement_for(run, expected_sha):
