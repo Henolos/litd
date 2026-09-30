@@ -40,3 +40,14 @@ static func tactical_roll(seed_text: String) -> int:
 
 static func stable_roll(seed_text: String) -> int:
     return absi(hash(seed_text)) % 100
+
+
+## Canonical enemy-role hit path. Preserves the legacy tactical enemy formula exactly.
+static func resolve_enemy_role(actor: Dictionary, target: Dictionary, evasive_bonus: int = 0, forced_roll: int = -1, roll_seed: String = "") -> Dictionary:
+    var actor_stats: Dictionary = actor.get("stats", {})
+    var target_stats: Dictionary = target.get("stats", {})
+    var chance := 70 + int(round((float(actor_stats.get("PRE", 50)) - float(target_stats.get("MOB", 50))) * 0.35))
+    chance -= evasive_bonus
+    chance = clampi(chance, 15, 95)
+    var roll := forced_roll if forced_roll >= 1 else tactical_roll(roll_seed)
+    return {"hit":roll <= chance, "roll":roll, "accuracy":chance}
