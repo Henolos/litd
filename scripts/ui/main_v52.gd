@@ -106,7 +106,7 @@ func _replace_legacy_hero_cards_v52() -> void:
         if texture_rect == null or texture_rect.texture == null:
             continue
         var resource_path := str(texture_rect.texture.resource_path)
-        if resource_path.begins_with(LEGACY_CARD_PREFIX) and not resource_path.begins_with("res://assets/heroes/canonical/"):
+        if resource_path.begins_with(LEGACY_CARD_PREFIX):
             legacy_portraits.append(texture_rect)
 
     var ordered_heroes: Array[Dictionary] = _heroes_by_position()
