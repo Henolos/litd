@@ -41,8 +41,22 @@ def test_refresh_uses_only_read_only_collectors(monkeypatch, tmp_path):
         },
     )
 
+    monkeypatch.setattr(
+        refresh,
+        "collect_domains",
+        lambda root: {
+            "source": "repository_domain_catalog_read_only",
+            "views": [],
+            "domain_count": 3,
+            "overlay_count": 2,
+            "authority": "observation_only",
+        },
+    )
+
     snapshot = refresh.refresh("Henolos/litd", "token", tmp_path)
 
     assert snapshot["refresh"] == {"tracked_pr": 42, "mode": "scheduled_read_only"}
     assert snapshot["authority"] == "read_only_control_center_snapshot"
     assert snapshot["status"] == "RUNNING"
+    assert snapshot["domain_catalog"]["source"] == "repository_domain_catalog_read_only"
+    assert snapshot["domain_catalog"]["authority"] == "observation_only"
