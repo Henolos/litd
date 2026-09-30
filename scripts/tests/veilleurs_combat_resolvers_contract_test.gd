@@ -6,6 +6,8 @@ const ReactionResolver := preload("res://scripts/core/combat/veilleurs_reaction_
 const CombatEvent := preload("res://scripts/core/combat/veilleurs_combat_event.gd")
 const CombatCommand := preload("res://scripts/core/combat/veilleurs_combat_command.gd")
 const TargetResolver := preload("res://scripts/core/combat/veilleurs_target_resolver.gd")
+const EnemyMemory := preload("res://scripts/core/combat/veilleurs_enemy_memory.gd")
+const EnemyUtilityAI := preload("res://scripts/core/combat/veilleurs_enemy_utility_ai.gd")
 const LegacyRuntime := preload("res://scripts/core/veilleurs_combat_sandbox_runtime.gd")
 
 func _init() -> void:
@@ -69,6 +71,18 @@ func _init() -> void:
     var valid_target := TargetResolver.validate_index(targets, 0)
     assert(bool(valid_target.get("ok", false)) and str((valid_target.get("target", {}) as Dictionary).get("id", "")) == "enemy", "TargetResolver valid-index contract changed")
     assert(str(TargetResolver.validate_index(targets, 1).get("reason", "")) == "invalid_target", "TargetResolver invalid-index contract changed")
+
+    var memory_source := {"remanence_stage":"veteran","adaptations":["pressure_wounded"],"observed_patterns":{"hero:torso":2}}
+    var memory_snapshot := EnemyMemory.snapshot(memory_source)
+    (memory_source["adaptations"] as Array).append("late_mutation")
+    assert(not (memory_snapshot.get("adaptations",[]) as Array).has("late_mutation"), "EnemyMemory must return an isolated snapshot")
+    var watcher_ids: Array = ["mathilde","marec"]
+    var ai_command := EnemyUtilityAI.to_combat_command({"action":"attack","target":"marec","zone":"right_arm","reason":"exploit_wounded_target"}, "enemy_01", watcher_ids)
+    assert(bool(ai_command.get("ok",false)), "UtilityAI attack intent must produce a valid CombatCommand")
+    var emitted: Dictionary = ai_command.get("command",{})
+    assert(str(emitted.get("actor_id","")) == "enemy_01" and int(emitted.get("target_index",-1)) == 1, "UtilityAI CombatCommand identity/target contract changed")
+    assert(str(emitted.get("zone","")) == "right_arm", "UtilityAI must preserve intent zone without resolving combat outcome")
+    assert(str(EnemyUtilityAI.to_combat_command({"action":"move"}, "enemy_01", watcher_ids).get("reason","")) == "non_combat_action", "Non-combat AI intent must not enter CombatCommand attack pipeline")
 
     print("VEILLEURS_COMBAT_RESOLVERS_CONTRACT_OK")
     quit(0)
