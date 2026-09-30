@@ -78,12 +78,15 @@ func resolve_non_damage(runtime: Variant, attacker_id: String, target_id: String
                 patient_id = attacker_id
                 patient = attacker
             var before := int(patient.get("hp", 0))
-            var amount := 6 + tier * 4
+            var base_amount := 6 + tier * 4
+            var healing_power := maxi(0, int(attacker.get("healing_power", 0)))
+            var amount := maxi(1, int(round(float(base_amount) * (1.0 + float(healing_power) / 100.0))))
             patient["hp"] = mini(int(patient.get("max_hp", 1)), before + amount)
             patient["statuses"] = _apply_status(patient.get("statuses", {}), "STABILIZED", 1, tier)
             runtime.combatants[patient_id] = patient
             result["target"] = patient_id
             result["healed"] = int(patient["hp"]) - before
+            result["healing_power"] = healing_power
             result["persistent_injury_healed"] = false
         "support":
             if target.is_empty() or str(target.get("team", "")) != str(attacker.get("team", "")):
