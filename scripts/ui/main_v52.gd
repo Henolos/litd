@@ -14,10 +14,10 @@ const CANONICAL_ROLES := {
     "aurelien": "Chirurgien"
 }
 const CANONICAL_PORTRAITS := {
-    "mathilde": "res://assets/heroes/canonical/mathilde.svg",
-    "marec": "res://assets/heroes/canonical/marec.svg",
-    "anouk": "res://assets/heroes/canonical/anouk.svg",
-    "aurelien": "res://assets/heroes/canonical/aurelien.svg"
+    "mathilde": "res://assets/heroes/duelist.webp",
+    "marec": "res://assets/heroes/breaker.webp",
+    "anouk": "res://assets/heroes/mystic.webp",
+    "aurelien": "res://assets/heroes/surgeon.webp"
 }
 
 func _show_hero_profile() -> void:
