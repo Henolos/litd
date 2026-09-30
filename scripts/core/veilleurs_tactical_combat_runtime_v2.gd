@@ -146,6 +146,14 @@ func _resolve_damage_v2(attacker_id: String, target_id: String, skill: Dictionar
 
     var damage_result: Dictionary = DAMAGE_RESOLVER_SCRIPT.resolve_tactical_skill(attacker, skill, target, _has_status(target, "EXPOSED"))
     var damage := int(damage_result.get("damage", 1))
+    var crit_chance := clampi(int(attacker.get("critical_chance", 0)), 0, 75)
+    var crit_roll := HIT_RESOLVER_SCRIPT.tactical_roll(roll_seed + "|crit")
+    var critical := crit_chance > 0 and crit_roll <= crit_chance
+    if critical:
+        damage = maxi(1, int(round(float(damage) * 1.5)))
+    result["critical"] = critical
+    result["critical_chance"] = crit_chance
+    result["critical_roll"] = crit_roll
     var redirected := _redirect_damage_if_protected(target_id, damage)
     damage = int(redirected.get("remaining", damage))
     target = combatants[target_id]
@@ -203,11 +211,14 @@ func _enemy_role_attack(attacker_id: String, target_id: String, decision: Dictio
 
     if attack_kind == "psych":
         var before_resolve := int(target.get("resolve_current", target_stats.get("RES", 60)))
-        var pressure := 8 + int(stats.get("TEC", 50) / 18)
+        var base_pressure := 8 + int(stats.get("TEC", 50) / 18)
+        var psych_resistance := maxi(int(target.get("fear_resistance", 0)), int(target.get("madness_resistance", 0)))
+        var pressure := maxi(1, base_pressure - psych_resistance)
         target["resolve_current"] = maxi(0, before_resolve - pressure)
         target["statuses"] = _add_status(target.get("statuses", {}), "FEAR" if int(target["resolve_current"]) <= 20 else "DISORIENTED", 1, 2)
         combatants[target_id] = target
         result["resolve_delta"] = -pressure
+        result["psych_resistance"] = psych_resistance
         result["target_resolve"] = int(target["resolve_current"])
         action_log.append(result.duplicate(true))
         return result
