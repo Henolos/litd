@@ -40,7 +40,6 @@ def test_refresh_uses_only_read_only_collectors(monkeypatch, tmp_path):
             "source": "repository_memory_read_only",
         },
     )
-
     monkeypatch.setattr(
         refresh,
         "collect_domains",
@@ -52,6 +51,16 @@ def test_refresh_uses_only_read_only_collectors(monkeypatch, tmp_path):
             "authority": "observation_only",
         },
     )
+    monkeypatch.setattr(
+        refresh,
+        "collect_indicators",
+        lambda repo, token: {
+            "source": "github_actions_latest_run_read_only",
+            "semantics": "latest_workflow_evidence_not_domain_health",
+            "authority": "observation_only",
+            "indicators": [],
+        },
+    )
 
     snapshot = refresh.refresh("Henolos/litd", "token", tmp_path)
 
@@ -60,3 +69,6 @@ def test_refresh_uses_only_read_only_collectors(monkeypatch, tmp_path):
     assert snapshot["status"] == "RUNNING"
     assert snapshot["domain_catalog"]["source"] == "repository_domain_catalog_read_only"
     assert snapshot["domain_catalog"]["authority"] == "observation_only"
+    assert snapshot["operational_indicators"]["source"] == "github_actions_latest_run_read_only"
+    assert snapshot["operational_indicators"]["semantics"] == "latest_workflow_evidence_not_domain_health"
+    assert snapshot["operational_indicators"]["authority"] == "observation_only"
