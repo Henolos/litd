@@ -53,6 +53,50 @@ func _run() -> void:
     _check(int(equipped_combat_row.get("weapon_power", 0)) == base_weapon_power + after_damage, "Equipped damage bonus must modify Mathilde combat weapon power")
     _check(int((equipped_combat_row.get("equipment_bonuses", {}) as Dictionary).get("damage_bonus", 0)) == after_damage, "Combat row must expose the canonical equipment bonus snapshot")
 
+    var secondary_item := {
+        "instance_id":"vs001_secondary_equipment",
+        "base_id":"vs001_secondary_equipment",
+        "name":"Secondary equipment smoke",
+        "slot":"ring",
+        "class_id":"duelist",
+        "rarity":"common",
+        "base_bonuses":{
+            "precision":4,
+            "critical_chance":5,
+            "healing_power":20,
+            "guard_power":6,
+            "physical_resistance":10,
+            "fear_resistance":4,
+            "madness_resistance":3
+        },
+        "affixes":[]
+    }
+    EquipmentManager.add_item(secondary_item)
+    _check(EquipmentManager.equip(mathilde_id, "vs001_secondary_equipment"), "Mathilde must equip deterministic secondary-stat gear")
+    runtime.call("_apply_campaign_progress_to_combat")
+    equipped_combat_row = combat_runtime.combatants.get("ENT_WATCHER_mathilde", {})
+    _check(int(equipped_combat_row.get("accuracy_bonus", 0)) >= 4, "Precision equipment must feed tactical accuracy")
+    _check(int(equipped_combat_row.get("critical_chance", 0)) >= 5, "Critical equipment must feed tactical critical chance")
+    _check(int(equipped_combat_row.get("healing_power", 0)) >= 20, "Healing equipment must feed healing power")
+    _check(int(equipped_combat_row.get("equipment_guard_power", 0)) >= 6, "Guard equipment must feed persistent equipment guard")
+    _check(int(equipped_combat_row.get("physical_resistance", 0)) >= 10, "Physical resistance equipment must feed damage mitigation")
+    _check(int(equipped_combat_row.get("fear_resistance", 0)) >= 4, "Fear resistance equipment must feed psychological defense")
+    _check(int(equipped_combat_row.get("madness_resistance", 0)) >= 3, "Madness resistance equipment must feed psychological defense")
+
+    var plain_target := {"armor":20, "guard_bonus":0}
+    var geared_target := {"armor":20, "guard_bonus":0, "equipment_guard_power":6, "physical_resistance":10}
+    var damage_actor := {"weapon_power":40, "stats":{"FOR":60}}
+    var damage_skill := {"skill_index":1, "effect_spec":{"damage_multiplier":1.0}}
+    var plain_damage := int(VeilleursDamageResolver.resolve_tactical_skill(damage_actor, damage_skill, plain_target).get("damage", 0))
+    var geared_damage := int(VeilleursDamageResolver.resolve_tactical_skill(damage_actor, damage_skill, geared_target).get("damage", 0))
+    _check(geared_damage < plain_damage, "Guard and physical resistance equipment must reduce incoming physical damage")
+
+    equipped_combat_row["hp"] = maxi(1, int(equipped_combat_row.get("max_hp", 1)) - 50)
+    combat_runtime.combatants["ENT_WATCHER_mathilde"] = equipped_combat_row
+    var heal_skill := {"skill_id":"VS001_HEAL_SMOKE", "action_type":"heal", "skill_index":1}
+    var heal_result := VeilleursSkillBehaviorRuntime.new().resolve_non_damage(combat_runtime, "ENT_WATCHER_mathilde", "ENT_WATCHER_mathilde", heal_skill, "torso")
+    _check(int(heal_result.get("healed", 0)) > 10, "Healing power equipment must increase real combat healing above the tier-1 base")
+
     # Knowledge slice: an observable enemy hit becomes an observation plus a
     # durable proof in the Archives, and survives serialization/reload.
     var knowledge_archives := VeilleursArchivesRuntime.new()
