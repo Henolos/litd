@@ -21,6 +21,25 @@ def _snapshot():
             "github": "github_api_read_only",
             "memory": "repository_memory_read_only",
         },
+        "domain_states": {
+            "LITD": {
+                "source": "github_actions_litd_read_only",
+                "domain": "LITD",
+                "status": "HEALTHY_LAST_KNOWN",
+                "authority": "observation_only",
+                "mutation_authority": False,
+                "signals": [
+                    {
+                        "name": "Veilleurs Playtest Readiness",
+                        "path": ".github/workflows/veilleurs-playtest-readiness.yml",
+                        "status": "completed",
+                        "conclusion": "success",
+                        "on_current_main": False,
+                        "created_at": "2026-10-01T13:00:37Z",
+                    }
+                ],
+            }
+        },
         "domain_catalog": {
             "source": "repository_domain_catalog_read_only",
             "authority": "observation_only",
@@ -47,6 +66,9 @@ def test_renders_operational_fields_and_sources():
     assert "SECURITY_COMPLIANCE" in page
     assert "VEILLEURS_KNOWLEDGE" in page
     assert "GLOBAL_GUARDIAN" in page
+    assert "LITD operational state" in page
+    assert "HEALTHY_LAST_KNOWN" in page
+    assert "Veilleurs Playtest Readiness" in page
     assert "<script" not in page.lower()
 
 
@@ -71,3 +93,11 @@ def test_escapes_domain_catalog_values():
     page = render(snapshot)
     assert "<img src=x onerror=alert(1)>" not in page
     assert "&lt;img src=x onerror=alert(1)&gt;" in page
+
+
+def test_escapes_litd_operational_signal_values():
+    snapshot = _snapshot()
+    snapshot["domain_states"]["LITD"]["signals"][0]["name"] = "<svg onload=alert(1)>"
+    page = render(snapshot)
+    assert "<svg onload=alert(1)>" not in page
+    assert "&lt;svg onload=alert(1)&gt;" in page
