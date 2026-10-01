@@ -15,7 +15,7 @@ RULES = ROOT / "docs" / "knowledge" / "guardian-rules.yml"
 DEPENDENCIES = ROOT / "docs" / "knowledge" / "dependencies.yml"
 DECISION_TEMPLATE = ROOT / "docs" / "knowledge" / "templates" / "decision.md"
 RESEARCH_TEMPLATE = ROOT / "docs" / "knowledge" / "templates" / "research.md"
-CAPTURABLE_CREATURES = ROOT / "data" / "capturable_creatures.json"
+CAPTURABLE_CREATURES = ROOT / "data" / "capturable_creatures.json"\nTAXONOMY = ROOT / "docs" / "knowledge" / "taxonomy.json"
 
 ALLOWED_SEVERITIES = {"green", "yellow", "orange", "red"}
 REQUIRED_DECISION_HEADINGS = {
@@ -207,11 +207,48 @@ def validate_capturable_creatures() -> tuple[list[str], list[str]]:
     return errors, warnings
 
 
+
+def validate_taxonomy() -> list[str]:
+    errors: list[str] = []
+    try:
+        taxonomy = json.loads(TAXONOMY.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        return [f"invalid taxonomy contract: {exc}"]
+
+    principles = taxonomy.get("principles", {})
+    if principles.get("navigation_is_not_storage") is not True:
+        errors.append("taxonomy navigation must remain separate from physical storage")
+    if principles.get("concepts_are_not_knowledge_items") is not True:
+        errors.append("taxonomy concepts must remain separate from knowledge items")
+    if principles.get("core_write_allowed") is not False:
+        errors.append("taxonomy must never authorize Core writes")
+
+    required_collections = {
+        "worldbuilding", "narrative", "cinema", "humanities", "architecture",
+        "sciences", "game_design", "audiovisual", "ux", "technology",
+    }
+    collections = taxonomy.get("collections", [])
+    ids = [str(item.get("id", "")).strip() for item in collections if isinstance(item, dict)]
+    if len(ids) != len(set(ids)):
+        errors.append("taxonomy collection ids must be unique")
+    missing = sorted(required_collections - set(ids))
+    if missing:
+        errors.append("taxonomy missing canonical collections: " + ", ".join(missing))
+
+    relations = taxonomy.get("relation_types", [])
+    if not isinstance(relations, list) or len(relations) != len(set(relations)):
+        errors.append("taxonomy relation types must be a unique list")
+    else:
+        for required in ("broader", "narrower", "related", "contradicts", "supersedes", "derived_from"):
+            if required not in relations:
+                errors.append(f"taxonomy missing required relation type: {required}")
+    return errors
+
 def main() -> int:
     errors: list[str] = []
     warnings: list[str] = []
     errors.extend(validate_rules())
-    errors.extend(validate_dependency_graph())
+    errors.extend(validate_dependency_graph())\n    errors.extend(validate_taxonomy())
     errors.extend(validate_template(DECISION_TEMPLATE, REQUIRED_DECISION_HEADINGS))
     errors.extend(validate_template(RESEARCH_TEMPLATE, REQUIRED_RESEARCH_HEADINGS))
 
