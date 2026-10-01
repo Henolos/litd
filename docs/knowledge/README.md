@@ -81,6 +81,8 @@ Le trieur de fichiers est un capteur du système vivant, pas une autorité indé
 
 Le contrat détaillé est défini dans `file-sorter-core-contract.md`.
 
+La distinction canonique entre **Knowledge Router**, **File Lifecycle Trieur**, les trois dimensions d'état et la liaison **Evidence Ledger ↔ Provenance Chain** est définie dans `trieur-state-provenance-contract.md`.
+
 Boucle : **Bibliothèque ⇄ Core ⇄ Trieur ⇄ Réalité Git/Godot ⇄ CI/tests/mesures ⇄ Core ⇄ Bibliothèque**.
 
 Aucune observation du trieur n'est considérée définitivement vraie : elle doit être rattachée au head Git audité et revalidée lorsque le dépôt, le canon ou les dépendances évoluent.
