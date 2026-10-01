@@ -9,6 +9,7 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
+from tools.quality.control_center_domain_catalog import collect as collect_domains
 from tools.quality.control_center_github_collector import collect as collect_github
 from tools.quality.control_center_memory_collector import collect as collect_memory
 from tools.quality.control_center_snapshot_pipeline import build_snapshot
@@ -45,6 +46,7 @@ def refresh(repo: str, token: str, root: str | Path = ".") -> dict[str, Any]:
     pr_number = resolve_latest_control_center_pr(repo, token)
     github = collect_github(repo, pr_number, token)
     memory = collect_memory(root)
+    domains = collect_domains(root)
     snapshot = build_snapshot(
         github,
         memory,
@@ -52,6 +54,7 @@ def refresh(repo: str, token: str, root: str | Path = ".") -> dict[str, Any]:
         change_record=f"PR-{pr_number}",
         phase="verification",
     )
+    snapshot["domain_catalog"] = domains
     snapshot["refresh"] = {
         "tracked_pr": pr_number,
         "mode": "scheduled_read_only",

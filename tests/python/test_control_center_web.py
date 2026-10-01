@@ -21,6 +21,17 @@ def _snapshot():
             "github": "github_api_read_only",
             "memory": "repository_memory_read_only",
         },
+        "domain_catalog": {
+            "source": "repository_domain_catalog_read_only",
+            "authority": "observation_only",
+            "views": [
+                {"id": "LITD", "kind": "domain", "authority_scope": "LITD", "status": "AVAILABLE"},
+                {"id": "HENOLOS_BUSINESS", "kind": "domain", "authority_scope": "HENOLOS_BUSINESS", "status": "AVAILABLE"},
+                {"id": "HENOLOS_INFRASTRUCTURE", "kind": "domain", "authority_scope": "HENOLOS_INFRASTRUCTURE", "status": "AVAILABLE"},
+                {"id": "SECURITY_COMPLIANCE", "kind": "overlay", "authority_scope": "GLOBAL_GUARDIAN", "status": "AVAILABLE"},
+                {"id": "VEILLEURS_KNOWLEDGE", "kind": "overlay", "authority_scope": "LITD", "status": "AVAILABLE"},
+            ],
+        },
     }
 
 
@@ -31,6 +42,11 @@ def test_renders_operational_fields_and_sources():
     assert "5/6" in page
     assert "github_api_read_only" in page
     assert "repository_memory_read_only" in page
+    assert "HENOLOS_BUSINESS" in page
+    assert "HENOLOS_INFRASTRUCTURE" in page
+    assert "SECURITY_COMPLIANCE" in page
+    assert "VEILLEURS_KNOWLEDGE" in page
+    assert "GLOBAL_GUARDIAN" in page
     assert "<script" not in page.lower()
 
 
@@ -47,3 +63,11 @@ def test_refuses_non_read_only_snapshot():
     snapshot["authority"] = "write_capable"
     with pytest.raises(ValueError):
         render(snapshot)
+
+
+def test_escapes_domain_catalog_values():
+    snapshot = _snapshot()
+    snapshot["domain_catalog"]["views"][0]["id"] = "<img src=x onerror=alert(1)>"
+    page = render(snapshot)
+    assert "<img src=x onerror=alert(1)>" not in page
+    assert "&lt;img src=x onerror=alert(1)&gt;" in page
