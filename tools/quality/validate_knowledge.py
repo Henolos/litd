@@ -128,8 +128,7 @@ def validate_dependency_graph() -> list[str]:
     if not node_ids:
         errors.append("dependencies.yml contains no nodes")
     for source, target in re.findall(
-        r"^\s*- from:\s*([A-Za-z0-9_-]+)\s*
-\s+to:\s*([A-Za-z0-9_-]+)\s*$",
+        r"^\\s*- from:\\s*([A-Za-z0-9_-]+)\\s*\\n\\s+to:\\s*([A-Za-z0-9_-]+)\\s*$",
         text,
         re.MULTILINE,
     ):
