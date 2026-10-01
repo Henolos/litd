@@ -15,6 +15,15 @@ TARGET_ROUTE = "LITD_LIBRARY"
 
 
 @dataclass(frozen=True)
+class EvidenceRecord:
+    evidence_id: str
+    canonical_hash: str
+    source_url: str
+    project_id: str
+    target_route: str
+
+
+@dataclass(frozen=True)
 class LedgerAppendResult:
     sequence: int
     entry_hash: str
@@ -110,6 +119,22 @@ class EvidenceLedger:
             (self.project_id, self.target_route),
         )
         return {row[0] for row in rows}
+
+    def get_evidence(self, evidence_id: str) -> EvidenceRecord | None:
+        row = self.connection.execute(
+            "SELECT evidence_id, canonical_hash, source_url, project_id, target_route "
+            "FROM evidence_registry WHERE evidence_id=? AND project_id=? AND target_route=?",
+            (evidence_id, self.project_id, self.target_route),
+        ).fetchone()
+        if row is None:
+            return None
+        return EvidenceRecord(
+            evidence_id=row["evidence_id"],
+            canonical_hash=row["canonical_hash"],
+            source_url=row["source_url"],
+            project_id=row["project_id"],
+            target_route=row["target_route"],
+        )
 
     def register_evidence(self, evidence_id: str, canonical_hash: str, source_url: str) -> None:
         now = datetime.now(timezone.utc).isoformat()
