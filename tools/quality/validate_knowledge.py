@@ -15,7 +15,8 @@ RULES = ROOT / "docs" / "knowledge" / "guardian-rules.yml"
 DEPENDENCIES = ROOT / "docs" / "knowledge" / "dependencies.yml"
 DECISION_TEMPLATE = ROOT / "docs" / "knowledge" / "templates" / "decision.md"
 RESEARCH_TEMPLATE = ROOT / "docs" / "knowledge" / "templates" / "research.md"
-CAPTURABLE_CREATURES = ROOT / "data" / "capturable_creatures.json"\nTAXONOMY = ROOT / "docs" / "knowledge" / "taxonomy.json"
+CAPTURABLE_CREATURES = ROOT / "data" / "capturable_creatures.json"
+TAXONOMY = ROOT / "docs" / "knowledge" / "taxonomy.json"
 
 ALLOWED_SEVERITIES = {"green", "yellow", "orange", "red"}
 REQUIRED_DECISION_HEADINGS = {
@@ -127,7 +128,8 @@ def validate_dependency_graph() -> list[str]:
     if not node_ids:
         errors.append("dependencies.yml contains no nodes")
     for source, target in re.findall(
-        r"^\s*- from:\s*([A-Za-z0-9_-]+)\s*\n\s+to:\s*([A-Za-z0-9_-]+)\s*$",
+        r"^\s*- from:\s*([A-Za-z0-9_-]+)\s*
+\s+to:\s*([A-Za-z0-9_-]+)\s*$",
         text,
         re.MULTILINE,
     ):
@@ -248,7 +250,8 @@ def main() -> int:
     errors: list[str] = []
     warnings: list[str] = []
     errors.extend(validate_rules())
-    errors.extend(validate_dependency_graph())\n    errors.extend(validate_taxonomy())
+    errors.extend(validate_dependency_graph())
+    errors.extend(validate_taxonomy())
     errors.extend(validate_template(DECISION_TEMPLATE, REQUIRED_DECISION_HEADINGS))
     errors.extend(validate_template(RESEARCH_TEMPLATE, REQUIRED_RESEARCH_HEADINGS))
 
