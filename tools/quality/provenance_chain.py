@@ -28,6 +28,7 @@ class ProvenanceNode:
     node_id: str
     stage: str
     parent_id: str | None
+    evidence_id: str | None
     payload_hash: str
 
 
@@ -118,6 +119,13 @@ class ProvenanceChain:
                     f"invalid_parent_stage:{stage}:expected:{expected_parent_stage}:got:{parent['stage']}"
                 )
 
+        effective_evidence_id = evidence_id
+        if parent is not None and parent["evidence_id"] is not None:
+            if effective_evidence_id is None:
+                effective_evidence_id = parent["evidence_id"]
+            elif effective_evidence_id != parent["evidence_id"]:
+                raise ValueError("evidence_id_mismatch")
+
         payload_hash = self._hash_payload(payload)
         now = datetime.now(timezone.utc).isoformat()
         self.connection.execute(
@@ -127,7 +135,7 @@ class ProvenanceChain:
                 node_id,
                 stage,
                 parent_id,
-                evidence_id,
+                effective_evidence_id,
                 external_ref,
                 json.dumps(payload, sort_keys=True, ensure_ascii=False),
                 payload_hash,
@@ -135,7 +143,7 @@ class ProvenanceChain:
             ),
         )
         self.connection.commit()
-        return ProvenanceNode(node_id, stage, parent_id, payload_hash)
+        return ProvenanceNode(node_id, stage, parent_id, effective_evidence_id, payload_hash)
 
     def trace(self, node_id: str) -> list[ProvenanceNode]:
         nodes: list[ProvenanceNode] = []
@@ -143,7 +151,11 @@ class ProvenanceChain:
         while current is not None:
             nodes.append(
                 ProvenanceNode(
-                    current["node_id"], current["stage"], current["parent_id"], current["payload_hash"]
+                    current["node_id"],
+                    current["stage"],
+                    current["parent_id"],
+                    current["evidence_id"],
+                    current["payload_hash"],
                 )
             )
             current = self._get(current["parent_id"]) if current["parent_id"] else None
@@ -165,6 +177,8 @@ class ProvenanceChain:
                 return False
             expected_parent_stage = STAGES[STAGES.index(row["stage"]) - 1]
             if parent["stage"] != expected_parent_stage:
+                return False
+            if parent["evidence_id"] is not None and row["evidence_id"] != parent["evidence_id"]:
                 return False
         return True
 
