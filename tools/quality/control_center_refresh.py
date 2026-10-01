@@ -11,6 +11,7 @@ from typing import Any
 
 from tools.quality.control_center_domain_catalog import collect as collect_domains
 from tools.quality.control_center_github_collector import collect as collect_github
+from tools.quality.control_center_litd_state import collect as collect_litd
 from tools.quality.control_center_memory_collector import collect as collect_memory
 from tools.quality.control_center_snapshot_pipeline import build_snapshot
 
@@ -47,6 +48,7 @@ def refresh(repo: str, token: str, root: str | Path = ".") -> dict[str, Any]:
     github = collect_github(repo, pr_number, token)
     memory = collect_memory(root)
     domains = collect_domains(root)
+    litd_state = collect_litd(repo, token)
     snapshot = build_snapshot(
         github,
         memory,
@@ -55,6 +57,7 @@ def refresh(repo: str, token: str, root: str | Path = ".") -> dict[str, Any]:
         phase="verification",
     )
     snapshot["domain_catalog"] = domains
+    snapshot["domain_states"] = {"LITD": litd_state}
     snapshot["refresh"] = {
         "tracked_pr": pr_number,
         "mode": "scheduled_read_only",
