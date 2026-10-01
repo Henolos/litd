@@ -53,6 +53,23 @@ def render(snapshot: dict[str, Any]) -> str:
     )
     if not view_rows:
         view_rows = '<tr><td colspan="4">—</td></tr>'
+    domain_states = snapshot.get("domain_states") if isinstance(snapshot.get("domain_states"), dict) else {}
+    litd = domain_states.get("LITD") if isinstance(domain_states.get("LITD"), dict) else {}
+    litd_signals = litd.get("signals") if isinstance(litd.get("signals"), list) else []
+    litd_rows = "".join(
+        "<tr>"
+        f"<td>{_text(signal.get('name') or signal.get('path'))}</td>"
+        f"<td>{_text(signal.get('status'))}</td>"
+        f"<td>{_text(signal.get('conclusion'))}</td>"
+        f"<td>{_text(signal.get('on_current_main'))}</td>"
+        f"<td>{_text(signal.get('created_at'))}</td>"
+        "</tr>"
+        for signal in litd_signals
+        if isinstance(signal, dict)
+    )
+    if not litd_rows:
+        litd_rows = '<tr><td colspan="5">—</td></tr>'
+    litd_status = _text(litd.get("status"))
     status = html.escape(str(snapshot.get("status", "UNKNOWN")))
     return f"""<!doctype html>
 <html lang="en">
@@ -73,7 +90,7 @@ small {{ color:#8b949e; }}
 <body>
 <header><small>READ-ONLY OPERATIONAL VIEW</small><h1>HENOLOS Control Center</h1><p class="status">{status}</p></header>
 <section><h2>Current snapshot</h2><table>{body}</table></section>
-<section><h2>Domains &amp; views</h2><table><thead><tr><th>ID</th><th>Type</th><th>Authority scope</th><th>Status</th></tr></thead><tbody>{view_rows}</tbody></table></section>\n<section><h2>Sources</h2><ul>{source_items}</ul></section>\n</body>
+<section><h2>Domains &amp; views</h2><table><thead><tr><th>ID</th><th>Type</th><th>Authority scope</th><th>Status</th></tr></thead><tbody>{view_rows}</tbody></table></section>\n<section><h2>LITD operational state</h2><p class="status">{litd_status}</p><table><thead><tr><th>Signal</th><th>Status</th><th>Conclusion</th><th>Current main?</th><th>Observed at</th></tr></thead><tbody>{litd_rows}</tbody></table></section>\n<section><h2>Sources</h2><ul>{source_items}</ul></section>\n</body>
 </html>
 """
 
