@@ -32,6 +32,12 @@ def _snapshot():
                 {"id": "VEILLEURS_KNOWLEDGE", "kind": "overlay", "authority_scope": "LITD", "status": "AVAILABLE"},
             ],
         },
+        "external_services": {
+            "source": "external_service_observations",
+            "authority": "observation_only",
+            "semantics": "external_service_evidence_not_governance_closure",
+            "observations": [{"view_id":"HENOLOS_INFRASTRUCTURE","service":"Supabase","state":"VISIBILITY_UNAVAILABLE","source":"connector_visibility","observed_at":"2026-10-01T15:13:50Z","project_ref":None,"region":None,"security_advisory_count":0,"performance_advisory_count":0,"visibility":"unavailable","contains_payload_data":False,"contains_secret_values":False,"mutation_authority":False}],
+        },
         "operational_indicators": {
             "source": "github_actions_latest_run_read_only",
             "semantics": "latest_workflow_evidence_not_domain_health",
@@ -116,3 +122,4 @@ def test_escapes_operational_indicator_values():
     page = render(snapshot)
     assert "<svg onload=alert(1)>" not in page
     assert "&lt;svg onload=alert(1)&gt;" in page
+\n\ndef test_escapes_external_service_values():\n    snapshot = _snapshot()\n    snapshot["external_services"]["observations"][0]["service"] = "<script>alert(1)</script>"\n    page = render(snapshot)\n    assert "<script>alert(1)</script>" not in page\n    assert "&lt;script&gt;alert(1)&lt;/script&gt;" in page\n
