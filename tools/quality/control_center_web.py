@@ -39,6 +39,20 @@ def render(snapshot: dict[str, Any]) -> str:
         f"<li><strong>{html.escape(str(key))}</strong>: {_text(value)}</li>"
         for key, value in sorted(sources.items())
     )
+    catalog = snapshot.get("domain_catalog") if isinstance(snapshot.get("domain_catalog"), dict) else {}
+    views = catalog.get("views") if isinstance(catalog.get("views"), list) else []
+    view_rows = "".join(
+        "<tr>"
+        f"<td>{_text(view.get('id'))}</td>"
+        f"<td>{_text(view.get('kind'))}</td>"
+        f"<td>{_text(view.get('authority_scope'))}</td>"
+        f"<td>{_text(view.get('status'))}</td>"
+        "</tr>"
+        for view in views
+        if isinstance(view, dict)
+    )
+    if not view_rows:
+        view_rows = '<tr><td colspan="4">—</td></tr>'
     status = html.escape(str(snapshot.get("status", "UNKNOWN")))
     return f"""<!doctype html>
 <html lang="en">
@@ -59,8 +73,7 @@ small {{ color:#8b949e; }}
 <body>
 <header><small>READ-ONLY OPERATIONAL VIEW</small><h1>HENOLOS Control Center</h1><p class="status">{status}</p></header>
 <section><h2>Current snapshot</h2><table>{body}</table></section>
-<section><h2>Sources</h2><ul>{source_items}</ul></section>
-</body>
+<section><h2>Domains &amp; views</h2><table><thead><tr><th>ID</th><th>Type</th><th>Authority scope</th><th>Status</th></tr></thead><tbody>{view_rows}</tbody></table></section>\n<section><h2>Sources</h2><ul>{source_items}</ul></section>\n</body>
 </html>
 """
 
