@@ -39,6 +39,7 @@ def render(snapshot: dict[str, Any]) -> str:
         f"<li><strong>{html.escape(str(key))}</strong>: {_text(value)}</li>"
         for key, value in sorted(sources.items())
     )
+
     catalog = snapshot.get("domain_catalog") if isinstance(snapshot.get("domain_catalog"), dict) else {}
     views = catalog.get("views") if isinstance(catalog.get("views"), list) else []
     view_rows = "".join(
@@ -53,6 +54,26 @@ def render(snapshot: dict[str, Any]) -> str:
     )
     if not view_rows:
         view_rows = '<tr><td colspan="4">—</td></tr>'
+
+    operational = snapshot.get("operational_indicators") if isinstance(snapshot.get("operational_indicators"), dict) else {}
+    indicators = operational.get("indicators") if isinstance(operational.get("indicators"), list) else []
+    indicator_rows = "".join(
+        "<tr>"
+        f"<td>{_text(row.get('view_id'))}</td>"
+        f"<td>{_text(row.get('signal'))}</td>"
+        f"<td>{_text(row.get('evidence_state'))}</td>"
+        f"<td>{_text(row.get('run_id'))}</td>"
+        f"<td>{_text(row.get('event'))}</td>"
+        f"<td>{_text(row.get('head_sha'))}</td>"
+        f"<td>{_text(row.get('updated_at'))}</td>"
+        "</tr>"
+        for row in indicators
+        if isinstance(row, dict)
+    )
+    if not indicator_rows:
+        indicator_rows = '<tr><td colspan="7">—</td></tr>'
+    semantics = operational.get("semantics")
+
     status = html.escape(str(snapshot.get("status", "UNKNOWN")))
     return f"""<!doctype html>
 <html lang="en">
@@ -62,18 +83,22 @@ def render(snapshot: dict[str, Any]) -> str:
 <title>HENOLOS Control Center</title>
 <style>
 :root {{ color-scheme: dark; font-family: system-ui, sans-serif; }}
-body {{ max-width: 900px; margin: 0 auto; padding: 2rem 1rem; background:#0b0d10; color:#f3f5f7; }}
+body {{ max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; background:#0b0d10; color:#f3f5f7; }}
 header,section {{ border:1px solid #30363d; border-radius:14px; padding:1rem 1.2rem; margin-bottom:1rem; background:#11151a; }}
 h1 {{ margin:.2rem 0; }} .status {{ font-weight:700; }}
 table {{ width:100%; border-collapse:collapse; }} th,td {{ padding:.65rem; border-bottom:1px solid #30363d; text-align:left; overflow-wrap:anywhere; }}
-th {{ width:34%; color:#aab3bd; }} ul {{ padding-left:1.25rem; }}
+th {{ color:#aab3bd; }} ul {{ padding-left:1.25rem; }}
 small {{ color:#8b949e; }}
+.note {{ color:#aab3bd; }}
 </style>
 </head>
 <body>
 <header><small>READ-ONLY OPERATIONAL VIEW</small><h1>HENOLOS Control Center</h1><p class="status">{status}</p></header>
 <section><h2>Current snapshot</h2><table>{body}</table></section>
-<section><h2>Domains &amp; views</h2><table><thead><tr><th>ID</th><th>Type</th><th>Authority scope</th><th>Status</th></tr></thead><tbody>{view_rows}</tbody></table></section>\n<section><h2>Sources</h2><ul>{source_items}</ul></section>\n</body>
+<section><h2>Domains &amp; views</h2><table><thead><tr><th>ID</th><th>Type</th><th>Authority scope</th><th>Status</th></tr></thead><tbody>{view_rows}</tbody></table></section>
+<section><h2>Operational evidence</h2><p class="note">{_text(semantics)}</p><table><thead><tr><th>View</th><th>Signal</th><th>Evidence</th><th>Run</th><th>Event</th><th>Head SHA</th><th>Updated</th></tr></thead><tbody>{indicator_rows}</tbody></table></section>
+<section><h2>Sources</h2><ul>{source_items}</ul></section>
+</body>
 </html>
 """
 

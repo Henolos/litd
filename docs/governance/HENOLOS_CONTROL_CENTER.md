@@ -71,6 +71,25 @@ Any future write/action capability requires a separate governed change, explicit
 
 No secret values, credentials, raw client payloads, or unnecessary personal data may be displayed or persisted by the Control Center.
 
-## Next implementation slice
+## Operational evidence views
 
-Build a machine-readable read-only snapshot generator that maps GitHub pull-request/check state and governance evidence into the minimum operational model above. Validate the mapping with deterministic tests before adding a web UI.
+The Control Center may expose bounded workflow evidence for domain and overlay views when the source is real GitHub Actions metadata.
+
+These indicators MUST describe the latest observed workflow evidence, not claim overall domain health. Allowed evidence states are:
+
+- `PASS` — latest matching run completed successfully;
+- `FAIL` — latest matching run completed without success;
+- `RUNNING` — latest matching run has not completed;
+- `NO_EVIDENCE` — no matching run was found in the bounded query window.
+
+The indicator layer remains observation-only. It MUST NOT ingest workflow secrets, raw artifacts, client payloads or personal data merely to improve status detail. Workflow name, run identifier, event, branch/SHA and timestamps are sufficient for this tranche.
+
+The five views remain isolated:
+
+- `LITD`: game/playtest/maturity execution evidence;
+- `HENOLOS_BUSINESS`: business-governance validation evidence only, not production/client health;
+- `HENOLOS_INFRASTRUCTURE`: infrastructure-governance validation evidence only, not external service health;
+- `SECURITY_COMPLIANCE`: Guardian/repository-governance evidence;
+- `VEILLEURS_KNOWLEDGE`: Veilleur discovery workflow evidence, under LITD authority.
+
+External business or infrastructure health requires separately authorized read-only adapters to the relevant services and must not be inferred from repository CI.
