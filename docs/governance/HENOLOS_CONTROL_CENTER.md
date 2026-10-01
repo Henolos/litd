@@ -93,3 +93,16 @@ The five views remain isolated:
 - `VEILLEURS_KNOWLEDGE`: Veilleur discovery workflow evidence, under LITD authority.
 
 External business or infrastructure health requires separately authorized read-only adapters to the relevant services and must not be inferred from repository CI.
+
+
+## External service observation contract
+
+External service state is a separate evidence class from repository workflow evidence. It MUST NOT be inferred from CI success.
+
+Allowed external states are `ACTIVE_HEALTHY`, `ADVISORY`, `DEGRADED`, `UNHEALTHY`, `VISIBILITY_UNAVAILABLE`, and `NOT_CONFIGURED`.
+
+`VISIBILITY_UNAVAILABLE` is fail-closed evidence: it means the configured observer cannot currently prove service state. It MUST NOT be promoted to success.
+
+External observations are restricted to non-secret operational metadata such as service identifier, region, project reference, advisory counts, observation time and platform-reported state. They MUST NOT contain credentials, secret values, raw logs, client payloads, or unnecessary personal data.
+
+The normalization/rendering contract grants no collection authority. Persistent Supabase, Hetzner, backup, identity, or secrets-manager collection requires a separately configured least-privilege read-only identity and source adapter.
