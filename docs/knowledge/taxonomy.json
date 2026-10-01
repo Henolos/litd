@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "knowledge_space": "LITD",
+  "principles": {
+    "navigation_is_not_storage": true,
+    "concepts_are_not_knowledge_items": true,
+    "multi_concept_assignment": true,
+    "single_canonical_source": true,
+    "core_write_allowed": false
+  },
+  "relation_types": [
+    "broader", "narrower", "related",
+    "depends_on", "influences", "contradicts", "supersedes",
+    "validated_by", "tested_by", "measured_by", "risk_for",
+    "source_for", "player_impact", "derived_from", "inspired_by",
+    "applies_to", "requires", "invalidates", "example_of"
+  ],
+  "collections": [
+    {"id":"worldbuilding","label":"Univers & Worldbuilding"},
+    {"id":"narrative","label":"Narration & Écriture"},
+    {"id":"cinema","label":"Cinéma & Mise en scène"},
+    {"id":"humanities","label":"Histoire, Humanités & Sociétés"},
+    {"id":"architecture","label":"Architecture, Arts & Culture matérielle"},
+    {"id":"sciences","label":"Sciences & Nature"},
+    {"id":"game_design","label":"Game Design & Systèmes"},
+    {"id":"audiovisual","label":"Art, Son & Production audiovisuelle"},
+    {"id":"ux","label":"UX, Interface & Expérience joueur"},
+    {"id":"technology","label":"Technologie & Production du jeu"}
+  ],
+  "architecture_world": {
+    "collection":"architecture",
+    "concept_id":"world_architecture",
+    "facets":[
+      "region_civilization","historical_period","building_type","materials",
+      "construction_techniques","structure","plans","proportions","facades",
+      "openings","roofing","circulation","ornamentation","symbolism",
+      "climate_adaptation","ageing_ruins","fortifications","underground_architecture"
+    ]
+  },
+  "science_facets":[
+    "astronomy","geology","geomorphology","climatology","meteorology",
+    "hydrology","physics","mechanics","chemistry","metallurgy","biology",
+    "botany","zoology","anatomy","medicine","ecology","evolution","paleontology"
+  ]
+}
