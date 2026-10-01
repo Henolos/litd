@@ -97,7 +97,7 @@ small {{ color:#8b949e; }}
 <section><h2>Current snapshot</h2><table>{body}</table></section>
 <section><h2>Domains &amp; views</h2><table><thead><tr><th>ID</th><th>Type</th><th>Authority scope</th><th>Status</th></tr></thead><tbody>{view_rows}</tbody></table></section>
 <section><h2>Operational evidence</h2><p class="note">{_text(semantics)}</p><table><thead><tr><th>View</th><th>Signal</th><th>Evidence</th><th>Run</th><th>Event</th><th>Head SHA</th><th>Updated</th></tr></thead><tbody>{indicator_rows}</tbody></table></section>
-<section><h2>Sources</h2><ul>{source_items}</ul></section>
+<section><h2>External services</h2><p class="note">{_text(external_semantics)}</p><table><thead><tr><th>View</th><th>Service</th><th>State</th><th>Visibility</th><th>Region</th><th>Security advisories</th><th>Performance advisories</th><th>Observed</th></tr></thead><tbody>{external_rows}</tbody></table></section>\n<section><h2>Sources</h2><ul>{source_items}</ul></section>
 </body>
 </html>
 """
