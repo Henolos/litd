@@ -122,4 +122,11 @@ def test_escapes_operational_indicator_values():
     page = render(snapshot)
     assert "<svg onload=alert(1)>" not in page
     assert "&lt;svg onload=alert(1)&gt;" in page
-\n\ndef test_escapes_external_service_values():\n    snapshot = _snapshot()\n    snapshot["external_services"]["observations"][0]["service"] = "<script>alert(1)</script>"\n    page = render(snapshot)\n    assert "<script>alert(1)</script>" not in page\n    assert "&lt;script&gt;alert(1)&lt;/script&gt;" in page\n
+\n
+
+def test_escapes_external_service_values():
+    snapshot = _snapshot()
+    snapshot["external_services"]["observations"][0]["service"] = "<script>alert(1)</script>"
+    page = render(snapshot)
+    assert "<script>alert(1)</script>" not in page
+    assert "&lt;script&gt;alert(1)&lt;/script&gt;" in page
