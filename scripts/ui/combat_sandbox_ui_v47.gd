@@ -3,6 +3,7 @@ extends "res://scripts/ui/main_v50_ge01.gd"
 # Combat Sandbox 0.1 interactif, isolé au-dessus de la pile UI actuelle.
 
 const SANDBOX_RUNTIME_SCRIPT := preload("res://scripts/core/veilleurs_combat_sandbox_runtime.gd")
+const SANDBOX_TARGET_RESOLVER := preload("res://scripts/core/combat/veilleurs_target_resolver.gd")
 
 var _sandbox: RefCounted = SANDBOX_RUNTIME_SCRIPT.new()
 var _sandbox_started := false
@@ -145,9 +146,14 @@ func _render_sandbox_zones() -> void:
     grid.add_theme_constant_override("h_separation", 5)
     grid.add_theme_constant_override("v_separation", 5)
     box.add_child(grid)
-    for zone in ["head", "torso", "left_arm", "right_arm", "left_leg", "right_leg"]:
-        var selected := str(zone) == _sandbox_selected_zone
-        var button := make_button(("◆ " if selected else "") + _zone_label_context(str(zone)), func(z = zone): _sandbox_select_zone(str(z)), Vector2(190, 42))
+    var action := _sandbox_selected_action_data()
+    var zones: Array[String] = SANDBOX_TARGET_RESOLVER.body_zones_for_action(action)
+    if zones.is_empty():
+        zones = SANDBOX_TARGET_RESOLVER.ZONES.duplicate()
+    for zone: String in zones:
+        var selected := zone == _sandbox_selected_zone
+        var button := make_button(("◆ " if selected else "") + SANDBOX_TARGET_RESOLVER.body_zone_label(zone), func(z = zone): _sandbox_select_zone(str(z)), Vector2(190, 42))
+        button.disabled = not action.is_empty() and not SANDBOX_TARGET_RESOLVER.requires_body_zone(action)
         grid.add_child(button)
 
 func _render_sandbox_controls() -> void:
@@ -186,7 +192,15 @@ func _sandbox_select_target(index: int) -> void:
     show_screen("combat_sandbox")
 
 func _sandbox_select_zone(zone: String) -> void:
-    _sandbox_selected_zone = zone
+    var action := _sandbox_selected_action_data()
+    var normalized := SANDBOX_TARGET_RESOLVER.normalize_zone(zone)
+    if not action.is_empty() and SANDBOX_TARGET_RESOLVER.requires_body_zone(action):
+        var enemies: Array = _sandbox.get("enemies")
+        if _sandbox_selected_target < 0 or _sandbox_selected_target >= enemies.size():
+            return
+        if not SANDBOX_TARGET_RESOLVER.can_target_body_zone(action, enemies[_sandbox_selected_target], normalized):
+            return
+    _sandbox_selected_zone = normalized
     show_screen("combat_sandbox")
 
 func _sandbox_execute() -> void:
