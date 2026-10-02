@@ -4,6 +4,7 @@ class_name VeilleursEnemyAIV3
 const PSYCH_ROLES: Array[String] = ["psych", "psych_support"]
 const CONTROL_ROLES: Array[String] = ["controller", "controller_tank"]
 const ANATOMY_ROLES: Array[String] = ["anatomy", "execution", "hunter"]
+const TARGET_RESOLVER := preload("res://scripts/core/combat/veilleurs_target_resolver.gd")
 
 func decide(runtime: Variant, enemy_id: String) -> Dictionary:
     var decision: Dictionary = super.decide(runtime, enemy_id)
@@ -123,3 +124,89 @@ func _weaker_of(target: Dictionary, a: String, b: String) -> String:
     var a_level := int(str(states.get(a, "L0")).trim_prefix("L"))
     var b_level := int(str(states.get(b, "L0")).trim_prefix("L"))
     return a if a_level >= b_level else b
+
+
+# Rank-based adapter used by the current main combat loop. It keeps the V3
+# tactical priorities (role, wounds, memory/adaptations) while consuming the
+# canonical target candidate list instead of maintaining another target ruleset.
+func choose_rank_target_index(enemy: Dictionary, heroes: Array, target_mode: String = "random", round_value: int = 1) -> int:
+    var candidates: Array[int] = TARGET_RESOLVER.enemy_targetable_indices(enemy, {"target": target_mode}, heroes)
+    if candidates.is_empty():
+        return -1
+
+    var role := str(enemy.get("combat_role", enemy.get("archetype", "assault")))
+    var memory := _memory_state(enemy)
+    var stage := str(memory.get("stage", enemy.get("remanence_stage", "normal")))
+    var adaptations: Array = memory.get("adaptations", enemy.get("adaptations", enemy.get("remanence_adaptations", [])))
+
+    var best_index := candidates[0]
+    var best_score := -INF
+    for index: int in candidates:
+        var hero: Dictionary = heroes[index]
+        var score := _rank_target_score(enemy, hero, role, target_mode, stage, adaptations, round_value)
+        if score > best_score:
+            best_score = score
+            best_index = index
+    return best_index
+
+func _rank_target_score(enemy: Dictionary, hero: Dictionary, role: String, target_mode: String, stage: String, adaptations: Array, round_value: int) -> float:
+    var hp_ratio := _hp_ratio(hero)
+    var distance := _rank_distance(enemy, hero)
+    var score := 100.0 - float(distance) * 8.0
+
+    if PREDATOR_ROLES.has(role):
+        score += (1.0 - hp_ratio) * 65.0
+        score += _rank_wound_pressure(hero)
+    if role == "ranged":
+        score += 12.0 if distance >= 2 and distance <= 4 else 0.0
+    if role in ["controller", "psych", "psych_support"]:
+        var stats: Dictionary = hero.get("stats", {})
+        var resolve_value := float(stats.get("RES", hero.get("resolve", 60)))
+        score += (100.0 - resolve_value) * 0.25
+        score += float(hero.get("fear", 0)) * 0.15
+
+    match target_mode:
+        "weakest":
+            score += (1.0 - hp_ratio) * 120.0
+        "fastest":
+            score += float(hero.get("speed", hero.get("mobility", 0))) * 1.2
+        "highest_hope":
+            score += float(hero.get("hope", 0)) * 0.9
+        "highest_precision":
+            score += float(hero.get("precision", 0)) * 0.9
+        "guarding":
+            score += 80.0 if bool(hero.get("guarding", false)) else 0.0
+        "nearest":
+            score -= float(distance) * 18.0
+        "random":
+            score += _stable_rank_jitter(enemy, hero, round_value) * 18.0
+        _:
+            score += _stable_rank_jitter(enemy, hero, round_value) * 4.0
+
+    if adaptations.has("avoid_guard") and bool(hero.get("guarding", false)):
+        score -= 90.0
+    if adaptations.has("pressure_wounded") or stage in ["elite", "nemesis"]:
+        score += (1.0 - hp_ratio) * 55.0
+    if stage == "veteran":
+        score += _stable_rank_jitter(enemy, hero, round_value) * 6.0
+    return score
+
+func _rank_distance(enemy: Dictionary, hero: Dictionary) -> int:
+    # Both formations encode 0 as their frontline. Front-to-front therefore has
+    # distance 1; moving either combatant toward its backline increases range.
+    return 1 + clampi(int(enemy.get("combat_position", 0)), 0, 3) + clampi(int(hero.get("combat_position", 0)), 0, 3)
+
+func _rank_wound_pressure(hero: Dictionary) -> float:
+    var pressure := 0.0
+    if str(hero.get("bleeding_state", hero.get("bleeding", "none"))) not in ["", "none", "0"]:
+        pressure += 10.0
+    if str(hero.get("pain_state", "controlled")) in ["strong", "severe", "unbearable"]:
+        pressure += 8.0
+    if int(hero.get("hp", 0)) * 2 <= int(hero.get("max_hp", 1)):
+        pressure += 12.0
+    return pressure
+
+func _stable_rank_jitter(enemy: Dictionary, hero: Dictionary, round_value: int) -> float:
+    var enemy_id := str(enemy.get("combat_uid", enemy.get("id", enemy.get("name", "enemy"))))
+    var hero_id := str(hero.get("id", hero.get("name", "hero")))
+    return float(posmod(("%s:%s:%d" % [enemy_id, hero_id, round_value]).hash(), 1000)) / 999.0
