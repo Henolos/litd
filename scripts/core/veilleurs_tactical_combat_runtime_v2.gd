@@ -68,6 +68,35 @@ func resolve_skill(attacker_id: String, target_id: String, skill_id: String, zon
         return {"ok":false, "reason":"out_of_range", "distance":current_distance, "required_range":required_range, "skill_id":skill_id}
     return _resolve_damage_v2(attacker_id, target_id, skill, zone, forced_roll)
 
+func preview_skill(attacker_id: String, target_id: String, skill_id: String, zone: String = "torso") -> Dictionary:
+    if not combatants.has(attacker_id) or not combatants.has(target_id):
+        return {"ok":false, "reason":"unknown_combatant"}
+    var skill: Dictionary = content_db.skill(skill_id)
+    if skill.is_empty() or str(skill.get("entity_id", "")) != attacker_id:
+        return {"ok":false, "reason":"skill_not_owned"}
+    var action := skill_behavior.effective_action(skill)
+    var target_verdict := TARGET_RESOLVER_SCRIPT.validate_tactical_target(self, attacker_id, target_id, skill)
+    if not bool(target_verdict.get("ok", false)):
+        target_verdict["skill_id"] = skill_id
+        return target_verdict
+    var result := target_verdict.duplicate(true)
+    result["skill_id"] = skill_id
+    result["action"] = action
+    result["zone"] = TARGET_RESOLVER_SCRIPT.normalize_zone(zone)
+    if action in ["passive_modifier", "guard", "heal", "support", "observe", "psychological", "control", "move", "transform"]:
+        result["non_damage"] = true
+        return result
+    var attacker: Dictionary = combatants[attacker_id]
+    var target: Dictionary = combatants[target_id]
+    var zone_mods: Dictionary = content_db.combat_constants.get("zone_accuracy_mod", {})
+    var clamps: Dictionary = content_db.combat_constants.get("hit_clamp", {})
+    var hit_preview: Dictionary = HIT_RESOLVER_SCRIPT.resolve_tactical(attacker, skill, target, str(result["zone"]), zone_mods, clamps, int(attacker.get("accuracy_bonus", 0)), int(target.get("evasive_bonus", 0)), _has_status(target, "EXPOSED"), 100, "")
+    var damage_preview: Dictionary = DAMAGE_RESOLVER_SCRIPT.resolve_tactical_skill(attacker, skill, target, _has_status(target, "EXPOSED"))
+    result["hit_chance"] = int(hit_preview.get("accuracy", 0))
+    result["damage"] = int(damage_preview.get("damage", 0))
+    result["critical_chance"] = clampi(int(attacker.get("critical_chance", 0)), 0, 75)
+    return result
+
 func enemy_step(enemy_id: String) -> Dictionary:
     if not combatants.has(enemy_id) or str((combatants[enemy_id] as Dictionary).get("team", "")) != "enemy":
         return {"ok":false, "reason":"not_enemy"}
