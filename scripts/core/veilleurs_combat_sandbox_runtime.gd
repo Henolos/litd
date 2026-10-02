@@ -95,6 +95,9 @@ func perform_action(action_id: String, target_index: int, zone: String = "torso"
         if str(result.get("kind", "")) == "attack":
             result["combat_event"] = COMBAT_EVENT.from_attack(hero, {"id":str(result.get("target", ""))}, result)
             combat_inspector.record(result["combat_event"], {"round":round, "source":"sandbox"})
+        elif str(result.get("kind", "")) == "affliction" and bool(result.get("hit", false)):
+            result["combat_event"] = COMBAT_EVENT.make("status_applied", str(hero.get("id", "")), str(result.get("target", "")), result)
+            combat_inspector.record(result["combat_event"], {"round":round, "source":"sandbox"})
     return result
 
 func combat_trace() -> Array[Dictionary]:
@@ -116,7 +119,11 @@ func move_hero(hero_index: int, destination_slot: int, ap_cost: int = 1) -> Dict
     if other_index >= 0: heroes[other_index]["formation_slot"] = origin
     hero["formation_slot"] = destination_slot
     hero["ap"] = int(hero.get("ap", 0)) - ap_cost
-    return {"ok":true,"kind":"formation","from":origin,"to":destination_slot,"swapped":other_index >= 0,"remaining_ap":hero["ap"]}
+    var result := {"ok":true,"kind":"formation","from":origin,"to":destination_slot,"swapped":other_index >= 0,"remaining_ap":hero["ap"]}
+    var event := COMBAT_EVENT.make("position_changed", str(hero.get("id", "")), str(hero.get("id", "")), result)
+    result["combat_event"] = event
+    combat_inspector.record(event, {"round":round, "source":"formation"})
+    return result
 
 func apply_persistent_control(enemy_index: int, control_state: String, duration_rounds: int, accuracy_penalty: int = 10) -> Dictionary:
     if enemy_index < 0 or enemy_index >= enemies.size(): return {"ok":false,"reason":"invalid_enemy"}
