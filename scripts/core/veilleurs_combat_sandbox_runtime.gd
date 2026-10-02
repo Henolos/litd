@@ -9,6 +9,7 @@ const ANATOMY_RESOLVER := preload("res://scripts/core/combat/veilleurs_anatomy_r
 const STATUS_RESOLVER := preload("res://scripts/core/combat/veilleurs_status_resolver.gd")
 const REACTION_RESOLVER := preload("res://scripts/core/combat/veilleurs_reaction_resolver.gd")
 const COMBAT_EVENT := preload("res://scripts/core/combat/veilleurs_combat_event.gd")
+const TARGET_RESOLVER := preload("res://scripts/core/combat/veilleurs_target_resolver.gd")
 
 var heroes: Array[Dictionary] = []
 var enemies: Array[Dictionary] = []
@@ -64,7 +65,11 @@ func perform_action(action_id: String, target_index: int, zone: String = "torso"
         if target_index < 0 or target_index >= enemies.size(): return {"ok":false,"reason":"invalid_target"}
         var target: Dictionary = enemies[target_index]
         if int(target.get("hp", 0)) <= 0: return {"ok":false,"reason":"target_dead"}
-        result = _resolve_enemy_action(hero, action, target, zone)
+        var contract := TARGET_RESOLVER.validate_target_contract(hero, action, target, enemies, zone)
+        if not bool(contract.get("ok", false)):
+            return contract
+        var resolved_zone := str(contract.get("zone", zone))
+        result = _resolve_enemy_action(hero, action, target, resolved_zone)
         if bool(result.get("ok", false)):
             result["ai_reaction"] = _enemy_observe_and_react(target, hero, action, zone, result)
     elif target_type == "ally":
