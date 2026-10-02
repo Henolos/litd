@@ -4,7 +4,7 @@ extends "res://scripts/ui/main_v31.gd"
 # Les attaques ont une portée de cible, la ligne avant protège les rangs profonds,
 # et certaines techniques repoussent ou attirent leur cible après avoir touché.
 
-const COMBAT_TARGETING_RULES := preload("res://scripts/core/combat_targeting_rules.gd")
+const COMBAT_TARGETING_RULES := preload("res://scripts/core/combat/veilleurs_target_resolver.gd")
 
 func show_combat() -> void:
     _ensure_enemy_tactical_positions()
