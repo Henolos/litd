@@ -5,6 +5,7 @@ const TEST_SCRIPTS := [
     "res://scripts/tests/veilleurs_status_resolver_contract_test.gd",
     "res://scripts/tests/veilleurs_reaction_resolver_contract_test.gd",
     "res://scripts/tests/veilleurs_combat_command_event_contract_test.gd",
+    "res://scripts/tests/veilleurs_combat_inspector_contract_test.gd",
     "res://scripts/tests/veilleurs_target_resolver_contract_test.gd"
 ]
 
