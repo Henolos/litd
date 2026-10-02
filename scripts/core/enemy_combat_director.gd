@@ -1,8 +1,10 @@
 extends Node
 
 const AI_V3_SCRIPT := preload("res://scripts/core/veilleurs_enemy_ai_v3.gd")
+const POSITION_RUNTIME_SCRIPT := preload("res://scripts/core/combat_position_runtime.gd")
 
 var enemy_ai_v3: VeilleursEnemyAIV3 = AI_V3_SCRIPT.new()
+var position_runtime := POSITION_RUNTIME_SCRIPT.new()
 var data: Dictionary = {}
 var skills: Array = []
 var archetype_rules: Array = []
@@ -26,9 +28,28 @@ func archetype(enemy: Dictionary) -> String:
     return String(enemy.get("archetype", "any"))
 
 func choose_action(enemy: Dictionary, heroes: Array) -> Dictionary:
-    var flee_action := _ge01_flee_action(enemy)
-    if not flee_action.is_empty():
-        return flee_action
+    var allies: Array = GameState.alive_enemies()
+    var decision := enemy_ai_v3.decide_rank_action(enemy, heroes, allies, maxi(1, int(GameState.battle_rounds)))
+
+    match str(decision.get("action", "attack")):
+        "flee":
+            var flee_action := _ge01_flee_action(enemy)
+            if not flee_action.is_empty():
+                flee_action["decision_reason"] = str(decision.get("reason", "critical_survival"))
+                return flee_action
+        "move":
+            var move_action := position_runtime.enemy_move_action(enemy, GameState.battle_enemies)
+            if not move_action.is_empty():
+                move_action["decision_reason"] = str(decision.get("reason", "restore_role_position"))
+                return move_action
+        "support":
+            var support_action := _support_action(enemy, heroes)
+            if not support_action.is_empty():
+                support_action["decision_reason"] = str(decision.get("reason", "ally_critical"))
+                return support_action
+        "hold":
+            return {"id":"hold","name":"Attente","power":0.0,"target":"none","hold":true,"decision_reason":str(decision.get("reason","hold"))}
+
     var candidates: Array[Dictionary] = []
     var enemy_archetype := archetype(enemy)
     for skill_value: Variant in skills:
@@ -50,6 +71,30 @@ func choose_action(enemy: Dictionary, heroes: Array) -> Dictionary:
     chosen = _apply_remanence_action(enemy, chosen)
     chosen = NgPlusCycleDirector.modify_enemy_action(chosen, enemy, heroes)
     chosen["target_index"] = _target_index(enemy, heroes, String(chosen.get("target", "random")))
+    return chosen
+
+func _support_action(enemy: Dictionary, heroes: Array) -> Dictionary:
+    var enemy_archetype := archetype(enemy)
+    var support_candidates: Array[Dictionary] = []
+    for skill_value: Variant in skills:
+        if not skill_value is Dictionary:
+            continue
+        var skill: Dictionary = skill_value
+        var allowed: Array = skill.get("archetypes", [])
+        if not allowed.has("any") and not allowed.has(enemy_archetype):
+            continue
+        if not _requirements_met(enemy, skill.get("requires", {})):
+            continue
+        var is_support := str(skill.get("self_status", "")) != "" or float(skill.get("power", 1.0)) <= 0.7 and int(skill.get("fear_damage", 0)) > 0
+        if is_support:
+            support_candidates.append(skill)
+    if support_candidates.is_empty():
+        return {}
+    var chosen := support_candidates[posmod((str(enemy.get("combat_uid", enemy.get("id", ""))) + str(GameState.battle_rounds)).hash(), support_candidates.size())].duplicate(true)
+    chosen = _apply_remanence_action(enemy, chosen)
+    chosen = NgPlusCycleDirector.modify_enemy_action(chosen, enemy, heroes)
+    chosen["target_index"] = _target_index(enemy, heroes, String(chosen.get("target", "random")))
+    chosen["support"] = true
     return chosen
 
 func _ge01_flee_action(enemy: Dictionary) -> Dictionary:
