@@ -85,8 +85,13 @@ static func can_target_body_zone(action: Dictionary, target: Dictionary, zone: S
     var normalized := normalize_zone(zone)
     return body_zones_for_action(action, target).has(normalized)
 
+static func uses_rank_targeting(action: Dictionary) -> bool:
+    return str(action.get("effect", "")) == "attack" or action.has("source_stat") or action.has("branch")
+
 static func validate_target_contract(hero: Dictionary, action: Dictionary, enemy: Dictionary, enemies: Array, zone: String = "") -> Dictionary:
-    if not can_target(hero, action, enemy, enemies):
+    if enemy.is_empty() or int(enemy.get("hp", 0)) <= 0:
+        return {"ok": false, "reason": "enemy_not_targetable"}
+    if uses_rank_targeting(action) and not can_target(hero, action, enemy, enemies):
         return {"ok": false, "reason": "enemy_not_targetable"}
     if requires_body_zone(action):
         if zone == "":
