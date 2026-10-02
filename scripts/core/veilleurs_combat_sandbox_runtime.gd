@@ -11,6 +11,7 @@ const REACTION_RESOLVER := preload("res://scripts/core/combat/veilleurs_reaction
 const COMBAT_EVENT := preload("res://scripts/core/combat/veilleurs_combat_event.gd")
 const COMBAT_COMMAND := preload("res://scripts/core/combat/veilleurs_combat_command.gd")
 const TARGET_RESOLVER := preload("res://scripts/core/combat/veilleurs_target_resolver.gd")
+const DEATH_RESOLVER := preload("res://scripts/core/combat/veilleurs_death_resolver.gd")
 
 var heroes: Array[Dictionary] = []
 var enemies: Array[Dictionary] = []
@@ -43,6 +44,7 @@ func setup() -> Dictionary:
         enemy["hp"] = int(enemy.get("max_hp", 1)); enemy["side"] = "enemy"; enemy["vital_state"] = "stable"; enemy["public_vital_state"] = "stable"
         enemy["pain_state"] = "controlled"; enemy["bleeding_state"] = "none"; enemy["psych_state"] = "stable"; enemy["anatomy"] = _fresh_anatomy()
         enemy["afflictions"] = {}
+        enemy["combat_position"] = enemies.size()
         enemy["observed_patterns"] = {}; enemy["control_state"] = "none"; enemy["control_rounds"] = 0
         enemies.append(enemy)
     active_hero_index = 0; round = 1
@@ -256,6 +258,7 @@ func _resolve_enemy_action(hero: Dictionary, action: Dictionary, target: Diction
     target["bleeding_state"] = status_result.get("bleeding_state", target.get("bleeding_state", "none"))
     target["public_vital_state"] = status_result.get("public_vital_state", "stable")
     target["vital_state"] = status_result.get("vital_state", target["public_vital_state"])
+    DEATH_RESOLVER.resolve_actor(target, "enemy", enemies)
     if action.has("affliction"):
         var applied: Dictionary = STATUS_RESOLVER.apply_affliction(target, str(action["affliction"]), int(action.get("duration", 2)))
         if bool(applied.get("ok", false)): target["afflictions"] = applied["afflictions"]
@@ -323,7 +326,9 @@ func _start_afflicted_turn(actor: Dictionary) -> void:
     var tick: Dictionary = STATUS_RESOLVER.start_turn(actor)
     actor["hp"] = maxi(0, int(actor.get("hp", 0)) - int(tick.get("damage", 0)))
     actor["vital_state"] = _vital_label(actor)
-    if str(actor.get("side", "")) == "enemy": actor["public_vital_state"] = actor["vital_state"]
+    var side := str(actor.get("side", ""))
+    DEATH_RESOLVER.resolve_actor(actor, side, enemies if side == "enemy" else [])
+    if side == "enemy": actor["public_vital_state"] = actor["vital_state"]
 
 func _tick_persistent_controls() -> void:
     for enemy in enemies:
