@@ -3,7 +3,6 @@ extends "res://scripts/ui/main_v50_ge01.gd"
 # Combat Sandbox 0.1 interactif, isolé au-dessus de la pile UI actuelle.
 
 const SANDBOX_RUNTIME_SCRIPT := preload("res://scripts/core/veilleurs_combat_sandbox_runtime.gd")
-const SANDBOX_TARGET_RESOLVER := preload("res://scripts/core/combat/veilleurs_target_resolver.gd")
 
 var _sandbox: RefCounted = SANDBOX_RUNTIME_SCRIPT.new()
 var _sandbox_started := false
