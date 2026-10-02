@@ -10,8 +10,10 @@ const ANATOMY_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_an
 const STATUS_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_status_resolver.gd")
 const REACTION_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_reaction_resolver.gd")
 const COMBAT_EVENT_SCRIPT := preload("res://scripts/core/combat/veilleurs_combat_event.gd")
+const COMBAT_INSPECTOR_SCRIPT := preload("res://scripts/core/combat/veilleurs_combat_inspector.gd")
 
 var skill_behavior: VeilleursSkillBehaviorRuntime
+var combat_inspector := COMBAT_INSPECTOR_SCRIPT.new()
 
 func _init() -> void:
     super()
@@ -20,6 +22,7 @@ func _init() -> void:
 
 func setup_first_combat(enemy_ids: Array[String] = ["ENT_ENEMY_GOULE_AFFAMEE", "ENT_ENEMY_ECORCHEUSE", "ENT_ENEMY_FOUISSEUSE"]) -> Dictionary:
     var result: Dictionary = super.setup_first_combat(enemy_ids)
+    combat_inspector.clear()
     if not bool(result.get("ok", false)):
         return result
     var balance: Dictionary = content_db.combat_constants.get("v061_balance", {})
@@ -141,6 +144,7 @@ func _resolve_damage_v2(attacker_id: String, target_id: String, skill: Dictionar
     var roll := int(hit_result.get("roll", 100))
     var result := {"ok":true, "hit":bool(hit_result.get("hit", false)), "roll":roll, "hit_chance":chance, "attacker":attacker_id, "target":target_id, "skill_id":str(skill.get("skill_id", "")), "zone":zone, "action":skill_behavior.effective_action(skill)}
     if not bool(result["hit"]):
+        _record_combat_event(attacker_id, target_id, result, "tactical_v2")
         action_log.append(result.duplicate(true))
         return result
 
@@ -179,9 +183,6 @@ func _resolve_damage_v2(attacker_id: String, target_id: String, skill: Dictionar
     var reaction_hero := attacker.duplicate(true)
     reaction_hero["id"] = attacker_id
     result["canonical_reaction"] = REACTION_RESOLVER_SCRIPT.observe_enemy(reaction_enemy, reaction_hero, zone, result)
-    var event_actor := {"id":attacker_id}
-    var event_target := {"id":target_id}
-    result["canonical_event"] = COMBAT_EVENT_SCRIPT.from_attack(event_actor, event_target, result)
     if bool(redirected.get("redirected", false)):
         result["protection_redirect"] = redirected
     var forced_move := int(effect.get("forced_move", 0))
@@ -189,9 +190,13 @@ func _resolve_damage_v2(attacker_id: String, target_id: String, skill: Dictionar
         result["forced_move"] = _push_away(attacker_id, target_id, forced_move)
     combatants[target_id] = target
     result = skill_behavior.apply_post_damage(self, attacker_id, target_id, skill, zone, result)
+    _record_combat_event(attacker_id, target_id, result, "tactical_v2")
     action_log.append(result.duplicate(true))
     return result
 
+
+func combat_trace() -> Array[Dictionary]:
+    return combat_inspector.entries()
 
 func _enemy_role_attack(attacker_id: String, target_id: String, decision: Dictionary) -> Dictionary:
     var attacker: Dictionary = combatants[attacker_id]
@@ -206,6 +211,7 @@ func _enemy_role_attack(attacker_id: String, target_id: String, decision: Dictio
     var roll := int(hit_result.get("roll", 100))
     var result := {"ok":true, "action":"attack", "attacker":attacker_id, "target":target_id, "attack_kind":attack_kind, "zone":zone, "roll":roll, "hit_chance":chance, "hit":bool(hit_result.get("hit", false)), "decision_reason":str(decision.get("reason", "tactical_attack")), "memory_used":bool(decision.get("memory_used", false))}
     if not bool(result["hit"]):
+        _record_combat_event(attacker_id, target_id, result, "enemy_role")
         action_log.append(result.duplicate(true))
         return result
 
@@ -220,6 +226,7 @@ func _enemy_role_attack(attacker_id: String, target_id: String, decision: Dictio
         result["resolve_delta"] = -pressure
         result["psych_resistance"] = psych_resistance
         result["target_resolve"] = int(target["resolve_current"])
+        _record_combat_event(attacker_id, target_id, result, "enemy_role")
         action_log.append(result.duplicate(true))
         return result
 
@@ -240,8 +247,16 @@ func _enemy_role_attack(attacker_id: String, target_id: String, decision: Dictio
     if bool(redirected.get("redirected", false)):
         result["protection_redirect"] = redirected
     combatants[target_id] = target
+    _record_combat_event(attacker_id, target_id, result, "enemy_role")
     action_log.append(result.duplicate(true))
     return result
+
+func _record_combat_event(attacker_id: String, target_id: String, result: Dictionary, source: String) -> void:
+    var event_actor := {"id":attacker_id}
+    var event_target := {"id":target_id}
+    var event := COMBAT_EVENT_SCRIPT.from_attack(event_actor, event_target, result)
+    result["canonical_event"] = event
+    combat_inspector.record(event, {"round":round_index, "source":source})
 
 func _redirect_damage_if_protected(target_id: String, incoming: int) -> Dictionary:
     var target: Dictionary = combatants.get(target_id, {})
