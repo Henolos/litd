@@ -29,6 +29,7 @@ func _init() -> void:
 
     var summary := inspector.summary()
     assert(int(summary.entries) == 2)
+    assert(int(summary.dropped_entries) == 1)
     assert(int(summary.by_type.status_applied) == 1)
     assert(int(summary.by_source.formation) == 1)
 
