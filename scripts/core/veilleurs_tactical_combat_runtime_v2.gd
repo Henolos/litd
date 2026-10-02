@@ -10,6 +10,7 @@ const ANATOMY_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_an
 const STATUS_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_status_resolver.gd")
 const REACTION_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_reaction_resolver.gd")
 const COMBAT_EVENT_SCRIPT := preload("res://scripts/core/combat/veilleurs_combat_event.gd")
+const EQUIPMENT_PROC_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_equipment_proc_resolver.gd")
 
 var skill_behavior: VeilleursSkillBehaviorRuntime
 
@@ -187,6 +188,11 @@ func _resolve_damage_v2(attacker_id: String, target_id: String, skill: Dictionar
     var forced_move := int(effect.get("forced_move", 0))
     if forced_move > 0:
         result["forced_move"] = _push_away(attacker_id, target_id, forced_move)
+    var equipment_proc: Dictionary = EQUIPMENT_PROC_RESOLVER_SCRIPT.resolve_after_hit(attacker, target, roll_seed)
+    target = equipment_proc.get("target", target)
+    var proc_events: Array = equipment_proc.get("events", [])
+    if not proc_events.is_empty():
+        result["equipment_procs"] = proc_events
     combatants[target_id] = target
     result = skill_behavior.apply_post_damage(self, attacker_id, target_id, skill, zone, result)
     action_log.append(result.duplicate(true))
