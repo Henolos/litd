@@ -258,9 +258,7 @@ func _resolve_enemy_action(hero: Dictionary, action: Dictionary, target: Diction
     target["bleeding_state"] = status_result.get("bleeding_state", target.get("bleeding_state", "none"))
     target["public_vital_state"] = status_result.get("public_vital_state", "stable")
     target["vital_state"] = status_result.get("vital_state", target["public_vital_state"])
-    var death_result: Dictionary = DEATH_RESOLVER.resolve_actor(target, "enemy", enemies)
-    if bool(death_result.get("died", false)) or bool(death_result.get("formation_changed", false)):
-        result["death"] = death_result
+    DEATH_RESOLVER.resolve_actor(target, "enemy", enemies)
     if action.has("affliction"):
         var applied: Dictionary = STATUS_RESOLVER.apply_affliction(target, str(action["affliction"]), int(action.get("duration", 2)))
         if bool(applied.get("ok", false)): target["afflictions"] = applied["afflictions"]
@@ -329,7 +327,7 @@ func _start_afflicted_turn(actor: Dictionary) -> void:
     actor["hp"] = maxi(0, int(actor.get("hp", 0)) - int(tick.get("damage", 0)))
     actor["vital_state"] = _vital_label(actor)
     var side := str(actor.get("side", ""))
-    var death_result: Dictionary = DEATH_RESOLVER.resolve_actor(actor, side, enemies if side == "enemy" else [])
+    DEATH_RESOLVER.resolve_actor(actor, side, enemies if side == "enemy" else [])
     if side == "enemy": actor["public_vital_state"] = actor["vital_state"]
 
 func _tick_persistent_controls() -> void:
