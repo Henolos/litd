@@ -5,6 +5,7 @@ const CONFIRM_WINDOW_MS := 3200
 const TARGETING_WINDOW_MS := 12000
 const NON_DAMAGE_ACTIONS := ["passive_modifier", "guard", "heal", "support", "observe", "psychological", "control", "move", "transform"]
 const SELF_TARGET_ACTIONS := ["guard", "heal", "support", "passive_modifier", "move", "transform", "observe"]
+const TARGET_RESOLVER := preload("res://scripts/core/combat/veilleurs_target_resolver.gd")
 
 var qa: VeilleursVerticalSliceQAV09
 var preview_layer: CanvasLayer
@@ -187,24 +188,8 @@ func _target_sets(slot: int) -> Dictionary:
     var skill: Dictionary = runtime.content_db.skill(qa.skill_ids[slot])
     if skill.is_empty():
         return {"candidates":candidates, "blocked":blocked}
-    var action := _effective_action(runtime, skill)
-    var required_range := 0
-    if runtime.skill_behavior != null and runtime.skill_behavior.has_method("range_for"):
-        required_range = int(runtime.skill_behavior.range_for(skill))
-
-    for enemy_id: String in runtime.alive_ids("enemy"):
-        if not runtime.combatants.has(enemy_id):
-            continue
-        var row: Dictionary = runtime.combatants[enemy_id]
-        if int(row.get("hp", 0)) <= 0 or bool(row.get("subdued", false)):
-            continue
-        var distance := int(runtime.grid.distance(qa.selected_watcher, enemy_id))
-        var selectable := action == "attack_move" or required_range <= 0 or (distance >= 0 and distance <= required_range)
-        if selectable:
-            candidates.append(enemy_id)
-        else:
-            blocked.append(enemy_id)
-    return {"candidates":candidates, "blocked":blocked}
+    var enemy_ids: Array = runtime.alive_ids("enemy")
+    return TARGET_RESOLVER.tactical_target_sets(runtime, qa.selected_watcher, skill, enemy_ids)
 
 func _effective_action(runtime: Variant, skill: Dictionary) -> String:
     var action := str(skill.get("action_type", "attack"))
