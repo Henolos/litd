@@ -210,3 +210,48 @@ func _stable_rank_jitter(enemy: Dictionary, hero: Dictionary, round_value: int) 
     var enemy_id := str(enemy.get("combat_uid", enemy.get("id", enemy.get("name", "enemy"))))
     var hero_id := str(hero.get("id", hero.get("name", "hero")))
     return float(posmod(("%s:%s:%d" % [enemy_id, hero_id, round_value]).hash(), 1000)) / 999.0
+
+
+# Main-combat adapter: V3 now chooses the action family as well as the target.
+# The director still owns the concrete authored skill definitions and execution.
+func decide_rank_action(enemy: Dictionary, heroes: Array, allies: Array, round_value: int = 1) -> Dictionary:
+    if enemy.is_empty() or int(enemy.get("hp", 0)) <= 0:
+        return {"action":"none","reason":"dead"}
+
+    var role := str(enemy.get("combat_role", enemy.get("archetype", "assault")))
+    var hp_ratio := _hp_ratio(enemy)
+    var stage := str(enemy.get("remanence_stage", "normal"))
+
+    if hp_ratio <= 0.18 and not STOIC_ROLES.has(role) and stage != "nemesis":
+        return {"action":"flee","reason":"critical_survival"}
+
+    if SUPPORT_ROLES.has(role):
+        for ally_value: Variant in allies:
+            if not ally_value is Dictionary:
+                continue
+            var ally: Dictionary = ally_value
+            if ally == enemy or int(ally.get("hp", 0)) <= 0:
+                continue
+            if _hp_ratio(ally) < 0.55:
+                return {"action":"support","reason":"ally_critical"}
+
+    var preferred := _rank_preferred_position(enemy, role)
+    var current := clampi(int(enemy.get("combat_position", 0)), 0, 3)
+    if current != preferred:
+        return {"action":"move","reason":"restore_role_position","preferred_position":preferred}
+
+    if heroes.is_empty():
+        return {"action":"hold","reason":"no_target"}
+    return {"action":"attack","reason":"tactical_attack"}
+
+func _rank_preferred_position(enemy: Dictionary, role: String) -> int:
+    var species := str(enemy.get("species_id", ""))
+    if species in ["ash_roamer", "ghoul_hungry", "ghoul_voracious", "mutilated_guardian"]:
+        return 0
+    if species == "ash_bearer":
+        return 1
+    if role in ["ranged", "support", "psych_support"]:
+        return 3
+    if role in ["controller", "psych"]:
+        return 2
+    return 1
