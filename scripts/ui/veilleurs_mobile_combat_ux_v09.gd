@@ -241,27 +241,14 @@ func _show_preview(slot: int) -> void:
     var second_line := ""
 
     if action not in NON_DAMAGE_ACTIONS:
-        var required_range := 0
-        if runtime.skill_behavior != null and runtime.skill_behavior.has_method("range_for"):
-            required_range = int(runtime.skill_behavior.range_for(skill))
-        var distance := int(runtime.grid.distance(qa.selected_watcher, target_id))
-        var chance := 0
-        if runtime.has_method("_hit_chance"):
-            chance = int(runtime.call("_hit_chance", attacker, target, skill, qa.selected_zone))
-            chance += int(attacker.get("accuracy_bonus", 0))
-            chance -= int(target.get("evasive_bonus", 0))
-            var statuses: Dictionary = target.get("statuses", {})
-            if statuses.has("EXPOSED"):
-                chance += 8
-            var clamps: Dictionary = runtime.content_db.combat_constants.get("hit_clamp", {})
-            chance = clampi(chance, int(clamps.get("min_percent", 10)), int(clamps.get("max_percent", 97)))
-        var damage := 0
-        if runtime.has_method("_skill_damage"):
-            damage = int(runtime.call("_skill_damage", attacker, target, skill))
-        var range_text := "%d/%d" % [distance, required_range] if required_range > 0 else str(distance)
-        second_line = "Toucher %d%% · dégâts ~%d · distance %s" % [chance, damage, range_text]
-        if required_range > 0 and (distance < 0 or distance > required_range):
-            second_line = "HORS PORTÉE · " + second_line
+        var preview: Dictionary = runtime.preview_skill(qa.selected_watcher, target_id, skill_id, qa.selected_zone)
+        if not bool(preview.get("ok", false)):
+            second_line = "CIBLE INVALIDE · %s" % str(preview.get("reason", "invalid_target"))
+        else:
+            var distance := int(preview.get("distance", -1))
+            var required_range := int(preview.get("required_range", 0))
+            var range_text := "%d/%d" % [distance, required_range] if required_range > 0 else str(distance)
+            second_line = "Toucher %d%% · dégâts ~%d · distance %s" % [int(preview.get("hit_chance", 0)), int(preview.get("damage", 0)), range_text]
     else:
         var effect: Dictionary = skill.get("effect_spec", {})
         var effect_text := str(effect.get("status", effect.get("effect", action))).replace("_", " ").capitalize()
