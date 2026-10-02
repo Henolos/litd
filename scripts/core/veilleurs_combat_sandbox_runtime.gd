@@ -9,6 +9,7 @@ const ANATOMY_RESOLVER := preload("res://scripts/core/combat/veilleurs_anatomy_r
 const STATUS_RESOLVER := preload("res://scripts/core/combat/veilleurs_status_resolver.gd")
 const REACTION_RESOLVER := preload("res://scripts/core/combat/veilleurs_reaction_resolver.gd")
 const COMBAT_EVENT := preload("res://scripts/core/combat/veilleurs_combat_event.gd")
+const COMBAT_INSPECTOR := preload("res://scripts/core/combat/veilleurs_combat_inspector.gd")
 const COMBAT_COMMAND := preload("res://scripts/core/combat/veilleurs_combat_command.gd")
 const TARGET_RESOLVER := preload("res://scripts/core/combat/veilleurs_target_resolver.gd")
 
@@ -17,13 +18,14 @@ var enemies: Array[Dictionary] = []
 var party_knowledge: Dictionary = {}
 var active_hero_index := 0
 var round := 1
+var combat_inspector := COMBAT_INSPECTOR.new()
 
 func setup() -> Dictionary:
     var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(BRIDGE_PATH))
     if not parsed is Dictionary:
         return {"ok":false,"reason":"invalid_bridge_json"}
     var data: Dictionary = parsed
-    heroes.clear(); enemies.clear(); party_knowledge.clear()
+    heroes.clear(); enemies.clear(); party_knowledge.clear(); combat_inspector.clear()
     for hero_value: Variant in data.get("heroes", []):
         if not hero_value is Dictionary: continue
         var hero: Dictionary = (hero_value as Dictionary).duplicate(true)
@@ -92,7 +94,11 @@ func perform_action(action_id: String, target_index: int, zone: String = "torso"
         _apply_trame_cost(hero, action, result)
         if str(result.get("kind", "")) == "attack":
             result["combat_event"] = COMBAT_EVENT.from_attack(hero, {"id":str(result.get("target", ""))}, result)
+            combat_inspector.record(result["combat_event"], {"round":round, "source":"sandbox"})
     return result
+
+func combat_trace() -> Array[Dictionary]:
+    return combat_inspector.entries()
 
 func move_hero(hero_index: int, destination_slot: int, ap_cost: int = 1) -> Dictionary:
     if hero_index < 0 or hero_index >= heroes.size(): return {"ok":false,"reason":"invalid_hero"}
