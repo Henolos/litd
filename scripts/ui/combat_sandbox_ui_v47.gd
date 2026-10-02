@@ -146,7 +146,7 @@ func _render_sandbox_zones() -> void:
     grid.add_theme_constant_override("h_separation", 5)
     grid.add_theme_constant_override("v_separation", 5)
     box.add_child(grid)
-    var action := _sandbox_selected_action_data()
+    var action := _sandbox_selected_action_data_v47()
     var zones: Array[String] = SANDBOX_V47_TARGET_RESOLVER.body_zones_for_action(action)
     if zones.is_empty():
         zones = SANDBOX_V47_TARGET_RESOLVER.ZONES.duplicate()
@@ -192,7 +192,7 @@ func _sandbox_select_target(index: int) -> void:
     show_screen("combat_sandbox")
 
 func _sandbox_select_zone(zone: String) -> void:
-    var action := _sandbox_selected_action_data()
+    var action := _sandbox_selected_action_data_v47()
     var normalized := SANDBOX_V47_TARGET_RESOLVER.normalize_zone(zone)
     if not action.is_empty() and SANDBOX_V47_TARGET_RESOLVER.requires_body_zone(action):
         var enemies: Array = _sandbox.get("enemies")
@@ -303,3 +303,10 @@ func _zone_label_context(zone: String) -> String:
         "head":"Tête", "torso":"Torse", "left_arm":"Bras gauche",
         "right_arm":"Bras droit", "left_leg":"Jambe gauche", "right_leg":"Jambe droite"
     }.get(zone, zone))
+
+
+func _sandbox_selected_action_data_v47() -> Dictionary:
+    for value: Variant in _sandbox.call("available_actions"):
+        if value is Dictionary and str((value as Dictionary).get("id", "")) == _sandbox_selected_action:
+            return (value as Dictionary).duplicate(true)
+    return {}
