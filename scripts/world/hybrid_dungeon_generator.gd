@@ -1,6 +1,8 @@
 extends RefCounted
 class_name HybridDungeonGenerator
 
+const RUN_SEED := preload("res://scripts/world/dungeon_run_seed.gd")
+
 const RULES_PATH := "res://data/dungeons/hybrid_generation_rules.json"
 
 static func generate_graph(config: Dictionary, run_state: Dictionary = {}) -> Dictionary:
@@ -20,6 +22,8 @@ static func generate_graph(config: Dictionary, run_state: Dictionary = {}) -> Di
             candidate["ok"] = true
             candidate["seed"] = seed_value
             candidate["attempt_index"] = attempt_index
+            candidate["seed_version"] = RUN_SEED.VERSION
+            candidate["stage_seeds"] = RUN_SEED.streams(seed_value)
             candidate["validation"] = validation
             return candidate
 
@@ -399,15 +403,7 @@ static func _resolve_profile(config: Dictionary, rules: Dictionary) -> Dictionar
     return rules.get("default_profiles", {}).get(profile_id, rules.get("default_profiles", {}).get("medium", {}))
 
 static func _compose_seed(config: Dictionary, run_state: Dictionary, attempt_index: int) -> int:
-    var parts := [
-        str(run_state.get("campaign_seed", config.get("campaign_seed", 0))),
-        str(config.get("dungeon_id", "unknown_dungeon")),
-        str(run_state.get("visit_index", config.get("visit_index", 0))),
-        str(run_state.get("difficulty_band", config.get("difficulty_band", "normal"))),
-        str(run_state.get("story_epoch", config.get("story_epoch", 0))),
-        str(attempt_index)
-    ]
-    return "|".join(parts).hash()
+    return RUN_SEED.compose(config, run_state, attempt_index)
 
 static func _load_json(path: String) -> Dictionary:
     if not FileAccess.file_exists(path):

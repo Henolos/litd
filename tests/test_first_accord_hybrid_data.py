@@ -118,3 +118,12 @@ def test_fallback_authored_map_still_exists():
     assert res_path.startswith("res://")
     local = ROOT / res_path.removeprefix("res://")
     assert local.exists()
+
+
+def test_module_pool_fallbacks_resolve_to_existing_authored_pools():
+    cfg = load("first_accord_hybrid_config.json")
+    pools = {module["pool"] for module in load("first_accord_module_library.json")["modules"]}
+    aliases = cfg["module_pool_fallbacks"]
+    requested = {entry["pool"] for entry in cfg["optional_room_pools"] + cfg["secret_room_pools"]}
+    assert set(aliases) == requested - pools
+    assert set(aliases.values()) <= pools

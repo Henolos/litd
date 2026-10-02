@@ -90,6 +90,7 @@ case "$DOMAIN" in
     scene 60 "Guidage des cendres" res://scenes/tests/ash_guidance_smoke.tscn
     ;;
   veilleurs)
+    scene 60 "Pipeline génération graines et modules" res://scenes/tests/dungeon_generation_pipeline_smoke.tscn
     scene 60 "Graphe hybride connecté" res://scenes/tests/hybrid_graph_smoke.tscn
     scene 60 "Premier Accord 1000 graines" res://scenes/tests/first_accord_hybrid_seed_test.tscn
     scene 60 "Premier Accord vestibule physique" res://scenes/tests/first_accord_entry_physical_smoke.tscn
