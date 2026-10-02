@@ -10,6 +10,12 @@ from hashlib import sha256
 from pathlib import Path
 from typing import Any
 
+from tools.quality.replication_outbox import (
+    enqueue_event,
+    init_outbox,
+    pending_count,
+)
+
 
 STAGES = (
     "SOURCE",
@@ -21,6 +27,8 @@ STAGES = (
     "TEST",
     "MEASUREMENT",
 )
+
+KNOWLEDGE_SPACE = "litd"
 
 
 @dataclass(frozen=True)
@@ -35,9 +43,9 @@ class ProvenanceNode:
 class ProvenanceChain:
     """SQLite-backed provenance graph with append-only immutable nodes.
 
-    A chain may stop after routing when knowledge never affects LITD. When it
-    does affect the game, CORE_DECISION must exist before COMMIT, TEST and
-    MEASUREMENT nodes can be appended.
+    SQLite remains the local authority during the Supabase transition. Each
+    provenance append also creates an outbox event in the same transaction so
+    remote synchronization can be retried without mutating historical nodes.
     """
 
     def __init__(self, path: str | Path):
@@ -76,6 +84,7 @@ class ProvenanceChain:
             END;
             """
         )
+        init_outbox(self.connection)
         self.connection.commit()
 
     def close(self) -> None:
@@ -127,23 +136,79 @@ class ProvenanceChain:
                 raise ValueError("evidence_id_mismatch")
 
         payload_hash = self._hash_payload(payload)
-        now = datetime.now(timezone.utc).isoformat()
-        self.connection.execute(
-            "INSERT INTO provenance_nodes(node_id, stage, parent_id, evidence_id, external_ref, payload_json, payload_hash, recorded_at) "
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-            (
-                node_id,
-                stage,
-                parent_id,
-                effective_evidence_id,
-                external_ref,
-                json.dumps(payload, sort_keys=True, ensure_ascii=False),
-                payload_hash,
-                now,
-            ),
-        )
-        self.connection.commit()
+        recorded_at = datetime.now(timezone.utc).isoformat()
+        try:
+            self.connection.execute(
+                "INSERT INTO provenance_nodes(node_id, stage, parent_id, evidence_id, external_ref, payload_json, payload_hash, recorded_at) "
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                (
+                    node_id,
+                    stage,
+                    parent_id,
+                    effective_evidence_id,
+                    external_ref,
+                    json.dumps(payload, sort_keys=True, ensure_ascii=False),
+                    payload_hash,
+                    recorded_at,
+                ),
+            )
+            enqueue_event(
+                self.connection,
+                event_type="provenance_node",
+                event_key=f"provenance:{node_id}",
+                payload={
+                    "space_slug": KNOWLEDGE_SPACE,
+                    "node_id": node_id,
+                    "stage": stage,
+                    "parent_node_id": parent_id,
+                    "evidence_id": effective_evidence_id,
+                    "external_ref": external_ref,
+                    "payload": payload,
+                    "payload_hash": payload_hash,
+                    "recorded_at": recorded_at,
+                },
+            )
+            self.connection.commit()
+        except Exception:
+            self.connection.rollback()
+            raise
         return ProvenanceNode(node_id, stage, parent_id, effective_evidence_id, payload_hash)
+
+    def backfill_replication_outbox(self) -> int:
+        """Queue all pre-outbox provenance nodes without rewriting history."""
+        inserted = 0
+        try:
+            rows = self.connection.execute(
+                "SELECT node_id, stage, parent_id, evidence_id, external_ref, payload_json, payload_hash, recorded_at "
+                "FROM provenance_nodes ORDER BY recorded_at, node_id"
+            ).fetchall()
+            for row in rows:
+                inserted += int(
+                    enqueue_event(
+                        self.connection,
+                        event_type="provenance_node",
+                        event_key=f"provenance:{row['node_id']}",
+                        payload={
+                            "space_slug": KNOWLEDGE_SPACE,
+                            "node_id": row["node_id"],
+                            "stage": row["stage"],
+                            "parent_node_id": row["parent_id"],
+                            "evidence_id": row["evidence_id"],
+                            "external_ref": row["external_ref"],
+                            "payload": json.loads(row["payload_json"]),
+                            "payload_hash": row["payload_hash"],
+                            "recorded_at": row["recorded_at"],
+                        },
+                    )
+                )
+            self.connection.commit()
+        except Exception:
+            self.connection.rollback()
+            raise
+        return inserted
+
+    def pending_replication_count(self) -> int:
+        return pending_count(self.connection)
 
     def trace(self, node_id: str) -> list[ProvenanceNode]:
         nodes: list[ProvenanceNode] = []
@@ -163,7 +228,9 @@ class ProvenanceChain:
         return nodes
 
     def verify_integrity(self) -> bool:
-        rows = self.connection.execute("SELECT * FROM provenance_nodes ORDER BY recorded_at, node_id").fetchall()
+        rows = self.connection.execute(
+            "SELECT * FROM provenance_nodes ORDER BY recorded_at, node_id"
+        ).fetchall()
         for row in rows:
             payload = json.loads(row["payload_json"])
             if self._hash_payload(payload) != row["payload_hash"]:
