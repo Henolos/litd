@@ -56,10 +56,12 @@ def test_02_skills_and_effects_use_the_canonical_veilleurs_contract() -> None:
 
 def test_03_states_and_statuses_are_resolved_in_the_combat_pipeline() -> None:
     sandbox = _text("scripts/core/veilleurs_combat_sandbox_runtime.gd")
+    adapter = _text("scripts/core/combat/veilleurs_combat_sandbox_canonical_adapter.gd")
     status = _text("scripts/core/combat/veilleurs_status_resolver.gd")
 
-    assert 'const STATUS_RESOLVER := preload("res://scripts/core/combat/veilleurs_status_resolver.gd")' in sandbox
-    assert "STATUS_RESOLVER.resolve_after_hit" in sandbox
+    assert 'CANONICAL_ADAPTER.resolve_enemy_action' in sandbox
+    assert 'const STATUS_RESOLVER := preload("res://scripts/core/combat/veilleurs_status_resolver.gd")' in adapter
+    assert "STATUS_RESOLVER.resolve_after_hit" in adapter
     for state in ("pain_state", "bleeding_state", "vital_state", "public_vital_state"):
         assert state in status
 
