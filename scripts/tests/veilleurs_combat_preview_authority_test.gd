@@ -21,7 +21,7 @@ func _ready() -> void:
     for value in skills:
         if value is Dictionary:
             var skill: Dictionary = value
-            var action := runtime.skill_behavior.effective_action(skill)
+            var action: String = str(runtime.skill_behavior.effective_action(skill))
             if action not in ["passive_modifier", "guard", "heal", "support", "observe", "psychological", "control", "move", "transform"]:
                 skill_id = str(skill.get("skill_id", skill.get("id", "")))
                 break
