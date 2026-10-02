@@ -40,9 +40,19 @@ static func validate_graph(graph: Dictionary, config: Dictionary, rules: Diction
         errors.append("no_nodes")
         return {"ok": false, "errors": errors}
 
+    var node_ids: Dictionary = {}
+    for node in nodes:
+        var node_id := str(node.get("id", ""))
+        if node_id == "" or node_ids.has(node_id):
+            errors.append("invalid_or_duplicate_node_id:%s" % node_id)
+        node_ids[node_id] = true
+    for edge in edges:
+        if not node_ids.has(str(edge.get("from", ""))) or not node_ids.has(str(edge.get("to", ""))):
+            errors.append("dangling_edge")
+
     var entry_id := str(graph.get("entry_id", ""))
     var objective_id := str(graph.get("objective_id", ""))
-    if entry_id == "" or objective_id == "":
+    if not node_ids.has(entry_id) or not node_ids.has(objective_id):
         errors.append("missing_entry_or_objective")
     elif not _reachable(entry_id, objective_id, edges, false):
         errors.append("objective_unreachable")
@@ -50,6 +60,22 @@ static func validate_graph(graph: Dictionary, config: Dictionary, rules: Diction
     for mandatory_id in config.get("mandatory_room_ids", []):
         if not _has_node(nodes, str(mandatory_id)):
             errors.append("mandatory_room_missing:%s" % str(mandatory_id))
+        elif not _reachable(entry_id, str(mandatory_id), edges, false):
+            errors.append("mandatory_room_unreachable:%s" % str(mandatory_id))
+        elif not _reachable(str(mandatory_id), objective_id, edges, false):
+            errors.append("mandatory_room_cannot_reach_objective:%s" % str(mandatory_id))
+
+    for node in nodes:
+        var node_id := str(node.get("id", ""))
+        if str(node.get("role", "")) != "secret" and not _reachable(entry_id, node_id, edges, false):
+            errors.append("room_unreachable:%s" % node_id)
+
+    var protected_order: Array = config.get("protected_story_order", [])
+    for i in range(protected_order.size() - 1):
+        if not _reachable(str(protected_order[i]), str(protected_order[i + 1]), edges, false):
+            errors.append("protected_story_order_broken:%s>%s" % [str(protected_order[i]), str(protected_order[i + 1])])
+
+    errors.append_array(validate_protected_path(graph, protected_order))
 
     var secret_ids: Array[String] = []
     for node in nodes:
@@ -69,10 +95,25 @@ static func validate_graph(graph: Dictionary, config: Dictionary, rules: Diction
         errors.append("loop_count_out_of_bounds")
 
     if bool(rules.get("global_constraints", {}).get("physical_retreat_required", true)):
-        if int(graph.get("retreat_count", 0)) <= 0:
+        if _count_flag(nodes, "retreat") <= 0:
             errors.append("no_retreat")
 
     return {"ok": errors.is_empty(), "errors": errors}
+
+static func validate_protected_path(graph: Dictionary, protected_order: Array) -> Array[String]:
+    var errors: Array[String] = []
+    var entry_id := str(graph.get("entry_id", ""))
+    var objective_id := str(graph.get("objective_id", ""))
+    var edges: Array = graph.get("edges", [])
+    # A required story room must dominate the finale: every path visits it,
+    # including paths through secrets after they are discovered.
+    for room_value in protected_order:
+        var room_id := str(room_value)
+        if room_id == entry_id or room_id == objective_id:
+            continue
+        if _reachable(entry_id, objective_id, edges, true, room_id):
+            errors.append("protected_room_bypass:%s" % room_id)
+    return errors
 
 static func apply_remanence(graph: Dictionary, scars: Array) -> Dictionary:
     var copy := graph.duplicate(true)
@@ -118,6 +159,9 @@ static func _build_candidate(config: Dictionary, rules: Dictionary, rng: RandomN
     edges.append(_edge(previous_id, objective_id, "critical"))
 
     _inject_mandatory_rooms(nodes, edges, config)
+    entry_id = str(nodes.front()["id"])
+    objective_id = str(nodes.back()["id"])
+    nodes.back()["objective"] = true
 
     var branch_range: Array = profile.get("branching_target", [1, 2])
     var branch_count := rng.randi_range(int(branch_range[0]), int(branch_range[1]))
@@ -165,27 +209,35 @@ static func _add_branches(nodes: Array, edges: Array, count: int, rng: RandomNum
         edges.append(_edge(str(anchor.get("id", "")), node_id, "branch"))
 
 static func _add_loops(nodes: Array, edges: Array, target: int, rng: RandomNumberGenerator) -> int:
+    var candidates: Array = []
+    var critical_nodes := _critical_nodes(nodes, true)
+    for from_node in nodes:
+        if bool(from_node.get("critical", false)) or str(from_node.get("role", "")) == "secret":
+            continue
+        # Optional rooms are one depth below their critical-path anchor.
+        var anchor_depth := int(from_node.get("depth", 0)) - 1
+        for to_node in critical_nodes:
+            var target_depth := int(to_node.get("depth", 0))
+            if target_depth <= anchor_depth:
+                continue
+            var skips_protected := false
+            for protected_node in critical_nodes:
+                var protected_depth := int(protected_node.get("depth", 0))
+                if bool(protected_node.get("protected", false)) and protected_depth > anchor_depth and protected_depth < target_depth:
+                    skips_protected = true
+                    break
+            if skips_protected:
+                continue
+            var from_id := str(from_node.get("id", ""))
+            var to_id := str(to_node.get("id", ""))
+            if not _edge_exists(edges, from_id, to_id):
+                candidates.append(_edge(from_id, to_id, "loop"))
     var added := 0
-    for _i in target:
-        var optional_nodes: Array = []
-        for node in nodes:
-            if not bool(node.get("critical", false)) and str(node.get("role", "")) != "secret":
-                optional_nodes.append(node)
-        var critical_nodes := _critical_nodes(nodes, true)
-        if optional_nodes.is_empty() or critical_nodes.size() < 3:
-            continue
-        var from_node: Dictionary = optional_nodes[rng.randi_range(0, optional_nodes.size() - 1)]
-        var from_depth := int(from_node.get("depth", 0))
-        var candidates: Array = []
-        for candidate in critical_nodes:
-            if int(candidate.get("depth", 0)) > from_depth:
-                candidates.append(candidate)
-        if candidates.is_empty():
-            continue
-        var to_node: Dictionary = candidates[rng.randi_range(0, candidates.size() - 1)]
-        if not _edge_exists(edges, str(from_node.get("id", "")), str(to_node.get("id", ""))):
-            edges.append(_edge(str(from_node.get("id", "")), str(to_node.get("id", "")), "loop"))
-            added += 1
+    while added < target and not candidates.is_empty():
+        var index := rng.randi_range(0, candidates.size() - 1)
+        edges.append(candidates[index])
+        candidates.remove_at(index)
+        added += 1
     return added
 
 static func _add_secrets(nodes: Array, edges: Array, count: int, rng: RandomNumberGenerator) -> void:
@@ -227,14 +279,34 @@ static func _assign_retreats(nodes: Array, count: int) -> void:
         var index := mini(eligible.size() - 1, int(round(float(i) * stride)))
         eligible[index]["retreat"] = true
 
-static func _inject_mandatory_rooms(nodes: Array, _edges: Array, config: Dictionary) -> void:
-    for mandatory in config.get("mandatory_rooms", []):
+static func _inject_mandatory_rooms(nodes: Array, edges: Array, config: Dictionary) -> void:
+    # Replace generic spine slots instead of appending disconnected story rooms.
+    var mandatory_rooms: Array = config.get("mandatory_rooms", []).duplicate(true)
+    var protected_order: Array = config.get("protected_story_order", [])
+    mandatory_rooms.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+        if not protected_order.is_empty():
+            return protected_order.find(str(a.get("id", ""))) < protected_order.find(str(b.get("id", "")))
+        return int(a.get("preferred_depth", 1)) < int(b.get("preferred_depth", 1)))
+    while nodes.size() < mandatory_rooms.size():
+        nodes.insert(nodes.size() - 1, _node("room_extra_%02d" % nodes.size(), "transit", true, 0))
+    var previous_slot := -1
+    for i in mandatory_rooms.size():
+        var mandatory: Dictionary = mandatory_rooms[i]
         var room_id := str(mandatory.get("id", ""))
-        if room_id == "" or _has_node(nodes, room_id):
+        if room_id == "":
             continue
-        var role := str(mandatory.get("role", "narrative"))
-        var depth := int(mandatory.get("preferred_depth", 1))
-        nodes.append(_node(room_id, role, true, depth))
+        var last_slot := nodes.size() - (mandatory_rooms.size() - i)
+        var slot := clampi(int(mandatory.get("preferred_depth", 1)), previous_slot + 1, last_slot)
+        if not protected_order.is_empty() and room_id == str(protected_order.back()):
+            slot = nodes.size() - 1
+        nodes[slot] = _node(room_id, str(mandatory.get("role", "narrative")), true, slot)
+        nodes[slot]["protected"] = room_id in protected_order
+        previous_slot = slot
+    edges.clear()
+    for i in nodes.size():
+        nodes[i]["depth"] = i
+        if i > 0:
+            edges.append(_edge(str(nodes[i - 1]["id"]), str(nodes[i]["id"]), "critical"))
 
 static func _critical_role_for_index(index: int, length: int) -> String:
     var ratio := float(index) / float(maxi(1, length - 1))
@@ -274,7 +346,7 @@ static func _critical_nodes(nodes: Array, include_objective: bool) -> Array:
     for node in nodes:
         if not bool(node.get("critical", false)):
             continue
-        if not include_objective and str(node.get("role", "")) == "boss":
+        if not include_objective and (bool(node.get("objective", false)) or str(node.get("role", "")) == "boss"):
             continue
         result.append(node)
     return result
@@ -291,7 +363,9 @@ static func _edge_exists(edges: Array, from_id: String, to_id: String) -> bool:
             return true
     return false
 
-static func _reachable(start_id: String, goal_id: String, edges: Array, include_hidden: bool) -> bool:
+static func _reachable(start_id: String, goal_id: String, edges: Array, include_hidden: bool, excluded_id: String = "") -> bool:
+    if excluded_id != "" and (start_id == excluded_id or goal_id == excluded_id):
+        return false
     if start_id == goal_id:
         return true
     var visited: Dictionary = {start_id: true}
@@ -299,6 +373,8 @@ static func _reachable(start_id: String, goal_id: String, edges: Array, include_
     while not queue.is_empty():
         var current: String = str(queue.pop_front())
         for edge in edges:
+            if excluded_id != "" and (str(edge.get("from", "")) == excluded_id or str(edge.get("to", "")) == excluded_id):
+                continue
             if not include_hidden and bool(edge.get("hidden", false)):
                 continue
             if str(edge.get("from", "")) != current:

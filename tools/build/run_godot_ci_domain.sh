@@ -90,6 +90,7 @@ case "$DOMAIN" in
     scene 60 "Guidage des cendres" res://scenes/tests/ash_guidance_smoke.tscn
     ;;
   veilleurs)
+    scene 60 "Graphe hybride connecté" res://scenes/tests/hybrid_graph_smoke.tscn
     scene 0 "Les Veilleurs VS001" res://scenes/tests/veilleurs_vs001_smoke.tscn
     scene 60 "Les Veilleurs VS001 physique" res://scenes/tests/veilleurs_vs001_physical_smoke.tscn
     scene 90 "Les Veilleurs VS001 jouable" res://scenes/tests/veilleurs_vs001_playable_smoke.tscn

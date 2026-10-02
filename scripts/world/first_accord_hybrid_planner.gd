@@ -56,6 +56,8 @@ static func validate_plan(plan: Dictionary, config: Dictionary = {}, library: Di
     if not _reachable(str(protected_order.front()), str(protected_order.back()), edges):
         errors.append("boss_unreachable")
 
+    errors.append_array(HybridDungeonGenerator.validate_protected_path(plan, protected_order))
+
     var module_ids := _module_ids(library)
     for node in nodes:
         var module_id := str(node.get("module_id", ""))

@@ -211,6 +211,7 @@ func _test_proxy_room_materializes_scars() -> void:
     }
     var room := PROXY_ROOM_SCRIPT.new() as Node3D
     add_child(room)
+    var allowed_target_ids: Array[String] = []
     room.configure({
         "id": "smoke_room",
         "dimensions_m": Vector3(12.0, 5.0, 10.0),
@@ -220,7 +221,7 @@ func _test_proxy_room_materializes_scars() -> void:
         "interaction_points": [],
         "remanence_scars": [scar],
         "global_geometry": {"wall": 0.4, "floor": 0.25, "door": [2.4, 3.2]}
-    }, [], false)
+    }, allowed_target_ids, false)
     var scars_root := room.get_node_or_null("RemanenceScars")
     _expect(scars_root != null and scars_root.get_child_count() >= 2, "Une salle proxy doit matérialiser la cicatrice sans asset PC définitif")
     var nearest: Dictionary = room.nearest_interaction_for(room.global_position, 20.0)
