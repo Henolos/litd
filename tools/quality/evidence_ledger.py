@@ -10,8 +10,15 @@ from hashlib import sha256
 from pathlib import Path
 from typing import Any
 
+from tools.quality.replication_outbox import (
+    enqueue_event,
+    init_outbox,
+    pending_count,
+)
+
 PROJECT_ID = "LITD"
 TARGET_ROUTE = "LITD_LIBRARY"
+KNOWLEDGE_SPACE = "litd"
 
 
 @dataclass(frozen=True)
@@ -33,8 +40,10 @@ class LedgerAppendResult:
 class EvidenceLedger:
     """SQLite-backed durable registry for the LITD VEILLEUR V2 ingress path.
 
-    Every evidence and decision row is explicitly bound to the LITD project and
-    LITD library route. The decision ledger is hash-chained and append-only.
+    SQLite remains the local authority during the Supabase transition. Every
+    durable registry/decision write also creates an outbox event in the same
+    SQLite transaction. The outbox can be replayed until Supabase reaches
+    parity, so remote outages cannot erase local evidence history.
     """
 
     def __init__(self, path: str | Path, *, project_id: str = PROJECT_ID, target_route: str = TARGET_ROUTE):
@@ -101,6 +110,7 @@ class EvidenceLedger:
             """
         )
         self._migrate_scope_columns()
+        init_outbox(self.connection)
         self.connection.commit()
 
     def close(self) -> None:
@@ -137,12 +147,38 @@ class EvidenceLedger:
         )
 
     def register_evidence(self, evidence_id: str, canonical_hash: str, source_url: str) -> None:
-        now = datetime.now(timezone.utc).isoformat()
-        self.connection.execute(
-            "INSERT INTO evidence_registry(evidence_id, canonical_hash, source_url, first_seen_at, project_id, target_route) VALUES (?, ?, ?, ?, ?, ?)",
-            (evidence_id, canonical_hash, source_url, now, self.project_id, self.target_route),
-        )
-        self.connection.commit()
+        first_seen_at = datetime.now(timezone.utc).isoformat()
+        payload = {
+            "space_slug": KNOWLEDGE_SPACE,
+            "evidence_id": evidence_id,
+            "canonical_hash": canonical_hash,
+            "source_url": source_url,
+            "first_seen_at": first_seen_at,
+            "project_id": self.project_id,
+            "target_route": self.target_route,
+        }
+        try:
+            self.connection.execute(
+                "INSERT INTO evidence_registry(evidence_id, canonical_hash, source_url, first_seen_at, project_id, target_route) VALUES (?, ?, ?, ?, ?, ?)",
+                (
+                    evidence_id,
+                    canonical_hash,
+                    source_url,
+                    first_seen_at,
+                    self.project_id,
+                    self.target_route,
+                ),
+            )
+            enqueue_event(
+                self.connection,
+                event_type="evidence_registered",
+                event_key=f"evidence:{evidence_id}",
+                payload=payload,
+            )
+            self.connection.commit()
+        except Exception:
+            self.connection.rollback()
+            raise
 
     def _last_hash(self) -> str:
         row = self.connection.execute(
@@ -158,7 +194,7 @@ class EvidenceLedger:
     def append_decision(self, evidence_id: str, decision: str, reason: str) -> LedgerAppendResult:
         previous_hash = self._last_hash()
         recorded_at = datetime.now(timezone.utc).isoformat()
-        payload = {
+        hash_payload = {
             "project_id": self.project_id,
             "target_route": self.target_route,
             "evidence_id": evidence_id,
@@ -167,22 +203,97 @@ class EvidenceLedger:
             "recorded_at": recorded_at,
             "previous_hash": previous_hash,
         }
-        entry_hash = self._entry_hash(payload)
-        cursor = self.connection.execute(
-            "INSERT INTO decision_ledger(evidence_id, decision, reason, recorded_at, project_id, target_route, previous_hash, entry_hash) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-            (
-                evidence_id,
-                decision,
-                reason,
-                recorded_at,
-                self.project_id,
-                self.target_route,
-                previous_hash,
-                entry_hash,
-            ),
-        )
-        self.connection.commit()
-        return LedgerAppendResult(int(cursor.lastrowid), entry_hash, previous_hash)
+        entry_hash = self._entry_hash(hash_payload)
+        try:
+            cursor = self.connection.execute(
+                "INSERT INTO decision_ledger(evidence_id, decision, reason, recorded_at, project_id, target_route, previous_hash, entry_hash) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                (
+                    evidence_id,
+                    decision,
+                    reason,
+                    recorded_at,
+                    self.project_id,
+                    self.target_route,
+                    previous_hash,
+                    entry_hash,
+                ),
+            )
+            sequence = int(cursor.lastrowid)
+            enqueue_event(
+                self.connection,
+                event_type="evidence_decision",
+                event_key=f"decision:{entry_hash}",
+                payload={
+                    **hash_payload,
+                    "space_slug": KNOWLEDGE_SPACE,
+                    "sequence": sequence,
+                    "entry_hash": entry_hash,
+                },
+            )
+            self.connection.commit()
+        except Exception:
+            self.connection.rollback()
+            raise
+        return LedgerAppendResult(sequence, entry_hash, previous_hash)
+
+    def backfill_replication_outbox(self) -> int:
+        """Queue all pre-outbox SQLite history without altering canonical rows."""
+        inserted = 0
+        try:
+            evidence_rows = self.connection.execute(
+                "SELECT evidence_id, canonical_hash, source_url, first_seen_at, project_id, target_route "
+                "FROM evidence_registry ORDER BY first_seen_at, evidence_id"
+            ).fetchall()
+            for row in evidence_rows:
+                inserted += int(
+                    enqueue_event(
+                        self.connection,
+                        event_type="evidence_registered",
+                        event_key=f"evidence:{row['evidence_id']}",
+                        payload={
+                            "space_slug": KNOWLEDGE_SPACE,
+                            "evidence_id": row["evidence_id"],
+                            "canonical_hash": row["canonical_hash"],
+                            "source_url": row["source_url"],
+                            "first_seen_at": row["first_seen_at"],
+                            "project_id": row["project_id"],
+                            "target_route": row["target_route"],
+                        },
+                    )
+                )
+
+            decision_rows = self.connection.execute(
+                "SELECT sequence, evidence_id, decision, reason, recorded_at, project_id, target_route, previous_hash, entry_hash "
+                "FROM decision_ledger ORDER BY sequence"
+            ).fetchall()
+            for row in decision_rows:
+                inserted += int(
+                    enqueue_event(
+                        self.connection,
+                        event_type="evidence_decision",
+                        event_key=f"decision:{row['entry_hash']}",
+                        payload={
+                            "space_slug": KNOWLEDGE_SPACE,
+                            "sequence": row["sequence"],
+                            "evidence_id": row["evidence_id"],
+                            "decision": row["decision"],
+                            "reason": row["reason"],
+                            "recorded_at": row["recorded_at"],
+                            "project_id": row["project_id"],
+                            "target_route": row["target_route"],
+                            "previous_hash": row["previous_hash"],
+                            "entry_hash": row["entry_hash"],
+                        },
+                    )
+                )
+            self.connection.commit()
+        except Exception:
+            self.connection.rollback()
+            raise
+        return inserted
+
+    def pending_replication_count(self) -> int:
+        return pending_count(self.connection)
 
     def verify_chain(self) -> bool:
         previous_hash = "GENESIS"
