@@ -24,7 +24,9 @@ func decide(runtime: Variant, enemy_id: String) -> Dictionary:
         target_id = memory_target
         decision["target"] = target_id
 
-    decision["zone"] = _preferred_zone(runtime.combatants[target_id], role, stage)
+    var preferred_zone := _preferred_zone(runtime.combatants[target_id], role, stage)
+    var ai_action := {"target":"enemy_zone","requires_body_zone":true}
+    decision["zone"] = preferred_zone if TARGET_RESOLVER.can_target_body_zone(ai_action, runtime.combatants[target_id], preferred_zone) else "torso"
     decision["attack_kind"] = "psych" if PSYCH_ROLES.has(role) else ("control" if CONTROL_ROLES.has(role) else "physical")
     decision["memory_stage"] = stage
     decision["adaptations"] = adaptations.duplicate()
