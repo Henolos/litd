@@ -35,3 +35,12 @@ def test_v3_rank_scoring_keeps_role_memory_and_position_inputs():
     assert "func _rank_distance" in AI_V3
     assert 'enemy.get("combat_position", 0)' in AI_V3
     assert 'hero.get("combat_position", 0)' in AI_V3
+
+
+def test_v3_controls_enemy_action_family():
+    assert "func decide_rank_action" in AI_V3
+    for action in ['"flee"', '"support"', '"move"', '"hold"', '"attack"']:
+        assert action in AI_V3
+    assert "enemy_ai_v3.decide_rank_action" in ENEMY_DIRECTOR
+    assert "position_runtime.enemy_move_action" in ENEMY_DIRECTOR
+    assert "func _support_action" in ENEMY_DIRECTOR
