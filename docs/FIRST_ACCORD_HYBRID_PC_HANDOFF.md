@@ -19,10 +19,15 @@ python -m pytest tests -q
 ### 2. Test Godot multi-seeds
 Depuis la racine du projet :
 ```bash
-godot --headless --path . -s res://scripts/tests/first_accord_hybrid_seed_test.gd
+godot --headless --path . res://scenes/tests/first_accord_hybrid_seed_test.tscn
 ```
-Résultat attendu :
-`FIRST_ACCORD_HYBRID_SEEDS_OK tested=80 unique>=4`
+Résultat mesuré le 2 octobre 2026 sous Godot 4.7.2 :
+`FIRST_ACCORD_HYBRID_SEEDS_OK tested=80 unique=80 module_fallbacks=133 stress_tested=1000 stress_fallback_nodes=1711`
+
+Le test est aussi exécuté dans le domaine CI `veilleurs`. Les 1 000 graines
+supplémentaires couvrent plusieurs visites, difficultés et époques. Les 1 711
+modules de secours ont un identifiant, mais ne prouvent ni une scène physique ni
+un raccordement de portes. Le plan reste une préparation logique.
 
 ### 3. Vérification parse/compile Godot
 Ouvrir le projet sous la version Godot retenue par le projet et vérifier l'absence d'erreur de parsing dans :
