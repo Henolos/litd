@@ -37,12 +37,13 @@ Godot: `4.7.2.stable.official.ed1daf0bf`, matching repository CI.
 - `git diff --check`: passed.
 - Smoke included in existing Godot / veilleurs CI domain.
 
-## Existing limitation
+## Integration regression repaired
 
 `remanence_smoke.tscn` prints REMANENCE_SMOKE_OK but also reports a SCRIPT ERROR:
 argument 2 of `dungeon_proxy_room.configure` is an untyped Array rather than the
 required typed Array (`remanence_smoke_test.gd:214`). Reproduced independently
-on unchanged base commit. It is not a passing integration test.
+on unchanged base commit. The test now passes a declared `Array[String]` and
+the rerun has no SCRIPT ERROR; its assertions complete successfully.
 Resource-in-use warnings at full-project shutdown also reproduce on baseline;
 the isolated generator run is clean.
 
