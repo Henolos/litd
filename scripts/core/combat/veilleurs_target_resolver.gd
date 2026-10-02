@@ -58,3 +58,51 @@ static func enemy_targetable_indices(enemy: Dictionary, action: Dictionary, hero
         if int(hero.get("hp", 0)) > 0:
             result.append(index)
     return result
+
+
+static func body_zones_for_action(action: Dictionary, target: Dictionary = {}) -> Array[String]:
+    var explicit_value: Variant = action.get("allowed_body_zones", action.get("target_zones", null))
+    var result: Array[String] = []
+    if explicit_value is Array:
+        for value: Variant in explicit_value:
+            var zone := normalize_zone(str(value))
+            if ZONES.has(zone) and not result.has(zone):
+                result.append(zone)
+        if not result.is_empty():
+            return result
+    if str(action.get("target", "")) == "enemy_zone" or bool(action.get("requires_body_zone", false)):
+        return ZONES.duplicate()
+    return result
+
+static func requires_body_zone(action: Dictionary) -> bool:
+    return str(action.get("target", "")) == "enemy_zone" or bool(action.get("requires_body_zone", false)) or not body_zones_for_action(action).is_empty()
+
+static func can_target_body_zone(action: Dictionary, target: Dictionary, zone: String) -> bool:
+    if not requires_body_zone(action):
+        return true
+    if target.is_empty() or int(target.get("hp", 0)) <= 0:
+        return false
+    var normalized := normalize_zone(zone)
+    return body_zones_for_action(action, target).has(normalized)
+
+static func validate_target_contract(hero: Dictionary, action: Dictionary, enemy: Dictionary, enemies: Array, zone: String = "") -> Dictionary:
+    if not can_target(hero, action, enemy, enemies):
+        return {"ok": false, "reason": "enemy_not_targetable"}
+    if requires_body_zone(action):
+        if zone == "":
+            return {"ok": false, "reason": "body_zone_required"}
+        var normalized := normalize_zone(zone)
+        if not can_target_body_zone(action, enemy, normalized):
+            return {"ok": false, "reason": "body_zone_not_targetable", "zone": normalized}
+        return {"ok": true, "target": enemy, "zone": normalized}
+    return {"ok": true, "target": enemy, "zone": ""}
+
+static func body_zone_label(zone: String) -> String:
+    return str({
+        "head":"Tête",
+        "torso":"Torse",
+        "left_arm":"Bras gauche",
+        "right_arm":"Bras droit",
+        "left_leg":"Jambe gauche",
+        "right_leg":"Jambe droite"
+    }.get(normalize_zone(zone), zone))
