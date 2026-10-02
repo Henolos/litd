@@ -10,6 +10,54 @@ func initialize_battle(heroes: Array, enemies: Array) -> void:
     _assign_missing_positions(heroes)
     _assign_missing_positions(enemies)
 
+func compact_living_formation(characters: Array, side: String = "enemy") -> Dictionary:
+    var living: Array[Dictionary] = []
+    var before: Dictionary = {}
+    for value: Variant in characters:
+        if not value is Dictionary:
+            continue
+        var character: Dictionary = value
+        if int(character.get("hp", 0)) <= 0:
+            continue
+        var runtime_id := str(character.get("combat_uid", character.get("id", character.get("name", ""))))
+        before[runtime_id] = position_of(character)
+        living.append(character)
+
+    living.sort_custom(func(left: Dictionary, right: Dictionary) -> bool:
+        var left_position := position_of(left)
+        var right_position := position_of(right)
+        if left_position == right_position:
+            return str(left.get("combat_uid", left.get("id", ""))) < str(right.get("combat_uid", right.get("id", "")))
+        return left_position < right_position
+    )
+
+    var moved: Array[Dictionary] = []
+    for rank in range(living.size()):
+        var character: Dictionary = living[rank]
+        var origin := position_of(character)
+        var destination := clampi(rank, MIN_SLOT, MAX_SLOT)
+        if origin == destination:
+            continue
+        character["combat_position"] = destination
+        character["last_combat_move"] = {
+            "from": origin,
+            "to": destination,
+            "side": side,
+            "source": "death_compaction"
+        }
+        moved.append({
+            "id": str(character.get("combat_uid", character.get("id", character.get("name", "")))),
+            "from": origin,
+            "to": destination
+        })
+
+    if not moved.is_empty():
+        GameState.state_changed.emit()
+    return {"ok": true, "side": side, "moved": moved, "before": before, "after": formation_snapshot(characters, side)}
+
+func compact_after_death(characters: Array, side: String = "enemy") -> Dictionary:
+    return compact_living_formation(characters, side)
+
 func position_of(character: Dictionary, fallback: int = 0) -> int:
     return clampi(int(character.get("combat_position", fallback)), MIN_SLOT, MAX_SLOT)
 
