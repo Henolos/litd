@@ -1,5 +1,8 @@
 extends Node
 
+const AI_V3_SCRIPT := preload("res://scripts/core/veilleurs_enemy_ai_v3.gd")
+
+var enemy_ai_v3: VeilleursEnemyAIV3 = AI_V3_SCRIPT.new()
 var data: Dictionary = {}
 var skills: Array = []
 var archetype_rules: Array = []
@@ -41,12 +44,12 @@ func choose_action(enemy: Dictionary, heroes: Array) -> Dictionary:
         var fallback := {"id":"basic_attack","name":"Attaque","power":1.0,"target":"random"}
         fallback = _apply_remanence_action(enemy, fallback)
         fallback = NgPlusCycleDirector.modify_enemy_action(fallback, enemy, heroes)
-        fallback["target_index"] = _target_index(heroes, String(fallback.get("target", "random")))
+        fallback["target_index"] = _target_index(enemy, heroes, String(fallback.get("target", "random")))
         return fallback
     var chosen: Dictionary = candidates[randi() % candidates.size()].duplicate(true)
     chosen = _apply_remanence_action(enemy, chosen)
     chosen = NgPlusCycleDirector.modify_enemy_action(chosen, enemy, heroes)
-    chosen["target_index"] = _target_index(heroes, String(chosen.get("target", "random")))
+    chosen["target_index"] = _target_index(enemy, heroes, String(chosen.get("target", "random")))
     return chosen
 
 func _ge01_flee_action(enemy: Dictionary) -> Dictionary:
@@ -142,23 +145,5 @@ func _requirements_met(enemy: Dictionary, requirements: Dictionary) -> bool:
         return false
     return true
 
-func _target_index(heroes: Array, mode: String) -> int:
-    if heroes.is_empty():
-        return -1
-    var best_index := randi() % heroes.size()
-    var best_score := -INF
-    for index in range(heroes.size()):
-        var hero: Dictionary = heroes[index]
-        var score := 0.0
-        match mode:
-            "weakest": score = 1.0 - float(hero.get("hp", 0)) / maxf(1.0, float(hero.get("max_hp", 1)))
-            "fastest": score = float(hero.get("speed", 0))
-            "highest_hope": score = float(hero.get("hope", 0))
-            "highest_precision": score = float(hero.get("precision", 0))
-            "guarding": score = 1.0 if bool(hero.get("guarding", false)) else 0.0
-            "nearest": score = -float(hero.get("combat_position", index))
-            _: score = randf()
-        if score > best_score:
-            best_score = score
-            best_index = index
-    return best_index
+func _target_index(enemy: Dictionary, heroes: Array, mode: String) -> int:
+    return enemy_ai_v3.choose_rank_target_index(enemy, heroes, mode, maxi(1, int(GameState.battle_rounds)))
