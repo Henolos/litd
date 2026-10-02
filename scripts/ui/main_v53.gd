@@ -5,7 +5,6 @@ extends "res://scripts/ui/main_v52.gd"
 # and zone controls with the canonical targeting contract.
 
 const SANDBOX_RUNTIME_V2_SCRIPT := preload("res://scripts/core/veilleurs_combat_sandbox_runtime_v2.gd")
-const SANDBOX_TARGET_RESOLVER := preload("res://scripts/core/combat/veilleurs_target_resolver.gd")
 
 var _sandbox_runtime_v2_installed := false
 
