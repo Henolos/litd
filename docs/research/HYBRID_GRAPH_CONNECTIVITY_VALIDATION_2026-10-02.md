@@ -47,10 +47,28 @@ the rerun has no SCRIPT ERROR; its assertions complete successfully.
 Resource-in-use warnings at full-project shutdown also reproduce on baseline;
 the isolated generator run is clean.
 
+## Protected-path follow-up
+
+The phase-1 commit `a904e85663862a09dd8cc188406a30078687b628` passed all
+16 GitHub workflows. The next local increment adds a shared protected-path
+validator to both the generator and the final First Accord planner. Each
+protected intermediate room must dominate the objective: excluding that room
+must disconnect entry from objective, even with discoverable secret edges.
+Loop candidates never cross a protected room, and optional branches cannot
+originate from the objective, including a non-boss finale.
+
+Expanded runtime smoke: 200 seeded graphs and 100 final plans pass; direct and
+secret bypasses are rejected by both the graph validator and final planner.
+The expanded test fails against phase 1 (exit 1). The same 30 Python tests pass.
+The final graph still requires separate physical-placement validation.
+
+Source for graph dominance:
+https://web.cs.wpi.edu/~cs544/PLT8.6.3.html
+
 ## Remaining work
 
 This increment fixes graph connectivity; it does not certify physical placement,
-module compatibility, lock/key solvability, boss-bypass prevention or playtest
+module compatibility, lock/key solvability or playtest
 quality. First Accord retains its subsequent protected-spine reconstruction.
 Production generation still requires validating the completed planner and
 physical maps, then a player playtest. No code from third-party mods was copied.

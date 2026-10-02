@@ -1,6 +1,7 @@
 extends Node
 
 const GENERATOR := preload("res://scripts/world/hybrid_dungeon_generator.gd")
+const PLANNER := preload("res://scripts/world/first_accord_hybrid_planner.gd")
 var failures: Array[String] = []
 
 func _ready() -> void:
@@ -15,6 +16,8 @@ func _ready() -> void:
             _check(graph == GENERATOR.generate_graph(config, state), "Same seed must reproduce the complete graph")
             _check(str(graph["entry_id"]) == str(config["protected_story_order"].front()), "Authored entry must be the real graph entry")
             _check(str(graph["objective_id"]) == str(config["protected_story_order"].back()), "Authored finale must be the real objective")
+            for edge in graph["edges"]:
+                _check(str(edge["from"]) != str(graph["objective_id"]), "Optional room must not originate after the finale")
             for room_id in config["mandatory_room_ids"]:
                 var broken := graph.duplicate(true)
                 var kept_edges: Array = []
@@ -23,6 +26,12 @@ func _ready() -> void:
                         kept_edges.append(edge)
                 broken["edges"] = kept_edges
                 _check(not bool(GENERATOR.validate_graph(broken, config)["ok"]), "Disconnected mandatory room must fail: " + str(room_id))
+            var bypass := graph.duplicate(true)
+            bypass["edges"].append({"from": str(graph["entry_id"]), "to": str(graph["objective_id"]), "hidden": false})
+            var bypass_result := GENERATOR.validate_graph(bypass, config)
+            _check(not bool(bypass_result["ok"]), "Direct shortcut must not bypass protected story rooms")
+            bypass["edges"].back()["hidden"] = true
+            _check(not bool(GENERATOR.validate_graph(bypass, config)["ok"]), "Discoverable secret must not bypass protected story rooms")
             var dangling := graph.duplicate(true)
             dangling["edges"].append({"from": str(graph["entry_id"]), "to": "missing_room"})
             _check(not bool(GENERATOR.validate_graph(dangling, config)["ok"]), "Dangling edge must fail")
@@ -33,8 +42,18 @@ func _ready() -> void:
             for node in no_retreat["nodes"]:
                 node["retreat"] = false
             _check(not bool(GENERATOR.validate_graph(no_retreat, config)["ok"]), "Stale retreat_count must not satisfy validation")
+    for seed_value in 100:
+        var plan := PLANNER.build_plan({"campaign_seed": seed_value, "visit_index": 2})
+        _check(bool(plan.get("ok", false)) and not bool(plan.get("fallback", false)), "Final First Accord plan must validate without fallback")
+        if bool(plan.get("fallback", false)):
+            continue
+        var shortcut := plan.duplicate(true)
+        shortcut["edges"].append({"from": str(plan["entry_id"]), "to": str(plan["objective_id"]), "hidden": false})
+        _check(not bool(PLANNER.validate_plan(shortcut)["ok"]), "Final planner must reject protected-room bypass")
+        shortcut["edges"].back()["hidden"] = true
+        _check(not bool(PLANNER.validate_plan(shortcut)["ok"]), "Final planner must reject discoverable secret bypass")
     if failures.is_empty():
-        print("HYBRID_GRAPH_SMOKE_OK: 200 seeded graphs and invalid graph regressions")
+        print("HYBRID_GRAPH_SMOKE_OK: 200 seeded graphs, 100 final plans and invalid graph regressions")
         get_tree().quit(0)
     else:
         for failure in failures:
