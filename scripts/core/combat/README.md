@@ -9,3 +9,5 @@ AI decision target (separate layer):
 `Perception -> EnemyMemory -> UtilityAI -> CombatCommand`
 
 Do not let AI compute authoritative combat outcomes. Do not let presentation become authoritative state.
+
+Combat inspection is observational only: `VeilleursCombatInspector` consumes immutable `CombatEvent` snapshots, keeps a bounded debug trace, and must never compute or mutate authoritative outcomes.
