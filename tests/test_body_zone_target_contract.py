@@ -19,3 +19,9 @@ def test_body_zone_contract_keeps_all_six_playable_zones():
 def test_zone_required_actions_fail_without_explicit_zone():
     assert '"body_zone_required"' in TARGET_RESOLVER
     assert '"body_zone_not_targetable"' in TARGET_RESOLVER
+
+
+def test_enemy_zone_sandbox_does_not_require_rank_metadata():
+    assert "static func uses_rank_targeting" in TARGET_RESOLVER
+    assert 'str(action.get("effect", "")) == "attack"' in TARGET_RESOLVER
+    assert "uses_rank_targeting(action) and not can_target" in TARGET_RESOLVER
