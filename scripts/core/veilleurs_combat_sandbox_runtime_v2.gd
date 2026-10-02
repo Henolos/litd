@@ -1,7 +1,7 @@
 extends "res://scripts/core/veilleurs_combat_sandbox_runtime.gd"
 class_name VeilleursCombatSandboxRuntimeV2
 
-const RUNTIME_V2_RUNTIME_V2_TARGET_RESOLVER := preload("res://scripts/core/combat/veilleurs_target_resolver.gd")
+const RUNTIME_V2_TARGET_RESOLVER := preload("res://scripts/core/combat/veilleurs_target_resolver.gd")
 
 
 func perform_action(action_id: String, target_index: int, zone: String = "torso") -> Dictionary:
