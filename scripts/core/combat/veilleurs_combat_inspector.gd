@@ -9,6 +9,7 @@ var enabled := OS.has_feature("debug")
 var max_entries := DEFAULT_MAX_ENTRIES
 var _entries: Array[Dictionary] = []
 var _next_sequence := 1
+var _dropped_entries := 0
 
 func set_enabled(value: bool) -> void:
     enabled = value
@@ -20,6 +21,7 @@ func set_max_entries(value: int) -> void:
 func clear() -> void:
     _entries.clear()
     _next_sequence = 1
+    _dropped_entries = 0
 
 func record(event: Dictionary, context: Dictionary = {}) -> void:
     if not enabled or event.is_empty():
@@ -70,6 +72,7 @@ func summary() -> Dictionary:
         total_damage += maxi(0, int(payload.get("damage", 0)))
     return {
         "entries": _entries.size(),
+        "dropped_entries": _dropped_entries,
         "hits": hits,
         "misses": misses,
         "total_damage": total_damage,
@@ -116,6 +119,7 @@ func _trim_to_limit() -> void:
     var limit := maxi(1, max_entries)
     while _entries.size() > limit:
         _entries.pop_front()
+        _dropped_entries += 1
 
 static func _matches(entry: Dictionary, filters: Dictionary) -> bool:
     if filters.is_empty():
