@@ -10,8 +10,10 @@ const ANATOMY_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_an
 const STATUS_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_status_resolver.gd")
 const REACTION_RESOLVER_SCRIPT := preload("res://scripts/core/combat/veilleurs_reaction_resolver.gd")
 const COMBAT_EVENT_SCRIPT := preload("res://scripts/core/combat/veilleurs_combat_event.gd")
+const COMBAT_INSPECTOR_SCRIPT := preload("res://scripts/core/combat/veilleurs_combat_inspector.gd")
 
 var skill_behavior: VeilleursSkillBehaviorRuntime
+var combat_inspector := COMBAT_INSPECTOR_SCRIPT.new()
 
 func _init() -> void:
     super()
@@ -20,6 +22,7 @@ func _init() -> void:
 
 func setup_first_combat(enemy_ids: Array[String] = ["ENT_ENEMY_GOULE_AFFAMEE", "ENT_ENEMY_ECORCHEUSE", "ENT_ENEMY_FOUISSEUSE"]) -> Dictionary:
     var result: Dictionary = super.setup_first_combat(enemy_ids)
+    combat_inspector.clear()
     if not bool(result.get("ok", false)):
         return result
     var balance: Dictionary = content_db.combat_constants.get("v061_balance", {})
@@ -182,6 +185,7 @@ func _resolve_damage_v2(attacker_id: String, target_id: String, skill: Dictionar
     var event_actor := {"id":attacker_id}
     var event_target := {"id":target_id}
     result["canonical_event"] = COMBAT_EVENT_SCRIPT.from_attack(event_actor, event_target, result)
+    combat_inspector.record(result["canonical_event"], {"round":round_index, "source":"tactical_v2"})
     if bool(redirected.get("redirected", false)):
         result["protection_redirect"] = redirected
     var forced_move := int(effect.get("forced_move", 0))
@@ -192,6 +196,9 @@ func _resolve_damage_v2(attacker_id: String, target_id: String, skill: Dictionar
     action_log.append(result.duplicate(true))
     return result
 
+
+func combat_trace() -> Array[Dictionary]:
+    return combat_inspector.entries()
 
 func _enemy_role_attack(attacker_id: String, target_id: String, decision: Dictionary) -> Dictionary:
     var attacker: Dictionary = combatants[attacker_id]
