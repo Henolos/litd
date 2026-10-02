@@ -15,6 +15,9 @@ const DARK := Color("#07080b")
 const RED := Color("#7f1e24")
 const TEXT := Color("#e5dccb")
 const MUTED := Color("#a49884")
+const COMBAT_POSITION_RUNTIME_SCRIPT := preload("res://scripts/core/combat_position_runtime.gd")
+
+var combat_position_runtime := COMBAT_POSITION_RUNTIME_SCRIPT.new()
 
 func _ready() -> void:
     GameState.screen_requested.connect(show_screen)
@@ -941,6 +944,7 @@ func _hero_action_with_skill(action: String, skill: Dictionary) -> void:
         if hp_before > 0 and int(target.get("hp", 0)) <= 0:
             EnemyFearDirector.record_deed(hero, "enemy_defeated", 1, str(target.get("id", "")))
             EnemyFearDirector.apply_witness_event(GameState.alive_enemies(), "ally_killed", {"hero_id": str(hero.get("id", "")), "enemy_id": int(target.get("id", 0))})
+            _compact_enemy_formation_after_death()
     var companion_targets: Array = GameState.alive_enemies()
     if not companion_targets.is_empty():
         var companion_result: Dictionary = CreatureManager.companion_turn(companion_targets[0])
@@ -954,11 +958,28 @@ func _hero_action_with_skill(action: String, skill: Dictionary) -> void:
         return
     enemy_turn()
 
+func _compact_enemy_formation_after_death() -> void:
+    combat_position_runtime.compact_after_death(GameState.battle_enemies, "enemy")
+    if GameState.battle_enemies.is_empty():
+        selected_enemy = 0
+        return
+    var targetable_index := -1
+    for index in range(GameState.battle_enemies.size()):
+        if int((GameState.battle_enemies[index] as Dictionary).get("hp", 0)) > 0:
+            targetable_index = index
+            break
+    selected_enemy = maxi(0, targetable_index)
+
 func enemy_turn() -> void:
     for enemy_value in GameState.alive_enemies():
         var enemy: Dictionary = enemy_value
         if int(enemy.get("bleeding", 0)) > 0:
+            var hp_before_bleed := int(enemy.get("hp", 0))
             enemy.hp = max(0, int(enemy.hp) - int(enemy.get("bleeding", 0)))
+            if hp_before_bleed > 0 and int(enemy.get("hp", 0)) <= 0:
+                CombatBodyPresentation.stage_death(enemy, true)
+                _compact_enemy_formation_after_death()
+                continue
         if bool(enemy.get("stunned", false)):
             enemy["stunned"] = false
             GameState.add_log("%s est étourdi et perd son tour." % enemy.name)
@@ -1007,8 +1028,12 @@ func enemy_turn() -> void:
         if EquipmentManager.has_effect(str(target.get("id", "")), "steadfast_counter"):
             riposte_chance += 10
         if riposte_chance > 0 and randi_range(1, 100) <= riposte_chance:
+            var hp_before_riposte := int(enemy.get("hp", 0))
             enemy.hp = max(0, int(enemy.hp) - 4)
             GameState.add_log("%s riposte contre %s." % [target.name, enemy.name])
+            if hp_before_riposte > 0 and int(enemy.get("hp", 0)) <= 0:
+                CombatBodyPresentation.stage_death(enemy, true)
+                _compact_enemy_formation_after_death()
         GameState.add_log("%s utilise %s sur %s pour %d dégâts." % [enemy.name, String(enemy_action.get("name", "une attaque")), target.name, damage])
         for secondary_message: String in EnemyCombatDirector.apply_secondary(enemy_action, enemy, target, targets):
             GameState.add_log(secondary_message)
