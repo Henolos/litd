@@ -145,7 +145,7 @@ func _legacy_hero_portraits_hidden() -> bool:
         if portrait == null or portrait.texture == null or not portrait.is_visible_in_tree():
             continue
         var resource_path := str(portrait.texture.resource_path)
-        if resource_path.begins_with("res://assets/heroes/") and not resource_path.begins_with("res://assets/heroes/canonical/"):
+        if resource_path.begins_with("res://assets/heroes/") and not CANONICAL_PORTRAIT_PATHS.has(resource_path):
             return false
     return true
 
