@@ -992,6 +992,15 @@ func enemy_turn() -> void:
             finish_defeat()
             return
         var enemy_action: Dictionary = EnemyCombatDirector.choose_action(enemy, targets)
+        if bool(enemy_action.get("ge01_flee", false)):
+            _compact_enemy_formation_after_death()
+            continue
+        if bool(enemy_action.get("tactical_move", false)):
+            GameState.add_log("%s se repositionne de E%d vers E%d." % [enemy.name, int(enemy_action.get("from", 0)) + 1, int(enemy_action.get("to", 0)) + 1])
+            continue
+        if bool(enemy_action.get("hold", false)):
+            GameState.add_log("%s temporise et conserve sa position." % enemy.name)
+            continue
         var target_index: int = clampi(int(enemy_action.get("target_index", 0)), 0, targets.size() - 1)
         var target: Dictionary = targets[target_index]
         var target_bonuses: Dictionary = hero_bonuses(target)
