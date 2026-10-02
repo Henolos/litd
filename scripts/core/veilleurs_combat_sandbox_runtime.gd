@@ -13,6 +13,7 @@ const COMBAT_INSPECTOR := preload("res://scripts/core/combat/veilleurs_combat_in
 const COMBAT_COMMAND := preload("res://scripts/core/combat/veilleurs_combat_command.gd")
 const TARGET_RESOLVER := preload("res://scripts/core/combat/veilleurs_target_resolver.gd")
 const DEATH_RESOLVER := preload("res://scripts/core/combat/veilleurs_death_resolver.gd")
+const CANONICAL_ADAPTER := preload("res://scripts/core/combat/veilleurs_combat_sandbox_canonical_adapter.gd")
 
 var heroes: Array[Dictionary] = []
 var enemies: Array[Dictionary] = []
@@ -81,7 +82,11 @@ func perform_action(action_id: String, target_index: int, zone: String = "torso"
         if not bool(target_resolution.get("ok", false)): return target_resolution
         var target: Dictionary = target_resolution.get("target", {})
         if int(target.get("hp", 0)) <= 0: return {"ok":false,"reason":"target_dead"}
-        result = _resolve_enemy_action(hero, action, target, str(command.get("zone", "torso")))
+        var target_contract: Dictionary = TARGET_RESOLVER.validate_target_contract(hero, action, target, enemies, str(command.get("zone", "torso")))
+        if not bool(target_contract.get("ok", false)):
+            return target_contract
+        var resolved_zone := str(target_contract.get("zone", command.get("zone", "torso")))
+        result = _resolve_enemy_action(hero, action, target, resolved_zone)
         if bool(result.get("ok", false)) and str(result.get("kind", "")) == "attack":
             result["ai_reaction"] = _enemy_observe_and_react(target, hero, action, str(command.get("zone", "torso")), result)
     elif target_side == "ally":
@@ -237,51 +242,26 @@ func _resolve_enemy_action(hero: Dictionary, action: Dictionary, target: Diction
     if effect == "expose":
         target["exposed_zone"] = zone if zone in ZONES else "torso"
         VeilleursCombatContextRuntime.record_enemy_observation(party_knowledge, str(target.get("id", "")), "observations", ["Ouverture créée par %s" % str(hero.get("name", "un Veilleur"))])
-        return {"ok":true,"kind":"expose","target":str(target.get("id")),"zone":target["exposed_zone"]}
-    if effect == "reveal_observation":
         VeilleursCombatContextRuntime.record_enemy_observation(party_knowledge, str(target.get("id", "")), "vital_state", str(target.get("public_vital_state", "unknown")))
         VeilleursCombatContextRuntime.record_enemy_observation(party_knowledge, str(target.get("id", "")), "pain_state", str(target.get("pain_state", "unknown")))
         return {"ok":true,"kind":"observe","target":str(target.get("id"))}
-    if effect == "trame_control": return apply_persistent_control(enemies.find(target), "deviated", int(action.get("control_rounds", 1)), 10)
+    if effect == "trame_control":
+        return apply_persistent_control(enemies.find(target), "deviated", int(action.get("control_rounds", 1)), 10)
 
-    if effect == "inflict_affliction":
-        var kind := str(action.get("affliction", ""))
-        var turns := int(action.get("duration", 0))
-        if kind not in STATUS_RESOLVER.AFFLICTIONS or turns <= 0:
-            return {"ok":false,"reason":"invalid_affliction"}
-        var affliction_hit: Dictionary = HIT_RESOLVER.resolve(hero, action, target, zone, round)
-        if not bool(affliction_hit.get("hit", false)):
-            return {"ok":true,"kind":"affliction","hit":false,"target":str(target.get("id")),"roll":affliction_hit.get("roll", 0)}
-        var applied: Dictionary = STATUS_RESOLVER.apply_affliction(target, kind, turns)
-        target["afflictions"] = applied["afflictions"]
-        return {"ok":true,"kind":"affliction","hit":true,"target":str(target.get("id")),"affliction":kind,"turns":applied["turns"],"resisted":applied["resisted"]}
+    var result: Dictionary = CANONICAL_ADAPTER.resolve_enemy_action(hero, action, target, zone, round, enemies)
+    if not bool(result.get("ok", false)) or not bool(result.get("hit", false)):
+        return result
 
-    var normalized := zone if zone in ZONES else "torso"
-    var hit_result: Dictionary = HIT_RESOLVER.resolve(hero, action, target, normalized, round)
-    if not bool(hit_result.get("hit", false)):
-        return {"ok":true,"kind":"attack","hit":false,"roll":int(hit_result.get("roll", 0)),"accuracy":int(hit_result.get("accuracy", 75)),"zone":normalized,"target":str(target.get("id"))}
-    var damage_result: Dictionary = DAMAGE_RESOLVER.resolve(hero, action, target, normalized)
-    var damage := int(damage_result.get("damage", 1)); var severity := int(damage_result.get("severity", 1)); var armor_factor := float(damage_result.get("armor_factor", 1.0))
-    var resulting_hp := maxi(0, int(target.get("hp", 0)) - damage)
-    var anatomy_result: Dictionary = ANATOMY_RESOLVER.resolve(target.get("anatomy", {}), normalized, severity, armor_factor, action)
-    var status_result: Dictionary = STATUS_RESOLVER.resolve_after_hit(target, action, severity, resulting_hp)
-    target["hp"] = resulting_hp
-    target["anatomy"] = anatomy_result.get("anatomy", {})
-    target["pain_state"] = status_result.get("pain_state", "strong")
-    target["bleeding_state"] = status_result.get("bleeding_state", target.get("bleeding_state", "none"))
-    target["public_vital_state"] = status_result.get("public_vital_state", "stable")
-    target["vital_state"] = status_result.get("vital_state", target["public_vital_state"])
-    DEATH_RESOLVER.resolve_actor(target, "enemy", enemies)
-    if action.has("affliction"):
-        var applied: Dictionary = STATUS_RESOLVER.apply_affliction(target, str(action["affliction"]), int(action.get("duration", 2)))
-        if bool(applied.get("ok", false)): target["afflictions"] = applied["afflictions"]
-    var zone_state: Dictionary = anatomy_result.get("zone_state", {})
-    VeilleursCombatContextRuntime.record_enemy_observation(party_knowledge, str(target.get("id", "")), "vital_state", target["vital_state"])
-    VeilleursCombatContextRuntime.record_enemy_observation(party_knowledge, str(target.get("id", "")), "pain_state", target["pain_state"])
-    VeilleursCombatContextRuntime.record_enemy_observation(party_knowledge, str(target.get("id", "")), "bleeding_state", target["bleeding_state"])
-    VeilleursCombatContextRuntime.record_enemy_zone(party_knowledge, str(target.get("id", "")), normalized, zone_state)
-    if str(hero.get("posture", "none")) == "force_cost": _apply_effort_cost(hero)
-    return {"ok":true,"kind":"attack","hit":true,"damage":damage,"severity":severity,"zone":normalized,"target":str(target.get("id")),"functional_loss":str(anatomy_result.get("functional_loss", "functional")),"affliction":str(action.get("affliction", ""))}
+    if str(result.get("kind", "")) == "attack":
+        var normalized := str(result.get("zone", TARGET_RESOLVER.normalize_zone(zone)))
+        var zone_state: Dictionary = result.get("zone_state", {})
+        VeilleursCombatContextRuntime.record_enemy_observation(party_knowledge, str(target.get("id", "")), "vital_state", target.get("vital_state", "stable"))
+        VeilleursCombatContextRuntime.record_enemy_observation(party_knowledge, str(target.get("id", "")), "pain_state", target.get("pain_state", "controlled"))
+        VeilleursCombatContextRuntime.record_enemy_observation(party_knowledge, str(target.get("id", "")), "bleeding_state", target.get("bleeding_state", "none"))
+        VeilleursCombatContextRuntime.record_enemy_zone(party_knowledge, str(target.get("id", "")), normalized, zone_state)
+        if str(hero.get("posture", "none")) == "force_cost":
+            _apply_effort_cost(hero)
+    return result
 
 func _apply_trame_cost(hero: Dictionary, action: Dictionary, result: Dictionary) -> void:
     var cost := int(action.get("trame_cost", 0)); if cost <= 0: return
