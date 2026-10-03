@@ -9,6 +9,8 @@ const MAX_ENEMIES := 4
 # The constraint space repeats across seeds. Cache only seed-independent candidate sets;
 # the final choice still uses the encounter-local deterministic RNG.
 static var _candidate_cache: Dictionary = {}
+static var _catalog_cache: Array = []
+static var _valid_enemy_ids_cache: Dictionary = {}
 
 const TAG_PROFILES := {
     "frontline":["tank","impact","guard","brute","assault","duelist"],
@@ -32,9 +34,7 @@ const TAG_PROFILES := {
 static func resolve_plan(plan: Dictionary) -> Dictionary:
     if not bool(plan.get("ok", false)) or bool(plan.get("fallback", false)):
         return plan.duplicate(true)
-    var enemies_payload := _load_json(ENEMIES_PATH)
-    var trees_payload := _load_json(TREE_PATH)
-    var catalog := _catalog(enemies_payload, trees_payload)
+    var catalog := _cached_catalog()
     var result := plan.duplicate(true)
     var errors: Array[String] = []
     var resolved_count := 0
@@ -71,7 +71,7 @@ static func resolve_encounter(encounter: Dictionary, catalog: Array) -> Dictiona
     var cache_key := _candidate_cache_key(count, target, tags)
     var candidates: Array
     if _candidate_cache.has(cache_key):
-        candidates = (_candidate_cache[cache_key] as Array).duplicate(true)
+        candidates = _candidate_cache[cache_key] as Array
     else:
         candidates = []
         _enumerate(catalog, count, 0, [], 0.0, target, tags, candidates)
@@ -80,7 +80,7 @@ static func resolve_encounter(encounter: Dictionary, catalog: Array) -> Dictiona
                 return float(a["score"]) < float(b["score"])
             return str(a["signature"]) < str(b["signature"])
         )
-        _candidate_cache[cache_key] = candidates.duplicate(true)
+        _candidate_cache[cache_key] = candidates
     if candidates.is_empty():
         return {"ok":false, "reason":"no_valid_composition"}
     var best_score := float(candidates[0]["score"])
@@ -99,9 +99,7 @@ static func resolve_encounter(encounter: Dictionary, catalog: Array) -> Dictiona
 
 static func validate_plan(plan: Dictionary) -> Dictionary:
     var errors: Array[String] = []
-    var valid_ids := {}
-    for enemy in _load_json(ENEMIES_PATH).get("enemies", []):
-        valid_ids[str(enemy.get("entity_id", ""))] = true
+    var valid_ids := _valid_enemy_ids()
     for node in plan.get("nodes", []):
         var encounter: Dictionary = node.get("encounter", {})
         if encounter.is_empty() or float(encounter.get("threat", 0.0)) <= 0.0:
@@ -149,6 +147,17 @@ static func _enumerate(catalog: Array, remaining: int, start: int, members: Arra
         var next := members.duplicate()
         next.append(enemy)
         _enumerate(catalog, remaining - 1, index, next, next_threat, target, tags, out)
+
+static func _cached_catalog() -> Array:
+    if _catalog_cache.is_empty():
+        _catalog_cache = _catalog(_load_json(ENEMIES_PATH), _load_json(TREE_PATH))
+    return _catalog_cache
+
+static func _valid_enemy_ids() -> Dictionary:
+    if _valid_enemy_ids_cache.is_empty():
+        for enemy in _cached_catalog():
+            _valid_enemy_ids_cache[str(enemy.get("entity_id", ""))] = true
+    return _valid_enemy_ids_cache
 
 static func _catalog(enemies_payload: Dictionary, trees_payload: Dictionary) -> Array:
     var profiles := {}
