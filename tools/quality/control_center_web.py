@@ -74,6 +74,26 @@ def render(snapshot: dict[str, Any]) -> str:
         indicator_rows = '<tr><td colspan="7">—</td></tr>'
     semantics = operational.get("semantics")
 
+    external = snapshot.get("external_services") if isinstance(snapshot.get("external_services"), dict) else {}
+    observations = external.get("observations") if isinstance(external.get("observations"), list) else []
+    external_rows = "".join(
+        "<tr>"
+        f"<td>{_text(row.get('view_id'))}</td>"
+        f"<td>{_text(row.get('service'))}</td>"
+        f"<td>{_text(row.get('state'))}</td>"
+        f"<td>{_text(row.get('visibility'))}</td>"
+        f"<td>{_text(row.get('region'))}</td>"
+        f"<td>{_text(row.get('security_advisory_count'))}</td>"
+        f"<td>{_text(row.get('performance_advisory_count'))}</td>"
+        f"<td>{_text(row.get('observed_at'))}</td>"
+        "</tr>"
+        for row in observations
+        if isinstance(row, dict)
+    )
+    if not external_rows:
+        external_rows = '<tr><td colspan="8">NOT_CONFIGURED</td></tr>'
+    external_semantics = external.get("semantics")
+
     status = html.escape(str(snapshot.get("status", "UNKNOWN")))
     return f"""<!doctype html>
 <html lang="en">
