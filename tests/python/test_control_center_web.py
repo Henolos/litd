@@ -122,7 +122,7 @@ def test_escapes_operational_indicator_values():
     page = render(snapshot)
     assert "<svg onload=alert(1)>" not in page
     assert "&lt;svg onload=alert(1)&gt;" in page
-\n
+
 
 def test_escapes_external_service_values():
     snapshot = _snapshot()
