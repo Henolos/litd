@@ -6,6 +6,10 @@ const TREE_PATH := "res://data/veilleurs/v07/enemy_tree_catalog.json"
 const THREAT_TOLERANCE := 0.75
 const MAX_ENEMIES := 4
 
+# The constraint space repeats across seeds. Cache only seed-independent candidate sets;
+# the final choice still uses the encounter-local deterministic RNG.
+static var _candidate_cache: Dictionary = {}
+
 const TAG_PROFILES := {
     "frontline":["tank","impact","guard","brute","assault","duelist"],
     "flank":["mobility","hunter","execution","anatomy","adaptive"],
@@ -64,15 +68,21 @@ static func resolve_encounter(encounter: Dictionary, catalog: Array) -> Dictiona
     if count < 1 or count > MAX_ENEMIES:
         return {"ok":false, "reason":"invalid_enemy_count"}
     var tags: Array = encounter.get("formation_tags", [])
-    var candidates: Array = []
-    _enumerate(catalog, count, 0, [], 0.0, target, tags, candidates)
+    var cache_key := _candidate_cache_key(count, target, tags)
+    var candidates: Array
+    if _candidate_cache.has(cache_key):
+        candidates = (_candidate_cache[cache_key] as Array).duplicate(true)
+    else:
+        candidates = []
+        _enumerate(catalog, count, 0, [], 0.0, target, tags, candidates)
+        candidates.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+            if float(a["score"]) != float(b["score"]):
+                return float(a["score"]) < float(b["score"])
+            return str(a["signature"]) < str(b["signature"])
+        )
+        _candidate_cache[cache_key] = candidates.duplicate(true)
     if candidates.is_empty():
         return {"ok":false, "reason":"no_valid_composition"}
-    candidates.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
-        if float(a["score"]) != float(b["score"]):
-            return float(a["score"]) < float(b["score"])
-        return str(a["signature"]) < str(b["signature"])
-    )
     var best_score := float(candidates[0]["score"])
     var best: Array = []
     for candidate in candidates:
@@ -111,6 +121,13 @@ static func validate_plan(plan: Dictionary) -> Dictionary:
         if absf(float(encounter.get("composition_threat", -999.0)) - float(encounter.get("threat", 0.0))) > THREAT_TOLERANCE:
             errors.append("composition_threat:" + str(node.get("id", "")))
     return {"ok":errors.is_empty(), "errors":errors}
+
+static func _candidate_cache_key(count: int, target: float, tags: Array) -> String:
+    var normalized_tags: Array[String] = []
+    for value: Variant in tags:
+        normalized_tags.append(str(value))
+    normalized_tags.sort()
+    return "%d|%.4f|%s" % [count, target, ",".join(normalized_tags)]
 
 static func _enumerate(catalog: Array, remaining: int, start: int, members: Array, threat: float, target: float, tags: Array, out: Array) -> void:
     if remaining == 0:
