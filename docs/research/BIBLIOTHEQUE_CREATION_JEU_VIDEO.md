@@ -2,6 +2,11 @@
 
 Date de veille : 2026-09-08
 
+Inventaire de conservation (2026-10-03) :
+[analyses de jeux et de mods](GAME_CODE_ANALYSIS_INVENTORY_2026-10-03.md).
+Cet index distingue les observations de design conservées des analyses de code
+externes dont la preuve reste à retrouver ou à produire.
+
 ## But
 
 Cette bibliothèque sert de référence de production pour LITD Universe et, en priorité, **LITD : Les Veilleurs**. Elle ne remplace pas les bibles de gameplay, de lore ou d'art existantes : elle rassemble les méthodes de conception et de réalisation qui permettent de transformer ces intentions en un jeu testable, cohérent, performant et livrable.

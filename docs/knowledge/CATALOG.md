@@ -22,6 +22,14 @@ Ce catalogue est un point d'entrée humain vers la bibliothèque. Il ne remplace
 
 La distinction ci-dessus est volontaire : une preuve historique fusionnée confirme qu'un système a existé et a été validé à un instant donné, mais ne suffit pas à certifier son état runtime actuel après de nombreuses évolutions.
 
+## Études de jeux et de mods — inventaire du 2026-10-03
+
+- [Inventaire des analyses de jeux/mods](../research/GAME_CODE_ANALYSIS_INVENTORY_2026-10-03.md)
+  — point d'entrée vers les documents comparatifs existants et les quatre listes
+  demandées (19 jeux distincts). Au snapshot audité : observations de design pour
+  4/19, aucune analyse de code/mod traçable retrouvée (0/19). Les analyses annoncées
+  sans fiche restent à vérifier ; cet index n'autorise aucune modification du Core.
+
 ## Incidents capitalisés
 
 - `incidents/2026-09-10-runtime-player-smoke-equipment.md` — migration du quatuor ayant révélé une couverture d'équipement de test incomplète ; cause corrigée sans fallback artificiel.
