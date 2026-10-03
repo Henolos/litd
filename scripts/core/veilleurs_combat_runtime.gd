@@ -3,8 +3,8 @@ class_name VeilleursCombatRuntime
 
 # Neutral production runtime. It keeps the serialized v07/v08/v09 contract while
 # collapsing their tactical inheritance into one orchestration layer above V2.
-const CONTENT_DB_SCRIPT := preload("res://scripts/core/veilleurs_content_db_v081_canonical.gd")
-const BEHAVIOR_SCRIPT := preload("res://scripts/core/veilleurs_skill_behavior_runtime_v07.gd")
+const RUNTIME_CONTENT_DB_SCRIPT := preload("res://scripts/core/veilleurs_content_db_v081_canonical.gd")
+const RUNTIME_BEHAVIOR_SCRIPT := preload("res://scripts/core/veilleurs_skill_behavior_runtime_v07.gd")
 const SELECTOR_SCRIPT := preload("res://scripts/core/veilleurs_enemy_skill_selector_v2.gd")
 const BOSS_RULE_SCRIPT := preload("res://scripts/core/veilleurs_boss_rule_runtime.gd")
 const ULTIMATE_SCRIPT := preload("res://scripts/core/veilleurs_ultimate_runtime.gd")
@@ -31,9 +31,9 @@ var last_phase_event: Dictionary = {}
 
 func _init() -> void:
     super()
-    content_db = CONTENT_DB_SCRIPT.new() as VeilleursContentDBV081Canonical
+    content_db = RUNTIME_CONTENT_DB_SCRIPT.new() as VeilleursContentDBV081Canonical
     content_db.reload()
-    skill_behavior = BEHAVIOR_SCRIPT.new() as VeilleursSkillBehaviorRuntimeV07
+    skill_behavior = RUNTIME_BEHAVIOR_SCRIPT.new() as VeilleursSkillBehaviorRuntimeV07
     skill_selector = SELECTOR_SCRIPT.new() as VeilleursEnemySkillSelectorV2
     boss_rules = BOSS_RULE_SCRIPT.new() as VeilleursBossRuleRuntime
     ultimate_runtime = ULTIMATE_SCRIPT.new() as VeilleursUltimateRuntime
