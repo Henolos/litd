@@ -37,19 +37,35 @@ func _init() -> void:
         watcher_progress[watcher_id] = progression.new_state(watcher_id, 1)
 
 func start_dungeon(dungeon_id: String, seed: int = 0) -> Dictionary:
-    if not dungeon.configure(content_db, dungeon_id):
-        return {"ok":false, "reason":"dungeon_config", "errors":dungeon.load_errors.duplicate()}
+    var candidate := DUNGEON_SCRIPT.new() as VeilleursDungeonRuntimeV07
+    candidate.encounter_director = dungeon.encounter_director
+    if not candidate.configure(content_db, dungeon_id):
+        return {"ok":false, "reason":"dungeon_config", "errors":candidate.load_errors.duplicate()}
+    var started := candidate.start(seed)
+    if not bool(started.get("ok", false)):
+        return started
+    dungeon = candidate
     current_dungeon_id = dungeon_id
     recruits_this_expedition = 0
     expeditions_started += 1
-    return dungeon.start(seed)
+    return started
 
 func resolve_current_node(outcome: String, combat_context: Dictionary = {}) -> Dictionary:
     if current_dungeon_id == "":
         return {"ok":false, "reason":"no_active_dungeon"}
-    var progress_result: Dictionary = _apply_combat_progress(combat_context)
+    if not dungeon.procedural_plan.is_empty():
+        if bool(dungeon.node_flags.get(dungeon.current_node, {}).get("completed", false)):
+            return {"ok":false, "reason":"node_already_completed"}
+        if not dungeon.active_encounter.is_empty() and str(combat_context.get("combat_node_id", "")) != dungeon.current_node:
+            return {"ok":false, "reason":"combat_required"}
+    var progress_result: Dictionary = {} if not dungeon.procedural_plan.is_empty() and combat_context.is_empty() else _apply_combat_progress(combat_context)
     var archive_result: Dictionary = _record_combat_archives(combat_context)
     var dungeon_result: Dictionary = dungeon.complete_current(outcome, combat_context)
+    if bool(dungeon_result.get("ok", false)) and not dungeon.procedural_plan.is_empty() and outcome in ["cleared", "victory"]:
+        for anchor in dungeon.current().get("lore_reservations", []):
+            var entry_id := str(anchor.get("anchor_id", ""))
+            archives.record_identity(entry_id, "dungeon_lore", anchor)
+            archives.record_trace(entry_id, {"dungeon_id":current_dungeon_id, "node_id":dungeon.current_node, "lore_tags":anchor.get("lore_tags", [])})
     return {"ok":bool(dungeon_result.get("ok", false)), "dungeon":dungeon_result, "progress":progress_result, "archives":archive_result}
 
 func attempt_recruit(candidate: Dictionary, context: Dictionary = {}) -> Dictionary:
@@ -73,9 +89,22 @@ func attempt_recruit(candidate: Dictionary, context: Dictionary = {}) -> Diction
     return {"ok":true, "recruit":recruit_row, "slots_free":refuge.recruit_slots_free(), "recruits_this_expedition":recruits_this_expedition}
 
 func complete_expedition(rewards: Dictionary = {}) -> Dictionary:
+    if current_dungeon_id == "":
+        return {"ok":false, "reason":"no_active_dungeon"}
+    if not dungeon.procedural_plan.is_empty() and not dungeon.can_extract():
+        return {"ok":false, "reason":"not_at_extraction"}
     var gold := int(rewards.get("gold", 0))
     var materials := int(rewards.get("materials", 0))
     var essence := int(rewards.get("essence", 0))
+    if not dungeon.procedural_plan.is_empty():
+        var collected := dungeon.collected_rewards()
+        var completion: Dictionary = {}
+        if bool(dungeon.node_flags.get(str(dungeon.procedural_plan.get("objective_id", "")), {}).get("completed", false)):
+            var authored: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/dungeons/first_accord_combat.json"))
+            completion = authored.get("completion_rewards", {})
+        gold = int(collected["gold"]) + int(completion.get("gold", 0))
+        materials = int(collected["materials"]) + int(completion.get("materials", 0))
+        essence = int(collected["essence"]) + int(completion.get("essence", 0))
     refuge.complete_expedition(gold, materials, essence)
     var summary := {"ok":true, "dungeon_id":current_dungeon_id, "gold":gold, "materials":materials, "essence":essence, "recruits":recruits_this_expedition, "refuge":refuge.serialize()}
     current_dungeon_id = ""

@@ -113,9 +113,21 @@ static func validate_plan(plan: Dictionary) -> Dictionary:
             errors.append("composition_not_resolved:" + str(node.get("id", "")))
         if composition.size() != int(encounter.get("enemy_count", -1)) or composition.size() > MAX_ENEMIES:
             errors.append("composition_count:" + str(node.get("id", "")))
+        var members: Array = []
+        var actual_threat := 0.0
         for member in composition:
-            if not valid_ids.has(str(member.get("definition_id", ""))):
+            var id := str(member.get("definition_id", ""))
+            if not valid_ids.has(id):
                 errors.append("composition_unknown_enemy:" + str(node.get("id", "")))
+            for definition in _cached_catalog():
+                if str(definition.get("entity_id", "")) == id:
+                    members.append(definition)
+                    actual_threat += float(definition.get("threat_value", 0))
+                    break
+        if absf(actual_threat - float(encounter.get("composition_threat", -999))) > 0.0001 or absf(actual_threat - float(encounter.get("threat", 0))) > THREAT_TOLERANCE:
+            errors.append("composition_actual_threat:" + str(node.get("id", "")))
+        if not _covers(encounter.get("formation_tags", []), _profiles_for_members(members)):
+            errors.append("composition_formation:" + str(node.get("id", "")))
         if absf(float(encounter.get("composition_threat", -999.0)) - float(encounter.get("threat", 0.0))) > THREAT_TOLERANCE:
             errors.append("composition_threat:" + str(node.get("id", "")))
     return {"ok":errors.is_empty(), "errors":errors}

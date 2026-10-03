@@ -7,6 +7,7 @@ const TACTICAL_UI_SCENE := preload("res://scenes/veilleurs/v06_tactical_combat.t
 const QA_SCENE := "res://scenes/qa/qa_validation_room.tscn"
 
 const DUNGEONS := {
+    "dungeon_first_map_hall_of_first_accord":"Premier Accord — procédural",
     "DUNGEON_KHAR_SEN":"Khar-Sen",
     "DUNGEON_SEUIL_ERODE":"Seuil érodé",
     "DUNGEON_CLOITRE_VOIX":"Cloître des voix",
@@ -17,6 +18,11 @@ const DUNGEONS := {
 
 var slice: VeilleursVerticalSliceRuntimeV09
 var save_bridge: VeilleursVerticalSliceSaveV09
+var room_view: SubViewportContainer
+var room_viewport: SubViewport
+var room_root: Node3D
+var room_events_label: Label
+
 var status_label: Label
 var message_label: Label
 var actions: HFlowContainer
@@ -87,6 +93,20 @@ func _build_shell() -> void:
     status_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     status_label.custom_minimum_size = Vector2(0, 54)
     root.add_child(status_label)
+    room_view = SubViewportContainer.new()
+    room_view.custom_minimum_size = Vector2(0, 220)
+    room_view.stretch = true
+    room_view.visible = false
+    root.add_child(room_view)
+    room_viewport = SubViewport.new()
+    room_viewport.size = Vector2i(640, 220)
+    room_viewport.own_world_3d = true
+    room_viewport.render_target_update_mode = SubViewport.UPDATE_WHEN_VISIBLE
+    room_view.add_child(room_viewport)
+    room_events_label = Label.new()
+    room_events_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+    room_events_label.visible = false
+    root.add_child(room_events_label)
 
     actions = HFlowContainer.new()
     actions.add_theme_constant_override("h_separation", 6)
@@ -132,6 +152,7 @@ func _render_node() -> void:
         return
     var snapshot := slice.current_snapshot()
     var node: Dictionary = snapshot.get("dungeon", {})
+    _display_room(node)
     var progress: Dictionary = snapshot.get("progress", {})
     status_label.text = "%s — %s\nNœud %s | %d/%d visités | extraction : %s" % [
         str(DUNGEONS.get(str(progress.get("dungeon_id", "")), str(progress.get("dungeon_id", "")))),
@@ -147,11 +168,18 @@ func _render_node() -> void:
         return
     if not (snapshot.get("active_encounter", {}) as Dictionary).is_empty():
         _add_action("Lancer le combat", _launch_combat)
+        for escape_id: String in slice.campaign.dungeon.available_next():
+            _add_action("Replier vers " + escape_id.replace("_", " "), func() -> void: _enter_next(escape_id))
         return
     var flags: Dictionary = slice.campaign.dungeon.node_flags.get(str(node.get("node_id", "")), {})
     if not bool(flags.get("completed", false)):
         _add_action("Résoudre ce lieu", _resolve_noncombat_node)
         return
+    if not slice.campaign.dungeon.procedural_plan.is_empty():
+        _add_action("Chercher les passages", func() -> void:
+            var discovered := slice.campaign.dungeon.discover_current_passages()
+            message_label.text = "Passages découverts : %d" % discovered.get("discovered", []).size()
+            _render_node())
     for next_id: String in slice.campaign.dungeon.available_next():
         var next_node: Dictionary = slice.campaign.dungeon.nodes_by_id.get(next_id, {})
         var label := "→ %s" % str(next_node.get("title_fr", next_id))
@@ -175,6 +203,8 @@ func _launch_combat() -> void:
         message_label.text = "Combat impossible : %s" % str(setup.get("reason", "inconnu"))
         return
     tactical_ui.visible = true
+    room_view.visible = false
+    room_events_label.visible = false
     _clear(actions)
     _clear(recruit_actions)
     _repair_selection()
@@ -399,3 +429,37 @@ func _add_action(text: String, callback: Callable) -> void:
 func _clear(container: Node) -> void:
     for child: Node in container.get_children():
         child.queue_free()
+
+func _display_room(node: Dictionary) -> void:
+    if room_root != null:
+        room_root.free()
+        room_root = null
+    var path := str(node.get("scene_path", ""))
+    room_view.visible = path != ""
+    room_events_label.visible = room_view.visible
+    if path == "":
+        return
+    var packed := load(path) as PackedScene
+    if packed == null:
+        room_view.visible = false
+        return
+    room_root = Node3D.new()
+    room_viewport.add_child(room_root)
+    var room := packed.instantiate() as Node3D
+    room_root.add_child(room)
+    room.set_meta("room_events", node.get("room_events", []).duplicate(true))
+    var camera := Camera3D.new()
+    camera.projection = Camera3D.PROJECTION_ORTHOGONAL
+    camera.size = 42
+    camera.position = Vector3(26, 32, 30)
+    room_root.add_child(camera)
+    camera.look_at(Vector3.ZERO)
+    camera.current = true
+    var light := DirectionalLight3D.new()
+    light.rotation_degrees = Vector3(-55, -30, 0)
+    light.light_energy = 1.5
+    room_root.add_child(light)
+    var descriptions: Array[String] = []
+    for event in node.get("room_events", []):
+        descriptions.append("%s : %s" % [str(event.get("slot_id", "")).replace("_", " "), str(event.get("variant", "")).replace("_", " ")])
+    room_events_label.text = " · ".join(descriptions)

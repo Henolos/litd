@@ -16,11 +16,14 @@ func _init() -> void:
     campaign = CAMPAIGN_SCRIPT.new() as VeilleursCampaignRuntimeV07
 
 func start_dungeon(dungeon_id: String, seed: int = 0) -> Dictionary:
+    var started := campaign.start_dungeon(dungeon_id, seed)
+    if not bool(started.get("ok", false)):
+        return started
     combat = null
     combat_kind = ""
     combat_node_id = ""
     last_resolution.clear()
-    return campaign.start_dungeon(dungeon_id, seed)
+    return started
 
 func enter_next(node_id: String) -> Dictionary:
     if combat != null:

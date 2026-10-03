@@ -46,6 +46,7 @@ run_checked "Import strict du projet" godot --headless --path . --import --quit
 
 case "$DOMAIN" in
   core-world)
+    scene 120 "Expédition procédurale jouable" res://scenes/tests/dungeon_playable_pipeline_smoke.tscn
     scene 0 "Smoke test noyau" res://scenes/tests/core_smoke.tscn
     scene 0 "Psychologie" res://scenes/tests/psychology_smoke.tscn
     scene 0 "Relations" res://scenes/tests/relationship_smoke.tscn
@@ -93,7 +94,7 @@ case "$DOMAIN" in
     scene 60 "Contrat dix afflictions" res://scenes/tests/veilleurs_afflictions_contract_test.tscn
     scene 60 "Contrat résolveurs de combat" res://scenes/tests/veilleurs_combat_resolvers_contract_test.tscn
     scene 60 "Autorité du ciblage anatomique" res://scenes/tests/veilleurs_target_resolver_authority_test.tscn
-    scene 60 "Architecture procédurale complète" res://scenes/tests/dungeon_architecture_pipeline_smoke.tscn
+    scene 180 "Architecture procédurale complète" res://scenes/tests/dungeon_architecture_pipeline_smoke.tscn
     scene 60 "Pipeline rencontres contraintes" res://scenes/tests/dungeon_encounter_pipeline_smoke.tscn
     scene 60 "Pipeline génération graines et modules" res://scenes/tests/dungeon_generation_pipeline_smoke.tscn
     scene 60 "Graphe hybride connecté" res://scenes/tests/hybrid_graph_smoke.tscn

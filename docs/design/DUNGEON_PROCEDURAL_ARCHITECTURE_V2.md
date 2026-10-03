@@ -101,3 +101,11 @@ La CI distante doit confirmer le commit proposé avant toute fusion.
 Sources primaires :
 - https://docs.godotengine.org/en/4.7/classes/class_randomnumbergenerator.html
 - https://github.com/godotengine/godot-docs/blob/master/tutorials/math/random_number_generation.rst
+
+## Raccordement jouable
+
+Le raccordement ultérieur au navigateur et au combat de `VeilleursRuntime` est
+décrit dans [DUNGEON_PLAYABLE_FIRST_ACCORD.md](DUNGEON_PLAYABLE_FIRST_ACCORD.md).
+Il matérialise les compositions validées, conserve le plan dans les sauvegardes,
+gère secrets/repli/récompenses et instancie les salles auteurs dans l'interface
+existante. Les limites de présentation 3D y sont indiquées explicitement.

@@ -17,7 +17,7 @@ func _ready() -> void:
             _render_node()
             message_label.text = "Expédition reprise."
     else:
-        _start_dungeon("DUNGEON_KHAR_SEN")
+        _start_dungeon("dungeon_first_map_hall_of_first_accord")
 
 func _on_save() -> void:
     message_label.text = "Partie sauvegardée." if SaveManager.save_game() else "Échec de sauvegarde."

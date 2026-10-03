@@ -55,6 +55,7 @@
   },
   "boss": {
     "encounter_id":"c01_ancient_accord_warden",
+    "boss_id":"c01_ancient_accord_warden",
     "room_pool":"accord_warden",
     "capturable":false,
     "threat":7,

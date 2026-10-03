@@ -297,3 +297,28 @@ static func validate_dungeon_plan(plan: Dictionary, library: Dictionary, tables:
     if boss_count != 1:
         errors.append("fixed_boss_unresolved")
     return {"ok":errors.is_empty(), "errors":errors}
+
+# Materialize the already selected definition; never reroll a different template.
+func materialize_selected(selected: Dictionary, db: Variant) -> Dictionary:
+    var count := int(selected.get("enemy_count", -1))
+    if count < 0 or count > MAX_COMBAT_ENEMIES or count > int(selected.get("capacity", 0)):
+        return {"ok":false, "reason":"selected_encounter_capacity"}
+    if bool(selected.get("fixed_boss", false)):
+        var boss_id := str(selected.get("boss_id", ""))
+        if db.boss(boss_id).is_empty() or count != 1:
+            return {"ok":false, "reason":"selected_boss_missing"}
+        return {"ok":true, "boss":true, "boss_id":boss_id, "template_id":str(selected.get("id", "")), "seed_salt":int(selected.get("seed", 0)), "procedural_selected":true}
+    var ids: Array = selected.get("composition", [])
+    if ids.size() != count:
+        return {"ok":false, "reason":"selected_composition_count"}
+    var composition: Array = []
+    var actual_threat := 0.0
+    for member in ids:
+        var enemy_id := str(member.get("definition_id", ""))
+        var definition: Dictionary = db.enemy(str(enemy_id))
+        if definition.is_empty():
+            return {"ok":false, "reason":"selected_enemy_missing", "entity_id":enemy_id}
+        var threat := float(definition.get("threat_value", 0))
+        actual_threat += threat
+        composition.append({"definition_id":str(enemy_id), "threat":threat})
+    return {"ok":true, "template_id":str(selected.get("id", "")), "composition":composition, "actual_threat":actual_threat, "target_threat":float(selected.get("threat", 0)), "objective":"survive", "seed_salt":int(selected.get("seed", 0)), "capacity":int(selected.get("capacity", 0)), "procedural_selected":true, "nemesis_allowed":bool(selected.get("memory_eligible", false))}

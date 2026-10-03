@@ -84,8 +84,14 @@ static func validate_final(plan: Dictionary, context: Dictionary = {}) -> Dictio
     var report: Dictionary = plan.get("generation_report", {})
     var effective_context: Dictionary = context if not context.is_empty() else report.get("run_state", {})
     var root_seed := int(plan.get("seed", 0))
-    if plan.get("stage_seeds", {}) != PLANNER.RUN_SEED.streams(root_seed):
+    var expected_seeds := PLANNER.RUN_SEED.streams(root_seed)
+    var saved_seeds: Dictionary = plan.get("stage_seeds", {})
+    if saved_seeds.size() != expected_seeds.size():
         errors.append("invalid_stage_seeds")
+    for stream in expected_seeds:
+        var value: Variant = saved_seeds.get(stream)
+        if not (value is int or value is float) or value != expected_seeds[stream]:
+            errors.append("invalid_stage_seeds:" + str(stream))
     for node in plan.get("nodes", []):
         var room_id := str(node.get("id", ""))
         for stream in ["encounter", "event", "loot", "ai"]:
