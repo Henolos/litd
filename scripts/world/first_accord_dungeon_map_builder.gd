@@ -4,14 +4,28 @@ class_name FirstAccordDungeonMapBuilder
 const MAP_PATH := "res://data/dungeons/first_map_hall_of_first_accord_map.json"
 const OCCLUDABLE_SCRIPT := preload("res://scripts/world/isometric_occludable.gd")
 
-static func generate(parent: Node3D) -> void:
+static func generate(parent: Node3D, layout: Dictionary = {}) -> void:
     var map_data := _load_json(MAP_PATH)
     if map_data.is_empty():
         push_error("FirstAccordDungeonMapBuilder: carte absente")
         return
+    if bool(layout.get("ok", false)):
+        map_data = map_data.duplicate(true)
+        for floor_data in map_data.get("floors", []):
+            for room_data in floor_data.get("rooms", []):
+                for node_id in layout.get("placements", {}).keys():
+                    if str(layout["placements"][node_id].get("room_id", "")) == str(room_data.get("id", "")):
+                        room_data["planned_node_id"] = str(node_id)
+                        room_data["module_id"] = str(layout["placements"][node_id].get("module_id", ""))
+                        room_data["variation_seed"] = int(layout["placements"][node_id].get("variation_seed", 0))
+                        room_data["encounter"] = str(layout["placements"][node_id].get("encounter_id", ""))
+        map_data["floors"].append({"id":"generated_branches", "name":"Generated branches", "rooms":layout.get("generated_rooms", [])})
+        for connection in layout.get("generated_connections", []):
+            map_data["connections"].append(connection)
     var root := Node3D.new()
     root.name = "AuthoredDungeonMap"
     root.set_meta("map_id", str(map_data.get("id", "")))
+    root.set_meta("spatialization", {"placed":layout.get("placements", {}).size(), "deferred_edges":layout.get("deferred_edges", [])})
     root.set_meta("ash_guidance", str(map_data.get("design_rules", {}).get("ash_guidance", "only_on_request")))
     parent.add_child(root)
     _build_rooms(root, map_data.get("floors", []))
@@ -43,6 +57,9 @@ static func _build_room(parent: Node3D, room_data: Dictionary) -> void:
     room.set_meta("display_name", str(room_data.get("name", "")))
     room.set_meta("room_kind", str(room_data.get("kind", "critical")))
     room.set_meta("encounter_id", str(room_data.get("encounter", "")))
+    room.set_meta("planned_node_id", str(room_data.get("planned_node_id", room_data.get("id", ""))))
+    room.set_meta("module_id", str(room_data.get("module_id", "")))
+    room.set_meta("variation_seed", int(room_data.get("variation_seed", 0)))
     room.set_meta("lock", str(room_data.get("lock", "")))
     room.set_meta("reward", str(room_data.get("reward", "")))
     parent.add_child(room)
@@ -50,15 +67,15 @@ static func _build_room(parent: Node3D, room_data: Dictionary) -> void:
     var wall_height := 4.0
     var door_gap: float = minf(5.0, size.x * 0.35)
     var side_width: float = maxf(1.0, (size.x - door_gap) * 0.5)
-    _box(room, "NorthWallLeft", Vector3(-(door_gap + side_width) * 0.25, wall_height * 0.5, -size.z * 0.5), Vector3(side_width, wall_height, 0.8), true, "architecture/dungeon_wall")
-    _box(room, "NorthWallRight", Vector3((door_gap + side_width) * 0.25, wall_height * 0.5, -size.z * 0.5), Vector3(side_width, wall_height, 0.8), true, "architecture/dungeon_wall")
-    _box(room, "SouthWallLeft", Vector3(-(door_gap + side_width) * 0.25, wall_height * 0.5, size.z * 0.5), Vector3(side_width, wall_height, 0.8), true, "architecture/dungeon_wall")
-    _box(room, "SouthWallRight", Vector3((door_gap + side_width) * 0.25, wall_height * 0.5, size.z * 0.5), Vector3(side_width, wall_height, 0.8), true, "architecture/dungeon_wall")
+    _box(room, "NorthWallLeft", Vector3(-(door_gap + side_width) * 0.5, wall_height * 0.5, -size.z * 0.5), Vector3(side_width, wall_height, 0.8), true, "architecture/dungeon_wall")
+    _box(room, "NorthWallRight", Vector3((door_gap + side_width) * 0.5, wall_height * 0.5, -size.z * 0.5), Vector3(side_width, wall_height, 0.8), true, "architecture/dungeon_wall")
+    _box(room, "SouthWallLeft", Vector3(-(door_gap + side_width) * 0.5, wall_height * 0.5, size.z * 0.5), Vector3(side_width, wall_height, 0.8), true, "architecture/dungeon_wall")
+    _box(room, "SouthWallRight", Vector3((door_gap + side_width) * 0.5, wall_height * 0.5, size.z * 0.5), Vector3(side_width, wall_height, 0.8), true, "architecture/dungeon_wall")
     var side_depth: float = maxf(1.0, (size.z - door_gap) * 0.5)
-    _box(room, "WestWallNorth", Vector3(-size.x * 0.5, wall_height * 0.5, -(door_gap + side_depth) * 0.25), Vector3(0.8, wall_height, side_depth), true, "architecture/dungeon_wall")
-    _box(room, "WestWallSouth", Vector3(-size.x * 0.5, wall_height * 0.5, (door_gap + side_depth) * 0.25), Vector3(0.8, wall_height, side_depth), true, "architecture/dungeon_wall")
-    _box(room, "EastWallNorth", Vector3(size.x * 0.5, wall_height * 0.5, -(door_gap + side_depth) * 0.25), Vector3(0.8, wall_height, side_depth), true, "architecture/dungeon_wall")
-    _box(room, "EastWallSouth", Vector3(size.x * 0.5, wall_height * 0.5, (door_gap + side_depth) * 0.25), Vector3(0.8, wall_height, side_depth), true, "architecture/dungeon_wall")
+    _box(room, "WestWallNorth", Vector3(-size.x * 0.5, wall_height * 0.5, -(door_gap + side_depth) * 0.5), Vector3(0.8, wall_height, side_depth), true, "architecture/dungeon_wall")
+    _box(room, "WestWallSouth", Vector3(-size.x * 0.5, wall_height * 0.5, (door_gap + side_depth) * 0.5), Vector3(0.8, wall_height, side_depth), true, "architecture/dungeon_wall")
+    _box(room, "EastWallNorth", Vector3(size.x * 0.5, wall_height * 0.5, -(door_gap + side_depth) * 0.5), Vector3(0.8, wall_height, side_depth), true, "architecture/dungeon_wall")
+    _box(room, "EastWallSouth", Vector3(size.x * 0.5, wall_height * 0.5, (door_gap + side_depth) * 0.5), Vector3(0.8, wall_height, side_depth), true, "architecture/dungeon_wall")
 
 static func _build_connections(root: Node3D, connections: Array) -> void:
     var connections_root := Node3D.new()

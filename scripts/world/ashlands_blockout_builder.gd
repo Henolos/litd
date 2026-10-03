@@ -11,6 +11,7 @@ const LORE_COLLECTIBLE := preload("res://scripts/world/lore_collectible.gd")
 const OPENING_BIRD_INTRO := preload("res://scripts/cinematics/opening_bird_intro_director.gd")
 const FIRST_ACCORD_DUNGEON_MAP := preload("res://scripts/world/first_accord_dungeon_map_builder.gd")
 const FIRST_ACCORD_PLAN := preload("res://scripts/world/first_accord_hybrid_runtime_plan.gd")
+const FIRST_ACCORD_LAYOUT := preload("res://scripts/world/first_accord_physical_layout.gd")
 const FIRST_ACCORD_TRIGGER := preload("res://scripts/world/first_accord_tactical_trigger.gd")
 const TACTICAL_FLOW := preload("res://scripts/core/veilleurs_khar_sen_flow_bridge.gd")
 
@@ -24,6 +25,7 @@ var manifest: Dictionary = {}
 var zone_data: Dictionary = {}
 var zone_blueprint: Dictionary = {}
 var first_accord_plan: Dictionary = {}
+var first_accord_layout: Dictionary = {}
 var first_accord_return_position: Array = []
 
 func _ready() -> void:
@@ -51,6 +53,7 @@ func build_zone() -> void:
             var completed_seed := int(result.get("dungeon_state", {}).get("run_seed", 0))
             AshlandsRuntime.mark_encounter_cleared(_first_accord_encounter_key(completed_seed, str(result.get("node_id", ""))))
         first_accord_plan = FIRST_ACCORD_PLAN.build({"campaign_seed": ExpeditionManager.expedition_seed})
+        first_accord_layout = FIRST_ACCORD_LAYOUT.resolve(first_accord_plan, _load_json(FIRST_ACCORD_DUNGEON_MAP.MAP_PATH))
 
     _build_floor()
     _build_boundaries()
@@ -146,7 +149,7 @@ func _build_boundaries() -> void:
 
 func _build_layout_profile() -> void:
     if zone_id == "zone_16_salles_du_premier_accord":
-        FIRST_ACCORD_DUNGEON_MAP.generate(_root())
+        FIRST_ACCORD_DUNGEON_MAP.generate(_root(), first_accord_layout)
         return
     AshlandsLayoutGenerator.generate(_root(), zone_id, zone_data)
 
@@ -278,25 +281,21 @@ func _build_first_accord_encounters() -> void:
     var parent := Node3D.new()
     parent.name = "EncounterSlots"
     _root().add_child(parent)
-    if not bool(first_accord_plan.get("ok", false)) or bool(first_accord_plan.get("fallback", false)):
+    if not bool(first_accord_layout.get("ok", false)):
         return
-    var rooms := {}
-    var map_data := _load_json(FIRST_ACCORD_DUNGEON_MAP.MAP_PATH)
-    for floor_data in map_data.get("floors", []):
-        for room_data in floor_data.get("rooms", []):
-            rooms[str(room_data.get("id", ""))] = room_data
+    var placements: Dictionary = first_accord_layout.get("placements", {})
     var run_seed := int(ExpeditionManager.expedition_seed)
     for node in first_accord_plan.get("nodes", []):
         var room_id := str(node.get("id", ""))
         var encounter: Dictionary = node.get("encounter", {})
-        if not rooms.has(room_id) or str(encounter.get("materialization_status", "")) != "composition_ready":
+        if not placements.has(room_id) or str(encounter.get("materialization_status", "")) != "composition_ready":
             continue
         var key := _first_accord_encounter_key(run_seed, room_id)
         if AshlandsRuntime.is_encounter_cleared(key):
             continue
         var trigger := FIRST_ACCORD_TRIGGER.new() as FirstAccordTacticalTrigger
         trigger.name = "Tactical_%s" % room_id
-        trigger.position = _array_to_vec3(rooms[room_id].get("center", [0, 0, 0])) + Vector3.UP
+        trigger.position = _array_to_vec3(placements[room_id].get("center", [0, 0, 0])) + Vector3.UP
         trigger.encounter_id = key
         trigger.encounter = encounter.duplicate(true)
         trigger.room_id = room_id
