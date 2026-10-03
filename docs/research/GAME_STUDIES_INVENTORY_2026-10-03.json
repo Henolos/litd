@@ -32,7 +32,6 @@
     "No Supabase or external storage audit",
     "No exhaustive reading of historical branches",
     "No mod source-code execution",
-    "Procedural five-game list titles not fully recovered",
     "Historical conversation claims are unverified leads"
   ],
   "files": [
@@ -604,5 +603,60 @@
       "path": "litd_universe/libraries/weapons_objects/SEED_REFERENCES.md",
       "git_blob_sha": "d9ad0e605bf83f3bcfe384eb7bd93b8b8a9aacac"
     }
-  ]
+  ],
+  "conversation_recovery": {
+    "date": "2026-10-03",
+    "method": "Targeted retrieval of historical conversation excerpts; synthesis, not full transcript or independent verification of third-party source code",
+    "corpora": [
+      "Analyser le code du jeu",
+      "Liste jeux donjons procéduraux",
+      "Recommandation de jeux roguelike",
+      "Liste dungeon crawlers hardcore"
+    ],
+    "historical_date": "2026-10-02",
+    "historical_timestamp_timezone": "UTC",
+    "unique_titles_count": 20,
+    "titles": [
+      "Darkest Dungeon",
+      "Battle Chasers: Nightwar",
+      "Ruined King",
+      "Iratus: Lord of the Dead",
+      "Darkest Dungeon II",
+      "For The King",
+      "Octopath Traveler II",
+      "Chained Echoes",
+      "Slay the Spire",
+      "Battle Brothers",
+      "Enter the Gungeon",
+      "Dead Cells",
+      "The Binding of Isaac: Rebirth",
+      "Spelunky 2",
+      "Into the Breach",
+      "FTL: Faster Than Light",
+      "Stoneshard",
+      "Legend of Grimrock II",
+      "Dungeon of the ENDLESS",
+      "Shattered Pixel Dungeon"
+    ],
+    "status": "revalidate",
+    "recovered": [
+      "Four exact game lists",
+      "Reported formats and function names",
+      "Historical architecture proposals",
+      "Complete source URLs where returned",
+      "Anatomical targeting constraints"
+    ],
+    "remaining_gaps": [
+      "Full original transcripts and code excerpts",
+      "Mod/source versions and commits",
+      "Exact attribution of some tools",
+      "Runtime traces and reproducible technical results"
+    ],
+    "notes": [
+      "Shattered Pixel Dungeon is covered by existing Git notes, not a newly recovered October 2 study",
+      "Roguelike synthesis also discussed Darkest Dungeon although original five-game list included Iratus",
+      "Truncated URLs not reconstructed",
+      "No new gameplay modifications"
+    ]
+  }
 }
