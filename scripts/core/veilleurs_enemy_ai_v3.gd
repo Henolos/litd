@@ -237,14 +237,17 @@ func decide_rank_action(enemy: Dictionary, heroes: Array, allies: Array, round_v
             if _hp_ratio(ally) < 0.55:
                 return {"action":"support","reason":"ally_critical"}
 
-    var preferred := _rank_preferred_position(enemy, role)
-    var current := clampi(int(enemy.get("combat_position", 0)), 0, 3)
-    if current != preferred:
-        return {"action":"move","reason":"restore_role_position","preferred_position":preferred}
-
     if heroes.is_empty():
         return {"action":"hold","reason":"no_target"}
-    return {"action":"attack","reason":"tactical_attack"}
+
+    var preferred := _rank_preferred_position(enemy, role)
+    var current := clampi(int(enemy.get("combat_position", 0)), 0, 3)
+    var memory_target_mode := str(enemy.get("remanence_target_mode", ""))
+    var living_targets := TARGET_RESOLVER.enemy_targetable_indices(enemy, {"target": memory_target_mode if memory_target_mode != "" else "random"}, heroes)
+    if current != preferred and memory_target_mode == "" and not living_targets.is_empty():
+        return {"action":"move","reason":"restore_role_position","preferred_position":preferred}
+
+    return {"action":"attack","reason":"remanence_target_priority" if memory_target_mode != "" else "tactical_attack"}
 
 func _rank_preferred_position(enemy: Dictionary, role: String) -> int:
     var species := str(enemy.get("species_id", ""))
