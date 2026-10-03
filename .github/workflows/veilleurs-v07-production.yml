@@ -10,6 +10,8 @@ on:
       - 'data/veilleurs/v08/canonical_watcher_ultimates_12.json'
       - 'scripts/core/veilleurs_*.gd'
       - 'scenes/tests/veilleurs_v07_*'
+      - 'scenes/tests/veilleurs_combat_runtime_flattening_parity.tscn'
+      - 'scripts/tests/veilleurs_combat_runtime_flattening_parity_test.gd'
       - 'tools/qa/veilleurs_v07_*'
       - '.github/workflows/veilleurs-v07-production.yml'
   workflow_dispatch:
@@ -55,3 +57,10 @@ jobs:
           timeout 90s godot --headless --path . res://scenes/tests/veilleurs_v07_production_smoke.tscn 2>&1 | tee /tmp/v07-smoke.log
           ! grep -E 'SCRIPT ERROR:|ERROR: Failed to load script|ERROR: FATAL:|handle_crash: Program crashed|VEILLEURS_V07_PRODUCTION_SMOKE_FAILED' /tmp/v07-smoke.log
           grep -F 'VEILLEURS_V07_PRODUCTION_SMOKE_OK' /tmp/v07-smoke.log
+      - name: V09 to neutral runtime parity
+        shell: bash
+        run: |
+          set -o pipefail
+          timeout 90s godot --headless --path . res://scenes/tests/veilleurs_combat_runtime_flattening_parity.tscn 2>&1 | tee /tmp/runtime-flattening-parity.log
+          ! grep -E 'SCRIPT ERROR:|ERROR: Failed to load script|ERROR: FATAL:|handle_crash: Program crashed' /tmp/runtime-flattening-parity.log
+          grep -F 'VEILLEURS_COMBAT_RUNTIME_FLATTENING_PARITY_OK' /tmp/runtime-flattening-parity.log
