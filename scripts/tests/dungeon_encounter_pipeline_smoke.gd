@@ -71,6 +71,14 @@ func _ready() -> void:
         candidate["weight"] = 0
     _check(not bool(DIRECTOR.populate_dungeon_plan(plan, library, blocked)["ok"]), "Disabled critical table must fail")
     blocked = tables.duplicate(true)
+    for candidate in blocked["room_tables"]["accord_gallery"]:
+        candidate["enemy_ids"] = ["ENT_ENEMY_NOT_IN_CATALOG", "ENT_ENEMY_NOT_IN_CATALOG"]
+    _check(not bool(DIRECTOR.populate_dungeon_plan(plan, library, blocked)["ok"]), "Unknown canonical enemies must fail closed")
+    blocked = tables.duplicate(true)
+    for candidate in blocked["room_tables"]["accord_gallery"]:
+        candidate["enemy_ids"] = []
+    _check(not bool(DIRECTOR.populate_dungeon_plan(plan, library, blocked)["ok"]), "Incomplete compositions must fail closed")
+    blocked = tables.duplicate(true)
     blocked["boss"]["enemy_count"] = 2
     _check(not bool(DIRECTOR.populate_dungeon_plan(plan, library, blocked)["ok"]), "Boss must fit authored one-slot anchor")
     var unknown := plan.duplicate(true)

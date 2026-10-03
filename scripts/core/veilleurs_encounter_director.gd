@@ -62,8 +62,8 @@ func _remember(template_id: String) -> void:
     while recent_templates.size() > RECENT_CAP:
         recent_templates.remove_at(0)
 
-# Pure planning stage for the existing hybrid dungeon pipeline. It reserves
-# authored encounter definitions/slots; it does not spawn actors or resolve combat.
+# Planning and composition stage for the existing hybrid dungeon pipeline.
+# It resolves normal enemy definitions but does not spawn actors or resolve combat.
 static func populate_dungeon_plan(plan: Dictionary, library: Dictionary, tables: Dictionary, context: Dictionary = {}) -> Dictionary:
     if not bool(plan.get("ok", false)) or bool(plan.get("fallback", false)):
         return plan.duplicate(true)
@@ -184,7 +184,7 @@ static func populate_dungeon_plan(plan: Dictionary, library: Dictionary, tables:
     var maximum := int(rules.get("critical_path_max_encounters", 999))
     if critical_count < minimum or critical_count > maximum:
         errors.append("critical_encounter_count_out_of_bounds:%d" % critical_count)
-    var report := {"version": 1, "ok": errors.is_empty(), "errors": errors, "critical_count": critical_count, "optional_count": optional_count, "boss_included_in_critical_count": true, "decisions": decisions, "materialization_status": "definition_only"}
+    var report := {"version": 1, "ok": errors.is_empty(), "errors": errors, "critical_count": critical_count, "optional_count": optional_count, "boss_included_in_critical_count": true, "decisions": decisions, "materialization_status": "partial_compositions", "boss_status": "existing_campaign_route"}
     result["encounter_report"] = report
     var generation_report: Dictionary = result.get("generation_report", {}).duplicate(true)
     generation_report["encounters"] = report.duplicate(true)
