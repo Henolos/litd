@@ -4,6 +4,11 @@ class_name VeilleursStatusResolver
 # One status store for both sides. Durations count the affected actor's turns.
 const AFFLICTIONS := ["poison", "burn", "bleed", "freeze", "stun", "blind", "silence", "weakness", "vulnerability", "snare"]
 const PERIODIC_DAMAGE := {"poison": 3, "burn": 4, "bleed": 2}
+const ACTIVE_AFFLICTIONS := ["bleed", "blind", "stun", "vulnerability", "weakness", "silence", "snare"]
+const PROTOTYPE_AFFLICTIONS := ["poison", "burn", "freeze"]
+const CONTROL_AFFLICTIONS := ["stun", "silence", "snare", "freeze"]
+const DEFAULT_REFRESH_RULE := "max_duration"
+const STUN_RECOVERY_IMMUNITY_TURNS := 1
 
 # Signed percentages by affliction and facet: positive resists, negative amplifies.
 # Example: {"burn": {"damage": 50, "duration": -50}}.
@@ -16,10 +21,13 @@ static func apply_affliction(target: Dictionary, kind: String, turns: int) -> Di
     if kind not in AFFLICTIONS or turns <= 0:
         return {"ok": false, "reason": "invalid_affliction"}
     var statuses: Dictionary = (target.get("afflictions", {}) as Dictionary).duplicate(true)
+    var immunities: Dictionary = target.get("affliction_immunities", {})
+    if int(immunities.get(kind, 0)) > 0:
+        return {"ok": true, "afflictions": statuses, "kind": kind, "turns": int(statuses.get(kind, 0)), "resisted": true, "immune": true}
     var adjusted_turns := maxi(0, int(round(float(turns) * (1.0 - float(resistance(target, kind, "duration")) / 100.0))))
     if adjusted_turns > 0:
         statuses[kind] = maxi(int(statuses.get(kind, 0)), adjusted_turns)
-    return {"ok": true, "afflictions": statuses, "kind": kind, "turns": int(statuses.get(kind, 0)), "resisted": adjusted_turns == 0}
+    return {"ok": true, "afflictions": statuses, "kind": kind, "turns": int(statuses.get(kind, 0)), "resisted": adjusted_turns == 0, "immune": false}
 
 static func has(actor: Dictionary, kind: String) -> bool:
     return int((actor.get("afflictions", {}) as Dictionary).get(kind, 0)) > 0
@@ -57,11 +65,23 @@ static func start_turn(actor: Dictionary) -> Dictionary:
 
 static func finish_turn(actor: Dictionary) -> Dictionary:
     var statuses: Dictionary = (actor.get("afflictions", {}) as Dictionary).duplicate(true)
+    var immunities: Dictionary = (actor.get("affliction_immunities", {}) as Dictionary).duplicate(true)
+    var stun_expired := false
     for kind: String in AFFLICTIONS:
         if int(statuses.get(kind, 0)) > 0:
             statuses[kind] = int(statuses[kind]) - 1
             if int(statuses[kind]) == 0:
                 statuses.erase(kind)
+                if kind == "stun":
+                    stun_expired = true
+    for kind: String in immunities.keys():
+        if int(immunities.get(kind, 0)) > 0:
+            immunities[kind] = int(immunities[kind]) - 1
+            if int(immunities[kind]) <= 0:
+                immunities.erase(kind)
+    if stun_expired:
+        immunities["stun"] = maxi(int(immunities.get("stun", 0)), STUN_RECOVERY_IMMUNITY_TURNS)
+    actor["affliction_immunities"] = immunities
     return statuses
 
 static func resolve_after_hit(target: Dictionary, action: Dictionary, severity: int, resulting_hp: int) -> Dictionary:
