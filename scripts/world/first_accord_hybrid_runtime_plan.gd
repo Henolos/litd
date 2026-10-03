@@ -4,6 +4,7 @@ class_name FirstAccordHybridRuntimePlan
 const EVENT_DIRECTOR := preload("res://scripts/world/dungeon_event_director.gd")
 
 const ENCOUNTER_DIRECTOR := preload("res://scripts/core/veilleurs_encounter_director.gd")
+const COMPOSITION_RESOLVER := preload("res://scripts/core/veilleurs_encounter_composition_resolver.gd")
 
 const PLANNER := preload("res://scripts/world/first_accord_hybrid_planner.gd")
 
@@ -26,7 +27,7 @@ static func build(run_state: Dictionary = {}) -> Dictionary:
         return plan
 
     plan["generation_report"]["world_state_revision"] = _world_state_revision()
-    for path in ["res://data/remanence_rules.json", "res://data/remanence_world_rules.json"]:
+    for path in ["res://data/remanence_rules.json", "res://data/remanence_world_rules.json", COMPOSITION_RESOLVER.ENEMIES_PATH, COMPOSITION_RESOLVER.TREE_PATH]:
         plan["generation_report"]["data_revisions"][path] = FileAccess.get_file_as_string(path).sha256_text()
     plan = HybridDungeonGenerator.apply_remanence(plan, _active_world_scars())
     if RemanenceCombatBridge.world_director != null and RemanenceCombatBridge.world_director.has_method("decorate_plan"):
@@ -62,9 +63,14 @@ static func build(run_state: Dictionary = {}) -> Dictionary:
         var fallback := PLANNER._fallback_plan(PLANNER._load_json(PLANNER.CONFIG_PATH), "encounter_population_failed", plan.get("encounter_report", {}))
         fallback["encounter_report"] = plan.get("encounter_report", {}).duplicate(true)
         return fallback
+    plan = COMPOSITION_RESOLVER.resolve_plan(plan)
+    if not bool(plan.get("ok", false)):
+        var fallback := PLANNER._fallback_plan(PLANNER._load_json(PLANNER.CONFIG_PATH), "encounter_composition_failed", plan.get("composition_report", {}))
+        fallback["composition_report"] = plan.get("composition_report", {}).duplicate(true)
+        return fallback
     plan = EVENT_DIRECTOR.populate(plan, PLANNER._load_json(PLANNER.MODULES_PATH))
     var validation := validate_final(plan, run_state)
-    plan["generation_report"]["stages"].append_array(["remanence", "encounter_director", "event_director", "final_validation"])
+    plan["generation_report"]["stages"].append_array(["remanence", "encounter_director", "encounter_composition", "event_director", "final_validation"])
     plan["generation_report"]["validation"] = validation.duplicate(true)
     plan["validation"] = validation
     if not bool(validation.get("ok", false)):
@@ -90,6 +96,7 @@ static func validate_final(plan: Dictionary, context: Dictionary = {}) -> Dictio
     var tables := PLANNER._load_json(PLANNER.ENCOUNTERS_PATH)
     errors.append_array(PLANNER.validate_plan(plan, config, library).get("errors", []))
     errors.append_array(ENCOUNTER_DIRECTOR.validate_dungeon_plan(plan, library, tables, effective_context).get("errors", []))
+    errors.append_array(COMPOSITION_RESOLVER.validate_plan(plan).get("errors", []))
     errors.append_array(EVENT_DIRECTOR.validate(plan, library).get("errors", []))
     return {"ok":errors.is_empty(), "errors":errors}
 
@@ -100,7 +107,7 @@ static func replay(report: Dictionary) -> Dictionary:
         return {"ok":false, "error":"replay_version_mismatch"}
     if report.get("world_state_revision", "") != _world_state_revision():
         return {"ok":false, "error":"replay_world_state_mismatch"}
-    var expected_paths := [PLANNER.CONFIG_PATH, PLANNER.MODULES_PATH, PLANNER.ENCOUNTERS_PATH, PLANNER.REMANENCE_PATH, HybridDungeonGenerator.RULES_PATH, "res://data/remanence_rules.json", "res://data/remanence_world_rules.json"]
+    var expected_paths := [PLANNER.CONFIG_PATH, PLANNER.MODULES_PATH, PLANNER.ENCOUNTERS_PATH, PLANNER.REMANENCE_PATH, HybridDungeonGenerator.RULES_PATH, COMPOSITION_RESOLVER.ENEMIES_PATH, COMPOSITION_RESOLVER.TREE_PATH, "res://data/remanence_rules.json", "res://data/remanence_world_rules.json"]
     var revisions: Dictionary = report.get("data_revisions", {})
     for path in expected_paths:
         if str(revisions.get(path, "")) != FileAccess.get_file_as_string(path).sha256_text():

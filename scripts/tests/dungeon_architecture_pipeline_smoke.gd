@@ -21,10 +21,10 @@ func _ready() -> void:
             continue
         _check(plan == RUNTIME.build(state), "All stages and reports must replay exactly")
         _check(bool(RUNTIME.validate_final(plan, state)["ok"]), "Independent final validation must pass")
-        _check(plan["generation_report"]["stages"] == ["seed", "dungeon_profile", "flow_generator", "critical_path_validation", "room_resolver", "remanence", "encounter_director", "event_director", "final_validation"], "Stage order must be explicit")
+        _check(plan["generation_report"]["stages"] == ["seed", "dungeon_profile", "flow_generator", "critical_path_validation", "room_resolver", "remanence", "encounter_director", "encounter_composition", "event_director", "final_validation"], "Stage order must be explicit")
         _check(plan["nodes"].size() >= 13 and plan["nodes"].size() <= 19, "Final profile room bounds must hold after rebuilding")
         _check(int(plan["generation_report"]["loop_count"]) >= 1 and int(plan["generation_report"]["loop_count"]) <= 2, "Final loop range must hold")
-        _check(plan["generation_report"]["run_state"] == state and plan["generation_report"]["data_revisions"].size() == 7, "Replay must record input and catalogue revisions")
+        _check(plan["generation_report"]["run_state"] == state and plan["generation_report"]["data_revisions"].size() == 9, "Replay must record input and catalogue revisions")
         var before := plan.duplicate(true)
         var changed_order := library.duplicate(true)
         changed_order["modules"].reverse()
