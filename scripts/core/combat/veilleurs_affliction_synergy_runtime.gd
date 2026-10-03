@@ -66,7 +66,7 @@ static func decorate_action(actor: Dictionary, target: Dictionary, action: Dicti
             result["accuracy"] = mini(100, int(result.get("accuracy", result.get("base_accuracy_pct", 75))) + 5)
 
     if hero_name in ["Marec", "marec"] and tree == "Brisure":
-        if bool(state.get("control_window", false)) or vulnerability or weakness:
+        if bool(state.get("control_window", false)) or STATUS_RESOLVER.has(target, "vulnerability") or STATUS_RESOLVER.has(target, "weakness"):
             if skill_id in ["MR-BRI-06", "MR-BRI-12", "MR-BRI-14"]:
                 result["synergy_tree_payoff"] = "marec_breaker"
                 result["accuracy"] = mini(100, int(result.get("accuracy", result.get("base_accuracy_pct", 75))) + 5)
