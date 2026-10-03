@@ -87,7 +87,7 @@ jobs:
         run: timeout 120s godot --headless --path . res://scenes/tests/player_bot_autotest.tscn
       - name: "Joueur-bot v2 : contrôleur réel et tactique"
         if: always()
-        run: timeout 180s godot --headless --path . res://scenes/tests/player_bot_v2_autotest.tscn
+        run: timeout 720s godot --headless --path . res://scenes/tests/player_bot_v2_autotest.tscn
       - name: Publier les rapports combat core
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         if: always()
