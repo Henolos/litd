@@ -118,3 +118,32 @@ def test_fallback_authored_map_still_exists():
     assert res_path.startswith("res://")
     local = ROOT / res_path.removeprefix("res://")
     assert local.exists()
+
+
+def test_module_pool_fallbacks_resolve_to_existing_authored_pools():
+    cfg = load("first_accord_hybrid_config.json")
+    pools = {module["pool"] for module in load("first_accord_module_library.json")["modules"]}
+    aliases = cfg["module_pool_fallbacks"]
+    requested = {entry["pool"] for entry in cfg["optional_room_pools"] + cfg["secret_room_pools"]}
+    assert set(aliases) == requested - pools
+    assert set(aliases.values()) <= pools
+
+
+def test_encounter_slot_reservations_fit_authored_module_capacities():
+    cfg = load("first_accord_hybrid_config.json")
+    lib = load("first_accord_module_library.json")
+    encounters = load("first_accord_encounters.json")
+    aliases = cfg["module_pool_fallbacks"]
+    for pool, candidates in encounters["room_tables"].items():
+        source_pool = aliases.get(pool, pool)
+        anchors = [anchor for module in lib["modules"] if module["pool"] == source_pool
+                   for anchor in module["encounter_anchors"]]
+        for candidate in candidates:
+            count = candidate["enemy_count"]
+            assert isinstance(count, int) and 0 <= count <= 4
+            assert (candidate["threat"] == 0) == (count == 0)
+            if count:
+                assert any(anchor["capacity"] >= count for anchor in anchors), candidate["id"]
+    boss = encounters["boss"]
+    assert boss["enemy_count"] == 1
+    assert encounters["director_rules"]["boss_fixed"] is True

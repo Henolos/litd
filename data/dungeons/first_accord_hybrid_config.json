@@ -40,6 +40,10 @@
   "module_library": "res://data/dungeons/first_accord_module_library.json",
   "remanence_anchors": "res://data/dungeons/first_accord_remanence_anchors.json",
   "ash_guidance": "only_on_request",
+  "module_pool_fallbacks": {
+    "accord_service_rooms": "accord_guardroom",
+    "accord_forgotten_chamber": "accord_sealed_archive"
+  },
   "world_rules": {
     "death_and_injuries_persist": true,
     "completion_required": false,
