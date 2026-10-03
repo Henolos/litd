@@ -26,6 +26,7 @@
   ],
   "protected_story_order": ["vestibule", "gallery_of_names", "debate_chamber", "collapsed_passage", "three_pillars_hall", "warden_sanctum"],
   "protected_boss_module": "accord_warden_sanctum_boss_v1",
+  "critical_length": [6,6],
   "branching_target": [2,4],
   "loop_target": [1,2],
   "secret_target": [1,2],

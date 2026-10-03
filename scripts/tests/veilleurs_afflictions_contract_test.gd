@@ -1,11 +1,11 @@
-extends SceneTree
+extends Node
 
 const Status := preload("res://scripts/core/combat/veilleurs_status_resolver.gd")
 const Hit := preload("res://scripts/core/combat/veilleurs_hit_resolver.gd")
 const Damage := preload("res://scripts/core/combat/veilleurs_damage_resolver.gd")
 const Runtime := preload("res://scripts/core/veilleurs_combat_sandbox_runtime.gd")
 
-func _init() -> void:
+func _ready() -> void:
     var actor := {"id":"actor", "hp":40, "max_hp":40, "afflictions":{}}
     for kind: String in Status.AFFLICTIONS:
         var applied: Dictionary = Status.apply_affliction(actor, kind, 2)
@@ -110,4 +110,4 @@ func _init() -> void:
     assert(next_hero.afflictions.is_empty(), "hero effect expired at end of actor turn")
     assert(enemy.afflictions.is_empty(), "enemy stun expired after skipped enemy phase")
     print("VEILLEURS_AFFLICTIONS_CONTRACT_OK")
-    quit(0)
+    get_tree().quit(0)

@@ -237,3 +237,63 @@ static func _pick_room_encounter(candidates: Array, node: Dictionary) -> Diction
         if roll < 0.0:
             return candidate.duplicate(true)
     return candidates.back().duplicate(true)
+
+# Validate the actual final selections, without rerolling or trusting reports.
+static func validate_dungeon_plan(plan: Dictionary, library: Dictionary, tables: Dictionary, context: Dictionary = {}) -> Dictionary:
+    var errors: Array[String] = []
+    var critical_count := 0
+    var boss_count := 0
+    var modules := {}
+    for module in library.get("modules", []):
+        modules[str(module.get("module_id", ""))] = module
+    for node in plan.get("nodes", []):
+        var room_id := str(node.get("id", ""))
+        var role := str(node.get("role", ""))
+        var encounter: Dictionary = node.get("encounter", {})
+        var boss := room_id == str(plan.get("objective_id", "")) and role == "boss"
+        var candidates: Array = tables.get("room_tables", {}).get(str(node.get("module_pool", "")), [])
+        if encounter.is_empty():
+            if boss or (bool(node.get("critical", false)) and not candidates.is_empty() and role not in ["entry", "rest", "secret", "exit"]):
+                errors.append("required_encounter_missing:" + room_id)
+            continue
+        if role in ["entry", "rest", "secret", "exit"]:
+            errors.append("safe_room_has_encounter:" + room_id)
+        var authored: Dictionary = {}
+        if boss:
+            authored = tables.get("boss", {}).duplicate(true)
+            authored["id"] = authored.get("encounter_id", "")
+            authored["weight"] = 1.0
+        else:
+            for candidate in candidates:
+                if str(candidate.get("id", "")) == str(encounter.get("id", "")):
+                    authored = candidate.duplicate(true)
+                    break
+        if authored.is_empty():
+            errors.append("unknown_selected_encounter:" + room_id)
+            continue
+        for key in authored:
+            if encounter.get(key) != authored[key]:
+                errors.append("encounter_definition_changed:" + room_id + ":" + str(key))
+        var budget := _room_budget(int(node.get("depth", 0)), tables)
+        if not boss and budget.is_empty():
+            errors.append("encounter_depth_band_missing:" + room_id)
+            continue
+        if _encounter_rejection(authored, budget, context, boss) != "":
+            errors.append("invalid_selected_encounter:" + room_id)
+        var module: Dictionary = modules.get(str(node.get("module_id", "")), {})
+        var anchor := _compatible_anchor(module.get("encounter_anchors", []), authored)
+        if float(authored.get("threat", 0)) > 0.0 and (anchor.is_empty() or str(encounter.get("anchor_id", "")) != str(anchor.get("anchor_id", "")) or int(encounter.get("capacity", 0)) != int(anchor.get("capacity", 0))):
+            errors.append("invalid_encounter_anchor:" + room_id)
+        if str(encounter.get("materialization_status", "")) != "definition_only" or bool(encounter.get("fixed_boss", false)) != boss or int(encounter.get("seed", 0)) != int(node.get("encounter_seed", 0)) or encounter.get("budget", []) != budget:
+            errors.append("invalid_encounter_contract:" + room_id)
+        if float(authored.get("threat", 0)) > 0.0:
+            if bool(node.get("critical", false)) or boss:
+                critical_count += 1
+            if boss:
+                boss_count += 1
+    var rules: Dictionary = tables.get("director_rules", {})
+    if critical_count < int(rules.get("critical_path_min_encounters", 0)) or critical_count > int(rules.get("critical_path_max_encounters", 999)):
+        errors.append("critical_encounter_count_out_of_bounds")
+    if boss_count != 1:
+        errors.append("fixed_boss_unresolved")
+    return {"ok":errors.is_empty(), "errors":errors}

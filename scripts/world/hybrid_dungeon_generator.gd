@@ -3,12 +3,18 @@ class_name HybridDungeonGenerator
 
 const RUN_SEED := preload("res://scripts/world/dungeon_run_seed.gd")
 
+const PROFILE := preload("res://scripts/world/dungeon_profile.gd")
+
 const RULES_PATH := "res://data/dungeons/hybrid_generation_rules.json"
 
 static func generate_graph(config: Dictionary, run_state: Dictionary = {}) -> Dictionary:
     var rules := _load_json(RULES_PATH)
     if rules.is_empty():
         return {"ok": false, "error": "hybrid_rules_missing"}
+
+    var resolved := PROFILE.resolve(config, rules)
+    if not bool(resolved.get("ok", false)):
+        return {"ok":false, "error":"invalid_dungeon_profile", "validation":resolved}
 
     var generation: Dictionary = rules.get("generation", {})
     var max_attempts := int(generation.get("max_attempts", 12))
@@ -37,6 +43,11 @@ static func validate_graph(graph: Dictionary, config: Dictionary, rules: Diction
     if graph.is_empty():
         return {"ok": false, "errors": ["empty_graph"]}
 
+    if rules.is_empty():
+        rules = _load_json(RULES_PATH)
+    var resolved := PROFILE.resolve(config, rules)
+    if not bool(resolved.get("ok", false)):
+        return {"ok":false, "errors":resolved.get("errors", [])}
     var errors: Array[String] = []
     var nodes: Array = graph.get("nodes", [])
     var edges: Array = graph.get("edges", [])
@@ -50,7 +61,12 @@ static func validate_graph(graph: Dictionary, config: Dictionary, rules: Diction
         if node_id == "" or node_ids.has(node_id):
             errors.append("invalid_or_duplicate_node_id:%s" % node_id)
         node_ids[node_id] = true
+    var edge_keys := {}
     for edge in edges:
+        var key := str(edge.get("from", "")) + ">" + str(edge.get("to", ""))
+        if edge_keys.has(key):
+            errors.append("duplicate_edge:" + key)
+        edge_keys[key] = true
         if not node_ids.has(str(edge.get("from", ""))) or not node_ids.has(str(edge.get("to", ""))):
             errors.append("dangling_edge")
 
@@ -93,10 +109,28 @@ static func validate_graph(graph: Dictionary, config: Dictionary, rules: Diction
     if nodes.size() < int(room_range[0]) or nodes.size() > int(room_range[1]):
         errors.append("room_count_out_of_bounds")
 
+    var critical_range: Array = profile.get("critical_length", [3, 999])
+    var critical_count := _count_flag(nodes, "critical")
+    if critical_count < int(critical_range[0]) or critical_count > int(critical_range[1]):
+        errors.append("critical_length_out_of_bounds")
+
     var loop_range: Array = profile.get("loop_target", [0, 999])
-    var loop_count := int(graph.get("loop_count", 0))
+    var loop_count := 0
+    for edge in edges:
+        if str(edge.get("kind", "")) == "loop":
+            loop_count += 1
     if loop_count < int(loop_range[0]) or loop_count > int(loop_range[1]):
         errors.append("loop_count_out_of_bounds")
+
+    var secrets := 0
+    for node in nodes:
+        if str(node.get("role", "")) == "secret":
+            secrets += 1
+            if not _reachable(entry_id, str(node.get("id", "")), edges, true):
+                errors.append("secret_unreachable:" + str(node.get("id", "")))
+    var secret_range: Array = profile.get("secret_target", [0, 999])
+    if secrets < int(secret_range[0]) or secrets > int(secret_range[1]):
+        errors.append("secret_count_out_of_bounds")
 
     if bool(rules.get("global_constraints", {}).get("physical_retreat_required", true)):
         if _count_flag(nodes, "retreat") <= 0:
@@ -191,6 +225,7 @@ static func _build_candidate(config: Dictionary, rules: Dictionary, rng: RandomN
         "system_id": "les_veilleurs_hybrid_dungeon_v1",
         "dungeon_id": str(config.get("dungeon_id", "unknown_dungeon")),
         "profile": str(config.get("profile", "medium")),
+        "dungeon_profile": profile.duplicate(true),
         "attempt_index": attempt_index,
         "entry_id": entry_id,
         "objective_id": objective_id,
@@ -379,7 +414,7 @@ static func _reachable(start_id: String, goal_id: String, edges: Array, include_
         for edge in edges:
             if excluded_id != "" and (str(edge.get("from", "")) == excluded_id or str(edge.get("to", "")) == excluded_id):
                 continue
-            if not include_hidden and bool(edge.get("hidden", false)):
+            if not include_hidden and (bool(edge.get("hidden", false)) or str(edge.get("requires", "")) != ""):
                 continue
             if str(edge.get("from", "")) != current:
                 continue
@@ -399,8 +434,7 @@ static func _count_flag(nodes: Array, flag: String) -> int:
     return result
 
 static func _resolve_profile(config: Dictionary, rules: Dictionary) -> Dictionary:
-    var profile_id := str(config.get("profile", "medium"))
-    return rules.get("default_profiles", {}).get(profile_id, rules.get("default_profiles", {}).get("medium", {}))
+    return PROFILE.resolve(config, rules).get("profile", {})
 
 static func _compose_seed(config: Dictionary, run_state: Dictionary, attempt_index: int) -> int:
     return RUN_SEED.compose(config, run_state, attempt_index)
