@@ -3,6 +3,7 @@ extends Node
 const PLANNER := preload("res://scripts/world/first_accord_hybrid_planner.gd")
 const DIRECTOR := preload("res://scripts/core/veilleurs_encounter_director.gd")
 const RUNTIME_PLAN := preload("res://scripts/world/first_accord_hybrid_runtime_plan.gd")
+const SESSION := preload("res://scripts/core/veilleurs_tactical_session_v2.gd")
 var failures: Array[String] = []
 
 func _ready() -> void:
@@ -28,7 +29,13 @@ func _ready() -> void:
             if encounter.is_empty():
                 continue
             signature += str(node["id"]) + ":" + str(encounter["id"]) + "|"
-            _check(str(encounter["materialization_status"]) == "definition_only", "No combat actors may be claimed")
+            if bool(encounter.get("fixed_boss", false)):
+                _check(str(encounter["materialization_status"]) == "definition_only", "Authored boss stays on its existing route")
+            elif float(encounter.get("threat", 0)) > 0:
+                _check(str(encounter["materialization_status"]) == "composition_ready", "Normal encounters need resolved compositions")
+                _check((encounter.get("composition", []) as Array).size() == int(encounter["enemy_count"]), "Composition respects reserved ranks")
+            else:
+                _check(str(encounter["materialization_status"]) == "definition_only", "Empty rooms have no combat")
             if float(encounter["threat"]) > 0:
                 _check(int(encounter["enemy_count"]) <= int(encounter["capacity"]) and int(encounter["enemy_count"]) <= 4, "Slots must respect physical capacity and R1-R4")
                 _check(str(encounter["anchor_id"]) != "", "Combat reservation must resolve an anchor")
@@ -85,6 +92,13 @@ func _ready() -> void:
     _check(not bool(failed_runtime.get("encounter_report", {}).get("ok", true)), "Fallback must retain failed encounter evidence")
     var runtime_plan := RUNTIME_PLAN.build({"campaign_seed":42})
     _check(bool(runtime_plan.get("ok", false)) and not bool(runtime_plan.get("fallback", false)) and runtime_plan.has("encounter_report"), "Runtime must invoke encounter stage after Remanence")
+    for node in runtime_plan.get("nodes", []):
+        var encounter: Dictionary = node.get("encounter", {})
+        if str(encounter.get("materialization_status", "")) != "composition_ready":
+            continue
+        var session := SESSION.new() as VeilleursTacticalSessionV2
+        var started := session.start_authored_encounter(encounter, "first_accord:%s" % node.get("id", ""), "first_accord")
+        _check(bool(started.get("ok", false)) and (started.get("enemies", []) as Array).size() == int(encounter.get("enemy_count", 0)), "Real tactical runtime must accept every selected composition")
     var fallback := {"ok":true, "fallback":true, "fallback_reason":"test"}
     _check(DIRECTOR.populate_dungeon_plan(fallback, library, tables) == fallback, "Authored fallback must remain untouched")
     if failures.is_empty():

@@ -2,6 +2,7 @@ extends RefCounted
 class_name VeilleursEncounterDirector
 
 const HYBRID_SCRIPT := preload("res://scripts/core/veilleurs_hybrid_generation_bridge.gd")
+const CONTENT_DB_SCRIPT := preload("res://scripts/core/content_db.gd")
 const RECENT_CAP := 6
 const MAX_COMBAT_ENEMIES := 4
 
@@ -76,6 +77,8 @@ static func populate_dungeon_plan(plan: Dictionary, library: Dictionary, tables:
     var critical_count := 0
     var optional_count := 0
     var boss_selected := false
+    var content_db := CONTENT_DB_SCRIPT.new() as VeilleursContentDB
+    content_db.reload()
     var ordered_nodes: Array = result.get("nodes", []).duplicate()
     ordered_nodes.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return str(a.get("id", "")) < str(b.get("id", "")))
     for node in ordered_nodes:
@@ -148,7 +151,22 @@ static func populate_dungeon_plan(plan: Dictionary, library: Dictionary, tables:
             selected["seed"] = int(node.get("encounter_seed", 0))
             selected["budget"] = budget.duplicate()
             selected["fixed_boss"] = fixed_boss
-            selected["materialization_status"] = "definition_only"
+            if not fixed_boss and float(selected.get("threat", 0)) > 0.0:
+                var composition: Array = []
+                var enemy_ids: Array = selected.get("enemy_ids", [])
+                if enemy_ids.size() != int(selected.get("enemy_count", 0)):
+                    errors.append("encounter_composition_count:%s" % room_id)
+                for enemy_value in enemy_ids:
+                    var enemy_id := str(enemy_value)
+                    if content_db.enemy(enemy_id).is_empty():
+                        errors.append("encounter_enemy_missing:%s:%s" % [room_id, enemy_id])
+                    else:
+                        composition.append({"definition_id": enemy_id})
+                selected["composition"] = composition
+                selected["template_id"] = str(selected.get("id", ""))
+                selected["materialization_status"] = "composition_ready" if composition.size() == int(selected.get("enemy_count", 0)) else "definition_only"
+            else:
+                selected["materialization_status"] = "definition_only"
             node["encounter"] = selected
             decision["selected_id"] = str(selected.get("id", ""))
             decision["reason"] = "selected" if float(selected.get("threat", 0)) > 0.0 else "authored_empty"

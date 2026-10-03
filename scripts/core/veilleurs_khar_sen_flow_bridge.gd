@@ -5,11 +5,13 @@ const PENDING_PATH := "user://veilleurs_khar_sen_pending.json"
 const RESULT_PATH := "user://veilleurs_khar_sen_result.json"
 const VERSION := "0.6.1"
 
-func begin_combat(dungeon_state: Dictionary, encounter: Dictionary, node_id: String) -> bool:
+func begin_combat(dungeon_state: Dictionary, encounter: Dictionary, node_id: String, return_scene: String = "", region_id: String = "khar_sen") -> bool:
     if dungeon_state.is_empty() or encounter.is_empty() or node_id == "":
         return false
     var payload := {
         "version": VERSION,
+        "return_scene": return_scene,
+        "region_id": region_id,
         "node_id": node_id,
         "dungeon_state": dungeon_state.duplicate(true),
         "encounter": encounter.duplicate(true)
@@ -31,6 +33,8 @@ func finish_combat(outcome: String, summary: Dictionary, combat_snapshot: Dictio
         return false
     var payload := {
         "version": VERSION,
+        "return_scene": str(source.get("return_scene", "")),
+        "region_id": str(source.get("region_id", "khar_sen")),
         "node_id": str(source.get("node_id", "")),
         "dungeon_state": (source.get("dungeon_state", {}) as Dictionary).duplicate(true),
         "encounter": (source.get("encounter", {}) as Dictionary).duplicate(true),

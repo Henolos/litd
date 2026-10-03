@@ -1,0 +1,33 @@
+name: First Accord Tactical Entry
+
+on:
+  pull_request:
+    paths:
+      - 'data/dungeons/first_accord_encounters.json'
+      - 'scripts/core/veilleurs_encounter_director.gd'
+      - 'scripts/core/veilleurs_khar_sen_flow_bridge.gd'
+      - 'scripts/ui/veilleurs_tactical_demo_v2.gd'
+      - 'scripts/world/ashlands_blockout_builder.gd'
+      - 'scripts/world/first_accord_*.gd'
+      - 'scripts/tests/dungeon_encounter_pipeline_smoke.gd'
+      - 'scripts/tests/first_accord_tactical_entry_smoke.gd'
+      - 'scenes/tests/first_accord_tactical_entry_smoke.tscn'
+      - '.github/workflows/first-accord-tactical-entry.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tactical-entry:
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.7.2
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Import Godot
+        run: godot --headless --path . --import --quit
+      - name: Compositions et contraintes du plan
+        run: timeout 120s godot --headless --path . res://scenes/tests/dungeon_encounter_pipeline_smoke.tscn
+      - name: Salle physique, lancement et retour du combat
+        run: timeout 90s godot --headless --path . res://scenes/tests/first_accord_tactical_entry_smoke.tscn

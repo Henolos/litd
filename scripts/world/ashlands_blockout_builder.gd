@@ -10,6 +10,9 @@ const PLAYTEST_PANEL := preload("res://scripts/world/ashlands_playtest_panel.gd"
 const LORE_COLLECTIBLE := preload("res://scripts/world/lore_collectible.gd")
 const OPENING_BIRD_INTRO := preload("res://scripts/cinematics/opening_bird_intro_director.gd")
 const FIRST_ACCORD_DUNGEON_MAP := preload("res://scripts/world/first_accord_dungeon_map_builder.gd")
+const FIRST_ACCORD_PLAN := preload("res://scripts/world/first_accord_hybrid_runtime_plan.gd")
+const FIRST_ACCORD_TRIGGER := preload("res://scripts/world/first_accord_tactical_trigger.gd")
+const TACTICAL_FLOW := preload("res://scripts/core/veilleurs_khar_sen_flow_bridge.gd")
 
 @export_file("*.json") var manifest_path := "res://data/levels/terre_des_cendres_blockout_manifest.json"
 @export var zone_id := "zone_01_faubourg_cendreux"
@@ -20,6 +23,8 @@ const FIRST_ACCORD_DUNGEON_MAP := preload("res://scripts/world/first_accord_dung
 var manifest: Dictionary = {}
 var zone_data: Dictionary = {}
 var zone_blueprint: Dictionary = {}
+var first_accord_plan: Dictionary = {}
+var first_accord_return_position: Array = []
 
 func _ready() -> void:
     if build_on_ready:
@@ -33,6 +38,17 @@ func build_zone() -> void:
         push_error("AshlandsBlockoutBuilder: zone introuvable: %s" % zone_id)
         return
     zone_blueprint = _load_json(BLUEPRINT_PATH).get("zones", {}).get(zone_id, {})
+
+    if zone_id == "zone_16_salles_du_premier_accord":
+        var flow := TACTICAL_FLOW.new() as VeilleursKharSenFlowBridge
+        var result := flow.consume_result()
+        first_accord_return_position = []
+        if str(result.get("region_id", "")) == "first_accord" and str(result.get("outcome", "")) == "victory":
+            first_accord_return_position = result.get("dungeon_state", {}).get("return_position", [])
+        if str(result.get("region_id", "")) == "first_accord" and str(result.get("outcome", "")) == "victory":
+            var completed_seed := int(result.get("dungeon_state", {}).get("run_seed", 0))
+            AshlandsRuntime.mark_encounter_cleared(_first_accord_encounter_key(completed_seed, str(result.get("node_id", ""))))
+        first_accord_plan = FIRST_ACCORD_PLAN.build({"campaign_seed": ExpeditionManager.expedition_seed})
 
     AshlandsRuntime.enter_zone(zone_id)
     _build_floor()
@@ -53,6 +69,10 @@ func build_zone() -> void:
     _build_boss_slot()
     if spawn_player_placeholder:
         _build_player_placeholder()
+        if first_accord_return_position.size() == 3:
+            var party := _root().get_node_or_null("ExplorationPartyRuntime") as Node3D
+            if party != null:
+                party.position = _array_to_vec3(first_accord_return_position)
     if spawn_hud:
         _build_hud()
     _build_opening_intro()
@@ -230,6 +250,9 @@ func _build_ash_volumes() -> void:
         parent.add_child(area)
 
 func _build_encounter_slots() -> void:
+    if zone_id == "zone_16_salles_du_premier_accord":
+        _build_first_accord_encounters()
+        return
     var parent := Node3D.new()
     parent.name = "EncounterSlots"
     _root().add_child(parent)
@@ -244,6 +267,40 @@ func _build_encounter_slots() -> void:
         trigger.alternate_route_available = true
         if trigger.encounter_type == "miniboss":
             trigger.set_meta("miniboss", miniboss)
+        _add_box_area_collision(trigger, Vector3(4.0, 2.0, 4.0))
+        parent.add_child(trigger)
+
+func _first_accord_encounter_key(seed_value: int, room_id: String) -> String:
+    return "first_accord:%d:%s" % [seed_value, room_id]
+
+func _build_first_accord_encounters() -> void:
+    var parent := Node3D.new()
+    parent.name = "EncounterSlots"
+    _root().add_child(parent)
+    if not bool(first_accord_plan.get("ok", false)) or bool(first_accord_plan.get("fallback", false)):
+        return
+    var rooms := {}
+    var map_data := _load_json(FIRST_ACCORD_DUNGEON_MAP.MAP_PATH)
+    for floor_data in map_data.get("floors", []):
+        for room_data in floor_data.get("rooms", []):
+            rooms[str(room_data.get("id", ""))] = room_data
+    var run_seed := int(ExpeditionManager.expedition_seed)
+    for node in first_accord_plan.get("nodes", []):
+        var room_id := str(node.get("id", ""))
+        var encounter: Dictionary = node.get("encounter", {})
+        if not rooms.has(room_id) or str(encounter.get("materialization_status", "")) != "composition_ready":
+            continue
+        var key := _first_accord_encounter_key(run_seed, room_id)
+        if AshlandsRuntime.is_encounter_cleared(key):
+            continue
+        var trigger := FIRST_ACCORD_TRIGGER.new() as FirstAccordTacticalTrigger
+        trigger.name = "Tactical_%s" % room_id
+        trigger.position = _array_to_vec3(rooms[room_id].get("center", [0, 0, 0])) + Vector3.UP
+        trigger.encounter_id = key
+        trigger.encounter = encounter.duplicate(true)
+        trigger.room_id = room_id
+        trigger.run_seed = run_seed
+        trigger.use_combat_bridge = false
         _add_box_area_collision(trigger, Vector3(4.0, 2.0, 4.0))
         parent.add_child(trigger)
 

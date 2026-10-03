@@ -31,7 +31,8 @@ func _ready() -> void:
     if flow_active:
         var encounter: Dictionary = flow_payload.get("encounter", {})
         var node_id := str(flow_payload.get("node_id", "KHAR"))
-        setup = session.start_authored_encounter(encounter, "khar_sen:%s" % node_id, "khar_sen")
+        var region_id := str(flow_payload.get("region_id", "khar_sen"))
+        setup = session.start_authored_encounter(encounter, "%s:%s" % [region_id, node_id], region_id)
         back_button.text = "Retraite"
     else:
         setup = session.start_first_combat()
@@ -232,7 +233,8 @@ func _finish_combat(outcome: String) -> void:
     if flow_active:
         var combat_snapshot := session.runtime.serialize() if session.runtime != null else {}
         if flow_bridge.finish_combat(outcome, summary, combat_snapshot, aftermath):
-            get_tree().change_scene_to_file(DUNGEON_SCENE)
+            var return_scene := str(flow_payload.get("return_scene", DUNGEON_SCENE))
+            get_tree().change_scene_to_file(return_scene if return_scene != "" else DUNGEON_SCENE)
         else:
             message_label.text = "Résultat enregistré, mais retour Khar-Sen impossible."
         return
