@@ -2,10 +2,13 @@ extends Node
 
 const SEEDS := preload("res://scripts/world/dungeon_run_seed.gd")
 const PLANNER := preload("res://scripts/world/first_accord_hybrid_planner.gd")
+const ENCOUNTERS := preload("res://scripts/world/first_accord_encounter_planner.gd")
 var failures: Array[String] = []
 
 func _ready() -> void:
     var config: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(PLANNER.CONFIG_PATH))
+    var catalog: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(PLANNER.ENCOUNTERS_PATH))
+    var library: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(PLANNER.MODULES_PATH))
     var secret_pools := {}
     var resource_pools := {}
     for seed_value in 1000:
@@ -18,6 +21,24 @@ func _ready() -> void:
         var report: Dictionary = plan.get("generation_report", {})
         _check(int(report.get("room_count", 0)) == plan["nodes"].size(), "Report must count final rooms")
         _check(bool(report.get("validation", {}).get("ok", false)), "Report must contain final validation")
+        var populated := ENCOUNTERS.populate(plan, catalog, library)
+        _check(populated == ENCOUNTERS.populate(plan, catalog, library), "Encounter plans reproduce exactly")
+        _check(bool(populated["encounter_report"]["ok"]), "Critical encounter quota must hold")
+        _check(populated["edges"] == plan["edges"], "Population must preserve topology")
+        var reversed := plan.duplicate(true)
+        reversed["nodes"].reverse()
+        reversed = ENCOUNTERS.populate(reversed, catalog, library)
+        for room in populated["nodes"]:
+            for other in reversed["nodes"]:
+                if room["id"] == other["id"]:
+                    _check(room["encounter_plan"] == other["encounter_plan"], "Encounter selection independent of room order")
+            if room["role"] == "boss":
+                _check(room["encounter_plan"]["id"] == catalog["boss"]["encounter_id"], "Authored boss remains fixed")
+            if room["role"] in ["entry", "secret"]:
+                _check(room["encounter_plan"].is_empty(), "Safe roles remain unpopulated")
+        var relief := ENCOUNTERS.populate(plan, catalog, library, {"injury_pressure": 0.8})
+        _check(bool(relief["encounter_report"]["relief_active"]), "Party pressure enables relief")
+        _check(bool(relief["encounter_report"]["ok"]), "Relief preserves critical quota")
         var root_seed := int(plan.get("seed", 0))
         _check(int(plan["stage_seeds"]["layout"]) == root_seed, "Layout seed must preserve historical contract")
         var layout_rng := SEEDS.generator(root_seed, "layout")
@@ -44,6 +65,13 @@ func _ready() -> void:
         broken = plan.duplicate(true)
         broken["nodes"].back()["module_id"] = "accord_entry_vestibule_v1"
         _check(not bool(PLANNER.validate_plan(broken)["ok"]), "Known module from wrong pool must fail")
+    var anchor := {"anchor_id": "test", "capacity": 2, "formation_tags": ["frontline"]}
+    _check(ENCOUNTERS._compatible_anchor({"enemy_count": 3}, [anchor]).is_empty(), "Oversized compositions rejected")
+    _check(ENCOUNTERS._compatible_anchor({"enemy_count": 2, "formation_tags": ["ranged"]}, [anchor]).is_empty(), "Unsupported formations rejected")
+    _check(not ENCOUNTERS._compatible_anchor({"enemy_count": 2, "formation_tags": ["frontline"]}, [anchor]).is_empty(), "Compatible compositions accepted")
+    var impossible := catalog.duplicate(true)
+    impossible["director_rules"]["critical_path_min_encounters"] = 99
+    _check(not bool(ENCOUNTERS.populate(PLANNER.build_plan(), impossible, library)["encounter_report"]["ok"]), "Impossible quota fails explicitly")
     _check(secret_pools.size() == 2, "Both authored secret pools must be reachable")
     _check(resource_pools.size() == 3, "All eligible resource pools must be reachable")
     var disabled_config := config.duplicate(true)
@@ -60,7 +88,7 @@ func _ready() -> void:
     _check(heavy > 8500 and heavy < 9500, "Weights must influence distribution")
     _check(PLANNER._weighted_pick([{"weight":0}, {"weight":-1}], rng).is_empty(), "No positive weight means no candidate")
     if failures.is_empty():
-        print("DUNGEON_GENERATION_PIPELINE_OK: 1000 plans, isolated streams, weighted pools, invalid modules")
+        print("DUNGEON_GENERATION_PIPELINE_OK: 1000 plans, isolated streams, weighted pools, encounter quotas, capacity, room-order isolation, invalid data")
         get_tree().quit(0)
     else:
         for failure in failures:

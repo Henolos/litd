@@ -57,3 +57,39 @@ smoke graphe existant 200 graphes + 100 plans PASS ; Premier Accord 80 cas repro
 Le projet complet signale à la fermeture trois ressources encore utilisées, signal
 également reproduit sur le commit de base non modifié. Le test isolé du générateur
 passe sans ce signal. La CI distante doit encore confirmer les domaines complets.
+
+## Deuxième tranche : planification des rencontres après Rémanence
+
+`FirstAccordHybridRuntimePlan.build` appelle `FirstAccordEncounterPlanner.populate`
+après projection des cicatrices et décoration du monde. Il conserve les affectations
+Némésis existantes, les salles et toutes les connexions. Un flux encounter par ID de
+salle sélectionne les candidats pondérés admissibles. Le boss authored reste fixe,
+les rôles entry/rest/secret ne reçoivent pas de rencontre, les branches optionnelles
+respectent leur probabilité et leur candidat vide explicite. Les quatre rencontres
+non-boss du chemin critique doivent respecter le quota 4–7, sinon retour authored
+avec motif explicite. Les budgets de profondeur plafonnent la menace ; une pression
+blessure élevée ou des réserves basses sélectionnent la menace admissible la plus
+faible, sans modifier PV/dégâts ni supprimer le chemin critique.
+
+Les tags de formation doivent tous être acceptés par l'ancre. Une composition avec
+`enemy_count` dépassant sa capacité est rejetée. Le catalogue actuel ne donne pas
+ces effectifs : `composition_pending` signale cette absence ; `capacity_limit` est
+une contrainte transmise au futur compositeur, pas une preuve que le groupe est
+matérialisé. Avec les tags actuels, plusieurs alternatives sont incompatibles : elles
+sont exclues plutôt que placées dans une salle non prévue pour leur formation.
+
+`encounter_report` est ajouté au rapport final : quota, sélection, soulagement,
+erreurs et `physical_spawn_pending`. Cette tranche produit des plans uniquement.
+Le planner de base reste indépendant de l'état global de Rémanence ; le wrapper
+runtime dépend aussi des cicatrices et entités mémorielles courantes.
+
+Restent : groupes d'ennemis référencés et matérialisation des rencontres, événements,
+butins, scènes physiques manquantes, connexion de l'exploration jouable au plan.
+Aucune affirmation de générateur jouable complet ne découle de ces tests.
+
+Validation locale du 3 octobre 2026, Godot 4.7.2 : import sans erreur de script ;
+pipeline étendu 1 000 plans PASS ; wrapper runtime 80 cas + 1 000 graines PASS ;
+17 tests Python de données/génération PASS. La fermeture du projet complet signale
+encore des instances ObjectDB et trois ressources en usage. Les trois ressources
+sont également signalées sur le worktree bc28beb non modifié : défaut préexistant,
+pas une validation de propreté complète du projet.

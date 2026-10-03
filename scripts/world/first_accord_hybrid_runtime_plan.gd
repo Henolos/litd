@@ -3,6 +3,8 @@ class_name FirstAccordHybridRuntimePlan
 
 const PLANNER := preload("res://scripts/world/first_accord_hybrid_planner.gd")
 
+const ENCOUNTER_PLANNER := preload("res://scripts/world/first_accord_encounter_planner.gd")
+
 const ROLE_FALLBACKS := {
     "transit": "accord_guardroom_v1",
     "combat": "accord_guardroom_v1",
@@ -45,6 +47,12 @@ static func build(run_state: Dictionary = {}) -> Dictionary:
             "fallback_reason": "unresolved_module_after_runtime_resolution",
             "fallback_authored_map": plan.get("fallback_authored_map", "")
         }
+    var catalog: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(PLANNER.ENCOUNTERS_PATH))
+    var library: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(PLANNER.MODULES_PATH))
+    plan = ENCOUNTER_PLANNER.populate(plan, catalog, library, run_state)
+    plan["generation_report"]["encounters"] = plan["encounter_report"].duplicate(true)
+    if not bool(plan["encounter_report"]["ok"]):
+        return PLANNER._fallback_plan({}, "encounter_planning_failed", plan["encounter_report"]).merged({"fallback_authored_map": plan.get("fallback_authored_map", "")}, true)
     return plan
 
 static func _active_world_scars() -> Array:
