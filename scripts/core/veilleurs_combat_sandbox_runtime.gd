@@ -82,7 +82,11 @@ func perform_action(action_id: String, target_index: int, zone: String = "torso"
         if not bool(target_resolution.get("ok", false)): return target_resolution
         var target: Dictionary = target_resolution.get("target", {})
         if int(target.get("hp", 0)) <= 0: return {"ok":false,"reason":"target_dead"}
-        result = _resolve_enemy_action(hero, action, target, str(command.get("zone", "torso")))
+        var target_contract: Dictionary = TARGET_RESOLVER.validate_target_contract(hero, action, target, enemies, str(command.get("zone", "torso")))
+        if not bool(target_contract.get("ok", false)):
+            return target_contract
+        var resolved_zone := str(target_contract.get("zone", command.get("zone", "torso")))
+        result = _resolve_enemy_action(hero, action, target, resolved_zone)
         if bool(result.get("ok", false)) and str(result.get("kind", "")) == "attack":
             result["ai_reaction"] = _enemy_observe_and_react(target, hero, action, str(command.get("zone", "torso")), result)
     elif target_side == "ally":
