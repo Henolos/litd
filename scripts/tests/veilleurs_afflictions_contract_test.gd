@@ -12,6 +12,8 @@ func _ready() -> void:
         assert(applied.ok and int(applied.afflictions[kind]) == 2, "application failed: %s" % kind)
         assert((actor.afflictions as Dictionary).is_empty(), "resolver mutated its input")
     assert(Status.AFFLICTIONS.size() == 10)
+    assert(Status.PROTOTYPE_AFFLICTIONS == ["poison", "burn", "freeze"])
+    assert("freeze" not in Status.ACTIVE_AFFLICTIONS)
     assert(not Status.apply_affliction(actor, "unknown", 2).ok)
     assert(not Status.apply_affliction(actor, "poison", 0).ok)
     actor.afflictions = {"poison":2,"burn":2,"bleed":2}
@@ -44,8 +46,16 @@ func _ready() -> void:
     clamped.afflictions = {"poison":1}
     assert(int(Status.start_turn(clamped).damage) == 6, "negative resistance capped at double damage")
     actor.afflictions = {"stun":1}
+    actor.affliction_immunities = {}
     assert(Status.action_block(actor, {}) == "stunned")
     assert(Status.movement_block(actor))
+    actor.afflictions = Status.finish_turn(actor)
+    assert(actor.afflictions.is_empty())
+    assert(int(actor.affliction_immunities.stun) == 1, "stun expiry must grant one recovery turn")
+    var stun_reapply := Status.apply_affliction(actor, "stun", 2)
+    assert(stun_reapply.ok and stun_reapply.immune and stun_reapply.afflictions.is_empty(), "stun cannot immediately chain-lock")
+    actor.afflictions = Status.finish_turn(actor)
+    assert(not actor.affliction_immunities.has("stun"), "stun recovery immunity lasts one actor turn")
     actor.afflictions = {"silence":1}
     assert(Status.action_block(actor, {"trame_cost":1}) == "silenced")
     assert(Status.action_block(actor, {"effect":"trame_control"}) == "silenced")
@@ -62,7 +72,7 @@ func _ready() -> void:
     assert(runtime.setup().ok)
     assert(int(runtime.enemies[0].affliction_resistances.bleed.duration) == -50)
     assert(int(runtime.inspect_actor("enemy", 1).affliction_resistances.burn.damage) == 50)
-    var names := {"poison":"MATH-AFF-01","bleed":"MA-ENT-01","blind":"MA-DIS-09", "stun":"MR-BRI-01","vulnerability":"MR-BRI-05","weakness":"MR-BRI-09", "burn":"ANOU-AFF-01","freeze":"ANOU-AFF-02","silence":"AN-DIS-06", "snare":"AU-ANA-06"}
+    var names := {"poison":"MATH-AFF-01","bleed":"MA-ENT-01","blind":"MA-DIS-09", "stun":"MR-BRI-01","vulnerability":"MR-BRI-05","weakness":"MR-BRI-09", "burn":"ANOU-AFF-01","silence":"AN-DIS-06", "snare":"AU-ANA-06"}
     var canonical_build_actions := {"MA-ENT-01":"Entaille","MA-DIS-09":"Disparition","MR-BRI-01":"Brisure","MR-BRI-05":"Brisure","MR-BRI-09":"Brisure","AN-DIS-06":"Dissidence","AU-ANA-06":"Anatomie"}
     for i in range(runtime.heroes.size()):
         for action: Dictionary in runtime.heroes[i].sandbox_actions:
@@ -82,7 +92,8 @@ func _ready() -> void:
                 assert(Status.has(runtime.enemies[0], str(action.affliction)), "effect not stored: %s" % str(action.affliction))
                 if str(action.affliction) == "bleed":
                     assert(int(action_result.turns) == 3, "sandbox sensitivity must lengthen bleed")
-    assert((runtime.inspect_actor("enemy", 0).afflictions as Dictionary).size() == 10)
+    assert((runtime.inspect_actor("enemy", 0).afflictions as Dictionary).size() == 9)
+    assert(not Status.has(runtime.enemies[0], "freeze"), "freeze stays compatibility-only and is not an active sandbox action")
     runtime.active_hero_index = 0
     runtime.heroes[0].afflictions = {"stun":1}
     var ap_before: int = int(runtime.heroes[0].ap)

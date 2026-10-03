@@ -48,7 +48,6 @@
         {"id":"ANOU-TRA-28","name":"Entre deux lignes","ap":1,"target":"self","effect":"trame_stance","trame_cost":1},
         {"id":"ANOU-RET-01","name":"Couper le flux","ap":1,"target":"self","effect":"reduce_overload","overload_recovery":2},
         {"id":"ANOU-AFF-01","name":"Feu de trame","ap":1,"target":"enemy","effect":"inflict_affliction","affliction":"burn","duration":2,"accuracy":90},
-        {"id":"ANOU-AFF-02","name":"Prise de gel","ap":1,"target":"enemy","effect":"inflict_affliction","affliction":"freeze","duration":2,"accuracy":90},
         {"id":"AN-DIS-06","name":"Casser le rituel","tree":"Dissidence","build_role":"silence","ap":1,"target":"enemy","effect":"inflict_affliction","affliction":"silence","duration":2,"accuracy":90}
       ]
     },

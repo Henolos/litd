@@ -3,9 +3,6 @@ class_name VeilleursCombatSandboxRuntime
 
 const BRIDGE_PATH := "res://data/veilleurs/combat_sandbox_quartet_bridge.json"
 const ZONES := ["head", "torso", "left_arm", "right_arm", "left_leg", "right_leg"]
-const HIT_RESOLVER := preload("res://scripts/core/combat/veilleurs_hit_resolver.gd")
-const DAMAGE_RESOLVER := preload("res://scripts/core/combat/veilleurs_damage_resolver.gd")
-const ANATOMY_RESOLVER := preload("res://scripts/core/combat/veilleurs_anatomy_resolver.gd")
 const STATUS_RESOLVER := preload("res://scripts/core/combat/veilleurs_status_resolver.gd")
 const REACTION_RESOLVER := preload("res://scripts/core/combat/veilleurs_reaction_resolver.gd")
 const COMBAT_EVENT := preload("res://scripts/core/combat/veilleurs_combat_event.gd")
@@ -287,33 +284,28 @@ func _enemy_observe_and_react(enemy: Dictionary, hero: Dictionary, action: Dicti
 
 func _enemy_phase() -> void:
     var alive: Array[Dictionary] = []
-    for hero in heroes:
-        if int(hero.get("hp", 0)) > 0: alive.append(hero)
-    if alive.is_empty(): return
-    for enemy in enemies:
-        if int(enemy.get("hp", 0)) <= 0: continue
+    for hero: Dictionary in heroes:
+        if int(hero.get("hp", 0)) > 0:
+            alive.append(hero)
+    if alive.is_empty():
+        return
+    for enemy: Dictionary in enemies:
+        if int(enemy.get("hp", 0)) <= 0:
+            continue
         _start_afflicted_turn(enemy)
-        if int(enemy.get("hp", 0)) <= 0: continue
-        if STATUS_RESOLVER.has(enemy, "stun"):
-            enemy["afflictions"] = STATUS_RESOLVER.finish_turn(enemy)
+        if int(enemy.get("hp", 0)) <= 0:
             continue
-        var impairment: int = STATUS_RESOLVER.accuracy_penalty(enemy)
-        if impairment > 0 and HIT_RESOLVER.stable_roll(str(enemy.get("id", "")) + str(round)) < impairment:
-            enemy["afflictions"] = STATUS_RESOLVER.finish_turn(enemy)
-            continue
+        alive.clear()
+        for hero: Dictionary in heroes:
+            if int(hero.get("hp", 0)) > 0:
+                alive.append(hero)
+        if alive.is_empty():
+            return
         var target: Dictionary = alive[0]
-        for candidate in alive:
-            if int(candidate.get("hp", 0)) < int(target.get("hp", 0)): target = candidate
-        var damage := 6 if str(enemy.get("id")) == "charognard_sandbox" else 9; damage = maxi(1, damage - int(enemy.get("accuracy_penalty", 0)) / 5)
-        damage = maxi(1, int(round(float(damage) * STATUS_RESOLVER.outgoing_factor(enemy) * STATUS_RESOLVER.incoming_factor(target))))
-        if STATUS_RESOLVER.has(enemy, "snare"): damage = maxi(1, int(round(float(damage) * 0.5)))
-        var protector := _hero_by_id(str(target.get("protected_by", "")))
-        if not protector.is_empty() and str(protector.get("reaction", "none")) in ["protect", "intercept"]:
-            var absorbed := mini(4, damage - 1); damage -= absorbed; protector["hp"] = maxi(0, int(protector.get("hp", 0)) - absorbed); protector["reaction"] = "none"; target["protected_by"] = ""
-        elif str(target.get("reaction", "none")) == "parry": damage = maxi(1, damage - 4); target["reaction"] = "none"
-        if str(target.get("posture", "none")) == "guard": damage = maxi(1, damage - 2)
-        target["hp"] = maxi(0, int(target.get("hp", 0)) - damage); target["vital_state"] = _vital_label(target); target["pain_state"] = "strong" if damage >= 8 else str(target.get("pain_state", "controlled"))
-        enemy["afflictions"] = STATUS_RESOLVER.finish_turn(enemy)
+        for candidate: Dictionary in alive:
+            if int(candidate.get("hp", 0)) < int(target.get("hp", 0)):
+                target = candidate
+        CANONICAL_ADAPTER.resolve_enemy_attack(enemy, target, heroes, round)
 
 func _start_afflicted_turn(actor: Dictionary) -> void:
     if int(actor.get("hp", 0)) <= 0: return
@@ -329,12 +321,6 @@ func _tick_persistent_controls() -> void:
         var remaining := int(enemy.get("control_rounds", 0)); if remaining <= 0: continue
         remaining -= 1; enemy["control_rounds"] = remaining
         if remaining <= 0: enemy["control_state"] = "none"; enemy["accuracy_penalty"] = 0
-
-func _hero_by_id(hero_id: String) -> Dictionary:
-    if hero_id.is_empty(): return {}
-    for hero in heroes:
-        if str(hero.get("id", "")) == hero_id: return hero
-    return {}
 
 func _first_impaired_zone(actor: Dictionary) -> String:
     var anatomy: Dictionary = actor.get("anatomy", {})

@@ -45,13 +45,17 @@ def test_02_skills_and_effects_use_the_canonical_veilleurs_contract() -> None:
     assert canonical_skills_audit() == []
 
     sandbox = _text("scripts/core/veilleurs_combat_sandbox_runtime.gd")
+    adapter = _text("scripts/core/combat/veilleurs_combat_sandbox_canonical_adapter.gd")
+    assert 'const CANONICAL_ADAPTER := preload("res://scripts/core/combat/veilleurs_combat_sandbox_canonical_adapter.gd")' in sandbox
+    assert 'const COMBAT_EVENT := preload("res://scripts/core/combat/veilleurs_combat_event.gd")' in sandbox
     for token in (
         'const HIT_RESOLVER := preload("res://scripts/core/combat/veilleurs_hit_resolver.gd")',
         'const DAMAGE_RESOLVER := preload("res://scripts/core/combat/veilleurs_damage_resolver.gd")',
         'const ANATOMY_RESOLVER := preload("res://scripts/core/combat/veilleurs_anatomy_resolver.gd")',
-        'const COMBAT_EVENT := preload("res://scripts/core/combat/veilleurs_combat_event.gd")',
     ):
-        assert token in sandbox
+        assert token in adapter
+        assert token not in sandbox
+    assert "CANONICAL_ADAPTER.resolve_enemy_attack" in sandbox
 
 
 def test_03_states_and_statuses_are_resolved_in_the_combat_pipeline() -> None:

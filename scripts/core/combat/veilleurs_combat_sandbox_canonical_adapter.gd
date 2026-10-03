@@ -46,3 +46,60 @@ static func _resolve_affliction(hero: Dictionary, action: Dictionary, target: Di
     var applied: Dictionary = STATUS_RESOLVER.apply_affliction(target, kind, turns)
     target["afflictions"] = applied["afflictions"]
     return {"ok":true,"kind":"affliction","hit":true,"target":str(target.get("id", "")),"affliction":kind,"turns":applied["turns"],"resisted":applied["resisted"]}
+
+
+static func resolve_enemy_attack(enemy: Dictionary, target: Dictionary, heroes: Array[Dictionary], round_index: int) -> Dictionary:
+    if STATUS_RESOLVER.has(enemy, "stun"):
+        enemy["afflictions"] = STATUS_RESOLVER.finish_turn(enemy)
+        return {"ok":true,"kind":"enemy_attack","skipped":true,"reason":"stun","target":str(target.get("id", ""))}
+    var impairment: int = STATUS_RESOLVER.accuracy_penalty(enemy)
+    if impairment > 0 and HIT_RESOLVER.stable_roll(str(enemy.get("id", "")) + str(round_index)) < impairment:
+        enemy["afflictions"] = STATUS_RESOLVER.finish_turn(enemy)
+        return {"ok":true,"kind":"enemy_attack","skipped":true,"reason":"impairment","target":str(target.get("id", ""))}
+    var base_power: int = 6 if str(enemy.get("id", "")) == "charognard_sandbox" else 9
+    base_power = maxi(1, base_power - int(enemy.get("accuracy_penalty", 0)) / 5)
+    var damage_result: Dictionary = DAMAGE_RESOLVER.resolve(enemy, {"power":base_power,"impact":"blunt"}, target, "torso")
+    var damage: int = int(damage_result.get("damage", 1))
+    if STATUS_RESOLVER.has(enemy, "snare"):
+        damage = maxi(1, int(round(float(damage) * 0.5)))
+    var protector: Dictionary = _hero_by_id(heroes, str(target.get("protected_by", "")))
+    if not protector.is_empty() and str(protector.get("reaction", "none")) in ["protect", "intercept"]:
+        var absorbed: int = mini(4, maxi(0, damage - 1))
+        damage -= absorbed
+        protector["hp"] = maxi(0, int(protector.get("hp", 0)) - absorbed)
+        protector["reaction"] = "none"
+        target["protected_by"] = ""
+        DEATH_RESOLVER.resolve_actor(protector, "hero")
+    elif str(target.get("reaction", "none")) == "parry":
+        damage = maxi(1, damage - 4)
+        target["reaction"] = "none"
+    if str(target.get("posture", "none")) == "guard":
+        damage = maxi(1, damage - 2)
+    var resulting_hp: int = maxi(0, int(target.get("hp", 0)) - damage)
+    var severity: int = 3 if damage >= 13 else (2 if damage >= 8 else 1)
+    var status_result: Dictionary = STATUS_RESOLVER.resolve_after_hit(target, {"impact":"blunt"}, severity, resulting_hp)
+    target["hp"] = resulting_hp
+    target["pain_state"] = status_result.get("pain_state", target.get("pain_state", "controlled"))
+    target["bleeding_state"] = status_result.get("bleeding_state", target.get("bleeding_state", "none"))
+    target["vital_state"] = status_result.get("vital_state", target.get("vital_state", "stable"))
+    target["public_vital_state"] = status_result.get("public_vital_state", target.get("public_vital_state", target["vital_state"]))
+    var death: Dictionary = DEATH_RESOLVER.resolve_actor(target, "hero")
+    enemy["afflictions"] = STATUS_RESOLVER.finish_turn(enemy)
+    return {
+        "ok":true,
+        "kind":"enemy_attack",
+        "hit":true,
+        "target":str(target.get("id", "")),
+        "damage":damage,
+        "severity":severity,
+        "target_hp":int(target.get("hp", 0)),
+        "death":death
+    }
+
+static func _hero_by_id(heroes: Array[Dictionary], hero_id: String) -> Dictionary:
+    if hero_id.is_empty():
+        return {}
+    for hero: Dictionary in heroes:
+        if str(hero.get("id", "")) == hero_id:
+            return hero
+    return {}
