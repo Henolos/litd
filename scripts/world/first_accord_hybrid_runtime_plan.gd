@@ -1,6 +1,8 @@
 extends RefCounted
 class_name FirstAccordHybridRuntimePlan
 
+const ENCOUNTER_DIRECTOR := preload("res://scripts/core/veilleurs_encounter_director.gd")
+
 const PLANNER := preload("res://scripts/world/first_accord_hybrid_planner.gd")
 
 const ROLE_FALLBACKS := {
@@ -45,6 +47,16 @@ static func build(run_state: Dictionary = {}) -> Dictionary:
             "fallback_reason": "unresolved_module_after_runtime_resolution",
             "fallback_authored_map": plan.get("fallback_authored_map", "")
         }
+    var final_validation := PLANNER.validate_plan(plan)
+    if not bool(final_validation.get("ok", false)):
+        return PLANNER._fallback_plan(PLANNER._load_json(PLANNER.CONFIG_PATH), "post_remanence_validation_failed", final_validation)
+    plan["validation"] = final_validation
+    plan["generation_report"] = PLANNER._generation_report(plan, final_validation)
+    plan = ENCOUNTER_DIRECTOR.populate_dungeon_plan(plan, PLANNER._load_json(PLANNER.MODULES_PATH), PLANNER._load_json(PLANNER.ENCOUNTERS_PATH), run_state)
+    if not bool(plan.get("ok", false)):
+        var fallback := PLANNER._fallback_plan(PLANNER._load_json(PLANNER.CONFIG_PATH), "encounter_population_failed", plan.get("encounter_report", {}))
+        fallback["encounter_report"] = plan.get("encounter_report", {}).duplicate(true)
+        return fallback
     return plan
 
 static func _active_world_scars() -> Array:

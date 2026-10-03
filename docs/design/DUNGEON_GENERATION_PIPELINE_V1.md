@@ -40,9 +40,9 @@ exclus et les modules invalides. Il rejoint le domaine CI `veilleurs` existant.
 ## Suite du chantier global
 
 Les graines encounter/event/loot/ai sont exposées comme contrat pour les étapes
-suivantes. Cette tranche ne sélectionne ni ne matérialise de rencontres : le planner
-conserve les tables de candidats existantes. L'Encounter Director, les contraintes de
-capacité, les événements et le butin restent à brancher. Les modules physiques restent
+suivantes. La deuxième tranche ci-dessous sélectionne désormais les définitions de rencontres
+dans le runtime, après la Rémanence. La matérialisation des ennemis, les événements
+et le butin restent à brancher. Les modules physiques restent
 à produire dans leur chantier existant ; ce changement valide leurs définitions.
 
 Sources primaires consultées :
@@ -57,3 +57,47 @@ smoke graphe existant 200 graphes + 100 plans PASS ; Premier Accord 80 cas repro
 Le projet complet signale à la fermeture trois ressources encore utilisées, signal
 également reproduit sur le commit de base non modifié. Le test isolé du générateur
 passe sans ce signal. La CI distante doit encore confirmer les domaines complets.
+
+
+## Deuxième tranche — sélection des rencontres
+
+`FirstAccordHybridRuntimePlan.build` applique la Rémanence, valide le plan décoré,
+puis appelle une méthode pure ajoutée au `VeilleursEncounterDirector` existant.
+Son ancien chemin de génération des 64 templates demeure inchangé. Le directeur
+copie le plan, filtre les candidats puis sélectionne selon leurs poids avec la graine
+encounter de la salle. Les IDs triés stabilisent le résultat si la table est réordonnée.
+La profondeur des branches reflète désormais celle du point d'attache réel.
+
+Contraintes appliquées : budget authored de la bande de profondeur, poids positif,
+blacklist contextuelle, nombre d'emplacements déclaré, capacité de l'ancre et maximum
+quatre ennemis (R1–R4). `required_formation_tags` exprime des contraintes physiques
+strictes ; `formation_tags` reste une description tactique et n'impose pas à elle seule
+un filtrage. Le boss est imposé, hors budget normal, sur son ancre d'un emplacement.
+Entrées, repos, sorties et secrets sont exempts de rencontres. Le quota critique
+compte les quatre rencontres protégées et le boss. Une table vide reste autorisée
+pour une salle sans rencontre ; une table critique sans candidat valide produit un
+repli authored, avec le rapport d'échec conservé.
+
+Les seuils de blessures/ravitaillement déjà présents dans les données ne suppriment
+que les rencontres optionnelles, si `injury_pressure` ou `supplies_ratio` sont fournis
+par l'appelant. Aucune lecture implicite de la puissance de l'équipe, aucune modification
+des PV/dégâts et aucune mutation des métadonnées Rémanence/Némésis.
+
+Les tailles 2/3/4 des groupes déclarent les emplacements réservés dans les tables
+Premier Accord ; elles ne définissent pas encore une composition de combattants.
+Chaque sélection porte `materialization_status: definition_only`. Les identifiants
+Premier Accord ne possèdent pas encore tous des compositions d'ennemis : aucun acteur
+n'est créé et aucune rencontre jouable supplémentaire n'est annoncée. Les scènes
+physiques et l'appel depuis l'exploration restent les prochaines intégrations.
+
+`encounter_report` et `generation_report.encounters` exposent, pour chaque salle,
+les candidats éligibles, les rejets, la décision et les comptes finalisés.
+
+Sources primaires complémentaires :
+- https://dev.epicgames.com/documentation/en-us/unreal-engine/environment-query-system-overview?application_version=4.27
+- https://docs.godotengine.org/en/4.4/classes/class_randomnumbergenerator.html
+
+Validation du 3 octobre : 1 000 plans de rencontres, contraintes et repli runtime ;
+pondération 1:9 sur 10 000 tirages ; 1 080 plans Premier Accord ; ancien smoke
+Veilleurs v0.6.1 ; 27 tests Python ciblés. Les résultats CI de la première tranche
+sont tous PASS (16 workflows) ; les contrôles du nouveau commit doivent être relancés.

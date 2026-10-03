@@ -15,6 +15,7 @@ on:
       - 'scripts/core/veilleurs_basic_actions_contract_smoke_test.gd'
       - 'scripts/core/veilleurs_combat_context_runtime.gd'
       - 'scripts/core/veilleurs_combat_sandbox_runtime.gd'
+      - 'scripts/core/combat/veilleurs_combat_sandbox_canonical_adapter.gd'
       - 'scripts/core/combat/veilleurs_status_resolver.gd'
       - 'scripts/ui/combat_sandbox_ui_v47.gd'
       - 'scripts/ui/combat_sandbox_ui_v48.gd'

@@ -112,6 +112,7 @@ static func _rebuild_protected_spine(generated: Dictionary, config: Dictionary) 
         copy["module_pool"] = _optional_pool_for_role(config, str(copy.get("role", "transit")), RUN_SEED.generator(int(plan.get("seed", 0)), "room", node_id + "|pool"))
         nodes.append(copy)
         var anchor_index: int = absi(node_id.hash()) % maxi(1, protected_order.size() - 1)
+        copy["depth"] = int(nodes[anchor_index].get("depth", 0)) + 1
         edges.append({"from":str(protected_order[anchor_index]),"to":node_id,"kind":"branch","hidden":str(copy.get("role", "")) == "secret","requires":""})
         if str(copy.get("role", "")) != "secret" and anchor_index + 1 < protected_order.size() and abs((node_id + "loop").hash()) % 3 == 0:
             edges.append({"from":node_id,"to":str(protected_order[anchor_index + 1]),"kind":"loop","hidden":false,"requires":""})

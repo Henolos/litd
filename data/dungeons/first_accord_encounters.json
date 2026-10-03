@@ -20,27 +20,27 @@
   },
   "room_tables": {
     "accord_gallery": [
-      {"id":"accord_scavengers_01","weight":5,"formation_tags":["frontline","flank"],"threat":2,"memory_eligible":true},
-      {"id":"accord_watchers_names","weight":3,"formation_tags":["ranged","pressure"],"threat":2,"memory_eligible":true}
+      {"id":"accord_scavengers_01","enemy_count":2,"weight":5,"formation_tags":["frontline","flank"],"threat":2,"memory_eligible":true},
+      {"id":"accord_watchers_names","enemy_count":2,"weight":3,"formation_tags":["ranged","pressure"],"threat":2,"memory_eligible":true}
     ],
     "accord_debate": [
-      {"id":"echoes_of_dissent","weight":5,"formation_tags":["surround","elevated"],"threat":3,"memory_eligible":true},
-      {"id":"accord_debaters_broken","weight":2,"formation_tags":["control","flank"],"threat":3,"memory_eligible":true}
+      {"id":"echoes_of_dissent","enemy_count":3,"weight":5,"formation_tags":["surround","elevated"],"threat":3,"memory_eligible":true},
+      {"id":"accord_debaters_broken","enemy_count":3,"weight":2,"formation_tags":["control","flank"],"threat":3,"memory_eligible":true}
     ],
     "accord_collapse": [
-      {"id":"accord_scavengers_02","weight":5,"formation_tags":["choke","rear_pressure"],"threat":3,"memory_eligible":true},
-      {"id":"collapse_ambushers","weight":3,"formation_tags":["ambush","hazard_push"],"threat":3,"memory_eligible":true}
+      {"id":"accord_scavengers_02","enemy_count":3,"weight":5,"formation_tags":["choke","rear_pressure"],"threat":3,"memory_eligible":true},
+      {"id":"collapse_ambushers","enemy_count":3,"weight":3,"formation_tags":["ambush","hazard_push"],"threat":3,"memory_eligible":true}
     ],
     "accord_three_pillars": [
-      {"id":"three_pillars_trial","weight":6,"formation_tags":["elite","ritual"],"threat":5,"memory_eligible":true},
-      {"id":"three_pillars_veteran_patrol","weight":2,"formation_tags":["veteran","control"],"threat":5,"memory_eligible":true}
+      {"id":"three_pillars_trial","enemy_count":4,"weight":6,"formation_tags":["elite","ritual"],"threat":5,"memory_eligible":true},
+      {"id":"three_pillars_veteran_patrol","enemy_count":4,"weight":2,"formation_tags":["veteran","control"],"threat":5,"memory_eligible":true}
     ],
     "accord_guardroom": [
-      {"id":"accord_guard_remnants","weight":6,"formation_tags":["ambush"],"threat":2,"memory_eligible":true}
+      {"id":"accord_guard_remnants","enemy_count":2,"weight":6,"formation_tags":["ambush"],"threat":2,"memory_eligible":true}
     ],
     "accord_service_rooms": [
-      {"id":"accord_service_scavengers","weight":5,"formation_tags":["small","mobile"],"threat":2,"memory_eligible":true},
-      {"id":"accord_service_empty","weight":3,"formation_tags":[],"threat":0,"memory_eligible":false}
+      {"id":"accord_service_scavengers","enemy_count":2,"weight":5,"formation_tags":["small","mobile"],"threat":2,"memory_eligible":true},
+      {"id":"accord_service_empty","enemy_count":0,"weight":3,"formation_tags":[],"threat":0,"memory_eligible":false}
     ]
   },
   "nemesis_override": {
@@ -58,6 +58,8 @@
     "room_pool":"accord_warden",
     "capturable":false,
     "threat":7,
+    "enemy_count":1,
+    "required_formation_tags":["boss"],
     "authored_topology":true
   }
 }
