@@ -2,6 +2,8 @@
 
 Date de veille : 2026-09-08
 
+Inventaire des études de jeux/mods, vérifié le 2026-10-03 : [présence documentaire, pistes à revalider et preuves manquantes](GAME_STUDIES_INVENTORY_2026-10-03.md). Les statuts de production de cette bibliothèque ne certifient pas l'achèvement des études de code tiers.
+
 ## But
 
 Cette bibliothèque sert de référence de production pour LITD Universe et, en priorité, **LITD : Les Veilleurs**. Elle ne remplace pas les bibles de gameplay, de lore ou d'art existantes : elle rassemble les méthodes de conception et de réalisation qui permettent de transformer ces intentions en un jeu testable, cohérent, performant et livrable.
