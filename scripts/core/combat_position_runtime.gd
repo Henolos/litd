@@ -146,7 +146,13 @@ func _assign_missing_positions(characters: Array) -> void:
         next_slot += 1
 
 func _slot_blocked_by_corpse(slot: int, side: String) -> bool:
-    var ge01 := get_node_or_null("/root/GE01Runtime")
+    var main_loop := Engine.get_main_loop()
+    if not (main_loop is SceneTree):
+        return false
+    var tree := main_loop as SceneTree
+    if tree.root == null:
+        return false
+    var ge01 := tree.root.get_node_or_null("GE01Runtime")
     if ge01 == null or not ge01.has_method("tactical_corpse_context"):
         return false
     var context: Dictionary = ge01.call("tactical_corpse_context")
