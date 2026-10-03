@@ -39,6 +39,8 @@ func build_zone() -> void:
         return
     zone_blueprint = _load_json(BLUEPRINT_PATH).get("zones", {}).get(zone_id, {})
 
+    AshlandsRuntime.enter_zone(zone_id)
+
     if zone_id == "zone_16_salles_du_premier_accord":
         var flow := TACTICAL_FLOW.new() as VeilleursKharSenFlowBridge
         var result := flow.consume_result()
@@ -50,7 +52,6 @@ func build_zone() -> void:
             AshlandsRuntime.mark_encounter_cleared(_first_accord_encounter_key(completed_seed, str(result.get("node_id", ""))))
         first_accord_plan = FIRST_ACCORD_PLAN.build({"campaign_seed": ExpeditionManager.expedition_seed})
 
-    AshlandsRuntime.enter_zone(zone_id)
     _build_floor()
     _build_boundaries()
     _build_layout_profile()
