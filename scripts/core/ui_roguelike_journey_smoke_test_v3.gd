@@ -5,10 +5,10 @@ extends "res://scripts/core/ui_roguelike_journey_smoke_test_v2.gd"
 # comme vue d'ensemble optionnelle, puis la progression reprend par les passages.
 
 const CANONICAL_PORTRAIT_PATHS := [
-    "res://assets/heroes/canonical/mathilde.svg",
-    "res://assets/heroes/canonical/marec.svg",
-    "res://assets/heroes/canonical/anouk.svg",
-    "res://assets/heroes/canonical/aurelien.svg"
+    "res://assets/heroes/duelist.webp",
+    "res://assets/heroes/breaker.webp",
+    "res://assets/heroes/mystic.webp",
+    "res://assets/heroes/surgeon.webp"
 ]
 
 func _drive_title_and_departure() -> void:
@@ -145,7 +145,7 @@ func _legacy_hero_portraits_hidden() -> bool:
         if portrait == null or portrait.texture == null or not portrait.is_visible_in_tree():
             continue
         var resource_path := str(portrait.texture.resource_path)
-        if resource_path.begins_with("res://assets/heroes/") and not resource_path.begins_with("res://assets/heroes/canonical/"):
+        if resource_path.begins_with("res://assets/heroes/") and not CANONICAL_PORTRAIT_PATHS.has(resource_path):
             return false
     return true
 
