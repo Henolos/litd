@@ -141,3 +141,56 @@ exploite les fonctions corporelles et utilise les autres choix disponibles.
 Un playtest humain reste nécessaire pour vérifier la lisibilité des choix et
 l'intérêt du rythme. La matrice automatique n'autorise pas à elle seule la fusion
 pour livraison.
+
+## Concentration et ciblage anatomique (2026-10-04)
+
+La matrice comporte désormais neuf politiques × six graines × deux exécutions,
+soit 108 parcours mesurés. Les quatre références précédentes restent inchangées.
+Les politiques additionnelles passent toujours par les compétences affichées,
+les mouvements adjacents et les phases ennemies de l'interface de production :
+
+- `focus` choisit l'ennemi ayant le moins de PV, puis garde cette cible jusqu'à
+  son élimination. Les égalités initiales utilisent les identifiants triés. Si
+  nécessaire, le déplacement cherche un chemin vers cette cible précise.
+- `limbs` concentre les traumatismes sur le bras gauche jusqu'à L4, puis le bras
+  droit, puis les jambes. Le torse sert de repli quand tous les membres sont L4.
+- `focus_limbs_mixed` combine ce ciblage des membres avec une cible verrouillée
+  et la politique de soins/garde/contrôle précédente.
+- `head` cible la tête ; `legs` commence par les jambes avant les bras.
+
+Le test exige des attaques effectivement exécutées vers la cible verrouillée,
+les membres, la tête et les jambes. Il vérifie le lanceur, la cible et l'empreinte
+complète des états après chaque action. Il relève les blessures L3–L5 et les
+ripostes infligeant des dégâts quand un bras empêche l'usage à deux mains.
+
+| Politique | Galerie franchie | Débat franchi | Effondrement franchi | Trois Piliers franchis | Expédition terminée |
+| --- | --- | --- | --- | --- | --- |
+| Offensive | 3 / 6 | 0 / 6 | 0 / 6 | 0 / 6 | 0 / 6 |
+| Soins alliés | 3 / 6 | 0 / 6 | 0 / 6 | 0 / 6 | 0 / 6 |
+| Garde/contrôle | 3 / 6 | 1 / 6 | 0 / 6 | 0 / 6 | 0 / 6 |
+| Mixte | 3 / 6 | 1 / 6 | 0 / 6 | 0 / 6 | 0 / 6 |
+| Concentration | 5 / 6 | 1 / 6 | 1 / 6 | 0 / 6 | 0 / 6 |
+| Bras prioritaires | 3 / 6 | 0 / 6 | 0 / 6 | 0 / 6 | 0 / 6 |
+| Concentration/membres/mixte | 3 / 6 | 0 / 6 | 0 / 6 | 0 / 6 | 0 / 6 |
+| Tête | 3 / 6 | 0 / 6 | 0 / 6 | 0 / 6 | 0 / 6 |
+| Jambes prioritaires | 3 / 6 | 0 / 6 | 0 / 6 | 0 / 6 | 0 / 6 |
+
+La concentration permet à la graine 106 d'atteindre les Trois Piliers, où le
+parcours s'arrête après neuf attaques. La couverture totale, répétitions incluses,
+comprend 708 attaques sur cible verrouillée, 988 attaques sur membres (dont 326
+sur jambes), 478 attaques sur tête et 112 ripostes infligeant des dégâts alors
+que `can_use_two_handed` est faux. Le Gardien isolé reste vaincu en huit actions.
+
+Ces ripostes ne prouvent pas à elles seules une violation d'une règle : un bras
+L4 limite l'usage à deux mains, ce qui n'interdit pas toute attaque. Les formules
+actuelles de dégâts tactiques (`VeilleursDamageResolver`) ne consomment ni cet
+indicateur ni `weapon_use_penalty`. Le test constate les états et les actions ;
+il n'introduit aucun malus automatique ni nouvelle interdiction corporelle.
+La politique ciblant les membres n'améliore pas la progression sur cet échantillon.
+
+L'échantillon de six graines et ces heuristiques ne constituent ni une stratégie
+optimale ni une preuve d'impossibilité. L'équilibrage reste non validé. Les tables,
+budgets, compétences, règles de combat, afflictions et récompenses sont conservés.
+Avant de modifier la difficulté, il faut rapprocher les exigences corporelles des
+compétences des règles auteur et des résolveurs existants, puis mesurer les effets
+fonctionnels attendus et l'attrition sur un échantillon élargi.
