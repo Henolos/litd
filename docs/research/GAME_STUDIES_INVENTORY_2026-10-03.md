@@ -481,3 +481,78 @@ Aucun de ces constats ne justifie de créer un second moteur de combat, un secon
 Les études comparatives ne justifient **aucun changement d'architecture majeur** pour LITD. Elles valident principalement la direction déjà engagée : noyau déterministe, contrats de ciblage partagés, données séparées des résolveurs, IA fondée sur les actions légales et génération procédurale contrainte.
 
 La priorité d'implémentation doit donc être l'amélioration incrémentale du système existant, avec tests déterministes et suppression des duplications, et non la création de nouvelles couches parallèles.
+
+
+## Preuves de lecture de code figées — 4 octobre 2026
+
+Statut : **lecture statique vérifiable, périmètre partiel**. Six fichiers de sources communautaires ont été récupérés intégralement ; les fonctions et plages ci-dessous ont été inspectées. Aucun jeu ou mod tiers exécuté, aucun code tiers copié dans le runtime LITD. Ces preuves remplacent des pistes historiques pour ces mécanismes seulement, sans certifier les vingt études complètes.
+
+### Slay the Spire / BaseMod
+
+- Commit : `26de1afc1a8ea7595b61f940de0ac29650f2c025` ; blob : `a3311e7427f2c243447cf4717a3026355d621aa5`.
+- Fichier : [mod/src/main/java/basemod/BaseMod.java](https://github.com/daviscook477/BaseMod/blob/26de1afc1a8ea7595b61f940de0ac29650f2c025/mod/src/main/java/basemod/BaseMod.java) ; lignes inspectées : 2619–2660, 2891–2942, 3209–3211.
+- Symboles lus : `subscribe`, `publishStartBattle`, `publishPostBattle`, `publishOnCardUse`, `unsubscribeLater`.
+
+L'inscription classe les abonnés selon leurs interfaces. Chaque publication parcourt sa liste et appelle la méthode de réception ; les retraits différés sont traités après publication. Cela prouve le routage événementiel du framework, pas le calcul propriétaire des dégâts.
+
+Pour LITD : effets et feedback peuvent consommer les événements du résolveur existant. Cette preuve ne garantit ni un ordre de priorité configurable ni la pureté des callbacks.
+
+### Enter the Gungeon / ExpandTheGungeon
+
+- Commit : `a7ff72a68cc66c6df64cf2d2a272bd93ce1c986e` ; blob : `93eb357bc861062c9be0fd38d609ce228ba78fd0`.
+- Fichier : [ExpandTheGungeon/ExpandDungeonFlows/DungeonFlows/test_customroom_flow.cs](https://github.com/ApacheThunder/ExpandTheGungeon/blob/a7ff72a68cc66c6df64cf2d2a272bd93ce1c986e/ExpandTheGungeon/ExpandDungeonFlows/DungeonFlows/test_customroom_flow.cs) ; lignes inspectées : 19–85.
+- Symboles lus : `m_Test_CustomRoom_Flow`, `GenerateDefaultNode`, `Initialize`, `AddNodeToFlow`, `FirstNode`.
+
+Le constructeur crée des nœuds de catégories différentes, choisit des salles exactes ou des tables, puis relie les nœuds avec des parents. Il désigne une entrée et construit notamment une branche boutique → foyer → boss → sortie.
+
+Pour LITD : distinguer graphe et sélection de salles. Ce flow de test fixe n'établit pas un générateur aléatoire déterministe ni une validation automatique du chemin critique ; sa table de fallback est null.
+
+### The Binding of Isaac / StageAPI
+
+- Commit : `de45764d2d04e18d260b4539f7821c51c703d30c` ; blob : `acf70a109e2bf202c0fe70368bab1b707cac09dd`.
+- Fichier : [scripts/stageapi/room/roomsList.lua](https://github.com/Meowlala/BOIStageAPI15/blob/de45764d2d04e18d260b4539f7821c51c703d30c/scripts/stageapi/room/roomsList.lua) ; lignes inspectées : 16–74.
+- Symboles lus : `RoomsList:Init`, `RoomsList:AddRooms`, `RoomsList:GetRooms`.
+
+Le catalogue normalise les layouts, conserve une liste globale et les indexe par Shape. GetRooms(-1) retourne toutes les salles ; une autre forme retourne l'index correspondant, qui peut être absent.
+
+Pour LITD : filtrer les salles compatibles avant tirage. Ce fichier ne vérifie pas les portes ni la traversabilité et ne fournit pas un fallback garanti. StageAPI courant ne certifie pas les API de Rebirth.
+
+### Into the Breach / IntelligentAI
+
+- Commit : `e4722508edefe69aa9a7c6e1bf3e682cb9bf0655` ; blob : `959ba2567e44a91847bbccddc2c01f5fc06659c4`.
+- Fichier : [scripts/ai.lua](https://github.com/Compartany/IntelligentAI/blob/e4722508edefe69aa9a7c6e1bf3e682cb9bf0655/scripts/ai.lua) ; lignes inspectées : 92–224, 371–376.
+- Symboles lus : `Skill_ScoreList`, `Skill_ScoreList_Target`, `Skill:ScoreList`.
+
+Le score distingue dégâts, déplacement, équipe, bouclier, acidité, armure et bâtiments. La protection d'une capsule peut retourner -100 ; une mauvaise position peut remplacer le score d'attaque. L'enveloppe ScoreList revient à l'ancienne fonction pour les unités non concernées.
+
+Pour LITD : séparer facteurs et garde-fous du score. Board:IsValid vérifie une case, pas l'ensemble du contrat de légalité d'une action : la règle actions légales → score demeure une décision LITD, non une propriété certifiée ici du moteur vanilla.
+
+### Spelunky 2 / CustomLevels
+
+- Commit : `0d5cc502d7cb549d60400ad0dd91971920c7ba0e` ; blob : `d73fb75ba2b8bd3e52d31472f799c216365634ae`.
+- Fichier : [custom_levels.lua](https://github.com/jaythebusinessgoose/CustomLevels/blob/0d5cc502d7cb549d60400ad0dd91971920c7ba0e/custom_levels.lua) ; lignes inspectées : 134–300.
+- Symboles lus : `unload_level`, `load_level`, `override_level_files`, `ON.POST_ROOM_GENERATION`, `set_post_entity_spawn`.
+
+Le chargement remplace les fichiers de niveau, fixe des templates après génération des salles et installe des filtres de population selon les flags. Les spawns de scripts sont explicitement épargnés par plusieurs filtres. unload_level efface les callbacks mémorisés.
+
+Pour LITD : distinguer composition et population. Ce fichier n'établit pas l'algorithme du chemin principal vanilla. Le champ procedural_spawn_callback est affecté deux fois dans load_level : on ne peut pas affirmer que le nettoyage de tous les callbacks est garanti.
+
+### FTL / Hyperspace
+
+- Commit : `db570d728321a5a2c70add0988153373fd4ec08a` ; blob : `f1a59f4e7a8dae4241c5568df34da11896947fc9`.
+- Fichier : [lua/InternalEvents.cpp](https://github.com/FTL-Hyperspace/FTL-Hyperspace/blob/db570d728321a5a2c70add0988153373fd4ec08a/lua/InternalEvents.cpp) ; lignes inspectées : 10–70.
+- Symboles lus : `HOOK_METHOD(CApp, OnLoop)`, `MainMenu::Open`, `SpaceManager::DangerousEnvironment`, `StarMap::GetLocationText`.
+
+Les hooks de boucle et de menu appellent le comportement original puis publient des événements Lua. DangerousEnvironment transmet le résultat original et permet à un callback de le remplacer. GetLocationText utilise une priorité explicite et une substitution temporaire du contexte.
+
+Pour LITD : formaliser phases et contrat des retours. Il s'agit d'une extension qui peut modifier le comportement ; ce fichier ne démontre pas le budget des rencontres ni l'indépendance des sous-seeds.
+
+### Reproduction et portée
+
+Pour chaque source : récupérer le dépôt cité, extraire le fichier au commit indiqué avec `git show <commit>:<chemin>`, vérifier son blob avec `git rev-parse <commit>:<chemin>`, puis inspecter les plages et symboles listés. Les liens figés permettent aussi une vérification sans installation du jeu. Le SHA identifie la version lue ; il ne constitue pas un test d'exécution.
+
+Cette passe apporte six preuves de lecture ciblées sur les vingt titres inventoriés. Les autres titres, les portes de StageAPI, la génération vanilla de Spelunky, les budgets FTL et la légalité complète des actions restent à vérifier. Les constats sont des observations ; leurs conséquences LITD sont des propositions d'adaptation. Aucune promotion automatique dans le canon, aucune modification gameplay, aucune fusion.
+
+### Validation de cette passe
+
+`python tools/quality/validate_knowledge.py` : PASS, 12 règles, 9 écarts canoniques préexistants suivis. `PYTHONPATH=. python tools/qa/validate_project.py` : 59 PASS, 0 échec. `git diff --check` : PASS. Les checks distants doivent être relus sur le nouveau commit ; les anciens résultats ne le valident pas.
