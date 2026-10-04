@@ -3,6 +3,126 @@ class_name FirstAccordDungeonMapBuilder
 
 const MAP_PATH := "res://data/dungeons/first_map_hall_of_first_accord_map.json"
 const OCCLUDABLE_SCRIPT := preload("res://scripts/world/isometric_occludable.gd")
+const MODULES_PATH := "res://data/dungeons/first_accord_module_library.json"
+const ENTRY_SCENE := preload("res://scenes/dungeons/first_accord_entry_vestibule.tscn")
+const MODULE_BLOCKOUT_SCENE := preload("res://scenes/dungeons/first_accord_module_blockout.tscn")
+
+# One physical entry point for the authored and generated module catalogs. The
+# existing map builder remains responsible for placing and connecting rooms.
+static func instantiate_module(module_id: String) -> Node3D:
+    var library := _load_json(MODULES_PATH)
+    var module: Dictionary = {}
+    for entry in library.get("modules", []):
+        if str(entry.get("module_id", "")) == module_id:
+            module = entry
+            break
+    if module.is_empty():
+        return null
+    if module_id == "accord_entry_vestibule_v1":
+        return ENTRY_SCENE.instantiate() as Node3D
+    var room := MODULE_BLOCKOUT_SCENE.instantiate() as FirstAccordModuleBlockout
+    if room == null or not room.configure(module_id, module):
+        return null
+    return room
+
+# Build a walkable blockout directly from the validated plan. Every room is
+# instantiated through the catalog above; locked/hidden links stay absent until
+# an exploration controller explicitly opens them.
+static func generate_from_plan(parent: Node3D, plan: Dictionary) -> Dictionary:
+    if parent == null or not bool(plan.get("ok", false)) or bool(plan.get("fallback", false)) or not bool(plan.get("validation", {}).get("ok", false)):
+        return {"ok":false, "reason":"plan_not_validated"}
+    var nodes: Array = plan.get("nodes", [])
+    var edges: Array = plan.get("edges", [])
+    var protected: Array = plan.get("protected_story_order", [])
+    var definitions := {}
+    var positions := {}
+    var branch_counts := {}
+    var library := _load_json(MODULES_PATH)
+    var known_modules := {}
+    for spec in library.get("modules", []):
+        known_modules[str(spec.get("module_id", ""))] = true
+    for node in nodes:
+        var room_id := str(node.get("id", ""))
+        var module_id := str(node.get("module_id", ""))
+        if room_id == "" or definitions.has(room_id) or not known_modules.has(module_id):
+            return {"ok":false, "reason":"room_unresolved", "room_id":room_id}
+        definitions[room_id] = node
+    for index in protected.size():
+        positions[str(protected[index])] = Vector3(0, 0, -55.0 * index)
+    var optional_ids: Array[String] = []
+    for room_id in definitions.keys():
+        if not positions.has(room_id):
+            optional_ids.append(str(room_id))
+    optional_ids.sort()
+    for room_id in optional_ids:
+        var anchor_id := ""
+        for edge in edges:
+            if str(edge.get("to", "")) == room_id and positions.has(str(edge.get("from", ""))):
+                anchor_id = str(edge.get("from", ""))
+                break
+        if anchor_id == "":
+            return {"ok":false, "reason":"unplaced_branch", "room_id":room_id}
+        var lane := int(branch_counts.get(anchor_id, 0))
+        branch_counts[anchor_id] = lane + 1
+        positions[room_id] = positions[anchor_id] + Vector3(55.0 * (lane + 1), 0, 0)
+    for edge in edges:
+        if not positions.has(str(edge.get("from", ""))) or not positions.has(str(edge.get("to", ""))):
+            return {"ok":false, "reason":"edge_unresolved"}
+    var root := Node3D.new()
+    root.name = "GeneratedFirstAccord"
+    root.set_meta("generation_seed", plan.get("seed", 0))
+    parent.add_child(root)
+    var rooms := Node3D.new()
+    rooms.name = "Rooms"
+    root.add_child(rooms)
+    for room_id in definitions.keys():
+        var node: Dictionary = definitions[room_id]
+        var module := instantiate_module(str(node.get("module_id", "")))
+        module.name = str(room_id)
+        module.position = positions[room_id]
+        module.set_meta("room_id", str(room_id))
+        module.set_meta("encounter", node.get("encounter", {}).duplicate(true))
+        module.set_meta("room_events", node.get("room_events", []).duplicate(true))
+        module.set_meta("resource_reservations", node.get("resource_reservations", []).duplicate(true))
+        rooms.add_child(module)
+    var connections := Node3D.new()
+    connections.name = "Connections"
+    root.add_child(connections)
+    var open_count := 0
+    for edge in edges:
+        if bool(edge.get("hidden", false)) or str(edge.get("requires", "")) != "":
+            continue
+        var source: Node3D = rooms.get_node(str(edge.get("from", "")))
+        var target: Node3D = rooms.get_node(str(edge.get("to", "")))
+        var from_marker := _nearest_connector(source, target.position)
+        var to_marker := _nearest_connector(target, source.position)
+        if from_marker == null or to_marker == null:
+            root.queue_free()
+            return {"ok":false, "reason":"physical_connector_missing"}
+        var corridor := Node3D.new()
+        corridor.name = "Link_%03d" % open_count
+        corridor.set_meta("from_room", source.name)
+        corridor.set_meta("to_room", target.name)
+        connections.add_child(corridor)
+        _build_path_tiles(corridor, root.to_local(from_marker.global_position), root.to_local(to_marker.global_position), 4.0, open_count)
+        open_count += 1
+    return {"ok":true, "root":root, "room_count":rooms.get_child_count(), "open_connection_count":open_count}
+
+static func _nearest_connector(room: Node3D, toward: Vector3) -> Marker3D:
+    var connectors := room.get_node_or_null("Connectors")
+    if connectors == null:
+        return null
+    var nearest: Marker3D = null
+    var distance := INF
+    for value in connectors.get_children():
+        var marker := value as Marker3D
+        if marker == null or bool(marker.get_meta("hidden", false)):
+            continue
+        var candidate := marker.global_position.distance_squared_to(toward)
+        if candidate < distance:
+            nearest = marker
+            distance = candidate
+    return nearest
 
 static func generate(parent: Node3D) -> void:
     var map_data := _load_json(MAP_PATH)
