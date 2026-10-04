@@ -187,10 +187,7 @@ begin
         return;
     end if;
 
-    select coalesce(max(c.sequence_no), 0) + 1
-      into v_sequence
-      from henolos_execution.checkpoints
-     where mandate_id = p_mandate_id;
+    select coalesce(max(c.sequence_no), 0) + 1\n      into v_sequence\n      from henolos_execution.checkpoints c\n     where c.mandate_id = p_mandate_id;
 
     insert into henolos_execution.checkpoints(
         mandate_id,
