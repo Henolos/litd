@@ -5,28 +5,31 @@ MIGRATION = Path("supabase/migrations/20261004104500_orchestrator_checkpoint_reg
 SQL_TEST = Path("supabase/tests/orchestrator_checkpoint_registry_v21.sql")
 
 
-def test_orchestrator_checkpoint_registry_contract_is_fail_closed():
+def test_orchestrator_v21_extends_execution_core_instead_of_parallel_registry():
     sql = MIGRATION.read_text(encoding="utf-8")
-    assert "governance_private.orchestrator_checkpoints" in sql
-    assert "governance_private.orchestrator_checkpoint_audit" in sql
-    assert "pg_advisory_xact_lock" in sql
-    assert "stale_checkpoint_version" in sql
+    assert "alter table henolos_execution.checkpoints" in sql.lower()
+    assert "create table" not in sql.lower()
+    assert "governance_private.orchestrator_checkpoints" not in sql
+    assert "append_orchestrator_checkpoint_v21" in sql
+    assert "henolos_execution.leases" in sql
+    assert "stale_mandate_version" in sql
     assert "idempotent_replay" in sql
     assert "idempotency_conflict" in sql
-    assert "authorized_project_routes" in sql
-    assert "enable row level security" in sql
-    assert "revoke all on governance_private.orchestrator_checkpoints" in sql
-    assert "grant execute on function governance_private.write_orchestrator_checkpoint" in sql
+    assert "closure_not_verified" in sql
+    assert "security definer" in sql.lower()
+    assert "set search_path = ''" in sql
+    assert "grant execute on function henolos_execution.append_orchestrator_checkpoint_v21" in sql
     assert "to service_role" in sql
-    assert "COMPLETED" in sql and "VERIFYING" in sql
 
 
-def test_orchestrator_checkpoint_registry_has_transactional_sql_contract():
+def test_orchestrator_v21_has_transactional_sql_contract():
     sql = SQL_TEST.read_text(encoding="utf-8")
     assert sql.lstrip().startswith("-- Synthetic transactional contract")
     assert "\nbegin;" in sql
+    assert "acquire_lease" in sql
     assert "idempotent_replay" in sql
-    assert "stale_checkpoint_version" in sql
-    assert "checkpoint_version <> 2" in sql
-    assert "verify_orchestrator_checkpoint_audit_chain" in sql
+    assert "idempotency_conflict" in sql
+    assert "stale_mandate_version" in sql
+    assert "closure_not_verified" in sql
+    assert "ORCHESTRATOR_CHECKPOINT_WRITTEN" in sql
     assert sql.rstrip().endswith("rollback;")
