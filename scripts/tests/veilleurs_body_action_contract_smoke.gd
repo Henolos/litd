@@ -48,8 +48,9 @@ func exercise(runtime_script: Script) -> void:
     runtime.combatants[actor]["weapon_two_handed"] = false
     body.missing_parts = ["left_arm", "right_arm"]
     check(not bool(TARGET.validate_tactical_actor(runtime, actor, {"action_type":"guard"}).get("ok", false)), "guard_without_arms")
+    check(runtime.can_move_to(Vector2i(1, 0), actor), "healthy_walk_to_free_cell")
     body.missing_parts = ["left_leg", "right_leg"]
-    check(not runtime.can_move_to(Vector2i(0, 0), actor), "walk_without_legs")
+    check(not runtime.can_move_to(Vector2i(1, 0), actor), "walk_without_legs")
     body.missing_parts.clear()
     body.states["left_leg"] = "L3"
     check(bool(TARGET.validate_tactical_actor(runtime, actor, {"action_type":"move"}).get("ok", false)), "walking_not_sprinting")
