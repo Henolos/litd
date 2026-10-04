@@ -556,3 +556,73 @@ Cette passe apporte six preuves de lecture ciblées sur les vingt titres invento
 ### Validation de cette passe
 
 `python tools/quality/validate_knowledge.py` : PASS, 12 règles, 9 écarts canoniques préexistants suivis. `PYTHONPATH=. python tools/qa/validate_project.py` : 59 PASS, 0 échec. `git diff --check` : PASS. Les checks distants doivent être relus sur le nouveau commit ; les anciens résultats ne le valident pas.
+
+
+## Deuxième passe de preuves et correction des attributions — 4 octobre 2026
+
+Sept autres titres ont maintenant une lecture de code ciblée. Les références ci-dessous sont figées aux commits et blobs inspectés. Les constats portent sur le code cité, et leurs implications LITD restent des hypothèses de conception.
+
+### Battle Brothers — MSU et Modular Vanilla
+
+- Commit : `22679bd0ccf8fb9d167f5f698ddeab904aced3dd` ; fichier : [msu/hooks/skills/skill.nut](https://github.com/MSUTeam/MSU/blob/22679bd0ccf8fb9d167f5f698ddeab904aced3dd/msu/hooks/skills/skill.nut) ; blob : `ada8a59a77fdef4917ce241b49d25e2768d073a8` ; lignes lues : 38–110.
+- Observation : Le hook de compétence ajoute des champs, un pré-aperçu et des ajustements de coût ; certaines branches dépendent de la version vanilla. Le hook de Modular Vanilla multiplie la valeur de ciblage par des modificateurs de compétences de l'attaquant et de la cible.
+- Portée : La formule est propre à ces mods. Elle démontre un point d'extension et des modificateurs composables, pas la stratégie de l'IA originale.
+
+### For The King — FTKAPI
+
+- Commit : `30a28e13ae17cae1f25b4ebaf984f488ce7c17b4` ; fichier : [Managers/ItemManager.cs](https://github.com/ftk-modding/FTKAPI/blob/30a28e13ae17cae1f25b4ebaf984f488ce7c17b4/Managers/ItemManager.cs) ; blob : `0e8a447b29aa01826efc08e58c4c0938cfe9e303` ; lignes lues : 29–122.
+- Observation : GetItem lit les tables d'objets et d'armes ; AddItem insère un CustomItem dans des dictionnaires/tables ; ModifyItem remplace des entrées existantes. CustomItem expose rareté, emplacement, type et propriétés d'armes.
+- Portée : Cette source couvre l'extension de l'équipement. Elle ne prouve ni l'algorithme de seed, ni le ciblage ou le loot que l'ancien inventaire attribuait au Randomizer.
+
+### Darkest Dungeon II — Plugin-DD2
+
+- Commit : `38e8877f5cc775cbf766e43e7b29696afdc3d8c5` ; fichier : [DD2_Plugin_Binarizer/Hooks/HookGenerals.cs](https://github.com/Binarizer/Plugin-DD2/blob/38e8877f5cc775cbf766e43e7b29696afdc3d8c5/DD2_Plugin_Binarizer/Hooks/HookGenerals.cs) ; blob : `37816abbba3574d836fd65ac4b77c4f2a2329701` ; lignes lues : 110–142.
+- Observation : ModSupportPrefix intercepte GatherResources, enregistre des dossiers de ressources Excel et affiche leur ordre ; un postfix ajoute des ressources à l'initialisation de campagne.
+- Portée : Cela prouve l'injection de données du plugin ; les règles de tokens, Combo et Death's Door restent des observations historiques sans code lu ici.
+
+### Dead Cells — outil ScriptTool
+
+- Commit : `c20bbf2afbc03be42e290271b3930fefcc505864` ; fichier : [ScriptTool/BuildMainRooms.cs](https://github.com/LukeWarnut/DeadCellsToolsDecompilation/blob/c20bbf2afbc03be42e290271b3930fefcc505864/ScriptTool/BuildMainRooms.cs) ; blob : `002ec257279e3f9e14f77a55386e103642a55cb3` ; lignes lues : 5–21.
+- Observation : Le générateur de squelette émet un exemple de buildMainRooms avec entrée obligatoire, salle de combat chaînée et sortie. BuildSecondaryRooms est présenté comme optionnel.
+- Portée : Il s'agit d'un modèle de script d'outil communautaire, pas d'une lecture du générateur de Motion Twin. Les paramètres de complexité, validité et seed restent non prouvés.
+
+### Stoneshard — ModShardLauncher
+
+- Commit : `368dfb0602945ea88ef675204d7e4ed10497de64` ; fichier : [ModUtils/RoomUtils.cs](https://github.com/ModShardTeam/ModShardLauncher/blob/368dfb0602945ea88ef675204d7e4ed10497de64/ModUtils/RoomUtils.cs) ; blob : `30729848ae5c2af86a6746957365b4717c60e357` ; lignes lues : 19–55.
+- Observation : AddRoomJson lit dimensions, arrière-plans, vues, objets, tuiles et couches ; la salle est ajoutée seulement si son nom n'existe pas. DungeonsSpawn construit une ligne avec tier, faction et jusqu'à six ennemis, puis l'insère sous un hook identifié.
+- Portée : Le code démontre des API de mod et leur structure, pas la stabilité sur la branche actuelle de Stoneshard ; une absence de hook lève une exception et aucune validation de chemin n'est visible.
+
+### Dungeon of the Endless — DungeonModifications
+
+- Commit : `6d308ed169a79175a5b33bce5d03ccaf7dc92434` ; fichier : [DotE_Patch_Mod/DungeonModifications-Mod/DungeonModificationsMod.cs](https://github.com/sc2ad/DungeonOfTheEndless-Mod/blob/6d308ed169a79175a5b33bce5d03ccaf7dc92434/DotE_Patch_Mod/DungeonModifications-Mod/DungeonModificationsMod.cs) ; blob : `0c02f6cdb88ea2b72337c70861a03b67a523b0eb` ; lignes lues : 20–88.
+- Observation : Le mod intercepte GenerateDungeonCoroutine, ajuste DungeonRoomCountMax et DungeonRoomCountMin par réflexion si la génération runtime est active, puis appelle l'original.
+- Portée : Correction de confiance : cette lecture ne retrouve pas Dungeon.SpawnMobs ni la pondération des ennemis annoncée dans l'inventaire historique. Une preuve séparée est nécessaire pour le directeur de rencontres.
+
+### Shattered Pixel Dungeon — source du jeu
+
+- Commit : `e9defd0444c96d2fce3de5ec297c3398be8b7c55` ; fichier : [core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/actors/buffs/Hunger.java](https://github.com/00-Evan/shattered-pixel-dungeon/blob/e9defd0444c96d2fce3de5ec297c3398be8b7c55/core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/actors/buffs/Hunger.java) ; blob : `f8ac0525cb317295970031b635461f200e5469d8` ; lignes lues : 38–126.
+- Observation : Hunger définit des seuils faim/famine, avance avec les ticks sauf exceptions, et inflige progressivement des dégâts à la famine. ItemStatusHandler attribue des étiquettes aléatoires aux classes d'objets, conserve l'ensemble des catégories connues et sérialise ces états.
+- Portée : Ces deux fichiers prouvent précisément l'attrition et l'identification de catégories d'objets dans la version figée ; ils ne prouvent pas à eux seuls l'équilibre global de la difficulté.
+
+Pour Battle Brothers, [Modular Vanilla / behavior.nut](https://github.com/Battle-Modders/mod_modular_vanilla/blob/43b6ce9c4cd3544c61ac3b6c123bf589140f63db/mod_modular_vanilla/hooks/ai/tactical/behavior.nut) (blob `bc1ae47914448bca92f80dbfe4e519575164b3fa`, lignes 1–10) complète le premier fichier. Pour Stoneshard, [DungeonsSpawn.cs](https://github.com/ModShardTeam/ModShardLauncher/blob/368dfb0602945ea88ef675204d7e4ed10497de64/ModUtils/TableUtils/DungeonsSpawn.cs) (blob `1cad658ac521412e878a1b0edd0f12033481390b`, lignes 48–92) ; pour Shattered Pixel Dungeon, [ItemStatusHandler.java](https://github.com/00-Evan/shattered-pixel-dungeon/blob/e9defd0444c96d2fce3de5ec297c3398be8b7c55/core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/ItemStatusHandler.java) (blob `ecbf502207ea533cd9b4e803b7c010065768ceaa`, lignes 35–75 et 175–205) complètent leurs preuves.
+
+### Trois sources documentaires vérifiées, sans archive de code examinée
+
+- **Darkest Dungeon** : [guide officiel Red Hook](https://steamcommunity.com/sharedfiles/filedetails/?id=819597757), sections compétences (paramètres `.launch`, `.target`, `.effect`), monstres (`monster_brain`, `death_class`), rencontres et désirs de sélection de compétence/cible. Il prouve le contrat de données exposé aux moddeurs. Aucun commit de moteur propriétaire ou fichier `.darkest` du jeu n'a été lu dans cette passe. La séparation des rangs, effets et IA reste un enseignement de ce contrat, pas une reconstruction du moteur.
+- **Iratus** : [page Player Balance écrite par l'auteur du mod](https://www.nexusmods.com/iratuslordofthedead/mods/6), changelog de positions de lancement/ciblage et de dégâts ; le chemin des JSON de monstres est documenté. Les fichiers JSON téléchargés et le code du jeu ne sont pas disponibles dans cette passe. Le contenu annoncé par l'auteur n'est pas promu au rang d'analyse de code vérifiée.
+- **Legend of Grimrock II** : [référence Lua de l'éditeur](https://www.grimrock.net/modding/scripting-reference/) : `defineObject`, `baseObject`, composants et `defineSkill` sont des API documentées. La page du manuel n'expose pas un commit figé ; cette passe ne contient ni mod Lua téléchargé ni test de hook. L'ancien inventaire mentionne `onDealDamage` et `onAttackHit` sans lecture de fichier de mod versionné, à garder en attente.
+
+### Quatre titres sans preuve de code retrouvée
+
+| Jeu | État vérifiable après cette passe | Pour certifier l'analyse annoncée |
+|---|---|---|
+| Battle Chasers: Nightwar | Page VERBOSE et phénomènes instrumentés ; pas de source du mod ni journal d'exécution figé | Récupérer l'archive autorisée ou des logs avec version, puis relever des observations reproductibles ; ne pas attribuer le pipeline interne au jeu. |
+| Octopath Traveler II | Noms d'outils/mods historiques sans fichiers ou versions lus | Obtenir les assets modifiés ou le dépôt du mod, versionner et comparer les champs de compétences et Break. |
+| Chained Echoes | BepInEx/Overdrive cités historiquement sans mod gameplay lu | Obtenir un mod de règles accessible avec commit ; un chargeur seul ne prouve pas la logique Overdrive. |
+| Ruined King | Synthèse de gameplay des lanes ; pas de code de mod ni fichier de données récupéré | Classer comme observation de gameplay jusqu'à une source technique réellement consultable. |
+
+### État de la couverture
+
+Les 20 jeux de l'inventaire ont désormais un statut explicite : 13 avec lecture ciblée d'au moins un fichier de code (les six de la passe précédente et sept ici), trois avec documentation primaire/mainteneur examinée, quatre sans preuve de code retrouvée. « Fichier lu » ne signifie pas « étude complète du jeu » : les mécanismes non abordés conservent leurs réserves. La correction Dungeon of the Endless retire la prétention non étayée sur `SpawnMobs` du statut certifié. Les sources externes ne modifient ni le canon LITD ni le runtime.
+
+Reproduction des sept sources de code : `git show <commit>:<chemin>` puis `git rev-parse <commit>:<chemin>` sur les dépôts liés. Cette passe est une revue statique ; aucun binaire ou mod tiers exécuté.
