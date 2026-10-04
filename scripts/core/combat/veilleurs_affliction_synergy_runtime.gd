@@ -31,6 +31,8 @@ static func decorate_action(actor: Dictionary, target: Dictionary, action: Dicti
     var tags: Array = result.get("canonical_tags", result.get("tags", []))
     var skill_id := str(result.get("id", ""))
     var hero_name := str(actor.get("name", actor.get("id", "")))
+    var tree := str(result.get("tree", ""))
+    var build_role := str(result.get("build_role", ""))
 
     # Existing wound/lesion mechanics are shared between Mathilde and Aurélien.
     # A prepared wound improves reliability only; it never adds a free damage multiplier.
@@ -56,6 +58,32 @@ static func decorate_action(actor: Dictionary, target: Dictionary, action: Dicti
             result["synergy_control_exploit"] = true
             result["accuracy"] = mini(100, int(result.get("accuracy", result.get("base_accuracy_pct", 75))) + 5)
 
+    # Tree-local payoffs make afflictions part of a build loop rather than isolated buttons.
+    # They improve reliability/functional exploitation only; canonical damage remains authoritative.
+    if hero_name in ["Mathilde", "mathilde"] and tree == "Entaille" and bool(state.get("bleed", false)):
+        if skill_id in ["MA-ENT-05", "MA-ENT-09", "MA-ENT-14"] or _has_any_tag(tags, ["TENDON", "MEMBRE_BLESSÉ"]):
+            result["synergy_tree_payoff"] = "mathilde_hemorrhage"
+            result["accuracy"] = mini(100, int(result.get("accuracy", result.get("base_accuracy_pct", 75))) + 5)
+
+    if hero_name in ["Marec", "marec"] and tree == "Brisure":
+        if bool(state.get("control_window", false)) or STATUS_RESOLVER.has(target, "vulnerability") or STATUS_RESOLVER.has(target, "weakness"):
+            if skill_id in ["MR-BRI-06", "MR-BRI-12", "MR-BRI-14"]:
+                result["synergy_tree_payoff"] = "marec_breaker"
+                result["accuracy"] = mini(100, int(result.get("accuracy", result.get("base_accuracy_pct", 75))) + 5)
+
+    if hero_name in ["Anouk", "anouk"] and tree == "Dissidence" and STATUS_RESOLVER.has(target, "silence"):
+        if skill_id in ["AN-DIS-08", "AN-DIS-12", "AN-DIS-14"]:
+            result["synergy_tree_payoff"] = "anouk_disruptor"
+            result["accuracy"] = mini(100, int(result.get("accuracy", result.get("base_accuracy_pct", 75))) + 5)
+
+    if hero_name in ["Aurélien", "aurelien"] and tree in ["Anatomie", "Hémocorde"]:
+        if STATUS_RESOLVER.has(target, "snare") and skill_id in ["AU-ANA-09", "AU-ANA-14"]:
+            result["synergy_tree_payoff"] = "aurelien_anatomical_control"
+            result["accuracy"] = mini(100, int(result.get("accuracy", result.get("base_accuracy_pct", 75))) + 5)
+        elif bool(state.get("bleed", false)) and skill_id in ["AÏ-HÉM-05", "AÏ-HÉM-09", "AÏ-HÉM-12", "AÏ-HÉM-14"]:
+            result["synergy_tree_payoff"] = "aurelien_hemocorde"
+            result["accuracy"] = mini(100, int(result.get("accuracy", result.get("base_accuracy_pct", 75))) + 5)
+
     result["synergy_skill_id"] = skill_id
     return result
 
@@ -66,7 +94,8 @@ static func result_receipt(target: Dictionary, action: Dictionary) -> Dictionary
         "breaker_execution_window": bool(action.get("synergy_breaker_window", false)),
         "control_window": bool(action.get("synergy_control_window", false)),
         "control_exploit": bool(action.get("synergy_control_exploit", false)),
-        "active_controls": state.get("active_controls", [])
+        "active_controls": state.get("active_controls", []),
+        "tree_payoff": str(action.get("synergy_tree_payoff", ""))
     }
 
 static func _has_lesion(anatomy: Dictionary) -> bool:
