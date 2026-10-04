@@ -255,11 +255,12 @@ func _on_cell(cell: Vector2i) -> void:
         return
     var runtime: Variant = slice.combat
     var occupant: String = str(runtime.grid.occupant(cell))
-    if occupant.begins_with("ENT_WATCHER_"):
+    var team := str(runtime.combatants.get(occupant, {}).get("team", ""))
+    if team == "watcher":
         selected_watcher = occupant
         _refresh_combat()
         return
-    if occupant.begins_with("ENT_ENEMY_") or occupant.begins_with("ENT_BOSS_"):
+    if team == "enemy":
         selected_target = occupant
         _refresh_combat()
         return

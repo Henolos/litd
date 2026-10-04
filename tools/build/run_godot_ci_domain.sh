@@ -47,6 +47,7 @@ run_checked "Import strict du projet" godot --headless --path . --import --quit
 case "$DOMAIN" in
   core-world)
     scene 120 "Expédition procédurale jouable" res://scenes/tests/dungeon_playable_pipeline_smoke.tscn
+    scene 120 "Parcours Premier Accord par les commandes joueur" res://scenes/tests/first_accord_playthrough_smoke.tscn
     scene 0 "Smoke test noyau" res://scenes/tests/core_smoke.tscn
     scene 0 "Psychologie" res://scenes/tests/psychology_smoke.tscn
     scene 0 "Relations" res://scenes/tests/relationship_smoke.tscn

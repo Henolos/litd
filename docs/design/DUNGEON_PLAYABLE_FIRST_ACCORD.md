@@ -58,3 +58,36 @@ l'interface de production. Les contrats de rangs, ciblage, anatomie, afflictions
 et les anciens donjons restent couverts par les domaines Godot existants.
 Le stress test de 1 000 générations/replays complets est conservé, avec une
 limite de 180 s adaptée à la résolution de compositions.
+
+## Parcours automatisé par les commandes joueur (2026-10-04)
+
+`first_accord_playthrough_smoke.tscn` utilise l'interface de production et ses
+commandes de sélection, déplacement adjacent, ciblage anatomique et compétences.
+La stratégie choisit l'attaque disponible offrant le plus de dégâts attendus
+parmi les quatre compétences affichées ; chaque action déclenche la phase ennemie
+existante. Aucun combatant n'est téléporté, aucun jet n'est forcé et aucune victoire
+n'est déclarée directement. Les statistiques et règles de combat restent intactes.
+
+Les graines 101 à 106 sont jouées deux fois depuis une Rémanence et une campagne
+neuves. Le test exige l'identité des résultats, la légalité des déplacements et
+la sélection des ennemis par leur équipe, y compris le Gardien dont l'identifiant
+ne commence pas par `ENT_BOSS_`. Un scénario isolé du Gardien utilise une équipe
+neuve : victoire en huit actions. Ce scénario est distinct du parcours intégral
+et n'établit pas que le boss est accessible avec les blessures de l'expédition.
+
+Résultats de référence avec cette stratégie offensive :
+
+| Graine | Galerie | Débat | Expédition terminée |
+| --- | --- | --- | --- |
+| 101 | Défaite, 15 actions | Non atteint | Non |
+| 102 | Victoire, 21 actions | Défaite, 17 actions | Non |
+| 103 | Victoire, 21 actions | Défaite, 17 actions | Non |
+| 104 | Défaite, 16 actions | Non atteint | Non |
+| 105 | Victoire, 17 actions | Défaite, 22 actions | Non |
+| 106 | Défaite, 8 actions | Non atteint | Non |
+
+Le succès de ce test signifie que les contrats de commandes, de déterminisme et
+le scénario isolé du boss passent. Il ne signifie pas que l'équilibrage du donjon
+est validé. La stratégie n'utilise ni soins, garde, contrôle, équipement ni ultime.
+Il faut compléter cette mesure par des stratégies de survie et un playtest humain
+avant de régler la pression des rencontres ou de valider la fusion pour livraison.
