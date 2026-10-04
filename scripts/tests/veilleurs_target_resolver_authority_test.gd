@@ -48,6 +48,7 @@ func _ready() -> void:
     if failures.is_empty():
         print("VEILLEURS_TARGET_RESOLVER_AUTHORITY_OK")
         get_tree().quit(0)
+        return
     for failure in failures:
         push_error(failure)
     get_tree().quit(1)

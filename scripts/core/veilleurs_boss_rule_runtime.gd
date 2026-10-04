@@ -41,7 +41,7 @@ func before_round(runtime: Variant) -> Dictionary:
     round_index += 1
     phase = 1 + int(round_index >= 3) + int(round_index >= 6)
     match boss_id:
-        "ENT_BOSS_GARDIEN_SEUIL":
+        "ENT_BOSS_GARDIEN_SEUIL", "c01_ancient_accord_warden":
             return _gardien_rule(runtime)
         "ENT_BOSS_CHOEUR_FENDU":
             return _choeur_rule()

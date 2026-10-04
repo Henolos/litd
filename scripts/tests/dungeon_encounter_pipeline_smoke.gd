@@ -3,6 +3,7 @@ extends Node
 const PLANNER := preload("res://scripts/world/first_accord_hybrid_planner.gd")
 const DIRECTOR := preload("res://scripts/core/veilleurs_encounter_director.gd")
 const RUNTIME_PLAN := preload("res://scripts/world/first_accord_hybrid_runtime_plan.gd")
+const COMPOSITION_RESOLVER := preload("res://scripts/core/veilleurs_encounter_composition_resolver.gd")
 var failures: Array[String] = []
 
 func _ready() -> void:
@@ -85,6 +86,17 @@ func _ready() -> void:
     _check(not bool(failed_runtime.get("encounter_report", {}).get("ok", true)), "Fallback must retain failed encounter evidence")
     var runtime_plan := RUNTIME_PLAN.build({"campaign_seed":42})
     _check(bool(runtime_plan.get("ok", false)) and not bool(runtime_plan.get("fallback", false)) and runtime_plan.has("encounter_report"), "Runtime must invoke encounter stage after Remanence")
+    _check(bool(runtime_plan.get("composition_report", {}).get("ok", false)), "Runtime must resolve encounter compositions")
+    _check(bool(COMPOSITION_RESOLVER.validate_plan(runtime_plan).get("ok", false)), "Resolved compositions must validate")
+    var replay_plan := RUNTIME_PLAN.build({"campaign_seed":42})
+    _check(runtime_plan == replay_plan, "Same seed must reproduce complete enemy compositions")
+    for runtime_node in runtime_plan.get("nodes", []):
+        var runtime_encounter: Dictionary = runtime_node.get("encounter", {})
+        if runtime_encounter.is_empty() or float(runtime_encounter.get("threat", 0.0)) <= 0.0 or bool(runtime_encounter.get("fixed_boss", false)):
+            continue
+        _check(str(runtime_encounter.get("composition_status", "")) == "resolved", "Normal combat encounter must have a resolved composition")
+        _check((runtime_encounter.get("composition", []) as Array).size() == int(runtime_encounter.get("enemy_count", -1)), "Composition must preserve enemy count")
+        _check((runtime_encounter.get("composition", []) as Array).size() <= 4, "Composition must preserve R1-R4 capacity")
     var fallback := {"ok":true, "fallback":true, "fallback_reason":"test"}
     _check(DIRECTOR.populate_dungeon_plan(fallback, library, tables) == fallback, "Authored fallback must remain untouched")
     if failures.is_empty():

@@ -5,7 +5,7 @@ func apply_round(runtime: Variant, boss_id: String, rule_state: Dictionary) -> D
     if boss_id == "" or not runtime.combatants.has(boss_id) or not bool(rule_state.get("ok", false)):
         return {}
     match boss_id:
-        "ENT_BOSS_GARDIEN_SEUIL":
+        "ENT_BOSS_GARDIEN_SEUIL", "c01_ancient_accord_warden":
             return _apply_gardien(runtime, boss_id, rule_state)
         "ENT_BOSS_CHOEUR_FENDU":
             return _apply_choeur(runtime, boss_id, rule_state)

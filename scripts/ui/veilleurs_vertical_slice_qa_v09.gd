@@ -7,6 +7,7 @@ const TACTICAL_UI_SCENE := preload("res://scenes/veilleurs/v06_tactical_combat.t
 const QA_SCENE := "res://scenes/qa/qa_validation_room.tscn"
 
 const DUNGEONS := {
+    "dungeon_first_map_hall_of_first_accord":"Premier Accord — procédural",
     "DUNGEON_KHAR_SEN":"Khar-Sen",
     "DUNGEON_SEUIL_ERODE":"Seuil érodé",
     "DUNGEON_CLOITRE_VOIX":"Cloître des voix",
@@ -17,6 +18,11 @@ const DUNGEONS := {
 
 var slice: VeilleursVerticalSliceRuntimeV09
 var save_bridge: VeilleursVerticalSliceSaveV09
+var room_view: SubViewportContainer
+var room_viewport: SubViewport
+var room_root: Node3D
+var room_events_label: Label
+
 var status_label: Label
 var message_label: Label
 var actions: HFlowContainer
@@ -26,6 +32,8 @@ var selected_watcher := "ENT_WATCHER_marec"
 var selected_target := ""
 var selected_zone := "torso"
 var skill_ids: Array[String] = []
+var ally_target: OptionButton
+var selected_ally := ""
 
 func _ready() -> void:
     _build_shell()
@@ -87,6 +95,20 @@ func _build_shell() -> void:
     status_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     status_label.custom_minimum_size = Vector2(0, 54)
     root.add_child(status_label)
+    room_view = SubViewportContainer.new()
+    room_view.custom_minimum_size = Vector2(0, 220)
+    room_view.stretch = true
+    room_view.visible = false
+    root.add_child(room_view)
+    room_viewport = SubViewport.new()
+    room_viewport.size = Vector2i(640, 220)
+    room_viewport.own_world_3d = true
+    room_viewport.render_target_update_mode = SubViewport.UPDATE_WHEN_VISIBLE
+    room_view.add_child(room_viewport)
+    room_events_label = Label.new()
+    room_events_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+    room_events_label.visible = false
+    root.add_child(room_events_label)
 
     actions = HFlowContainer.new()
     actions.add_theme_constant_override("h_separation", 6)
@@ -105,6 +127,12 @@ func _build_shell() -> void:
     tactical_ui.retreat_pressed.connect(_on_retreat)
     root.add_child(tactical_ui)
 
+    ally_target = OptionButton.new()
+    ally_target.custom_minimum_size = Vector2(180, 44)
+    ally_target.visible = false
+    ally_target.item_selected.connect(_on_ally_target)
+    root.add_child(ally_target)
+
     message_label = Label.new()
     message_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     message_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -120,18 +148,21 @@ func _start_dungeon(dungeon_id: String) -> void:
         return
     selected_watcher = "ENT_WATCHER_marec"
     selected_target = ""
+    selected_ally = ""
     selected_zone = "torso"
     message_label.text = "%s chargé." % str(DUNGEONS.get(dungeon_id, dungeon_id))
     _render_node()
 
 func _render_node() -> void:
     tactical_ui.visible = false
+    ally_target.visible = false
     _clear(actions)
     _clear(recruit_actions)
     if slice == null:
         return
     var snapshot := slice.current_snapshot()
     var node: Dictionary = snapshot.get("dungeon", {})
+    _display_room(node)
     var progress: Dictionary = snapshot.get("progress", {})
     status_label.text = "%s — %s\nNœud %s | %d/%d visités | extraction : %s" % [
         str(DUNGEONS.get(str(progress.get("dungeon_id", "")), str(progress.get("dungeon_id", "")))),
@@ -147,11 +178,18 @@ func _render_node() -> void:
         return
     if not (snapshot.get("active_encounter", {}) as Dictionary).is_empty():
         _add_action("Lancer le combat", _launch_combat)
+        for escape_id: String in slice.campaign.dungeon.available_next():
+            _add_action("Replier vers " + escape_id.replace("_", " "), func() -> void: _enter_next(escape_id))
         return
     var flags: Dictionary = slice.campaign.dungeon.node_flags.get(str(node.get("node_id", "")), {})
     if not bool(flags.get("completed", false)):
         _add_action("Résoudre ce lieu", _resolve_noncombat_node)
         return
+    if not slice.campaign.dungeon.procedural_plan.is_empty():
+        _add_action("Chercher les passages", func() -> void:
+            var discovered := slice.campaign.dungeon.discover_current_passages()
+            message_label.text = "Passages découverts : %d" % discovered.get("discovered", []).size()
+            _render_node())
     for next_id: String in slice.campaign.dungeon.available_next():
         var next_node: Dictionary = slice.campaign.dungeon.nodes_by_id.get(next_id, {})
         var label := "→ %s" % str(next_node.get("title_fr", next_id))
@@ -175,6 +213,8 @@ func _launch_combat() -> void:
         message_label.text = "Combat impossible : %s" % str(setup.get("reason", "inconnu"))
         return
     tactical_ui.visible = true
+    room_view.visible = false
+    room_events_label.visible = false
     _clear(actions)
     _clear(recruit_actions)
     _repair_selection()
@@ -210,6 +250,7 @@ func _refresh_combat() -> void:
     for skill_id: String in skill_ids:
         labels.append(str(runtime.content_db.skill(skill_id).get("name_fr", skill_id)))
     tactical_ui.set_skill_labels(labels)
+    _refresh_ally_targets(runtime)
     var phase_text := ""
     if runtime.has_method("boss_phase_snapshot"):
         var phase: Dictionary = runtime.call("boss_phase_snapshot")
@@ -225,11 +266,12 @@ func _on_cell(cell: Vector2i) -> void:
         return
     var runtime: Variant = slice.combat
     var occupant: String = str(runtime.grid.occupant(cell))
-    if occupant.begins_with("ENT_WATCHER_"):
+    var team := str(runtime.combatants.get(occupant, {}).get("team", ""))
+    if team == "watcher":
         selected_watcher = occupant
         _refresh_combat()
         return
-    if occupant.begins_with("ENT_ENEMY_") or occupant.begins_with("ENT_BOSS_"):
+    if team == "enemy":
         selected_target = occupant
         _refresh_combat()
         return
@@ -237,7 +279,7 @@ func _on_cell(cell: Vector2i) -> void:
     if absi(origin.x - cell.x) + absi(origin.y - cell.y) != 1:
         message_label.text = "Déplacement refusé : case adjacente requise."
         return
-    if runtime.has_method("can_move_to") and not bool(runtime.call("can_move_to", cell)):
+    if runtime.has_method("can_move_to") and not bool(runtime.call("can_move_to", cell, selected_watcher)):
         message_label.text = "Cette case est interdite ou occupée."
         return
     if runtime.grid.move(selected_watcher, cell):
@@ -254,9 +296,15 @@ func _on_skill(slot: int) -> void:
     var runtime: Variant = slice.combat
     var skill_id := skill_ids[slot]
     var skill: Dictionary = runtime.content_db.skill(skill_id)
-    var action := str(skill.get("action_type", "attack"))
+    var action: String = runtime.skill_behavior.effective_action(skill)
     var target_id := selected_target
-    if action in ["guard", "heal", "support", "passive_modifier", "move", "transform"]:
+    if action in ["heal", "support"]:
+        target_id = selected_ally if selected_ally != "" else selected_watcher
+        var verdict: Dictionary = runtime.preview_skill(selected_watcher, target_id, skill_id, selected_zone)
+        if not bool(verdict.get("ok", false)):
+            message_label.text = "Cible alliée hors de portée."
+            return
+    elif action in ["guard", "passive_modifier", "move", "transform"]:
         target_id = selected_watcher
     if target_id == "" or not runtime.combatants.has(target_id):
         message_label.text = "Sélectionnez une cible valide."
@@ -267,6 +315,30 @@ func _on_skill(slot: int) -> void:
         return
     message_label.text = "%s utilise %s." % [_display(selected_watcher), str(skill.get("name_fr", skill_id))]
     _check_combat_end_or_enemy_phase()
+
+func _refresh_ally_targets(runtime: Variant) -> void:
+    ally_target.clear()
+    ally_target.add_item("Cible alliée : lanceur")
+    ally_target.set_item_metadata(0, "")
+    var selected := 0
+    for watcher: String in runtime.alive_ids("watcher"):
+        ally_target.add_item("Cible alliée : " + _display(watcher))
+        var index := ally_target.item_count - 1
+        ally_target.set_item_metadata(index, watcher)
+        if watcher == selected_ally:
+            selected = index
+    if selected == 0:
+        selected_ally = ""
+    ally_target.select(selected)
+    ally_target.visible = false
+    for skill_id: String in skill_ids:
+        if runtime.skill_behavior.effective_action(runtime.content_db.skill(skill_id)) in ["heal", "support"]:
+            ally_target.visible = true
+            break
+
+func _on_ally_target(index: int) -> void:
+    if index >= 0 and index < ally_target.item_count:
+        selected_ally = str(ally_target.get_item_metadata(index))
 
 func _enemy_phase() -> void:
     if slice == null or slice.combat == null:
@@ -368,11 +440,11 @@ func _repair_selection() -> void:
     if slice == null or slice.combat == null:
         return
     var runtime: Variant = slice.combat
-    if not runtime.combatants.has(selected_watcher) or int((runtime.combatants[selected_watcher] as Dictionary).get("hp", 0)) <= 0:
+    if not runtime.alive_ids("watcher").has(selected_watcher):
         var watchers: Array[String] = runtime.alive_ids("watcher")
         if not watchers.is_empty():
             selected_watcher = watchers[0]
-    if selected_target == "" or not runtime.combatants.has(selected_target) or int((runtime.combatants[selected_target] as Dictionary).get("hp", 0)) <= 0:
+    if not runtime.alive_ids("enemy").has(selected_target):
         var enemies: Array[String] = runtime.alive_ids("enemy")
         selected_target = enemies[0] if not enemies.is_empty() else ""
 
@@ -399,3 +471,37 @@ func _add_action(text: String, callback: Callable) -> void:
 func _clear(container: Node) -> void:
     for child: Node in container.get_children():
         child.queue_free()
+
+func _display_room(node: Dictionary) -> void:
+    if room_root != null:
+        room_root.free()
+        room_root = null
+    var path := str(node.get("scene_path", ""))
+    room_view.visible = path != ""
+    room_events_label.visible = room_view.visible
+    if path == "":
+        return
+    var packed := load(path) as PackedScene
+    if packed == null:
+        room_view.visible = false
+        return
+    room_root = Node3D.new()
+    room_viewport.add_child(room_root)
+    var room := packed.instantiate() as Node3D
+    room_root.add_child(room)
+    room.set_meta("room_events", node.get("room_events", []).duplicate(true))
+    var camera := Camera3D.new()
+    camera.projection = Camera3D.PROJECTION_ORTHOGONAL
+    camera.size = 42
+    camera.position = Vector3(26, 32, 30)
+    room_root.add_child(camera)
+    camera.look_at(Vector3.ZERO)
+    camera.current = true
+    var light := DirectionalLight3D.new()
+    light.rotation_degrees = Vector3(-55, -30, 0)
+    light.light_energy = 1.5
+    room_root.add_child(light)
+    var descriptions: Array[String] = []
+    for event in node.get("room_events", []):
+        descriptions.append("%s : %s" % [str(event.get("slot_id", "")).replace("_", " "), str(event.get("variant", "")).replace("_", " ")])
+    room_events_label.text = " · ".join(descriptions)

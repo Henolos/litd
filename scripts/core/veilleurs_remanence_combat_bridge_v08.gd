@@ -140,7 +140,7 @@ func _learn_from_player(runtime: Variant, enemy_id: String) -> void:
         RemanenceRuntime.add_adaptation(str(row.get("remanence_id", "")), adaptation)
 
 func _event_for_outcome(outcome: String, row: Dictionary) -> String:
-    if outcome in ["killed", "dead", "defeat_enemy"] or int(row.get("hp", 0)) <= 0:
+    if outcome in ["killed", "dead", "defeat_enemy"] or not preload("res://scripts/core/combat/veilleurs_target_resolver.gd").tactical_actor_alive(row):
         return "killed"
     if outcome in ["retreat", "player_retreat", "forced_retreat"]:
         return "forced_retreat"

@@ -1,4 +1,4 @@
-extends SceneTree
+extends Node
 
 const HitResolver := preload("res://scripts/core/combat/veilleurs_hit_resolver.gd")
 const DamageResolver := preload("res://scripts/core/combat/veilleurs_damage_resolver.gd")
@@ -8,7 +8,7 @@ const CombatCommand := preload("res://scripts/core/combat/veilleurs_combat_comma
 const TargetResolver := preload("res://scripts/core/combat/veilleurs_target_resolver.gd")
 const LegacyRuntime := preload("res://scripts/core/veilleurs_combat_sandbox_runtime.gd")
 
-func _init() -> void:
+func _ready() -> void:
     var target := {"id":"target","name":"Cible"}
     var base_action := {"id":"strike","accuracy":75,"power":7}
 
@@ -71,4 +71,4 @@ func _init() -> void:
     assert(str(TargetResolver.validate_index(targets, 1).get("reason", "")) == "invalid_target", "TargetResolver invalid-index contract changed")
 
     print("VEILLEURS_COMBAT_RESOLVERS_CONTRACT_OK")
-    quit(0)
+    get_tree().quit(0)

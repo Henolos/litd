@@ -152,12 +152,15 @@ func enemy_step(enemy_id: String) -> Dictionary:
         return {"ok":false, "reason":"enemy_subdued", "enemy":enemy_id}
     if not combatants.has(enemy_id) or str((combatants[enemy_id] as Dictionary).get("team", "")) != "enemy":
         return {"ok":false, "reason":"not_enemy"}
+    var actor_verdict := TARGET_RESOLVER_SCRIPT.validate_tactical_actor(self, enemy_id)
+    if not bool(actor_verdict.get("ok", false)):
+        return actor_verdict
     remanence_bridge.refresh_enemy(self, enemy_id)
     var base_decision: Dictionary = enemy_ai.decide(self, enemy_id)
     var decision: Dictionary = (skill_selector as VeilleursEnemySkillSelectorV2).refine_decision(self, enemy_id, base_decision)
     if str(decision.get("action", "")) in ["move", "flee"]:
         var cell_value: Variant = decision.get("cell", Vector2i(-1, -1))
-        if cell_value is Vector2i and not can_move_to(cell_value as Vector2i):
+        if cell_value is Vector2i and not can_move_to(cell_value as Vector2i, enemy_id):
             decision["action"] = "hold"
             decision["reason"] = "boss_or_terrain_cell_locked"
     var row: Dictionary = combatants[enemy_id]
@@ -231,13 +234,15 @@ func finish_remanence(outcome: String, context: Dictionary = {}) -> Dictionary:
         var row: Dictionary = combatants[enemy_id]
         if str(row.get("team", "")) != "enemy" or bool(row.get("boss", false)):
             continue
-        var enemy_outcome := "killed" if int(row.get("hp", 0)) <= 0 else outcome
+        var enemy_outcome := "killed" if not TARGET_RESOLVER_SCRIPT.tactical_actor_alive(row) else outcome
         var merged := context.duplicate(true)
         merged["region_id"] = str(context.get("region_id", active_region_id))
         results[enemy_id] = remanence_bridge.finish_enemy(self, enemy_id, enemy_outcome, merged)
     return results
 
-func can_move_to(cell: Vector2i) -> bool:
+func can_move_to(cell: Vector2i, actor_id: String = "") -> bool:
+    if actor_id != "" and not bool(TARGET_RESOLVER_SCRIPT.validate_tactical_actor(self, actor_id, {"action_type":"move"}).get("ok", false)):
+        return false
     if not grid.inside(cell) or grid.occupied(cell):
         return false
     if active_boss_id != "" and boss_director.cell_locked(self, cell):
@@ -265,7 +270,7 @@ func alive_ids(team: String = "") -> Array[String]:
     for entity_id_value: Variant in combatants.keys():
         var entity_id := str(entity_id_value)
         var row: Dictionary = combatants[entity_id]
-        if int(row.get("hp", 0)) <= 0:
+        if not TARGET_RESOLVER_SCRIPT.tactical_actor_alive(row):
             continue
         if team != "" and str(row.get("team", "")) != team:
             continue
@@ -278,7 +283,7 @@ func boss_phase_snapshot() -> Dictionary:
 func next_round() -> void:
     super.next_round()
     _decay_terrain_effects()
-    if active_boss_id != "" and combatants.has(active_boss_id) and int((combatants[active_boss_id] as Dictionary).get("hp", 0)) > 0:
+    if active_boss_id != "" and combatants.has(active_boss_id) and TARGET_RESOLVER_SCRIPT.tactical_actor_alive(combatants[active_boss_id]):
         last_boss_rule = boss_rules.before_round(self)
         action_log.append({"ok":true, "action":"boss_rule", "boss":active_boss_id, "state":last_boss_rule.duplicate(true)})
         last_boss_mechanics = boss_director.apply_round(self, active_boss_id, last_boss_rule)
@@ -406,7 +411,7 @@ func _resolve_non_skill_decision(enemy_id: String, decision: Dictionary) -> Dict
         var cell_value: Variant = decision.get("cell", Vector2i(-1, -1))
         if cell_value is Vector2i:
             var cell: Vector2i = cell_value
-            if can_move_to(cell) and grid.move(enemy_id, cell):
+            if can_move_to(cell, enemy_id) and grid.move(enemy_id, cell):
                 var moved := {"ok":true, "action":action, "enemy":enemy_id, "to":[cell.x, cell.y], "decision_reason":str(decision.get("reason", "doctrine_move")), "doctrine_used":bool(decision.get("doctrine_used", false))}
                 action_log.append(moved.duplicate(true))
                 return moved

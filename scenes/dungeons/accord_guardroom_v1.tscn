@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/first_accord_module_room.gd" id="1"]
+
+[node name="FirstAccordRoom" type="Node3D"]
+script = ExtResource("1")
+authored_room_id = "broken_guardroom"
+module_id = "accord_guardroom_v1"
