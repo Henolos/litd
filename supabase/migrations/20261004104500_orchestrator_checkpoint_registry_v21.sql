@@ -187,7 +187,7 @@ begin
         return;
     end if;
 
-    select coalesce(max(sequence_no), 0) + 1
+    select coalesce(max(c.sequence_no), 0) + 1
       into v_sequence
       from henolos_execution.checkpoints
      where mandate_id = p_mandate_id;
