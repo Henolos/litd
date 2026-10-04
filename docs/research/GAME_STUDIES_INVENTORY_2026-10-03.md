@@ -360,3 +360,124 @@ Les six revalidations convergent vers les mêmes frontières architecturales dé
 7. UI/preview calculées depuis les mêmes contrats que le runtime.
 
 Aucun de ces constats ne justifie de créer un second moteur de combat, un second générateur de donjon ou une IA parallèle.
+
+
+## Synthèse finale LITD — conserver / améliorer / rejeter
+
+### À conserver
+
+1. **Un seul pipeline de combat canonique**
+   - définition de compétence ;
+   - validation rang/cible/zone anatomique ;
+   - résolution ;
+   - dégâts/soins/boucliers ;
+   - afflictions/effets ;
+   - mort et compactage ;
+   - événements/feedback.
+   - Raison : Darkest Dungeon, Iratus et Battle Chasers convergent vers une séparation nette des responsabilités. LITD possède déjà cette direction ; il ne faut pas créer un moteur parallèle.
+
+2. **Même contrat de légalité pour joueur, IA et UI**
+   - le joueur, l'IA et la prévisualisation doivent interroger les mêmes règles de ciblage ;
+   - l'IA score uniquement les actions déjà légales.
+   - Raison : réduit les divergences entre preview, exécution et comportement ennemi.
+
+3. **Ciblage anatomique comme couche explicite**
+   - conserver le contrat rang -> ennemi -> partie du corps -> résolution ;
+   - ne pas fusionner les zones anatomiques avec les afflictions ;
+   - chaque zone peut exposer santé, armure, seuils et conséquences.
+   - Raison : c'est une différenciation forte de LITD et les références étudiées renforcent la nécessité de séparer ciblage, dégâts et effets.
+
+4. **Afflictions data-driven**
+   - définitions, résistances, durée, déclencheurs et règles de rafraîchissement doivent être données/contrats quand possible ;
+   - le moteur applique les règles, il ne porte pas de logique spéciale dispersée par affliction.
+   - Raison : Iratus, Darkest Dungeon et les frameworks modding montrent la valeur de règles séparées des effets.
+
+5. **IA : actions légales -> score -> choix**
+   - générer d'abord les actions/cibles valides ;
+   - scorer ensuite selon dégâts, position, affliction, synergie, risque et priorité ;
+   - garder la télégraphie séparée du calcul.
+   - Raison : modèle robuste et testable, confirmé par les patterns étudiés autour d'Into the Breach et Slay the Spire.
+
+6. **Donjons : topologie avant contenu**
+   - seed déterministe ;
+   - profil ;
+   - flow/graphe ;
+   - validation du chemin critique ;
+   - résolution des salles compatibles ;
+   - encounter/event directors ;
+   - validation finale.
+   - Raison : convergence Darkest Dungeon / Gungeon / Isaac / Spelunky / Dead Cells.
+
+7. **Salles artisanales réutilisées par un générateur contraint**
+   - préférer des composants conçus et testés à des salles entièrement générées ;
+   - faire dépendre le choix d'une salle de métadonnées/topologie explicites.
+   - Raison : meilleure qualité, lisibilité et contrôle de la difficulté.
+
+### À améliorer
+
+1. **Centraliser encore davantage la validation de cible**
+   - toute règle de portée, rang, cible, zone anatomique et état doit avoir une seule source de vérité ;
+   - supprimer progressivement les duplications UI/runtime si elles existent encore.
+
+2. **Formaliser un `ActionRequest` / résultat canonique**
+   - une action devrait transporter acteur, compétence, cible, zone anatomique, coûts et contexte ;
+   - son résultat doit être sérialisable/testable pour faciliter preview, IA et replay de tests.
+   - À adapter à l'architecture actuelle sans renommer inutilement les classes déjà stables.
+
+3. **Scoring IA explicable**
+   - conserver les facteurs de score séparés et observables en debug ;
+   - ajouter des bornes et garde-fous contre les stratégies absurdes ;
+   - tests dédiés aux rangs, parties du corps et afflictions.
+
+4. **Afflictions : règles de renouvellement et immunité**
+   - expliciter stacking, refresh, immunité temporaire, résistance, durée minimale/maximale ;
+   - priorité particulière à l'étourdissement pour empêcher le stun-lock ;
+   - garder les interactions entre états dans une table de règles, pas dans des exceptions dispersées.
+
+5. **RoomResolver avec compatibilité explicite**
+   - chaque salle doit annoncer portes/connexions, tags, biome, difficulté, contenu autorisé et contraintes ;
+   - si aucune salle compatible n'existe : fallback contrôlé ou échec explicite, jamais correction silencieuse arbitraire.
+
+6. **Seeds séparées par sous-système**
+   - dériver des sous-seeds pour flow, salles, rencontres, loot et événements ;
+   - conserver la reproductibilité tout en évitant qu'un changement de loot bouleverse toute la topologie.
+
+7. **Preuves et observabilité**
+   - conserver les décisions critiques sous forme de rapports de génération/combat en mode debug ;
+   - utiliser ces traces pour les tests déterministes et les régressions.
+
+### À rejeter
+
+1. **Deuxième moteur de combat**
+   - rejeté : créer une architecture inspirée d'un jeu étudié à côté du système LITD existant.
+   - Motif : duplication, divergence et coût de maintenance.
+
+2. **Deuxième générateur procédural**
+   - rejeté : ajouter un système parallèle au pipeline actuel.
+   - Motif : le pipeline validé couvre déjà les responsabilités nécessaires.
+
+3. **Copie directe des règles d'un jeu**
+   - rejeté : reproduire exactement stress, break, overdrive, tokens, death door, etc.
+   - Motif : les études servent à extraire des patterns, pas à cloner les mécaniques.
+
+4. **IA adaptative opaque qui triche**
+   - rejeté : modifier dynamiquement les règles de légalité, dégâts ou RNG pour compenser le niveau du joueur.
+   - Motif : difficulté difficile mais lisible > correction cachée.
+
+5. **Génération 100 % libre sans validation**
+   - rejeté : tirer salles, rencontres et loot indépendamment sans chemin critique ni contraintes.
+   - Motif : impossible à équilibrer correctement et difficile à reproduire/tester.
+
+6. **Afflictions codées en exceptions locales**
+   - rejeté : logique `if poison`, `if stun`, etc. dispersée dans compétences, IA et UI.
+   - Motif : explosion de complexité et incohérences.
+
+7. **Dépendre d'API/mods tiers non versionnés comme preuve**
+   - rejeté : considérer une fonction de mod comme invariant du jeu sans version/commit.
+   - Motif : plusieurs études, notamment Stoneshard, montrent que ces interfaces peuvent devenir incompatibles.
+
+### Décision finale
+
+Les études comparatives ne justifient **aucun changement d'architecture majeur** pour LITD. Elles valident principalement la direction déjà engagée : noyau déterministe, contrats de ciblage partagés, données séparées des résolveurs, IA fondée sur les actions légales et génération procédurale contrainte.
+
+La priorité d'implémentation doit donc être l'amélioration incrémentale du système existant, avec tests déterministes et suppression des duplications, et non la création de nouvelles couches parallèles.
