@@ -120,6 +120,10 @@ func play(seed: int, policy: String = "offense") -> Dictionary:
                 var event: Dictionary = active_combat.action_log[before]
                 check(str(event.get("attacker", "")) == str(choice["watcher"]), "wrong_action_actor")
                 check(str(event.get("target", "")) == str(choice["target"]), "wrong_action_target")
+                if action_type == "attack":
+                    check(str(event.get("zone", "")) == str(choice["zone"]), "wrong_body_zone")
+                    if bool(event.get("hit", false)):
+                        check(str(event.get("body", {}).get("zone", "")) == str(choice["zone"]), "trauma_on_wrong_body_zone")
                 coverage[action_type] = int(coverage.get(action_type, 0)) + 1
                 if action_type == "attack" and focus != "":
                     check(str(event.get("target", "")) == focus, "focus_target_changed_while_alive")
