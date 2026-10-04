@@ -178,3 +178,62 @@ Validation locale du changement documentaire : `python tools/quality/validate_kn
 - contradicts : affirmation non prouvée de rangement complet des études de code/mods.
 - validated_by : manifeste des blobs et vérification des liens locaux ; contrôle Guardian existant.
 - influences : benchmark roguelike et plan de récupération des études manquantes.
+
+
+## Revalidation ciblée du 4 octobre 2026
+
+Cette passe ne refait pas les vingt études. Elle revalide en priorité les mécanismes ayant un impact direct sur l'architecture LITD.
+
+### Battle Brothers — hooks, dépendances et ordre de chargement
+
+Sources primaires/mainteneurs relues :
+- https://github.com/MSUTeam/MSU
+- https://bbmodding.enduriel.com/docs/modern-hooks/introduction/
+- https://bbmodding.enduriel.com/docs/modern-hooks/basic-hooks/
+- https://bbmodding.enduriel.com/docs/modern-hooks/queuing/
+
+Constats revalidés :
+- Modern Hooks permet de cibler une classe précise et d'ajouter/envelopper fonctions et champs sans remplacer le fichier complet.
+- L'enregistrement des mods, les dépendances, incompatibilités et contraintes d'ordre de chargement sont explicites.
+- La documentation décrit la file d'exécution comme un mécanisme de compatibilité entre modifications concurrentes.
+
+Conséquence LITD : conserver des points d'extension typés et un ordre de résolution explicite autour des résolveurs existants, plutôt que dupliquer ou remplacer des systèmes complets. Cela renforce l'orientation `Definitions -> Request -> Resolver -> Events/Hooks` déjà proposée, sans justifier une nouvelle couche parallèle.
+
+Niveau de preuve : documentation mainteneur + dépôt public du framework ; ne prouve pas le comportement du moteur propriétaire complet de Battle Brothers.
+
+### Slay the Spire — abonnement aux événements
+
+Sources relues :
+- https://github.com/daviscook477/BaseMod
+- https://github.com/daviscook477/BaseMod/blob/master/mod/src/main/java/basemod/BaseMod.java
+- https://github.com/daviscook477/BaseMod/blob/master/TESTING.md
+
+Constats revalidés :
+- BaseMod expose explicitement de nombreux abonnés/subscribers et hooks de cycle de vie.
+- Le dépôt sépare l'enregistrement des abonnés des systèmes qui consomment ces événements.
+- TestMod est utilisé comme couverture de compatibilité fonctionnelle lors des évolutions du framework.
+
+Conséquence LITD : les afflictions, réactions, preview UI et intentions IA doivent privilégier des événements/contracts partagés autour d'un noyau de résolution unique. Le pattern est pertinent comme architecture d'extension ; il ne démontre pas à lui seul l'algorithme interne d'IA du jeu.
+
+Niveau de preuve : code et documentation publics de BaseMod ; aucune déduction du code propriétaire Slay the Spire.
+
+### Stoneshard — correction de confiance
+
+Source relue :
+- https://github.com/ModShardTeam/ModShardLauncher/releases
+
+Constats revalidés :
+- ModShardLauncher documente bien la création de salles via `AddRoomJson` et le support Room/Layers/GameObjects dans ses versions publiées.
+- Une release récente avertit toutefois que les API liées aux tables n'ont pas toutes été vérifiées/corrigées pour la branche actuelle et que les mods qui en dépendent peuvent ne pas fonctionner.
+
+Conséquence LITD : conserver l'idée générale de données séparées et de composition de salles, mais ne pas citer les injections de tables Stoneshard comme preuve stable d'une API actuelle sans figer une version compatible et la tester.
+
+Niveau de preuve : changelog/release mainteneur ; confiance abaissée pour les assertions historiques sur les injections de tables non versionnées.
+
+### Priorité de revalidation suivante
+
+1. Darkest Dungeon : figer versions des fichiers de données/mods utilisés et vérifier rangs/ciblage/IA.
+2. Battle Chasers: Nightwar : distinguer logs observables et structures réellement prouvées.
+3. Iratus : vérifier les JSON de positions/cibles/afflictions et leur version.
+4. Enter the Gungeon / Binding of Isaac : revalider flow, compatibilité des salles et fallback pour la génération.
+5. Into the Breach : revalider scoring des actions légales et télégraphie sans extrapoler l'IA propriétaire.
