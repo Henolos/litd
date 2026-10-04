@@ -79,15 +79,65 @@ Résultats de référence avec cette stratégie offensive :
 
 | Graine | Galerie | Débat | Expédition terminée |
 | --- | --- | --- | --- |
-| 101 | Défaite, 15 actions | Non atteint | Non |
-| 102 | Victoire, 21 actions | Défaite, 17 actions | Non |
-| 103 | Victoire, 21 actions | Défaite, 17 actions | Non |
-| 104 | Défaite, 16 actions | Non atteint | Non |
+| 101 | Arrêt, 15 actions | Non atteint | Non |
+| 102 | Victoire, 21 actions | Arrêt, 17 actions | Non |
+| 103 | Victoire, 21 actions | Arrêt, 17 actions | Non |
+| 104 | Arrêt, 16 actions | Non atteint | Non |
 | 105 | Victoire, 17 actions | Défaite, 22 actions | Non |
-| 106 | Défaite, 8 actions | Non atteint | Non |
+| 106 | Arrêt, 8 actions | Non atteint | Non |
 
 Le succès de ce test signifie que les contrats de commandes, de déterminisme et
 le scénario isolé du boss passent. Il ne signifie pas que l'équilibrage du donjon
 est validé. La stratégie n'utilise ni soins, garde, contrôle, équipement ni ultime.
 Il faut compléter cette mesure par des stratégies de survie et un playtest humain
 avant de régler la pression des rencontres ou de valider la fusion pour livraison.
+
+
+## Soins, garde et contrôle (2026-10-04)
+
+Le même test couvre désormais quatre politiques sur les six graines, chaque
+parcours étant rejoué : 48 exécutions. Il vérifie aussi l'empreinte des états de
+combat après chaque action, la cible et le lanceur réellement inscrits au journal,
+et l'exécution effective de soins, garde et contrôle. Les blocages faute d'attaque
+accessible aux survivants sont distingués des défaites avec élimination du groupe.
+Les « arrêts » du tableau précédent ne prouvent donc pas la mort de tous les
+Veilleurs ni l'impossibilité du donjon.
+
+Les politiques sont des heuristiques bornées, pas un joueur optimal :
+
+- `offense` : attaque offrant les meilleurs dégâts attendus.
+- `heal` : même attaque, avec soin de l'allié le plus blessé une action sur trois.
+- `guard_control` : contrôle ou garde une action sur trois, au maximum deux de
+  chaque par combat, puis attaque.
+- `mixed` : même cadence, avec priorité au soin urgent, puis contrôle et garde.
+
+L'interface forçait auparavant les soins et soutiens sur le lanceur. Le sélecteur
+« Cible alliée » expose désormais la cible acceptée par le moteur existant.
+Il conserve le lanceur par défaut, ne présente que les Veilleurs vivants, conserve
+le choix lors d'un changement de lanceur et le réinitialise quand la cible meurt.
+La portée est vérifiée par le prévisualiseur existant ; la garde reste personnelle.
+La CI exige notamment un soin positif appliqué à un autre Veilleur.
+
+| Politique | Galerie franchie | Débat franchi | Boss atteint | Expédition terminée |
+| --- | --- | --- | --- | --- |
+| Offensive | 3 / 6 | 0 / 6 | 0 / 6 | 0 / 6 |
+| Soins alliés | 3 / 6 | 0 / 6 | 0 / 6 | 0 / 6 |
+| Garde et contrôle | 3 / 6 | 1 / 6 | 0 / 6 | 0 / 6 |
+| Mixte | 3 / 6 | 1 / 6 | 0 / 6 | 0 / 6 |
+
+Ces résultats révèlent une attrition importante pour ces heuristiques. Ils ne
+valident pas l'équilibrage et ne prouvent pas qu'une stratégie optimale échouerait.
+Le scénario isolé du Gardien reste une victoire en huit actions.
+
+Une expérience réduisant les effectifs critiques de 2/3/3/4 à 1/2/2/2, avec
+menaces adaptées aux budgets existants, a également donné zéro expédition complète
+sur cette matrice. Cette modification a été écartée : les tables de rencontres,
+le boss, les budgets, les règles de Némésis, les récompenses et le moteur de combat
+restent identiques. Aucun soin gratuit entre salles ni résurrection n'a été ajouté.
+
+Avant un réglage définitif de difficulté, il reste à mesurer la survie avec une
+politique qui concentre les attaques sur les ennemis proches de l'élimination,
+exploite les fonctions corporelles et utilise les autres choix disponibles.
+Un playtest humain reste nécessaire pour vérifier la lisibilité des choix et
+l'intérêt du rythme. La matrice automatique n'autorise pas à elle seule la fusion
+pour livraison.

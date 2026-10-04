@@ -32,6 +32,8 @@ var selected_watcher := "ENT_WATCHER_marec"
 var selected_target := ""
 var selected_zone := "torso"
 var skill_ids: Array[String] = []
+var ally_target: OptionButton
+var selected_ally := ""
 
 func _ready() -> void:
     _build_shell()
@@ -125,6 +127,12 @@ func _build_shell() -> void:
     tactical_ui.retreat_pressed.connect(_on_retreat)
     root.add_child(tactical_ui)
 
+    ally_target = OptionButton.new()
+    ally_target.custom_minimum_size = Vector2(180, 44)
+    ally_target.visible = false
+    ally_target.item_selected.connect(_on_ally_target)
+    root.add_child(ally_target)
+
     message_label = Label.new()
     message_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     message_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -140,12 +148,14 @@ func _start_dungeon(dungeon_id: String) -> void:
         return
     selected_watcher = "ENT_WATCHER_marec"
     selected_target = ""
+    selected_ally = ""
     selected_zone = "torso"
     message_label.text = "%s chargé." % str(DUNGEONS.get(dungeon_id, dungeon_id))
     _render_node()
 
 func _render_node() -> void:
     tactical_ui.visible = false
+    ally_target.visible = false
     _clear(actions)
     _clear(recruit_actions)
     if slice == null:
@@ -240,6 +250,7 @@ func _refresh_combat() -> void:
     for skill_id: String in skill_ids:
         labels.append(str(runtime.content_db.skill(skill_id).get("name_fr", skill_id)))
     tactical_ui.set_skill_labels(labels)
+    _refresh_ally_targets(runtime)
     var phase_text := ""
     if runtime.has_method("boss_phase_snapshot"):
         var phase: Dictionary = runtime.call("boss_phase_snapshot")
@@ -285,9 +296,15 @@ func _on_skill(slot: int) -> void:
     var runtime: Variant = slice.combat
     var skill_id := skill_ids[slot]
     var skill: Dictionary = runtime.content_db.skill(skill_id)
-    var action := str(skill.get("action_type", "attack"))
+    var action: String = runtime.skill_behavior.effective_action(skill)
     var target_id := selected_target
-    if action in ["guard", "heal", "support", "passive_modifier", "move", "transform"]:
+    if action in ["heal", "support"]:
+        target_id = selected_ally if selected_ally != "" else selected_watcher
+        var verdict: Dictionary = runtime.preview_skill(selected_watcher, target_id, skill_id, selected_zone)
+        if not bool(verdict.get("ok", false)):
+            message_label.text = "Cible alliée hors de portée."
+            return
+    elif action in ["guard", "passive_modifier", "move", "transform"]:
         target_id = selected_watcher
     if target_id == "" or not runtime.combatants.has(target_id):
         message_label.text = "Sélectionnez une cible valide."
@@ -298,6 +315,30 @@ func _on_skill(slot: int) -> void:
         return
     message_label.text = "%s utilise %s." % [_display(selected_watcher), str(skill.get("name_fr", skill_id))]
     _check_combat_end_or_enemy_phase()
+
+func _refresh_ally_targets(runtime: Variant) -> void:
+    ally_target.clear()
+    ally_target.add_item("Cible alliée : lanceur")
+    ally_target.set_item_metadata(0, "")
+    var selected := 0
+    for watcher: String in runtime.alive_ids("watcher"):
+        ally_target.add_item("Cible alliée : " + _display(watcher))
+        var index := ally_target.item_count - 1
+        ally_target.set_item_metadata(index, watcher)
+        if watcher == selected_ally:
+            selected = index
+    if selected == 0:
+        selected_ally = ""
+    ally_target.select(selected)
+    ally_target.visible = false
+    for skill_id: String in skill_ids:
+        if runtime.skill_behavior.effective_action(runtime.content_db.skill(skill_id)) in ["heal", "support"]:
+            ally_target.visible = true
+            break
+
+func _on_ally_target(index: int) -> void:
+    if index >= 0 and index < ally_target.item_count:
+        selected_ally = str(ally_target.get_item_metadata(index))
 
 func _enemy_phase() -> void:
     if slice == null or slice.combat == null:
