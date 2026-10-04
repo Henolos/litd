@@ -41,7 +41,7 @@ func alive_ids(team: String = "") -> Array[String]:
     for entity_id_value: Variant in combatants.keys():
         var entity_id := str(entity_id_value)
         var row: Dictionary = combatants[entity_id]
-        if int(row.get("hp", 0)) <= 0:
+        if not preload("res://scripts/core/combat/veilleurs_target_resolver.gd").tactical_actor_alive(row):
             continue
         if team != "" and str(row.get("team", "")) != team:
             continue
@@ -55,7 +55,7 @@ func enemy_step(enemy_id: String) -> Dictionary:
 
 func next_round() -> void:
     super.next_round()
-    if active_boss_id == "" or not combatants.has(active_boss_id) or int((combatants[active_boss_id] as Dictionary).get("hp", 0)) <= 0:
+    if active_boss_id == "" or not combatants.has(active_boss_id) or not TARGET_RESOLVER_SCRIPT.tactical_actor_alive(combatants[active_boss_id]):
         return
     last_phase_event = boss_phase.update(self)
     if not last_phase_event.is_empty():

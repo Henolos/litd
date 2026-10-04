@@ -65,13 +65,50 @@ static func validate_target_contract(hero: Dictionary, action: Dictionary, enemy
         return {"ok":true, "target":enemy, "zone":normalized}
     return {"ok":true, "target":enemy, "zone":""}
 
+# Consume the existing body contract; a disabled two-handed grip does not
+# disable one-handed or natural attacks. No new injury multiplier is implied.
+static func tactical_actor_alive(row: Dictionary) -> bool:
+    var body: VeilleursBodyComponent = row.get("body") as VeilleursBodyComponent
+    if row.get("body") is Dictionary:
+        return int(row.get("hp", 0)) > 0 and not bool((row["body"] as Dictionary).get("dead", false))
+    return int(row.get("hp", 0)) > 0 and (body == null or bool(body.functional_flags().get("alive", true)))
+
+static func validate_tactical_actor(runtime: Variant, actor_id: String, skill: Dictionary = {}) -> Dictionary:
+    if runtime == null or not runtime.combatants.has(actor_id):
+        return {"ok":false, "reason":"invalid_attacker"}
+    var row: Dictionary = runtime.combatants[actor_id]
+    if not tactical_actor_alive(row) or bool(row.get("subdued", false)):
+        return {"ok":false, "reason":"actor_unavailable"}
+    var body: VeilleursBodyComponent = row.get("body") as VeilleursBodyComponent
+    if body == null:
+        return {"ok":true}
+    var flags: Dictionary = body.functional_flags()
+    var action := str(skill.get("action_type", "attack"))
+    if runtime.skill_behavior != null:
+        action = str(runtime.skill_behavior.effective_action(skill))
+    var required := ""
+    if action in ["move", "flee", "attack_move"]:
+        required = "can_walk"
+    elif action == "guard":
+        required = "can_guard"
+    if required != "" and not bool(flags.get(required, true)):
+        return {"ok":false, "reason":"body_function_unavailable", "required_function":required}
+    if action in ["attack", "attack_move"] and bool(row.get("weapon_two_handed", false)):
+        required = "can_use_two_handed"
+    if required != "" and not bool(flags.get(required, true)):
+        return {"ok":false, "reason":"body_function_unavailable", "required_function":required}
+    return {"ok":true}
+
 static func validate_tactical_target(runtime: Variant, attacker_id: String, target_id: String, skill: Dictionary, allow_attack_move: bool = true) -> Dictionary:
     if runtime == null or not runtime.combatants.has(attacker_id):
         return {"ok":false, "reason":"invalid_attacker"}
     if target_id == "" or not runtime.combatants.has(target_id):
         return {"ok":false, "reason":"invalid_target"}
+    var actor_verdict := validate_tactical_actor(runtime, attacker_id, skill)
+    if not bool(actor_verdict.get("ok", false)):
+        return actor_verdict
     var target: Dictionary = runtime.combatants[target_id]
-    if int(target.get("hp", 0)) <= 0 or bool(target.get("subdued", false)):
+    if not tactical_actor_alive(target) or bool(target.get("subdued", false)):
         return {"ok":false, "reason":"target_unavailable", "target":target_id}
     var action := str(skill.get("action_type", "attack"))
     if runtime.skill_behavior != null and runtime.skill_behavior.has_method("effective_action"):

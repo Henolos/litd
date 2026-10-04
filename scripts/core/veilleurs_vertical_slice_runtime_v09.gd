@@ -200,6 +200,9 @@ func _apply_equipment_bonuses(watcher_id: String, row: Dictionary) -> Dictionary
     var hero_id := _equipment_hero_id(watcher_id)
     if hero_id == "":
         return row
+    var equipped: Dictionary = EquipmentManager.equipped_by_hero.get(hero_id, {})
+    var weapon: Dictionary = EquipmentManager.get_instance(str(equipped.get("weapon", "")))
+    row["weapon_two_handed"] = bool(weapon.get("two_handed", false))
     var bonuses: Dictionary = EquipmentManager.bonuses_for_hero(hero_id)
     if bonuses.is_empty():
         row["equipment_bonuses"] = {}
@@ -281,7 +284,7 @@ func _build_recruit_candidates(values: Variant) -> Array[Dictionary]:
         if not (value is Dictionary):
             continue
         var enemy: Dictionary = (value as Dictionary).duplicate(true)
-        if int(enemy.get("hp", 0)) <= 0:
+        if not preload("res://scripts/core/combat/veilleurs_target_resolver.gd").tactical_actor_alive(enemy):
             continue
         var definition_id := str(enemy.get("entity_id", ""))
         if not definition_id.begins_with("ENT_ENEMY_"):

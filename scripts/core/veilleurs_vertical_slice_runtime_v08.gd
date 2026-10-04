@@ -125,7 +125,7 @@ func _enemy_aftermath(outcome: String) -> Array:
         if str(row.get("team", "")) != "enemy":
             continue
         var body: Variant = row.get("body")
-        result.append({"entity_id":str(row.get("definition_id", entity_id)), "runtime_id":entity_id, "remanence_id":str(row.get("remanence_id", "")), "remanence_stage":str(row.get("remanence_stage", "normal")), "name":str(row.get("name", entity_id)), "family":str(row.get("family", "")), "hp":int(row.get("hp", 0)), "max_hp":int(row.get("max_hp", 0)), "body":body.call("serialize") if body != null and body.has_method("serialize") else {}, "outcome":"killed" if int(row.get("hp", 0)) <= 0 else outcome, "level":int(row.get("level", 1)), "chosen_tree":str(row.get("chosen_tree", ""))})
+        result.append({"entity_id":str(row.get("definition_id", entity_id)), "runtime_id":entity_id, "remanence_id":str(row.get("remanence_id", "")), "remanence_stage":str(row.get("remanence_stage", "normal")), "name":str(row.get("name", entity_id)), "family":str(row.get("family", "")), "hp":int(row.get("hp", 0)), "max_hp":int(row.get("max_hp", 0)), "body":body.call("serialize") if body != null and body.has_method("serialize") else {}, "outcome":"killed" if not preload("res://scripts/core/combat/veilleurs_target_resolver.gd").tactical_actor_alive(row) else outcome, "level":int(row.get("level", 1)), "chosen_tree":str(row.get("chosen_tree", ""))})
     return result
 
 func _combined_enemy_threat() -> float:

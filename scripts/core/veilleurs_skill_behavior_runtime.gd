@@ -216,7 +216,7 @@ func _move_toward(runtime: Variant, source_id: String, target_id: String) -> boo
     var best := Vector2i(-1, -1)
     var best_distance := 999
     for cell: Vector2i in runtime.grid.neighbors(origin):
-        if runtime.grid.occupied(cell):
+        if runtime.grid.occupied(cell) or (runtime.has_method("can_move_to") and not runtime.can_move_to(cell, source_id)):
             continue
         var distance := absi(cell.x - target.x) + absi(cell.y - target.y)
         if distance < best_distance:

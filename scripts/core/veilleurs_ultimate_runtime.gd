@@ -14,6 +14,9 @@ func ultimate_for_tree(content_db: Variant, entity_id: String, chosen_tree: Stri
     return {}
 
 func prepare(runtime: Variant, attacker_id: String, target_id: String, progress_state: Dictionary) -> Dictionary:
+    var actor_verdict := preload("res://scripts/core/combat/veilleurs_target_resolver.gd").validate_tactical_actor(runtime, attacker_id, {"action_type":"ultimate"})
+    if not bool(actor_verdict.get("ok", false)):
+        return actor_verdict
     if runtime == null or not runtime.combatants.has(attacker_id):
         return {"ok":false, "reason":"unknown_attacker"}
     var chosen_tree := str(progress_state.get("chosen_tree", (runtime.combatants[attacker_id] as Dictionary).get("chosen_tree", "")))
@@ -30,6 +33,9 @@ func prepare(runtime: Variant, attacker_id: String, target_id: String, progress_
     return execute(runtime, attacker_id, target_id, progress_state, ultimate)
 
 func execute_pending(runtime: Variant, attacker_id: String, progress_state: Dictionary) -> Dictionary:
+    var actor_verdict := preload("res://scripts/core/combat/veilleurs_target_resolver.gd").validate_tactical_actor(runtime, attacker_id, {"action_type":"ultimate"})
+    if not bool(actor_verdict.get("ok", false)):
+        return actor_verdict
     if not pending.has(attacker_id):
         return {"ok":false, "reason":"no_pending_ultimate"}
     var state: Dictionary = pending[attacker_id]
@@ -41,6 +47,9 @@ func execute_pending(runtime: Variant, attacker_id: String, progress_state: Dict
     return execute(runtime, attacker_id, target_id, progress_state, ultimate)
 
 func execute(runtime: Variant, attacker_id: String, target_id: String, progress_state: Dictionary, ultimate: Dictionary) -> Dictionary:
+    var actor_verdict := preload("res://scripts/core/combat/veilleurs_target_resolver.gd").validate_tactical_actor(runtime, attacker_id, {"action_type":"ultimate"})
+    if not bool(actor_verdict.get("ok", false)):
+        return actor_verdict
     if not _can_use(progress_state):
         return {"ok":false, "reason":"ultimate_unavailable"}
     if not runtime.combatants.has(attacker_id):

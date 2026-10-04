@@ -194,3 +194,49 @@ budgets, compétences, règles de combat, afflictions et récompenses sont conse
 Avant de modifier la difficulté, il faut rapprocher les exigences corporelles des
 compétences des règles auteur et des résolveurs existants, puis mesurer les effets
 fonctionnels attendus et l'attrition sur un échantillon élargi.
+
+## Raccordement des limitations corporelles
+
+La validation tactique commune consomme désormais `VeilleursBodyComponent` :
+`alive` conditionne les actions et les cibles ; `can_walk` les déplacements
+joueur, IA et compétences de déplacement ; `can_guard` la garde ;
+`can_use_two_handed` les attaques avec une instance équipée explicitement
+marquée `two_handed`. Une blessure L4 d'un bras ne bloque pas les attaques à
+une main ou naturelles. L3 d'une jambe bloque le sprint selon le contrat du
+corps, sans interdire la marche. Aucun sprint distinct n'est ajouté.
+
+Les acteurs morts corporellement restent indisponibles même avec des PV
+positifs, y compris après sauvegarde. Les ultimes, phases du boss, recrutement
+et mémoire de Rémanence respectent cette mort. Le test
+`veilleurs_body_action_contract_smoke` vérifie aussi qu'une action refusée ne
+modifie ni l'état ni le journal, et que la propriété de l'arme équipée rejoint
+le combat. La validation de cible est partagée par aperçu et exécution.
+
+Les champs historiques `weapon_use_penalty`, `mobility_penalty`,
+`perception_penalty` et `vigor_penalty` restent descriptifs : aucune unité ou
+formule de conversion n'est établie dans ce chemin tactique. Leur raccordement
+numérique demanderait une règle explicite. `can_react` reste utilisé par le
+résolveur Hémocorde existant ; les observations de motifs de l'IA ne sont pas
+transformées en nouvelle action de réaction.
+
+Nouvelle mesure sur les mêmes six graines, chaque parcours répété à
+l'identique (108 parcours ; chiffres précédents conservés comme historique) :
+
+| Politique | Galerie gagnée | Débat gagné | Passage gagné | Trois Piliers gagnés | Donjon terminé |
+|---|---:|---:|---:|---:|---:|
+| offense | 3/6 | 0/6 | 0/6 | 0/6 | 0/6 |
+| heal | 3/6 | 0/6 | 0/6 | 0/6 | 0/6 |
+| guard_control | 4/6 | 1/6 | 0/6 | 0/6 | 0/6 |
+| mixed | 4/6 | 1/6 | 0/6 | 0/6 | 0/6 |
+| focus | 4/6 | 1/6 | 1/6 | 0/6 | 0/6 |
+| limbs | 3/6 | 0/6 | 0/6 | 0/6 | 0/6 |
+| focus_limbs_mixed | 4/6 | 0/6 | 0/6 | 0/6 | 0/6 |
+| head | 5/6 | 0/6 | 0/6 | 0/6 | 0/6 |
+| legs | 3/6 | 0/6 | 0/6 | 0/6 | 0/6 |
+
+Couverture : 2622 attaques, 128 soins dont 92 soins d'alliés avec gain de PV,
+98 gardes, 96 contrôles, 628 attaques concentrées, 946 attaques sur membres,
+256 sur tête et 316 sur jambes. Les 122 ripostes après un bras L4 restent
+possibles pour des ennemis sans exigence explicite d'arme à deux mains.
+Le boss isolé est vaincu en huit actions. Aucun réglage de difficulté,
+statistique, budget, récompense ou règle d'affliction n'est modifié.

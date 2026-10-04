@@ -279,7 +279,7 @@ func _on_cell(cell: Vector2i) -> void:
     if absi(origin.x - cell.x) + absi(origin.y - cell.y) != 1:
         message_label.text = "Déplacement refusé : case adjacente requise."
         return
-    if runtime.has_method("can_move_to") and not bool(runtime.call("can_move_to", cell)):
+    if runtime.has_method("can_move_to") and not bool(runtime.call("can_move_to", cell, selected_watcher)):
         message_label.text = "Cette case est interdite ou occupée."
         return
     if runtime.grid.move(selected_watcher, cell):
@@ -440,11 +440,11 @@ func _repair_selection() -> void:
     if slice == null or slice.combat == null:
         return
     var runtime: Variant = slice.combat
-    if not runtime.combatants.has(selected_watcher) or int((runtime.combatants[selected_watcher] as Dictionary).get("hp", 0)) <= 0:
+    if not runtime.alive_ids("watcher").has(selected_watcher):
         var watchers: Array[String] = runtime.alive_ids("watcher")
         if not watchers.is_empty():
             selected_watcher = watchers[0]
-    if selected_target == "" or not runtime.combatants.has(selected_target) or int((runtime.combatants[selected_target] as Dictionary).get("hp", 0)) <= 0:
+    if not runtime.alive_ids("enemy").has(selected_target):
         var enemies: Array[String] = runtime.alive_ids("enemy")
         selected_target = enemies[0] if not enemies.is_empty() else ""
 
