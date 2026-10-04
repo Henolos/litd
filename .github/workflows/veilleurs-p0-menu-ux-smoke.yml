@@ -4,6 +4,11 @@ on:
   pull_request:
     paths:
       - 'project.godot'
+      - 'scripts/ui/combatant_inspection_ui.gd'
+      - 'scripts/tests/combatant_inspection_input_smoke_test.gd'
+      - 'scenes/tests/combatant_inspection_input_smoke.tscn'
+      - 'tests/test_combatant_inspection.py'
+      - 'tests/test_playtest_p0_ux_contract.py'
       - 'scripts/ui/context_menu_ui_v2.gd'
       - 'scripts/ui/context_menu_ui_v3.gd'
       - 'scripts/tests/context_menu_p0_navigation_reflow_smoke_test.gd'
@@ -30,3 +35,5 @@ jobs:
         run: timeout 60s godot --headless --path . res://scenes/tests/context_menu_p0_navigation_reflow_smoke.tscn
       - name: Veilleurs player exploration shell
         run: timeout 60s godot --headless --path . res://scenes/tests/veilleurs_player_shell_ux_smoke.tscn
+      - name: Inspection keeps battlefield controls available
+        run: timeout 60s godot --headless --path . res://scenes/tests/combatant_inspection_input_smoke.tscn
