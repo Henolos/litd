@@ -48,12 +48,46 @@ func _sandbox_confirm_prepared_v51() -> void:
     _sandbox_focus_confirm_v51 = false
     super._sandbox_execute_v50()
 
+func _sandbox_prepared_verdict_v51() -> Dictionary:
+    var action := _sandbox_selected_action_data()
+    if action.is_empty():
+        return {"ok":false,"reason":"unknown_action"}
+    var target_index := _sandbox_selected_ally if str(action.get("target", "")) == "ally" else _sandbox_selected_target
+    return _sandbox.call("preview_action", _sandbox_selected_action, target_index, _sandbox_selected_zone)
+
+func _sandbox_action_ready() -> bool:
+    return bool(_sandbox_prepared_verdict_v51().get("ok", false))
+
+func _sandbox_blocked_reason_v51(reason: String) -> String:
+    match reason:
+        "not_enough_ap": return "PA insuffisants"
+        "stunned": return "Veilleur étourdi"
+        "silenced": return "Compétence bloquée par Silence"
+        "actor_dead", "no_active_hero": return "Veilleur indisponible"
+        "target_dead": return "Cette cible est morte"
+        "enemy_not_targetable": return "Cible hors portée ou protégée par la première ligne"
+        "body_zone_required", "body_zone_not_targetable": return "Choisissez une zone anatomique autorisée"
+        "no_impaired_function": return "Cette zone ne nécessite pas d’attelle"
+        "unknown_action": return "Choisissez une compétence"
+        "invalid_target": return "Choisissez une cible"
+    return "Action indisponible"
+
+func _render_sandbox_flow_hint_v50() -> void:
+    var verdict := _sandbox_prepared_verdict_v51()
+    var text := "Vérifiez l’aperçu puis confirmez" if bool(verdict.get("ok", false)) else _sandbox_blocked_reason_v51(str(verdict.get("reason", "")))
+    var label := make_label(text, 11, CANON_GOLD)
+    label.name = "SandboxFlowHintV50"
+    label.position = Vector2(470, 258)
+    label.size = Vector2(430, 26)
+    label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+    content.add_child(label)
+
 func _sandbox_build_preview_v51() -> Dictionary:
     var action := _sandbox_selected_action_data()
     if action.is_empty():
         return {"ready":false}
     var preview := {
-        "ready":_sandbox_action_ready(),
+        "ready":false,
         "action_id":str(action.get("id", "")),
         "action_name":str(action.get("name", action.get("id", "Action"))),
         "ap":int(action.get("ap", 1)),
@@ -72,6 +106,13 @@ func _sandbox_build_preview_v51() -> Dictionary:
             preview["target_name"] = str((heroes[_sandbox_selected_ally] as Dictionary).get("name", "Allié"))
     elif target_type == "self":
         preview["target_name"] = str((_sandbox.call("active_hero") as Dictionary).get("name", "Veilleur"))
+    var verdict := _sandbox_prepared_verdict_v51()
+    preview["ready"] = bool(verdict.get("ok", false))
+    preview["reason"] = str(verdict.get("reason", ""))
+    if verdict.has("hit_chance"):
+        preview["hit_chance"] = verdict["hit_chance"]
+    if verdict.has("damage_on_hit"):
+        preview["damage_on_hit"] = verdict["damage_on_hit"]
     return preview
 
 func _render_sandbox_preview_v51() -> void:
@@ -81,7 +122,7 @@ func _render_sandbox_preview_v51() -> void:
     var panel := PanelContainer.new()
     panel.name = "SandboxPreparedPreviewV51"
     panel.position = Vector2(900, 286)
-    panel.size = Vector2(320, 190)
+    panel.size = Vector2(320, 238)
     panel.z_index = 70
     panel.add_theme_stylebox_override("panel", panel_style(Color(0.015, 0.016, 0.022, 0.96)))
     content.add_child(panel)
@@ -96,6 +137,17 @@ func _render_sandbox_preview_v51() -> void:
     if str(preview.get("target_type", "")) == "enemy_zone":
         box.add_child(make_label("Zone : %s" % _zone_label_context(str(preview.get("zone", "torso"))), 11, CANON_MUTED))
     box.add_child(make_label("Coût : %d PA · aucun effet avant confirmation" % int(preview.get("ap", 1)), 11, CANON_MUTED))
+    if preview.has("hit_chance"):
+        var estimate := "Toucher : %d%%" % int(preview["hit_chance"])
+        if preview.has("damage_on_hit"):
+            estimate += " · dégâts si touché : %d" % int(preview["damage_on_hit"])
+        var estimate_label := make_label(estimate, 11, CANON_TEXT)
+        estimate_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+        box.add_child(estimate_label)
+    if not bool(preview.get("ready", false)):
+        var reason_label := make_label(_sandbox_blocked_reason_v51(str(preview.get("reason", ""))), 11, CANON_GOLD)
+        reason_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+        box.add_child(reason_label)
     var confirm := make_button("CONFIRMER", func(): _sandbox_confirm_prepared_v51(), Vector2(290, 50))
     confirm.name = "SandboxConfirmV51"
     confirm.disabled = not bool(preview.get("ready", false))

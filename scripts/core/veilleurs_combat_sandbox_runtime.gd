@@ -57,7 +57,7 @@ func available_actions() -> Array:
     var hero := active_hero()
     return (hero.get("sandbox_actions", []) as Array).duplicate(true) if not hero.is_empty() else []
 
-func perform_action(action_id: String, target_index: int, zone: String = "torso") -> Dictionary:
+func validate_prepared_action(action_id: String, target_index: int, zone: String = "torso") -> Dictionary:
     var hero := active_hero()
     if hero.is_empty(): return {"ok":false,"reason":"no_active_hero"}
     if int(hero.get("hp", 0)) <= 0: return {"ok":false,"reason":"actor_dead"}
@@ -73,23 +73,62 @@ func perform_action(action_id: String, target_index: int, zone: String = "torso"
     var command: Dictionary = COMBAT_COMMAND.make(str(hero.get("id", "")), action_id, target_side, target_index, TARGET_RESOLVER.normalize_zone(zone))
     var command_validation: Dictionary = COMBAT_COMMAND.validate(command)
     if not bool(command_validation.get("ok", false)): return command_validation
+    var target: Dictionary = hero
+    var resolved_zone := str(command.get("zone", "torso"))
+    if target_side == "enemy":
+        var resolution := TARGET_RESOLVER.validate_index(enemies, target_index)
+        if not bool(resolution.get("ok", false)): return resolution
+        target = resolution["target"]
+        if int(target.get("hp", 0)) <= 0: return {"ok":false,"reason":"target_dead"}
+        var verdict := TARGET_RESOLVER.validate_target_contract(hero, action, target, enemies, resolved_zone)
+        if not bool(verdict.get("ok", false)): return verdict
+        resolved_zone = str(verdict.get("zone", resolved_zone))
+    elif target_side == "ally":
+        var resolution := TARGET_RESOLVER.validate_index(heroes, target_index)
+        if not bool(resolution.get("ok", false)): return resolution
+        target = resolution["target"]
+        if str(action.get("effect", "")) == "anatomical_splint":
+            var anatomy: Dictionary = target.get("anatomy", {})
+            var state: Dictionary = anatomy.get(resolved_zone, {})
+            if str(state.get("function", "functional")) != "impaired":
+                return {"ok":false,"reason":"no_impaired_function","zone":resolved_zone}
+    return {"ok":true,"hero":hero,"action":action,"target":target,"target_side":target_side,"zone":resolved_zone,"cost":cost,"command":command}
+
+# Read-only projection. No action execution, event recording, or outcome roll is exposed.
+func preview_action(action_id: String, target_index: int, zone: String = "torso") -> Dictionary:
+    var prepared := validate_prepared_action(action_id, target_index, zone)
+    if not bool(prepared.get("ok", false)):
+        return prepared
+    var action: Dictionary = prepared["action"]
+    var hero: Dictionary = prepared["hero"]
+    var target: Dictionary = prepared["target"]
+    var preview := {"ok":true,"ap":prepared["cost"],"effect":str(action.get("effect", "")),"zone":prepared["zone"]}
+    var effect := str(action.get("effect", ""))
+    if str(prepared["target_side"]) == "enemy" and effect not in ["expose", "reveal_observation", "trame_control"]:
+        var hit := CANONICAL_ADAPTER.HIT_RESOLVER.resolve(hero, action, target, str(prepared["zone"]), round)
+        preview["hit_chance"] = clampi(int(hit["accuracy"]), 5, 97)
+        if effect != "inflict_affliction":
+            var damage := CANONICAL_ADAPTER.DAMAGE_RESOLVER.resolve(hero, action, target, str(prepared["zone"]))
+            preview["damage_on_hit"] = int(damage["damage"])
+    return preview
+
+func perform_action(action_id: String, target_index: int, zone: String = "torso") -> Dictionary:
+    var prepared := validate_prepared_action(action_id, target_index, zone)
+    if not bool(prepared.get("ok", false)):
+        return prepared
+    var hero: Dictionary = prepared["hero"]
+    var action: Dictionary = prepared["action"]
+    var target: Dictionary = prepared["target"]
+    var target_side := str(prepared["target_side"])
+    var command: Dictionary = prepared["command"]
+    var cost := int(prepared["cost"])
     var result: Dictionary = {}
     if target_side == "enemy":
-        var target_resolution: Dictionary = TARGET_RESOLVER.validate_index(enemies, int(command.get("target_index", -1)))
-        if not bool(target_resolution.get("ok", false)): return target_resolution
-        var target: Dictionary = target_resolution.get("target", {})
-        if int(target.get("hp", 0)) <= 0: return {"ok":false,"reason":"target_dead"}
-        var target_contract: Dictionary = TARGET_RESOLVER.validate_target_contract(hero, action, target, enemies, str(command.get("zone", "torso")))
-        if not bool(target_contract.get("ok", false)):
-            return target_contract
-        var resolved_zone := str(target_contract.get("zone", command.get("zone", "torso")))
-        result = _resolve_enemy_action(hero, action, target, resolved_zone)
+        result = _resolve_enemy_action(hero, action, target, str(prepared["zone"]))
         if bool(result.get("ok", false)) and str(result.get("kind", "")) == "attack":
             result["ai_reaction"] = _enemy_observe_and_react(target, hero, action, str(command.get("zone", "torso")), result)
     elif target_side == "ally":
-        var ally_resolution: Dictionary = TARGET_RESOLVER.validate_index(heroes, int(command.get("target_index", -1)))
-        if not bool(ally_resolution.get("ok", false)): return ally_resolution
-        result = _resolve_ally_action(hero, action, ally_resolution.get("target", {}), str(command.get("zone", "torso")))
+        result = _resolve_ally_action(hero, action, target, str(prepared["zone"]))
     else:
         result = _resolve_self_action(hero, action)
     if bool(result.get("ok", false)):
