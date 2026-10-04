@@ -68,9 +68,9 @@ static func validate_target_contract(hero: Dictionary, action: Dictionary, enemy
 # Consume the existing body contract; a disabled two-handed grip does not
 # disable one-handed or natural attacks. No new injury multiplier is implied.
 static func tactical_actor_alive(row: Dictionary) -> bool:
-    var body: VeilleursBodyComponent = row.get("body") as VeilleursBodyComponent
     if row.get("body") is Dictionary:
         return int(row.get("hp", 0)) > 0 and not bool((row["body"] as Dictionary).get("dead", false))
+    var body: VeilleursBodyComponent = row.get("body") as VeilleursBodyComponent
     return int(row.get("hp", 0)) > 0 and (body == null or bool(body.functional_flags().get("alive", true)))
 
 static func validate_tactical_actor(runtime: Variant, actor_id: String, skill: Dictionary = {}) -> Dictionary:

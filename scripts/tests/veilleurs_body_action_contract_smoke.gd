@@ -10,6 +10,8 @@ func check(ok: bool, label: String) -> void:
         push_error(label)
 
 func _ready() -> void:
+    check(TARGET.tactical_actor_alive({"hp":80, "body":{"dead":false}}), "serialized_living_body")
+    check(not TARGET.tactical_actor_alive({"hp":80, "body":{"dead":true}}), "serialized_dead_body")
     var runtime = RUNTIME.new()
     check(bool(runtime.setup_first_combat().get("ok", false)), "setup")
     var actor := "ENT_WATCHER_marec"
