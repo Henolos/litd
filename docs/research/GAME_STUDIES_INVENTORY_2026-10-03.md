@@ -237,3 +237,126 @@ Niveau de preuve : changelog/release mainteneur ; confiance abaissée pour les a
 3. Iratus : vérifier les JSON de positions/cibles/afflictions et leur version.
 4. Enter the Gungeon / Binding of Isaac : revalider flow, compatibilité des salles et fallback pour la génération.
 5. Into the Breach : revalider scoring des actions légales et télégraphie sans extrapoler l'IA propriétaire.
+
+
+## Revalidation prioritaire complémentaire — 4 octobre 2026
+
+### Darkest Dungeon — rangs, ciblage, effets, IA et rencontres
+
+Source primaire :
+- https://steamcommunity.com/sharedfiles/filedetails/?id=819597757
+
+Constats revalidés depuis le guide officiel de modding Red Hook :
+- les compétences exposent explicitement `.launch` (rangs d'utilisation), `.target` (rangs ciblables), `.move`, dégâts, critique et liste d'effets ;
+- les effets possèdent leur propre ciblage, chances, conditions hit/miss et ordre de queue ;
+- les ennemis référencent un `monster_brain`, une initiative et éventuellement une `death_class` ;
+- l'IA documente séparément les désirs de sélection de compétence et de cible, avec critères de santé, statut, allié vivant/mort, rang ou cible marquée ;
+- les rencontres utilisent des groupes et pondérations, tandis que la génération de donjon est documentée séparément.
+
+Conséquence LITD :
+- confirmer la séparation existante rangs -> cible -> résolution -> effets -> mort/compactage ;
+- ne pas fusionner sélection de compétence, sélection de cible et résolution des dégâts ;
+- conserver la prévisualisation UI à partir des mêmes règles canoniques que le runtime ;
+- garder l'IA comme consommateur du même contrat de légalité que le joueur, avec scoring séparé.
+
+Niveau de preuve : documentation officielle de modding Red Hook ; forte pour les formats exposés, insuffisante pour affirmer l'implémentation interne exacte du moteur.
+
+### Battle Chasers: Nightwar — logs observables, pas moteur reconstitué
+
+Source :
+- https://www.nexusmods.com/battlechasersnightwar/mods/3
+
+Constats revalidés :
+- le mod VERBOSE v0.53 expose les scripts d'abilities parsés/exécutés par le jeu, les jets de dés, le détail des dégâts, DOT/HOT, critique, esquive, time multiplier, recovery delay et shield HP ;
+- il remplace `Assembly-CSharp.dll`, ce qui montre une instrumentation du code managé du jeu mais ne constitue pas un dépôt source officiel ;
+- la meilleure preuve récupérable est donc le comportement instrumenté et les paramètres observables, pas une reconstruction certifiée du pipeline interne.
+
+Conséquence LITD :
+- conserver `AbilityDefinition` séparée des opérations/résolveurs ;
+- garder timeline/recovery, shield, DOT/HOT et preview comme données/résultats observables ;
+- ne pas présenter l'ancien pipeline ability -> cible -> hit -> dégâts -> shield -> DOT/HOT -> delay comme code propriétaire confirmé.
+
+Niveau de preuve : instrumentation de mod communautaire ; moyen pour les phénomènes observables, faible pour l'architecture interne exacte.
+
+### Iratus — positions, coûts, dégâts et buffs data-driven
+
+Source :
+- https://www.nexusmods.com/iratuslordofthedead/mods/6
+
+Constats revalidés :
+- la page Player Balance documente explicitement des changements de positions de lancement/ciblage, AOE, coûts d'Ire et coefficients de dégâts ;
+- elle fournit le chemin `StreamingAssets/DB/Mods/playerBalance/monsters/*_balance.json` pour modifier les capacités/statistiques ;
+- elle référence `StreamingAssets/DB/buffs.json` pour les données de buffs ;
+- l'historique de version mentionne également des corrections ayant affecté l'IA, ce qui rappelle qu'une modification de données peut casser des comportements indirects.
+
+Conséquence LITD :
+- renforcer la séparation `SkillDefinition`, `Effect`, conditions, coûts et targeting ;
+- maintenir les afflictions/buffs dans des données distinctes quand possible ;
+- tester les interactions IA après toute évolution des définitions de compétences, même si la modification semble seulement data-driven.
+
+Niveau de preuve : page et fichiers décrits par l'auteur du mod ; fort pour les chemins/formats exposés, non suffisant pour l'algorithme propriétaire complet.
+
+### Enter the Gungeon — flow de donjon explicitement chargeable
+
+Source :
+- https://github.com/ApacheThunder/ExpandTheGungeon
+
+Constats revalidés :
+- ExpandTheGungeon expose explicitement le chargement de `DungeonFlow` via la commande `load_flow` ;
+- le projet ajoute des étages secrets complets et manipule des flows distincts du contenu visuel et des ennemis.
+
+Conséquence LITD :
+- confirmer la séparation FlowGenerator / RoomResolver / Directors ;
+- garder la topologie et le choix de salles comme responsabilités distinctes ;
+- les secrets/branches doivent être des extensions du flow validé, pas des salles arbitrairement greffées après coup.
+
+Niveau de preuve : dépôt communautaire public ; fort pour son architecture de mod, insuffisant pour déduire l'algorithme interne original du jeu.
+
+### The Binding of Isaac — salles artisanales + compatibilité explicite
+
+Sources :
+- https://github.com/Basement-Renovator/basement-renovator
+- https://github.com/Meowlala/BOIStageAPI15
+
+Constats revalidés :
+- Basement Renovator est un éditeur open source de salles et niveaux utilisé pour créer des rooms compatibles avec plusieurs générations d'Isaac ;
+- la documentation avertit que les IDs/compatibilités varient selon Rebirth/Afterbirth+/Repentance ;
+- StageAPI convertit et intègre des salles custom dans des stages, avec hooks de sauvegarde/test.
+
+Conséquence LITD :
+- résoudre d'abord la compatibilité topologique/métadonnées d'une salle, puis la population ;
+- versionner les formats de RoomDefinition si leur contrat évolue ;
+- prévoir un fallback ou un rejet explicite lorsqu'aucune salle compatible n'est disponible.
+
+Niveau de preuve : outils communautaires publics ; fort pour le pipeline d'édition/intégration, pas pour le générateur propriétaire complet.
+
+### Into the Breach — scoring pondéré et télégraphie à traiter séparément
+
+Sources :
+- https://github.com/itb-community/ITB-ModLoader
+- https://github.com/Compartany/IntelligentAI
+
+Constats revalidés :
+- le mod loader expose un environnement Lua extensible ;
+- IntelligentAI documente explicitement l'augmentation/diminution de probabilités selon cibles, terrain, dégâts, positions et risques ;
+- le mod traite donc bien un modèle de scoring pondéré de décisions, mais ce scoring appartient au mod et ne doit pas être présenté comme l'algorithme vanilla officiel.
+
+Conséquence LITD :
+- conserver l'idée `legal actions -> scoring pondéré -> choix` pour l'IA ;
+- intégrer position, dégâts, afflictions, synergies et risques dans le score, sans modifier les règles de légalité ;
+- la télégraphie UI doit représenter le résultat/intention de l'IA, pas exposer ses pondérations internes.
+
+Niveau de preuve : code/documentation communautaires ; fort pour IntelligentAI, faible pour l'IA propriétaire originale d'Into the Breach.
+
+### Synthèse après cette passe
+
+Les six revalidations convergent vers les mêmes frontières architecturales déjà utiles à LITD :
+1. définitions de données ;
+2. validation des actions/cibles ;
+3. résolution déterministe ;
+4. effets/afflictions déclenchés autour du résolveur ;
+5. IA qui consomme les actions légales puis les score ;
+6. génération topologique séparée des salles et de leur population ;
+7. UI/preview calculées depuis les mêmes contrats que le runtime.
+
+Aucun de ces constats ne justifie de créer un second moteur de combat, un second générateur de donjon ou une IA parallèle.
