@@ -31,9 +31,15 @@ func _run() -> void:
     var guard := runtime.resolve_skill("ENT_WATCHER_marec", "ENT_WATCHER_marec", "MR-BAS-01", "torso", 1)
     _check(int(guard.get("guard_delta", 0)) > 0 and int((runtime.combatants["ENT_WATCHER_marec"] as Dictionary).get("guard_bonus", 0)) > 0, "Marec Bastion guard changes combat state")
 
+    _check(str(runtime.preview_skill("ENT_WATCHER_mathilde", "ENT_ENEMY_ECORCHEUSE", "MA-TRA-01").get("reason", "")) == "out_of_range", "observation preview rejects distant target")
+    _check(str(runtime.resolve_skill("ENT_WATCHER_mathilde", "ENT_ENEMY_ECORCHEUSE", "MA-TRA-01").get("reason", "")) == "out_of_range", "observation execution respects preview range")
+    _check(runtime.grid.move("ENT_WATCHER_mathilde", Vector2i(1, 2)), "Mathilde moves within authored observation range")
     var observe := runtime.resolve_skill("ENT_WATCHER_mathilde", "ENT_ENEMY_ECORCHEUSE", "MA-TRA-01", "head", 1)
     _check(int(observe.get("knowledge_reveal", 0)) >= 1 and (runtime.combatants["ENT_ENEMY_ECORCHEUSE"] as Dictionary).has("observed_by"), "Mathilde Traque persists tactical knowledge")
 
+    _check(str(runtime.preview_skill("ENT_WATCHER_anouk", "ENT_ENEMY_FOUISSEUSE", "AN-DIS-01").get("reason", "")) == "out_of_range", "psychological preview rejects distant target")
+    _check(str(runtime.resolve_skill("ENT_WATCHER_anouk", "ENT_ENEMY_FOUISSEUSE", "AN-DIS-01").get("reason", "")) == "out_of_range", "psychological execution respects preview range")
+    _check(runtime.grid.move("ENT_WATCHER_anouk", Vector2i(2, 3)), "Anouk moves within authored psychological range")
     var psych := runtime.resolve_skill("ENT_WATCHER_anouk", "ENT_ENEMY_FOUISSEUSE", "AN-DIS-01", "head", 1)
     _check(int(psych.get("resolve_delta", 0)) < 0 and str(psych.get("status_applied", "")) == "DOUBT", "Anouk Dissidence pressures resolve")
 

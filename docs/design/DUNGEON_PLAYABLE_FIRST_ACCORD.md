@@ -211,6 +211,11 @@ et mémoire de Rémanence respectent cette mort. Le test
 `veilleurs_body_action_contract_smoke` vérifie aussi qu'une action refusée ne
 modifie ni l'état ni le journal, et que la propriété de l'arme équipée rejoint
 le combat. La validation de cible est partagée par aperçu et exécution.
+Le même contrat est exécuté pour v0.9 et pour le runtime commun aplati,
+repris depuis main (#533), afin de préserver leur parité. Les fixtures
+historiques d'observation et de psychologie sont placées à portée auteur ;
+les appels hors portée vérifient désormais le même refus dans l'aperçu et
+l'exécution.
 
 Les champs historiques `weapon_use_penalty`, `mobility_penalty`,
 `perception_penalty` et `vigor_penalty` restent descriptifs : aucune unité ou

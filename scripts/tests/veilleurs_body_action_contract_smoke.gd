@@ -10,9 +10,15 @@ func check(ok: bool, label: String) -> void:
         push_error(label)
 
 func _ready() -> void:
+    exercise(RUNTIME)
+    exercise(preload("res://scripts/core/veilleurs_combat_runtime.gd"))
+    print("VEILLEURS_BODY_ACTION_CONTRACT: ", "OK" if failures.is_empty() else failures)
+    get_tree().quit(0 if failures.is_empty() else 1)
+
+func exercise(runtime_script: Script) -> void:
     check(TARGET.tactical_actor_alive({"hp":80, "body":{"dead":false}}), "serialized_living_body")
     check(not TARGET.tactical_actor_alive({"hp":80, "body":{"dead":true}}), "serialized_dead_body")
-    var runtime = RUNTIME.new()
+    var runtime = runtime_script.new()
     check(bool(runtime.setup_first_combat().get("ok", false)), "setup")
     var actor := "ENT_WATCHER_marec"
     var enemy: String = runtime.alive_ids("enemy")[0]
@@ -52,12 +58,10 @@ func _ready() -> void:
     check(not bool(runtime.resolve_skill(actor, enemy, skill_id).get("ok", false)), "dead_actor_action")
     check(not bool(runtime.ultimate_runtime.prepare(runtime, actor, enemy, {"level":16, "ultimate_charges":1}).get("ok", false)), "dead_ultimate_actor")
     check(runtime.ultimate_runtime.pending.is_empty(), "dead_ultimate_not_prepared")
-    var restored = RUNTIME.new()
+    var restored = runtime_script.new()
     check(restored.deserialize(JSON.parse_string(JSON.stringify(runtime.serialize()))), "restore")
     check(not restored.alive_ids("watcher").has(actor), "restored_body_death")
     runtime.combatants[enemy]["body"].dead = true
     check(not runtime.alive_ids("enemy").has(enemy), "dead_enemy_membership")
     check(not bool(runtime.enemy_step(enemy).get("ok", false)), "dead_enemy_action")
     check(not bool(runtime.subdue_status(enemy).get("ok", false)), "dead_enemy_submission")
-    print("VEILLEURS_BODY_ACTION_CONTRACT: ", "OK" if failures.is_empty() else failures)
-    get_tree().quit(0 if failures.is_empty() else 1)
