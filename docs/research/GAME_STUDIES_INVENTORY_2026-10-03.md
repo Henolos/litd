@@ -11,6 +11,8 @@
 
 ## Conclusion
 
+**État courant — 5 octobre 2026 :** [revue ciblée des vingt jeux et preuves gameplay](#revue-des-vingt-jeux-et-preuves-gameplay--5-octobre-2026) : 20/20 fiches documentées, 17/20 titres avec code ou données versionnés lus. Parmi eux : 6 règles, 7 définitions/configurations, 3 extensions et 1 outil. Battle Chasers, Ruined King et Iratus restent documentaires. Ce bilan ne certifie pas vingt moteurs ni vingt études exhaustives.
+
 La bibliothèque existe. La présence de toutes les analyses de code/mods annoncées en conversation n'est pas confirmée dans le commit audité. Une observation de gameplay, une page de mod et une analyse de code sont des niveaux de preuve différents. Aucune étude de code/mods détaillée des jeux ci-dessous n'a été retrouvée dans les fichiers textuels recherchés ; cela ne prouve pas qu'elle n'existe dans aucune autre source.
 
 Les observations existantes sont conservées à leur emplacement. Les conclusions historiques non étayées sont rangées ci-dessous comme pistes `revalidate`, sans promotion en canon. Ce document et son [manifeste](GAME_STUDIES_INVENTORY_2026-10-03.json) enrichissent `docs/research/` ; ils ne constituent pas une autre bibliothèque.
@@ -678,3 +680,127 @@ Source : [Samupo/ChainedEchoesRandomizer](https://github.com/Samupo/ChainedEchoe
 L'avancement de couverture de code est donc passé de 13 à 15 titres (65 % à 75 %). Ce pourcentage compte des titres avec au moins une preuve ciblée ; il ne mesure ni la profondeur des études, ni le pourcentage de mécanismes du jeu reconstruits. Les vingt titres ont un statut explicite. Les anciennes affirmations sur Break, Overdrive et lanes restent non certifiées tant que leurs mécanismes précis n'ont pas de preuve correspondante.
 
 Reproduction : récupérer les deux dépôts, lire `git show <commit>:<chemin>` et comparer `git rev-parse <commit>:<chemin>` aux blobs ci-dessus. Cette mise à jour porte uniquement sur le rapport existant dans la bibliothèque du dépôt ; aucun code tiers copié, aucun changement de runtime ou de canon LITD.
+
+
+## Revue des vingt jeux et preuves gameplay — 5 octobre 2026
+
+Cette section est l'état courant ; les sections précédentes décrivent les étapes historiques. Chaque titre reçoit une analyse ciblée, une pièce identifiable, une limite et une condition de revalidation. « Documenté » signifie que ces éléments sont présents ; cela ne signifie pas que l'intégralité du jeu est reconstruite.
+
+### Classification de la preuve réellement lue
+
+- **Règle** : code exécutant une décision ou un changement de paramètres gameplay (score IA, faim, permutation, protection, etc.).
+- **Définition** : données de compétences/objets/salles ou code de configuration du contenu ; pas la résolution interne du moteur.
+- **Extension** : routage de hooks ou chargement de ressources ; pas une preuve du mécanisme gameplay annoncé.
+- **Outil** : squelette d'exemple produit par un outil ; pas le générateur du jeu.
+- **Document** : page primaire ou de l'auteur décrivant les fonctionnalités ; aucun fichier gameplay lu.
+
+La classification retient la preuve la plus pertinente déjà examinée pour chaque titre. Les références figées et plages des quinze premières lectures restent dans les sections précédentes ; les deux nouvelles lectures sont détaillées après la matrice.
+
+| ID | Jeu | Pièce de référence examinée | Type | Analyse vérifiée / mécanisme encore non prouvé |
+|---|---|---|---|---|
+| J01 | Darkest Dungeon | The-Miko : `miko.info.darkest`, `miko.effects.darkest` ; nouvelle preuve ci-dessous | Définition | Rangs, paramètres de compétence et conditions hit/miss ; compactage après mort et résolveur natif non prouvés. |
+| J02 | Battle Chasers: Nightwar | Page auteur [VERBOSE 0.53](https://www.nexusmods.com/battlechasersnightwar/mods/3), plus [fiche éditeur](https://store.steampowered.com/app/451020/Battle_Chasers_Nightwar/) | Document | Instrumentation annoncée, système de survoltage et donjons aléatoires documentés ; aucune DLL ni trace de résolution lue. |
+| J03 | Ruined King | [Présentation gameplay Riot](https://www.leagueoflegends.com/fr-fr/news/dev/ruined-king-gameplay-deep-dive/) | Document | Initiative, types de compétences et ressources décrits ; aucune source du calcul des lanes ou des délais lue. |
+| J04 | Iratus: Lord of the Dead | [Player Balance 0.526](https://www.nexusmods.com/iratuslordofthedead/mods/6) | Document | Modifications de positions et d'effets décrites par l'auteur ; JSON et plugin non examinés. |
+| J05 | Darkest Dungeon II | Plugin-DD2 : `HookGenerals.cs`, `ModSupportPrefix` | Extension | Injection de dossiers de ressources ; Tokens, Combo, Death's Door et relations non prouvés par ce fichier. |
+| J06 | For The King | FTKAPI : `ItemManager.cs`, `CustomItem.cs` | Définition | Lecture/insertion/remplacement d'objets ; jets, précision, casse et loot restent sans preuve correspondante. |
+| J07 | Octopath Traveler II | OT2R : `EnemyDB.py`, `Shields.py`, `AbilityPower.py`, `AbilitySetDB.py` | Règle | Permutation d'affinités et facteur de puissance commun aux variantes ; compteur Break et séquence des impacts non prouvés. |
+| J08 | Chained Echoes | CERandomizer : `RandomGen.cs`, `MechRandomizer.cs` | Règle | Flux à graine et permutation des compétences de méchas ; Overdrive et résolution des statuts non prouvés. |
+| J09 | Slay the Spire | BaseMod : `BaseMod.java` | Extension | Abonnements, publication et retrait différé ; ordre des dégâts/blocs et décision IA non prouvés par ce framework. |
+| J10 | Battle Brothers | MSU : `skill.nut` ; Modular Vanilla : `behavior.nut` | Règle | Modificateurs de coût/preview et multiplication du score de ciblage ; moral/blessures et stratégie vanilla non prouvés. |
+| J11 | Enter the Gungeon | ExpandTheGungeon : `test_customroom_flow.cs` | Définition | Graphe fixe, entrée, parents et salles/tables ; validation du chemin critique et RNG natif non prouvés. |
+| J12 | Dead Cells | ScriptTool : `BuildMainRooms.cs` | Outil | Squelette entrée → combat → sortie ; aucune preuve du générateur Motion Twin, de la complexité ou du tirage natif. |
+| J13 | The Binding of Isaac: Rebirth | StageAPI15 : `roomsList.lua` | Définition | Catalogue normalisé et index par forme ; portes, traversabilité et compatibilité de l'API avec Rebirth non prouvées. |
+| J14 | Spelunky 2 | CustomLevels : `custom_levels.lua` | Définition | Remplacement de niveaux, templates et filtres de spawn ; chemin principal vanilla et nettoyage complet non garantis. |
+| J15 | FTL: Faster Than Light | Hyperspace : `InternalEvents.cpp` | Extension | Appel original, callbacks et remplacement de résultat ; budgets et sous-graines de rencontres non prouvés. |
+| J16 | Stoneshard | ModShardLauncher : `RoomUtils.cs`, `DungeonsSpawn.cs` | Définition | Structure des salles et injection des tables tier/faction/ennemis ; anatomie, blessures et chemin critique non prouvés. |
+| J17 | Legend of Grimrock II | KnightMods : `reskilled.lua`, `set_bonuses.lua`, `tweaks.lua` ; nouvelle preuve ci-dessous | Règle | Traits, bonus conditionnels, esquive et protection de partie corporelle des projectiles ; résolution native complète non prouvée. |
+| J18 | Dungeon of the Endless | DungeonModifications : `DungeonModificationsMod.cs` | Définition | Configuration du nombre minimum/maximum de salles avant génération originale ; pondération des ennemis non prouvée. |
+| J19 | Into the Breach | IntelligentAI : `ai.lua` | Règle | Scoring tactique moddé selon conséquences et garde-fous ; légalité complète des actions et IA vanilla non prouvées. |
+| J20 | Shattered Pixel Dungeon | `Hunger.java`, `ItemStatusHandler.java` | Règle | Attrition par ticks, seuils et identification/serialization des catégories ; équilibre global non déduit de deux fichiers. |
+
+### Nouvelle preuve J01 — Darkest Dungeon : contrat gameplay de The-Miko
+
+Dépôt auteur : [Genso-Necromancer/The-Miko](https://github.com/Genso-Necromancer/The-Miko/tree/6c10b5aacff17faaa607ca91cd3f5b6dab5717ac), commit `6c10b5aacff17faaa607ca91cd3f5b6dab5717ac`.
+
+- [heroes/miko/miko.info.darkest](https://github.com/Genso-Necromancer/The-Miko/blob/6c10b5aacff17faaa607ca91cd3f5b6dab5717ac/heroes/miko/miko.info.darkest), blob `419f347bd754a02e4a5e64a638a5e027d51850a6`, lignes 1–36 : résistances et équipement, puis compétences avec niveau, précision, dégâts, critique, lancement, cible et identifiants d'effets. `extermination` déclare launch 21/target 123 ; `persuasion_needle` déclare launch 432/target 234 et un déplacement ; `evil_sealing_circle` référence un effet de stun distinct.
+- [effects/miko.effects.darkest](https://github.com/Genso-Necromancer/The-Miko/blob/6c10b5aacff17faaa607ca91cd3f5b6dab5717ac/effects/miko.effects.darkest), blob `edc43f16fa91b83aad5b465ba1acd6031860b6a5`, lignes 20–23 et 156–161 : `Miko Rhythm` et `Miko Miss Rhythm Break` déclarent des conditions hit/miss opposées ; les variantes `Miko Strong Stun` déclarent une chance croissante, une cible, stun et queue.
+
+**Analyse :** la définition d'une compétence relie plusieurs opérations plutôt que d'incorporer toute leur logique. Rangs de lancement, rangs de cible, déplacement et déclenchement sont des dimensions distinctes. Une chance de stun déclarée supérieure à 100 % ne prouve pas la probabilité finale : la résistance et l'interprétation du moteur doivent être vérifiées séparément.
+
+**Contre-preuve :** les lignes suivantes du fichier info répètent plusieurs fois le même identifiant `homing_amulet` pour un même niveau. Sans connaître la règle de chargement du moteur, on ne peut pas affirmer si ces lignes fusionnent, remplacent ou entrent en conflit. Ce dépôt ne prouve pas l'absence de doublons ni la bonne exécution du mod.
+
+**Conclusion LITD :** cette source renforce l'intérêt de contrats distincts pour rangs/cibles et effets. Le ciblage des parties du corps LITD reste une contrainte propre au projet, non démontrée par ce mod. La mort/compactage doit conserver sa propre preuve et ses tests. Aucune règle de stun du mod n'est transposée automatiquement.
+
+### Nouvelle preuve J17 — Grimrock II : traits, équipement et parties du corps
+
+Dépôt auteur : [KnightMiner/GrimrockKnightMods](https://github.com/KnightMiner/GrimrockKnightMods/tree/5e7c80db7b677cecabd28a6ba30a9b39d6518f59), commit `5e7c80db7b677cecabd28a6ba30a9b39d6518f59`.
+
+| Fichier figé | Blob | Plages / constat |
+|---|---|---|
+| [knight/reskilled.lua](https://github.com/KnightMiner/GrimrockKnightMods/blob/5e7c80db7b677cecabd28a6ba30a9b39d6518f59/knight/reskilled.lua) | `dcef01d5d7c84aa67e925dc2afbadeedd7fcc042` | 32–41 : trait `km_heavy_crit`, retour 10 uniquement si niveau positif, attaque melee et trait heavy_weapon. |
+| [knight/set_bonuses.lua](https://github.com/KnightMiner/GrimrockKnightMods/blob/5e7c80db7b677cecabd28a6ba30a9b39d6518f59/knight/set_bonuses.lua) | `4755edd0f600d565f08578eb08c98bfe55e5acb8` | 9–38 : pose d'un callback sur EquipmentItem ; 69–85 : bonus d'esquive 10 conditionné par l'ensemble rogue, avec branche distincte pour The Guardians. |
+| [knight/tweaks.lua](https://github.com/KnightMiner/GrimrockKnightMods/blob/5e7c80db7b677cecabd28a6ba30a9b39d6518f59/knight/tweaks.lua) | `da18f746baf164447d576ab5cbbcde32c199abb3` | 25–34 : coût après ancien modificateur multiplié par 0,8 selon équipement/configuration ; 47–83 : projectiles, esquive bornée, tirage de partie corporelle et protection. |
+| [README.md](https://github.com/KnightMiner/GrimrockKnightMods/blob/5e7c80db7b677cecabd28a6ba30a9b39d6518f59/README.md) | `dec03337cf8e67a0c19c414851fe493bd6f44b43` | L'auteur limite la compatibilité à une branche beta et signale des mods/donjons non testés. |
+
+**Analyse du projectile :** la chance de toucher calculée est bornée entre 5 et 95, puis comparée à un tirage. En cas de touche sur la party, un second tirage attribue poitrine 31 %, tête 22 %, jambes 25 % ou pieds 22 %. La protection de cette partie est réduite par la pénétration sans descendre sous zéro ; la moitié de la protection restante alimente une fonction de réduction des dégâts, puis le résultat est arrondi vers le bas.
+
+**Limites et contre-preuves :** ce ciblage corporel est aléatoire et propre au mod, alors que LITD prévoit une sélection par le joueur. Le calcul de `computeDamageReduction` n'est pas reconstruit ici. Le wrapper appelle le précédent callback avant ses changements, donc les autres mods peuvent influencer le résultat. Les lignes 12–19 de `tweaks.lua` comparent `skill` à des chaînes puis tentent `skill + 1` : cela constitue un risque apparent de type sur ces branches, non un bug observé en exécution. Plusieurs traits portent seulement le commentaire hardcoded ; leur description seule ne prouve pas leur implémentation.
+
+**Conclusion LITD :** séparer choix de partie corporelle, esquive, pénétration et réduction rend chaque phase vérifiable. Les bonus d'équipement et de traits ont des conditions explicites. Les valeurs numériques de ce mod ne sont pas une recommandation de calibrage pour LITD.
+
+### Analyses documentaires J02, J03, J04 — résultat des recherches supplémentaires
+
+**J02 — Battle Chasers.** La fiche publiée par l'éditeur confirme combat au tour par tour, survoltage/Bursts, exploration et donjons aléatoires. L'auteur de VERBOSE annonce des traces de scripts de compétences, jets, dégâts, DOT/HOT, récupération et boucliers ; la distribution indiquée remplace une DLL. L'onglet [Files](https://www.nexusmods.com/battlechasersnightwar/mods/3?tab=files) indique explicitement une connexion nécessaire au téléchargement. Le schéma ability → hit → dégâts → shield → DOT reste une hypothèse à confronter à des traces : ni l'ordre ni les formules ne sont certifiés. Pour le confirmer, il faut une archive accessible légalement ou des logs versionnés et un scénario reproductible ; aucun besoin de répertorier arbitrairement tous les fichiers du jeu.
+
+**J03 — Ruined King.** La présentation [Riot du 11 décembre 2020](https://www.leagueoflegends.com/fr-fr/news/dev/ruined-king-gameplay-deep-dive/) décrit initiative, compétences instantanées/de voie/ultimes, santé/mana/survoltage, statistiques et personnalisation. Elle documente aussi l'équipement arme/armure/accessoires et les compétences d'exploration propres aux champions. C'est une présentation antérieure à la sortie : elle ne prouve pas les formules de la version jouable. La page Steam du guide officiel a été retrouvée mais sa restitution consultable ne fournit pas de texte de règles exploitable. Les résultats « Blade of the Ruined King » concernent souvent un objet de League ou des mods d'autres jeux : ils sont exclus. Les lanes, délais et zones de timeline nécessitent une source technique ou un jeu de traces ; les correctifs graphiques ne remplissent pas cette condition.
+
+**J04 — Iratus.** La page auteur et l'onglet Files identifient Player Balance 0.526, variante avec BepInEx et variante sans chargeur. Le changelog décrit notamment des positions de lancement, déplacements et dégâts/stress pour des compétences de serviteurs. Cela permet une analyse du contrat annoncé : positions, coût, effet et amélioration doivent être traités séparément. Le JSON effectif peut toutefois différer du texte de présentation. Le lien manuel repéré (`file_id=38`) n'a pas livré l'archive dans la restitution consultable ; aucun hash ni contenu de JSON n'est certifié. La validation du stress, de la folie et du déplacement runtime reste ouverte.
+
+### Analyse ciblée des dix-sept autres titres — ce que les preuves permettent de retenir
+
+**J01 Darkest Dungeon :** contrats de rangs et effets déclaratifs réellement présents ; contrôler séparément unicité des variantes et interprétation du moteur. L'étude exhaustive de génération/IA/mort reste ouverte.
+
+**J05 Darkest Dungeon II :** séparer l'enregistrement de données de leur résolution évite d'attribuer les tokens à un chargeur. La prochaine preuve utile est une définition de compétence et son consommateur runtime, pas un autre hook d'initialisation.
+
+**J06 For The King :** le mod fait des objets des définitions modifiables ; l'existence d'une rareté ne démontre pas la distribution du loot. Il faut suivre un tirage effectif pour analyser probabilités et casse.
+
+**J07 Octopath II :** garder les affinités distinctes du compteur de rupture évite une mauvaise lecture d'un nom de variable. Pour certifier Break, suivre l'impact, le décrément et l'état déclenché ; l'ordre multi-hit reste ouvert.
+
+**J08 Chained Echoes :** une permutation de compétences et une graine sont démontrées ; elles ne suffisent pas à représenter les contributions des actions à une jauge collective. L'Overdrive requiert sa fonction de mise à jour.
+
+**J09 Slay the Spire :** le framework permet des effets réactifs aux événements. Une publication ne démontre ni la priorité des effets ni leur composition déterministe. Il faut suivre un effet réel et sa file d'actions pour étudier ces règles.
+
+**J10 Battle Brothers :** score d'action et modificateurs de l'acteur/cible sont composables dans les mods lus. Le maintien des actions légales demeure une condition distincte ; les mécanismes de moral et de blessures ne sont pas couverts.
+
+**J11 Enter the Gungeon :** un flow encode l'intention topologique et délègue les salles à des overrides/tables. Ce cas fixe prouve la séparation des données ; il faut une génération et une validation de connectivité pour conclure sur la robustesse.
+
+**J12 Dead Cells :** le squelette d'outil explicite des salles principales et secondaires. Il aide à lire un contrat d'auteur, mais ne certifie aucune distribution de layouts. Une source du script de biome réel reste requise.
+
+**J13 Isaac :** grouper par forme facilite la sélection de candidats ; une forme compatible n'assure pas des portes compatibles. Le nom Rebirth de l'inventaire ne doit pas faire passer une API de version ultérieure pour preuve de cette édition.
+
+**J14 Spelunky 2 :** configuration et population sont deux étapes observables du mod. Un filtre de spawn ne prouve pas que la sortie est accessible ; l'affectation répétée d'un identifiant de callback empêche de conclure au nettoyage intégral.
+
+**J15 FTL :** l'appel au comportement original puis l'extension Lua expose un contrat de phase et de retour. Les budgets d'événements doivent être prouvés par leur sélection ; les hooks de menu ne démontrent pas le directeur de rencontres.
+
+**J16 Stoneshard :** le contenu d'une salle et les tables d'ennemis sont manipulables, mais l'outil n'est pas le résolveur d'anatomie du jeu. La comparaison au ciblage corporel LITD reste une question nécessitant des règles de blessure précises.
+
+**J17 Grimrock II :** la chaîne projectile/esquive/partie/protection est une preuve gameplay directe de mod. Elle illustre des phases testables ; le tirage aléatoire de partie ne remplace pas la sélection corporelle LITD.
+
+**J18 Dungeon of the Endless :** changer les bornes de taille avant l'appel original concerne la configuration de génération. Cette lecture ne justifie toujours pas l'ancienne affirmation de sélection pondérée des ennemis.
+
+**J19 Into the Breach :** le score évalue plusieurs conséquences d'une action, avec garde-fous susceptibles de remplacer la valeur. Il s'agit de l'IA du mod ; la télégraphie et la légalité complète ne se déduisent pas de ce score.
+
+**J20 Shattered Pixel Dungeon :** le coût temporel des ressources et l'identification sont des mécanismes dont le code est public. Leur présence ne mesure pas le niveau de difficulté juste ; cet équilibre doit être observé ou testé séparément.
+
+### Bilan exact et conditions de poursuite
+
+- **20/20 jeux documentés avec analyse ciblée**, référence, limite et mécanisme restant à vérifier.
+- **17/20 jeux avec code ou données versionnés lus**, contre 15 lors de la passe précédente.
+- Parmi ces 17 : **6 règles**, **7 définitions/configurations**, **3 extensions**, **1 outil**. Ces catégories sont exclusives dans cette matrice.
+- **3/20 sans code gameplay consulté** : Battle Chasers, Ruined King et Iratus, malgré leurs sources documentaires.
+- Aucune étude exhaustive ni compatibilité runtime générale certifiée. Les vérifications locales/CI de LITD ne valident pas le fonctionnement des mods externes.
+
+Les recherches web ont comparé pages d'auteurs, dépôts, documentation officielle et résultats contradictoires. La recherche de dépôts globale via le connecteur GitHub a été refusée par le périmètre d'URL de cet outil ; les dépôts nommés ont pu être lus normalement. Ce refus n'est pas interprété comme absence de dépôt. Les noms homonymes et correctifs graphiques sont exclus de la preuve gameplay. Pour les trois sources manquantes, la condition utile est un fichier ou une trace accessible et versionné, pas une nouvelle estimation de pourcentage.
+
+La clôture globale reste conditionnée à la définition du mécanisme étudié, la lecture de sa preuve, un contre-exemple et une reproduction adaptée. Les vingt jeux ne sont pas déclarés « analysés à 100 % ». Les enseignements ci-dessus documentent la bibliothèque existante ; aucun changement de gameplay LITD ni fusion de PR.
