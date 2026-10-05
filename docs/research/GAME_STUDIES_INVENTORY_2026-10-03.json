@@ -1,0 +1,662 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-10-03",
+  "repository": "Henolos/litd",
+  "base_commit": "2b3f06621096e222b6e04e21ecf0bb86177e861b",
+  "status": "revalidate",
+  "scope": "Tracked files in existing research, knowledge and shared library directories at base commit; title/tool keyword search across text in working tree. Not a full technical review of games.",
+  "counts": {
+    "docs/research/": 5,
+    "docs/knowledge/": 52,
+    "litd_universe/libraries/": 85
+  },
+  "search_pattern": "darkest.?dungeon|battle.?brothers|battle.?chasers|slay.?the.?spire|octopath|chained.?echoes|for.?the.?king|iratus|ruined.?king|stoneshard|grimrock|dungeon.?of.?the.?endless|BepInEx|BaseMod|Pitch.?Black|FTKAPI|Modern.?Hooks|Modding.?Script.?Hooks",
+  "additional_document_terms": [
+    "Shattered",
+    "Into the Breach"
+  ],
+  "search_exclusions": [
+    "*.html",
+    "*.svg",
+    "*.lock",
+    "*.import",
+    "*.uid",
+    "*.tscn",
+    "*.tres",
+    "binary files",
+    "untracked files",
+    "Git internals"
+  ],
+  "history_check": "git log --all --format= --name-only -- docs/research litd_universe/libraries docs/knowledge; paths only, not every historical content",
+  "limitations": [
+    "No Supabase or external storage audit",
+    "No exhaustive reading of historical branches",
+    "No mod source-code execution",
+    "Historical conversation claims are unverified leads"
+  ],
+  "files": [
+    {
+      "path": "docs/knowledge/CATALOG.md",
+      "git_blob_sha": "d26834e60707d0ca64d3bfaecabd68a5a6f1e91a"
+    },
+    {
+      "path": "docs/knowledge/GLOBAL_GOVERNANCE_COMPROMISE_RECOVERY_P0.md",
+      "git_blob_sha": "6a1ff6dd16fdc14def210c7dca1bdb8e74e8eb60"
+    },
+    {
+      "path": "docs/knowledge/GLOBAL_GOVERNANCE_LIVE_RECOVERY_RUNBOOK.md",
+      "git_blob_sha": "34d0278bc33436aa7e19d77b25af1ef41753d0be"
+    },
+    {
+      "path": "docs/knowledge/GLOBAL_GOVERNANCE_RECOVERY_DRILL.md",
+      "git_blob_sha": "762f4fbbff6efc122a0d6f25a80609387e2a97d1"
+    },
+    {
+      "path": "docs/knowledge/GLOBAL_PROJECT_BOUNDARY_P0.md",
+      "git_blob_sha": "bc7d5d7ab08c8209d5bb75aa35134c146229af5b"
+    },
+    {
+      "path": "docs/knowledge/GOVERNANCE_POSTGRES_RECEIPT_REGISTRY.md",
+      "git_blob_sha": "1c925d09d3ea447d7105f6438699f113d188ae90"
+    },
+    {
+      "path": "docs/knowledge/GUARDIAN_CHANGE_GATE.md",
+      "git_blob_sha": "3b678828de6dddcdaa29fdb7e78f9c223495cda1"
+    },
+    {
+      "path": "docs/knowledge/LITD_VEILLEUR_RESEARCH_PIPELINE.md",
+      "git_blob_sha": "ad56bfe869d3a95afad45a3a83416db7e29c925b"
+    },
+    {
+      "path": "docs/knowledge/LIVING_LIBRARY_PROTOCOL.md",
+      "git_blob_sha": "76871b304a70d24ece4cb52b1d5be5b0f98c42ec"
+    },
+    {
+      "path": "docs/knowledge/PROVENANCE_WORM_ARCHIVE.md",
+      "git_blob_sha": "ef993c0f42183512316a832b6252a09cbd6dbeaf"
+    },
+    {
+      "path": "docs/knowledge/README.md",
+      "git_blob_sha": "0ad7ce0927bd92ea79be332c9c7193ec56216898"
+    },
+    {
+      "path": "docs/knowledge/decisions/ADR-0001-guardian-progressif.md",
+      "git_blob_sha": "b86b379c618475919769e7f84c653e45d69167a7"
+    },
+    {
+      "path": "docs/knowledge/decisions/ADR-0002-quatuor-canonique-les-veilleurs.md",
+      "git_blob_sha": "832500298817e0eb11e7eb0041317428353c54bb"
+    },
+    {
+      "path": "docs/knowledge/decisions/ADR-0003-doctrine-ux-ui.md",
+      "git_blob_sha": "85a01367ca6253ae90ad86edb77173340f61aea0"
+    },
+    {
+      "path": "docs/knowledge/decisions/ADR-0004-ci-par-domaines-et-filet-monolithique.md",
+      "git_blob_sha": "a54fab0eac28f4adb9f6f20e5fe24ddd79022970"
+    },
+    {
+      "path": "docs/knowledge/decisions/ADR-0005-competences-veilleurs-3x15.md",
+      "git_blob_sha": "899de4664ce05bc14bb48b101288716b80b9ef43"
+    },
+    {
+      "path": "docs/knowledge/decisions/ADR-0006-rangs-et-formation-combat.md",
+      "git_blob_sha": "7b95f5ef33ef2d51706e6c049816c9da233404e4"
+    },
+    {
+      "path": "docs/knowledge/decisions/ADR-0007-boucle-expedition-lumiere.md",
+      "git_blob_sha": "d2b74ad94bf56d91da56b2f98cb23118adaf9ade"
+    },
+    {
+      "path": "docs/knowledge/decisions/ADR-0008-capture-recrutement.md",
+      "git_blob_sha": "903edc2c2c1f7f8bdafb51934e69b06015129309"
+    },
+    {
+      "path": "docs/knowledge/decisions/design-decision-resolution.example.json",
+      "git_blob_sha": "2059031293d91643feb44420253340d58afc8031"
+    },
+    {
+      "path": "docs/knowledge/decisions/target-revisions/README.md",
+      "git_blob_sha": "f08da8a7fdf892ddb4f42bb361155fdebcc23740"
+    },
+    {
+      "path": "docs/knowledge/dependencies.yml",
+      "git_blob_sha": "f2bc22ab75b118152f4b866f370cf21da10bc4d6"
+    },
+    {
+      "path": "docs/knowledge/design-targets.json",
+      "git_blob_sha": "c055662c50a886bda65dc863c9159de04ee40e55"
+    },
+    {
+      "path": "docs/knowledge/file-sorter-core-contract.md",
+      "git_blob_sha": "e21076b9b9e4319c23c71e563dd7f53579346d8a"
+    },
+    {
+      "path": "docs/knowledge/governance/README.md",
+      "git_blob_sha": "545802fc87a304c0a86701219f4e0a4f63e026f1"
+    },
+    {
+      "path": "docs/knowledge/governance/registry/change_registry.json",
+      "git_blob_sha": "ea83c29032623e8cc2d080f4b805725a035cd5ac"
+    },
+    {
+      "path": "docs/knowledge/governance/registry/core_candidate_registry.json",
+      "git_blob_sha": "df0e369abda4b765533e0af3921c54a5cb164787"
+    },
+    {
+      "path": "docs/knowledge/governance/registry/decision_registry.json",
+      "git_blob_sha": "a2197fc966158bb5fbced9541436b24b630856e7"
+    },
+    {
+      "path": "docs/knowledge/governance/registry/evidence_registry.json",
+      "git_blob_sha": "2420c080b5f69093c15fbb6efb37e9cb3aa7d7a0"
+    },
+    {
+      "path": "docs/knowledge/governance/registry/knowledge_registry.json",
+      "git_blob_sha": "5a2e0d74d1a87e1a7d190b3c4f1335ca58284287"
+    },
+    {
+      "path": "docs/knowledge/governance/schemas/change_candidate.schema.json",
+      "git_blob_sha": "fbbbddea89ce5023e819af0ed497e4c37792cac1"
+    },
+    {
+      "path": "docs/knowledge/governance/schemas/core_change_candidate.schema.json",
+      "git_blob_sha": "21e70f46ea1d0e7176ee5c3f9d6b05aabaa4d9e2"
+    },
+    {
+      "path": "docs/knowledge/governance/schemas/decision.schema.json",
+      "git_blob_sha": "c0610542b7346e769ce8c0ea71c0f62fa6a90188"
+    },
+    {
+      "path": "docs/knowledge/governance/schemas/evidence.schema.json",
+      "git_blob_sha": "18944ff34cc298dba18525e21f8ffcf32f909cb4"
+    },
+    {
+      "path": "docs/knowledge/governance/schemas/knowledge_entry.schema.json",
+      "git_blob_sha": "a76336bceeda14d959cfde0482408a1c095c6f3c"
+    },
+    {
+      "path": "docs/knowledge/guardian-change-gate.example.json",
+      "git_blob_sha": "1af6cf9e09da4416cc8137ab1757779eee8d300e"
+    },
+    {
+      "path": "docs/knowledge/guardian-rules.yml",
+      "git_blob_sha": "45730420fcb3a5b0c5997835a73bfb0c8034e93e"
+    },
+    {
+      "path": "docs/knowledge/incidents/2026-09-10-runtime-player-smoke-equipment.md",
+      "git_blob_sha": "175a859b3c172a125b02bce8c728a5ca07c06b5a"
+    },
+    {
+      "path": "docs/knowledge/repository-governance-audit.README.md",
+      "git_blob_sha": "f2d0157c2bfc8bd1c82d0f39ab5fddca524306f9"
+    },
+    {
+      "path": "docs/knowledge/repository-governance-policy.json",
+      "git_blob_sha": "0f74d606eb082eeb10a594c73bcfdeb118284ddd"
+    },
+    {
+      "path": "docs/knowledge/source-registry.json",
+      "git_blob_sha": "39457e2607de098e1e5a52b86294857ed59fabc7"
+    },
+    {
+      "path": "docs/knowledge/sqlite-supabase-shadow-sync-v1.md",
+      "git_blob_sha": "7927563e3b0dbf1666e1ece883d0a076c682c5f5"
+    },
+    {
+      "path": "docs/knowledge/supabase-persistence-v1.md",
+      "git_blob_sha": "711c58ab9bbd64bcd706884657e1fbaa98a749b0"
+    },
+    {
+      "path": "docs/knowledge/target-drift-baseline-v1.json",
+      "git_blob_sha": "6e482e670b8b48c2715c12c5b8411fbff3a158a4"
+    },
+    {
+      "path": "docs/knowledge/target-drift-budgets.json",
+      "git_blob_sha": "78a80e63cd62bddf5e2808253ef11f29d7ff46df"
+    },
+    {
+      "path": "docs/knowledge/target-history/0001-baseline-v1.json",
+      "git_blob_sha": "1e1ed038b6830183a87e1fc09a6f8dfcd3bf05f8"
+    },
+    {
+      "path": "docs/knowledge/taxonomy.json",
+      "git_blob_sha": "b3873e68535ce5e8b28336fb64d7760f336859b4"
+    },
+    {
+      "path": "docs/knowledge/templates/decision.md",
+      "git_blob_sha": "0eccb076d5083354717e85eb3ff91c1dc8177530"
+    },
+    {
+      "path": "docs/knowledge/templates/incident.md",
+      "git_blob_sha": "12274f4827a11c1a124132d22f805460baa794f3"
+    },
+    {
+      "path": "docs/knowledge/templates/research.md",
+      "git_blob_sha": "1ffedd7d7097dda444077f116c0bab32940452da"
+    },
+    {
+      "path": "docs/knowledge/trieur-state-provenance-contract.md",
+      "git_blob_sha": "313bc5d386726c8969cd29821dc99029c32b6fdc"
+    },
+    {
+      "path": "docs/knowledge/veilleur-v2-contract.json",
+      "git_blob_sha": "8c1c6bfd4333db41fc02a30d6c97cf77fb05a665"
+    },
+    {
+      "path": "docs/research/BIBLIOTHEQUE_CREATION_JEU_VIDEO.md",
+      "git_blob_sha": "fde677a7c1792c140e5f07916d4279e9bdd05e9b"
+    },
+    {
+      "path": "docs/research/FILE_SORTER_RESEARCH.md",
+      "git_blob_sha": "2bc9192ccc256d5254d572f2956926f74f2564cb"
+    },
+    {
+      "path": "docs/research/HYBRID_GRAPH_CONNECTIVITY_VALIDATION_2026-10-02.md",
+      "git_blob_sha": "30485b2c299159ec68686f2b59cf09d37407c334"
+    },
+    {
+      "path": "docs/research/ROGUELIKE_DUNGEON_CRAWLER_BENCHMARK.md",
+      "git_blob_sha": "5899cab92649b71d8f2b62ba47836b4b11433259"
+    },
+    {
+      "path": "docs/research/ROGUELIKE_RUN_OBSERVATIONS.md",
+      "git_blob_sha": "674f2b81eab432d13ee664c32ce3a9177b72397e"
+    },
+    {
+      "path": "litd_universe/libraries/COVERAGE_MATRIX.md",
+      "git_blob_sha": "948954b9203dafa864782c6c32c53af70f96a73a"
+    },
+    {
+      "path": "litd_universe/libraries/FULLNESS_STANDARD.md",
+      "git_blob_sha": "58f7f37dce3d7a8c90248a29b44251dbb6fe13d5"
+    },
+    {
+      "path": "litd_universe/libraries/MASTER_ENCYCLOPEDIC_INDEX.md",
+      "git_blob_sha": "45e8cf284fb4650242d0e451c9dbf70bbfd1305a"
+    },
+    {
+      "path": "litd_universe/libraries/README.md",
+      "git_blob_sha": "c008a96a46049b5ed1611f80b62f9e2835105e01"
+    },
+    {
+      "path": "litd_universe/libraries/SOURCE_REGISTRY.md",
+      "git_blob_sha": "b5c5973ef28af0c32bd117d5768ee522a1fe8d79"
+    },
+    {
+      "path": "litd_universe/libraries/SOURCE_REGISTRY_EXTENDED.md",
+      "git_blob_sha": "5cc1175b0e45b027953a7a3583caf94aaa49cd92"
+    },
+    {
+      "path": "litd_universe/libraries/USAGE_POLICY.md",
+      "git_blob_sha": "37aa74526246f912fed42a1c6b31fbdd68e87a80"
+    },
+    {
+      "path": "litd_universe/libraries/anatomy/CATALOG_V1.md",
+      "git_blob_sha": "878e5a48871f185a34ac29b0c3c58672928eb1c1"
+    },
+    {
+      "path": "litd_universe/libraries/anatomy/ENCYCLOPEDIC_INDEX_V2.md",
+      "git_blob_sha": "9029ea716b6aa00812e8e51e608013ff62469dd7"
+    },
+    {
+      "path": "litd_universe/libraries/anatomy/README.md",
+      "git_blob_sha": "14bfa15cead3f41bf78aa36cd201374fc5cd1eb3"
+    },
+    {
+      "path": "litd_universe/libraries/anatomy/SEED_REFERENCES.md",
+      "git_blob_sha": "fbb55bcbe584b210d8372967b65e6f4c85e949b6"
+    },
+    {
+      "path": "litd_universe/libraries/animation_movement/CATALOG_V1.md",
+      "git_blob_sha": "04615814182cd4a3ef1e55bc3f5645abd7a5946e"
+    },
+    {
+      "path": "litd_universe/libraries/animation_movement/ENCYCLOPEDIC_INDEX_V2.md",
+      "git_blob_sha": "f2bd4abecd79e6f008a082ec82eb585cd98032e4"
+    },
+    {
+      "path": "litd_universe/libraries/animation_movement/README.md",
+      "git_blob_sha": "b41d4e06c1b77c80b68530ffb55e0e33d586b5e4"
+    },
+    {
+      "path": "litd_universe/libraries/animation_movement/SEED_REFERENCES.md",
+      "git_blob_sha": "25c508ed2d9e6fb190d530833b5f7584810e5f64"
+    },
+    {
+      "path": "litd_universe/libraries/artistic_references/CATALOG_V1.md",
+      "git_blob_sha": "878bb8254f2e632b0ce8485e9bdeabc2f7395ed4"
+    },
+    {
+      "path": "litd_universe/libraries/artistic_references/ENCYCLOPEDIC_INDEX_V2.md",
+      "git_blob_sha": "2a4a1db8aad99f23a1b61b1bb6a10f105d4eee50"
+    },
+    {
+      "path": "litd_universe/libraries/artistic_references/README.md",
+      "git_blob_sha": "4c5b07bbef450692838b7ed3ca2086546a331cca"
+    },
+    {
+      "path": "litd_universe/libraries/artistic_references/SEED_REFERENCES.md",
+      "git_blob_sha": "77b890b9c7303b9cfc0610d3fb7a6412dae9cc06"
+    },
+    {
+      "path": "litd_universe/libraries/clothing_armor/CATALOG_V1.md",
+      "git_blob_sha": "a93926c3adc1e132082ee4c922e2e7117b2d48be"
+    },
+    {
+      "path": "litd_universe/libraries/clothing_armor/ENCYCLOPEDIC_INDEX_V2.md",
+      "git_blob_sha": "664f7189eef42178f80366e73b3b881aa931877f"
+    },
+    {
+      "path": "litd_universe/libraries/clothing_armor/README.md",
+      "git_blob_sha": "13e9a74b597eecf19f680e0e1fdba5c42b066f46"
+    },
+    {
+      "path": "litd_universe/libraries/clothing_armor/SEED_REFERENCES.md",
+      "git_blob_sha": "2c07f6d0b19d77498b69c3ff17159ad2a1f936ca"
+    },
+    {
+      "path": "litd_universe/libraries/creatures/CATALOG_V1.md",
+      "git_blob_sha": "e340b4828381e11b9105a6ed4963afa26fa53bc4"
+    },
+    {
+      "path": "litd_universe/libraries/creatures/ENCYCLOPEDIC_INDEX_V2.md",
+      "git_blob_sha": "ca5c5614cde80e9c88f95ab8b579be2513962f5b"
+    },
+    {
+      "path": "litd_universe/libraries/creatures/MYTHOLOGY_COVERAGE.md",
+      "git_blob_sha": "b8f43304f4edfabb45985b69d16c8a27b77313bb"
+    },
+    {
+      "path": "litd_universe/libraries/creatures/README.md",
+      "git_blob_sha": "e25580b88fc099813187aafe5f07a2bc02c34c40"
+    },
+    {
+      "path": "litd_universe/libraries/creatures/REAL_LIFE_COVERAGE.md",
+      "git_blob_sha": "8394f85ff394f78969449ec329ec2675f03a27f0"
+    },
+    {
+      "path": "litd_universe/libraries/creatures/SEED_REFERENCES.md",
+      "git_blob_sha": "2835321466979da0f5346a9aa62189504fe69e1e"
+    },
+    {
+      "path": "litd_universe/libraries/cultures_architecture/CATALOG_V1.md",
+      "git_blob_sha": "e973497a1a5b831ac389aebf64747cc17a7c73e7"
+    },
+    {
+      "path": "litd_universe/libraries/cultures_architecture/ENCYCLOPEDIC_INDEX_V2.md",
+      "git_blob_sha": "0c757d86eb561ee1b739d24d2d73ea12e37e6d40"
+    },
+    {
+      "path": "litd_universe/libraries/cultures_architecture/README.md",
+      "git_blob_sha": "d2d12f67639ffcd4601f0bf141c46d35c34e5d73"
+    },
+    {
+      "path": "litd_universe/libraries/cultures_architecture/SEED_REFERENCES.md",
+      "git_blob_sha": "ea29992b66bb51b8f64467c9e23074fb67503e2d"
+    },
+    {
+      "path": "litd_universe/libraries/environments/CATALOG_V1.md",
+      "git_blob_sha": "6717bd5d6615e34b4d77f6f12c4ccb742e372be8"
+    },
+    {
+      "path": "litd_universe/libraries/environments/ENCYCLOPEDIC_INDEX_V2.md",
+      "git_blob_sha": "90e04dec7742e34db867ea734ba3f73ecc96843e"
+    },
+    {
+      "path": "litd_universe/libraries/environments/README.md",
+      "git_blob_sha": "906b9f8377f8d10f6a20f29831f330b799276e6e"
+    },
+    {
+      "path": "litd_universe/libraries/environments/SEED_REFERENCES.md",
+      "git_blob_sha": "877957ca5cbb70471e8bae6a65a88b151529a331"
+    },
+    {
+      "path": "litd_universe/libraries/materials_textures/CATALOG_V1.md",
+      "git_blob_sha": "84d7a4dd4855ea4f47c497c9d411c9a0dc20c004"
+    },
+    {
+      "path": "litd_universe/libraries/materials_textures/ENCYCLOPEDIC_INDEX_V2.md",
+      "git_blob_sha": "e9bdaeda37dcf117ab3fc41fc51da8b7da7af1df"
+    },
+    {
+      "path": "litd_universe/libraries/materials_textures/README.md",
+      "git_blob_sha": "8b3c0d17dd08c745effa5a1e0097707b7947246c"
+    },
+    {
+      "path": "litd_universe/libraries/materials_textures/SEED_REFERENCES.md",
+      "git_blob_sha": "28736c593fb0c9f58beadd25157c8acbb73c8565"
+    },
+    {
+      "path": "litd_universe/libraries/mosaics_drawings/CATALOG_V1.md",
+      "git_blob_sha": "52fb0471a9a6b111a34be1843f6acf95a3dacf5a"
+    },
+    {
+      "path": "litd_universe/libraries/mosaics_drawings/ENCYCLOPEDIC_INDEX_V2.md",
+      "git_blob_sha": "c115e7f350f74539267cd310c42a5d3a445679b7"
+    },
+    {
+      "path": "litd_universe/libraries/mosaics_drawings/README.md",
+      "git_blob_sha": "e449ef1cb084383975bee0badcd7bea18654a7c4"
+    },
+    {
+      "path": "litd_universe/libraries/mosaics_drawings/SEED_REFERENCES.md",
+      "git_blob_sha": "76137524a4a60f4fd173b2930616ac1d349be845"
+    },
+    {
+      "path": "litd_universe/libraries/paintings/CATALOG_V1.md",
+      "git_blob_sha": "377b2ae13fa2bc16d053c2713df31ffe839d3ec5"
+    },
+    {
+      "path": "litd_universe/libraries/paintings/ENCYCLOPEDIC_INDEX_V2.md",
+      "git_blob_sha": "5015a8af2922b40017007b333f21183a4ac71661"
+    },
+    {
+      "path": "litd_universe/libraries/paintings/README.md",
+      "git_blob_sha": "c2cdd564567aee4fc51e428fc56ad19718568876"
+    },
+    {
+      "path": "litd_universe/libraries/paintings/SEED_REFERENCES.md",
+      "git_blob_sha": "c428c9da9219238eb9e599ab17ad103975309fa1"
+    },
+    {
+      "path": "litd_universe/libraries/philosophies/CATALOG_V1.md",
+      "git_blob_sha": "1a023b1ae6a9cfe587fae3fcf8c6c6b78bdaf96b"
+    },
+    {
+      "path": "litd_universe/libraries/philosophies/ENCYCLOPEDIC_INDEX_V2.md",
+      "git_blob_sha": "62682f2f0e6540060a2baf005e0312a674c91c16"
+    },
+    {
+      "path": "litd_universe/libraries/philosophies/README.md",
+      "git_blob_sha": "989ef0574ae0427a234bea43b890052ab64b5a54"
+    },
+    {
+      "path": "litd_universe/libraries/philosophies/SEED_REFERENCES.md",
+      "git_blob_sha": "09209c5d5e6e6890090db2c478c5855f33b2db40"
+    },
+    {
+      "path": "litd_universe/libraries/sculptures/CATALOG_V1.md",
+      "git_blob_sha": "4a3ce5d6f0f262fe16c2b9b61c7e0d2b7a1f1881"
+    },
+    {
+      "path": "litd_universe/libraries/sculptures/ENCYCLOPEDIC_INDEX_V2.md",
+      "git_blob_sha": "9f3faa37b6b51000977a5954f9f9b5951ac83caa"
+    },
+    {
+      "path": "litd_universe/libraries/sculptures/README.md",
+      "git_blob_sha": "a7109a6672acf0020d5dba4569ad35ddf2ea834d"
+    },
+    {
+      "path": "litd_universe/libraries/sculptures/SEED_REFERENCES.md",
+      "git_blob_sha": "b2eb585c267caf30e7c2b68cd14acda95de06c3b"
+    },
+    {
+      "path": "litd_universe/libraries/shared_lore/CATALOG_V1.md",
+      "git_blob_sha": "a9575b69b91dc3b390fca80b1efe5fefa1d71175"
+    },
+    {
+      "path": "litd_universe/libraries/shared_lore/ENCYCLOPEDIC_INDEX_V2.md",
+      "git_blob_sha": "30aeaff859aae69fd2c2211032a6111028776d63"
+    },
+    {
+      "path": "litd_universe/libraries/shared_lore/README.md",
+      "git_blob_sha": "f5d7b62ce089e799a1e6f5fd199688d2418ee111"
+    },
+    {
+      "path": "litd_universe/libraries/shared_lore/SEED_REFERENCES.md",
+      "git_blob_sha": "9da4d7bdb833ef2e2c2960555fbb883c76874a83"
+    },
+    {
+      "path": "litd_universe/libraries/sound_music/CATALOG_V1.md",
+      "git_blob_sha": "0a1ecb827825449f317ae0fb5c77b73a9b6b4893"
+    },
+    {
+      "path": "litd_universe/libraries/sound_music/ENCYCLOPEDIC_INDEX_V2.md",
+      "git_blob_sha": "dd7545b8e40521f7f382a82d9788a625a145c32c"
+    },
+    {
+      "path": "litd_universe/libraries/sound_music/README.md",
+      "git_blob_sha": "54d2df83e680249f77725fdf1575d19b7643a128"
+    },
+    {
+      "path": "litd_universe/libraries/sound_music/SEED_REFERENCES.md",
+      "git_blob_sha": "4cfe1287625d87ed9d14b49f64bb86977d6281be"
+    },
+    {
+      "path": "litd_universe/libraries/symbols/CATALOG_V1.md",
+      "git_blob_sha": "1bbd1a1704c36a839dac634dcf19d9784b800dd0"
+    },
+    {
+      "path": "litd_universe/libraries/symbols/ENCYCLOPEDIC_INDEX_V2.md",
+      "git_blob_sha": "71ebedd4173c102b3c086fcda64e0a0dd066a9e6"
+    },
+    {
+      "path": "litd_universe/libraries/symbols/README.md",
+      "git_blob_sha": "7df24d3927cee6ca420c83c76e343dbd3bab6673"
+    },
+    {
+      "path": "litd_universe/libraries/symbols/SEED_REFERENCES.md",
+      "git_blob_sha": "9806c6d82ebec5dba8e833000241d4138a8e8509"
+    },
+    {
+      "path": "litd_universe/libraries/technologies/CATALOG_V1.md",
+      "git_blob_sha": "aff7c82b1e2923d42823c14a7a01c1bced13de5f"
+    },
+    {
+      "path": "litd_universe/libraries/technologies/ENCYCLOPEDIC_INDEX_V2.md",
+      "git_blob_sha": "4b1e6ddfa4c75a1ac8eac1d7914d426a8619b4c8"
+    },
+    {
+      "path": "litd_universe/libraries/technologies/README.md",
+      "git_blob_sha": "8a7ad0bfaf6ec3cde77a20b13cb47c3a0e236afa"
+    },
+    {
+      "path": "litd_universe/libraries/technologies/SEED_REFERENCES.md",
+      "git_blob_sha": "c0d73261e4dc0779c3a5e79f5e95ff4090857e28"
+    },
+    {
+      "path": "litd_universe/libraries/vegetation/CATALOG_V1.md",
+      "git_blob_sha": "b0baf2c2fab5a2819c144848b3df83f068d1b4ad"
+    },
+    {
+      "path": "litd_universe/libraries/vegetation/ENCYCLOPEDIC_INDEX_V2.md",
+      "git_blob_sha": "26f673bb6508d8954c45cf9f77abd1c8746b0f1a"
+    },
+    {
+      "path": "litd_universe/libraries/vegetation/README.md",
+      "git_blob_sha": "798721dde173d206ed02522c3838361f9fb13d6d"
+    },
+    {
+      "path": "litd_universe/libraries/vegetation/SEED_REFERENCES.md",
+      "git_blob_sha": "a59a6716c7e0d2dc9c59bcf0c261c460643e94d4"
+    },
+    {
+      "path": "litd_universe/libraries/visual_effects/CATALOG_V1.md",
+      "git_blob_sha": "6c871408e9cad18632f3f6b54cd4e2b4483836dc"
+    },
+    {
+      "path": "litd_universe/libraries/visual_effects/ENCYCLOPEDIC_INDEX_V2.md",
+      "git_blob_sha": "7c558af2dea32f47ed3c02980eaed8318a5d50cf"
+    },
+    {
+      "path": "litd_universe/libraries/visual_effects/README.md",
+      "git_blob_sha": "d12e6350aa5e5063fab16afb789f1af86d08dbc5"
+    },
+    {
+      "path": "litd_universe/libraries/visual_effects/SEED_REFERENCES.md",
+      "git_blob_sha": "e8111e2a8b4f817016b963a190c1cffc66dcfb5b"
+    },
+    {
+      "path": "litd_universe/libraries/weapons_objects/CATALOG_V1.md",
+      "git_blob_sha": "dc05004ebd1a88c0b9a437d0c3f6985c71715734"
+    },
+    {
+      "path": "litd_universe/libraries/weapons_objects/ENCYCLOPEDIC_INDEX_V2.md",
+      "git_blob_sha": "17b0bb2038f187f134a0ea4c5d5b5ec8f596a091"
+    },
+    {
+      "path": "litd_universe/libraries/weapons_objects/README.md",
+      "git_blob_sha": "038ec70f9681120a2ddca3650e95a2c9feb1f67b"
+    },
+    {
+      "path": "litd_universe/libraries/weapons_objects/SEED_REFERENCES.md",
+      "git_blob_sha": "d9ad0e605bf83f3bcfe384eb7bd93b8b8a9aacac"
+    }
+  ],
+  "conversation_recovery": {
+    "date": "2026-10-03",
+    "method": "Targeted retrieval of historical conversation excerpts; synthesis, not full transcript or independent verification of third-party source code",
+    "corpora": [
+      "Analyser le code du jeu",
+      "Liste jeux donjons procéduraux",
+      "Recommandation de jeux roguelike",
+      "Liste dungeon crawlers hardcore"
+    ],
+    "historical_date": "2026-10-02",
+    "historical_timestamp_timezone": "UTC",
+    "unique_titles_count": 20,
+    "titles": [
+      "Darkest Dungeon",
+      "Battle Chasers: Nightwar",
+      "Ruined King",
+      "Iratus: Lord of the Dead",
+      "Darkest Dungeon II",
+      "For The King",
+      "Octopath Traveler II",
+      "Chained Echoes",
+      "Slay the Spire",
+      "Battle Brothers",
+      "Enter the Gungeon",
+      "Dead Cells",
+      "The Binding of Isaac: Rebirth",
+      "Spelunky 2",
+      "Into the Breach",
+      "FTL: Faster Than Light",
+      "Stoneshard",
+      "Legend of Grimrock II",
+      "Dungeon of the ENDLESS",
+      "Shattered Pixel Dungeon"
+    ],
+    "status": "revalidate",
+    "recovered": [
+      "Four exact game lists",
+      "Reported formats and function names",
+      "Historical architecture proposals",
+      "Complete source URLs where returned",
+      "Anatomical targeting constraints"
+    ],
+    "remaining_gaps": [
+      "Full original transcripts and code excerpts",
+      "Mod/source versions and commits",
+      "Exact attribution of some tools",
+      "Runtime traces and reproducible technical results"
+    ],
+    "notes": [
+      "Shattered Pixel Dungeon is covered by existing Git notes, not a newly recovered October 2 study",
+      "Roguelike synthesis also discussed Darkest Dungeon although original five-game list included Iratus",
+      "Truncated URLs not reconstructed",
+      "No new gameplay modifications"
+    ]
+  }
+}
