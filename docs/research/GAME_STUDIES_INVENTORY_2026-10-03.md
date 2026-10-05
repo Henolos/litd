@@ -11,7 +11,7 @@
 
 ## Conclusion
 
-**État courant — 5 octobre 2026 :** [revue ciblée des vingt jeux et preuves gameplay](#revue-des-vingt-jeux-et-preuves-gameplay--5-octobre-2026) : 20/20 fiches documentées, 17/20 titres avec code ou données versionnés lus. Parmi eux : 6 règles, 7 définitions/configurations, 3 extensions et 1 outil. Battle Chasers dispose désormais d'une trace auteur historique ; Ruined King et Iratus restent documentaires. La contribution Overdrive de deux skills du mod Chained Echoes est lue dans le complément ci-dessous. Ce bilan ne certifie pas vingt moteurs ni vingt études exhaustives.
+**État courant — 5 octobre 2026 :** 20/20 fiches documentées ; **18/20 titres avec code, données ou scripts de patch versionnés lus**. Parmi eux : 6 règles, 7 définitions/configurations, 3 extensions et 2 outils/patchs. La nouvelle source Ruined King est un patch mémoire Switch 1.6, pas le moteur du jeu. Battle Chasers et Iratus restent sans fichier gameplay consulté. Voir la revue des vingt jeux et les compléments ci-dessous ; aucune analyse exhaustive certifiée.
 
 La bibliothèque existe. La présence de toutes les analyses de code/mods annoncées en conversation n'est pas confirmée dans le commit audité. Une observation de gameplay, une page de mod et une analyse de code sont des niveaux de preuve différents. Aucune étude de code/mods détaillée des jeux ci-dessous n'a été retrouvée dans les fichiers textuels recherchés ; cela ne prouve pas qu'elle n'existe dans aucune autre source.
 
@@ -700,7 +700,7 @@ La classification retient la preuve la plus pertinente déjà examinée pour cha
 |---|---|---|---|---|
 | J01 | Darkest Dungeon | The-Miko : `miko.info.darkest`, `miko.effects.darkest` ; nouvelle preuve ci-dessous | Définition | Rangs, paramètres de compétence et conditions hit/miss ; compactage après mort et résolveur natif non prouvés. |
 | J02 | Battle Chasers: Nightwar | Page auteur [VERBOSE 0.53](https://www.nexusmods.com/battlechasersnightwar/mods/3), plus [fiche éditeur](https://store.steampowered.com/app/451020/Battle_Chasers_Nightwar/) | Document | Instrumentation annoncée ; trace auteur historique de cumul d'AP lue dans le complément ; aucune DLL consultée. |
-| J03 | Ruined King | [Présentation gameplay Riot](https://www.leagueoflegends.com/fr-fr/news/dev/ruined-king-gameplay-deep-dive/) | Document | Initiative, types de compétences et ressources décrits ; aucune source du calcul des lanes ou des délais lue. |
+| J03 | Ruined King | Riot ; patchs Switch `62EB499A85240245.txt`, crédits Eiffel2018, commit `abd55774c369b9c3a4df960e7afdb0391cb52056` | Outil | Script de patch mémoire combat/ressources lu ; version Switch 1.6 annoncée ; moteur, lanes et délais natifs non reconstruits. |
 | J04 | Iratus: Lord of the Dead | [Player Balance 0.526](https://www.nexusmods.com/iratuslordofthedead/mods/6) | Document | Modifications de positions et d'effets décrites par l'auteur ; JSON et plugin non examinés. |
 | J05 | Darkest Dungeon II | Plugin-DD2 : `HookGenerals.cs`, `ModSupportPrefix` | Extension | Injection de dossiers de ressources ; Tokens, Combo, Death's Door et relations non prouvés par ce fichier. |
 | J06 | For The King | FTKAPI : `ItemManager.cs`, `CustomItem.cs` | Définition | Lecture/insertion/remplacement d'objets ; jets, précision, casse et loot restent sans preuve correspondante. |
@@ -889,3 +889,44 @@ Pour **Iratus**, une seule archive pertinente suffit à lancer l'inventaire auto
 Pour **Ruined King**, aucune archive gameplay fiable n'est encore identifiée : il faut un mod clairement rattaché au jeu, ou des fichiers de données provenant d'une installation autorisée avec version indiquée. Aucun accès à l'installation du PC de l'utilisateur n'est disponible dans cet espace.
 
 À réception : inventorier l'archive sans exécuter ses binaires, calculer les empreintes, identifier les définitions et leurs consommateurs accessibles, suivre une règle concrète et noter ses contre-exemples. Jusqu'à cette réception, les trois obligations de lecture de code restent ouvertes ; aucune clôture exhaustive.
+
+## Ruined King — première source de patch gameplay lue, 5 octobre 2026
+
+**Cette passe remplace le statut documentaire exclusif de J03.** Le bilan atteint **18/20 avec code, données ou scripts de patch versionnés lus**, en incluant explicitement ce patch Switch parmi les outils. Il ne devient pas 18 moteurs analysés. Les catégories exclusives sont désormais : 6 règles, 7 définitions/configurations, 3 extensions, 2 outils/patchs ; Battle Chasers et Iratus restent documentaires.
+
+### Provenance et fichiers réellement consultés
+
+Dépôt [ADEMOLA200/Switch-Emulator-Mod-Database](https://github.com/ADEMOLA200/Switch-Emulator-Mod-Database), commit `abd55774c369b9c3a4df960e7afdb0391cb52056`. Arbre récursif non tronqué ; fichier gameplay relu avec cette référence épinglée.
+
+| Fichier | Blob Git | Portée |
+|---|---|---|
+| [Titles/0100947013122000/cheats/62EB499A85240245.txt](https://github.com/ADEMOLA200/Switch-Emulator-Mod-Database/blob/abd55774c369b9c3a4df960e7afdb0391cb52056/Titles/0100947013122000/cheats/62EB499A85240245.txt) | `bb76ce08d1dbf59922a5a35e3fc31a46ea1e23d6` | Douze blocs nommés, dont invincibilité, dégâts, mana, ultime, ressources, progression et fabrication. |
+| [Titles/0100947013122000/credits.txt](https://github.com/ADEMOLA200/Switch-Emulator-Mod-Database/blob/abd55774c369b9c3a4df960e7afdb0391cb52056/Titles/0100947013122000/credits.txt) | `1a84fa704f6a072398c77abb3756b428c7032fa2` | Attribution Eiffel2018, titre commercial et version 1.6 annoncée. |
+| [Patchs FPS, build 9FC46F388F6C684C](https://github.com/ADEMOLA200/Switch-Emulator-Mod-Database/blob/abd55774c369b9c3a4df960e7afdb0391cb52056/NX-60FPS-RES-GFX-Cheats/titles/0100947013122000/cheats/9FC46F388F6C684C.txt) | `178b995145bea5692cc385fe95048ac14732e32b` | 30/60 FPS, autre build : exclu des preuves de règles de combat. |
+
+Documentation primaire du format : [Atmosphère, Store Static Value to Memory](https://github.com/Atmosphere-NX/Atmosphere/blob/c8b7316581a8081e5b9f7d767c27db5c0a4db906/docs/features/cheats.md), section Code Type 0x0, blob `465ded946971ffd089807c52b928419444d7c960`. Le format décrit largeur, région mémoire, registre d'offset, offset immédiat et valeur écrite.
+
+### Analyse statique précise
+
+| Bloc du script | Ce que le fichier prouve | Ce qu'il ne prouve pas |
+|---|---|---|
+| Infinite Mana / Infinite Ultimate | Chaque bloc contient une écriture d'un octet `62`, respectivement avec offsets immédiats `0259D730` et `0254A710`. | Nom/signature de fonction native, nature exacte de l'instruction remplacée, modèle de consommation de ressources. |
+| 5x Damage | Trois écritures de huit octets dans `0329DE14–0329DE2B`, puis une écriture de quatre octets en `0259FE44`. | Multiplication par cinq effectivement exécutée, filtrage joueur/ennemi, ordre critique/armure/bouclier : le libellé seul ne certifie pas ces effets. |
+| Infinite Upgrade Points / Rune Shards | Deux séquences distinctes, chacune avec écriture de huit octets puis quatre octets. | Coûts natifs, caps, règles d'arbres et persistance en sauvegarde. |
+| Infinite Potions and Meals / 100% Successful Crafting | Même valeur littérale `D503201F` écrite à deux offsets différents. | Consommation ou probabilité native ; le désassemblage et les octets originaux restent à obtenir. |
+
+Ces commandes sont des écritures statiques du format Atmosphère. Pour les commandes commençant par `010E/040E/080E`, la région indiquée est Main NSO et le registre d'offset est E : les nombres cités sont donc des **offsets immédiats**, pas des adresses absolues ni des noms de fonction.
+
+**Conclusion de preuve :** un script de modification lié au gameplay du titre commercial est maintenant inspecté et traçable. Son contenu montre les opérations de patch ; les noms des options demeurent des déclarations d'auteur tant que les instructions remplacées et le contexte d'appel ne sont pas reconstruits. Aucun binaire ni patch exécuté, aucune ROM téléchargée, aucune compatibilité PC déduite de la version Switch.
+
+### Limites et contre-exemples
+
+- Le build ID `62EB499A85240245` ne se confond pas avec le build du patch FPS. Des offsets d'un build ne sont pas transférables à l'autre.
+- Aucun octet original ou test d'identité du code ciblé n'est fourni dans les blocs lus ; appliquer ces nombres à une autre version ne constituerait pas une preuve valable.
+- Des écritures proches et des intitulés liés aux ressources ne démontrent pas qu'une seule classe ou un seul résolveur gère mana, ultime et dégâts.
+- Un patch d'invincibilité retire une contrainte du combat ; il ne documente pas son équilibrage normal.
+- Les lanes, l'initiative, les délais, les zones de timeline et les afflictions restent des obligations de lecture native ouvertes.
+
+**Apport LITD :** la première leçon exploitable concerne la provenance : associer toute preuve de combat à la plateforme, la version et le fichier réel. La séparation des ressources ne doit pas être inférée de noms d'options. Aucun calibrage ni règle LITD ne change sur la base de ces patchs.
+
+Une page primaire [ColonelRVH, table PC du 17 novembre 2021](https://www.thecheatscript.com/2021/11/ruined-king-league-of-legends-story.html) annonce également l'inspection des PV et des options de mana/survoltage/ultime. La table PC elle-même n'a pas été lue ; elle reste une piste documentaire distincte. La prochaine preuve utile est son script complet ou les instructions originales entourant une cible du patch Switch, avec version et scénario précis.
