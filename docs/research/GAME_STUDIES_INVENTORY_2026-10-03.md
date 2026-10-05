@@ -626,3 +626,55 @@ Pour Battle Brothers, [Modular Vanilla / behavior.nut](https://github.com/Battle
 Les 20 jeux de l'inventaire ont désormais un statut explicite : 13 avec lecture ciblée d'au moins un fichier de code (les six de la passe précédente et sept ici), trois avec documentation primaire/mainteneur examinée, quatre sans preuve de code retrouvée. « Fichier lu » ne signifie pas « étude complète du jeu » : les mécanismes non abordés conservent leurs réserves. La correction Dungeon of the Endless retire la prétention non étayée sur `SpawnMobs` du statut certifié. Les sources externes ne modifient ni le canon LITD ni le runtime.
 
 Reproduction des sept sources de code : `git show <commit>:<chemin>` puis `git rev-parse <commit>:<chemin>` sur les dépôts liés. Cette passe est une revue statique ; aucun binaire ou mod tiers exécuté.
+
+
+## Troisième passe de preuves — 2026-10-04
+
+Cette passe remplace le statut courant « quatre titres sans preuve de code » de la section précédente par **deux**. Les résultats précédents restent conservés comme historique. Deux dépôts de randomiseurs ont été lus à des commits figés ; aucune exécution de jeu, mod ou binaire tiers n'a été effectuée.
+
+### Octopath Traveler II : données de faiblesses et variantes de puissance
+
+Source : [MarvinXLII/OT2R](https://github.com/MarvinXLII/OT2R/tree/1865d46344d2885b10e2e125ea9dfda238ac8635), commit `1865d46344d2885b10e2e125ea9dfda238ac8635` (2 août 2026, release v0.5.5).
+
+| Fichier et repères | Blob | Constat vérifiable |
+|---|---|---|
+| [src/Databases/EnemyDB.py](https://github.com/MarvinXLII/OT2R/blob/1865d46344d2885b10e2e125ea9dfda238ac8635/src/Databases/EnemyDB.py), lignes 71–97, `shields`, `weapon_shields`, `magic_shields` | `564d22ba924fec992753beecb05c2ad5de770dd8` | L'accesseur concatène six résistances d'armes et six résistances d'attributs ; le setter impose douze entrées et les redistribue. |
+| [src/Shields.py](https://github.com/MarvinXLII/OT2R/blob/1865d46344d2885b10e2e125ea9dfda238ac8635/src/Shields.py), lignes 214–216, `Shields.run` | `988c718a3030fe844a8373df5a9db140f2148f99` | Le randomiseur mélange ce tableau. Les branches précédentes excluent plusieurs boss, notamment pour des verrouillages scriptés ou des cas non testés. |
+| [src/AbilityPower.py](https://github.com/MarvinXLII/OT2R/blob/1865d46344d2885b10e2e125ea9dfda238ac8635/src/AbilityPower.py), `AbilityPower.run` | `69d43a927817aec8f17d6ffecfcdded61f8f39b1` | Pour les ensembles retenus dont le dernier niveau a un ratio non nul, un facteur uniforme de 0,7 à 1,3 est tiré puis appliqué par la méthode de l'ensemble. |
+| [src/Databases/AbilitySetDB.py](https://github.com/MarvinXLII/OT2R/blob/1865d46344d2885b10e2e125ea9dfda238ac8635/src/Databases/AbilitySetDB.py), lignes 22–26 et 59–62 | `22fbdcef286a8ff3aec323dc1ddf9ca9da238d41` | Les variantes NoBoost/BoostLv1/2/3 disponibles sont regroupées ; la mise à l'échelle multiplie puis convertit en entier le ratio des variantes d'attaque ou de soin. |
+
+**Limite décisive :** le nom `shields` désigne ici un tableau de résistances/faiblesses, pas le nombre de points de bouclier ni son décrément. Ces fichiers ne prouvent ni la résolution du Break, ni les tours de récupération, ni l'IA du moteur propriétaire. La présence de cas de boss exclus interdit de conclure à la compatibilité générale du mélange.
+
+**Adaptation proposée pour LITD, non implémentée :** représenter séparément affinités, compteur de rupture et états temporaires ; regrouper les variantes d'une compétence pour contrôler leurs changements ensemble ; conserver une liste explicite d'exceptions scriptées. Ces propositions sont des déductions de conception, pas des mécanismes LITD déjà livrés.
+
+### Chained Echoes : graine et compétences de méchas
+
+Source : [Samupo/ChainedEchoesRandomizer](https://github.com/Samupo/ChainedEchoesRandomizer/tree/f57935bcd99deb88908f8ddfe669d482df9c9e7a), commit `f57935bcd99deb88908f8ddfe669d482df9c9e7a` (1er juin 2026).
+
+| Fichier et repères | Blob | Constat vérifiable |
+|---|---|---|
+| [RandomGen.cs](https://github.com/Samupo/ChainedEchoesRandomizer/blob/f57935bcd99deb88908f8ddfe669d482df9c9e7a/RandomGen.cs), lignes 7–35 | `45a5808132cf7a0ce101af8821333f71986d3093` | Affecter `Seed` recrée un unique `System.Random`. Les fonctions Range/Next consomment ce même flux. Ce fichier n'établit pas l'initialisation de la graine par tous les appelants. |
+| [MechRandomizer.cs](https://github.com/Samupo/ChainedEchoesRandomizer/blob/f57935bcd99deb88908f8ddfe669d482df9c9e7a/MechRandomizer.cs), lignes 43–69 | `597a5104088429bd254026c5ba6cdf1dd717cc29` | Les compétences dont `skillUser >= 100` fournissent le pool de méchas. Chaque remplacement est retiré du pool : le dictionnaire associe les identifiants par permutation sans remise, sous réserve de données valides. |
+| Même fichier, lignes 72–99 | Même blob | Trois préfixes Harmony concernent l'équipement, les compétences après niveau et la compétence de profession. Une méthode introuvable est journalisée ; le drapeau global de pose est néanmoins activé après les tentatives. |
+
+**Limites :** un flux aléatoire unique ne prouve pas des sous-graines indépendantes, ni une reproductibilité entre versions de runtime et ordres d'appel différents. Les préfixes ciblent une version des signatures de jeu ; ils ne garantissent pas la compatibilité d'une installation actuelle. Les méthodes lues concernent la configuration des méchas, pas le calcul de l'Overdrive. Un hook nommé `SkillFunctions.UseSkill` ne suffit pas à certifier l'intégralité de la résolution du combat.
+
+**Adaptation proposée pour LITD, non implémentée :** rendre les pools de compétences propres aux formes explicites, préserver les permutations par tirage sans remise et enregistrer le résultat de chaque pose de hook plutôt qu'un succès global implicite. La séparation des flux aléatoires reste une recommandation de conception à tester, pas une propriété démontrée par ce mod.
+
+### Sources restantes : statut sans surcertification
+
+- **Battle Chasers: Nightwar** : [VERBOSE](https://www.nexusmods.com/battlechasersnightwar/mods/3), version 0.53 annoncée, mise à jour le 8 septembre 2021. La page de l'auteur décrit l'instrumentation et distribue une DLL de remplacement (`BC_Data/Managed/Assembly-CSharp.dll`). Aucun code source ni log figé n'a été examiné ; une description d'instrumentation ne certifie pas le pipeline interne.
+- **Ruined King** : aucune source pertinente pour les lanes ou la résolution du combat retrouvée dans cette passe. Les correctifs d'affichage/ultrawide repérés sont hors du mécanisme étudié et ne sont pas comptés comme preuve gameplay.
+- **Darkest Dungeon, Iratus, Legend of Grimrock II** : les trois preuves documentaires de la passe précédente conservent leur statut. Aucun fichier de code supplémentaire n'est certifié ici.
+
+### Couverture courante consolidée
+
+| Niveau de preuve | Nombre de jeux | Portée |
+|---|---:|---|
+| Lecture ciblée de code avec commit et blob | **15 / 20** | Les treize titres précédents, plus Octopath Traveler II et Chained Echoes ; preuve partielle des mécanismes nommés, aucune étude exhaustive certifiée. |
+| Documentation primaire ou auteur de mod | **3 / 20** | Darkest Dungeon, Iratus, Legend of Grimrock II. |
+| Sans preuve de code gameplay consultée | **2 / 20** | Battle Chasers: Nightwar, Ruined King. |
+
+L'avancement de couverture de code est donc passé de 13 à 15 titres (65 % à 75 %). Ce pourcentage compte des titres avec au moins une preuve ciblée ; il ne mesure ni la profondeur des études, ni le pourcentage de mécanismes du jeu reconstruits. Les vingt titres ont un statut explicite. Les anciennes affirmations sur Break, Overdrive et lanes restent non certifiées tant que leurs mécanismes précis n'ont pas de preuve correspondante.
+
+Reproduction : récupérer les deux dépôts, lire `git show <commit>:<chemin>` et comparer `git rev-parse <commit>:<chemin>` aux blobs ci-dessus. Cette mise à jour porte uniquement sur le rapport existant dans la bibliothèque du dépôt ; aucun code tiers copié, aucun changement de runtime ou de canon LITD.
