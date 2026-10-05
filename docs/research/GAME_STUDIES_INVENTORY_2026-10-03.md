@@ -11,7 +11,7 @@
 
 ## Conclusion
 
-**État courant — 5 octobre 2026 :** [revue ciblée des vingt jeux et preuves gameplay](#revue-des-vingt-jeux-et-preuves-gameplay--5-octobre-2026) : 20/20 fiches documentées, 17/20 titres avec code ou données versionnés lus. Parmi eux : 6 règles, 7 définitions/configurations, 3 extensions et 1 outil. Battle Chasers, Ruined King et Iratus restent documentaires. Ce bilan ne certifie pas vingt moteurs ni vingt études exhaustives.
+**État courant — 5 octobre 2026 :** [revue ciblée des vingt jeux et preuves gameplay](#revue-des-vingt-jeux-et-preuves-gameplay--5-octobre-2026) : 20/20 fiches documentées, 17/20 titres avec code ou données versionnés lus. Parmi eux : 6 règles, 7 définitions/configurations, 3 extensions et 1 outil. Battle Chasers dispose désormais d'une trace auteur historique ; Ruined King et Iratus restent documentaires. La contribution Overdrive de deux skills du mod Chained Echoes est lue dans le complément ci-dessous. Ce bilan ne certifie pas vingt moteurs ni vingt études exhaustives.
 
 La bibliothèque existe. La présence de toutes les analyses de code/mods annoncées en conversation n'est pas confirmée dans le commit audité. Une observation de gameplay, une page de mod et une analyse de code sont des niveaux de preuve différents. Aucune étude de code/mods détaillée des jeux ci-dessous n'a été retrouvée dans les fichiers textuels recherchés ; cela ne prouve pas qu'elle n'existe dans aucune autre source.
 
@@ -699,13 +699,13 @@ La classification retient la preuve la plus pertinente déjà examinée pour cha
 | ID | Jeu | Pièce de référence examinée | Type | Analyse vérifiée / mécanisme encore non prouvé |
 |---|---|---|---|---|
 | J01 | Darkest Dungeon | The-Miko : `miko.info.darkest`, `miko.effects.darkest` ; nouvelle preuve ci-dessous | Définition | Rangs, paramètres de compétence et conditions hit/miss ; compactage après mort et résolveur natif non prouvés. |
-| J02 | Battle Chasers: Nightwar | Page auteur [VERBOSE 0.53](https://www.nexusmods.com/battlechasersnightwar/mods/3), plus [fiche éditeur](https://store.steampowered.com/app/451020/Battle_Chasers_Nightwar/) | Document | Instrumentation annoncée, système de survoltage et donjons aléatoires documentés ; aucune DLL ni trace de résolution lue. |
+| J02 | Battle Chasers: Nightwar | Page auteur [VERBOSE 0.53](https://www.nexusmods.com/battlechasersnightwar/mods/3), plus [fiche éditeur](https://store.steampowered.com/app/451020/Battle_Chasers_Nightwar/) | Document | Instrumentation annoncée ; trace auteur historique de cumul d'AP lue dans le complément ; aucune DLL consultée. |
 | J03 | Ruined King | [Présentation gameplay Riot](https://www.leagueoflegends.com/fr-fr/news/dev/ruined-king-gameplay-deep-dive/) | Document | Initiative, types de compétences et ressources décrits ; aucune source du calcul des lanes ou des délais lue. |
 | J04 | Iratus: Lord of the Dead | [Player Balance 0.526](https://www.nexusmods.com/iratuslordofthedead/mods/6) | Document | Modifications de positions et d'effets décrites par l'auteur ; JSON et plugin non examinés. |
 | J05 | Darkest Dungeon II | Plugin-DD2 : `HookGenerals.cs`, `ModSupportPrefix` | Extension | Injection de dossiers de ressources ; Tokens, Combo, Death's Door et relations non prouvés par ce fichier. |
 | J06 | For The King | FTKAPI : `ItemManager.cs`, `CustomItem.cs` | Définition | Lecture/insertion/remplacement d'objets ; jets, précision, casse et loot restent sans preuve correspondante. |
 | J07 | Octopath Traveler II | OT2R : `EnemyDB.py`, `Shields.py`, `AbilityPower.py`, `AbilitySetDB.py` | Règle | Permutation d'affinités et facteur de puissance commun aux variantes ; compteur Break et séquence des impacts non prouvés. |
-| J08 | Chained Echoes | CERandomizer : `RandomGen.cs`, `MechRandomizer.cs` | Règle | Flux à graine et permutation des compétences de méchas ; Overdrive et résolution des statuts non prouvés. |
+| J08 | Chained Echoes | CERandomizer : `RandomGen.cs`, `MechRandomizer.cs`, `HarmonyPatches.cs` | Règle | Flux à graine, permutation ; contribution Overdrive et jets de groupe de deux skills lus ; fonctions natives non reconstruites. |
 | J09 | Slay the Spire | BaseMod : `BaseMod.java` | Extension | Abonnements, publication et retrait différé ; ordre des dégâts/blocs et décision IA non prouvés par ce framework. |
 | J10 | Battle Brothers | MSU : `skill.nut` ; Modular Vanilla : `behavior.nut` | Règle | Modificateurs de coût/preview et multiplication du score de ciblage ; moral/blessures et stratégie vanilla non prouvés. |
 | J11 | Enter the Gungeon | ExpandTheGungeon : `test_customroom_flow.cs` | Définition | Graphe fixe, entrée, parents et salles/tables ; validation du chemin critique et RNG natif non prouvés. |
@@ -767,7 +767,7 @@ Dépôt auteur : [KnightMiner/GrimrockKnightMods](https://github.com/KnightMiner
 
 **J07 Octopath II :** garder les affinités distinctes du compteur de rupture évite une mauvaise lecture d'un nom de variable. Pour certifier Break, suivre l'impact, le décrément et l'état déclenché ; l'ordre multi-hit reste ouvert.
 
-**J08 Chained Echoes :** une permutation de compétences et une graine sont démontrées ; elles ne suffisent pas à représenter les contributions des actions à une jauge collective. L'Overdrive requiert sa fonction de mise à jour.
+**J08 Chained Echoes :** permutation, graine et contribution Overdrive de deux skills sont démontrées dans le mod ; voir le complément ci-dessous. La fonction native de mise à jour de la jauge reste à lire.
 
 **J09 Slay the Spire :** le framework permet des effets réactifs aux événements. Une publication ne démontre ni la priorité des effets ni leur composition déterministe. Il faut suivre un effet réel et sa file d'actions pour étudier ces règles.
 
@@ -804,3 +804,49 @@ Dépôt auteur : [KnightMiner/GrimrockKnightMods](https://github.com/KnightMiner
 Les recherches web ont comparé pages d'auteurs, dépôts, documentation officielle et résultats contradictoires. La recherche de dépôts globale via le connecteur GitHub a été refusée par le périmètre d'URL de cet outil ; les dépôts nommés ont pu être lus normalement. Ce refus n'est pas interprété comme absence de dépôt. Les noms homonymes et correctifs graphiques sont exclus de la preuve gameplay. Pour les trois sources manquantes, la condition utile est un fichier ou une trace accessible et versionné, pas une nouvelle estimation de pourcentage.
 
 La clôture globale reste conditionnée à la définition du mécanisme étudié, la lecture de sa preuve, un contre-exemple et une reproduction adaptée. Les vingt jeux ne sont pas déclarés « analysés à 100 % ». Les enseignements ci-dessus documentent la bibliothèque existante ; aucun changement de gameplay LITD ni fusion de PR.
+
+## Approfondissement des preuves J02 et J08 — 5 octobre 2026
+
+Cette passe complète la matrice précédente. Les nombres restent **20 jeux documentés / 17 avec code ou données versionnés lus** : une trace publiée par un auteur n'est pas comptée comme lecture de code. Iratus et Ruined King restent sans fichier gameplay consulté.
+
+### J02 — Battle Chasers : trace publique, portée historique
+
+Source primaire : [peddroelm, 31 décembre 2017](https://steamcommunity.com/app/451020/discussions/0/1621724915810895620/). L'auteur publie des valeurs d'AP mesurées avant application des dégâts : 1184,548 → 1362,230 → 1566,565 → 1801,549. Pour trois perks et 15 survoltage consommé, elles concordent à l'arrondi avec trois multiplications successives par 1,15. **Inférence vérifiable :** cet exemple soutient un cumul multiplicatif, plutôt qu'une addition unique des trois bonus. Le multiplicateur cumulé calculé est 1,520875.
+
+**Limites :** build, protocole et fichier brut non fournis ; observation ancienne, non reproduite ici. Ce cas ne prouve ni la formule générale actuelle ni l'ordre bouclier/DOT. L'auteur indique lui-même devoir retester son observation de soin final. Le statut demeure **Document, avec trace auteur historique**, sans code gameplay lu.
+
+Une [publication du même auteur en 2021](https://steamcommunity.com/app/451020/discussions/0/3042732979961911118/) précise la DLL remplacée et nomme `BattleManager.OnBattleCompleteSequenceDone()` et `ShufflePartyAfterCombat()`. Elle fournit un emplacement annoncé d'instrumentation ; elle ne permet pas d'inspecter son implémentation. Aucun téléchargement authentifié ni fichier binaire obtenu.
+
+**Apport LITD :** une trace utile doit consigner valeur avant/après, survoltage effectivement consommé, perks actifs et version. Pour invalider l'hypothèse multiplicative, comparer notamment zéro perk et plusieurs perks à coût constant. Ces cas sont un protocole proposé, pas des tests exécutés.
+
+### J08 — Chained Echoes : règle du préfixe, Overdrive et statuts
+
+Source lue : [`HarmonyPatches.cs`](https://github.com/Samupo/ChainedEchoesRandomizer/blob/f57935bcd99deb88908f8ddfe669d482df9c9e7a/HarmonyPatches.cs), commit `f57935bcd99deb88908f8ddfe669d482df9c9e7a`, blob `780a948f05a3ab18cd603de101b27d3a26821fad`.
+
+| Zone | Règle observée statiquement |
+|---|---|
+| 29, 36–54 | Enregistrement d'un préfixe Harmony sur `SkillFunctions.UseSkill`. |
+| 401–407, 594–596 | `PreUseSkill` laisse passer les skills autres que 153/205 ; garde anti-réentrée, rétablie en fin de méthode ; retour final false. |
+| 465–485 | Skill 153 : parcourt les ennemis vivants, vérifie la touche, appelle le calcul d'attaque physique puis les dégâts ; ajoute ensuite l'état 145 à l'utilisateur. |
+| 488–513 | Skill 205 : niveau retrouvé par utilisateur/skill ; chance `0.25 * (niveau + 1)` ; tirage d'un état parmi quatre et un seul tirage de succès pour l'ensemble des ennemis vivants. |
+| 517–563 | Combat hors mécha : si le type du skill correspond à `ODInfluencer`, appel `ChangeOverDrive(-12)`, puis remise à zéro des variables et de l'affichage concernés. Sinon, appels +7/+6/+5 selon taille de groupe ≥4/3/≤2. |
+| 566–569 | Branche mécha : appel `ChangeOverDrive(7)`. |
+
+**Interprétation limitée :** le mod démontre une contribution demandée à l'Overdrive pour ces deux skills, ainsi qu'une règle de sélection et d'application de statuts. Il appelle le moteur pour les dégâts, les états et la jauge ; le corps de `ChangeOverDrive` n'est pas présent dans ce fichier. Bornes de jauge, zones de surchauffe, résistances aux états et réduction des dégâts restent non reconstruits.
+
+**Contre-exemples et risques visibles :**
+
+- L'alternative `ChangeOverDrive(-15)` est derrière le `else` d'un `if (true)` : elle est inatteignable dans cette source et ne constitue pas une règle active.
+- Le skill 205 réutilise le même état tiré et le même résultat de succès pour toutes les cibles vivantes ; ce code ne démontre pas des jets indépendants par cible. Les identifiants d'état 26/27/30/31 ne sont pas renommés en maladies sans leurs définitions.
+- La section hors mécha parcourt toute la liste des skills ; elle ne quitte pas la boucle après un identifiant correspondant. La contribution unique suppose donc l'unicité de cet identifiant.
+- Les branches d'animation mécha `skill >= 300` ne sont pas atteintes après la garde limitant ce préfixe à 153/205 ; elles ne prouvent pas la résolution d'autres skills.
+- Une exception avant la remise à true peut laisser la garde désactivée : aucune protection `finally` n'est visible. C'est un risque de lecture statique, pas une panne reproduite.
+- Le tirage de statuts utilise `UnityEngine.Random`, tandis que `RandomGen` utilise `System.Random`. La graine de permutation des méchas ne certifie donc pas la reproductibilité de ces jets de combat.
+
+**Apport LITD :** expliciter la phase de contribution à une jauge collective, le partage ou l'indépendance des jets de groupe et l'identité des générateurs aléatoires. Les valeurs de ce mod restent des observations externes, sans modification du gameplay LITD.
+
+### Recherche des trois fichiers manquants : exclusions vérifiées
+
+Les recherches supplémentaires n'ont livré aucun fichier gameplay lisible pour Iratus ou Ruined King. Les résultats homonymes de League of Legends et les correctifs d'affichage sont exclus. Pour Battle Chasers, la trace ci-dessus améliore la provenance documentaire sans donner accès à la DLL.
+
+Les pistes de dépôts d'applications/cartes, d'automatisation de sauvegarde et de jeu scolaire ne sont pas assimilées au code des titres commerciaux. Un nom de dépôt ressemblant au titre ne remplit pas l'obligation de preuve. Les trois titres demeurent sans code gameplay consulté ; cette limite est documentée dans la même bibliothèque.
