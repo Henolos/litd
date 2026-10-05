@@ -850,3 +850,42 @@ Source lue : [`HarmonyPatches.cs`](https://github.com/Samupo/ChainedEchoesRandom
 Les recherches supplémentaires n'ont livré aucun fichier gameplay lisible pour Iratus ou Ruined King. Les résultats homonymes de League of Legends et les correctifs d'affichage sont exclus. Pour Battle Chasers, la trace ci-dessus améliore la provenance documentaire sans donner accès à la DLL.
 
 Les pistes de dépôts d'applications/cartes, d'automatisation de sauvegarde et de jeu scolaire ne sont pas assimilées au code des titres commerciaux. Un nom de dépôt ressemblant au titre ne remplit pas l'obligation de preuve. Les trois titres demeurent sans code gameplay consulté ; cette limite est documentée dans la même bibliothèque.
+
+## Recherche complémentaire des trois sources manquantes — 5 octobre 2026
+
+**Résultat : aucun nouveau fichier gameplay obtenu ; couverture inchangée, 17/20.** Les liens de téléchargement consultés restituent des pages HTML, sans archive ni contenu des fichiers. Les descriptions ci-dessous sont des pistes de vérification ; elles ne sont pas promues en preuves de code.
+
+### Iratus — trois archives supplémentaires identifiées
+
+| Source auteur | Contenu annoncé et intérêt de lecture | Pièce encore manquante |
+|---|---|---|
+| [Nightsister 1.4](https://www.nexusmods.com/iratuslordofthedead/mods/5), scorpiovaeden | Classe séparée, variante de support/soin ; compétence de sommeil interrompu par dégâts annoncée ; compatibilité indiquée avec 176.02. L'auteur signale des limitations d'attributs associés aux extensions. | Archive et définitions réelles de classe/états ; le texte ne certifie pas le consommateur du sommeil. |
+| [StatsHolic 1v5](https://www.nexusmods.com/iratuslordofthedead/mods/9), A100N | Deux JSON remplacés ; accès annoncé aux onze statistiques et réorganisation de leur arbre. Version 181.xx+ ; anciennes sauvegardes déclarées incompatibles. | [Fichier 52](https://www.nexusmods.com/iratuslordofthedead/mods/9?file_id=52&tab=files), 8 KB, puis schéma et différences des deux JSON. |
+| [Playable Enemies 1.0](https://www.nexusmods.com/iratuslordofthedead/mods/13), Tbonex28b | Ennemis utilisables dans l'équipe ; l'auteur propose de changer `nodeSize` de 2 à 1 pour les grandes unités. Il signale également des tours perdus en équipe mixte, cause inconnue. | [Variante Two Slots, fichier 53](https://www.nexusmods.com/iratuslordofthedead/mods/13?file_id=53&tab=files), 382 KB, et définitions de taille/rangs/tours. |
+
+**Portée :** `nodeSize` est ici un fragment publié dans une instruction d'auteur, pas un JSON complet inspecté. Sa relation aux rangs et à l'occupation d'espace reste à vérifier dans les fichiers et leur consommateur. L'observation de tours perdus ne démontre pas un défaut précis du moteur. Ces pistes sont pertinentes pour les rangs, la capture et les afflictions de LITD, sans règle de combat LITD modifiée.
+
+La [piste GitHub lawrakina/Battler-2D-Unfrozen-Iratus](https://github.com/lawrakina/Battler-2D-Unfrozen-Iratus) a également été examinée : arborescence Unity de prototype, modèle de combat limité dans le fichier lu à une propriété réactive de changement d'état. Aucune provenance de mod branché au jeu commercial établie ; exclu du compte de preuves. Référence arbre Git `31eccef1e8e4a75b63b5ce7983a42af3a82029be`, fichier `Assets/Code/Data/Models/FightProcessModel.cs`, blob `16e21820d7ace1de9b1005f9a96604294d11e156`.
+
+### Battle Chasers — patch d'affichage distinct des règles de résolution
+
+[Display Damage-Shield Text 1.1](https://www.nexusmods.com/battlechasersnightwar/mods/1), Eugenii10 : le programme annoncé `BCN-DST-Mod.exe` modifie l'affichage numérique des boucliers, avec sauvegarde/restauration de `Assembly-CSharp.dll`. L'auteur indique la version de jeu 24037 et l'arrêt du support. Le programme et ses modifications n'ont pas été obtenus. Même une lecture de son patch d'affichage ne certifierait pas à elle seule le calcul d'absorption.
+
+La pièce prioritaire reste [VERBOSE 0.53](https://www.nexusmods.com/battlechasersnightwar/mods/3?tab=files) : archive de l'auteur et, idéalement, traces de combat associées à une version et un scénario. La trace AP historique déjà documentée ne remplace pas cette lecture.
+
+### Ruined King — dépôts homonymes écartés
+
+| Dépôt examiné | Pièce lue | Pourquoi exclu de la preuve du jeu commercial |
+|---|---|---|
+| [WashingtonAlbuquerque/RuinedKing](https://github.com/WashingtonAlbuquerque/RuinedKing) | README blob `53c6737261393c73088c4772a7f8233abc311c4a` ; arbre Git `6ee926878ece248d37040539bd3f7d00586c1bfd` | Présentation HTML/CSS/JavaScript ; aucune implémentation de mod gameplay établie. |
+| [SkyKhoala/RuinedKing](https://github.com/SkyKhoala/RuinedKing) | README blob `65fabb592b365c00ee2e55d979283c5054360288` ; arbre Git `90969f8fe1836136235b4d467d6f0cb5084f881e` | Projet CMI Pygame avec déplacement/saut ; distinct du RPG d'Airship. |
+
+Les résultats liés à Viego ou à l'objet Blade of the Ruined King dans d'autres jeux restent exclus. Aucun mod public lisible de résolution des lanes n'a été identifié dans cette passe. Cela décrit les résultats consultés, sans affirmer qu'aucun mod n'existe.
+
+### Déblocage concret
+
+Pour **Iratus**, une seule archive pertinente suffit à lancer l'inventaire automatique : Player Balance sans BepInEx, StatsHolic ou Playable Enemies. Pour **Battle Chasers**, l'archive VERBOSE est la piste prioritaire. Ces archives peuvent être jointes directement au chantier après téléchargement normal depuis le compte de l'utilisateur ; il n'est pas nécessaire de fournir chaque chemin séparément.
+
+Pour **Ruined King**, aucune archive gameplay fiable n'est encore identifiée : il faut un mod clairement rattaché au jeu, ou des fichiers de données provenant d'une installation autorisée avec version indiquée. Aucun accès à l'installation du PC de l'utilisateur n'est disponible dans cet espace.
+
+À réception : inventorier l'archive sans exécuter ses binaires, calculer les empreintes, identifier les définitions et leurs consommateurs accessibles, suivre une règle concrète et noter ses contre-exemples. Jusqu'à cette réception, les trois obligations de lecture de code restent ouvertes ; aucune clôture exhaustive.
