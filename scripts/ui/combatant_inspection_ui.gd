@@ -58,6 +58,7 @@ var detail_frame: PanelContainer
 var detail_content: VBoxContainer
 var detail_close_button: Button
 var detail_open := false
+var _detail_return_focus: WeakRef
 
 func _ready() -> void:
     layer = 75
@@ -104,6 +105,9 @@ func hide_preview() -> void:
 func open_detail(combatant: Dictionary, enemy: bool) -> void:
     if combatant.is_empty():
         return
+    if not detail_open:
+        var previous := get_viewport().gui_get_focus_owner()
+        _detail_return_focus = weakref(previous) if previous != null else null
     var presented := _inspection_combatant(combatant, enemy)
     var observable := _observable_combatant(combatant, presented, enemy)
     detail_open = true
@@ -128,12 +132,25 @@ func open_detail(combatant: Dictionary, enemy: bool) -> void:
     for line in _skill_lines(presented, enemy):
         detail_content.add_child(_label("• " + line, 14, TEXT))
     call_deferred("_apply_layout")
+    call_deferred("_focus_detail_close")
+
+func _focus_detail_close() -> void:
+    if detail_open and is_instance_valid(detail_close_button):
+        detail_close_button.grab_focus()
 
 func close_detail() -> void:
     if not detail_open:
         return
+    var focused := get_viewport().gui_get_focus_owner()
+    var restore := focused == null or detail_overlay.is_ancestor_of(focused)
     detail_open = false
     detail_overlay.visible = false
+    var previous: Control = _detail_return_focus.get_ref() as Control if _detail_return_focus != null else null
+    _detail_return_focus = null
+    # An outside action may already have focus; preserve that newer selection.
+    if restore and is_instance_valid(previous) and previous.is_inside_tree() and previous.is_visible_in_tree() and previous.focus_mode != Control.FOCUS_NONE:
+        if not (previous is BaseButton and (previous as BaseButton).disabled):
+            previous.grab_focus()
     HUDDirector.set_screen_context(GameState.current_screen)
 
 func _unhandled_input(event: InputEvent) -> void:
