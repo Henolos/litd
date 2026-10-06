@@ -97,6 +97,26 @@ func _run() -> void:
     var heal_result := VeilleursSkillBehaviorRuntime.new().resolve_non_damage(combat_runtime, "ENT_WATCHER_mathilde", "ENT_WATCHER_mathilde", heal_skill, "torso")
     _check(int(heal_result.get("healed", 0)) > 10, "Healing power equipment must increase real combat healing above the tier-1 base")
 
+
+    # Equipment proc pipeline uses the canonical status resolver. The current
+    # affliction contract owns stun refresh/recovery immunity semantics.
+    var proc_attacker: Dictionary = combat_runtime.combatants.get("ENT_WATCHER_mathilde", {}).duplicate(true)
+    proc_attacker["equipment_bonuses"] = {"bleed_chance":100, "stun_chance":100}
+    proc_attacker["weapon_power"] = 1
+    combat_runtime.combatants["ENT_WATCHER_mathilde"] = proc_attacker
+    var proc_target_id := "ENT_ENEMY_GOULE_AFFAMEE"
+    var proc_skill := {"skill_id":"VS001_EQUIPMENT_PROC_SMOKE", "skill_index":1, "effect_spec":{"damage_multiplier":0.1}}
+    var first_proc_result: Dictionary = combat_runtime.call("_resolve_damage_v2", "ENT_WATCHER_mathilde", proc_target_id, proc_skill, "torso", 1)
+    var first_proc_target: Dictionary = combat_runtime.combatants.get(proc_target_id, {})
+    _check((first_proc_result.get("equipment_procs", []) as Array).size() == 2, "A successful hit must resolve both deterministic equipment status procs")
+    _check(VeilleursStatusResolver.has(first_proc_target, "bleed"), "Bleed equipment proc must use the canonical bleed affliction")
+    _check(VeilleursStatusResolver.has(first_proc_target, "stun"), "Stun equipment proc must use the canonical stun affliction")
+    var stun_turns_before := int((first_proc_target.get("afflictions", {}) as Dictionary).get("stun", 0))
+    var second_proc_result: Dictionary = combat_runtime.call("_resolve_damage_v2", "ENT_WATCHER_mathilde", proc_target_id, proc_skill, "torso", 1)
+    var second_proc_target: Dictionary = combat_runtime.combatants.get(proc_target_id, {})
+    _check(int((second_proc_target.get("afflictions", {}) as Dictionary).get("stun", 0)) == stun_turns_before, "Equipment stun proc must not extend an active canonical stun")
+    _check((second_proc_result.get("equipment_procs", []) as Array).size() == 2, "Repeated hit must keep deterministic proc receipts")
+
     # Knowledge slice: an observable enemy hit becomes an observation plus a
     # durable proof in the Archives, and survives serialization/reload.
     var knowledge_archives := VeilleursArchivesRuntime.new()
