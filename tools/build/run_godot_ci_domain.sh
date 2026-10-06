@@ -47,7 +47,8 @@ run_checked "Import strict du projet" godot --headless --path . --import --quit
 case "$DOMAIN" in
   core-world)
     scene 120 "Expédition procédurale jouable" res://scenes/tests/dungeon_playable_pipeline_smoke.tscn
-    scene 360 "Parcours Premier Accord par les commandes joueur" res://scenes/tests/first_accord_playthrough_smoke.tscn
+    scene 540 "Parcours Premier Accord par les commandes joueur" res://scenes/tests/first_accord_playthrough_smoke.tscn
+    run_checked "Premier Accord sur 24 graines indépendantes" timeout 540s godot --headless --path . res://scenes/tests/first_accord_playthrough_smoke.tscn -- --policies=focus,head,mixed --seed_start=1001 --seed_count=24
     scene 0 "Smoke test noyau" res://scenes/tests/core_smoke.tscn
     scene 0 "Psychologie" res://scenes/tests/psychology_smoke.tscn
     scene 0 "Relations" res://scenes/tests/relationship_smoke.tscn
@@ -92,6 +93,7 @@ case "$DOMAIN" in
     scene 60 "Guidage des cendres" res://scenes/tests/ash_guidance_smoke.tscn
     ;;
   veilleurs)
+    run_checked "Payoffs des afflictions" timeout 60s godot --headless --path . --script scripts/tests/veilleurs_affliction_synergy_runtime_test.gd
     scene 60 "Contraintes corporelles des actions" res://scenes/tests/veilleurs_body_action_contract_smoke.tscn
     scene 60 "Contrat dix afflictions" res://scenes/tests/veilleurs_afflictions_contract_test.tscn
     scene 60 "Procs équipement et afflictions" res://scenes/tests/veilleurs_equipment_affliction_proc_test.tscn

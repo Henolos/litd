@@ -308,3 +308,30 @@ Avant d’ajouter de nouvelles familles de monstres, compétences, armes ou sall
 **voir une opportunité → accepter de perdre de la Lumière → obtenir quelque chose de précieux → subir une conséquence → décider de continuer ou d’extraire.**
 
 Si cette boucle fonctionne avec peu de contenu, le contenu déjà prévu pour LITD l’amplifiera. Si elle ne fonctionne pas, davantage de contenu masquera seulement le problème.
+## Mesure d'attrition du Premier Accord — 2026-10-04
+
+Sources primaires recoupées pour cette passe :
+
+- Red Hook, [présentation de Darkest Dungeon](https://www.darkestdungeon.com/darkest-dungeon/about/) : santé, stress et récupération au camp font partie de l'expédition.
+- Shattered Pixel Dungeon, [`PotionOfHealing.java`](https://github.com/00-Evan/shattered-pixel-dungeon/blob/e9defd0444c96d2fce3de5ec297c3398be8b7c55/core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/potions/PotionOfHealing.java), révision du 2026-10-02 : récupération de PV et traitement d'une liste explicite d'états sont deux opérations distinctes. Source lue directement ; aucun code repris.
+
+Interprétation pour LITD : distinguer les budgets au lieu de supposer qu'un soin
+annule toute l'attrition. Dans le runtime Veilleurs actuel, un soin de PV ne
+restaure ni une zone vitale détruite ni un membre manquant. Les blessures et la
+mort du corps restent persistantes. Cette passe n'ajoute pas de récupération
+gratuite, de camp ou de nouveau système de consommables.
+
+La télémétrie du test existant relève désormais les PV et le corps avant/après
+chaque rencontre, les actions des deux équipes, les dégâts, les traumatismes
+et les soins. Elle vérifie la conservation des blessures entre salles et la
+reproduction des traces. Le fait que chaque ennemi puisse répondre après une
+compétence joueur rend l'effectif simultané particulièrement important dans
+ce chemin de l'interface.
+
+Hypothèse mesurée : ajuster les quatre tables de rencontres obligatoires du
+Premier Accord, sans changer les catalogues ennemis, formules, rangs,
+afflictions, boss ni récompenses. Le détail du réglage et les résultats sont
+conservés dans [le document du raccordement jouable](../design/DUNGEON_PLAYABLE_FIRST_ACCORD.md).
+Ces résultats automatisés établissent une possibilité de terminer et une
+attrition observable ; le ressenti et la difficulté finale exigent un playtest
+humain.

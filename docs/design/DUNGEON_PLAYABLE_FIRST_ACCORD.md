@@ -245,3 +245,64 @@ Couverture : 2622 attaques, 128 soins dont 92 soins d'alliés avec gain de PV,
 possibles pour des ennemis sans exigence explicite d'arme à deux mains.
 Le boss isolé est vaincu en huit actions. Aucun réglage de difficulté,
 statistique, budget, récompense ou règle d'affliction n'est modifié.
+
+## Réglage provisoire de l'attrition — 2026-10-04
+
+La mesure distingue les PV, l'intégrité des zones vitales et les morts du
+corps. Un soin de PV n'annule pas un traumatisme. L'interface existante donne
+une réponse à chaque adversaire vivant après une compétence joueur : le
+nombre d'adversaires simultanés augmente donc le coût d'une action de soutien.
+Les formules et la cadence de combat sont conservées dans cette passe.
+
+Seules les huit entrées des tables obligatoires sont ajustées :
+
+| Salle | Effectif avant → après | Menace avant → après |
+|---|---:|---:|
+| Galerie | 2 → 1 | 2 → 1 |
+| Débat | 3 → 2 | 3 → 2 |
+| Effondrement | 3 → 2 | 3 → 2 |
+| Trois Piliers | 4 → 2 | 5 → 3 |
+
+Les Trois Piliers gardent leurs profils élite/rituel ou vétéran/contrôle et un
+budget supérieur aux rencontres précédentes. Les branches facultatives, leurs
+récompenses et leur risque restent inchangés. Les quatre combats obligatoires,
+le chemin protégé, le Gardien (menace 7), les 24 définitions ennemies, rangs,
+ciblage corporel, afflictions, Némésis et récompenses sont conservés. Aucun
+soin entre salles, résurrection ou multiplicateur caché n'est ajouté.
+
+Sur les six graines de réglage (101–106), la concentration termine deux
+expéditions contre zéro avec les anciennes tables. Sur ces deux victoires,
+Mathilde termine seule, avec 26 PV et 25 points d'intégrité du torse ; les
+morts des trois autres Veilleurs restent morts dans les rencontres suivantes.
+Ce signal confirme une possibilité de finir sans effacer l'attrition.
+
+Comparaison sur 24 graines indépendantes (1001–1024), choisies avant leur
+exécution et distinctes des six graines de réglage :
+
+| Politique | Expéditions terminées, avant | Après | Galerie gagnée, après | Débat gagné, après | Effondrement gagné, après | Trois Piliers gagnés, après |
+|---|---:|---:|---:|---:|---:|---:|
+| Concentration | 1/24 | 7/24 | 24/24 | 19/24 | 10/24 | 7/24 |
+| Tête | 1/24 | 3/24 | 24/24 | 4/24 | 3/24 | 3/24 |
+| Mixte | 0/24 | 1/24 | 24/24 | 2/24 | 2/24 | 1/24 |
+
+Les gagnants de la concentration conservent de un à trois Veilleurs vivants.
+Les trois politiques représentent 72 expéditions distinctes par version,
+répétées pour vérifier le déterminisme. Ce sont des mesures descriptives,
+sans intervalle de confiance ni garantie de représentativité des joueurs.
+
+Le test de parcours existant accepte une plage de graines et des politiques
+pour reproduire le témoin, sans changer les données de combat. Par défaut, la
+CI conserve les neuf politiques × six graines × deux exécutions (108 runs),
+puis exécute les trois politiques sur 24 graines × deux exécutions (144 runs).
+Les deux échantillons doivent contenir au moins une expédition complète ; les
+traces doivent être identiques et les PV/corps transmis exactement entre
+combats. La télémétrie compte actions joueur/ennemis, dégâts, traumatismes et
+soins séparément. Le témoin utilise explicitement `--min_completions=0` :
+l'absence de victoire reste une observation, pas une désactivation des autres
+contrats.
+
+Ce réglage améliore la progression mesurée ; il ne valide pas le plaisir, la
+lisibilité ou la difficulté finale. Un playtest humain reste requis, avec
+attention aux soins, aux obstacles corporels et aux choix de repli. Les plans
+sauvegardés avec les anciennes tables suivent le refus de révision déjà prévu
+par le pipeline ; leurs compositions ne sont pas régénérées silencieusement.
