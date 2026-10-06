@@ -1,6 +1,9 @@
 extends RefCounted
 class_name FirstAccordHybridPlanner
 
+const ROOM_RESOLVER := preload("res://scripts/world/dungeon_room_resolver.gd")
+const GENERATOR_VERSION := 2
+
 const RUN_SEED := preload("res://scripts/world/dungeon_run_seed.gd")
 
 const CONFIG_PATH := "res://data/dungeons/first_accord_hybrid_config.json"
@@ -23,6 +26,10 @@ static func build_plan(run_state: Dictionary = {}) -> Dictionary:
         return _fallback_plan(config, "generic_graph_generation_failed")
 
     var plan := _rebuild_protected_spine(generated, config)
+    var critical_validation := HybridDungeonGenerator.validate_graph(plan, graph_config)
+    if not bool(critical_validation.get("ok", false)):
+        return _fallback_plan(config, "critical_path_validation_failed", critical_validation)
+    plan["critical_path_validation"] = critical_validation
     _assign_modules(plan, config, library)
     _assign_variations(plan)
     _assign_encounter_tables(plan, encounters)
@@ -34,6 +41,11 @@ static func build_plan(run_state: Dictionary = {}) -> Dictionary:
     plan["ok"] = true
     plan["validation"] = validation
     plan["generation_report"] = _generation_report(plan, validation)
+    plan["generation_report"]["run_state"] = run_state.duplicate(true)
+    var revisions := {}
+    for path in [CONFIG_PATH, MODULES_PATH, ENCOUNTERS_PATH, REMANENCE_PATH, HybridDungeonGenerator.RULES_PATH]:
+        revisions[path] = FileAccess.get_file_as_string(path).sha256_text()
+    plan["generation_report"]["data_revisions"] = revisions
     return plan
 
 static func validate_plan(plan: Dictionary, config: Dictionary = {}, library: Dictionary = {}) -> Dictionary:
@@ -61,16 +73,32 @@ static func validate_plan(plan: Dictionary, config: Dictionary = {}, library: Di
 
     errors.append_array(HybridDungeonGenerator.validate_protected_path(plan, protected_order))
 
+    var graph_config := config.duplicate(true)
+    graph_config["mandatory_room_ids"] = protected_order
+    errors.append_array(HybridDungeonGenerator.validate_graph(plan, graph_config).get("errors", []))
     var module_ids := _module_ids(library)
+    if module_ids.size() != library.get("modules", []).size():
+        errors.append("duplicate_module_id")
     for node in nodes:
         var module_id := str(node.get("module_id", ""))
         if module_id == "" or not module_ids.has(module_id):
             errors.append("module_unresolved:%s" % str(node.get("id", "")))
+        elif not ROOM_RESOLVER.compatible(module_ids[module_id], config):
+            errors.append("incompatible_module:%s" % str(node.get("id", "")))
         elif str(module_ids[module_id].get("pool", "")) != _source_pool(config, str(node.get("module_pool", ""))):
             errors.append("module_pool_mismatch:%s" % str(node.get("id", "")))
 
     if _count_retreats(nodes) < int(config.get("retreat_policy", {}).get("minimum", 2)):
         errors.append("insufficient_retreats")
+
+    if bool(config.get("retreat_policy", {}).get("deep_shortcut_required", false)):
+        var deep_id := str(protected_order[protected_order.size() - 3])
+        var has_deep_shortcut := false
+        for edge in edges:
+            if str(edge.get("kind", "")) == "retreat_shortcut" and str(edge.get("from", "")) == deep_id and str(edge.get("to", "")) == str(plan.get("entry_id", "")) and not bool(edge.get("hidden", false)) and str(edge.get("requires", "")) in ["", "unlock_from_deep_side"]:
+                has_deep_shortcut = true
+        if not has_deep_shortcut or not bool(_find_node(nodes, deep_id).get("retreat", false)):
+            errors.append("deep_retreat_shortcut_missing")
 
     var boss_id := str(protected_order.back())
     var boss_node := _find_node(nodes, boss_id)
@@ -105,17 +133,35 @@ static func _rebuild_protected_spine(generated: Dictionary, config: Dictionary) 
 
     for node in generated.get("nodes", []):
         var node_id := str(node.get("id", ""))
-        if node_id in protected_order or bool(node.get("critical", false)):
+        if node_id in protected_order:
             continue
         var copy: Dictionary = node.duplicate(true)
         copy["protected"] = false
+        copy["critical"] = false
         copy["module_pool"] = _optional_pool_for_role(config, str(copy.get("role", "transit")), RUN_SEED.generator(int(plan.get("seed", 0)), "room", node_id + "|pool"))
         nodes.append(copy)
         var anchor_index: int = absi(node_id.hash()) % maxi(1, protected_order.size() - 1)
         copy["depth"] = int(nodes[anchor_index].get("depth", 0)) + 1
         edges.append({"from":str(protected_order[anchor_index]),"to":node_id,"kind":"branch","hidden":str(copy.get("role", "")) == "secret","requires":""})
-        if str(copy.get("role", "")) != "secret" and anchor_index + 1 < protected_order.size() and abs((node_id + "loop").hash()) % 3 == 0:
-            edges.append({"from":node_id,"to":str(protected_order[anchor_index + 1]),"kind":"loop","hidden":false,"requires":""})
+        copy["branch_anchor_index"] = anchor_index
+
+    # Rebuild exactly the validated loop count. A loop rejoins the next protected
+    # room, never a later one: required story rooms remain dominators.
+    var loop_candidates: Array = []
+    for node in nodes:
+        if not bool(node.get("critical", false)) and str(node.get("role", "")) != "secret":
+            loop_candidates.append(node)
+    var rng := RUN_SEED.generator(int(plan.get("seed", 0)), "layout", "protected_loops")
+    var loop_target := int(generated.get("loop_count", 0))
+    var added := 0
+    while added < loop_target and not loop_candidates.is_empty():
+        var index := rng.randi_range(0, loop_candidates.size() - 1)
+        var node: Dictionary = loop_candidates[index]
+        loop_candidates.remove_at(index)
+        var anchor_index := int(node["branch_anchor_index"])
+        edges.append({"from":str(node["id"]),"to":str(protected_order[anchor_index + 1]),"kind":"loop","hidden":false,"requires":""})
+        added += 1
+    plan["loop_count"] = added
 
     _ensure_deep_retreat(nodes, edges, protected_order)
     plan["nodes"] = nodes
@@ -127,30 +173,7 @@ static func _rebuild_protected_spine(generated: Dictionary, config: Dictionary) 
     return plan
 
 static func _assign_modules(plan: Dictionary, config: Dictionary, library: Dictionary) -> void:
-    var modules: Array = library.get("modules", [])
-    for node in plan.get("nodes", []):
-        var pool := str(node.get("module_pool", ""))
-        var source_pool := _source_pool(config, pool)
-        var candidates: Array = []
-        for module in modules:
-            if str(module.get("pool", "")) == source_pool:
-                candidates.append(module)
-        if candidates.is_empty():
-            continue
-        var rng := RUN_SEED.generator(int(plan.get("seed", 0)), "room", str(node.get("id", "")) + "|module")
-        var module := _weighted_pick(candidates, rng)
-        if module.is_empty():
-            continue
-        node["module_id"] = str(module.get("module_id", ""))
-        node["module_source_pool"] = source_pool
-        node["module_pool_fallback"] = source_pool != pool
-        var anchors: Array[String] = []
-        for scar in module.get("scar_anchors", []):
-            anchors.append(str(scar.get("anchor_id", "")))
-        node["scar_anchors"] = anchors
-
-    var boss := _find_node(plan.get("nodes", []), str(config.get("protected_story_order", []).back()))
-    boss["module_id"] = str(config.get("protected_boss_module", ""))
+    ROOM_RESOLVER._assign_modules(plan, config, library)
 
 static func _assign_variations(plan: Dictionary) -> void:
     for node in plan.get("nodes", []):
@@ -174,39 +197,13 @@ static func _ensure_deep_retreat(nodes: Array, edges: Array, protected_order: Ar
     edges.append({"from":deep_id,"to":str(protected_order[0]),"kind":"retreat_shortcut","hidden":false,"requires":"unlock_from_deep_side"})
 
 static func _optional_pool_for_role(config: Dictionary, role: String, rng: RandomNumberGenerator) -> String:
-    var candidates: Array = []
-    var pools: Array = config.get("secret_room_pools", []) if role == "secret" else config.get("optional_room_pools", [])
-    for entry in pools:
-        if role in entry.get("roles", []):
-            candidates.append(entry)
-    var selected := _weighted_pick(candidates, rng)
-    if not selected.is_empty():
-        return str(selected.get("pool", ""))
-    if not candidates.is_empty():
-        return "" # Explicitly disabled pools must not be re-enabled by fallback.
-    # Preserve the existing service-room compatibility policy for generic roles.
-    return "accord_service_rooms" if role != "secret" else ""
+    return ROOM_RESOLVER._optional_pool_for_role(config, role, rng)
 
 static func _source_pool(config: Dictionary, pool: String) -> String:
-    return str(config.get("module_pool_fallbacks", {}).get(pool, pool))
+    return ROOM_RESOLVER._source_pool(config, pool)
 
 static func _weighted_pick(candidates: Array, rng: RandomNumberGenerator) -> Dictionary:
-    var total := 0.0
-    for candidate in candidates:
-        total += maxf(0.0, float(candidate.get("weight", 1.0)))
-    if total <= 0.0:
-        return {}
-    var roll := rng.randf() * total
-    var last: Dictionary = {}
-    for candidate in candidates:
-        var weight := maxf(0.0, float(candidate.get("weight", 1.0)))
-        if weight <= 0.0:
-            continue
-        last = candidate
-        roll -= weight
-        if roll < 0.0:
-            return candidate
-    return last
+    return ROOM_RESOLVER._weighted_pick(candidates, rng)
 
 static func _generation_report(plan: Dictionary, validation: Dictionary) -> Dictionary:
     var loops := 0
@@ -218,7 +215,7 @@ static func _generation_report(plan: Dictionary, validation: Dictionary) -> Dict
         if str(node.get("role", "")) == "secret":
             secrets += 1
     return {
-        "version": 1,
+        "version": GENERATOR_VERSION,
         "seed_version": RUN_SEED.VERSION,
         "engine_version": Engine.get_version_info().get("string", ""),
         "seed": plan.get("seed", 0),
@@ -229,6 +226,9 @@ static func _generation_report(plan: Dictionary, validation: Dictionary) -> Dict
         "secret_count": secrets,
         "retreat_count": _count_retreats(plan.get("nodes", [])),
         "module_pool_fallback_count": _count_pool_fallbacks(plan.get("nodes", [])),
+        "profile": plan.get("dungeon_profile", {}).duplicate(true),
+        "stages": ["seed", "dungeon_profile", "flow_generator", "critical_path_validation", "room_resolver"],
+        "critical_path_validation": plan.get("critical_path_validation", {}).duplicate(true),
         "validation": validation.duplicate(true),
         "fallback": false
     }
@@ -247,10 +247,7 @@ static func _mandatory_by_id(config: Dictionary, room_id: String) -> Dictionary:
     return {}
 
 static func _module_ids(library: Dictionary) -> Dictionary:
-    var result := {}
-    for module in library.get("modules", []):
-        result[str(module.get("module_id", ""))] = module
-    return result
+    return ROOM_RESOLVER._module_ids(library)
 
 static func _has_node(nodes: Array, room_id: String) -> bool:
     return not _find_node(nodes, room_id).is_empty()

@@ -10,10 +10,10 @@ func inject_returning_enemy(encounter: Dictionary, region_id: String, seed: int 
     var result: Dictionary = encounter.duplicate(true)
     result["nemesis_injected"] = false
     result["nemesis_candidates"] = 0
-    if encounter.is_empty() or bool(encounter.get("boss", false)) or RemanenceRuntime == null:
+    if encounter.is_empty() or bool(encounter.get("boss", false)) or not bool(encounter.get("nemesis_allowed", true)) or RemanenceRuntime == null:
         return result
     var composition: Array = (result.get("composition", []) as Array).duplicate(true)
-    if composition.size() >= MAX_ENCOUNTER_SIZE:
+    if composition.size() >= mini(MAX_ENCOUNTER_SIZE, int(encounter.get("capacity", MAX_ENCOUNTER_SIZE))):
         return result
     for member_value: Variant in composition:
         if member_value is Dictionary and str((member_value as Dictionary).get("remanence_id", "")) != "":

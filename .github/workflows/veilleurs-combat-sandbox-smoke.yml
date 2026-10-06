@@ -3,6 +3,13 @@ name: Veilleurs Combat Sandbox Smoke
 on:
   pull_request:
     paths:
+      - 'scenes/tests/veilleurs_afflictions_contract_test.tscn'
+      - 'scripts/world/hybrid_dungeon_generator.gd'
+      - 'scripts/world/first_accord_hybrid_planner.gd'
+      - 'scripts/world/first_accord_hybrid_runtime_plan.gd'
+      - 'scripts/world/dungeon_*.gd'
+      - 'scripts/core/veilleurs_encounter_director.gd'
+      - 'data/dungeons/first_accord_*.json'
       - 'data/veilleurs/canonical_roster.json'
       - 'data/veilleurs/combat_sandbox_quartet_bridge.json'
       - 'data/veilleurs/v06/basic_actions_roster.json'
@@ -69,7 +76,7 @@ jobs:
       - name: Combat Sandbox 0.1 - boucle de combat complete
         run: timeout 60s godot --headless --path . res://scenes/tests/veilleurs_combat_sandbox_loop_smoke.tscn
       - name: Combat Sandbox 0.1 - dix afflictions
-        run: timeout 60s godot --headless --path . --script res://scripts/tests/veilleurs_afflictions_contract_test.gd
+        run: timeout 60s godot --headless --path . res://scenes/tests/veilleurs_afflictions_contract_test.tscn
       - name: Combat Sandbox 0.1 - familles de competences systemiques
         run: timeout 60s godot --headless --path . res://scenes/tests/veilleurs_systemic_skill_families_smoke.tscn
       - name: Combat Sandbox 0.1 - formation controle synergies et ultimes

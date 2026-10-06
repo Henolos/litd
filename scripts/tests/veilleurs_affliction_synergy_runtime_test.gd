@@ -43,6 +43,28 @@ func _init() -> void:
     if int(control_decorated.get("accuracy", 0)) != 87:
         failures.append("control_window_accuracy_not_applied")
 
+    var mathilde_payoff := SYNERGY.decorate_action({"name":"Mathilde"}, wounded, {"id":"MA-ENT-09","tree":"Entaille","accuracy":80,"canonical_tags":["SAIGNEMENT","MEMBRE_BLESSÉ"]})
+    if str(mathilde_payoff.get("synergy_tree_payoff", "")) != "mathilde_hemorrhage":
+        failures.append("mathilde_tree_payoff_missing")
+
+    var marec_payoff := SYNERGY.decorate_action({"name":"Marec"}, breaker_target, {"id":"MR-BRI-14","tree":"Brisure","accuracy":80,"canonical_tags":["EXPOSÉ"]})
+    if str(marec_payoff.get("synergy_tree_payoff", "")) != "marec_breaker":
+        failures.append("marec_tree_payoff_missing")
+
+    var silence_target := {"hp":50,"afflictions":{"silence":2}}
+    var anouk_payoff := SYNERGY.decorate_action({"name":"Anouk"}, silence_target, {"id":"AN-DIS-14","tree":"Dissidence","accuracy":80,"canonical_tags":["INTERROMPU"]})
+    if str(anouk_payoff.get("synergy_tree_payoff", "")) != "anouk_disruptor":
+        failures.append("anouk_tree_payoff_missing")
+
+    var snared_target := {"hp":50,"afflictions":{"snare":2}}
+    var aurelien_control := SYNERGY.decorate_action({"name":"Aurélien"}, snared_target, {"id":"AU-ANA-14","tree":"Anatomie","accuracy":80,"canonical_tags":["MEMBRE_BLESSÉ"]})
+    if str(aurelien_control.get("synergy_tree_payoff", "")) != "aurelien_anatomical_control":
+        failures.append("aurelien_anatomy_payoff_missing")
+
+    var aurelien_blood := SYNERGY.decorate_action({"name":"Aurélien"}, wounded, {"id":"AÏ-HÉM-14","tree":"Hémocorde","accuracy":80,"canonical_tags":["SAIGNEMENT","VASCULAIRE"]})
+    if str(aurelien_blood.get("synergy_tree_payoff", "")) != "aurelien_hemocorde":
+        failures.append("aurelien_hemocorde_payoff_missing")
+
     var plain_skill := {"id":"TEST-PLAIN","accuracy":82,"canonical_tags":["GARDE"]}
     var plain_decorated := SYNERGY.decorate_action({"name":"Marec"}, control_target, plain_skill)
     if bool(plain_decorated.get("synergy_control_exploit", false)):

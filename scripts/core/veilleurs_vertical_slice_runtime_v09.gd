@@ -19,11 +19,14 @@ func _init() -> void:
     knowledge_adapter = KNOWLEDGE_ADAPTER_SCRIPT.new() as VeilleursCombatKnowledgeAdapter
 
 func start_dungeon(dungeon_id: String, seed: int = 0) -> Dictionary:
+    var started := super.start_dungeon(dungeon_id, seed)
+    if not bool(started.get("ok", false)):
+        return started
     expedition_watcher_state.clear()
     last_materialized_encounter.clear()
     pending_recruit_candidates.clear()
     recruitment_decisions.clear()
-    return super.start_dungeon(dungeon_id, seed)
+    return started
 
 func launch_current_encounter(context: Dictionary = {}) -> Dictionary:
     if combat != null:
@@ -44,7 +47,13 @@ func launch_current_encounter(context: Dictionary = {}) -> Dictionary:
     else:
         combat_kind = "authored"
         var encounter_seed := ("%s|%s|%d" % [campaign.current_dungeon_id, combat_node_id, campaign.expeditions_started]).hash()
-        last_materialized_encounter = nemesis_director.inject_returning_enemy(encounter, region_id, encounter_seed)
+        if bool(encounter.get("procedural_selected", false)):
+            encounter_seed = int(encounter.get("seed_salt", 0))
+            # The procedural definition has a fixed count and depth budget.
+            # A returning enemy replaces a member instead of adding pressure.
+            last_materialized_encounter = _materialize_procedural_encounter(encounter, region_id, encounter_seed)
+        else:
+            last_materialized_encounter = nemesis_director.inject_returning_enemy(encounter, region_id, encounter_seed)
         combat = AUTHORED_V09_SCRIPT.new() as VeilleursAuthoredEncounterRuntimeV09
         setup = combat.setup_authored_encounter(last_materialized_encounter, region_id)
     if not bool(setup.get("ok", false)):
@@ -191,6 +200,9 @@ func _apply_equipment_bonuses(watcher_id: String, row: Dictionary) -> Dictionary
     var hero_id := _equipment_hero_id(watcher_id)
     if hero_id == "":
         return row
+    var equipped: Dictionary = EquipmentManager.equipped_by_hero.get(hero_id, {})
+    var weapon: Dictionary = EquipmentManager.get_instance(str(equipped.get("weapon", "")))
+    row["weapon_two_handed"] = bool(weapon.get("two_handed", false))
     var bonuses: Dictionary = EquipmentManager.bonuses_for_hero(hero_id)
     if bonuses.is_empty():
         row["equipment_bonuses"] = {}
@@ -272,7 +284,7 @@ func _build_recruit_candidates(values: Variant) -> Array[Dictionary]:
         if not (value is Dictionary):
             continue
         var enemy: Dictionary = (value as Dictionary).duplicate(true)
-        if int(enemy.get("hp", 0)) <= 0:
+        if not preload("res://scripts/core/combat/veilleurs_target_resolver.gd").tactical_actor_alive(enemy):
             continue
         var definition_id := str(enemy.get("entity_id", ""))
         if not definition_id.begins_with("ENT_ENEMY_"):
@@ -306,3 +318,37 @@ func _stage_rank(stage: String) -> int:
         "veteran": return 2
         "memorial": return 1
         _: return 0
+
+func _materialize_procedural_encounter(encounter: Dictionary, region_id: String, seed: int) -> Dictionary:
+    var flags: Dictionary = campaign.dungeon.node_flags.get(combat_node_id, {})
+    if flags.has("returning_encounter"):
+        return flags["returning_encounter"].duplicate(true)
+    var result := encounter.duplicate(true)
+    result["nemesis_injected"] = false
+    var node := campaign.dungeon.current()
+    if bool(encounter.get("nemesis_allowed", false)) and str(node.get("role", "")) in ["combat", "choice", "hazard", "elite"]:
+        var rng := RandomNumberGenerator.new()
+        rng.seed = seed
+        if rng.randf() < 0.12:
+            var used: Array = []
+            for previous in campaign.dungeon.node_flags.values():
+                var returning: Dictionary = previous.get("returning_encounter", {})
+                if bool(returning.get("nemesis_injected", false)):
+                    used.append(str(returning.get("nemesis_remanence_id", "")))
+            for candidate in nemesis_director.candidates_for_region(region_id):
+                if str(candidate.get("region_id", "")) != region_id or str(candidate.get("id", "")) in used:
+                    continue
+                for member in result.get("composition", []):
+                    if str(member.get("definition_id", "")) == str(candidate.get("species_id", "")):
+                        member["remanence_id"] = str(candidate["id"])
+                        member["returning_enemy"] = true
+                        member["remanence_stage"] = str(candidate.get("stage", "elite"))
+                        result["nemesis_injected"] = true
+                        result["nemesis_remanence_id"] = str(candidate["id"])
+                        result["nemesis_name"] = str(candidate.get("name", ""))
+                        break
+                if bool(result["nemesis_injected"]):
+                    break
+    flags["returning_encounter"] = result.duplicate(true)
+    campaign.dungeon.node_flags[combat_node_id] = flags
+    return result

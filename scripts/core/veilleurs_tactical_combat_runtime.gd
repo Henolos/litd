@@ -120,7 +120,7 @@ func alive_ids(team: String = "") -> Array[String]:
     for entity_id_value: Variant in combatants.keys():
         var entity_id := str(entity_id_value)
         var row: Dictionary = combatants[entity_id]
-        if int(row.get("hp", 0)) <= 0:
+        if not preload("res://scripts/core/combat/veilleurs_target_resolver.gd").tactical_actor_alive(row):
             continue
         if team != "" and str(row.get("team", "")) != team:
             continue

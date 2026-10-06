@@ -47,6 +47,9 @@ func resolve_skill(attacker_id: String, target_id: String, skill_id: String, zon
     var skill: Dictionary = content_db.skill(skill_id)
     if skill.is_empty() or str(skill.get("entity_id", "")) != attacker_id:
         return {"ok":false, "reason":"skill_not_owned"}
+    var actor_verdict := TARGET_RESOLVER_SCRIPT.validate_tactical_target(self, attacker_id, target_id, skill)
+    if not bool(actor_verdict.get("ok", false)):
+        return actor_verdict
     var action := skill_behavior.effective_action(skill)
     if action in ["passive_modifier", "guard", "heal", "support", "observe", "psychological", "control", "move", "transform"]:
         return skill_behavior.resolve_non_damage(self, attacker_id, target_id, skill, zone)
@@ -100,6 +103,9 @@ func preview_skill(attacker_id: String, target_id: String, skill_id: String, zon
 func enemy_step(enemy_id: String) -> Dictionary:
     if not combatants.has(enemy_id) or str((combatants[enemy_id] as Dictionary).get("team", "")) != "enemy":
         return {"ok":false, "reason":"not_enemy"}
+    var actor_verdict := TARGET_RESOLVER_SCRIPT.validate_tactical_actor(self, enemy_id)
+    if not bool(actor_verdict.get("ok", false)):
+        return actor_verdict
     var decision: Dictionary = enemy_ai.decide(self, enemy_id)
     var action := str(decision.get("action", "none"))
     match action:
@@ -113,7 +119,7 @@ func enemy_step(enemy_id: String) -> Dictionary:
             if not (cell_value is Vector2i):
                 return {"ok":false, "reason":"ai_invalid_cell"}
             var cell: Vector2i = cell_value
-            if cell.x >= 0 and grid.move(enemy_id, cell):
+            if cell.x >= 0 and bool(TARGET_RESOLVER_SCRIPT.validate_tactical_actor(self, enemy_id, {"action_type":"move"}).get("ok", false)) and grid.move(enemy_id, cell):
                 var move_result := {"ok":true, "action":action, "enemy":enemy_id, "target":str(decision.get("target", "")), "to":[cell.x, cell.y], "decision_reason":str(decision.get("reason", ""))}
                 action_log.append(move_result.duplicate(true))
                 return move_result
@@ -228,6 +234,9 @@ func combat_trace() -> Array[Dictionary]:
     return combat_inspector.entries()
 
 func _enemy_role_attack(attacker_id: String, target_id: String, decision: Dictionary) -> Dictionary:
+    var verdict := TARGET_RESOLVER_SCRIPT.validate_tactical_actor(self, attacker_id, {"action_type":"attack"})
+    if not bool(verdict.get("ok", false)):
+        return verdict
     var attacker: Dictionary = combatants[attacker_id]
     var target: Dictionary = combatants[target_id]
     var stats: Dictionary = attacker.get("stats", {})

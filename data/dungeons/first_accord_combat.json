@@ -1,0 +1,135 @@
+{
+  "version": 1,
+  "boss": {
+    "entity_id": "c01_ancient_accord_warden",
+    "name_fr": "Le Gardien du Premier Accord",
+    "combat_role": "control",
+    "threat_value": 7,
+    "recruitable": false,
+    "stats": {
+      "FOR": 82,
+      "TEC": 78,
+      "PRE": 74,
+      "MOB": 52,
+      "GAR": 92,
+      "RES": 88,
+      "PER": 82,
+      "VIG": 96
+    },
+    "body_integrity": {
+      "head": 110,
+      "torso": 260,
+      "left_arm": 150,
+      "right_arm": 150,
+      "left_leg": 170,
+      "right_leg": 170
+    }
+  },
+  "skills": [
+    {
+      "skill_id": "SK_FIRST_ACCORD_WARDEN_01",
+      "entity_id": "c01_ancient_accord_warden",
+      "tree_id": "TREE_FIRST_ACCORD_WARDEN",
+      "name_fr": "Sentence interrompue",
+      "unlock_level": 1,
+      "skill_index": 1,
+      "mechanical_profile": "control",
+      "activation_type": "active",
+      "action_type": "control",
+      "range": 3,
+      "body_bias": "torso",
+      "ai_tags": [],
+      "tier": 1,
+      "effect_scale": 1.0,
+      "boss_skill": true
+    },
+    {
+      "skill_id": "SK_FIRST_ACCORD_WARDEN_02",
+      "entity_id": "c01_ancient_accord_warden",
+      "tree_id": "TREE_FIRST_ACCORD_WARDEN",
+      "name_fr": "Garde des Trois Piliers",
+      "unlock_level": 1,
+      "skill_index": 2,
+      "mechanical_profile": "guard",
+      "activation_type": "active",
+      "action_type": "guard",
+      "range": 1,
+      "body_bias": "torso",
+      "ai_tags": [],
+      "tier": 1,
+      "effect_scale": 1.0,
+      "boss_skill": true
+    },
+    {
+      "skill_id": "SK_FIRST_ACCORD_WARDEN_03",
+      "entity_id": "c01_ancient_accord_warden",
+      "tree_id": "TREE_FIRST_ACCORD_WARDEN",
+      "name_fr": "Écho du Désaccord",
+      "unlock_level": 1,
+      "skill_index": 3,
+      "mechanical_profile": "psych",
+      "activation_type": "active",
+      "action_type": "psychological",
+      "range": 3,
+      "body_bias": "torso",
+      "ai_tags": [],
+      "tier": 1,
+      "effect_scale": 1.0,
+      "boss_skill": true
+    },
+    {
+      "skill_id": "SK_FIRST_ACCORD_WARDEN_04",
+      "entity_id": "c01_ancient_accord_warden",
+      "tree_id": "TREE_FIRST_ACCORD_WARDEN",
+      "name_fr": "Scellement civique",
+      "unlock_level": 1,
+      "skill_index": 4,
+      "mechanical_profile": "control",
+      "activation_type": "active",
+      "action_type": "control",
+      "range": 3,
+      "body_bias": "torso",
+      "ai_tags": [],
+      "tier": 1,
+      "effect_scale": 1.0,
+      "boss_skill": true
+    }
+  ],
+  "resource_rewards": {
+    "accord.guardroom.cache": {
+      "gold": [
+        15,
+        30
+      ]
+    },
+    "accord.archive.cache": {
+      "essence": [
+        1,
+        2
+      ]
+    },
+    "accord.vault.reward": {
+      "materials": [
+        2,
+        4
+      ]
+    },
+    "accord.vestibule.supplies": {
+      "materials": [
+        1,
+        2
+      ]
+    },
+    "accord.collapse.scrap": {
+      "materials": [
+        1,
+        3
+      ]
+    }
+  },
+  "completion_rewards": {
+    "gold": 250,
+    "materials": 20,
+    "essence": 0
+  }
+}

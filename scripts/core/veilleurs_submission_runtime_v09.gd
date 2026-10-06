@@ -13,7 +13,7 @@ func evaluate(runtime: Variant, target_id: String) -> Dictionary:
         return {"ok":false, "reason":"target_not_enemy"}
     if bool(row.get("boss", false)) or target_id.begins_with("ENT_BOSS_"):
         return {"ok":false, "reason":"boss_not_subduable"}
-    if int(row.get("hp", 0)) <= 0:
+    if not preload("res://scripts/core/combat/veilleurs_target_resolver.gd").tactical_actor_alive(row):
         return {"ok":false, "reason":"target_dead"}
     if bool(row.get("subdued", false)):
         return {"ok":false, "reason":"already_subdued"}
@@ -71,7 +71,7 @@ func active_enemy_ids(runtime: Variant) -> Array[String]:
     for id_value: Variant in runtime.combatants.keys():
         var entity_id := str(id_value)
         var row: Dictionary = runtime.combatants[entity_id]
-        if str(row.get("team", "")) != "enemy" or int(row.get("hp", 0)) <= 0 or bool(row.get("subdued", false)):
+        if str(row.get("team", "")) != "enemy" or not preload("res://scripts/core/combat/veilleurs_target_resolver.gd").tactical_actor_alive(row) or bool(row.get("subdued", false)):
             continue
         result.append(entity_id)
     return result

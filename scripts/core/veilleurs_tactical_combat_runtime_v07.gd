@@ -169,7 +169,7 @@ func request_summon(owner_id: String, count: int, skill_id: String) -> Dictionar
 func next_round() -> void:
     super.next_round()
     _decay_terrain_effects()
-    if active_boss_id != "" and combatants.has(active_boss_id) and int((combatants[active_boss_id] as Dictionary).get("hp", 0)) > 0:
+    if active_boss_id != "" and combatants.has(active_boss_id) and TARGET_RESOLVER_SCRIPT.tactical_actor_alive(combatants[active_boss_id]):
         last_boss_rule = boss_rules.before_round(self)
         action_log.append({"ok":true, "action":"boss_rule", "boss":active_boss_id, "state":last_boss_rule.duplicate(true)})
 
