@@ -7,6 +7,7 @@ const CombatEvent := preload("res://scripts/core/combat/veilleurs_combat_event.g
 const CombatCommand := preload("res://scripts/core/combat/veilleurs_combat_command.gd")
 const TargetResolver := preload("res://scripts/core/combat/veilleurs_target_resolver.gd")
 const LegacyRuntime := preload("res://scripts/core/veilleurs_combat_sandbox_runtime.gd")
+const EquipmentProcResolver := preload("res://scripts/core/combat/veilleurs_equipment_proc_resolver.gd")
 
 func _ready() -> void:
     var target := {"id":"target","name":"Cible"}
@@ -69,6 +70,23 @@ func _ready() -> void:
     var valid_target := TargetResolver.validate_index(targets, 0)
     assert(bool(valid_target.get("ok", false)) and str((valid_target.get("target", {}) as Dictionary).get("id", "")) == "enemy", "TargetResolver valid-index contract changed")
     assert(str(TargetResolver.validate_index(targets, 1).get("reason", "")) == "invalid_target", "TargetResolver invalid-index contract changed")
+
+    var proc_attacker := {"equipment_bonuses":{"bleed_chance":100, "stun_chance":100}}
+    var proc_target := {"hp":20, "max_hp":20, "afflictions":{}, "affliction_immunities":{}}
+    var proc_first := EquipmentProcResolver.resolve_after_hit(proc_attacker, proc_target, "equipment-proc-contract")
+    var proc_first_target: Dictionary = proc_first.get("target", {})
+    assert((proc_first.get("events", []) as Array).size() == 2, "Equipment hit must emit deterministic bleed/stun proc receipts")
+    assert(int((proc_first_target.get("afflictions", {}) as Dictionary).get("bleed", 0)) == 2, "Bleed equipment proc must use canonical affliction duration")
+    assert(int((proc_first_target.get("afflictions", {}) as Dictionary).get("stun", 0)) == 1, "Stun equipment proc must use canonical anti-refresh duration")
+    var proc_repeat := EquipmentProcResolver.resolve_after_hit(proc_attacker, proc_first_target, "equipment-proc-contract")
+    var proc_repeat_target: Dictionary = proc_repeat.get("target", {})
+    assert(int((proc_repeat_target.get("afflictions", {}) as Dictionary).get("stun", 0)) == 1, "Repeated equipment proc must not extend active canonical stun")
+    assert(int(((proc_repeat.get("events", []) as Array)[0] as Dictionary).get("roll", -1)) == int(((proc_first.get("events", []) as Array)[0] as Dictionary).get("roll", -2)), "Same equipment proc seed must reproduce the same roll")
+    var immune_target := proc_target.duplicate(true)
+    immune_target["affliction_immunities"] = {"stun":1}
+    var immune_proc := EquipmentProcResolver.resolve_after_hit({"equipment_bonuses":{"stun_chance":100}}, immune_target, "equipment-proc-immune")
+    var immune_event: Dictionary = (immune_proc.get("events", []) as Array)[0]
+    assert(bool(immune_event.get("immune", false)) and not bool(immune_event.get("applied", true)), "Equipment stun proc must respect canonical recovery immunity")
 
     print("VEILLEURS_COMBAT_RESOLVERS_CONTRACT_OK")
     get_tree().quit(0)
