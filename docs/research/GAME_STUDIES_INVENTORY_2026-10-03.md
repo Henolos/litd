@@ -11,7 +11,7 @@
 
 ## Conclusion
 
-**État courant — 5 octobre 2026 :** 20/20 fiches documentées ; **18/20 titres avec code, données ou scripts de patch versionnés lus**. Parmi eux : 6 règles, 7 définitions/configurations, 3 extensions et 2 outils/patchs. La nouvelle source Ruined King est un patch mémoire Switch 1.6, pas le moteur du jeu. Battle Chasers et Iratus restent sans fichier gameplay consulté. Voir la revue des vingt jeux et les compléments ci-dessous ; aucune analyse exhaustive certifiée.
+**État courant — 6 octobre 2026 :** 20/20 fiches documentées ; **19/20 titres avec code, données ou scripts de patch versionnés lus**. Catégories exclusives : 6 règles, 7 définitions/configurations, 3 extensions et 3 outils/patchs. Battle Chasers et Ruined King disposent de scripts mémoire Switch inspectés ; leurs règles natives ne sont pas reconstruites. Iratus reste documentaire. La recherche accessible est arrêtée avec ces limites explicites ; les pièces manquantes deviennent des compléments non bloquants pour l'exploitation de la bibliothèque. Aucune analyse exhaustive certifiée.
 
 La bibliothèque existe. La présence de toutes les analyses de code/mods annoncées en conversation n'est pas confirmée dans le commit audité. Une observation de gameplay, une page de mod et une analyse de code sont des niveaux de preuve différents. Aucune étude de code/mods détaillée des jeux ci-dessous n'a été retrouvée dans les fichiers textuels recherchés ; cela ne prouve pas qu'elle n'existe dans aucune autre source.
 
@@ -699,7 +699,7 @@ La classification retient la preuve la plus pertinente déjà examinée pour cha
 | ID | Jeu | Pièce de référence examinée | Type | Analyse vérifiée / mécanisme encore non prouvé |
 |---|---|---|---|---|
 | J01 | Darkest Dungeon | The-Miko : `miko.info.darkest`, `miko.effects.darkest` ; nouvelle preuve ci-dessous | Définition | Rangs, paramètres de compétence et conditions hit/miss ; compactage après mort et résolveur natif non prouvés. |
-| J02 | Battle Chasers: Nightwar | Page auteur [VERBOSE 0.53](https://www.nexusmods.com/battlechasersnightwar/mods/3), plus [fiche éditeur](https://store.steampowered.com/app/451020/Battle_Chasers_Nightwar/) | Document | Instrumentation annoncée ; trace auteur historique de cumul d'AP lue dans le complément ; aucune DLL consultée. |
+| J02 | Battle Chasers: Nightwar | VERBOSE et trace AP auteur ; script Switch `d0222f29ab9bb64c.txt`, commit `abd55774c369b9c3a4df960e7afdb0391cb52056` | Outil | Chaînes de pointeurs et écritures PV/mana/argent inspectées ; version Switch 1.0.2 annoncée ; résolution native et DLL VERBOSE non lues. |
 | J03 | Ruined King | Riot ; patchs Switch `62EB499A85240245.txt`, crédits Eiffel2018, commit `abd55774c369b9c3a4df960e7afdb0391cb52056` | Outil | Script de patch mémoire combat/ressources lu ; version Switch 1.6 annoncée ; moteur, lanes et délais natifs non reconstruits. |
 | J04 | Iratus: Lord of the Dead | [Player Balance 0.526](https://www.nexusmods.com/iratuslordofthedead/mods/6) | Document | Modifications de positions et d'effets décrites par l'auteur ; JSON et plugin non examinés. |
 | J05 | Darkest Dungeon II | Plugin-DD2 : `HookGenerals.cs`, `ModSupportPrefix` | Extension | Injection de dossiers de ressources ; Tokens, Combo, Death's Door et relations non prouvés par ce fichier. |
@@ -930,3 +930,42 @@ Ces commandes sont des écritures statiques du format Atmosphère. Pour les comm
 **Apport LITD :** la première leçon exploitable concerne la provenance : associer toute preuve de combat à la plateforme, la version et le fichier réel. La séparation des ressources ne doit pas être inférée de noms d'options. Aucun calibrage ni règle LITD ne change sur la base de ces patchs.
 
 Une page primaire [ColonelRVH, table PC du 17 novembre 2021](https://www.thecheatscript.com/2021/11/ruined-king-league-of-legends-story.html) annonce également l'inspection des PV et des options de mana/survoltage/ultime. La table PC elle-même n'a pas été lue ; elle reste une piste documentaire distincte. La prochaine preuve utile est son script complet ou les instructions originales entourant une cible du patch Switch, avec version et scénario précis.
+
+## Solution de poursuite — Battle Chasers et limites non bloquantes, 6 octobre 2026
+
+L'utilisateur accepte de poursuivre si les dernières pièces ne sont pas accessibles. Cette décision concerne le blocage du chantier ; elle n'autorise pas à certifier les preuves manquantes ni à fusionner la PR.
+
+### Battle Chasers : source publique effectivement lue
+
+Dépôt [ADEMOLA200/Switch-Emulator-Mod-Database](https://github.com/ADEMOLA200/Switch-Emulator-Mod-Database), commit `abd55774c369b9c3a4df960e7afdb0391cb52056`.
+
+| Fichier | Blob Git | Provenance/portée |
+|---|---|---|
+| [Titles/0100551001D88000/cheats/d0222f29ab9bb64c.txt](https://github.com/ADEMOLA200/Switch-Emulator-Mod-Database/blob/abd55774c369b9c3a4df960e7afdb0391cb52056/Titles/0100551001D88000/cheats/d0222f29ab9bb64c.txt) | `145a7d388f7bd0dfcccada43a30500763a996338` | Quatre blocs : argent, PV, mana et un second bloc nommé PV All. |
+| [Titles/0100551001D88000/credits.txt](https://github.com/ADEMOLA200/Switch-Emulator-Mod-Database/blob/abd55774c369b9c3a4df960e7afdb0391cb52056/Titles/0100551001D88000/credits.txt) | `5682a577f09f27ddb05f4b476e0b7ff80cc1c72d` | Battle Chasers: Nightwar v1.0.2 ; attributions merlin555 et arismendy64. |
+
+Format vérifié dans la [documentation primaire Atmosphère](https://github.com/Atmosphere-NX/Atmosphere/blob/c8b7316581a8081e5b9f7d767c27db5c0a4db906/docs/features/cheats.md), sections 0x5 (lecture/déréférencement), 0x6 (écriture à l'adresse d'un registre), 0x7 (arithmétique).
+
+**Lecture statique :** les blocs PV et mana partent du même pointeur Main NSO à l'offset `03234D30`, suivent les mêmes déréférencements successifs (+A0, +0, +30, +18), puis ajoutent respectivement +48 et +5C avant une écriture de quatre octets. Si le champ est un float IEEE 754, `43020000` encode 130 et `43160000` encode 150. Cette interprétation numérique est vérifiée localement par conversion binaire ; le type réel des champs n'est pas démontré sans leur consommateur.
+
+Le bloc nommé Inf Hp All reprend exactement la chaîne du bloc PV et le même offset final +48 ; seule la valeur passe à `461C3C00` (9999 si float). **Contre-preuve :** aucune boucle sur les combattants n'est présente ; le mot All ne suffit donc pas à prouver l'application à toute l'équipe.
+
+Le bloc argent utilise une autre racine `0327F5A0` et une chaîne plus courte. L'écriture de huit octets contient deux mots `000F423F` (999999 en entier non signé). L'identité des deux champs n'est pas reconstruite ; il serait injustifié de leur attribuer deux devises particulières.
+
+**Portée exacte :** script de modification mémoire versionné réellement consulté, sans exécution. Ni calcul des dégâts, ni ordre bouclier/DOT, ni survoltage, ni fonctionnement de la DLL VERBOSE ne sont prouvés par ce script. Les chaînes et valeurs ne sont pas transposables au PC ou à une autre version. Aucun fichier du jeu complet obtenu.
+
+### Iratus et règles natives : arrêt des recherches répétitives
+
+La dernière recherche de `unitBalance.json` et de Player Balance n'a pas fourni de JSON Iratus accessible. Les résultats de fichiers homonymes liés à Warcraft ne sont pas des preuves d'Iratus. Les sources auteur déjà rangées restent disponibles avec leurs limites.
+
+La solution retenue est de **poursuivre avec les preuves accessibles**, plutôt que de rendre toute la bibliothèque dépendante de ces archives. Les lectures manquantes sont conservées comme compléments :
+
+| Complément | Statut | Déclencheur de reprise |
+|---|---|---|
+| JSON/classe/résolveur Iratus | Différé, non bloquant ; documentaire seulement | Réception d'une archive ou découverte d'un fichier public pertinent. |
+| DLL et logs VERBOSE Battle Chasers | Différé ; patch Switch et trace historique disponibles | Archive auteur accessible et version précisée. |
+| Fonctions natives Ruined King : lanes, dégâts, afflictions | Différé ; patch Switch disponible | Source technique complète ou fichiers d'une installation autorisée. |
+
+**Bilan mis à jour :** 20 jeux documentés ; 19 avec code/données/scripts de patch lus, dont 3 outils/patchs. Le nombre de preuves directes de règles reste 6 : ajouter un script mémoire ne transforme pas un outil en moteur analysé.
+
+La recherche publique effectuée peut être considérée terminée dans ce périmètre, avec ces limites. L'analyse exhaustive des vingt jeux n'est pas déclarée CLOS. Les enseignements déjà établis peuvent être exploités dans la bibliothèque existante en gardant leur niveau de preuve ; aucun changement de gameplay LITD ni fusion dans cette passe.
