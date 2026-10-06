@@ -30,4 +30,4 @@ grant knowledge_sync to knowledge_sync_runtime;
 
 alter role knowledge_sync_runtime set statement_timeout = '60s';
 alter role knowledge_sync_runtime set idle_in_transaction_session_timeout = '60s';
-alter role knowledge_sync_runtime set search_path = 'pg_catalog,knowledge';
+alter role knowledge_sync_runtime set search_path = pg_catalog, knowledge;

@@ -65,7 +65,7 @@ begin
   if not ('idle_in_transaction_session_timeout=60s' = any(coalesce(role_config, array[]::text[]))) then
     raise exception 'knowledge_sync_runtime idle transaction timeout drifted';
   end if;
-  if not ('search_path=pg_catalog,knowledge' = any(coalesce(role_config, array[]::text[]))) then
+  if not ('search_path=pg_catalog, knowledge' = any(coalesce(role_config, array[]::text[]))) then
     raise exception 'knowledge_sync_runtime search_path drifted';
   end if;
 end
