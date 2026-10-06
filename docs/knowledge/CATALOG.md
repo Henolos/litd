@@ -28,7 +28,7 @@ La distinction ci-dessus est volontaire : une preuve historique fusionnée confi
 
 ## Protocoles / gouvernance
 
-- [Inventaire vérifié des études de jeux/mods — 3 octobre 2026](../research/GAME_STUDIES_INVENTORY_2026-10-03.md) — `revalidate` : 142 fichiers audités, 20 jeux consolidés ; résultats et limites documentés sans promotion automatique du canon.
+- [Inventaire des études de jeux/mods du 3 octobre 2026](../research/GAME_STUDIES_INVENTORY_2026-10-03.md) — `revalidate` : 142 fichiers audités ; quatre corpus de conversations récupérés, périmètre consolidé de 20 jeux et résultats historiques rangés avec limites explicites. Audit documentaire, sans promotion du canon. Complément du 6 octobre : 20 fiches, preuves versionnées de code/données/patchs pour 19 jeux ; limites et manifeste actualisés.
 
 - `README.md` — architecture du LITD Development Intelligence System.
 - `LIVING_LIBRARY_PROTOCOL.md` — protocole systématique Source → Connaissance → Hypothèse → Décision → Core → Implémentation → Test → Mesure → Preuve → Réévaluation.

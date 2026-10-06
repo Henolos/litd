@@ -11,6 +11,8 @@
 
 ## Conclusion
 
+**État courant — 6 octobre 2026 :** 20/20 fiches documentées ; **19/20 titres avec code, données ou scripts de patch versionnés lus**. Catégories exclusives : 6 règles, 7 définitions/configurations, 3 extensions et 3 outils/patchs. Battle Chasers et Ruined King disposent de scripts mémoire Switch inspectés ; leurs règles natives ne sont pas reconstruites. Iratus reste documentaire. La recherche accessible est arrêtée avec ces limites explicites ; les pièces manquantes deviennent des compléments non bloquants pour l'exploitation de la bibliothèque. Aucune analyse exhaustive certifiée.
+
 La bibliothèque existe. La présence de toutes les analyses de code/mods annoncées en conversation n'est pas confirmée dans le commit audité. Une observation de gameplay, une page de mod et une analyse de code sont des niveaux de preuve différents. Aucune étude de code/mods détaillée des jeux ci-dessous n'a été retrouvée dans les fichiers textuels recherchés ; cela ne prouve pas qu'elle n'existe dans aucune autre source.
 
 Les observations existantes sont conservées à leur emplacement. Les conclusions historiques non étayées sont rangées ci-dessous comme pistes `revalidate`, sans promotion en canon. Ce document et son [manifeste](GAME_STUDIES_INVENTORY_2026-10-03.json) enrichissent `docs/research/` ; ils ne constituent pas une autre bibliothèque.
@@ -678,3 +680,292 @@ Source : [Samupo/ChainedEchoesRandomizer](https://github.com/Samupo/ChainedEchoe
 L'avancement de couverture de code est donc passé de 13 à 15 titres (65 % à 75 %). Ce pourcentage compte des titres avec au moins une preuve ciblée ; il ne mesure ni la profondeur des études, ni le pourcentage de mécanismes du jeu reconstruits. Les vingt titres ont un statut explicite. Les anciennes affirmations sur Break, Overdrive et lanes restent non certifiées tant que leurs mécanismes précis n'ont pas de preuve correspondante.
 
 Reproduction : récupérer les deux dépôts, lire `git show <commit>:<chemin>` et comparer `git rev-parse <commit>:<chemin>` aux blobs ci-dessus. Cette mise à jour porte uniquement sur le rapport existant dans la bibliothèque du dépôt ; aucun code tiers copié, aucun changement de runtime ou de canon LITD.
+
+
+## Revue des vingt jeux et preuves gameplay — 5 octobre 2026
+
+Cette section est l'état courant ; les sections précédentes décrivent les étapes historiques. Chaque titre reçoit une analyse ciblée, une pièce identifiable, une limite et une condition de revalidation. « Documenté » signifie que ces éléments sont présents ; cela ne signifie pas que l'intégralité du jeu est reconstruite.
+
+### Classification de la preuve réellement lue
+
+- **Règle** : code exécutant une décision ou un changement de paramètres gameplay (score IA, faim, permutation, protection, etc.).
+- **Définition** : données de compétences/objets/salles ou code de configuration du contenu ; pas la résolution interne du moteur.
+- **Extension** : routage de hooks ou chargement de ressources ; pas une preuve du mécanisme gameplay annoncé.
+- **Outil** : squelette d'exemple produit par un outil ; pas le générateur du jeu.
+- **Document** : page primaire ou de l'auteur décrivant les fonctionnalités ; aucun fichier gameplay lu.
+
+La classification retient la preuve la plus pertinente déjà examinée pour chaque titre. Les références figées et plages des quinze premières lectures restent dans les sections précédentes ; les deux nouvelles lectures sont détaillées après la matrice.
+
+| ID | Jeu | Pièce de référence examinée | Type | Analyse vérifiée / mécanisme encore non prouvé |
+|---|---|---|---|---|
+| J01 | Darkest Dungeon | The-Miko : `miko.info.darkest`, `miko.effects.darkest` ; nouvelle preuve ci-dessous | Définition | Rangs, paramètres de compétence et conditions hit/miss ; compactage après mort et résolveur natif non prouvés. |
+| J02 | Battle Chasers: Nightwar | VERBOSE et trace AP auteur ; script Switch `d0222f29ab9bb64c.txt`, commit `abd55774c369b9c3a4df960e7afdb0391cb52056` | Outil | Chaînes de pointeurs et écritures PV/mana/argent inspectées ; version Switch 1.0.2 annoncée ; résolution native et DLL VERBOSE non lues. |
+| J03 | Ruined King | Riot ; patchs Switch `62EB499A85240245.txt`, crédits Eiffel2018, commit `abd55774c369b9c3a4df960e7afdb0391cb52056` | Outil | Script de patch mémoire combat/ressources lu ; version Switch 1.6 annoncée ; moteur, lanes et délais natifs non reconstruits. |
+| J04 | Iratus: Lord of the Dead | [Player Balance 0.526](https://www.nexusmods.com/iratuslordofthedead/mods/6) | Document | Modifications de positions et d'effets décrites par l'auteur ; JSON et plugin non examinés. |
+| J05 | Darkest Dungeon II | Plugin-DD2 : `HookGenerals.cs`, `ModSupportPrefix` | Extension | Injection de dossiers de ressources ; Tokens, Combo, Death's Door et relations non prouvés par ce fichier. |
+| J06 | For The King | FTKAPI : `ItemManager.cs`, `CustomItem.cs` | Définition | Lecture/insertion/remplacement d'objets ; jets, précision, casse et loot restent sans preuve correspondante. |
+| J07 | Octopath Traveler II | OT2R : `EnemyDB.py`, `Shields.py`, `AbilityPower.py`, `AbilitySetDB.py` | Règle | Permutation d'affinités et facteur de puissance commun aux variantes ; compteur Break et séquence des impacts non prouvés. |
+| J08 | Chained Echoes | CERandomizer : `RandomGen.cs`, `MechRandomizer.cs`, `HarmonyPatches.cs` | Règle | Flux à graine, permutation ; contribution Overdrive et jets de groupe de deux skills lus ; fonctions natives non reconstruites. |
+| J09 | Slay the Spire | BaseMod : `BaseMod.java` | Extension | Abonnements, publication et retrait différé ; ordre des dégâts/blocs et décision IA non prouvés par ce framework. |
+| J10 | Battle Brothers | MSU : `skill.nut` ; Modular Vanilla : `behavior.nut` | Règle | Modificateurs de coût/preview et multiplication du score de ciblage ; moral/blessures et stratégie vanilla non prouvés. |
+| J11 | Enter the Gungeon | ExpandTheGungeon : `test_customroom_flow.cs` | Définition | Graphe fixe, entrée, parents et salles/tables ; validation du chemin critique et RNG natif non prouvés. |
+| J12 | Dead Cells | ScriptTool : `BuildMainRooms.cs` | Outil | Squelette entrée → combat → sortie ; aucune preuve du générateur Motion Twin, de la complexité ou du tirage natif. |
+| J13 | The Binding of Isaac: Rebirth | StageAPI15 : `roomsList.lua` | Définition | Catalogue normalisé et index par forme ; portes, traversabilité et compatibilité de l'API avec Rebirth non prouvées. |
+| J14 | Spelunky 2 | CustomLevels : `custom_levels.lua` | Définition | Remplacement de niveaux, templates et filtres de spawn ; chemin principal vanilla et nettoyage complet non garantis. |
+| J15 | FTL: Faster Than Light | Hyperspace : `InternalEvents.cpp` | Extension | Appel original, callbacks et remplacement de résultat ; budgets et sous-graines de rencontres non prouvés. |
+| J16 | Stoneshard | ModShardLauncher : `RoomUtils.cs`, `DungeonsSpawn.cs` | Définition | Structure des salles et injection des tables tier/faction/ennemis ; anatomie, blessures et chemin critique non prouvés. |
+| J17 | Legend of Grimrock II | KnightMods : `reskilled.lua`, `set_bonuses.lua`, `tweaks.lua` ; nouvelle preuve ci-dessous | Règle | Traits, bonus conditionnels, esquive et protection de partie corporelle des projectiles ; résolution native complète non prouvée. |
+| J18 | Dungeon of the Endless | DungeonModifications : `DungeonModificationsMod.cs` | Définition | Configuration du nombre minimum/maximum de salles avant génération originale ; pondération des ennemis non prouvée. |
+| J19 | Into the Breach | IntelligentAI : `ai.lua` | Règle | Scoring tactique moddé selon conséquences et garde-fous ; légalité complète des actions et IA vanilla non prouvées. |
+| J20 | Shattered Pixel Dungeon | `Hunger.java`, `ItemStatusHandler.java` | Règle | Attrition par ticks, seuils et identification/serialization des catégories ; équilibre global non déduit de deux fichiers. |
+
+### Nouvelle preuve J01 — Darkest Dungeon : contrat gameplay de The-Miko
+
+Dépôt auteur : [Genso-Necromancer/The-Miko](https://github.com/Genso-Necromancer/The-Miko/tree/6c10b5aacff17faaa607ca91cd3f5b6dab5717ac), commit `6c10b5aacff17faaa607ca91cd3f5b6dab5717ac`.
+
+- [heroes/miko/miko.info.darkest](https://github.com/Genso-Necromancer/The-Miko/blob/6c10b5aacff17faaa607ca91cd3f5b6dab5717ac/heroes/miko/miko.info.darkest), blob `419f347bd754a02e4a5e64a638a5e027d51850a6`, lignes 1–36 : résistances et équipement, puis compétences avec niveau, précision, dégâts, critique, lancement, cible et identifiants d'effets. `extermination` déclare launch 21/target 123 ; `persuasion_needle` déclare launch 432/target 234 et un déplacement ; `evil_sealing_circle` référence un effet de stun distinct.
+- [effects/miko.effects.darkest](https://github.com/Genso-Necromancer/The-Miko/blob/6c10b5aacff17faaa607ca91cd3f5b6dab5717ac/effects/miko.effects.darkest), blob `edc43f16fa91b83aad5b465ba1acd6031860b6a5`, lignes 20–23 et 156–161 : `Miko Rhythm` et `Miko Miss Rhythm Break` déclarent des conditions hit/miss opposées ; les variantes `Miko Strong Stun` déclarent une chance croissante, une cible, stun et queue.
+
+**Analyse :** la définition d'une compétence relie plusieurs opérations plutôt que d'incorporer toute leur logique. Rangs de lancement, rangs de cible, déplacement et déclenchement sont des dimensions distinctes. Une chance de stun déclarée supérieure à 100 % ne prouve pas la probabilité finale : la résistance et l'interprétation du moteur doivent être vérifiées séparément.
+
+**Contre-preuve :** les lignes suivantes du fichier info répètent plusieurs fois le même identifiant `homing_amulet` pour un même niveau. Sans connaître la règle de chargement du moteur, on ne peut pas affirmer si ces lignes fusionnent, remplacent ou entrent en conflit. Ce dépôt ne prouve pas l'absence de doublons ni la bonne exécution du mod.
+
+**Conclusion LITD :** cette source renforce l'intérêt de contrats distincts pour rangs/cibles et effets. Le ciblage des parties du corps LITD reste une contrainte propre au projet, non démontrée par ce mod. La mort/compactage doit conserver sa propre preuve et ses tests. Aucune règle de stun du mod n'est transposée automatiquement.
+
+### Nouvelle preuve J17 — Grimrock II : traits, équipement et parties du corps
+
+Dépôt auteur : [KnightMiner/GrimrockKnightMods](https://github.com/KnightMiner/GrimrockKnightMods/tree/5e7c80db7b677cecabd28a6ba30a9b39d6518f59), commit `5e7c80db7b677cecabd28a6ba30a9b39d6518f59`.
+
+| Fichier figé | Blob | Plages / constat |
+|---|---|---|
+| [knight/reskilled.lua](https://github.com/KnightMiner/GrimrockKnightMods/blob/5e7c80db7b677cecabd28a6ba30a9b39d6518f59/knight/reskilled.lua) | `dcef01d5d7c84aa67e925dc2afbadeedd7fcc042` | 32–41 : trait `km_heavy_crit`, retour 10 uniquement si niveau positif, attaque melee et trait heavy_weapon. |
+| [knight/set_bonuses.lua](https://github.com/KnightMiner/GrimrockKnightMods/blob/5e7c80db7b677cecabd28a6ba30a9b39d6518f59/knight/set_bonuses.lua) | `4755edd0f600d565f08578eb08c98bfe55e5acb8` | 9–38 : pose d'un callback sur EquipmentItem ; 69–85 : bonus d'esquive 10 conditionné par l'ensemble rogue, avec branche distincte pour The Guardians. |
+| [knight/tweaks.lua](https://github.com/KnightMiner/GrimrockKnightMods/blob/5e7c80db7b677cecabd28a6ba30a9b39d6518f59/knight/tweaks.lua) | `da18f746baf164447d576ab5cbbcde32c199abb3` | 25–34 : coût après ancien modificateur multiplié par 0,8 selon équipement/configuration ; 47–83 : projectiles, esquive bornée, tirage de partie corporelle et protection. |
+| [README.md](https://github.com/KnightMiner/GrimrockKnightMods/blob/5e7c80db7b677cecabd28a6ba30a9b39d6518f59/README.md) | `dec03337cf8e67a0c19c414851fe493bd6f44b43` | L'auteur limite la compatibilité à une branche beta et signale des mods/donjons non testés. |
+
+**Analyse du projectile :** la chance de toucher calculée est bornée entre 5 et 95, puis comparée à un tirage. En cas de touche sur la party, un second tirage attribue poitrine 31 %, tête 22 %, jambes 25 % ou pieds 22 %. La protection de cette partie est réduite par la pénétration sans descendre sous zéro ; la moitié de la protection restante alimente une fonction de réduction des dégâts, puis le résultat est arrondi vers le bas.
+
+**Limites et contre-preuves :** ce ciblage corporel est aléatoire et propre au mod, alors que LITD prévoit une sélection par le joueur. Le calcul de `computeDamageReduction` n'est pas reconstruit ici. Le wrapper appelle le précédent callback avant ses changements, donc les autres mods peuvent influencer le résultat. Les lignes 12–19 de `tweaks.lua` comparent `skill` à des chaînes puis tentent `skill + 1` : cela constitue un risque apparent de type sur ces branches, non un bug observé en exécution. Plusieurs traits portent seulement le commentaire hardcoded ; leur description seule ne prouve pas leur implémentation.
+
+**Conclusion LITD :** séparer choix de partie corporelle, esquive, pénétration et réduction rend chaque phase vérifiable. Les bonus d'équipement et de traits ont des conditions explicites. Les valeurs numériques de ce mod ne sont pas une recommandation de calibrage pour LITD.
+
+### Analyses documentaires J02, J03, J04 — résultat des recherches supplémentaires
+
+**J02 — Battle Chasers.** La fiche publiée par l'éditeur confirme combat au tour par tour, survoltage/Bursts, exploration et donjons aléatoires. L'auteur de VERBOSE annonce des traces de scripts de compétences, jets, dégâts, DOT/HOT, récupération et boucliers ; la distribution indiquée remplace une DLL. L'onglet [Files](https://www.nexusmods.com/battlechasersnightwar/mods/3?tab=files) indique explicitement une connexion nécessaire au téléchargement. Le schéma ability → hit → dégâts → shield → DOT reste une hypothèse à confronter à des traces : ni l'ordre ni les formules ne sont certifiés. Pour le confirmer, il faut une archive accessible légalement ou des logs versionnés et un scénario reproductible ; aucun besoin de répertorier arbitrairement tous les fichiers du jeu.
+
+**J03 — Ruined King.** La présentation [Riot du 11 décembre 2020](https://www.leagueoflegends.com/fr-fr/news/dev/ruined-king-gameplay-deep-dive/) décrit initiative, compétences instantanées/de voie/ultimes, santé/mana/survoltage, statistiques et personnalisation. Elle documente aussi l'équipement arme/armure/accessoires et les compétences d'exploration propres aux champions. C'est une présentation antérieure à la sortie : elle ne prouve pas les formules de la version jouable. La page Steam du guide officiel a été retrouvée mais sa restitution consultable ne fournit pas de texte de règles exploitable. Les résultats « Blade of the Ruined King » concernent souvent un objet de League ou des mods d'autres jeux : ils sont exclus. Les lanes, délais et zones de timeline nécessitent une source technique ou un jeu de traces ; les correctifs graphiques ne remplissent pas cette condition.
+
+**J04 — Iratus.** La page auteur et l'onglet Files identifient Player Balance 0.526, variante avec BepInEx et variante sans chargeur. Le changelog décrit notamment des positions de lancement, déplacements et dégâts/stress pour des compétences de serviteurs. Cela permet une analyse du contrat annoncé : positions, coût, effet et amélioration doivent être traités séparément. Le JSON effectif peut toutefois différer du texte de présentation. Le lien manuel repéré (`file_id=38`) n'a pas livré l'archive dans la restitution consultable ; aucun hash ni contenu de JSON n'est certifié. La validation du stress, de la folie et du déplacement runtime reste ouverte.
+
+### Analyse ciblée des dix-sept autres titres — ce que les preuves permettent de retenir
+
+**J01 Darkest Dungeon :** contrats de rangs et effets déclaratifs réellement présents ; contrôler séparément unicité des variantes et interprétation du moteur. L'étude exhaustive de génération/IA/mort reste ouverte.
+
+**J05 Darkest Dungeon II :** séparer l'enregistrement de données de leur résolution évite d'attribuer les tokens à un chargeur. La prochaine preuve utile est une définition de compétence et son consommateur runtime, pas un autre hook d'initialisation.
+
+**J06 For The King :** le mod fait des objets des définitions modifiables ; l'existence d'une rareté ne démontre pas la distribution du loot. Il faut suivre un tirage effectif pour analyser probabilités et casse.
+
+**J07 Octopath II :** garder les affinités distinctes du compteur de rupture évite une mauvaise lecture d'un nom de variable. Pour certifier Break, suivre l'impact, le décrément et l'état déclenché ; l'ordre multi-hit reste ouvert.
+
+**J08 Chained Echoes :** permutation, graine et contribution Overdrive de deux skills sont démontrées dans le mod ; voir le complément ci-dessous. La fonction native de mise à jour de la jauge reste à lire.
+
+**J09 Slay the Spire :** le framework permet des effets réactifs aux événements. Une publication ne démontre ni la priorité des effets ni leur composition déterministe. Il faut suivre un effet réel et sa file d'actions pour étudier ces règles.
+
+**J10 Battle Brothers :** score d'action et modificateurs de l'acteur/cible sont composables dans les mods lus. Le maintien des actions légales demeure une condition distincte ; les mécanismes de moral et de blessures ne sont pas couverts.
+
+**J11 Enter the Gungeon :** un flow encode l'intention topologique et délègue les salles à des overrides/tables. Ce cas fixe prouve la séparation des données ; il faut une génération et une validation de connectivité pour conclure sur la robustesse.
+
+**J12 Dead Cells :** le squelette d'outil explicite des salles principales et secondaires. Il aide à lire un contrat d'auteur, mais ne certifie aucune distribution de layouts. Une source du script de biome réel reste requise.
+
+**J13 Isaac :** grouper par forme facilite la sélection de candidats ; une forme compatible n'assure pas des portes compatibles. Le nom Rebirth de l'inventaire ne doit pas faire passer une API de version ultérieure pour preuve de cette édition.
+
+**J14 Spelunky 2 :** configuration et population sont deux étapes observables du mod. Un filtre de spawn ne prouve pas que la sortie est accessible ; l'affectation répétée d'un identifiant de callback empêche de conclure au nettoyage intégral.
+
+**J15 FTL :** l'appel au comportement original puis l'extension Lua expose un contrat de phase et de retour. Les budgets d'événements doivent être prouvés par leur sélection ; les hooks de menu ne démontrent pas le directeur de rencontres.
+
+**J16 Stoneshard :** le contenu d'une salle et les tables d'ennemis sont manipulables, mais l'outil n'est pas le résolveur d'anatomie du jeu. La comparaison au ciblage corporel LITD reste une question nécessitant des règles de blessure précises.
+
+**J17 Grimrock II :** la chaîne projectile/esquive/partie/protection est une preuve gameplay directe de mod. Elle illustre des phases testables ; le tirage aléatoire de partie ne remplace pas la sélection corporelle LITD.
+
+**J18 Dungeon of the Endless :** changer les bornes de taille avant l'appel original concerne la configuration de génération. Cette lecture ne justifie toujours pas l'ancienne affirmation de sélection pondérée des ennemis.
+
+**J19 Into the Breach :** le score évalue plusieurs conséquences d'une action, avec garde-fous susceptibles de remplacer la valeur. Il s'agit de l'IA du mod ; la télégraphie et la légalité complète ne se déduisent pas de ce score.
+
+**J20 Shattered Pixel Dungeon :** le coût temporel des ressources et l'identification sont des mécanismes dont le code est public. Leur présence ne mesure pas le niveau de difficulté juste ; cet équilibre doit être observé ou testé séparément.
+
+### Bilan exact et conditions de poursuite
+
+- **20/20 jeux documentés avec analyse ciblée**, référence, limite et mécanisme restant à vérifier.
+- **17/20 jeux avec code ou données versionnés lus**, contre 15 lors de la passe précédente.
+- Parmi ces 17 : **6 règles**, **7 définitions/configurations**, **3 extensions**, **1 outil**. Ces catégories sont exclusives dans cette matrice.
+- **3/20 sans code gameplay consulté** : Battle Chasers, Ruined King et Iratus, malgré leurs sources documentaires.
+- Aucune étude exhaustive ni compatibilité runtime générale certifiée. Les vérifications locales/CI de LITD ne valident pas le fonctionnement des mods externes.
+
+Les recherches web ont comparé pages d'auteurs, dépôts, documentation officielle et résultats contradictoires. La recherche de dépôts globale via le connecteur GitHub a été refusée par le périmètre d'URL de cet outil ; les dépôts nommés ont pu être lus normalement. Ce refus n'est pas interprété comme absence de dépôt. Les noms homonymes et correctifs graphiques sont exclus de la preuve gameplay. Pour les trois sources manquantes, la condition utile est un fichier ou une trace accessible et versionné, pas une nouvelle estimation de pourcentage.
+
+La clôture globale reste conditionnée à la définition du mécanisme étudié, la lecture de sa preuve, un contre-exemple et une reproduction adaptée. Les vingt jeux ne sont pas déclarés « analysés à 100 % ». Les enseignements ci-dessus documentent la bibliothèque existante ; aucun changement de gameplay LITD ni fusion de PR.
+
+## Approfondissement des preuves J02 et J08 — 5 octobre 2026
+
+Cette passe complète la matrice précédente. Les nombres restent **20 jeux documentés / 17 avec code ou données versionnés lus** : une trace publiée par un auteur n'est pas comptée comme lecture de code. Iratus et Ruined King restent sans fichier gameplay consulté.
+
+### J02 — Battle Chasers : trace publique, portée historique
+
+Source primaire : [peddroelm, 31 décembre 2017](https://steamcommunity.com/app/451020/discussions/0/1621724915810895620/). L'auteur publie des valeurs d'AP mesurées avant application des dégâts : 1184,548 → 1362,230 → 1566,565 → 1801,549. Pour trois perks et 15 survoltage consommé, elles concordent à l'arrondi avec trois multiplications successives par 1,15. **Inférence vérifiable :** cet exemple soutient un cumul multiplicatif, plutôt qu'une addition unique des trois bonus. Le multiplicateur cumulé calculé est 1,520875.
+
+**Limites :** build, protocole et fichier brut non fournis ; observation ancienne, non reproduite ici. Ce cas ne prouve ni la formule générale actuelle ni l'ordre bouclier/DOT. L'auteur indique lui-même devoir retester son observation de soin final. Le statut demeure **Document, avec trace auteur historique**, sans code gameplay lu.
+
+Une [publication du même auteur en 2021](https://steamcommunity.com/app/451020/discussions/0/3042732979961911118/) précise la DLL remplacée et nomme `BattleManager.OnBattleCompleteSequenceDone()` et `ShufflePartyAfterCombat()`. Elle fournit un emplacement annoncé d'instrumentation ; elle ne permet pas d'inspecter son implémentation. Aucun téléchargement authentifié ni fichier binaire obtenu.
+
+**Apport LITD :** une trace utile doit consigner valeur avant/après, survoltage effectivement consommé, perks actifs et version. Pour invalider l'hypothèse multiplicative, comparer notamment zéro perk et plusieurs perks à coût constant. Ces cas sont un protocole proposé, pas des tests exécutés.
+
+### J08 — Chained Echoes : règle du préfixe, Overdrive et statuts
+
+Source lue : [`HarmonyPatches.cs`](https://github.com/Samupo/ChainedEchoesRandomizer/blob/f57935bcd99deb88908f8ddfe669d482df9c9e7a/HarmonyPatches.cs), commit `f57935bcd99deb88908f8ddfe669d482df9c9e7a`, blob `780a948f05a3ab18cd603de101b27d3a26821fad`.
+
+| Zone | Règle observée statiquement |
+|---|---|
+| 29, 36–54 | Enregistrement d'un préfixe Harmony sur `SkillFunctions.UseSkill`. |
+| 401–407, 594–596 | `PreUseSkill` laisse passer les skills autres que 153/205 ; garde anti-réentrée, rétablie en fin de méthode ; retour final false. |
+| 465–485 | Skill 153 : parcourt les ennemis vivants, vérifie la touche, appelle le calcul d'attaque physique puis les dégâts ; ajoute ensuite l'état 145 à l'utilisateur. |
+| 488–513 | Skill 205 : niveau retrouvé par utilisateur/skill ; chance `0.25 * (niveau + 1)` ; tirage d'un état parmi quatre et un seul tirage de succès pour l'ensemble des ennemis vivants. |
+| 517–563 | Combat hors mécha : si le type du skill correspond à `ODInfluencer`, appel `ChangeOverDrive(-12)`, puis remise à zéro des variables et de l'affichage concernés. Sinon, appels +7/+6/+5 selon taille de groupe ≥4/3/≤2. |
+| 566–569 | Branche mécha : appel `ChangeOverDrive(7)`. |
+
+**Interprétation limitée :** le mod démontre une contribution demandée à l'Overdrive pour ces deux skills, ainsi qu'une règle de sélection et d'application de statuts. Il appelle le moteur pour les dégâts, les états et la jauge ; le corps de `ChangeOverDrive` n'est pas présent dans ce fichier. Bornes de jauge, zones de surchauffe, résistances aux états et réduction des dégâts restent non reconstruits.
+
+**Contre-exemples et risques visibles :**
+
+- L'alternative `ChangeOverDrive(-15)` est derrière le `else` d'un `if (true)` : elle est inatteignable dans cette source et ne constitue pas une règle active.
+- Le skill 205 réutilise le même état tiré et le même résultat de succès pour toutes les cibles vivantes ; ce code ne démontre pas des jets indépendants par cible. Les identifiants d'état 26/27/30/31 ne sont pas renommés en maladies sans leurs définitions.
+- La section hors mécha parcourt toute la liste des skills ; elle ne quitte pas la boucle après un identifiant correspondant. La contribution unique suppose donc l'unicité de cet identifiant.
+- Les branches d'animation mécha `skill >= 300` ne sont pas atteintes après la garde limitant ce préfixe à 153/205 ; elles ne prouvent pas la résolution d'autres skills.
+- Une exception avant la remise à true peut laisser la garde désactivée : aucune protection `finally` n'est visible. C'est un risque de lecture statique, pas une panne reproduite.
+- Le tirage de statuts utilise `UnityEngine.Random`, tandis que `RandomGen` utilise `System.Random`. La graine de permutation des méchas ne certifie donc pas la reproductibilité de ces jets de combat.
+
+**Apport LITD :** expliciter la phase de contribution à une jauge collective, le partage ou l'indépendance des jets de groupe et l'identité des générateurs aléatoires. Les valeurs de ce mod restent des observations externes, sans modification du gameplay LITD.
+
+### Recherche des trois fichiers manquants : exclusions vérifiées
+
+Les recherches supplémentaires n'ont livré aucun fichier gameplay lisible pour Iratus ou Ruined King. Les résultats homonymes de League of Legends et les correctifs d'affichage sont exclus. Pour Battle Chasers, la trace ci-dessus améliore la provenance documentaire sans donner accès à la DLL.
+
+Les pistes de dépôts d'applications/cartes, d'automatisation de sauvegarde et de jeu scolaire ne sont pas assimilées au code des titres commerciaux. Un nom de dépôt ressemblant au titre ne remplit pas l'obligation de preuve. Les trois titres demeurent sans code gameplay consulté ; cette limite est documentée dans la même bibliothèque.
+
+## Recherche complémentaire des trois sources manquantes — 5 octobre 2026
+
+**Résultat : aucun nouveau fichier gameplay obtenu ; couverture inchangée, 17/20.** Les liens de téléchargement consultés restituent des pages HTML, sans archive ni contenu des fichiers. Les descriptions ci-dessous sont des pistes de vérification ; elles ne sont pas promues en preuves de code.
+
+### Iratus — trois archives supplémentaires identifiées
+
+| Source auteur | Contenu annoncé et intérêt de lecture | Pièce encore manquante |
+|---|---|---|
+| [Nightsister 1.4](https://www.nexusmods.com/iratuslordofthedead/mods/5), scorpiovaeden | Classe séparée, variante de support/soin ; compétence de sommeil interrompu par dégâts annoncée ; compatibilité indiquée avec 176.02. L'auteur signale des limitations d'attributs associés aux extensions. | Archive et définitions réelles de classe/états ; le texte ne certifie pas le consommateur du sommeil. |
+| [StatsHolic 1v5](https://www.nexusmods.com/iratuslordofthedead/mods/9), A100N | Deux JSON remplacés ; accès annoncé aux onze statistiques et réorganisation de leur arbre. Version 181.xx+ ; anciennes sauvegardes déclarées incompatibles. | [Fichier 52](https://www.nexusmods.com/iratuslordofthedead/mods/9?file_id=52&tab=files), 8 KB, puis schéma et différences des deux JSON. |
+| [Playable Enemies 1.0](https://www.nexusmods.com/iratuslordofthedead/mods/13), Tbonex28b | Ennemis utilisables dans l'équipe ; l'auteur propose de changer `nodeSize` de 2 à 1 pour les grandes unités. Il signale également des tours perdus en équipe mixte, cause inconnue. | [Variante Two Slots, fichier 53](https://www.nexusmods.com/iratuslordofthedead/mods/13?file_id=53&tab=files), 382 KB, et définitions de taille/rangs/tours. |
+
+**Portée :** `nodeSize` est ici un fragment publié dans une instruction d'auteur, pas un JSON complet inspecté. Sa relation aux rangs et à l'occupation d'espace reste à vérifier dans les fichiers et leur consommateur. L'observation de tours perdus ne démontre pas un défaut précis du moteur. Ces pistes sont pertinentes pour les rangs, la capture et les afflictions de LITD, sans règle de combat LITD modifiée.
+
+La [piste GitHub lawrakina/Battler-2D-Unfrozen-Iratus](https://github.com/lawrakina/Battler-2D-Unfrozen-Iratus) a également été examinée : arborescence Unity de prototype, modèle de combat limité dans le fichier lu à une propriété réactive de changement d'état. Aucune provenance de mod branché au jeu commercial établie ; exclu du compte de preuves. Référence arbre Git `31eccef1e8e4a75b63b5ce7983a42af3a82029be`, fichier `Assets/Code/Data/Models/FightProcessModel.cs`, blob `16e21820d7ace1de9b1005f9a96604294d11e156`.
+
+### Battle Chasers — patch d'affichage distinct des règles de résolution
+
+[Display Damage-Shield Text 1.1](https://www.nexusmods.com/battlechasersnightwar/mods/1), Eugenii10 : le programme annoncé `BCN-DST-Mod.exe` modifie l'affichage numérique des boucliers, avec sauvegarde/restauration de `Assembly-CSharp.dll`. L'auteur indique la version de jeu 24037 et l'arrêt du support. Le programme et ses modifications n'ont pas été obtenus. Même une lecture de son patch d'affichage ne certifierait pas à elle seule le calcul d'absorption.
+
+La pièce prioritaire reste [VERBOSE 0.53](https://www.nexusmods.com/battlechasersnightwar/mods/3?tab=files) : archive de l'auteur et, idéalement, traces de combat associées à une version et un scénario. La trace AP historique déjà documentée ne remplace pas cette lecture.
+
+### Ruined King — dépôts homonymes écartés
+
+| Dépôt examiné | Pièce lue | Pourquoi exclu de la preuve du jeu commercial |
+|---|---|---|
+| [WashingtonAlbuquerque/RuinedKing](https://github.com/WashingtonAlbuquerque/RuinedKing) | README blob `53c6737261393c73088c4772a7f8233abc311c4a` ; arbre Git `6ee926878ece248d37040539bd3f7d00586c1bfd` | Présentation HTML/CSS/JavaScript ; aucune implémentation de mod gameplay établie. |
+| [SkyKhoala/RuinedKing](https://github.com/SkyKhoala/RuinedKing) | README blob `65fabb592b365c00ee2e55d979283c5054360288` ; arbre Git `90969f8fe1836136235b4d467d6f0cb5084f881e` | Projet CMI Pygame avec déplacement/saut ; distinct du RPG d'Airship. |
+
+Les résultats liés à Viego ou à l'objet Blade of the Ruined King dans d'autres jeux restent exclus. Aucun mod public lisible de résolution des lanes n'a été identifié dans cette passe. Cela décrit les résultats consultés, sans affirmer qu'aucun mod n'existe.
+
+### Déblocage concret
+
+Pour **Iratus**, une seule archive pertinente suffit à lancer l'inventaire automatique : Player Balance sans BepInEx, StatsHolic ou Playable Enemies. Pour **Battle Chasers**, l'archive VERBOSE est la piste prioritaire. Ces archives peuvent être jointes directement au chantier après téléchargement normal depuis le compte de l'utilisateur ; il n'est pas nécessaire de fournir chaque chemin séparément.
+
+Pour **Ruined King**, aucune archive gameplay fiable n'est encore identifiée : il faut un mod clairement rattaché au jeu, ou des fichiers de données provenant d'une installation autorisée avec version indiquée. Aucun accès à l'installation du PC de l'utilisateur n'est disponible dans cet espace.
+
+À réception : inventorier l'archive sans exécuter ses binaires, calculer les empreintes, identifier les définitions et leurs consommateurs accessibles, suivre une règle concrète et noter ses contre-exemples. Jusqu'à cette réception, les trois obligations de lecture de code restent ouvertes ; aucune clôture exhaustive.
+
+## Ruined King — première source de patch gameplay lue, 5 octobre 2026
+
+**Cette passe remplace le statut documentaire exclusif de J03.** Le bilan atteint **18/20 avec code, données ou scripts de patch versionnés lus**, en incluant explicitement ce patch Switch parmi les outils. Il ne devient pas 18 moteurs analysés. Les catégories exclusives sont désormais : 6 règles, 7 définitions/configurations, 3 extensions, 2 outils/patchs ; Battle Chasers et Iratus restent documentaires.
+
+### Provenance et fichiers réellement consultés
+
+Dépôt [ADEMOLA200/Switch-Emulator-Mod-Database](https://github.com/ADEMOLA200/Switch-Emulator-Mod-Database), commit `abd55774c369b9c3a4df960e7afdb0391cb52056`. Arbre récursif non tronqué ; fichier gameplay relu avec cette référence épinglée.
+
+| Fichier | Blob Git | Portée |
+|---|---|---|
+| [Titles/0100947013122000/cheats/62EB499A85240245.txt](https://github.com/ADEMOLA200/Switch-Emulator-Mod-Database/blob/abd55774c369b9c3a4df960e7afdb0391cb52056/Titles/0100947013122000/cheats/62EB499A85240245.txt) | `bb76ce08d1dbf59922a5a35e3fc31a46ea1e23d6` | Douze blocs nommés, dont invincibilité, dégâts, mana, ultime, ressources, progression et fabrication. |
+| [Titles/0100947013122000/credits.txt](https://github.com/ADEMOLA200/Switch-Emulator-Mod-Database/blob/abd55774c369b9c3a4df960e7afdb0391cb52056/Titles/0100947013122000/credits.txt) | `1a84fa704f6a072398c77abb3756b428c7032fa2` | Attribution Eiffel2018, titre commercial et version 1.6 annoncée. |
+| [Patchs FPS, build 9FC46F388F6C684C](https://github.com/ADEMOLA200/Switch-Emulator-Mod-Database/blob/abd55774c369b9c3a4df960e7afdb0391cb52056/NX-60FPS-RES-GFX-Cheats/titles/0100947013122000/cheats/9FC46F388F6C684C.txt) | `178b995145bea5692cc385fe95048ac14732e32b` | 30/60 FPS, autre build : exclu des preuves de règles de combat. |
+
+Documentation primaire du format : [Atmosphère, Store Static Value to Memory](https://github.com/Atmosphere-NX/Atmosphere/blob/c8b7316581a8081e5b9f7d767c27db5c0a4db906/docs/features/cheats.md), section Code Type 0x0, blob `465ded946971ffd089807c52b928419444d7c960`. Le format décrit largeur, région mémoire, registre d'offset, offset immédiat et valeur écrite.
+
+### Analyse statique précise
+
+| Bloc du script | Ce que le fichier prouve | Ce qu'il ne prouve pas |
+|---|---|---|
+| Infinite Mana / Infinite Ultimate | Chaque bloc contient une écriture d'un octet `62`, respectivement avec offsets immédiats `0259D730` et `0254A710`. | Nom/signature de fonction native, nature exacte de l'instruction remplacée, modèle de consommation de ressources. |
+| 5x Damage | Trois écritures de huit octets dans `0329DE14–0329DE2B`, puis une écriture de quatre octets en `0259FE44`. | Multiplication par cinq effectivement exécutée, filtrage joueur/ennemi, ordre critique/armure/bouclier : le libellé seul ne certifie pas ces effets. |
+| Infinite Upgrade Points / Rune Shards | Deux séquences distinctes, chacune avec écriture de huit octets puis quatre octets. | Coûts natifs, caps, règles d'arbres et persistance en sauvegarde. |
+| Infinite Potions and Meals / 100% Successful Crafting | Même valeur littérale `D503201F` écrite à deux offsets différents. | Consommation ou probabilité native ; le désassemblage et les octets originaux restent à obtenir. |
+
+Ces commandes sont des écritures statiques du format Atmosphère. Pour les commandes commençant par `010E/040E/080E`, la région indiquée est Main NSO et le registre d'offset est E : les nombres cités sont donc des **offsets immédiats**, pas des adresses absolues ni des noms de fonction.
+
+**Conclusion de preuve :** un script de modification lié au gameplay du titre commercial est maintenant inspecté et traçable. Son contenu montre les opérations de patch ; les noms des options demeurent des déclarations d'auteur tant que les instructions remplacées et le contexte d'appel ne sont pas reconstruits. Aucun binaire ni patch exécuté, aucune ROM téléchargée, aucune compatibilité PC déduite de la version Switch.
+
+### Limites et contre-exemples
+
+- Le build ID `62EB499A85240245` ne se confond pas avec le build du patch FPS. Des offsets d'un build ne sont pas transférables à l'autre.
+- Aucun octet original ou test d'identité du code ciblé n'est fourni dans les blocs lus ; appliquer ces nombres à une autre version ne constituerait pas une preuve valable.
+- Des écritures proches et des intitulés liés aux ressources ne démontrent pas qu'une seule classe ou un seul résolveur gère mana, ultime et dégâts.
+- Un patch d'invincibilité retire une contrainte du combat ; il ne documente pas son équilibrage normal.
+- Les lanes, l'initiative, les délais, les zones de timeline et les afflictions restent des obligations de lecture native ouvertes.
+
+**Apport LITD :** la première leçon exploitable concerne la provenance : associer toute preuve de combat à la plateforme, la version et le fichier réel. La séparation des ressources ne doit pas être inférée de noms d'options. Aucun calibrage ni règle LITD ne change sur la base de ces patchs.
+
+Une page primaire [ColonelRVH, table PC du 17 novembre 2021](https://www.thecheatscript.com/2021/11/ruined-king-league-of-legends-story.html) annonce également l'inspection des PV et des options de mana/survoltage/ultime. La table PC elle-même n'a pas été lue ; elle reste une piste documentaire distincte. La prochaine preuve utile est son script complet ou les instructions originales entourant une cible du patch Switch, avec version et scénario précis.
+
+## Solution de poursuite — Battle Chasers et limites non bloquantes, 6 octobre 2026
+
+L'utilisateur accepte de poursuivre si les dernières pièces ne sont pas accessibles. Cette décision concerne le blocage du chantier ; elle n'autorise pas à certifier les preuves manquantes ni à fusionner la PR.
+
+### Battle Chasers : source publique effectivement lue
+
+Dépôt [ADEMOLA200/Switch-Emulator-Mod-Database](https://github.com/ADEMOLA200/Switch-Emulator-Mod-Database), commit `abd55774c369b9c3a4df960e7afdb0391cb52056`.
+
+| Fichier | Blob Git | Provenance/portée |
+|---|---|---|
+| [Titles/0100551001D88000/cheats/d0222f29ab9bb64c.txt](https://github.com/ADEMOLA200/Switch-Emulator-Mod-Database/blob/abd55774c369b9c3a4df960e7afdb0391cb52056/Titles/0100551001D88000/cheats/d0222f29ab9bb64c.txt) | `145a7d388f7bd0dfcccada43a30500763a996338` | Quatre blocs : argent, PV, mana et un second bloc nommé PV All. |
+| [Titles/0100551001D88000/credits.txt](https://github.com/ADEMOLA200/Switch-Emulator-Mod-Database/blob/abd55774c369b9c3a4df960e7afdb0391cb52056/Titles/0100551001D88000/credits.txt) | `5682a577f09f27ddb05f4b476e0b7ff80cc1c72d` | Battle Chasers: Nightwar v1.0.2 ; attributions merlin555 et arismendy64. |
+
+Format vérifié dans la [documentation primaire Atmosphère](https://github.com/Atmosphere-NX/Atmosphere/blob/c8b7316581a8081e5b9f7d767c27db5c0a4db906/docs/features/cheats.md), sections 0x5 (lecture/déréférencement), 0x6 (écriture à l'adresse d'un registre), 0x7 (arithmétique).
+
+**Lecture statique :** les blocs PV et mana partent du même pointeur Main NSO à l'offset `03234D30`, suivent les mêmes déréférencements successifs (+A0, +0, +30, +18), puis ajoutent respectivement +48 et +5C avant une écriture de quatre octets. Si le champ est un float IEEE 754, `43020000` encode 130 et `43160000` encode 150. Cette interprétation numérique est vérifiée localement par conversion binaire ; le type réel des champs n'est pas démontré sans leur consommateur.
+
+Le bloc nommé Inf Hp All reprend exactement la chaîne du bloc PV et le même offset final +48 ; seule la valeur passe à `461C3C00` (9999 si float). **Contre-preuve :** aucune boucle sur les combattants n'est présente ; le mot All ne suffit donc pas à prouver l'application à toute l'équipe.
+
+Le bloc argent utilise une autre racine `0327F5A0` et une chaîne plus courte. L'écriture de huit octets contient deux mots `000F423F` (999999 en entier non signé). L'identité des deux champs n'est pas reconstruite ; il serait injustifié de leur attribuer deux devises particulières.
+
+**Portée exacte :** script de modification mémoire versionné réellement consulté, sans exécution. Ni calcul des dégâts, ni ordre bouclier/DOT, ni survoltage, ni fonctionnement de la DLL VERBOSE ne sont prouvés par ce script. Les chaînes et valeurs ne sont pas transposables au PC ou à une autre version. Aucun fichier du jeu complet obtenu.
+
+### Iratus et règles natives : arrêt des recherches répétitives
+
+La dernière recherche de `unitBalance.json` et de Player Balance n'a pas fourni de JSON Iratus accessible. Les résultats de fichiers homonymes liés à Warcraft ne sont pas des preuves d'Iratus. Les sources auteur déjà rangées restent disponibles avec leurs limites.
+
+La solution retenue est de **poursuivre avec les preuves accessibles**, plutôt que de rendre toute la bibliothèque dépendante de ces archives. Les lectures manquantes sont conservées comme compléments :
+
+| Complément | Statut | Déclencheur de reprise |
+|---|---|---|
+| JSON/classe/résolveur Iratus | Différé, non bloquant ; documentaire seulement | Réception d'une archive ou découverte d'un fichier public pertinent. |
+| DLL et logs VERBOSE Battle Chasers | Différé ; patch Switch et trace historique disponibles | Archive auteur accessible et version précisée. |
+| Fonctions natives Ruined King : lanes, dégâts, afflictions | Différé ; patch Switch disponible | Source technique complète ou fichiers d'une installation autorisée. |
+
+**Bilan mis à jour :** 20 jeux documentés ; 19 avec code/données/scripts de patch lus, dont 3 outils/patchs. Le nombre de preuves directes de règles reste 6 : ajouter un script mémoire ne transforme pas un outil en moteur analysé.
+
+La recherche publique effectuée peut être considérée terminée dans ce périmètre, avec ces limites. L'analyse exhaustive des vingt jeux n'est pas déclarée CLOS. Les enseignements déjà établis peuvent être exploités dans la bibliothèque existante en gardant leur niveau de preuve ; aucun changement de gameplay LITD ni fusion dans cette passe.

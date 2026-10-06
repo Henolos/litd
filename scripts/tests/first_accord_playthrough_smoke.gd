@@ -4,6 +4,7 @@ const ID := "dungeon_first_map_hall_of_first_accord"
 const PATH := ["vestibule", "gallery_of_names", "debate_chamber", "collapsed_passage", "three_pillars_hall", "warden_sanctum"]
 var failures: Array[String] = []
 var coverage: Dictionary = {}
+const POLICIES := ["offense", "heal", "guard_control", "mixed", "focus", "limbs", "focus_limbs_mixed", "head", "legs"]
 
 func check(ok: bool, label: String) -> void:
     if not ok:
@@ -11,16 +12,41 @@ func check(ok: bool, label: String) -> void:
         push_error(label)
 
 func _ready() -> void:
+    var options := {"seed_start":101, "seed_count":6, "repeats":2, "min_completions":1, "policies":POLICIES.duplicate()}
+    for arg in OS.get_cmdline_user_args():
+        var parts := arg.trim_prefix("--").split("=", true, 1)
+        if parts.size() != 2 or not options.has(parts[0]):
+            check(false, "invalid_sampling_argument:" + arg)
+            continue
+        if parts[0] == "policies":
+            options["policies"] = Array(parts[1].split(","))
+        else:
+            options[parts[0]] = int(parts[1])
+    check(int(options["seed_count"]) in range(1, 65), "invalid_seed_count")
+    check(int(options["repeats"]) in [1, 2], "invalid_repeat_count")
+    for policy in options["policies"]:
+        check(POLICIES.has(policy), "invalid_policy:" + str(policy))
+    if not failures.is_empty():
+        get_tree().quit(1)
+        return
+    print("FIRST_ACCORD_SAMPLING: ", options)
     var results: Array = []
-    for policy in ["offense", "heal", "guard_control", "mixed", "focus", "limbs", "focus_limbs_mixed", "head", "legs"]:
-        for seed in [101, 102, 103, 104, 105, 106]:
+    for policy in options["policies"]:
+        for seed in range(int(options["seed_start"]), int(options["seed_start"]) + int(options["seed_count"])):
             var first := play(seed, policy)
-            var replay := play(seed, policy)
-            check(first == replay, "playthrough_not_deterministic:%s:%d" % [policy, seed])
+            if int(options["repeats"]) == 2:
+                var replay := play(seed, policy)
+                check(first == replay, "playthrough_not_deterministic:%s:%d" % [policy, seed])
             results.append(first)
+    var completed_count := 0
+    for result in results:
+        if bool(result.get("completed", false)):
+            completed_count += 1
+    check(completed_count >= int(options["min_completions"]), "no_complete_expedition_in_balance_sample")
     print("FIRST_ACCORD_PLAYTHROUGH_RESULTS: ", JSON.stringify(results))
     for action in ["heal", "guard", "control", "ally_healed", "focused_attack", "limb_attack", "head_attack", "leg_attack"]:
-        check(int(coverage.get(action, 0)) > 0, "survival_action_not_exercised:" + action)
+        if options["policies"] == POLICIES:
+            check(int(coverage.get(action, 0)) > 0, "survival_action_not_exercised:" + action)
     print("FIRST_ACCORD_SURVIVAL_COVERAGE: ", coverage)
     _boss_probe()
     print("FIRST_ACCORD_PLAYTHROUGH: ", "OK" if failures.is_empty() else failures)
@@ -65,6 +91,7 @@ func play(seed: int, policy: String = "offense") -> Dictionary:
     check(bool(run.start_dungeon(ID, seed).get("ok", false)), "start")
     ui._render_node()
     var rooms: Array = []
+    var previous_watchers: Dictionary = {}
     for room_id in PATH:
         if run.campaign.dungeon.current_node != room_id:
             check(bool(run.enter_next(room_id).get("ok", false)), "enter:" + room_id)
@@ -75,6 +102,11 @@ func play(seed: int, policy: String = "offense") -> Dictionary:
         check(run.combat != null, "launch:" + room_id)
         if run.combat == null:
             break
+        var watchers_before := watcher_health(run.combat)
+        for watcher in previous_watchers:
+            check(watchers_before[watcher]["body"] == previous_watchers[watcher]["body"], "body_attrition_reset:" + str(watcher))
+            check(watchers_before[watcher]["hp"] == previous_watchers[watcher]["hp"], "hp_attrition_reset:" + str(watcher))
+        var room_combat = run.combat
         var actions := 0
         var zones: Dictionary = {}
         var enemy_count: int = run.combat.alive_ids("enemy").size()
@@ -158,7 +190,8 @@ func play(seed: int, policy: String = "offense") -> Dictionary:
             zones[str(choice["zone"])] = true
             actions += 1
         var won: bool = run.combat == null and bool(run.campaign.dungeon.node_flags.get(room_id, {}).get("completed", false))
-        rooms.append({"room":room_id, "enemies":enemy_count, "actions":actions, "victory":won, "zones":zones.keys(), "skill_actions":skill_actions, "available_actions":inventory, "impairments":impairments, "damaging_replies_after_arm_l4":limb_ripostes, "trace_hash":JSON.stringify(trace_hashes).sha256_text(), "stop_reason":"victory" if won else ("defeat" if run.combat == null else stop_reason)})
+        previous_watchers = watcher_health(room_combat)
+        rooms.append({"watchers_before":watchers_before, "watchers_after":previous_watchers, "combat_budget":combat_budget(room_combat), "room":room_id, "enemies":enemy_count, "actions":actions, "victory":won, "zones":zones.keys(), "skill_actions":skill_actions, "available_actions":inventory, "impairments":impairments, "damaging_replies_after_arm_l4":limb_ripostes, "trace_hash":JSON.stringify(trace_hashes).sha256_text(), "stop_reason":"victory" if won else ("defeat" if run.combat == null else stop_reason)})
         if not won:
             break
     var completed: bool = bool(run.campaign.dungeon.node_flags.get("warden_sanctum", {}).get("completed", false))
@@ -309,3 +342,27 @@ func attack_zones(combat, enemy: String, policy: String) -> Array:
         if str(states.get(zone, "L0")) not in ["L4", "L5"]:
             return [zone]
     return ["torso"]
+
+# Keep HP recovery separate from vital-zone attrition and irreversible body death.
+func watcher_health(combat) -> Dictionary:
+    var result := {}
+    for watcher in combat.WATCHER_IDS:
+        var row: Dictionary = combat.combatants.get(watcher, {})
+        var body: Variant = row.get("body")
+        result[watcher] = {"hp":int(row.get("hp", 0)), "max_hp":int(row.get("max_hp", 1)), "body":body.serialize() if body != null else {}, "alive":combat.alive_ids("watcher").has(watcher)}
+    return result
+
+func combat_budget(combat) -> Dictionary:
+    var result := {"watcher_actions":0, "enemy_actions":0, "damage_received":0, "healed":0, "trauma_received":0}
+    for event in combat.action_log:
+        var actor := str(event.get("attacker", event.get("enemy", "")))
+        var row: Dictionary = combat.combatants.get(actor, {})
+        var team := str(row.get("team", ""))
+        if team == "watcher":
+            result["watcher_actions"] += 1
+            result["healed"] += int(event.get("healed", 0))
+        elif team == "enemy":
+            result["enemy_actions"] += 1
+            result["damage_received"] += int(event.get("damage", 0))
+            result["trauma_received"] += int(event.get("body", {}).get("trauma", 0))
+    return result

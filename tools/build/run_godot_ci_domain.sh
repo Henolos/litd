@@ -47,7 +47,8 @@ run_checked "Import strict du projet" godot --headless --path . --import --quit
 case "$DOMAIN" in
   core-world)
     scene 120 "Expédition procédurale jouable" res://scenes/tests/dungeon_playable_pipeline_smoke.tscn
-    scene 360 "Parcours Premier Accord par les commandes joueur" res://scenes/tests/first_accord_playthrough_smoke.tscn
+    scene 540 "Parcours Premier Accord par les commandes joueur" res://scenes/tests/first_accord_playthrough_smoke.tscn
+    run_checked "Premier Accord sur 24 graines indépendantes" timeout 540s godot --headless --path . res://scenes/tests/first_accord_playthrough_smoke.tscn -- --policies=focus,head,mixed --seed_start=1001 --seed_count=24
     scene 0 "Smoke test noyau" res://scenes/tests/core_smoke.tscn
     scene 0 "Psychologie" res://scenes/tests/psychology_smoke.tscn
     scene 0 "Relations" res://scenes/tests/relationship_smoke.tscn
@@ -92,11 +93,14 @@ case "$DOMAIN" in
     scene 60 "Guidage des cendres" res://scenes/tests/ash_guidance_smoke.tscn
     ;;
   veilleurs)
+    run_checked "Payoffs des afflictions" timeout 60s godot --headless --path . --script scripts/tests/veilleurs_affliction_synergy_runtime_test.gd
     scene 60 "Contraintes corporelles des actions" res://scenes/tests/veilleurs_body_action_contract_smoke.tscn
     scene 60 "Contrat dix afflictions" res://scenes/tests/veilleurs_afflictions_contract_test.tscn
+    scene 60 "Procs équipement et afflictions" res://scenes/tests/veilleurs_equipment_affliction_proc_test.tscn
     scene 60 "Contrat résolveurs de combat" res://scenes/tests/veilleurs_combat_resolvers_contract_test.tscn
     scene 60 "Autorité du ciblage anatomique" res://scenes/tests/veilleurs_target_resolver_authority_test.tscn
     scene 180 "Architecture procédurale complète" res://scenes/tests/dungeon_architecture_pipeline_smoke.tscn
+    scene 60 "Modules physiques Premier Accord" res://scenes/tests/first_accord_module_blockout_smoke.tscn
     scene 60 "Pipeline rencontres contraintes" res://scenes/tests/dungeon_encounter_pipeline_smoke.tscn
     scene 60 "Pipeline génération graines et modules" res://scenes/tests/dungeon_generation_pipeline_smoke.tscn
     scene 60 "Graphe hybride connecté" res://scenes/tests/hybrid_graph_smoke.tscn

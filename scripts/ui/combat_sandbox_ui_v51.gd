@@ -6,13 +6,70 @@ var _sandbox_focus_return_name_v51 := ""
 var _sandbox_restore_focus_v51 := false
 var _sandbox_focus_confirm_v51 := false
 
+func _sandbox_is_compact_phone() -> bool:
+    var viewport_size := get_viewport_rect().size
+    if viewport_size.x >= 1100.0 and viewport_size.y >= 700.0:
+        return false
+    return super._sandbox_is_compact_phone()
+
 func _show_combat_sandbox() -> void:
+    # Release names before rebuilding; queued controls otherwise rename the new
+    # controls and break deterministic focus and layout lookup.
+    for child in content.get_children():
+        if child.is_queued_for_deletion():
+            content.remove_child(child)
     super._show_combat_sandbox()
     if not _sandbox_started:
         return
     _render_sandbox_preview_v51()
     _apply_focus_contract_v51()
+    call_deferred("_layout_sandbox_desktop_v51")
     call_deferred("_restore_sandbox_focus_v51")
+
+func _ensure_sandbox_started() -> void:
+    var was_started := _sandbox_started
+    super._ensure_sandbox_started()
+    if _sandbox_started and not was_started:
+        # Setup succeeded, but no player action has been resolved yet.
+        _sandbox_last_result = {}
+
+func _layout_sandbox_desktop_v51() -> void:
+    var viewport_size := get_viewport().get_visible_rect().size
+    if viewport_size.x < 1100.0 or viewport_size.y < 700.0:
+        return
+    var result := content.get_node_or_null("SandboxResultPanelV50") as Control
+    if result != null:
+        result.position = Vector2(52, 526)
+        result.size = Vector2(1168, 50)
+    var utility := content.get_node_or_null("SandboxUtilityStripV50") as Control
+    if utility != null:
+        utility.position = Vector2(52, 578)
+        utility.size = Vector2(1168, 48)
+        for button: Button in utility.find_children("*", "Button", true, false):
+            button.custom_minimum_size = Vector2(384, 48)
+            button.size = Vector2(384, 48)
+    var formation := content.get_node_or_null("SandboxFormationMobileV48") as Control
+    if formation != null:
+        formation.position = Vector2(52, 630)
+        formation.size = Vector2(560, 82)
+        for button: Button in formation.find_children("*", "Button", true, false):
+            button.custom_minimum_size = Vector2(132, 54)
+            button.size = Vector2(132, 54)
+    var synergy := content.get_node_or_null("SandboxContextualSynergyV48") as Control
+    if synergy != null:
+        synergy.position = Vector2(628, 630)
+        synergy.size = Vector2(300, 82)
+        for button: Button in synergy.find_children("*", "Button", true, false):
+            button.custom_minimum_size = Vector2(290, 48)
+            button.size = Vector2(290, 48)
+    var ultimate := content.get_node_or_null("SandboxUltimateMobileV48") as Control
+    if ultimate != null:
+        ultimate.visible = true
+        ultimate.position = Vector2(944, 630)
+        ultimate.size = Vector2(276, 82)
+        for button: Button in ultimate.find_children("*", "Button", true, false):
+            button.custom_minimum_size = Vector2(276, 48)
+            button.size = Vector2(276, 48)
 
 func _sandbox_select_action(action_id: String) -> void:
     _sandbox_selected_action = action_id
