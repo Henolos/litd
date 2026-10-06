@@ -1,0 +1,61 @@
+name: Knowledge Sync Runtime SQL
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/knowledge-sync-runtime-sql.yml'
+      - 'supabase/ops/knowledge_sync_runtime_bootstrap.sql'
+      - 'supabase/tests/knowledge_sync_runtime_bootstrap.sql'
+  merge_group:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  runtime-role:
+    name: Knowledge Sync Runtime SQL
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    container: postgres:17
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: ci-only
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      PGHOST: postgres
+      PGUSER: postgres
+      PGPASSWORD: ci-only
+      PGDATABASE: postgres
+    steps:
+      - name: Checkout audited revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Execute bootstrap and catalog proofs in disposable PostgreSQL
+        shell: bash
+        run: |
+          set -euo pipefail
+          bootstrap=supabase/ops/knowledge_sync_runtime_bootstrap.sql
+          proof=supabase/tests/knowledge_sync_runtime_bootstrap.sql
+          if psql -X -v ON_ERROR_STOP=1 -f "$bootstrap" > missing-parent.log 2>&1; then
+            echo "Bootstrap incorrectly accepted a missing parent role" >&2
+            exit 1
+          fi
+          grep -F "knowledge_sync parent role missing" missing-parent.log
+          psql -X -v ON_ERROR_STOP=1 -c "CREATE ROLE knowledge_sync NOLOGIN INHERIT NOSUPERUSER NOCREATEDB NOCREATEROLE NOREPLICATION NOBYPASSRLS"
+          psql -X -v ON_ERROR_STOP=1 -f "$bootstrap"
+          psql -X -v ON_ERROR_STOP=1 -f "$proof"
+          psql -X -v ON_ERROR_STOP=1 -f "$bootstrap"
+          psql -X -v ON_ERROR_STOP=1 -f "$proof"
+          psql -X -v ON_ERROR_STOP=1 -c "ALTER ROLE knowledge_sync_runtime LOGIN SUPERUSER CREATEDB CREATEROLE REPLICATION BYPASSRLS NOINHERIT CONNECTION LIMIT 99"
+          psql -X -v ON_ERROR_STOP=1 -c "ALTER ROLE knowledge_sync_runtime RESET ALL"
+          if psql -X -v ON_ERROR_STOP=1 -f "$proof" > drift.log 2>&1; then
+            echo "Catalog proof incorrectly accepted privilege drift" >&2
+            exit 1
+          fi
+          grep -F "must remain NOLOGIN" drift.log
+          psql -X -v ON_ERROR_STOP=1 -f "$bootstrap"
+          psql -X -v ON_ERROR_STOP=1 -f "$proof"
+          echo "KNOWLEDGE_SYNC_RUNTIME_SQL_OK"
