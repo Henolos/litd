@@ -483,3 +483,7 @@ Cette bibliothèque est vivante. Toute nouvelle pratique adoptée doit répondre
 3. Quel document, contrat, test ou outil devient la source canonique ?
 
 Aucune « bonne pratique » n'est appliquée mécaniquement si elle n'améliore pas le jeu, le risque, la vitesse ou la qualité de production.
+
+## Inventaire des études comparatives
+
+L’inventaire vérifié des analyses de jeux et de mods est conservé dans [`GAME_STUDIES_INVENTORY_2026-10-03.md`](GAME_STUDIES_INVENTORY_2026-10-03.md), avec son snapshot structuré [`GAME_STUDIES_INVENTORY_2026-10-03.json`](GAME_STUDIES_INVENTORY_2026-10-03.json). Il distingue les preuves de code, la documentation technique, les observations historiques et les lacunes restantes ; il ne constitue pas à lui seul une promotion dans le canon LITD.

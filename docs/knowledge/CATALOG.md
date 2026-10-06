@@ -28,6 +28,8 @@ La distinction ci-dessus est volontaire : une preuve historique fusionnée confi
 
 ## Protocoles / gouvernance
 
+- [Inventaire vérifié des études de jeux/mods — 3 octobre 2026](../research/GAME_STUDIES_INVENTORY_2026-10-03.md) — `revalidate` : 142 fichiers audités, 20 jeux consolidés ; résultats et limites documentés sans promotion automatique du canon.
+
 - `README.md` — architecture du LITD Development Intelligence System.
 - `LIVING_LIBRARY_PROTOCOL.md` — protocole systématique Source → Connaissance → Hypothèse → Décision → Core → Implémentation → Test → Mesure → Preuve → Réévaluation.
 - `guardian-rules.yml` — premiers invariants et niveaux Guardian.
