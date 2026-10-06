@@ -658,5 +658,176 @@
       "Truncated URLs not reconstructed",
       "No new gameplay modifications"
     ]
+  },
+  "current_review": {
+    "date": "2026-10-06",
+    "status": "revalidate",
+    "report": {
+      "path": "docs/research/GAME_STUDIES_INVENTORY_2026-10-03.md",
+      "commit_sha": "883af0b32aa758eb05ecf46bc36076cb26c2cc04",
+      "git_blob_sha": "bd95eb40faa6c1352050db59e6c76277dd1d95b8"
+    },
+    "scope": "Documentation de 20 jeux et inspection de sources publiques versionnées : règles, définitions, extensions et outils/scripts de patch. Les catégories ne certifient pas le moteur natif des jeux.",
+    "counts": {
+      "documented_games": 20,
+      "games_with_versioned_code_data_or_patch_evidence": 19,
+      "rules": 6,
+      "definitions": 7,
+      "extensions": 3,
+      "tools_or_patches": 3,
+      "document_only": 1
+    },
+    "games": [
+      {
+        "id": "J01",
+        "title": "Darkest Dungeon",
+        "source_summary": "The-Miko : `miko.info.darkest`, `miko.effects.darkest` ; nouvelle preuve ci-dessous",
+        "evidence_category": "Définition",
+        "scope_and_limits": "Rangs, paramètres de compétence et conditions hit/miss ; compactage après mort et résolveur natif non prouvés."
+      },
+      {
+        "id": "J02",
+        "title": "Battle Chasers: Nightwar",
+        "source_summary": "VERBOSE et trace AP auteur ; script Switch `d0222f29ab9bb64c.txt`, commit `abd55774c369b9c3a4df960e7afdb0391cb52056`",
+        "evidence_category": "Outil",
+        "scope_and_limits": "Chaînes de pointeurs et écritures PV/mana/argent inspectées ; version Switch 1.0.2 annoncée ; résolution native et DLL VERBOSE non lues."
+      },
+      {
+        "id": "J03",
+        "title": "Ruined King",
+        "source_summary": "Riot ; patchs Switch `62EB499A85240245.txt`, crédits Eiffel2018, commit `abd55774c369b9c3a4df960e7afdb0391cb52056`",
+        "evidence_category": "Outil",
+        "scope_and_limits": "Script de patch mémoire combat/ressources lu ; version Switch 1.6 annoncée ; moteur, lanes et délais natifs non reconstruits."
+      },
+      {
+        "id": "J04",
+        "title": "Iratus: Lord of the Dead",
+        "source_summary": "[Player Balance 0.526](https://www.nexusmods.com/iratuslordofthedead/mods/6)",
+        "evidence_category": "Document",
+        "scope_and_limits": "Modifications de positions et d'effets décrites par l'auteur ; JSON et plugin non examinés."
+      },
+      {
+        "id": "J05",
+        "title": "Darkest Dungeon II",
+        "source_summary": "Plugin-DD2 : `HookGenerals.cs`, `ModSupportPrefix`",
+        "evidence_category": "Extension",
+        "scope_and_limits": "Injection de dossiers de ressources ; Tokens, Combo, Death's Door et relations non prouvés par ce fichier."
+      },
+      {
+        "id": "J06",
+        "title": "For The King",
+        "source_summary": "FTKAPI : `ItemManager.cs`, `CustomItem.cs`",
+        "evidence_category": "Définition",
+        "scope_and_limits": "Lecture/insertion/remplacement d'objets ; jets, précision, casse et loot restent sans preuve correspondante."
+      },
+      {
+        "id": "J07",
+        "title": "Octopath Traveler II",
+        "source_summary": "OT2R : `EnemyDB.py`, `Shields.py`, `AbilityPower.py`, `AbilitySetDB.py`",
+        "evidence_category": "Règle",
+        "scope_and_limits": "Permutation d'affinités et facteur de puissance commun aux variantes ; compteur Break et séquence des impacts non prouvés."
+      },
+      {
+        "id": "J08",
+        "title": "Chained Echoes",
+        "source_summary": "CERandomizer : `RandomGen.cs`, `MechRandomizer.cs`, `HarmonyPatches.cs`",
+        "evidence_category": "Règle",
+        "scope_and_limits": "Flux à graine, permutation ; contribution Overdrive et jets de groupe de deux skills lus ; fonctions natives non reconstruites."
+      },
+      {
+        "id": "J09",
+        "title": "Slay the Spire",
+        "source_summary": "BaseMod : `BaseMod.java`",
+        "evidence_category": "Extension",
+        "scope_and_limits": "Abonnements, publication et retrait différé ; ordre des dégâts/blocs et décision IA non prouvés par ce framework."
+      },
+      {
+        "id": "J10",
+        "title": "Battle Brothers",
+        "source_summary": "MSU : `skill.nut` ; Modular Vanilla : `behavior.nut`",
+        "evidence_category": "Règle",
+        "scope_and_limits": "Modificateurs de coût/preview et multiplication du score de ciblage ; moral/blessures et stratégie vanilla non prouvés."
+      },
+      {
+        "id": "J11",
+        "title": "Enter the Gungeon",
+        "source_summary": "ExpandTheGungeon : `test_customroom_flow.cs`",
+        "evidence_category": "Définition",
+        "scope_and_limits": "Graphe fixe, entrée, parents et salles/tables ; validation du chemin critique et RNG natif non prouvés."
+      },
+      {
+        "id": "J12",
+        "title": "Dead Cells",
+        "source_summary": "ScriptTool : `BuildMainRooms.cs`",
+        "evidence_category": "Outil",
+        "scope_and_limits": "Squelette entrée → combat → sortie ; aucune preuve du générateur Motion Twin, de la complexité ou du tirage natif."
+      },
+      {
+        "id": "J13",
+        "title": "The Binding of Isaac: Rebirth",
+        "source_summary": "StageAPI15 : `roomsList.lua`",
+        "evidence_category": "Définition",
+        "scope_and_limits": "Catalogue normalisé et index par forme ; portes, traversabilité et compatibilité de l'API avec Rebirth non prouvées."
+      },
+      {
+        "id": "J14",
+        "title": "Spelunky 2",
+        "source_summary": "CustomLevels : `custom_levels.lua`",
+        "evidence_category": "Définition",
+        "scope_and_limits": "Remplacement de niveaux, templates et filtres de spawn ; chemin principal vanilla et nettoyage complet non garantis."
+      },
+      {
+        "id": "J15",
+        "title": "FTL: Faster Than Light",
+        "source_summary": "Hyperspace : `InternalEvents.cpp`",
+        "evidence_category": "Extension",
+        "scope_and_limits": "Appel original, callbacks et remplacement de résultat ; budgets et sous-graines de rencontres non prouvés."
+      },
+      {
+        "id": "J16",
+        "title": "Stoneshard",
+        "source_summary": "ModShardLauncher : `RoomUtils.cs`, `DungeonsSpawn.cs`",
+        "evidence_category": "Définition",
+        "scope_and_limits": "Structure des salles et injection des tables tier/faction/ennemis ; anatomie, blessures et chemin critique non prouvés."
+      },
+      {
+        "id": "J17",
+        "title": "Legend of Grimrock II",
+        "source_summary": "KnightMods : `reskilled.lua`, `set_bonuses.lua`, `tweaks.lua` ; nouvelle preuve ci-dessous",
+        "evidence_category": "Règle",
+        "scope_and_limits": "Traits, bonus conditionnels, esquive et protection de partie corporelle des projectiles ; résolution native complète non prouvée."
+      },
+      {
+        "id": "J18",
+        "title": "Dungeon of the Endless",
+        "source_summary": "DungeonModifications : `DungeonModificationsMod.cs`",
+        "evidence_category": "Définition",
+        "scope_and_limits": "Configuration du nombre minimum/maximum de salles avant génération originale ; pondération des ennemis non prouvée."
+      },
+      {
+        "id": "J19",
+        "title": "Into the Breach",
+        "source_summary": "IntelligentAI : `ai.lua`",
+        "evidence_category": "Règle",
+        "scope_and_limits": "Scoring tactique moddé selon conséquences et garde-fous ; légalité complète des actions et IA vanilla non prouvées."
+      },
+      {
+        "id": "J20",
+        "title": "Shattered Pixel Dungeon",
+        "source_summary": "`Hunger.java`, `ItemStatusHandler.java`",
+        "evidence_category": "Règle",
+        "scope_and_limits": "Attrition par ticks, seuils et identification/serialization des catégories ; équilibre global non déduit de deux fichiers."
+      }
+    ],
+    "exhaustive_native_gameplay_analysis": false,
+    "external_mod_code_executed": false,
+    "litd_gameplay_modified": false,
+    "deferred_nonblocking_gaps": [
+      "Iratus : archives JSON/plugin non examinées ; preuve documentaire uniquement.",
+      "Battle Chasers : DLL VERBOSE et moteur natif non lus ; scripts mémoire limités à la version annoncée.",
+      "Ruined King : moteur natif, lanes et délais non reconstruits ; scripts mémoire limités à la version annoncée.",
+      "Limites propres à chaque source conservées dans les fiches ; absence de traces d'exécution reproductibles."
+    ],
+    "decision": "Les pièces manquantes restent des compléments non bloquants conformément à la décision utilisateur ; aucune promotion du canon ni fusion de PR."
   }
 }
