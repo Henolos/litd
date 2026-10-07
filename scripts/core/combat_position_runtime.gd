@@ -141,7 +141,12 @@ func _assign_missing_positions(characters: Array) -> void:
         next_slot += 1
 
 func _slot_blocked_by_corpse(slot: int, side: String) -> bool:
-    var ge01 := get_node_or_null("/root/GE01Runtime")
+    # DeathResolver and the GE01 skill runtime also create this helper without
+    # attaching it to the tree. Resolve the context from the active SceneTree.
+    var tree := get_tree() if is_inside_tree() else Engine.get_main_loop() as SceneTree
+    if tree == null:
+        return false
+    var ge01 := tree.root.get_node_or_null("GE01Runtime")
     if ge01 == null or not ge01.has_method("tactical_corpse_context"):
         return false
     var context: Dictionary = ge01.call("tactical_corpse_context")
