@@ -9,6 +9,10 @@ on:
       - main
   workflow_dispatch:
 
+concurrency:
+  group: merge-execution-${{ github.event_name }}-${{ github.event.pull_request.number || github.event.merge_group.head_sha || github.ref || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' || github.event_name == 'merge_group' }}
+
 permissions:
   contents: read
 
