@@ -29,6 +29,7 @@ func _test() -> void:
     check(bool(world.interact_current_room().get("ok", false)), "physical encounter launches canonical combat")
     check(world.runtime == VeilleursRuntime.runtime, "shared production runtime")
     check(world.party.process_mode == Node.PROCESS_MODE_DISABLED, "exploration frozen during combat")
+    check(not bool(world.discover_current_passages().get("ok", false)), "search rejected during canonical combat")
     check(not bool(world.interact_current_room().get("ok", false)), "duplicate interaction rejected")
     var ui = world.combat_ui
     var helpers = PLAYER_HELPERS.new()

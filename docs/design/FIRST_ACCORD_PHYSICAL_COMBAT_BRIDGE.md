@@ -30,3 +30,20 @@ l’entrée joueur principale. Les couloirs, les collisions aux angles, la camé
 les interactions de secrets/raccourcis, l’interface de récompenses/recrutement et
 l’essai sur PC physique restent des validations ou intégrations distinctes.
 La PR HUD #551 et son essai sur appareil restent indépendants de cette passerelle.
+
+## Découverte physique des passages secrets
+
+FOUILLER LES PASSAGES demande `discover_current_passages` au runtime canonique.
+La fouille est refusée pendant un combat ou avant la résolution de la salle.
+Les arêtes découvertes sans verrou créent leurs couloirs physiques, y compris
+le connecteur caché du module d’archive. Une seconde fouille ne crée aucun doublon.
+À la reprise, les passages sont reconstruits depuis `discovered_edges` sauvegardé ;
+le plan et sa graine restent inchangés. Les raccourcis verrouillés ne sont pas
+ouverts par cette action.
+
+`first_accord_physical_passages_smoke.tscn` vérifie six graines, les refus de
+fouille, neuf découvertes, les couloirs, l’entrée et le retour logiques, l’absence
+de doublons, les verrous et la sauvegarde/reprise JSON. La fin de salle est une
+fixture explicite dans ce test ; les commandes de combat réelles sont couvertes
+par le smoke de passerelle. Ce contrôle ne prouve pas un déplacement physique
+sur appareil ni l’absence de collision au raccord de chaque couloir.

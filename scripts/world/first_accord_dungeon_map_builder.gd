@@ -88,27 +88,50 @@ static func generate_from_plan(parent: Node3D, plan: Dictionary) -> Dictionary:
     var connections := Node3D.new()
     connections.name = "Connections"
     root.add_child(connections)
-    var open_count := 0
-    for edge in edges:
-        if bool(edge.get("hidden", false)) or str(edge.get("requires", "")) != "":
-            continue
-        var source: Node3D = rooms.get_node(str(edge.get("from", "")))
-        var target: Node3D = rooms.get_node(str(edge.get("to", "")))
-        var from_marker := _nearest_connector(source, target.position)
-        var to_marker := _nearest_connector(target, source.position)
-        if from_marker == null or to_marker == null:
-            root.queue_free()
-            return {"ok":false, "reason":"physical_connector_missing"}
-        var corridor := Node3D.new()
-        corridor.name = "Link_%03d" % open_count
-        corridor.set_meta("from_room", source.name)
-        corridor.set_meta("to_room", target.name)
-        connections.add_child(corridor)
-        _build_path_tiles(corridor, root.to_local(from_marker.global_position), root.to_local(to_marker.global_position), 4.0, open_count)
-        open_count += 1
-    return {"ok":true, "root":root, "room_count":rooms.get_child_count(), "open_connection_count":open_count}
+    var synced := sync_discovered_passages(root, plan, [])
+    if not bool(synced.get("ok", false)):
+        root.queue_free()
+        return synced
+    return {"ok":true, "root":root, "room_count":rooms.get_child_count(), "open_connection_count":connections.get_child_count()}
 
-static func _nearest_connector(room: Node3D, toward: Vector3) -> Marker3D:
+# Materialize only canonical discoveries. Locked shortcuts remain a separate
+# integration; searching must never grant a lock requirement or mutate the plan.
+static func sync_discovered_passages(root: Node3D, plan: Dictionary, discovered_edges: Array) -> Dictionary:
+    var rooms := root.get_node("Rooms")
+    var connections := root.get_node("Connections")
+    var existing := {}
+    for corridor in connections.get_children():
+        existing[str(corridor.get_meta("edge_id", ""))] = true
+    var added := 0
+    for edge in plan.get("edges", []):
+        var from_id := str(edge.get("from", ""))
+        var to_id := str(edge.get("to", ""))
+        var edge_id := from_id + ">" + to_id
+        if existing.has(edge_id) or str(edge.get("requires", "")) != "":
+            continue
+        var hidden := bool(edge.get("hidden", false))
+        if hidden and edge_id not in discovered_edges:
+            continue
+        var source := rooms.get_node_or_null(from_id) as Node3D
+        var target := rooms.get_node_or_null(to_id) as Node3D
+        if source == null or target == null:
+            return {"ok":false, "reason":"physical_room_missing"}
+        var from_marker := _nearest_connector(source, target.position, hidden)
+        var to_marker := _nearest_connector(target, source.position, hidden)
+        if from_marker == null or to_marker == null:
+            return {"ok":false, "reason":"physical_connector_missing", "edge_id":edge_id}
+        var corridor := Node3D.new()
+        corridor.name = "Link_%03d" % connections.get_child_count()
+        corridor.set_meta("from_room", from_id)
+        corridor.set_meta("to_room", to_id)
+        corridor.set_meta("edge_id", edge_id)
+        connections.add_child(corridor)
+        _build_path_tiles(corridor, root.to_local(from_marker.global_position), root.to_local(to_marker.global_position), 4.0, connections.get_child_count() - 1)
+        existing[edge_id] = true
+        added += 1
+    return {"ok":true, "added":added, "open_connection_count":connections.get_child_count()}
+
+static func _nearest_connector(room: Node3D, toward: Vector3, allow_hidden: bool = false) -> Marker3D:
     var connectors := room.get_node_or_null("Connectors")
     if connectors == null:
         return null
@@ -116,7 +139,7 @@ static func _nearest_connector(room: Node3D, toward: Vector3) -> Marker3D:
     var distance := INF
     for value in connectors.get_children():
         var marker := value as Marker3D
-        if marker == null or bool(marker.get_meta("hidden", false)):
+        if marker == null or (bool(marker.get_meta("hidden", false)) and not allow_hidden):
             continue
         var candidate := marker.global_position.distance_squared_to(toward)
         if candidate < distance:

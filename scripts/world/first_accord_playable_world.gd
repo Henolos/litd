@@ -35,6 +35,11 @@ func _ready() -> void:
     if not bool(physical.get("ok", false)):
         push_error("FirstAccordPlayableWorld: " + str(physical.get("reason", "physical_error")))
         return
+    var synced := BUILDER.sync_discovered_passages(physical["root"], plan, runtime.campaign.dungeon.discovered_edges)
+    if not bool(synced.get("ok", false)):
+        push_error("FirstAccordPlayableWorld: passage restoration failed")
+        return
+    physical["open_connection_count"] = int(synced["open_connection_count"])
     var rooms := (physical["root"] as Node).get_node("Rooms")
     current_room_id = runtime.campaign.dungeon.current_node
     var entry: Node3D = rooms.get_node_or_null(current_room_id)
@@ -81,6 +86,11 @@ func _build_hud() -> void:
     action.custom_minimum_size = Vector2(180, 48)
     action.pressed.connect(interact_current_room)
     panel.add_child(action)
+    var search := Button.new()
+    search.text = "FOUILLER LES PASSAGES"
+    search.custom_minimum_size = Vector2(180, 48)
+    search.pressed.connect(discover_current_passages)
+    panel.add_child(search)
     var save := Button.new()
     save.text = "SAUVEGARDER"
     save.custom_minimum_size = Vector2(180, 48)
@@ -119,6 +129,23 @@ func interact_current_room() -> Dictionary:
             _show_combat()
     _sync_prompt()
     return last_result.duplicate(true)
+
+func discover_current_passages() -> Dictionary:
+    if runtime == null or runtime.combat != null:
+        return {"ok":false, "reason":"combat_active"}
+    var result := runtime.campaign.dungeon.discover_current_passages()
+    if not bool(result.get("ok", false)):
+        prompt.text = "Terminez la salle avant de chercher ses passages."
+        return result
+    var synced := BUILDER.sync_discovered_passages(physical["root"], plan, runtime.campaign.dungeon.discovered_edges)
+    if not bool(synced.get("ok", false)):
+        return synced
+    physical["open_connection_count"] = int(synced["open_connection_count"])
+    capture_state()
+    _sync_prompt()
+    var found: Array = result.get("discovered", [])
+    prompt.text += " · Passages découverts : %d" % found.size() if not found.is_empty() else " · Aucun nouveau passage"
+    return result
 
 func _show_combat() -> void:
     saved_transform = party.global_transform
