@@ -1029,3 +1029,21 @@ Inspection des fonctions et tests existants, sans exécution de mod tiers. Godot
 Échec préexistant sur le main inspecté : `test_preview_and_detail_show_stats_afflictions_and_skills`, assertion de présence du libellé « AFFLICTIONS, BUFFS ET DEBUFFS » dans le fichier HUD. Ce test textuel ne démontre pas une panne gameplay. Le lot ne modifie ni le test ni le HUD.
 
 Ordre de validation proposé, sans règle nouvelle imposée : (1) reproduire les rafraîchissements de stun actifs avec plusieurs producteurs ; (2) vérifier compactage et cadavres ; (3) tester silence sur une action ennemie de trame ; (4) inventorier les consommateurs du flux ai et les entrées nécessaires au replay ; (5) exécuter la boucle physique/combat/retour en Godot. Les règles déjà présentes ne doivent pas être réimplémentées. Tout changement de contrat devra être distinct de cette comparaison documentaire.
+
+
+## Validation ciblée et correction HUD — 7 octobre 2026
+
+Ce complément remplace la limite d'environnement de la passe précédente : Godot `4.7.2.stable.official.ed1daf0bf` a été retrouvé dans `/tmp/godot-runtime`, hors du PATH. L'import du projet a terminé avec code 0.
+
+Le test d'inspection était décalé sur deux contrats : libellé actuel « ÉTAT DU CORPS ET EFFETS » et priorité `skills → observed_skills → abilities` pour les compétences ennemies. Ces attentes ont été alignées, sans retirer les vérifications de traits, blessures ou compétences héros.
+
+L'exécution du test UX supplémentaire a découvert un défaut réel de `_build_detail` : deux commentaires contenaient des séquences littérales `\n`, qui commentaient les affectations `mouse_filter` et la transparence de l'arrière-plan. Les affectations ont été restaurées sur leurs propres lignes ; le panneau conserve explicitement `MOUSE_FILTER_STOP`. L'overlay et son arrière-plan utilisent `MOUSE_FILTER_IGNORE` pour préserver les actions hors panneau. Référence officielle consultée : [Control / MouseFilter](https://docs.godotengine.org/fr/4.x/classes/class_control.html). Les règles de combat sont inchangées.
+
+**Résultats locaux :**
+
+- 39 fonctions de tests existantes réussies par exécution directe Python (les cinq fichiers de la comparaison et `tests/test_playtest_p0_ux_contract.py`). Pytest n'est toujours pas installé ; ce résultat n'est pas une exécution de toute la suite.
+- Godot : `veilleurs_afflictions_contract_test`, `veilleurs_equipment_affliction_proc_test`, `veilleurs_death_resolver_contract_test`, `dungeon_architecture_pipeline_smoke`, `first_accord_physical_combat_smoke` : code 0, marqueurs de réussite, aucune erreur GDScript/assertion détectée. Le scénario d'architecture vérifie 1 000 replays complets ; la boucle physique annonce six actions.
+- Vérification temporaire d'entrée dans un SubViewport : instanciation du vrai script d'inspection, contrôles du filtrage et injection d'un clic hors panneau sur un bouton sous-jacent ; marqueur `INSPECTION_OUTSIDE_CLICK_PASS`, code 0.
+- `git diff --check` : réussite.
+
+Limites : les scènes signalent des ObjectDB/ressources encore présents à la fermeture ; aucun résultat de nettoyage intégral n'est revendiqué. Le premier essai temporaire par Input.parse_input_event dans la fenêtre headless n'a pas livré le clic ; le scénario a été corrigé pour cibler explicitement un SubViewport isolé via push_input. Aucun playtest visuel PC ni validation exhaustive du combat. Les questions de rafraîchissement actif du stun, cadavres et silence ennemi restent celles de la comparaison et ne sont pas résolues par ces tests existants.
