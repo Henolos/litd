@@ -969,3 +969,63 @@ La solution retenue est de **poursuivre avec les preuves accessibles**, plutôt 
 **Bilan mis à jour :** 20 jeux documentés ; 19 avec code/données/scripts de patch lus, dont 3 outils/patchs. Le nombre de preuves directes de règles reste 6 : ajouter un script mémoire ne transforme pas un outil en moteur analysé.
 
 La recherche publique effectuée peut être considérée terminée dans ce périmètre, avec ces limites. L'analyse exhaustive des vingt jeux n'est pas déclarée CLOS. Les enseignements déjà établis peuvent être exploités dans la bibliothèque existante en gardant leur niveau de preuve ; aucun changement de gameplay LITD ni fusion dans cette passe.
+
+
+## Confrontation des preuves avec LITD — 7 octobre 2026
+
+**Statut : comparaison documentaire terminée sur le périmètre ci-dessous ; validation dynamique non réalisée.** Référence LITD : `a3aeb94f87a0bd3d31da824ec5f9464d76f367d9` (main, fusion #556). Les preuves externes restent celles des fiches J01–J20, avec leurs commits, fichiers et limites. Ce complément n'introduit aucune règle gameplay ni promotion du canon.
+
+### Périmètre et chemins réellement distincts
+
+Le sandbox `scripts/core/veilleurs_combat_sandbox_runtime.gd` délègue la résolution à `scripts/core/combat/veilleurs_combat_sandbox_canonical_adapter.gd`. Ses héros utilisent des actions et des zones ; sa phase ennemie cible le héros vivant aux PV absolus les plus faibles, puis appelle une attaque simplifiée.
+
+Le chemin tactique possède notamment `scripts/core/veilleurs_enemy_ai_v2.gd`, `veilleurs_enemy_ai_v3.gd` et les contrats tactiques de `VeilleursTargetResolver`. L'ancien `scripts/core/enemy_combat_director.gd` sélectionne des compétences pondérées et utilise des tirages globaux. Ces observations ne prouvent pas que chaque scène utilise chacun de ces chemins. Il faut identifier le consommateur avant toute correction.
+
+La passerelle physique du Premier Accord est maintenant présente : `scripts/world/first_accord_playable_world.gd`, fonctions `interact_current_room`, `_show_combat` et `_on_combat_finished`. Elle capture la position, ouvre le combat, restaure la transformation et empêche une interaction sur une salle déjà terminée. Ce constat statique ne certifie pas le parcours complet, la persistance ni le playtest PC.
+
+### Les vingt études face au code actuel
+
+« Correspondance » indique une structure comparable, pas une copie ni une preuve d'équivalence de gameplay. « Non établi » signifie que cette inspection ciblée n'apporte pas de preuve suffisante.
+
+| Étude | Preuve externe réellement utilisable | Correspondance LITD inspectée et limite |
+|---|---|---|
+| J01 Darkest Dungeon | Rangs et effets déclaratifs du mod | TargetResolver/targeting_rules ; compactage via DeathResolver et position_runtime. Le compactage est prouvé dans LITD, pas par les fichiers externes lus. |
+| J02 Battle Chasers | Écritures mémoire PV/mana/argent | Les mutations LITD passent par les résolveurs et leur orchestration. Un patch mémoire ne fournit aucune formule transposable ni contrat AP natif. |
+| J03 Ruined King | Scripts mémoire combat/ressources | Pas de preuve exploitable pour comparer lanes ou délais ; aucune adoption proposée. |
+| J04 Iratus | Description de mod | Pas de fichier gameplay externe lu : aucune comparaison de formule certifiée. |
+| J05 Darkest Dungeon II | Injection de ressources | Comparaison architecturale seulement ; Tokens, Combo et Death's Door non prouvés par cette source. |
+| J06 For The King | Définition et insertion d'objets | EquipmentProcResolver lit les bonus d'équipement ; loot, précision et casse FTK non prouvés. |
+| J07 Octopath II | Affinités permutées et facteur de puissance | StatusResolver distingue résistance de durée et de dégâts. Ces résistances ne sont pas un compteur Break ; aucun portage de Break déduit. |
+| J08 Chained Echoes | Flux à graine, permutation, Overdrive de deux skills | DungeonRunSeed et HitResolver rendent certains tirages reproductibles. Pas d'équivalence avec Overdrive ni avec les jets groupés de statuts du mod. |
+| J09 Slay the Spire | Publication/abonnement d'événements | CombatEvent/Inspector distinguent observation et résolution ; BaseMod ne prouve pas l'ordre dégâts/bloc ou la décision IA. |
+| J10 Battle Brothers | Coûts/preview et score modifié | IA V2 score distance, PV, blessures et rôle ; V3 ajoute mémoire et sélection corporelle. Pas d'équivalence avec l'IA vanilla ni preuve globale de légalité. |
+| J11 Enter the Gungeon | Graphe de salles fixe | HybridDungeonGenerator construit et valide un graphe ; le fichier externe ne prouve pas la validation native. |
+| J12 Dead Cells | Outil de squelette de salles | Les profils et graphes LITD sont inspectables ; l'outil externe n'est pas une preuve du générateur natif. |
+| J13 Isaac Rebirth | Catalogue par forme | DungeonRoomResolver filtre et trie les modules avant tirage pondéré. Portes/traversabilité de StageAPI non prouvées. |
+| J14 Spelunky 2 | Templates et filtres de spawn | RoomResolver/MapBuilder emploient des modules ; pas de garantie externe de chemin principal ou nettoyage des callbacks. |
+| J15 FTL | Callbacks et remplacement de résultat | Pipeline et adaptation de résultat sont comparables ; budgets et sous-graines FTL ne sont pas démontrés. |
+| J16 Stoneshard | Tables de salles/ennemis | Module et encounter data LITD sont distincts de l'anatomie ; aucune preuve externe d'anatomie issue de ces fichiers. |
+| J17 Grimrock II | Projectile, esquive, partie corporelle, protection | Target/Hit/Damage/AnatomyResolver séparent ces phases. La sélection volontaire des zones LITD doit être conservée ; le tirage de partie du mod ne la remplace pas. |
+| J18 Dungeon of the Endless | Minimum/maximum de salles | DungeonProfile contrôle les plages ; RoomResolver réalise un tirage pondéré de modules. Ne pas attribuer ce dernier à la preuve externe. |
+| J19 Into the Breach | Score de conséquences avec garde-fous | IA V2/V3 possède des scores/heuristiques ; une évaluation exhaustive des conséquences et la télégraphie ne sont pas établies ici. |
+| J20 Shattered Pixel Dungeon | Ticks d'attrition et identification sérialisée | StatusResolver possède des ticks et expirations. Ce n'est pas la preuve d'un système LITD complet de faim/identification ni de son équilibre. |
+
+### Constats précis et validations restantes
+
+**Rangs et mort déjà implémentés.** `VeilleursDeathResolver.resolve_actor` déclenche `CombatPositionRuntime.compact_enemy_formation` pour les ennemis ; cette fonction trie les vivants par position puis les compacte dès R1. Le ciblage lit ces positions. Attention : le mouvement manuel consulte les cadavres, mais le compactage ne consulte pas `_slot_blocked_by_corpse`. La coexistence compactage/cadavres doit être validée selon le contrat canonique ; ne pas changer la règle sur la seule base de Darkest Dungeon.
+
+**Sélection corporelle déjà implémentée.** TargetResolver possède six zones et un contrat de cible/zone ; AnatomyResolver enregistre blessures et perte fonctionnelle. Une zone inconnue est normalisée en torso : vérifier séparément le comportement attendu des commandes invalides. Grimrock ne justifie pas de remplacer la sélection du joueur par un tirage aléatoire.
+
+**Étourdissement : protection après expiration, rafraîchissement actif encore possible.** StatusResolver accorde une immunité d'un tour de l'acteur lorsque stun expire. Mais `apply_affliction` utilise `max(durée restante, durée demandée)` pour toutes les afflictions ; une nouvelle demande de deux tours lorsque stun n'a plus qu'un tour le ramène à deux. La protection après expiration ne garantit donc pas à elle seule l'absence de verrouillage par rafraîchissements avant expiration. EquipmentProcResolver demande toujours un tour : répéter ce proc sur un stun d'un tour ne l'allonge pas ; il n'existe pas de branche spéciale « stun déjà actif ». Le test de procs ne couvre pas tous les producteurs de stun. Aucun correctif dans ce lot.
+
+**Afflictions et silence.** Dix afflictions sont définies ; poison/burn/freeze restent explicitement prototype, sept sont actives. Les résistances signées durée/dégâts sont bornées de -100 à +100. Silence bloque une action avec coût de trame ou effet préfixé trame ; le test existant couvre ce blocage héros. L'attaque ennemie simplifiée du sandbox ne porte pas de coût de trame : une démonstration de silence contre une véritable action ennemie de trame n'est pas fournie par ce chemin. Aucun arbitrage gel/brûlure n'est établi par les fonctions StatusResolver inspectées ; le statut prototype doit être conservé.
+
+**Aléatoire et IA.** DungeonRunSeed expose layout/room/encounter/event/loot/ai ; RoomResolver consomme un générateur room par salle et trie ses candidats. Cette présence ne prouve pas que chaque consommateur utilise son flux : EnemyCombatDirector appelle encore randi/randf globaux, tandis que HitResolver emploie des hashes de commandes. Séparer audit de topologie, combat, IA et replay. La documentation officielle Godot consultée le 7 octobre confirme qu'un générateur peut posséder son propre état/graine et que la reproductibilité ne doit pas être promise à travers des versions du moteur : [RandomNumberGenerator](https://docs.godotengine.org/en/4.7/classes/class_randomnumbergenerator.html), [génération aléatoire](https://github.com/godotengine/godot-docs/blob/master/tutorials/math/random_number_generation.rst).
+
+### Vérification effectuée et décision de suite
+
+Inspection des fonctions et tests existants, sans exécution de mod tiers. Godot et pytest sont absents de cet environnement. Les 33 fonctions sans paramètres de cinq fichiers existants ont été exécutées directement via Python/runpy : **32 réussites, 1 échec**. Fichiers : `tests/test_combat_formation_contract.py`, `tests/test_combatant_inspection.py`, `tests/test_first_accord_hybrid_data.py`, `tests/python/test_hybrid_dungeon_generation.py`, `tests/python/test_physical_first_veil_dungeon.py`. Cela vérifie leurs assertions documentaires/données, pas un combat Godot.
+
+Échec préexistant sur le main inspecté : `test_preview_and_detail_show_stats_afflictions_and_skills`, assertion de présence du libellé « AFFLICTIONS, BUFFS ET DEBUFFS » dans le fichier HUD. Ce test textuel ne démontre pas une panne gameplay. Le lot ne modifie ni le test ni le HUD.
+
+Ordre de validation proposé, sans règle nouvelle imposée : (1) reproduire les rafraîchissements de stun actifs avec plusieurs producteurs ; (2) vérifier compactage et cadavres ; (3) tester silence sur une action ennemie de trame ; (4) inventorier les consommateurs du flux ai et les entrées nécessaires au replay ; (5) exécuter la boucle physique/combat/retour en Godot. Les règles déjà présentes ne doivent pas être réimplémentées. Tout changement de contrat devra être distinct de cette comparaison documentaire.
