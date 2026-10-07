@@ -58,7 +58,7 @@ func _test() -> void:
     world.party.global_position = debate.global_position + Vector3.UP * 0.7
     check(bool(world.interact_current_room().get("ok", false)), "second physical encounter")
     world.capture_state()
-    var saved := VeilleursRuntime.serialize()
+    var saved: Dictionary = JSON.parse_string(JSON.stringify(VeilleursRuntime.serialize()))
     var saved_position := world.party.global_position
     world.free()
     var legacy := saved.duplicate(true)
