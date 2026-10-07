@@ -24,6 +24,10 @@ static func apply_affliction(target: Dictionary, kind: String, turns: int) -> Di
     var immunities: Dictionary = target.get("affliction_immunities", {})
     if int(immunities.get(kind, 0)) > 0:
         return {"ok": true, "afflictions": statuses, "kind": kind, "turns": int(statuses.get(kind, 0)), "resisted": true, "immune": true}
+    # An active stun consumes its remaining turns. Repeated hits cannot keep
+    # the actor locked before the recovery immunity begins.
+    if kind == "stun" and int(statuses.get("stun", 0)) > 0:
+        return {"ok": true, "afflictions": statuses, "kind": kind, "turns": int(statuses["stun"]), "resisted": true, "immune": false, "already_active": true}
     var adjusted_turns := maxi(0, int(round(float(turns) * (1.0 - float(resistance(target, kind, "duration")) / 100.0))))
     if adjusted_turns > 0:
         statuses[kind] = maxi(int(statuses.get(kind, 0)), adjusted_turns)
