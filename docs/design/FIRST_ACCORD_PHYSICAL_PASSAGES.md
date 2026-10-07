@@ -37,6 +37,28 @@ Le nouveau smoke est exécuté dans le domaine CI `veilleurs`. Les smokes combat
 physique, modules, pipeline jouable et shell joueur passent aussi localement,
 ainsi que les 14 contrats Python des données hybrides.
 
+## Extraction physique
+
+Chaque salle que le plan canonique marque comme point d'extraction reçoit une
+borne visible, ciblable par le même bouton INTERAGIR ou par le clavier. La
+compagnie doit se trouver dans la bonne salle et près de la borne ; le combat
+bloque l'action. L'entrée autorise le retour anticipé, les points de retraite
+restent disponibles selon le plan et la salle finale permet de partir après le
+Gardien. `campaign.complete_expedition()` reste seul responsable de créditer
+le butin et le bonus de victoire. La session physique est effacée après succès,
+la sauvegarde est écrite et la scène du Sanctuaire est demandée après son
+chargement. Une deuxième extraction est refusée par le runtime.
+
+Le smoke d'interactions vérifie aussi la portée, l'acteur, le refus en combat,
+le butin de fin, l'absence de paiement répété, la sauvegarde sans donjon actif
+et une extraction volontaire avant le Gardien. Le changement de scène est
+réservé à la scène courante du jeu ; la fixture ne revendique pas un essai PC.
+
+La sérialisation du runtime suit le modèle de sauvegarde de Godot ; le retour
+au Sanctuaire attend le signal `SceneTree.scene_changed` avant de demander
+l'écran, conformément à l'ordre de chargement des scènes décrit dans la
+documentation Godot.
+
 ## Périmètre
 
 Les objets et sols restent des proxies. Les variations de dangers et de lore

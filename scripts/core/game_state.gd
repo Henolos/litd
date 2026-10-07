@@ -85,6 +85,9 @@ func request_screen(name: String) -> void:
     current_screen = name
     screen_requested.emit(name)
 
+func show_sanctuary_after_scene(_scene: Node) -> void:
+    request_screen("sanctuary")
+
 func add_log(text: String) -> void:
     log_lines.push_front(text)
     if log_lines.size() > 8:
