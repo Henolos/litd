@@ -99,6 +99,7 @@ case "$DOMAIN" in
     scene 60 "Procs équipement et afflictions" res://scenes/tests/veilleurs_equipment_affliction_proc_test.tscn
     scene 60 "Contrat résolveurs de combat" res://scenes/tests/veilleurs_combat_resolvers_contract_test.tscn
     scene 60 "Autorité du ciblage anatomique" res://scenes/tests/veilleurs_target_resolver_authority_test.tscn
+    run_checked "Fallback ennemi canonique" timeout 60s godot --headless --path . --script scripts/tests/veilleurs_enemy_canonical_fallback_test.gd
     scene 180 "Architecture procédurale complète" res://scenes/tests/dungeon_architecture_pipeline_smoke.tscn
     scene 60 "Modules physiques Premier Accord" res://scenes/tests/first_accord_module_blockout_smoke.tscn
     scene 120 "Combat canonique depuis le donjon physique" res://scenes/tests/first_accord_physical_combat_smoke.tscn
