@@ -95,6 +95,7 @@ case "$DOMAIN" in
   veilleurs)
     run_checked "Payoffs des afflictions" timeout 60s godot --headless --path . --script scripts/tests/veilleurs_affliction_synergy_runtime_test.gd
     scene 60 "Contraintes corporelles des actions" res://scenes/tests/veilleurs_body_action_contract_smoke.tscn
+    run_checked "Blessures localisées séparées" timeout 60s godot --headless --path . --script scripts/tests/veilleurs_localized_injury_layer_test.gd
     scene 60 "Contrat dix afflictions" res://scenes/tests/veilleurs_afflictions_contract_test.tscn
     scene 60 "Procs équipement et afflictions" res://scenes/tests/veilleurs_equipment_affliction_proc_test.tscn
     scene 60 "Contrat résolveurs de combat" res://scenes/tests/veilleurs_combat_resolvers_contract_test.tscn
