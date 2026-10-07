@@ -305,7 +305,7 @@ func _enemy_phase() -> void:
         for candidate: Dictionary in alive:
             if int(candidate.get("hp", 0)) < int(target.get("hp", 0)):
                 target = candidate
-        CANONICAL_ADAPTER.resolve_enemy_attack(enemy, target, heroes, round)
+        CANONICAL_ADAPTER.resolve_enemy_attack(enemy, target, heroes, round, enemy.get("sandbox_action", {}))
 
 func _start_afflicted_turn(actor: Dictionary) -> void:
     if int(actor.get("hp", 0)) <= 0: return
