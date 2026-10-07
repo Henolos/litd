@@ -6,7 +6,9 @@ const COMBAT_UI := preload("res://scripts/ui/first_accord_physical_combat_ui.gd"
 const BUILDER := preload("res://scripts/world/first_accord_dungeon_map_builder.gd")
 const PARTY_SCENE := preload("res://scenes/world/terre_des_cendres/exploration_party_placeholder.tscn")
 const PASSAGE_SCRIPT := preload("res://scripts/world/first_accord_passage_interaction.gd")
+const EXTRACTION_SCRIPT := preload("res://scripts/world/first_accord_extraction_interaction.gd")
 const SENSOR_SCRIPT := preload("res://scripts/world/veilleurs_ge01_room_sensor.gd")
+const MAIN_SCENE := "res://scenes/Main.tscn"
 
 @export var campaign_seed := 42
 
@@ -21,6 +23,7 @@ var action_button: Button
 var interaction_feedback := ""
 var saved_transform := Transform3D.IDENTITY
 var last_result: Dictionary = {}
+var last_extraction: Dictionary = {}
 
 func _ready() -> void:
     var resume := bool(VeilleursRuntime.physical_state.get("active", false)) and VeilleursRuntime.runtime.campaign.current_dungeon_id == DUNGEON_ID and int(VeilleursRuntime.physical_state.get("run_seed", -1)) == VeilleursRuntime.runtime.campaign.dungeon.run_seed
@@ -66,11 +69,12 @@ func _ready() -> void:
         sensor.party_entered.connect(_on_room_entered)
         sensors.add_child(sensor)
     _build_passage_interactions(rooms)
+    _build_extraction_interactions(rooms)
     _sync_passages()
     _build_hud()
     party.interaction_target_changed.connect(func(_descriptor: Dictionary) -> void: _sync_prompt())
     party.interaction_resolved.connect(func(result: Dictionary) -> void:
-        interaction_feedback = "Passage ouvert" if bool(result.get("success", false)) else "Interaction indisponible"
+        interaction_feedback = ("Expédition extraite" if str(result.get("outcome", "")) == "extracted" else "Passage ouvert") if bool(result.get("success", false)) else "Interaction indisponible"
         _sync_prompt())
     capture_state()
     if runtime.combat != null:
@@ -139,6 +143,44 @@ func _build_passage_interactions(rooms: Node) -> void:
             interaction.configure(self, edge, str(room.name), point)
             interactions.add_child(interaction)
 
+func _build_extraction_interactions(rooms: Node) -> void:
+    var exits := Node3D.new()
+    exits.name = "ExtractionInteractions"
+    add_child(exits)
+    for room in rooms.get_children():
+        var definition: Dictionary = runtime.campaign.dungeon.nodes_by_id.get(str(room.name), {})
+        if not bool(definition.get("extraction", false)):
+            continue
+        var exit := EXTRACTION_SCRIPT.new()
+        exit.name = str(room.name) + "_exit"
+        exit.configure(self, str(room.name), room.position + Vector3(0, 0, 3))
+        exits.add_child(exit)
+
+func extract_expedition(room_id: String) -> Dictionary:
+    if runtime == null or runtime.combat != null or room_id != current_room_id:
+        return {"ok":false, "reason":"extraction_unavailable"}
+    if not runtime.campaign.dungeon.can_extract():
+        return {"ok":false, "reason":"extraction_unavailable"}
+    var exits := get_node_or_null("ExtractionInteractions")
+    var exit: Node3D = exits.get_node_or_null(room_id + "_exit") if exits != null else null
+    if exit == null or party.global_position.distance_to(exit.global_position) > 2.4:
+        return {"ok":false, "reason":"out_of_reach"}
+    last_extraction = runtime.campaign.complete_expedition()
+    if not bool(last_extraction.get("ok", false)):
+        return last_extraction.duplicate(true)
+    VeilleursRuntime.physical_state.clear()
+    if get_tree().current_scene == self:
+        SaveManager.save_game()
+        call_deferred("_return_to_main_after_extraction")
+    return last_extraction.duplicate(true)
+
+func _return_to_main_after_extraction() -> void:
+    var scene_tree := get_tree()
+    scene_tree.scene_changed.connect(GameState.show_sanctuary_after_scene, CONNECT_ONE_SHOT)
+    if scene_tree.change_scene_to_file(MAIN_SCENE) != OK:
+        scene_tree.scene_changed.disconnect(GameState.show_sanctuary_after_scene)
+        push_error("FirstAccordPlayableWorld: cannot return to sanctuary")
+
 func open_passage(edge_id: String, shortcut: bool) -> Dictionary:
     if runtime == null or runtime.combat != null:
         return {"ok":false, "reason":"combat_active"}
@@ -158,7 +200,7 @@ func _sync_passages() -> void:
     physical["open_connection_count"] = physical["root"].get_node("Connections").get_child_count()
 
 func capture_state() -> void:
-    if not is_instance_valid(party):
+    if not is_instance_valid(party) or runtime.campaign.current_dungeon_id != DUNGEON_ID:
         return
     var p := party.global_position
     VeilleursRuntime.physical_state = {"active":true, "run_seed":runtime.campaign.dungeon.run_seed, "room_id":current_room_id, "position":[p.x,p.y,p.z], "yaw":party.rotation.y}

@@ -36,6 +36,9 @@ func _test() -> void:
         var interaction_results: Array[Dictionary] = []
         world.party.interaction_resolved.connect(func(result: Dictionary) -> void: interaction_results.append(result))
         var dungeon := world.runtime.campaign.dungeon
+        var entry_exit: Area3D = world.get_node("ExtractionInteractions").get_node(str(world.plan["entry_id"]) + "_exit")
+        check(not bool(world.extract_expedition(world.current_room_id).get("ok", false)), "extraction requires physical proximity")
+        check(not bool(entry_exit.perform_interaction(null).get("success", false)), "only the party can extract")
         var original_plan: Dictionary = JSON.parse_string(JSON.stringify(world.plan))
         var shortcut_edge: Dictionary = {}
         for edge in world.plan["edges"]:
@@ -55,6 +58,10 @@ func _test() -> void:
             # commands are exercised by first_accord_physical_combat_smoke.
             world.interact_current_room()
             if world.runtime.combat != null:
+                if room_id == str(world.plan["objective_id"]):
+                    var combat_exit: Area3D = world.get_node("ExtractionInteractions").get_node(room_id + "_exit")
+                    world.party.global_position = combat_exit.global_position
+                    check(not bool(combat_exit.perform_interaction(world.party).get("success", false)), "extraction blocked during combat")
                 for node in world.get_node("PassageInteractions").get_children():
                     check(not bool(node.perform_interaction(world.party).get("success", false)), "passages blocked during combat")
                 world.runtime.resolve_active_combat("victory")
@@ -118,6 +125,16 @@ func _test() -> void:
         check(world.physical["root"].get_node("Connections").get_child_count() == expected, "restores all opened physical passages")
         check(JSON.parse_string(JSON.stringify(world.plan)) == original_plan, "saved plan stays stable")
         check(has_corridor(world, shortcut_id), "shortcut survives reload")
+        var exit: Area3D = world.get_node("ExtractionInteractions").get_node(str(world.plan["objective_id"]) + "_exit")
+        check(not bool(exit.perform_interaction(world.party).get("success", false)), "distant exit cannot extract")
+        world.party.global_position = exit.global_position + Vector3(0, -0.3, 1.0)
+        var rewards := world.runtime.campaign.dungeon.collected_rewards()
+        var extraction: Dictionary = exit.perform_interaction(world.party)
+        check(bool(extraction.get("success", false)), "physical objective exit extracts canonical expedition")
+        check(int(extraction.get("payload", {}).get("gold", -1)) >= int(rewards.get("gold", 0)), "canonical extraction includes collected rewards")
+        check(world.runtime.campaign.current_dungeon_id == "" and VeilleursRuntime.physical_state.is_empty(), "extraction clears active run and physical resume")
+        check(not bool(exit.perform_interaction(world.party).get("success", false)), "extraction cannot pay twice")
+        check(str(VeilleursRuntime.serialize()["runtime"]["campaign"]["current_dungeon_id"]) == "", "post extraction save has no active dungeon")
         world.free()
         var legacy := saved.duplicate(true)
         for flags in legacy["runtime"]["campaign"]["dungeon"]["node_flags"].values():
@@ -127,6 +144,16 @@ func _test() -> void:
         add_child(world)
         check(not has_corridor(world, shortcut_id), "older save does not invent opened shortcut")
         world.free()
+        if seed_value == 101:
+            VeilleursRuntime.reset_new_game()
+            world = WORLD.instantiate() as FirstAccordPlayableWorld
+            world.campaign_seed = seed_value
+            add_child(world)
+            var early_exit: Area3D = world.get_node("ExtractionInteractions").get_node(str(world.plan["entry_id"]) + "_exit")
+            world.party.global_position = early_exit.global_position + Vector3(0, -0.3, 1.0)
+            check(bool(early_exit.perform_interaction(world.party).get("success", false)), "entry permits voluntary extraction")
+            check(not bool(world.runtime.campaign.dungeon.node_flags.get(str(world.plan["objective_id"]), {}).get("completed", false)), "early extraction does not grant boss victory")
+            world.free()
     VeilleursRuntime.reset_new_game()
     print("FIRST_ACCORD_PHYSICAL_INTERACTIONS: ", "OK" if failures.is_empty() else failures, " secrets=", discoveries, " shortcuts=", shortcuts)
     get_tree().quit(0 if failures.is_empty() else 1)
