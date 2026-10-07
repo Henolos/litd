@@ -1,8 +1,8 @@
-extends SceneTree
+extends Node
 
 const RUNTIME := preload("res://scripts/core/veilleurs_combat_runtime.gd")
 
-func _initialize() -> void:
+func _ready() -> void:
     var runtime := RUNTIME.new()
     assert(bool(runtime.setup_first_combat().get("ok", false)), "combat setup must succeed")
     var enemy_ids: Array[String] = runtime.alive_ids("enemy")
@@ -18,4 +18,4 @@ func _initialize() -> void:
     assert(runtime.action_log.size() == before_size + 1, "canonical hold must be journaled exactly once")
     assert(runtime.action_log[-1] == result, "journal must contain the canonical fallback snapshot")
     print("VEILLEURS_ENEMY_CANONICAL_FALLBACK_OK")
-    quit(0)
+    get_tree().quit(0)
