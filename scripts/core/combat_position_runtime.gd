@@ -87,15 +87,28 @@ func compact_enemy_formation(enemies: Array) -> bool:
         return position_of(left) < position_of(right)
     )
 
+    var available_slots: Array[int] = []
+    for slot in range(MIN_SLOT, MAX_SLOT + 1):
+        if not _slot_blocked_by_corpse(slot, "enemy"):
+            available_slots.append(slot)
+    # A pre-existing overlap or insufficient free space requires an explicit
+    # corpse resolution; never move a survivor into an occupied corpse slot.
+    if living.size() > available_slots.size():
+        return false
+    for enemy in living:
+        if _slot_blocked_by_corpse(position_of(enemy), "enemy"):
+            return false
+
     var changed := false
     for rank in range(living.size()):
         var enemy: Dictionary = living[rank]
         var origin := position_of(enemy)
-        if origin != rank:
-            enemy["combat_position"] = rank
+        var destination := available_slots[rank]
+        if origin != destination:
+            enemy["combat_position"] = destination
             enemy["last_combat_move"] = {
                 "from": origin,
-                "to": rank,
+                "to": destination,
                 "side": "enemy",
                 "source": "formation_compaction"
             }
