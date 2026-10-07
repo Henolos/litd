@@ -21,6 +21,8 @@ func start_playable() -> bool:
 func resume_playable() -> bool:
     if not VeilleursRuntime.is_active():
         return false
+    if bool(VeilleursRuntime.physical_state.get("active", false)) and VeilleursRuntime.runtime.campaign.current_dungeon_id == "dungeon_first_map_hall_of_first_accord":
+        return get_tree().change_scene_to_file("res://scenes/dungeons/first_accord_playable_blockout.tscn") == OK
     return get_tree().change_scene_to_file(PLAYABLE_SCENE) == OK
 
 func _install_launch_ui() -> void:

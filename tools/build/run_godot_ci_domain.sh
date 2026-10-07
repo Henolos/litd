@@ -101,6 +101,7 @@ case "$DOMAIN" in
     scene 60 "Autorité du ciblage anatomique" res://scenes/tests/veilleurs_target_resolver_authority_test.tscn
     scene 180 "Architecture procédurale complète" res://scenes/tests/dungeon_architecture_pipeline_smoke.tscn
     scene 60 "Modules physiques Premier Accord" res://scenes/tests/first_accord_module_blockout_smoke.tscn
+    scene 120 "Combat canonique depuis le donjon physique" res://scenes/tests/first_accord_physical_combat_smoke.tscn
     scene 60 "Pipeline rencontres contraintes" res://scenes/tests/dungeon_encounter_pipeline_smoke.tscn
     scene 60 "Pipeline génération graines et modules" res://scenes/tests/dungeon_generation_pipeline_smoke.tscn
     scene 60 "Graphe hybride connecté" res://scenes/tests/hybrid_graph_smoke.tscn

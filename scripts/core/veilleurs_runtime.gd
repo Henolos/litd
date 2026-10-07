@@ -9,6 +9,7 @@ extends Node
 const RUNTIME_SCRIPT := preload("res://scripts/core/veilleurs_vertical_slice_runtime_v09.gd")
 
 var runtime: VeilleursVerticalSliceRuntimeV09 = RUNTIME_SCRIPT.new() as VeilleursVerticalSliceRuntimeV09
+var physical_state: Dictionary = {}
 
 func _ready() -> void:
     if not GameState.new_game_reset.is_connected(reset_new_game):
@@ -16,9 +17,13 @@ func _ready() -> void:
 
 func reset_new_game() -> void:
     runtime = RUNTIME_SCRIPT.new() as VeilleursVerticalSliceRuntimeV09
+    physical_state.clear()
 
 func start_dungeon(dungeon_id: String, seed: int = 0) -> Dictionary:
-    return runtime.start_dungeon(dungeon_id, seed)
+    var result := runtime.start_dungeon(dungeon_id, seed)
+    if bool(result.get("ok", false)):
+        physical_state.clear()
+    return result
 
 func enter_next(node_id: String) -> Dictionary:
     return runtime.enter_next(node_id)
@@ -62,14 +67,19 @@ func serialize() -> Dictionary:
     return {
         "schema_version": 1,
         "runtime_version": "0.9.0",
+        "physical_state": physical_state.duplicate(true),
         "runtime": runtime.serialize()
     }
 
 func deserialize(payload: Dictionary) -> bool:
     runtime = RUNTIME_SCRIPT.new() as VeilleursVerticalSliceRuntimeV09
+    physical_state.clear()
     if payload.is_empty():
         return true
     var runtime_payload: Dictionary = payload.get("runtime", {})
     if runtime_payload.is_empty():
         return true
-    return runtime.deserialize(runtime_payload)
+    var ok := runtime.deserialize(runtime_payload)
+    if ok and runtime.campaign.current_dungeon_id == "dungeon_first_map_hall_of_first_accord":
+        physical_state = (payload.get("physical_state", {}) as Dictionary).duplicate(true)
+    return ok
