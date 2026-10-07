@@ -99,6 +99,20 @@ static func generate_from_plan(parent: Node3D, plan: Dictionary) -> Dictionary:
         open_count += 1
     return {"ok":true, "root":root, "room_count":rooms.get_child_count(), "open_connection_count":open_count}
 
+# Compatibility entry point for room-wide search: it never grants locks.
+static func sync_discovered_passages(root: Node3D, plan: Dictionary, discovered_edges: Array) -> Dictionary:
+    var added := 0
+    for edge in plan.get("edges", []):
+        var edge_id := str(edge.get("from", "")) + ">" + str(edge.get("to", ""))
+        if str(edge.get("requires", "")) != "" or (bool(edge.get("hidden", false)) and edge_id not in discovered_edges):
+            continue
+        var result := open_plan_connection(root, edge)
+        if not bool(result.get("ok", false)):
+            return result
+        if bool(result.get("changed", false)):
+            added += 1
+    return {"ok":true, "added":added, "open_connection_count":root.get_node("Connections").get_child_count()}
+
 # Stable edge IDs make restoration and repeated interaction idempotent.
 static func open_plan_connection(root: Node3D, edge: Dictionary) -> Dictionary:
     var edge_id := str(edge.get("from", "")) + ">" + str(edge.get("to", ""))

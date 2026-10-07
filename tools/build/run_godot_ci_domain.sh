@@ -102,6 +102,7 @@ case "$DOMAIN" in
     scene 180 "Architecture procédurale complète" res://scenes/tests/dungeon_architecture_pipeline_smoke.tscn
     scene 60 "Modules physiques Premier Accord" res://scenes/tests/first_accord_module_blockout_smoke.tscn
     scene 120 "Combat canonique depuis le donjon physique" res://scenes/tests/first_accord_physical_combat_smoke.tscn
+    scene 120 "Passages secrets du donjon physique" res://scenes/tests/first_accord_physical_passages_smoke.tscn
     scene 120 "Secrets et raccourcis physiques" res://scenes/tests/first_accord_physical_interactions_smoke.tscn
     scene 60 "Pipeline rencontres contraintes" res://scenes/tests/dungeon_encounter_pipeline_smoke.tscn
     scene 60 "Pipeline génération graines et modules" res://scenes/tests/dungeon_generation_pipeline_smoke.tscn
