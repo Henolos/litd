@@ -52,7 +52,10 @@ chargement. Une deuxième extraction est refusée par le runtime.
 Le smoke d'interactions vérifie aussi la portée, l'acteur, le refus en combat,
 le butin de fin, l'absence de paiement répété, la sauvegarde sans donjon actif
 et une extraction volontaire avant le Gardien. Le changement de scène est
-réservé à la scène courante du jeu ; la fixture ne revendique pas un essai PC.
+réservé à la scène courante du jeu. Le smoke de routage exécute le véritable
+changement vers `Main.tscn`, vérifie l'écran Sanctuaire, l'écriture de la save
+et sa recharge sans expédition active. Ces fixtures ne revendiquent pas un
+essai PC.
 
 La sérialisation du runtime suit le modèle de sauvegarde de Godot ; le retour
 au Sanctuaire attend le signal `SceneTree.scene_changed` avant de demander
