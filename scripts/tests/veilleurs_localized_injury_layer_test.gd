@@ -1,8 +1,8 @@
-extends Node
+extends SceneTree
 
 const Body := preload("res://scripts/core/veilleurs_body_component.gd")
 
-func _ready() -> void:
+func _initialize() -> void:
     var body := Body.new()
     assert((body.localized_injuries("left_arm") as Array).is_empty())
     var hit: Dictionary = body.apply_trauma("left_arm", 30)
@@ -19,4 +19,4 @@ func _ready() -> void:
     assert(restored.localized_injuries("left_arm") == wounds, "localized injuries must survive serialization")
     assert(str(restored.states.left_arm) == str(body.states.left_arm), "anatomy state remains independent and serializable")
     print("VEILLEURS_LOCALIZED_INJURY_LAYER_OK")
-    get_tree().quit(0)
+    quit(0)
