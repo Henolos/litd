@@ -155,14 +155,18 @@ func _build_preview() -> void:
 func _build_detail() -> void:
     detail_overlay = Control.new()
     detail_overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-    # Contextual inspection must not swallow combat controls outside the panel.\n    detail_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    # Contextual inspection must not swallow combat controls outside the panel.
+    detail_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
     add_child(detail_overlay)
     var dim := ColorRect.new()
-    # Keep the battlefield and action controls fully visible while inspecting.\n    dim.color = Color(0.005, 0.006, 0.010, 0.0)\n    dim.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    # Keep the battlefield and action controls fully visible while inspecting.
+    dim.color = Color(0.005, 0.006, 0.010, 0.0)
+    dim.mouse_filter = Control.MOUSE_FILTER_IGNORE
     dim.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     detail_overlay.add_child(dim)
 
     detail_frame = PanelContainer.new()
+    detail_frame.mouse_filter = Control.MOUSE_FILTER_STOP
     detail_frame.size = BASE_DETAIL_SIZE
     detail_frame.add_theme_stylebox_override("panel", _style())
     detail_overlay.add_child(detail_frame)
