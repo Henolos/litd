@@ -7,13 +7,16 @@ func _ready() -> void:
     _build_shell()
     slice = VeilleursRuntime.runtime
     for button: Button in find_children("*", "Button", true, false):
-        if button.text in DUNGEONS.values() or button.text in ["Sauvegarder", "Reprendre", "Retour QA"]:
+        if button.text in DUNGEONS.values() or button.text in ["Reprendre", "Retour QA"]:
             button.hide()
     room_view.hide()
     room_events_label.hide()
     status_label.text = "Premier Accord · " + slice.campaign.dungeon.current_node.replace("_", " ")
     _repair_selection()
     _refresh_combat()
+
+func _on_save() -> void:
+    message_label.text = "Partie sauvegardée." if SaveManager.save_game() else "Échec de sauvegarde."
 
 func _render_node() -> void:
     # Parent _finish_combat has already applied campaign and Rémanence results.
