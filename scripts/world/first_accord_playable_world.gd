@@ -5,6 +5,7 @@ const DUNGEON_ID := "dungeon_first_map_hall_of_first_accord"
 const COMBAT_UI := preload("res://scripts/ui/first_accord_physical_combat_ui.gd")
 const BUILDER := preload("res://scripts/world/first_accord_dungeon_map_builder.gd")
 const PARTY_SCENE := preload("res://scenes/world/terre_des_cendres/exploration_party_placeholder.tscn")
+const PASSAGE_SCRIPT := preload("res://scripts/world/first_accord_passage_interaction.gd")
 const SENSOR_SCRIPT := preload("res://scripts/world/veilleurs_ge01_room_sensor.gd")
 
 @export var campaign_seed := 42
@@ -16,6 +17,8 @@ var current_room_id := ""
 var runtime: VeilleursVerticalSliceRuntimeV09
 var combat_ui: Control
 var prompt: Label
+var action_button: Button
+var interaction_feedback := ""
 var saved_transform := Transform3D.IDENTITY
 var last_result: Dictionary = {}
 
@@ -35,11 +38,6 @@ func _ready() -> void:
     if not bool(physical.get("ok", false)):
         push_error("FirstAccordPlayableWorld: " + str(physical.get("reason", "physical_error")))
         return
-    var synced := BUILDER.sync_discovered_passages(physical["root"], plan, runtime.campaign.dungeon.discovered_edges)
-    if not bool(synced.get("ok", false)):
-        push_error("FirstAccordPlayableWorld: passage restoration failed")
-        return
-    physical["open_connection_count"] = int(synced["open_connection_count"])
     var rooms := (physical["root"] as Node).get_node("Rooms")
     current_room_id = runtime.campaign.dungeon.current_node
     var entry: Node3D = rooms.get_node_or_null(current_room_id)
@@ -52,6 +50,7 @@ func _ready() -> void:
         return
     party.name = "FirstAccordParty"
     add_child(party)
+    party.set_process_unhandled_input(false)
     party.global_position = entry.global_position + Vector3.UP * 0.7
     if resume:
         var position: Array = VeilleursRuntime.physical_state.get("position", [])
@@ -66,7 +65,13 @@ func _ready() -> void:
         sensor.configure(str(room.name), room.position, Vector3(14, 2.5, 12))
         sensor.party_entered.connect(_on_room_entered)
         sensors.add_child(sensor)
+    _build_passage_interactions(rooms)
+    _sync_passages()
     _build_hud()
+    party.interaction_target_changed.connect(func(_descriptor: Dictionary) -> void: _sync_prompt())
+    party.interaction_resolved.connect(func(result: Dictionary) -> void:
+        interaction_feedback = "Passage ouvert" if bool(result.get("success", false)) else "Interaction indisponible"
+        _sync_prompt())
     capture_state()
     if runtime.combat != null:
         _show_combat()
@@ -84,7 +89,8 @@ func _build_hud() -> void:
     var action := Button.new()
     action.text = "INTERAGIR"
     action.custom_minimum_size = Vector2(180, 48)
-    action.pressed.connect(interact_current_room)
+    action_button = action
+    action.pressed.connect(_interact)
     panel.add_child(action)
     var search := Button.new()
     search.text = "FOUILLER LES PASSAGES"
@@ -101,8 +107,55 @@ func _build_hud() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
     if event.is_action_pressed("interact") and combat_ui == null:
-        interact_current_room()
+        _interact()
         get_viewport().set_input_as_handled()
+
+func _interact() -> void:
+    if runtime.combat != null:
+        return
+    if not party.get_interaction_descriptor().is_empty():
+        party.interact()
+    else:
+        interact_current_room()
+
+func _build_passage_interactions(rooms: Node) -> void:
+    var interactions := Node3D.new()
+    interactions.name = "PassageInteractions"
+    add_child(interactions)
+    for edge in plan.get("edges", []):
+        if not bool(edge.get("hidden", false)) and str(edge.get("requires", "")) != "unlock_from_deep_side":
+            continue
+        var source: Node3D = rooms.get_node(str(edge.get("from", "")))
+        var target: Node3D = rooms.get_node(str(edge.get("to", "")))
+        for pair in [[source, target], [target, source]]:
+            var room: Node3D = pair[0]
+            var toward: Node3D = pair[1]
+            var marker := BUILDER._nearest_connector(room, toward.position, bool(edge.get("hidden", false)))
+            if marker == null:
+                continue
+            # Keep the object on the room side of its threshold.
+            var point := to_local(marker.global_position + (room.global_position - marker.global_position).normalized())
+            var interaction := PASSAGE_SCRIPT.new()
+            interaction.configure(self, edge, str(room.name), point)
+            interactions.add_child(interaction)
+
+func open_passage(edge_id: String, shortcut: bool) -> Dictionary:
+    if runtime == null or runtime.combat != null:
+        return {"ok":false, "reason":"combat_active"}
+    var result: Dictionary = runtime.campaign.dungeon.unlock_shortcut(edge_id) if shortcut else runtime.campaign.dungeon.discover_passage(edge_id)
+    if bool(result.get("ok", false)):
+        _sync_passages()
+        capture_state()
+        _sync_prompt()
+    return result
+
+func _sync_passages() -> void:
+    for edge in plan.get("edges", []):
+        if runtime.campaign.dungeon.passage_is_open(edge):
+            var result := BUILDER.open_plan_connection(physical["root"], edge)
+            if not bool(result.get("ok", false)):
+                push_error("FirstAccordPlayableWorld: " + str(result.get("reason", "passage_error")))
+    physical["open_connection_count"] = physical["root"].get_node("Connections").get_child_count()
 
 func capture_state() -> void:
     if not is_instance_valid(party):
@@ -176,7 +229,14 @@ func _sync_prompt() -> void:
         return
     var flags: Dictionary = runtime.campaign.dungeon.node_flags.get(current_room_id, {})
     var state := "Salle terminée" if bool(flags.get("completed", false)) else ("Combat disponible" if not runtime.campaign.dungeon.active_encounter.is_empty() else "Explorer le lieu")
+    var descriptor: Dictionary = party.get_interaction_descriptor()
+    action_button.text = str(descriptor.get("verb", "INTERAGIR"))
+    action_button.disabled = runtime.combat != null or (not descriptor.is_empty() and not bool(descriptor.get("available", false)))
+    if not descriptor.is_empty():
+        state = str(descriptor.get("label", "")) + " · " + str(descriptor.get("verb", ""))
     prompt.text = "%s · %s" % [current_room_id.replace("_", " ").capitalize(), state]
+    if interaction_feedback != "":
+        prompt.text += "\n" + interaction_feedback
 
 func _on_room_entered(room_id: String) -> void:
     if room_id == current_room_id or runtime == null or runtime.combat != null:
@@ -190,5 +250,6 @@ func _on_room_entered(room_id: String) -> void:
             party.velocity = Vector3.ZERO
         return
     current_room_id = room_id
+    interaction_feedback = ""
     capture_state()
     _sync_prompt()
