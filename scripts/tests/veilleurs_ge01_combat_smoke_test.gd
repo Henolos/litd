@@ -4,6 +4,7 @@ const BRIDGE := preload("res://scripts/world/veilleurs_ge01_playable_bridge.gd")
 const CORPSE_TACTICS := preload("res://scripts/core/veilleurs_corpse_tactical_runtime.gd")
 const CORPSE_SKILLS := preload("res://scripts/core/veilleurs_corpse_skill_runtime.gd")
 const TACTICAL_SKILLS := preload("res://scripts/core/veilleurs_ge01_tactical_skill_runtime.gd")
+const POSITION_RUNTIME := preload("res://scripts/core/combat_position_runtime.gd")
 
 func _ready() -> void:
     GameState.reset_new_game()
@@ -50,6 +51,15 @@ func _ready() -> void:
     assert(bool(projected.get("ok", false)))
     assert(not corpse_tactics.can_move_to_slot(1, corpse_ids, "enemy"))
     assert(bool(projected.get("displaced", false)))
+    var formation := POSITION_RUNTIME.new()
+    add_child(formation)
+    var ranks: Array = [
+        {"id":"fallen","hp":0,"combat_position":0},
+        {"id":"living_a","hp":10,"combat_position":2},
+        {"id":"living_b","hp":10,"combat_position":3},
+    ]
+    assert(formation.compact_enemy_formation(ranks))
+    assert(int(ranks[1].combat_position) == 0 and int(ranks[2].combat_position) == 2, "blocked enemy corpse slot must remain vacant")
 
     var generic_target := {"hp":30, "max_hp":40}
     var expose := tactical_skills.expose_zone(generic_target, "right_arm")
@@ -67,6 +77,7 @@ func _ready() -> void:
 
     corpse_tactics.destroy(first_scar_id, "smoke_test")
     corpse_tactics.destroy(second_scar_id, "smoke_test")
+    assert(formation.compact_enemy_formation(ranks) and int(ranks[2].combat_position) == 1, "formation closes the gap after corpse destruction")
     bridge.enter_room("ge_10"); bridge.enter_room("ge_11")
     var ge11_encounter: Dictionary = bridge.session.call("encounter_for", "ge_11", 20)
     assert(bool(ge11_encounter.get("persistent", false)))
