@@ -8,6 +8,7 @@ var maximum: Dictionary = {}
 var current: Dictionary = {}
 var states: Dictionary = {}
 var missing_parts: Array[String] = []
+var injuries: Dictionary = {}
 var dead := false
 
 func _init(integrity: Dictionary = {}) -> void:
@@ -16,6 +17,7 @@ func _init(integrity: Dictionary = {}) -> void:
         maximum[zone] = value
         current[zone] = value
         states[zone] = "L0"
+        injuries[zone] = []
 
 func apply_trauma(zone: String, amount: int, dismemberment_power: int = 0, zone_resistance: int = 3) -> Dictionary:
     if not ZONES.has(zone) or amount <= 0:
@@ -36,6 +38,7 @@ func apply_trauma(zone: String, amount: int, dismemberment_power: int = 0, zone_
         else:
             state = "L4"
     states[zone] = state
+    _record_injury(zone, state, amount, severed)
     return {
         "ok": true,
         "zone": zone,
@@ -69,6 +72,7 @@ func serialize() -> Dictionary:
         "current": current.duplicate(true),
         "states": states.duplicate(true),
         "missing_parts": missing_parts.duplicate(),
+        "injuries": injuries.duplicate(true),
         "dead": dead
     }
 
@@ -76,6 +80,7 @@ func deserialize(payload: Dictionary) -> void:
     maximum = (payload.get("maximum", maximum) as Dictionary).duplicate(true)
     current = (payload.get("current", current) as Dictionary).duplicate(true)
     states = (payload.get("states", states) as Dictionary).duplicate(true)
+    injuries = (payload.get("injuries", injuries) as Dictionary).duplicate(true)
     missing_parts.clear()
     for value: Variant in payload.get("missing_parts", []):
         missing_parts.append(str(value))
@@ -105,3 +110,21 @@ func _level(state: String) -> int:
 
 func _default_integrity(zone: String) -> int:
     return {"head": 70, "torso": 140, "left_arm": 90, "right_arm": 90, "left_leg": 100, "right_leg": 100}.get(zone, 100)
+
+func localized_injuries(zone: String = "") -> Variant:
+    if zone != "":
+        return (injuries.get(zone, []) as Array).duplicate(true)
+    return injuries.duplicate(true)
+
+func _record_injury(zone: String, state: String, trauma: int, severed: bool) -> void:
+    if state == "L0":
+        return
+    var zone_injuries: Array = (injuries.get(zone, []) as Array).duplicate(true)
+    var injury := {
+        "zone": zone,
+        "severity": state,
+        "trauma": trauma,
+        "severed": severed
+    }
+    zone_injuries.append(injury)
+    injuries[zone] = zone_injuries
