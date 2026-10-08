@@ -33,6 +33,8 @@ func _test() -> void:
         var world := WORLD.instantiate() as FirstAccordPlayableWorld
         world.campaign_seed = seed_value
         add_child(world)
+        await get_tree().physics_frame
+        await get_tree().physics_frame
         var interaction_results: Array[Dictionary] = []
         world.party.interaction_resolved.connect(func(result: Dictionary) -> void: interaction_results.append(result))
         var dungeon := world.runtime.campaign.dungeon
@@ -67,6 +69,9 @@ func _test() -> void:
                 world.runtime.resolve_active_combat("victory")
                 world.combat_ui._render_node()
                 await get_tree().process_frame
+                for index in world.runtime.recruitment_options().size():
+                    world.resolve_aftermath_decision(index, "leave")
+                check(world.dismiss_aftermath(), "fixture acknowledges result before exploring passages")
             check(bool(dungeon.node_flags.get(room_id, {}).get("completed", false)), "fixture room clear")
             for edge in world.plan["edges"]:
                 if str(edge["from"]) != room_id or (not bool(edge.get("hidden", false)) and str(edge.get("requires", "")) != "unlock_from_deep_side"):
