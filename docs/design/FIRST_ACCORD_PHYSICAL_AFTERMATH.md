@@ -33,7 +33,10 @@ l'écran utilise `runtime.last_resolution` pour les présenter.
   et un ancien événement de capteur. La victoire avec survivants est une fixture
   de raccordement ; elle ne prouve pas une victoire jouée.
 - `first_accord_physical_combat_smoke` garde la victoire par les commandes
-  tactiques réelles, le résultat sans survivant et la retraite.
+  tactiques réelles et la retraite. Le combat physique expose maintenant le
+  contrôle canonique de soumission non létale : une cible vulnérable est soumise
+  par son bouton, puis épargnée dans le résultat physique. La décision et la
+  position exacte sont relues via SaveManager avant le retour au donjon.
 - `first_accord_physical_interactions_smoke` conserve cinq graines, huit secrets
   et cinq raccourcis après confirmation explicite des résultats de sa fixture.
 - Le nouveau smoke appartient au domaine CI `veilleurs`.
