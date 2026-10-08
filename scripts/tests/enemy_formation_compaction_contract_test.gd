@@ -20,7 +20,8 @@ func _ready() -> void:
     TARGETING_RULES.ensure_enemy_positions(enemies)
     assert(int((enemies[3] as Dictionary).get("combat_position", -1)) == 0, "dead slots must not undo live compaction")
 
-    # Regression contract: corpses may remain addressable, but never steal a living tactical rank.\n    var occupied: Dictionary = {}
+    # Regression contract: corpses may remain addressable, but never steal a living tactical rank.
+    var occupied: Dictionary = {}
     for enemy_value: Variant in enemies:
         var enemy: Dictionary = enemy_value
         var position := int(enemy.get("combat_position", -1))
