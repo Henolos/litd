@@ -261,7 +261,9 @@ jobs:
 
   full-regression:
     name: Full Godot regression suite
-    if: ${{ github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.full_suite) }}
+    # The canonical full repository suite already runs in CI on PR, merge_group and main push.
+    # Keep this historical full suite available only as an explicit diagnostic.
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.full_suite }}
     needs: [content-contracts, godot-quick-gate, android-debug-export]
     runs-on: ubuntu-latest
     container:
