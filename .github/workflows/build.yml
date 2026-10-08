@@ -28,8 +28,8 @@ on:
       - 'tools/ci/select_export_targets.py'
 
 concurrency:
-  group: builds-${{ github.ref }}
-  cancel-in-progress: true
+  group: builds-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 permissions:
   contents: read
@@ -49,6 +49,7 @@ jobs:
 
   select-exports:
     name: Select export platforms
+    needs: canon-freshness
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.choose.outputs.matrix }}
