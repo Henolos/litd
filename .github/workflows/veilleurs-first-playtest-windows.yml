@@ -32,6 +32,7 @@ on:
       - 'tools/playtest/**'
       - 'tools/workstation/**'
       - 'tools/qa/veilleurs_first_playtest_kit_audit.py'
+      - 'tools/ci/run_godot_checked.sh'
       - 'docs/veilleurs/FIRST_PLAYTEST_RUNBOOK.md'
       - 'docs/PC_VERTICAL_SLICE_PRODUCTION_GATE.md'
       - 'docs/PLAYTEST_5_NAIVE_TESTERS_PROTOCOL.md'
