@@ -13,6 +13,7 @@ on:
       - 'tools/playtest/**'
       - 'tools/workstation/**'
       - 'tools/qa/veilleurs_first_playtest_kit_audit.py'
+      - 'tools/ci/run_godot_checked.sh'
       - 'docs/veilleurs/FIRST_PLAYTEST_RUNBOOK.md'
       - 'docs/PC_VERTICAL_SLICE_PRODUCTION_GATE.md'
       - 'docs/PLAYTEST_5_NAIVE_TESTERS_PROTOCOL.md'
@@ -67,41 +68,31 @@ jobs:
     needs: audit-kit
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:4.7.2
+      image: barichello/godot-ci:4.7.2@sha256:cdcca31e9194fd59a68a63f4b1b9c3981716819c520cd6f7966c5d72ca7246bd
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
 
       - name: Validate player-facing vertical slice before export
         shell: bash
         run: |
-          set -euo pipefail
           mkdir -p build/automation
-
-          godot --headless --path . --import --quit 2>&1 | tee build/automation/windows-playtest-import.log
-          if grep -E 'SCRIPT ERROR:|ERROR: Failed to load script|ERROR: Failed to create an autoload|ERROR: Failed to instantiate an autoload|ERROR: FATAL:|handle_crash: Program crashed' build/automation/windows-playtest-import.log; then
-            exit 1
-          fi
-
-          timeout 120s godot --headless --path . res://scenes/tests/veilleurs_v09_wave3_smoke.tscn 2>&1 | tee build/automation/windows-playtest-v09-smoke.log
-          if grep -E 'SCRIPT ERROR:|ERROR: Failed to load script|ERROR: FATAL:|handle_crash: Program crashed|VEILLEURS_V09_WAVE3_SMOKE_FAILED' build/automation/windows-playtest-v09-smoke.log; then
-            exit 1
-          fi
-          grep -F 'VEILLEURS_V09_WAVE3_SMOKE_OK' build/automation/windows-playtest-v09-smoke.log
-
-          timeout 120s godot --headless --path . res://scenes/tests/ui_player_journey_smoke.tscn 2>&1 | tee build/automation/windows-playtest-player-journey.log
-          if grep -E 'SCRIPT ERROR:|ERROR: Failed to load script|ERROR: FATAL:|handle_crash: Program crashed' build/automation/windows-playtest-player-journey.log; then
-            exit 1
-          fi
-
-          timeout 120s godot --headless --path . res://scenes/tests/body_state_smoke.tscn 2>&1 | tee build/automation/windows-playtest-body-state.log
-          if grep -E 'SCRIPT ERROR:|ERROR: Failed to load script|ERROR: FATAL:|handle_crash: Program crashed' build/automation/windows-playtest-body-state.log; then
-            exit 1
-          fi
-
-          timeout 120s godot --headless --path . res://scenes/tests/veilleurs_vs001_playable_smoke.tscn 2>&1 | tee build/automation/windows-playtest-vs001.log
-          if grep -E 'SCRIPT ERROR:|ERROR: Failed to load script|ERROR: FATAL:|handle_crash: Program crashed' build/automation/windows-playtest-vs001.log; then
-            exit 1
-          fi
+          bash tools/ci/run_godot_checked.sh \
+            --log build/automation/windows-playtest-import.log \
+            -- godot --headless --path . --import --quit
+          bash tools/ci/run_godot_checked.sh \
+            --log build/automation/windows-playtest-v09-smoke.log \
+            --expect VEILLEURS_V09_WAVE3_SMOKE_OK \
+            --reject VEILLEURS_V09_WAVE3_SMOKE_FAILED \
+            -- timeout 120s godot --headless --path . res://scenes/tests/veilleurs_v09_wave3_smoke.tscn
+          bash tools/ci/run_godot_checked.sh \
+            --log build/automation/windows-playtest-player-journey.log \
+            -- timeout 120s godot --headless --path . res://scenes/tests/ui_player_journey_smoke.tscn
+          bash tools/ci/run_godot_checked.sh \
+            --log build/automation/windows-playtest-body-state.log \
+            -- timeout 120s godot --headless --path . res://scenes/tests/body_state_smoke.tscn
+          bash tools/ci/run_godot_checked.sh \
+            --log build/automation/windows-playtest-vs001.log \
+            -- timeout 120s godot --headless --path . res://scenes/tests/veilleurs_vs001_playable_smoke.tscn
 
       - name: Prepare Windows export template
         shell: bash
@@ -133,12 +124,11 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p build/playtest/windows build/automation
-          godot --headless --path . --export-debug "Windows Desktop" build/playtest/windows/LightInTheDark_Playtest.exe 2>&1 | tee build/automation/windows-first-playtest-export.log
+          bash tools/ci/run_godot_checked.sh \
+            --log build/automation/windows-first-playtest-export.log \
+            -- godot --headless --path . --export-debug "Windows Desktop" build/playtest/windows/LightInTheDark_Playtest.exe
           test -s build/playtest/windows/LightInTheDark_Playtest.exe
           test -s build/playtest/windows/LightInTheDark_Playtest.pck
-          if grep -E 'SCRIPT ERROR:|ERROR: Failed to load script|ERROR: FATAL:|handle_crash: Program crashed' build/automation/windows-first-playtest-export.log; then
-            exit 1
-          fi
           printf '{"project":"LITD : Les Veilleurs","purpose":"first_player_validation","commit":"%s","engine":"Godot 4.7.2","technical_validation_status":"PASS","human_validation_status":"NOT_RUN","validation_status":"NOT_RUN"}\n' "$GITHUB_SHA" > build/playtest/windows/PLAYTEST_BUILD.json
           (
             cd build/playtest/windows
