@@ -5,35 +5,78 @@ on:
     paths:
       - 'project.godot'
       - 'data/**'
+      - 'assets/**'
       - 'scripts/**'
       - 'scenes/**'
       - 'addons/**'
       - 'tools/build/run_godot_ci_domain.sh'
+      - 'tools/ci/select_godot_domains.py'
       - '.github/workflows/ci-godot-domains.yml'
+  merge_group:
+    types: [checks_requested]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: ci-godot-domains-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref || github.run_id }}
+  group: ci-godot-domains-${{ github.event_name }}-${{ github.event.pull_request.number || github.event.merge_group.head_sha || github.ref || github.run_id }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
+  select-domains:
+    name: Select Godot domains
+    runs-on: ubuntu-latest
+    outputs:
+      domains: ${{ steps.select.outputs.domains }}
+      mode: ${{ steps.select.outputs.mode }}
+      changed_count: ${{ steps.select.outputs.changed_count }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Select impacted domains
+        id: select
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          if [[ "$EVENT_NAME" == "pull_request" ]]; then
+            git diff --name-only "$BASE_SHA" "$HEAD_SHA" > /tmp/godot-ci-changed-files.txt
+            python tools/ci/select_godot_domains.py               --files-from /tmp/godot-ci-changed-files.txt               --github-output "$GITHUB_OUTPUT"
+          else
+            python tools/ci/select_godot_domains.py               --all               --github-output "$GITHUB_OUTPUT"
+          fi
+
+      - name: Report selection
+        env:
+          DOMAINS: ${{ steps.select.outputs.domains }}
+          MODE: ${{ steps.select.outputs.mode }}
+          CHANGED_COUNT: ${{ steps.select.outputs.changed_count }}
+        run: |
+          {
+            echo "## Godot domain selection"
+            echo "- Mode: **$MODE**"
+            echo "- Changed files: **$CHANGED_COUNT**"
+            echo "- Domains: `$DOMAINS`"
+          } >> "$GITHUB_STEP_SUMMARY"
+
   godot-domain:
     name: Godot / ${{ matrix.domain }}
+    needs: select-domains
     runs-on: ubuntu-latest
     container:
       image: barichello/godot-ci:4.7.2
     strategy:
       fail-fast: false
       matrix:
-        domain:
-          - core-world
-          - audiovisual
-          - runtime
-          - veilleurs
-          - ui-qa
+        domain: ${{ fromJSON(needs.select-domains.outputs.domains) }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       - name: Compilation stricte et parcours Godot du domaine
