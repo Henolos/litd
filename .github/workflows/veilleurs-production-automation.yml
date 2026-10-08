@@ -14,6 +14,7 @@ on:
       - 'addons/veilleurs_pipeline/**'
       - 'tools/godot/**'
       - 'tools/qa/**'
+      - 'tools/ci/run_godot_checked.sh'
       - 'tools/art/**'
       - 'tools/animation/**'
       - 'tools/audio/**'
