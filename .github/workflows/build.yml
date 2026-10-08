@@ -64,12 +64,12 @@ jobs:
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           set -euo pipefail
-          # Full platform artifacts remain available on main, releases and manual runs.
+          # Exports always available on main, release tags and manual runs.
           if [[ "$EVENT_NAME" != "pull_request" ]]; then
             echo "build_all=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          # Unknown diff or missing base fails closed: produce all artifacts.
+          # Missing commit or unknown diff must fail closed.
           if [[ -z "$BASE_SHA" || -z "$HEAD_SHA" ]] || ! git cat-file -e "$BASE_SHA^{commit}" || ! git cat-file -e "$HEAD_SHA^{commit}"; then
             echo "build_all=true" >> "$GITHUB_OUTPUT"
             exit 0
@@ -78,37 +78,7 @@ jobs:
             echo "build_all=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          # Changes to export configuration affect every platform. Content edits
-          # are already tested by the canonical Godot smoke and production gates.
-          if grep -Eq '^(project\.godot|export_presets\.cfg|\.github/workflows/build\.yml)
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - preset: Web
-            artifact: light-in-the-dark-web
-            path: build/web
-          - preset: Windows Desktop
-            artifact: light-in-the-dark-windows
-            path: build/windows
-          - preset: Linux/X11
-            artifact: light-in-the-dark-linux
-            path: build/linux
-    runs-on: ubuntu-latest
-    container:
-      image: barichello/godot-ci:4.7.2
-    env:
-      HOME: /root
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-      - run: mkdir -p "${{ matrix.path }}"
-      - run: godot --headless --path . --export-release "${{ matrix.preset }}"
-      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-        with:
-          name: ${{ matrix.artifact }}
-          path: ${{ matrix.path }}
-          if-no-files-found: error
- /tmp/litd-export-changes.txt; then
+          if grep -Eq '^(project\.godot|export_presets\.cfg|\.github/workflows/build\.yml)$' /tmp/litd-export-changes.txt; then
             echo "build_all=true" >> "$GITHUB_OUTPUT"
           else
             echo "build_all=false" >> "$GITHUB_OUTPUT"
