@@ -12,16 +12,13 @@ on:
       - 'tools/build/run_godot_ci_domain.sh'
       - 'tools/ci/select_godot_domains.py'
       - '.github/workflows/ci-godot-domains.yml'
-  merge_group:
-    types: [checks_requested]
-    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: ci-godot-domains-${{ github.event_name }}-${{ github.event.pull_request.number || github.event.merge_group.head_sha || github.ref || github.run_id }}
+  group: ci-godot-domains-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref || github.run_id }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
