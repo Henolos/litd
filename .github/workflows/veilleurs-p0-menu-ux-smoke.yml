@@ -4,6 +4,13 @@ on:
   pull_request:
     paths:
       - 'project.godot'
+      - 'scripts/ui/combat_sandbox_ui_v51.gd'
+      - 'scripts/tests/hud_visual_capture.gd'
+      - 'scripts/ui/combatant_inspection_ui.gd'
+      - 'scripts/tests/combatant_inspection_input_smoke_test.gd'
+      - 'scenes/tests/combatant_inspection_input_smoke.tscn'
+      - 'tests/test_combatant_inspection.py'
+      - 'tests/test_playtest_p0_ux_contract.py'
       - 'scripts/ui/context_menu_ui_v2.gd'
       - 'scripts/ui/context_menu_ui_v3.gd'
       - 'scripts/tests/context_menu_p0_navigation_reflow_smoke_test.gd'
@@ -13,11 +20,41 @@ on:
       - 'scenes/tests/veilleurs_player_shell_ux_smoke.tscn'
       - '.github/workflows/veilleurs-p0-menu-ux-smoke.yml'
   workflow_dispatch:
+  merge_group:
 
 permissions:
   contents: read
 
 jobs:
+  rendered-hud:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    container:
+      image: barichello/godot-ci:4.7.2
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      LITD_HUD_REVISION: ${{ github.sha }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Install virtual display and software renderer
+        run: apt-get update && apt-get install -y xvfb libgl1-mesa-dri libgl1 libegl1 libfontconfig1 libxcursor1 libxinerama1 libxrandr2 libxi6 libxrender1
+      - name: Import project
+        run: godot --headless --path . --import --quit
+      - name: Render and verify desktop HUD
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/hud_visual
+          timeout 120s xvfb-run -a -s '-screen 0 1920x1080x24' godot --path . --rendering-method gl_compatibility --audio-driver Dummy --script scripts/tests/hud_visual_capture.gd 2>&1 | tee reports/hud_visual/render.log
+          grep -q 'HUD_VISUAL_CAPTURE_OK captures=8' reports/hud_visual/render.log
+          if grep -Eq 'SCRIPT ERROR|Assertion failed|Parse Error' reports/hud_visual/render.log; then exit 1; fi
+      - name: Publish rendered evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: desktop-hud-evidence
+          path: reports/hud_visual/
+          retention-days: 30
   menu-navigation-reflow:
     runs-on: ubuntu-latest
     container:
@@ -30,3 +67,5 @@ jobs:
         run: timeout 60s godot --headless --path . res://scenes/tests/context_menu_p0_navigation_reflow_smoke.tscn
       - name: Veilleurs player exploration shell
         run: timeout 60s godot --headless --path . res://scenes/tests/veilleurs_player_shell_ux_smoke.tscn
+      - name: Inspection keeps battlefield controls available
+        run: timeout 60s godot --headless --path . res://scenes/tests/combatant_inspection_input_smoke.tscn
