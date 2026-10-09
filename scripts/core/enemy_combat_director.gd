@@ -25,7 +25,10 @@ func archetype(enemy: Dictionary) -> String:
 func choose_action(enemy: Dictionary, heroes: Array) -> Dictionary:
     var flee_action := _ge01_flee_action(enemy)
     if not flee_action.is_empty():
+        flee_action["decision_factors"] = {"forced":"flee"}
+        flee_action["decision_reason"] = "forced_flee"
         return flee_action
+
     var candidates: Array[Dictionary] = []
     var enemy_archetype := archetype(enemy)
     for skill_value: Variant in skills:
@@ -35,19 +38,159 @@ func choose_action(enemy: Dictionary, heroes: Array) -> Dictionary:
             continue
         if not _requirements_met(enemy, skill.get("requires", {})):
             continue
-        for _weight in range(maxi(1, int(skill.get("weight", 1)))):
-            candidates.append(skill)
+        var scored := _score_action(enemy, skill)
+        candidates.append({
+            "skill": skill,
+            "score": float(scored.get("score", 1.0)),
+            "factors": (scored.get("factors", {}) as Dictionary).duplicate(true)
+        })
+
     if candidates.is_empty():
-        var fallback := {"id":"basic_attack","name":"Attaque","power":1.0,"target":"random"}
-        fallback = _apply_remanence_action(enemy, fallback)
-        fallback = NgPlusCycleDirector.modify_enemy_action(fallback, enemy, heroes)
-        fallback["target_index"] = _target_index(heroes, String(fallback.get("target", "random")))
-        return fallback
-    var chosen: Dictionary = candidates[randi() % candidates.size()].duplicate(true)
+        candidates.append({
+            "skill":{"id":"basic_attack","name":"Attaque","power":1.0,"target":"random","weight":1},
+            "score":1.0,
+            "factors":{"fallback":1.0,"configured_weight":1.0}
+        })
+
+    # Preserve the historical meaning of profile "weight": it is a propensity,
+    # not an absolute priority. Selection stays varied, but becomes deterministic
+    # for an identical combat state and fully traceable.
+    var selection := _select_weighted_candidate(candidates, enemy, heroes)
+    var selected_index := int(selection.get("index", 0))
+    var selected: Dictionary = candidates[selected_index]
+    var chosen: Dictionary = (selected.get("skill", {}) as Dictionary).duplicate(true)
     chosen = _apply_remanence_action(enemy, chosen)
     chosen = NgPlusCycleDirector.modify_enemy_action(chosen, enemy, heroes)
-    chosen["target_index"] = _target_index(heroes, String(chosen.get("target", "random")))
+
+    var target_eval := _target_evaluation(
+        heroes,
+        String(chosen.get("target", "random")),
+        enemy,
+        str(chosen.get("id", ""))
+    )
+    chosen["target_index"] = int(target_eval.get("index", -1))
+    chosen["action_score"] = float(selected.get("score", 0.0))
+    chosen["target_score"] = float(target_eval.get("score", 0.0))
+    chosen["decision_factors"] = {
+        "action":(selected.get("factors", {}) as Dictionary).duplicate(true),
+        "target":(target_eval.get("factors", {}) as Dictionary).duplicate(true),
+        "selection":{
+            "strategy":"deterministic_weighted_utility",
+            "ticket":float(selection.get("ticket", 0.0)),
+            "total_weight":float(selection.get("total_weight", 0.0))
+        }
+    }
+    chosen["decision_reason"] = "deterministic_weighted_utility"
     return chosen
+
+func _score_action(enemy: Dictionary, skill: Dictionary) -> Dictionary:
+    var configured_weight := maxf(1.0, float(skill.get("weight", 1)))
+    var multiplier := 1.0
+    var factors := {"configured_weight":configured_weight}
+    var hp_ratio := float(enemy.get("hp", 0)) / maxf(1.0, float(enemy.get("max_hp", enemy.get("hp", 1))))
+    if str(skill.get("self_status", "")) == "guarding" and hp_ratio <= 0.5:
+        factors["wounded_guard_multiplier"] = 1.5
+        multiplier *= 1.5
+    var fear := float(enemy.get("enemy_fear", enemy.get("fear_gauge", 0)))
+    if fear >= 70.0 and str(skill.get("target", "")) == "none":
+        factors["high_fear_safe_action_multiplier"] = 1.5
+        multiplier *= 1.5
+    factors["context_multiplier"] = multiplier
+    factors["effective_weight"] = configured_weight * multiplier
+    return {"score":configured_weight * multiplier, "factors":factors}
+
+func _select_weighted_candidate(candidates: Array[Dictionary], enemy: Dictionary, heroes: Array) -> Dictionary:
+    var total_weight := 0.0
+    for candidate: Dictionary in candidates:
+        total_weight += maxf(0.001, float(candidate.get("score", 0.0)))
+    if candidates.is_empty():
+        return {"index":0, "ticket":0.0, "total_weight":0.0}
+
+    var state_key := _decision_state_key(enemy, heroes, candidates)
+    var bucket := _stable_bucket(state_key, 1000000)
+    var ticket := (float(bucket) / 1000000.0) * total_weight
+    var cumulative := 0.0
+    for index in range(candidates.size()):
+        cumulative += maxf(0.001, float(candidates[index].get("score", 0.0)))
+        if ticket < cumulative:
+            return {"index":index, "ticket":ticket, "total_weight":total_weight}
+    return {"index":candidates.size() - 1, "ticket":ticket, "total_weight":total_weight}
+
+func _decision_state_key(enemy: Dictionary, heroes: Array, candidates: Array[Dictionary]) -> String:
+    var parts: Array[String] = [
+        str(enemy.get("combat_uid", enemy.get("id", enemy.get("species_id", enemy.get("name", ""))))),
+        str(enemy.get("hp", 0)),
+        str(enemy.get("max_hp", 0)),
+        str(enemy.get("enemy_fear", enemy.get("fear_gauge", 0))),
+        str(enemy.get("remanence_target_mode", "")),
+        str(enemy.get("remanence_damage_multiplier", 1.0))
+    ]
+    for hero_value: Variant in heroes:
+        if hero_value is Dictionary:
+            var hero: Dictionary = hero_value
+            parts.append("%s:%s:%s:%s" % [
+                str(hero.get("combat_uid", hero.get("id", hero.get("name", "")))),
+                str(hero.get("hp", 0)),
+                str(hero.get("max_hp", 0)),
+                str(hero.get("combat_position", ""))
+            ])
+    for candidate: Dictionary in candidates:
+        parts.append(str((candidate.get("skill", {}) as Dictionary).get("id", "")))
+    return "|".join(parts)
+
+func _stable_bucket(key: String, modulo: int) -> int:
+    if modulo <= 0:
+        return 0
+    var value: int = 0
+    for index in range(key.length()):
+        value = int((value * 131 + key.unicode_at(index)) % 2147483647)
+    return value % modulo
+
+func _target_evaluation(heroes: Array, mode: String, enemy: Dictionary = {}, action_id: String = "") -> Dictionary:
+    if heroes.is_empty():
+        return {"index":-1, "score":-INF, "factors":{"reason":"no_target"}}
+    var best_index := 0
+    var best_score := -INF
+    var best_factors: Dictionary = {}
+    for index in range(heroes.size()):
+        var hero: Dictionary = heroes[index]
+        var score := 0.0
+        var factors := {"mode":mode}
+        match mode:
+            "weakest":
+                score = 1.0 - float(hero.get("hp", 0)) / maxf(1.0, float(hero.get("max_hp", 1)))
+                factors["missing_hp_ratio"] = score
+            "fastest":
+                score = float(hero.get("speed", 0))
+                factors["speed"] = score
+            "highest_hope":
+                score = float(hero.get("hope", 0))
+                factors["hope"] = score
+            "highest_precision":
+                score = float(hero.get("precision", 0))
+                factors["precision"] = score
+            "guarding":
+                score = 1.0 if bool(hero.get("guarding", false)) else 0.0
+                factors["guarding"] = score
+            "nearest":
+                score = -float(hero.get("combat_position", index))
+                factors["negative_position"] = score
+            _:
+                var target_key := "%s|%s|%s|%s|%s|%s" % [
+                    str(enemy.get("combat_uid", enemy.get("id", enemy.get("name", "")))),
+                    action_id,
+                    str(hero.get("combat_uid", hero.get("id", hero.get("name", index)))),
+                    str(hero.get("hp", 0)),
+                    str(hero.get("max_hp", 0)),
+                    str(index)
+                ]
+                score = float(_stable_bucket(target_key, 1000000)) / 1000000.0
+                factors["stable_roll"] = score
+        if score > best_score:
+            best_score = score
+            best_index = index
+            best_factors = factors
+    return {"index":best_index, "score":best_score, "factors":best_factors}
 
 func _ge01_flee_action(enemy: Dictionary) -> Dictionary:
     if not bool(enemy.get("ge01_can_flee", false)) or bool(enemy.get("ge01_fled", false)):
@@ -143,22 +286,4 @@ func _requirements_met(enemy: Dictionary, requirements: Dictionary) -> bool:
     return true
 
 func _target_index(heroes: Array, mode: String) -> int:
-    if heroes.is_empty():
-        return -1
-    var best_index := randi() % heroes.size()
-    var best_score := -INF
-    for index in range(heroes.size()):
-        var hero: Dictionary = heroes[index]
-        var score := 0.0
-        match mode:
-            "weakest": score = 1.0 - float(hero.get("hp", 0)) / maxf(1.0, float(hero.get("max_hp", 1)))
-            "fastest": score = float(hero.get("speed", 0))
-            "highest_hope": score = float(hero.get("hope", 0))
-            "highest_precision": score = float(hero.get("precision", 0))
-            "guarding": score = 1.0 if bool(hero.get("guarding", false)) else 0.0
-            "nearest": score = -float(hero.get("combat_position", index))
-            _: score = randf()
-        if score > best_score:
-            best_score = score
-            best_index = index
-    return best_index
+    return int(_target_evaluation(heroes, mode).get("index", -1))

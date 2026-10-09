@@ -27,8 +27,9 @@ s’ajoute au domaine Godot `veilleurs`.
 
 Cette tranche reste un prototype physique. Elle n’active pas le remplacement de
 l’entrée joueur principale. Les couloirs, les collisions aux angles, la caméra,
-les interactions de secrets/raccourcis, l’interface de récompenses/recrutement et
-l’essai sur PC physique restent des validations ou intégrations distinctes.
+les interactions de secrets/raccourcis et l’essai sur PC physique ont leurs
+validations distinctes. L'interface de résultat et de décisions de Rémanence
+est décrite dans `FIRST_ACCORD_PHYSICAL_AFTERMATH.md`.
 La PR HUD #551 et son essai sur appareil restent indépendants de cette passerelle.
 
 ## Découverte physique des passages secrets

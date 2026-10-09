@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource path="res://scripts/tests/veilleurs_explainable_enemy_ai_test.gd" type="Script" id="1"]
+
+[node name="VeilleursExplainableEnemyAITest" type="Node"]
+script = ExtResource("1")

@@ -26,8 +26,8 @@ on:
       - 'tools/ci/canon_freshness_gate.py'
 
 concurrency:
-  group: builds-${{ github.ref }}
-  cancel-in-progress: true
+  group: builds-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 permissions:
   contents: read
@@ -45,9 +45,48 @@ jobs:
       - name: Reject stale runtime canon
         run: python tools/ci/canon_freshness_gate.py
 
-  export:
-    if: ${{ github.actor != 'dependabot[bot]' || !startsWith(github.head_ref, 'dependabot/github_actions/') }}
+  select-exports:
+    name: Select export scope
     needs: canon-freshness
+    runs-on: ubuntu-latest
+    outputs:
+      build_all: ${{ steps.scope.outputs.build_all }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+      - name: Decide when platform exports are necessary
+        id: scope
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          # Exports always available on main, release tags and manual runs.
+          if [[ "$EVENT_NAME" != "pull_request" ]]; then
+            echo "build_all=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          # Missing commit or unknown diff must fail closed.
+          if [[ -z "$BASE_SHA" || -z "$HEAD_SHA" ]] || ! git cat-file -e "$BASE_SHA^{commit}" || ! git cat-file -e "$HEAD_SHA^{commit}"; then
+            echo "build_all=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if ! git diff --name-only "$BASE_SHA" "$HEAD_SHA" > /tmp/litd-export-changes.txt; then
+            echo "build_all=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if grep -Eq '^(project\.godot|export_presets\.cfg|\.github/workflows/build\.yml)$' /tmp/litd-export-changes.txt; then
+            echo "build_all=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "build_all=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  export:
+    if: ${{ (github.actor != 'dependabot[bot]' || !startsWith(github.head_ref, 'dependabot/github_actions/')) && needs.select-exports.outputs.build_all == 'true' }}
+    needs: [canon-freshness, select-exports]
     strategy:
       fail-fast: false
       matrix:

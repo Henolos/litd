@@ -95,14 +95,24 @@ case "$DOMAIN" in
   veilleurs)
     run_checked "Payoffs des afflictions" timeout 60s godot --headless --path . --script scripts/tests/veilleurs_affliction_synergy_runtime_test.gd
     scene 60 "Contraintes corporelles des actions" res://scenes/tests/veilleurs_body_action_contract_smoke.tscn
+    run_checked "Blessures localisées séparées" timeout 60s godot --headless --path . --script scripts/tests/veilleurs_localized_injury_layer_test.gd
     scene 60 "Contrat dix afflictions" res://scenes/tests/veilleurs_afflictions_contract_test.tscn
+    scene 60 "IA ennemie explicable" res://scenes/tests/veilleurs_explainable_enemy_ai_test.tscn
     scene 60 "Procs équipement et afflictions" res://scenes/tests/veilleurs_equipment_affliction_proc_test.tscn
     scene 60 "Contrat résolveurs de combat" res://scenes/tests/veilleurs_combat_resolvers_contract_test.tscn
     scene 60 "Autorité du ciblage anatomique" res://scenes/tests/veilleurs_target_resolver_authority_test.tscn
+    scene 60 "Compaction formation ennemie" res://scenes/tests/enemy_formation_compaction_contract_test.tscn
+    scene 60 "Fallback ennemi canonique" res://scenes/tests/veilleurs_enemy_canonical_fallback_test.tscn
     scene 180 "Architecture procédurale complète" res://scenes/tests/dungeon_architecture_pipeline_smoke.tscn
     scene 60 "Modules physiques Premier Accord" res://scenes/tests/first_accord_module_blockout_smoke.tscn
     scene 120 "Combat canonique depuis le donjon physique" res://scenes/tests/first_accord_physical_combat_smoke.tscn
     scene 120 "Passages secrets du donjon physique" res://scenes/tests/first_accord_physical_passages_smoke.tscn
+    scene 120 "Secrets et raccourcis physiques" res://scenes/tests/first_accord_physical_interactions_smoke.tscn
+    scene 120 "Résultat et Rémanence du combat physique" res://scenes/tests/first_accord_aftermath_smoke.tscn
+    scene 120 "Parcours physique combat et extraction" res://scenes/tests/first_accord_physical_journey_smoke.tscn
+    run_checked "Parcours physique complet jusqu'au Gardien (graine 102)" timeout 120s godot --headless --path . --scene res://scenes/tests/first_accord_physical_journey_smoke.tscn -- --full --seed=102
+    run_checked "Parcours physique complet jusqu'au Gardien (graine 103)" timeout 120s godot --headless --path . --scene res://scenes/tests/first_accord_physical_journey_smoke.tscn -- --full --seed=103
+    run_checked "Extraction physique et retour au Sanctuaire" timeout 120s godot --headless --path . --script res://scripts/tests/first_accord_extraction_route_smoke.gd
     scene 60 "Pipeline rencontres contraintes" res://scenes/tests/dungeon_encounter_pipeline_smoke.tscn
     scene 60 "Pipeline génération graines et modules" res://scenes/tests/dungeon_generation_pipeline_smoke.tscn
     scene 60 "Graphe hybride connecté" res://scenes/tests/hybrid_graph_smoke.tscn

@@ -10,11 +10,26 @@ const ENEMY_ALL: Array[int] = [0, 1, 2, 3]
 const RANGED_CLASSES: Array[String] = ["ranger", "scout"]
 
 static func ensure_enemy_positions(enemies: Array) -> void:
-    var used: Array[int] = []
+    # Living combatants own the tactical formation. Corpses keep a valid,
+    # unique slot only after every survivor has kept (or received) its rank.
+    # This preserves the global no-duplicate invariant without allowing a dead
+    # E1/E2/E3 to push a compacted survivor back to E4.
     for index in range(enemies.size()):
         var enemy: Dictionary = enemies[index]
         if not enemy.has("combat_uid"):
             enemy["combat_uid"] = "%s_%d_%d" % [str(enemy.get("id", "enemy")), index, enemies.size()]
+
+    var ordered_indices: Array[int] = []
+    for index in range(enemies.size()):
+        if int((enemies[index] as Dictionary).get("hp", 0)) > 0:
+            ordered_indices.append(index)
+    for index in range(enemies.size()):
+        if int((enemies[index] as Dictionary).get("hp", 0)) <= 0:
+            ordered_indices.append(index)
+
+    var used: Array[int] = []
+    for index in ordered_indices:
+        var enemy: Dictionary = enemies[index]
         var desired := int(enemy.get("combat_position", -1))
         if desired < 0 or desired > 3 or used.has(desired):
             desired = 0
