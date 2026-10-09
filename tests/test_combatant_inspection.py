@@ -30,12 +30,12 @@ def test_touch_click_and_gamepad_open_detailed_inspection():
 def test_preview_and_detail_show_stats_afflictions_and_skills():
     for function in ["_stat_line", "_affliction_lines", "_skill_lines"]:
         assert f"func {function}" in INSPECTION
-    for label in ["STATISTIQUES", "AFFLICTIONS, BUFFS ET DEBUFFS", "COMPÉTENCES"]:
+    for label in ["STATISTIQUES", "ÉTAT DU CORPS ET EFFETS", "COMPÉTENCES"]:
         assert label in INSPECTION
     assert "CharacterTraitDirector.trait_names" in INSPECTION
     assert "PersistentInjuryRuntime.definition" in INSPECTION
     assert "HeroSkillManager.known_combat_skills" in INSPECTION
-    assert 'combatant.get("skills", combatant.get("abilities", []))' in INSPECTION
+    assert 'combatant.get("skills", combatant.get("observed_skills", combatant.get("abilities", [])))' in INSPECTION
 
 def test_detailed_inspection_keeps_combat_running():
     assert "get_tree().paused = true" not in INSPECTION

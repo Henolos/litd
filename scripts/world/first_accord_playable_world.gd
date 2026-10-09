@@ -338,7 +338,10 @@ func _on_room_entered(room_id: String, from_sensor: bool = false) -> void:
         var sensor: Node3D = get_node("RoomSensors/GE01RoomSensor_" + room_id)
         var local := sensor.to_local(party.global_position)
         var half := ROOM_SENSOR_SIZE * 0.5
-        if absf(local.x) > half.x or absf(local.y) > half.y or absf(local.z) > half.z:
+        # body_entered fires when the party's capsule first touches the area,
+        # before the party origin itself crosses the sensor boundary.
+        var capsule_radius: float = ((party.get_node("CollisionShape3D") as CollisionShape3D).shape as CapsuleShape3D).radius
+        if absf(local.x) > half.x + capsule_radius or absf(local.y) > half.y + capsule_radius or absf(local.z) > half.z + capsule_radius:
             return
     var result := runtime.enter_next(room_id)
     if not bool(result.get("ok", false)):

@@ -19,6 +19,7 @@ func _run() -> void:
     GameState.current_screen = "sanctuary"
     var world: FirstAccordPlayableWorld = WORLD.instantiate() as FirstAccordPlayableWorld
     var full := OS.get_cmdline_user_args().has("--full")
+    var walk := OS.get_cmdline_user_args().has("--walk")
     var seed := 102 if full else 101
     for arg in OS.get_cmdline_user_args():
         if arg.begins_with("--seed="):
@@ -30,12 +31,18 @@ func _run() -> void:
     var combats := 0
     for room_id in FULL_PATH if full else EARLY_PATH:
         if world.current_room_id != room_id:
-            world._on_room_entered(room_id)
+            if walk:
+                if not await _walk_to_room(world, room_id):
+                    _fail("physical route blocked from %s to %s at %s" % [world.current_room_id, room_id, world.party.global_position])
+                    return
+            else:
+                world._on_room_entered(room_id)
         if world.current_room_id != room_id:
             _fail("canonical route blocked at " + room_id)
             return
         var room: Node3D = world.physical["root"].get_node("Rooms/" + room_id)
-        world.party.global_position = room.global_position + Vector3.UP * 0.7
+        if not walk:
+            world.party.global_position = room.global_position + Vector3.UP * 0.7
         if not bool(world.interact_current_room().get("ok", false)):
             _fail("room interaction failed at " + room_id)
             return
@@ -111,8 +118,8 @@ func _run() -> void:
                 return
             world = WORLD.instantiate()
             add_child(world)
-            if world.party.global_transform != exact or world.current_room_id != room_id:
-                _fail("physical transform or room changed after reload")
+            if not world.party.global_transform.is_equal_approx(exact) or world.current_room_id != room_id:
+                _fail("physical transform or room changed after reload: %s -> %s, %s" % [exact, world.party.global_transform, world.current_room_id])
                 return
     if (not full and (submissions == 0 or combats != 1)) or (full and (combats != 5 or not bool(world.runtime.campaign.dungeon.node_flags.get("warden_sanctum", {}).get("completed", false)))):
         _fail("expected combat, remanence, or Warden completion missing")
@@ -153,5 +160,50 @@ func _run() -> void:
             _fail("extracted reward changed after save reload: " + resource)
             return
     helpers.free()
-    print("FIRST_ACCORD_PHYSICAL_JOURNEY: OK full=", full, " seed=", seed, " combats=", combats, " submissions=", submissions)
+    print("FIRST_ACCORD_PHYSICAL_JOURNEY: OK full=", full, " walk=", walk, " seed=", seed, " combats=", combats, " submissions=", submissions)
     get_tree().quit(0)
+
+func _walk_to_room(world: FirstAccordPlayableWorld, room_id: String) -> bool:
+    var source_id := world.current_room_id
+    var source: Node3D = world.physical["root"].get_node("Rooms/" + source_id)
+    var target: Node3D = world.physical["root"].get_node("Rooms/" + room_id)
+    var corridor: Node3D
+    for link: Node3D in world.physical["root"].get_node("Connections").get_children():
+        if str(link.get_meta("from_room", "")) == source_id and str(link.get_meta("to_room", "")) == room_id:
+            corridor = link
+            break
+    if corridor == null:
+        return false
+    var start := FirstAccordDungeonMapBuilder._nearest_connector(source, target.position)
+    var finish := FirstAccordDungeonMapBuilder._nearest_connector(target, source.position)
+    if start == null or finish == null:
+        return false
+    for waypoint in [start.global_position, finish.global_position, target.global_position]:
+        var point: Vector3 = waypoint
+        var stalled := 0
+        var previous := world.party.global_position
+        for frame in 600:
+            var offset: Vector3 = point - world.party.global_position
+            offset.y = 0.0
+            if offset.length() < 0.7:
+                break
+            world.party.set_virtual_input(Vector2(offset.x, offset.z).normalized())
+            world.party.set_virtual_run(true)
+            await get_tree().physics_frame
+            if world.party.global_position.distance_to(previous) < 0.002:
+                stalled += 1
+            else:
+                stalled = 0
+            previous = world.party.global_position
+            if stalled > 30 or world.current_room_id not in [source_id, room_id]:
+                world.party.set_virtual_input(Vector2.ZERO)
+                world.party.set_virtual_run(false)
+                return false
+        if world.party.global_position.distance_to(Vector3(point.x, world.party.global_position.y, point.z)) > 0.7:
+            world.party.set_virtual_input(Vector2.ZERO)
+            world.party.set_virtual_run(false)
+            return false
+    world.party.set_virtual_input(Vector2.ZERO)
+    world.party.set_virtual_run(false)
+    await get_tree().physics_frame
+    return world.current_room_id == room_id
