@@ -3,9 +3,14 @@ class_name FirstAccordPlayableWorld
 
 const DUNGEON_ID := "dungeon_first_map_hall_of_first_accord"
 const COMBAT_UI := preload("res://scripts/ui/first_accord_physical_combat_ui.gd")
+const AFTERMATH_UI := preload("res://scripts/ui/first_accord_aftermath_ui.gd")
 const BUILDER := preload("res://scripts/world/first_accord_dungeon_map_builder.gd")
 const PARTY_SCENE := preload("res://scenes/world/terre_des_cendres/exploration_party_placeholder.tscn")
+const PASSAGE_SCRIPT := preload("res://scripts/world/first_accord_passage_interaction.gd")
+const EXTRACTION_SCRIPT := preload("res://scripts/world/first_accord_extraction_interaction.gd")
 const SENSOR_SCRIPT := preload("res://scripts/world/veilleurs_ge01_room_sensor.gd")
+const MAIN_SCENE := "res://scenes/Main.tscn"
+const ROOM_SENSOR_SIZE := Vector3(14, 2.5, 12)
 
 @export var campaign_seed := 42
 
@@ -16,8 +21,13 @@ var current_room_id := ""
 var runtime: VeilleursVerticalSliceRuntimeV09
 var combat_ui: Control
 var prompt: Label
+var action_button: Button
+var interaction_feedback := ""
 var saved_transform := Transform3D.IDENTITY
 var last_result: Dictionary = {}
+var last_extraction: Dictionary = {}
+var pending_aftermath: Dictionary = {}
+var aftermath_ui: Control
 
 func _ready() -> void:
     var resume := bool(VeilleursRuntime.physical_state.get("active", false)) and VeilleursRuntime.runtime.campaign.current_dungeon_id == DUNGEON_ID and int(VeilleursRuntime.physical_state.get("run_seed", -1)) == VeilleursRuntime.runtime.campaign.dungeon.run_seed
@@ -47,24 +57,37 @@ func _ready() -> void:
         return
     party.name = "FirstAccordParty"
     add_child(party)
+    party.set_process_unhandled_input(false)
     party.global_position = entry.global_position + Vector3.UP * 0.7
     if resume:
         var position: Array = VeilleursRuntime.physical_state.get("position", [])
         if position.size() == 3:
             party.global_position = Vector3(float(position[0]), float(position[1]), float(position[2]))
         party.rotation.y = float(VeilleursRuntime.physical_state.get("yaw", 0.0))
+        pending_aftermath = (VeilleursRuntime.physical_state.get("aftermath", {}) as Dictionary).duplicate(true)
     var sensors := Node3D.new()
     sensors.name = "RoomSensors"
     add_child(sensors)
     for room in rooms.get_children():
         var sensor := SENSOR_SCRIPT.new() as VeilleursGE01RoomSensor
-        sensor.configure(str(room.name), room.position, Vector3(14, 2.5, 12))
-        sensor.party_entered.connect(_on_room_entered)
+        sensor.configure(str(room.name), room.position, ROOM_SENSOR_SIZE)
+        sensor.party_entered.connect(func(room_id: String) -> void: _on_room_entered(room_id, true))
         sensors.add_child(sensor)
+    _build_passage_interactions(rooms)
+    _build_extraction_interactions(rooms)
+    _sync_passages()
     _build_hud()
+    party.interaction_target_changed.connect(func(_descriptor: Dictionary) -> void: _sync_prompt())
+    party.interaction_resolved.connect(func(result: Dictionary) -> void:
+        interaction_feedback = ("Expédition extraite" if str(result.get("outcome", "")) == "extracted" else "Passage ouvert") if bool(result.get("success", false)) else "Interaction indisponible"
+        _sync_prompt())
     capture_state()
     if runtime.combat != null:
         _show_combat()
+    elif not pending_aftermath.is_empty() or unresolved_aftermath() > 0:
+        if pending_aftermath.is_empty():
+            pending_aftermath = runtime.last_resolution.duplicate(true)
+        _show_aftermath()
     _sync_prompt()
 
 func _build_hud() -> void:
@@ -79,8 +102,14 @@ func _build_hud() -> void:
     var action := Button.new()
     action.text = "INTERAGIR"
     action.custom_minimum_size = Vector2(180, 48)
-    action.pressed.connect(interact_current_room)
+    action_button = action
+    action.pressed.connect(_interact)
     panel.add_child(action)
+    var search := Button.new()
+    search.text = "FOUILLER LES PASSAGES"
+    search.custom_minimum_size = Vector2(180, 48)
+    search.pressed.connect(discover_current_passages)
+    panel.add_child(search)
     var save := Button.new()
     save.text = "SAUVEGARDER"
     save.custom_minimum_size = Vector2(180, 48)
@@ -90,22 +119,109 @@ func _build_hud() -> void:
     panel.add_child(save)
 
 func _unhandled_input(event: InputEvent) -> void:
-    if event.is_action_pressed("interact") and combat_ui == null:
-        interact_current_room()
+    if event.is_action_pressed("interact") and combat_ui == null and aftermath_ui == null:
+        _interact()
         get_viewport().set_input_as_handled()
 
+func _interact() -> void:
+    if runtime.combat != null or aftermath_ui != null:
+        return
+    if not party.get_interaction_descriptor().is_empty():
+        party.interact()
+    else:
+        interact_current_room()
+
+func _build_passage_interactions(rooms: Node) -> void:
+    var interactions := Node3D.new()
+    interactions.name = "PassageInteractions"
+    add_child(interactions)
+    for edge in plan.get("edges", []):
+        if not bool(edge.get("hidden", false)) and str(edge.get("requires", "")) != "unlock_from_deep_side":
+            continue
+        var source: Node3D = rooms.get_node(str(edge.get("from", "")))
+        var target: Node3D = rooms.get_node(str(edge.get("to", "")))
+        for pair in [[source, target], [target, source]]:
+            var room: Node3D = pair[0]
+            var toward: Node3D = pair[1]
+            var marker := BUILDER._nearest_connector(room, toward.position, bool(edge.get("hidden", false)))
+            if marker == null:
+                continue
+            # Keep the object on the room side of its threshold.
+            var point := to_local(marker.global_position + (room.global_position - marker.global_position).normalized())
+            var interaction := PASSAGE_SCRIPT.new()
+            interaction.configure(self, edge, str(room.name), point)
+            interactions.add_child(interaction)
+
+func _build_extraction_interactions(rooms: Node) -> void:
+    var exits := Node3D.new()
+    exits.name = "ExtractionInteractions"
+    add_child(exits)
+    for room in rooms.get_children():
+        var definition: Dictionary = runtime.campaign.dungeon.nodes_by_id.get(str(room.name), {})
+        if not bool(definition.get("extraction", false)):
+            continue
+        var exit := EXTRACTION_SCRIPT.new()
+        exit.name = str(room.name) + "_exit"
+        exit.configure(self, str(room.name), room.position + Vector3(0, 0, 3))
+        exits.add_child(exit)
+
+func extract_expedition(room_id: String) -> Dictionary:
+    if runtime == null or runtime.combat != null or aftermath_ui != null or room_id != current_room_id:
+        return {"ok":false, "reason":"extraction_unavailable"}
+    if not runtime.campaign.dungeon.can_extract():
+        return {"ok":false, "reason":"extraction_unavailable"}
+    var exits := get_node_or_null("ExtractionInteractions")
+    var exit: Node3D = exits.get_node_or_null(room_id + "_exit") if exits != null else null
+    if exit == null or party.global_position.distance_to(exit.global_position) > 2.4:
+        return {"ok":false, "reason":"out_of_reach"}
+    last_extraction = runtime.campaign.complete_expedition()
+    if not bool(last_extraction.get("ok", false)):
+        return last_extraction.duplicate(true)
+    VeilleursRuntime.physical_state.clear()
+    if get_tree().current_scene == self:
+        SaveManager.save_game()
+        call_deferred("_return_to_main_after_extraction")
+    return last_extraction.duplicate(true)
+
+func _return_to_main_after_extraction() -> void:
+    var scene_tree := get_tree()
+    scene_tree.scene_changed.connect(GameState.show_sanctuary_after_scene, CONNECT_ONE_SHOT)
+    if scene_tree.change_scene_to_file(MAIN_SCENE) != OK:
+        scene_tree.scene_changed.disconnect(GameState.show_sanctuary_after_scene)
+        push_error("FirstAccordPlayableWorld: cannot return to sanctuary")
+
+func open_passage(edge_id: String, shortcut: bool) -> Dictionary:
+    if runtime == null or runtime.combat != null or aftermath_ui != null:
+        return {"ok":false, "reason":"combat_active"}
+    var result: Dictionary = runtime.campaign.dungeon.unlock_shortcut(edge_id) if shortcut else runtime.campaign.dungeon.discover_passage(edge_id)
+    if bool(result.get("ok", false)):
+        _sync_passages()
+        capture_state()
+        _sync_prompt()
+    return result
+
+func _sync_passages() -> void:
+    for edge in plan.get("edges", []):
+        if runtime.campaign.dungeon.passage_is_open(edge):
+            var result := BUILDER.open_plan_connection(physical["root"], edge)
+            if not bool(result.get("ok", false)):
+                push_error("FirstAccordPlayableWorld: " + str(result.get("reason", "passage_error")))
+    physical["open_connection_count"] = physical["root"].get_node("Connections").get_child_count()
+
 func capture_state() -> void:
-    if not is_instance_valid(party):
+    if not is_instance_valid(party) or runtime.campaign.current_dungeon_id != DUNGEON_ID:
         return
     var p := party.global_position
     VeilleursRuntime.physical_state = {"active":true, "run_seed":runtime.campaign.dungeon.run_seed, "room_id":current_room_id, "position":[p.x,p.y,p.z], "yaw":party.rotation.y}
+    if not pending_aftermath.is_empty():
+        VeilleursRuntime.physical_state["aftermath"] = pending_aftermath.duplicate(true)
 
 func _process(_delta: float) -> void:
     if combat_ui == null:
         capture_state()
 
 func interact_current_room() -> Dictionary:
-    if runtime == null or runtime.combat != null:
+    if runtime == null or runtime.combat != null or aftermath_ui != null:
         return {"ok":false, "reason":"combat_active"}
     var flags: Dictionary = runtime.campaign.dungeon.node_flags.get(current_room_id, {})
     if bool(flags.get("completed", false)):
@@ -119,6 +235,23 @@ func interact_current_room() -> Dictionary:
             _show_combat()
     _sync_prompt()
     return last_result.duplicate(true)
+
+func discover_current_passages() -> Dictionary:
+    if runtime == null or runtime.combat != null or aftermath_ui != null:
+        return {"ok":false, "reason":"combat_active"}
+    var result := runtime.campaign.dungeon.discover_current_passages()
+    if not bool(result.get("ok", false)):
+        prompt.text = "Terminez la salle avant de chercher ses passages."
+        return result
+    var synced := BUILDER.sync_discovered_passages(physical["root"], plan, runtime.campaign.dungeon.discovered_edges)
+    if not bool(synced.get("ok", false)):
+        return synced
+    physical["open_connection_count"] = int(synced["open_connection_count"])
+    capture_state()
+    _sync_prompt()
+    var found: Array = result.get("discovered", [])
+    prompt.text += " · Passages découverts : %d" % found.size() if not found.is_empty() else " · Aucun nouveau passage"
+    return result
 
 func _show_combat() -> void:
     saved_transform = party.global_transform
@@ -140,20 +273,73 @@ func _on_combat_finished(result: Dictionary) -> void:
     party.global_transform = saved_transform
     if party is CharacterBody3D:
         party.velocity = Vector3.ZERO
+    pending_aftermath = result.duplicate(true)
+    _show_aftermath()
+    capture_state()
+    _sync_prompt()
+
+func unresolved_aftermath() -> int:
+    var count := 0
+    for candidate in runtime.recruitment_options():
+        if not bool(candidate.get("resolved", false)):
+            count += 1
+    return count
+
+func _show_aftermath() -> void:
+    party.process_mode = Node.PROCESS_MODE_DISABLED
+    var canvas := CanvasLayer.new()
+    canvas.name = "FirstAccordAftermath"
+    canvas.layer = 100
+    add_child(canvas)
+    aftermath_ui = AFTERMATH_UI.new()
+    aftermath_ui.world = self
+    aftermath_ui.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+    canvas.add_child(aftermath_ui)
+
+func resolve_aftermath_decision(index: int, action: String) -> Dictionary:
+    if aftermath_ui == null or runtime.combat != null:
+        return {"ok":false, "reason":"no_pending_aftermath"}
+    var result := runtime.resolve_recruitment_decision(index, action)
+    capture_state()
+    return result
+
+func dismiss_aftermath() -> bool:
+    if aftermath_ui == null or unresolved_aftermath() > 0:
+        return false
+    var canvas := aftermath_ui.get_parent()
+    aftermath_ui = null
+    canvas.queue_free()
+    pending_aftermath.clear()
     party.process_mode = Node.PROCESS_MODE_INHERIT
     capture_state()
     _sync_prompt()
+    return true
 
 func _sync_prompt() -> void:
     if prompt == null:
         return
     var flags: Dictionary = runtime.campaign.dungeon.node_flags.get(current_room_id, {})
     var state := "Salle terminée" if bool(flags.get("completed", false)) else ("Combat disponible" if not runtime.campaign.dungeon.active_encounter.is_empty() else "Explorer le lieu")
+    var descriptor: Dictionary = party.get_interaction_descriptor()
+    action_button.text = str(descriptor.get("verb", "INTERAGIR"))
+    action_button.disabled = runtime.combat != null or aftermath_ui != null or (not descriptor.is_empty() and not bool(descriptor.get("available", false)))
+    if not descriptor.is_empty():
+        state = str(descriptor.get("label", "")) + " · " + str(descriptor.get("verb", ""))
     prompt.text = "%s · %s" % [current_room_id.replace("_", " ").capitalize(), state]
+    if interaction_feedback != "":
+        prompt.text += "\n" + interaction_feedback
 
-func _on_room_entered(room_id: String) -> void:
-    if room_id == current_room_id or runtime == null or runtime.combat != null:
+func _on_room_entered(room_id: String, from_sensor: bool = false) -> void:
+    if room_id == current_room_id or runtime == null or runtime.combat != null or aftermath_ui != null:
         return
+    if from_sensor:
+        # Disabling and restoring the party can leave an old body_entered event
+        # queued. Only its current position may authorize a physical transition.
+        var sensor: Node3D = get_node("RoomSensors/GE01RoomSensor_" + room_id)
+        var local := sensor.to_local(party.global_position)
+        var half := ROOM_SENSOR_SIZE * 0.5
+        if absf(local.x) > half.x or absf(local.y) > half.y or absf(local.z) > half.z:
+            return
     var result := runtime.enter_next(room_id)
     if not bool(result.get("ok", false)):
         # Crossing geometry cannot bypass logical progression or unresolved combat.
@@ -163,5 +349,6 @@ func _on_room_entered(room_id: String) -> void:
             party.velocity = Vector3.ZERO
         return
     current_room_id = room_id
+    interaction_feedback = ""
     capture_state()
     _sync_prompt()

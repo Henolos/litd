@@ -1,11 +1,17 @@
 extends "res://scripts/ui/veilleurs_vertical_slice_qa_v09.gd"
 
 # Reuse canonical tactical controls and resolution without starting another run.
+const SUBMISSION_CONTROL := preload("res://scripts/ui/veilleurs_submission_control_v09.gd")
 signal encounter_finished(result: Dictionary)
+
+var submission_control: VeilleursSubmissionControlV09
 
 func _ready() -> void:
     _build_shell()
     slice = VeilleursRuntime.runtime
+    submission_control = SUBMISSION_CONTROL.new() as VeilleursSubmissionControlV09
+    submission_control.name = "SubmissionControl"
+    add_child(submission_control)
     for button: Button in find_children("*", "Button", true, false):
         if button.text in DUNGEONS.values() or button.text in ["Reprendre", "Retour QA"]:
             button.hide()
