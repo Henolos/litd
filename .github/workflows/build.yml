@@ -14,6 +14,7 @@ on:
       - 'assets/**'
       - 'data/**'
       - 'tools/ci/canon_freshness_gate.py'
+      - 'tools/ci/select_export_targets.py'
   pull_request:
     paths:
       - '.github/workflows/build.yml'
@@ -24,6 +25,7 @@ on:
       - 'assets/**'
       - 'data/**'
       - 'tools/ci/canon_freshness_gate.py'
+      - 'tools/ci/select_export_targets.py'
 
 concurrency:
   group: builds-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
@@ -46,63 +48,48 @@ jobs:
         run: python tools/ci/canon_freshness_gate.py
 
   select-exports:
-    name: Select export scope
+    name: Select export platforms
     needs: canon-freshness
     runs-on: ubuntu-latest
     outputs:
-      build_all: ${{ steps.scope.outputs.build_all }}
+      matrix: ${{ steps.choose.outputs.matrix }}
+      build_any: ${{ steps.choose.outputs.build_any }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           fetch-depth: 0
-      - name: Decide when platform exports are necessary
-        id: scope
+      - name: Choose conservative export matrix
+        id: choose
         shell: bash
         env:
-          EVENT_NAME: ${{ github.event_name }}
+          EVENT: ${{ github.event_name }}
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           set -euo pipefail
-          # Exports always available on main, release tags and manual runs.
-          if [[ "$EVENT_NAME" != "pull_request" ]]; then
-            echo "build_all=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          # Missing commit or unknown diff must fail closed.
-          if [[ -z "$BASE_SHA" || -z "$HEAD_SHA" ]] || ! git cat-file -e "$BASE_SHA^{commit}" || ! git cat-file -e "$HEAD_SHA^{commit}"; then
-            echo "build_all=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          if ! git diff --name-only "$BASE_SHA" "$HEAD_SHA" > /tmp/litd-export-changes.txt; then
-            echo "build_all=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          if grep -Eq '^(project\.godot|export_presets\.cfg|\.github/workflows/build\.yml)$' /tmp/litd-export-changes.txt; then
-            echo "build_all=true" >> "$GITHUB_OUTPUT"
+          if [[ "$EVENT" == "pull_request" ]]; then
+            if [[ -n "$BASE_SHA" && -n "$HEAD_SHA" ]] &&
+               git cat-file -e "$BASE_SHA^{commit}" 2>/dev/null &&
+               git cat-file -e "$HEAD_SHA^{commit}" 2>/dev/null &&
+               git diff --name-only "$BASE_SHA" "$HEAD_SHA" > /tmp/export-changes.txt; then
+              python3 tools/ci/select_export_targets.py --files-from /tmp/export-changes.txt --github-output "$GITHUB_OUTPUT"
+            else
+              # Fail closed: unknown diff means full platform validation.
+              python3 tools/ci/select_export_targets.py --all --github-output "$GITHUB_OUTPUT"
+            fi
           else
-            echo "build_all=false" >> "$GITHUB_OUTPUT"
+            python3 tools/ci/select_export_targets.py --all --github-output "$GITHUB_OUTPUT"
           fi
 
   export:
-    if: ${{ (github.actor != 'dependabot[bot]' || !startsWith(github.head_ref, 'dependabot/github_actions/')) && needs.select-exports.outputs.build_all == 'true' }}
+    if: ${{ (github.actor != 'dependabot[bot]' || !startsWith(github.head_ref, 'dependabot/github_actions/')) && needs.select-exports.outputs.build_any == 'true' }}
     needs: [canon-freshness, select-exports]
     strategy:
       fail-fast: false
-      matrix:
-        include:
-          - preset: Web
-            artifact: light-in-the-dark-web
-            path: build/web
-          - preset: Windows Desktop
-            artifact: light-in-the-dark-windows
-            path: build/windows
-          - preset: Linux/X11
-            artifact: light-in-the-dark-linux
-            path: build/linux
+      matrix: ${{ fromJSON(needs.select-exports.outputs.matrix) }}
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:4.7.2
+      image: barichello/godot-ci:4.7.2@sha256:cdcca31e9194fd59a68a63f4b1b9c3981716819c520cd6f7966c5d72ca7246bd
     env:
       HOME: /root
     steps:
