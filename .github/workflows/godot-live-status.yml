@@ -11,7 +11,7 @@ permissions:
 
 concurrency:
   group: godot-status-${{ github.event.workflow_run.id }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   mirror-canonical-ci:
@@ -35,10 +35,7 @@ jobs:
 
           action = os.environ["RUN_ACTION"]
           conclusion = os.environ.get("RUN_CONCLUSION", "")
-          if action in {"requested", "in_progress"}:
-              state = "pending"
-              description = "Godot CI canonique en cours"
-          elif conclusion == "success":
+          if conclusion == "success":
               state = "success"
               description = "Godot CI canonique validée"
           elif conclusion in {"failure", "timed_out"}:
