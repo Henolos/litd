@@ -39,6 +39,12 @@ l'écran utilise `runtime.last_resolution` pour les présenter.
   position exacte sont relues via SaveManager avant le retour au donjon.
 - `first_accord_physical_interactions_smoke` conserve cinq graines, huit secrets
   et cinq raccourcis après confirmation explicite des résultats de sa fixture.
+- `first_accord_physical_journey_smoke` traverse le vestibule et la galerie :
+  combat avec commandes réelles, soumission par le bouton, choix Épargner par
+  l'écran de résultat, sauvegarde et reprise au même transform, retour par la
+  salle visitée, puis extraction anticipée. Il vérifie le crédit unique du
+  butin au refuge, y compris après recharge de la save extraite. Le routage
+  de scène jusqu'au Sanctuaire garde son smoke dédié.
 - Le nouveau smoke appartient au domaine CI `veilleurs`.
 
 ## Recherche utilisée

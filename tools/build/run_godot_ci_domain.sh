@@ -109,6 +109,7 @@ case "$DOMAIN" in
     scene 120 "Passages secrets du donjon physique" res://scenes/tests/first_accord_physical_passages_smoke.tscn
     scene 120 "Secrets et raccourcis physiques" res://scenes/tests/first_accord_physical_interactions_smoke.tscn
     scene 120 "Résultat et Rémanence du combat physique" res://scenes/tests/first_accord_aftermath_smoke.tscn
+    scene 120 "Parcours physique combat et extraction" res://scenes/tests/first_accord_physical_journey_smoke.tscn
     run_checked "Extraction physique et retour au Sanctuaire" timeout 120s godot --headless --path . --script res://scripts/tests/first_accord_extraction_route_smoke.gd
     scene 60 "Pipeline rencontres contraintes" res://scenes/tests/dungeon_encounter_pipeline_smoke.tscn
     scene 60 "Pipeline génération graines et modules" res://scenes/tests/dungeon_generation_pipeline_smoke.tscn
