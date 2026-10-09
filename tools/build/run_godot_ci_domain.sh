@@ -112,6 +112,8 @@ case "$DOMAIN" in
     scene 120 "Parcours physique combat et extraction" res://scenes/tests/first_accord_physical_journey_smoke.tscn
     run_checked "Parcours physique complet jusqu'au Gardien (graine 102)" timeout 120s godot --headless --path . --scene res://scenes/tests/first_accord_physical_journey_smoke.tscn -- --full --seed=102
     run_checked "Parcours physique complet jusqu'au Gardien (graine 103)" timeout 120s godot --headless --path . --scene res://scenes/tests/first_accord_physical_journey_smoke.tscn -- --full --seed=103
+    run_checked "Traversée physique et capteurs jusqu'au Gardien (graine 102)" timeout 120s godot --headless --path . --scene res://scenes/tests/first_accord_physical_journey_smoke.tscn -- --full --walk --seed=102
+    run_checked "Traversée physique et capteurs jusqu'au Gardien (graine 103)" timeout 120s godot --headless --path . --scene res://scenes/tests/first_accord_physical_journey_smoke.tscn -- --full --walk --seed=103
     run_checked "Extraction physique et retour au Sanctuaire" timeout 120s godot --headless --path . --script res://scripts/tests/first_accord_extraction_route_smoke.gd
     scene 60 "Pipeline rencontres contraintes" res://scenes/tests/dungeon_encounter_pipeline_smoke.tscn
     scene 60 "Pipeline génération graines et modules" res://scenes/tests/dungeon_generation_pipeline_smoke.tscn
