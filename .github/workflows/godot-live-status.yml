@@ -3,15 +3,16 @@ name: Godot Live Status
 on:
   workflow_run:
     workflows: ["CI"]
-    types: [requested, in_progress, completed]
+    types: [requested, completed]
 
 permissions:
+  actions: read
   contents: read
   statuses: write
 
 concurrency:
   group: godot-status-${{ github.event.workflow_run.id }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   mirror-canonical-ci:
@@ -25,28 +26,42 @@ jobs:
           REPOSITORY: ${{ github.repository }}
           TARGET_SHA: ${{ github.event.workflow_run.head_sha }}
           TARGET_URL: ${{ github.event.workflow_run.html_url }}
-          RUN_ACTION: ${{ github.event.action }}
-          RUN_CONCLUSION: ${{ github.event.workflow_run.conclusion }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
         run: |
           python3 - <<'PY'
           import json
           import os
           import urllib.request
 
-          action = os.environ["RUN_ACTION"]
-          conclusion = os.environ.get("RUN_CONCLUSION", "")
-          if action in {"requested", "in_progress"}:
+          # Events can wait behind another mirror job. Read the current attempt
+          # so a late requested/completed event cannot publish stale state.
+          run_id = int(os.environ["RUN_ID"])
+          current_request = urllib.request.Request(
+              f"https://api.github.com/repos/{os.environ['REPOSITORY']}/actions/runs/{run_id}",
+              headers={
+                  "Accept": "application/vnd.github+json",
+                  "Authorization": f"Bearer {os.environ['GH_TOKEN']}",
+                  "X-GitHub-Api-Version": "2022-11-28",
+              },
+          )
+          with urllib.request.urlopen(current_request, timeout=30) as response:
+              current = json.load(response)
+          if current.get("id") != run_id or current.get("head_sha") != os.environ["TARGET_SHA"]:
+              raise SystemExit("canonical CI run identity mismatch")
+          run_status = current.get("status", "")
+          conclusion = current.get("conclusion") or ""
+          if run_status in {"queued", "in_progress", "waiting", "pending", "requested"}:
               state = "pending"
               description = "Godot CI canonique en cours"
-          elif conclusion == "success":
+          elif run_status == "completed" and conclusion == "success":
               state = "success"
               description = "Godot CI canonique validée"
-          elif conclusion in {"failure", "timed_out"}:
+          elif run_status == "completed" and conclusion in {"failure", "timed_out"}:
               state = "failure"
               description = f"Godot CI canonique: {conclusion}"
           else:
               state = "error"
-              description = f"Godot CI canonique: {conclusion or action}"
+              description = f"Godot CI canonique: {conclusion or run_status}"
 
           payload = json.dumps({
               "state": state,

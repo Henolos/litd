@@ -14,7 +14,8 @@ class CIDeduplicationContractTests(unittest.TestCase):
     def test_live_status_mirrors_ci_without_rerunning_godot(self):
         workflow = (ROOT / ".github/workflows/godot-live-status.yml").read_text(encoding="utf-8")
         self.assertIn('workflows: ["CI"]', workflow)
-        self.assertIn("types: [requested, in_progress, completed]", workflow)
+        self.assertIn("types: [requested, completed]", workflow)
+        self.assertNotIn("in_progress, completed", workflow)
         self.assertIn('"context": "godot-progress"', workflow)
         self.assertNotIn("run_godot_ci.sh", workflow)
         self.assertNotIn("godot_progress_bridge.py", workflow)
