@@ -1,6 +1,7 @@
 import unittest
+from pathlib import Path
 
-from tools.ci.select_godot_domains import ALL_DOMAINS, select_domains
+from tools.ci.select_godot_domains import ALL_DOMAINS, domain_test_owners, select_domains
 
 
 class GodotDomainSelectorTests(unittest.TestCase):
@@ -34,11 +35,37 @@ class GodotDomainSelectorTests(unittest.TestCase):
             ["core-world", "runtime", "veilleurs"],
         )
 
-    def test_test_only_change_uses_test_name(self):
+    def test_test_only_change_uses_runner_owner(self):
         self.assertEqual(
             select_domains(["scenes/tests/mobile_touch_smoke.tscn"]),
-            ["runtime", "ui-qa"],
+            ["ui-qa"],
         )
+
+    def test_dungeon_and_playthrough_changes_run_core_world(self):
+        for path in (
+            "scenes/tests/dungeon_playable_pipeline_smoke.tscn",
+            "scenes/tests/first_accord_playthrough_smoke.tscn",
+        ):
+            with self.subTest(path=path):
+                self.assertEqual(select_domains([path]), ["core-world"])
+
+    def test_script_targets_are_indexed_too(self):
+        self.assertEqual(
+            select_domains(["scripts/tests/first_accord_extraction_route_smoke.gd"]),
+            ["veilleurs"],
+        )
+
+    def test_unowned_test_falls_back_to_all_domains(self):
+        self.assertEqual(select_domains(["scenes/tests/new_smoke.tscn"]), list(ALL_DOMAINS))
+
+    def test_runner_index_covers_all_domains_and_existing_targets(self):
+        owners = domain_test_owners()
+        self.assertEqual(set.union(*owners.values()), set(ALL_DOMAINS))
+        for path, domains in owners.items():
+            with self.subTest(path=path):
+                self.assertTrue(domains)
+                self.assertTrue(Path(path).is_file())
+                self.assertEqual(set(select_domains([path])), domains)
 
 
 if __name__ == "__main__":
