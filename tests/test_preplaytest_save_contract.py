@@ -1,7 +1,6 @@
 """Static regression checks for high-risk save/load contracts before playtesting.
 
-These tests intentionally document existing risky behavior; they will fail until
-the save manager is hardened. No user save data is accessed.
+These tests protect save-manager contracts. No user save data is accessed.
 """
 from pathlib import Path
 import re
@@ -36,9 +35,9 @@ def test_backup_copy_and_remove_results_are_checked():
     assert re.search(r"if\s+DirAccess\.copy_absolute\(", body) or re.search(
         r"var\s+\w+\s*:?=\s*DirAccess\.copy_absolute\(", body
     ), "Backup copy return value is ignored."
-    assert re.search(r"if\s+DirAccess\.remove_absolute\(", body) or re.search(
-        r"var\s+\w+\s*:?=\s*DirAccess\.remove_absolute\(", body
-    ), "Removal return value is ignored."
+    assert "DirAccess.remove_absolute(absolute_path)" not in body, (
+        "Do not remove the live save before replacement."
+    )
 
 
 def test_failed_slot_zero_legacy_write_is_not_reported_as_full_success():
@@ -47,3 +46,14 @@ def test_failed_slot_zero_legacy_write_is_not_reported_as_full_success():
         "A successful canonical slot write is reported as failed when the "
         "secondary legacy mirror fails; test and define the desired contract."
     )
+
+
+def test_staged_save_is_validated_before_replacement():
+    body = section("_atomic_write", "_read_payload")
+    assert "_read_payload(temp).is_empty()" in body
+    assert "FileAccess.get_file_as_string(temp) != text" in body
+
+
+def test_invalid_primary_does_not_overwrite_good_backup():
+    body = section("_atomic_write", "_read_payload")
+    assert "and not _read_payload(path).is_empty()" in body
