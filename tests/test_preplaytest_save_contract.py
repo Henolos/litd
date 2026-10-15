@@ -57,3 +57,16 @@ def test_staged_save_is_validated_before_replacement():
 def test_invalid_primary_does_not_overwrite_good_backup():
     body = section("_atomic_write", "_read_payload")
     assert "and not _read_payload(path).is_empty()" in body
+
+
+def test_load_checks_backup_before_legacy_mirror():
+    body = section("load_game", "slot_metadata")
+    assert "candidates: Array[String] = [_path(slot), _backup_path(slot)]" in body
+    assert "candidates.append(SAVE_PATH)" in body
+    assert "var migrated := _migrate(candidate_payload)" in body
+
+
+def test_save_backup_is_not_deleted_before_replacement():
+    body = section("_atomic_write", "_read_payload")
+    assert "DirAccess.remove_absolute(absolute_path)" not in body
+    assert "DirAccess.rename_absolute(absolute_temp, absolute_path)" in body
