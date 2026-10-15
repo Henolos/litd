@@ -32,7 +32,8 @@ def test_proxy_staging_has_entrance_breath_actions_hits_and_death():
     for function in ["_play_entrance", "_play_breath_loop", "stage_action", "stage_hit", "stage_death"]:
         assert f"func {function}" in PRESENTATION
     assert "CombatBodyPresentation.stage_action(hero, false, action)" in MAIN
-    assert 'CombatBodyPresentation.stage_action(enemy, true, "strike")' in MAIN
+    assert 'var enemy_action: Dictionary = EnemyCombatDirector.choose_action(enemy, targets)' in MAIN
+    assert 'CombatBodyPresentation.stage_action(enemy, true, String(enemy_action.get("id", "strike")))' in MAIN
     assert "CombatBodyPresentation.stage_hit(target, true" in MAIN
     assert "CombatBodyPresentation.stage_hit(target, false" in MAIN
     assert "CombatBodyPresentation.stage_death(target, true)" in MAIN

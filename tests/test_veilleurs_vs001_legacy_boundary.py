@@ -1,9 +1,12 @@
 import json
+import re
 import subprocess
+from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).parents[1]
 CONTRACT_PATH = ROOT / "data/veilleurs/legacy/vs001_dependency_contract.json"
+BASELINE_PATH = ROOT / "data/veilleurs/legacy/vs001_reference_baseline.json"
 
 
 def _contract() -> dict:
@@ -21,17 +24,38 @@ def _tracked_files() -> list[str]:
     return [line.strip() for line in result.stdout.splitlines() if line.strip()]
 
 
-def _operational_vs001_references() -> list[str]:
+def _code_without_comments(text: str) -> str:
+    # Keep quoted strings (including resource paths), remove line comments.
+    return re.sub(
+        r'"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'|#[^\n]*|(?m:^[ \t]*;[^\n]*)',
+        lambda match: "" if match.group().lstrip().startswith(("#", ";")) else match.group(),
+        text,
+    )
+
+
+def _vs001_lines(text: str) -> list[str]:
+    return [line.strip() for line in _code_without_comments(text).splitlines() if "vs001" in line.lower()]
+
+
+def _operational_vs001_references() -> dict[str, list[str]]:
     suffixes = {".gd", ".tscn", ".tres", ".json", ".py", ".yml", ".yaml", ".godot", ".cfg", ".sh", ".ps1", ".cmd"}
-    hits: list[str] = []
+    hits: dict[str, list[str]] = {}
     for relative in _tracked_files():
         path = ROOT / relative
         if path.suffix.lower() not in suffixes or not path.is_file():
             continue
-        text = path.read_text(encoding="utf-8", errors="ignore").lower()
-        if "vs001" in text:
-            hits.append(relative)
-    return sorted(hits)
+        references = _vs001_lines(path.read_text(encoding="utf-8", errors="ignore"))
+        if references:
+            hits[relative] = references
+    return hits
+
+
+def _new_references(current: dict[str, list[str]], baseline: dict[str, list[str]]) -> dict[str, list[str]]:
+    return {
+        path: list(extra.elements())
+        for path, lines in current.items()
+        if (extra := Counter(lines) - Counter(baseline.get(path, [])))
+    }
 
 
 def _inside_legacy_namespace(path: str, prefixes: list[str]) -> bool:
@@ -47,14 +71,31 @@ def test_declared_critical_legacy_dependencies_exist():
 
 def test_vs001_cannot_gain_new_external_consumers():
     contract = _contract()
-    allowlist = set(contract["external_consumer_allowlist"])
     prefixes = list(contract["legacy_namespace_prefixes"])
-    unexpected = [
-        path
-        for path in _operational_vs001_references()
-        if path not in allowlist and not _inside_legacy_namespace(path, prefixes)
+    baseline = json.loads(BASELINE_PATH.read_text(encoding="utf-8"))
+    assert baseline["source_revision"] == "fd785096e6ff4e69a100a5353f8afb9997f7d919"
+    assert baseline["policy"] == "existing_debt_only_removals_allowed"
+    current = {
+        path: lines for path, lines in _operational_vs001_references().items()
+        if not _inside_legacy_namespace(path, prefixes)
+    }
+    unexpected = _new_references(current, baseline["references"])
+    assert unexpected == {}, "New VS001 references outside compatibility namespace: " + repr(unexpected)
+
+
+def test_boundary_distinguishes_comment_from_executable_reference():
+    assert _vs001_lines('## No VS001 dependency.\nvar active = true # VS001 comment') == []
+    assert _vs001_lines('preload("res://scripts/core/veilleurs_vs001_runtime.gd") # compatibility') == [
+        'preload("res://scripts/core/veilleurs_vs001_runtime.gd")'
     ]
-    assert unexpected == [], "VS001 leaked outside its compatibility boundary: " + ", ".join(unexpected)
+
+
+def test_boundary_rejects_new_file_and_new_reference_in_existing_file():
+    baseline = {"scripts/ui/existing.gd": ["LegacyVS001.first()"]}
+    assert _new_references({"scripts/ui/new.gd": ["LegacyVS001.first()"]}, baseline)
+    assert _new_references({"scripts/ui/existing.gd": ["LegacyVS001.second()"]}, baseline)
+    assert _new_references({"scripts/ui/existing.gd": ["LegacyVS001.first()"] * 2}, baseline)
+    assert _new_references({}, baseline) == {}
 
 
 def test_migration_has_explicit_removal_gates():
@@ -72,7 +113,7 @@ def test_canonical_runtime_facade_is_neutral_and_v09_backed():
     project = (ROOT / "project.godot").read_text(encoding="utf-8")
     assert contract["canonical_runtime_singleton"] == "VeilleursRuntime"
     assert "veilleurs_vertical_slice_runtime_v09.gd" in text
-    assert "vs001" not in text.lower()
+    assert _vs001_lines(text) == []
     assert 'VeilleursRuntime="*res://scripts/core/veilleurs_runtime.gd"' in project
 
 
@@ -94,5 +135,5 @@ def test_modern_runtime_chain_does_not_depend_on_vs001():
         "scripts/core/veilleurs_vertical_slice_runtime_v08.gd",
         "scripts/core/veilleurs_campaign_runtime_v07.gd",
     ):
-        text = (ROOT / relative).read_text(encoding="utf-8").lower()
-        assert "vs001" not in text, f"modern runtime depends on VS001: {relative}"
+        text = (ROOT / relative).read_text(encoding="utf-8")
+        assert _vs001_lines(text) == [], f"modern runtime depends on VS001: {relative}"

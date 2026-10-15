@@ -1,8 +1,30 @@
 from __future__ import annotations
 
+import json
+from pathlib import Path
+
+import pytest
+
+from tools.voice import build_dramatic_voice_registry as dramatic_registry
 from tools.voice.acting_take_review import review_template
 from tools.voice.build_dramatic_voice_registry import build_registry
 from tools.voice.build_voice_performance_plan import build_performance_plan
+
+
+def test_every_authored_override_reaches_a_current_line() -> None:
+    root = Path(__file__).resolve().parents[1]
+    overrides = json.loads((root / "data/dramatic_voice_overrides.json").read_text())["overrides"]
+    entries = {entry["line_id"]: entry for entry in build_registry()["entries"]}
+    assert overrides
+    for line_id, override in overrides.items():
+        assert entries[line_id]["direction_origin"] == "explicit_override"
+        assert entries[line_id]["action"] == override["action"]
+
+
+def test_unknown_override_fails_instead_of_silently_disappearing(monkeypatch) -> None:
+    monkeypatch.setattr(dramatic_registry, "build_emotional_registry", lambda root: {"entries": []})
+    with pytest.raises(ValueError, match="unknown lines"):
+        dramatic_registry.build_registry()
 
 
 def test_every_directed_line_has_playable_dramatic_fields() -> None:
@@ -44,8 +66,8 @@ def test_fourth_wall_awareness_happens_inside_the_line() -> None:
     assert meta
     assert all(any(beat.get("awareness_shift") is True for beat in entry["beats"]) for entry in meta)
     by_id = {entry["line_id"]: entry for entry in registry["entries"]}
-    assert by_id["fw_dar_direct_02"]["direction_origin"] == "explicit_override"
-    assert by_id["fw_dar_abyss_02"]["power"]["end"] == "mutual_observation"
+    assert by_id["fw_mat_direct_02"]["direction_origin"] == "explicit_override"
+    assert by_id["fw_mat_abyss_02"]["power"]["end"] == "mutual_observation"
 
 
 def test_performance_plan_keeps_backend_truth_and_acting_metadata() -> None:
@@ -62,7 +84,7 @@ def test_performance_plan_keeps_backend_truth_and_acting_metadata() -> None:
 
 
 def test_acting_review_template_scores_truth_not_emotional_showiness() -> None:
-    template = review_template("fw_dar_direct_02")
+    template = review_template("fw_mat_direct_02")
     criteria = template["rubric"]["criteria"]
     assert "playable_objective_clarity" in criteria
     assert "active_listening" in criteria

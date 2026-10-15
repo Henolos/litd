@@ -3,6 +3,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PROJECT = (ROOT / "project.godot").read_text(encoding="utf-8")
 MENU = (ROOT / "scripts" / "ui" / "game_menu_ui.gd").read_text(encoding="utf-8")
+SECTIONS = (ROOT / "scripts" / "ui" / "ui_section_registry.gd").read_text(encoding="utf-8")
 SETTINGS = (ROOT / "scripts" / "core" / "game_settings.gd").read_text(encoding="utf-8")
 
 def test_unified_game_menu_is_registered_and_accessible():
@@ -14,7 +15,8 @@ def test_unified_game_menu_is_registered_and_accessible():
 
 def test_menu_contains_all_required_tabs():
     for tab in ["INVENTAIRE", "CARTE", "JOURNAL", "PERSONNAGES", "OPTIONS"]:
-        assert tab in MENU
+        assert f'"label":"{tab}"' in SECTIONS
+    assert "UI_SECTIONS.entries()" in MENU
     for renderer in ["_render_inventory", "_render_map", "_render_journal", "_render_characters", "_render_options"]:
         assert f"func {renderer}" in MENU
 

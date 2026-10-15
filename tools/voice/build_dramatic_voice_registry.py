@@ -142,6 +142,9 @@ def build_registry(root: Path = ROOT) -> dict[str, Any]:
     contract = _load(root / "data/voice_acting_contract.json")
     overrides = _load(root / "data/dramatic_voice_overrides.json").get("overrides", {})
     emotional = build_emotional_registry(root)
+    unknown_overrides = sorted(set(overrides) - {entry["line_id"] for entry in emotional.get("entries", [])})
+    if unknown_overrides:
+        raise ValueError(f"Dramatic voice overrides reference unknown lines: {unknown_overrides}")
     meta_by_id = _line_meta(root)
     entries: list[dict[str, Any]] = []
 

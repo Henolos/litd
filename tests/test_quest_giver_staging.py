@@ -45,5 +45,5 @@ def test_journals_open_staged_giver_encounters():
 def test_dialogue_scene_uses_written_quest_lines():
     assert "NarrativeLibrary.quest_dialogue_lines(quest, state)" in PRESENTATION
     assert "NarrativeLibrary.quest_state_text(quest, state)" in PRESENTATION
-    assert 'narrative.get("player_accept", "")' in PRESENTATION
-    assert 'narrative.get("player_decline", "")' in PRESENTATION
+    assert 'accept.text = "ACCEPTER — " + String(narrative.get("player_accept", "Accepter"))' in PRESENTATION
+    assert 'refuse.text = "REFUSER — " + String(narrative.get("player_decline", "Refuser"))' in PRESENTATION
