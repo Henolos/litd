@@ -1,0 +1,36 @@
+name: Godot save runtime tests
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/core/save_manager.gd'
+      - 'tests/godot/**'
+      - '.github/workflows/godot-save-runtime.yml'
+      - 'project.godot'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  save-runtime:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GODOT_VERSION: '4.6.1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Install Godot headless executable
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 -o /tmp/godot.zip "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
+          unzip -q /tmp/godot.zip -d /tmp/godot
+          chmod +x "/tmp/godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64"
+          echo "/tmp/godot" >> "$GITHUB_PATH"
+      - name: Run isolated save integrity tests
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/litd-save-user"
+          export XDG_DATA_HOME="$RUNNER_TEMP/litd-save-user"
+          "/tmp/godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64" --headless --path . --import --quit
+          "/tmp/godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64" --headless --path . --script res://tests/godot/test_save_runtime_headless.gd
