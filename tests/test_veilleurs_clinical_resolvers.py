@@ -1,4 +1,5 @@
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -51,7 +52,20 @@ def test_main_v37_is_additive_and_keeps_clinical_and_item_layers():
     manual_bridge = (ROOT / "scripts/ui/main_v35.gd").read_text(encoding="utf-8")
     reaction_bridge = (ROOT / "scripts/ui/main_v36.gd").read_text(encoding="utf-8")
     hemocorde_layer = (ROOT / "scripts/ui/main_v37.gd").read_text(encoding="utf-8")
-    assert "main_v37.gd" in scene
+    # Follow the active Script resource, rather than requiring the historical
+    # layer to be mentioned in a scene comment after every UI upgrade.
+    resources = dict(re.findall(r'\[ext_resource path="([^"]+)" type="Script" id="([^"]+)"\]', scene))
+    root_script_id = re.search(r'^script = ExtResource\("([^"]+)"\)', scene, re.MULTILINE).group(1)
+    current = next(path for path, resource_id in resources.items() if resource_id == root_script_id)
+    chain = []
+    while current not in chain:
+        chain.append(current)
+        source = (ROOT / current.removeprefix("res://")).read_text(encoding="utf-8")
+        parent = re.search(r'^extends "([^"]+)"', source, re.MULTILINE)
+        if parent is None:
+            break
+        current = parent.group(1)
+    assert "res://scripts/ui/main_v37.gd" in chain
     assert 'extends "res://scripts/ui/main_v36.gd"' in hemocorde_layer
     assert 'extends "res://scripts/ui/main_v35.gd"' in reaction_bridge
     assert 'extends "res://scripts/ui/main_v34.gd"' in manual_bridge

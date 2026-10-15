@@ -98,7 +98,11 @@ def test_ui_navigation_is_consolidated_without_new_numbered_layer():
     assert "UI_SECTIONS.title(active_tab)" in menu
     assert registry.count('"id":') == 12
     assert "main_v35.gd" in architecture
-    assert not (ROOT / "scripts/ui/main_v35.gd").exists()
+    # Existing compatibility layers are recorded debt, not a second navigation
+    # registry. Future work must not add another numbered main layer.
+    numbered = {path.name for path in (ROOT / "scripts/ui").glob("main_v*.gd")}
+    assert numbered == {f"main_v{version}.gd" for version in range(2, 53)} | {"main_v50_ge01.gd"}
+    assert "main_v52.gd" in architecture
 
 def test_all_new_modules_are_registered_and_reset():
     project = text("project.godot")

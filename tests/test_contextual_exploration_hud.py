@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -66,9 +67,11 @@ def test_fear_and_hope_are_postures_not_visible_gauges():
 def test_fear_penalizes_and_hope_rewards_combat():
     psychology = read("scripts/core/psychology_runtime.gd")
     combat_ui = read("scripts/ui/main.gd")
-    data = read("data/psychology_events.json")
-    assert '"hope_bands"' in data
-    assert '"precision": -' in data
-    assert '"precision": 4' in data
+    data = json.loads(read("data/psychology_events.json"))
+    rules = data["combat_rules"]
+    assert rules["bands"]["calm"]["precision"] == 0
+    for band in ("uneasy", "afraid", "terrified", "panic"):
+        assert rules["bands"][band]["precision"] < 0
+    assert rules["hope_bands"]["inspired"]["precision"] == 4
     assert "PsychologyRuntime.combat_modifiers(hero)" in combat_ui
     assert 'result["damage_bonus"]' in combat_ui

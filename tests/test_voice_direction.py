@@ -14,10 +14,10 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_registry_covers_demo_and_reactive_dialogues() -> None:
     registry = build_registry(ROOT)
     ids = {entry["line_id"] for entry in registry["entries"]}
-    assert "demo_darius_ash_01" in ids
+    assert "demo_mathilde_ash_01" in ids
     assert "demo_narration_end" in ids
     assert "aur_discovery_01" in ids
-    assert "fw_dar_abyss_02" in ids
+    assert "fw_mat_abyss_02" in ids
     assert registry["entry_count"] == len(ids)
 
 
@@ -41,7 +41,7 @@ def test_openvoice_plan_embeds_direction_and_speed_only_backend_control() -> Non
     plan = build_plan(ROOT)
     assert plan["version"] == 2
     assert plan["emotional_direction"]["enabled"] is True
-    assert any(entry["line_id"] == "demo_darius_guard_01" for entry in plan["entries"])
+    assert any(entry["line_id"] == "demo_mathilde_guard_01" for entry in plan["entries"])
     for entry in plan["entries"]:
         direction = entry["voice_direction"]
         assert direction["backend_controls"]["directly_applied"] == ["speed"]
@@ -69,6 +69,6 @@ def test_calibration_corpus_is_valid_and_template_is_unapproved() -> None:
 def test_stress_words_are_validated() -> None:
     # The real registry build itself validates every authored stress phrase against its text.
     registry = build_registry(ROOT)
-    directed = next(entry for entry in registry["entries"] if entry["line_id"] == "demo_darius_ghoul_01")
+    directed = next(entry for entry in registry["entries"] if entry["line_id"] == "demo_mathilde_ghoul_01")
     assert "sortie" in directed["stress_words"]
     assert directed["emotion"] == "curiosity_wary"

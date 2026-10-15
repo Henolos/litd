@@ -17,4 +17,4 @@ def test_v081_canonical_production_audit() -> None:
         check=False,
     )
     assert result.returncode == 0, result.stdout + result.stderr
-    assert "VEILLEURS_V081_CANONICAL_AUDIT_OK" in result.stdout
+    assert "VEILLEURS_V081_CANONICAL_PRODUCTION_AUDIT_OK" in result.stdout

@@ -312,6 +312,11 @@
     }
   },
   "tactical_roles": {
+    "hexer": {
+      "orientation": "group_center",
+      "spacing": "rear",
+      "guard": "ritual"
+    },
     "hunter": {
       "orientation": "target",
       "spacing": "close",

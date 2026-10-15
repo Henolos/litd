@@ -20,7 +20,7 @@ def test_world_rules_are_active_from_new_game():
     required = {
         "persistent_injuries", "untreated_injury_aggravation", "infirmary",
         "field_healing", "all_healing_characters_can_treat", "mutilations",
-        "fear_hope_postures", "madness_afflictions", "positive_negative_traits",
+        "fear_hope_postures", "supernatural_veil_folie", "positive_negative_traits",
         "permadeath", "physical_retreat", "ash_guidance_on_request",
         "enemy_senses", "enemy_reactions", "patrols", "reactive_rooms",
     }
@@ -31,7 +31,14 @@ def test_only_player_capabilities_are_locked():
     scope = load("data/content_scope.json")
     unlocks = scope["categories"]["unlockable_capabilities"]
     assert {"capture", "bounties", "specialized_exploration_roles", "trap_weaponization", "player_markers"}.issubset(unlocks)
-    for definition in unlocks.values():
+    capture = unlocks["capture"]
+    assert capture["logic"] == "first_eligible_creature_encounter"
+    assert capture["hidden_until_unlocked"] is False
+    assert capture["campaign_chapter"] == 1
+    assert capture["company_rank"] == 1
+    for capability, definition in unlocks.items():
+        if capability == "capture":
+            continue
         assert definition["logic"] == "or"
         assert definition["hidden_until_unlocked"] is True
     assert unlocks["targeted_farming"]["required_for_story"] is False

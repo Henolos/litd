@@ -57,8 +57,8 @@ def test_narrative_covers_environment_camp_and_philosophy():
     assert len(narrative["environmental_sequences"]) >= 5
     assert len(narrative["camp_conversations"]) >= 5
     themes = {doc["theme"] for doc in narrative["documents"]}
-    assert {"body_mind_common_good", "politics_after_fall", "fear", "madness", "hope"}.issubset(themes)
-    assert {"trait", "injury", "fear", "madness", "hope", "relationship", "quest_choice", "ally_death", "captured_creature"}.issubset(narrative["reaction_dimensions"])
+    assert {"body_mind_common_good", "politics_after_fall", "fear", "veil_folie", "hope"}.issubset(themes)
+    assert {"trait", "injury", "fear", "veil_folie", "hope", "relationship", "quest_choice", "ally_death", "captured_creature"}.issubset(narrative["reaction_dimensions"])
 
 
 def test_audio_contract_preserves_litd_identity_and_legal_sources():
@@ -74,8 +74,12 @@ def test_audio_contract_preserves_litd_identity_and_legal_sources():
 
 def test_menu_finishes_bestiary_records_comparison_and_accessibility():
     menu = (ROOT / "scripts/ui/game_menu_ui.gd").read_text(encoding="utf-8")
+    registry = (ROOT / "scripts/ui/ui_section_registry.gd").read_text(encoding="utf-8")
     settings = (ROOT / "scripts/core/game_settings.gd").read_text(encoding="utf-8")
-    for token in ('["bestiary","BESTIAIRE"]', '["records","PRIMES"]', "func _equipment_comparison", "func _render_bestiary", "func _render_records"):
+    for section, label in (("bestiary", "BESTIAIRE"), ("records", "PRIMES")):
+        assert f'"id":"{section}","label":"{label}"' in registry
+    assert "UI_SECTIONS.entries()" in menu
+    for token in ("func _equipment_comparison", "func _render_bestiary", "func _render_records"):
         assert token in menu
     for setting in ("text_scale", "high_contrast", "reduce_flashes", "color_assist"):
         assert setting in settings

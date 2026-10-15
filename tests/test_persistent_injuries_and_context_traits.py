@@ -68,7 +68,10 @@ def test_persistent_injuries_are_wired_to_gameplay_and_save():
     ui = (ROOT / "scripts" / "ui" / "main.gd").read_text(encoding="utf-8")
     assert 'PersistentInjuryRuntime="*res://scripts/core/persistent_injury_runtime.gd"' in project
     assert "PersistentInjuryRuntime.prepare_character(prepared_hero)" in game
-    assert "PersistentInjuryRuntime.prepare_character(hero_value)" in save
+    restore = save.split("func _apply_payload(", 1)[1].split("\nfunc ", 1)[0]
+    assert "for hero_value: Variant in GameState.party:" in restore
+    assert "var hero: Dictionary = hero_value" in restore
+    assert "PersistentInjuryRuntime.prepare_character(hero)" in restore
     assert "PersistentInjuryRuntime.active_debuffs" in ui
     assert "PersistentInjuryRuntime.close_expedition" in ui
     assert "PersistentInjuryRuntime.treat_all_party_injuries" in ui

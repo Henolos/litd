@@ -1,6 +1,8 @@
 # Architecture UI consolidée
 
-La scène principale conserve provisoirement la chaîne `main_v2.gd` à `main_v34.gd` comme couche de compatibilité comportementale : chaque fichier ajoute une règle de combat testée et l’héritage empêche la duplication de toute la boucle. Aucun nouveau `main_v35.gd` ne doit être créé.
+La scène principale conserve provisoirement une chaîne numérotée comme couche de compatibilité comportementale : chaque fichier ajoute une règle de combat testée et l’héritage empêche la duplication de toute la boucle.
+
+Constat au 15 octobre 2026 sur `fd785096` : malgré l'objectif historique d'arrêt à `main_v34.gd` (aucun nouveau `main_v35.gd`), les changements déjà fusionnés ont étendu la chaîne jusqu'à `main_v52.gd`, avec une variante `main_v50_ge01.gd`. Cette extension est une dette d'architecture existante, pas une architecture approuvée pour les ajouts futurs. La CI vérifie désormais cette borne exacte et le raccordement réel des couches cliniques par héritage. Aucune couche supplémentaire ne doit être créée ; la consolidation reste à réaliser avec sa validation runtime/visuelle.
 
 À partir de cette version, les nouvelles fonctions sont séparées :
 
