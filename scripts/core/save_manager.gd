@@ -28,7 +28,9 @@ func save_game(slot: int = active_slot) -> bool:
     var encoded := JSON.stringify(envelope)
     var success := _atomic_write(_path(slot), encoded)
     if success and slot == 0:
-        success = _atomic_write(SAVE_PATH, body)
+        # Legacy mirror is best-effort; the checksummed slot is canonical.
+        if not _atomic_write(SAVE_PATH, body):
+            push_warning("Legacy save mirror could not be updated.")
     if success:
         active_slot = slot if slot >= 0 else active_slot
         last_status = "Sauvegarde terminée."
@@ -74,20 +76,24 @@ func load_game(slot: int = active_slot) -> bool:
     last_operation = "load"
     slot = _valid_slot(slot)
     var recovered := false
-    var payload: Dictionary = _read_payload(SAVE_PATH) if slot == 0 else {}
-    if payload.is_empty():
-        payload = _read_payload(_path(slot))
-    if payload.is_empty():
-        payload = _read_payload(_backup_path(slot))
-        recovered = not payload.is_empty()
+    var payload: Dictionary = {}
+    # Prefer the checksummed canonical slot; legacy global file is last resort.
+    var candidates: Array[String] = [_path(slot), _backup_path(slot)]
+    if slot == 0:
+        candidates.append(SAVE_PATH)
+    for candidate in candidates:
+        var candidate_payload := _read_payload(candidate)
+        if candidate_payload.is_empty():
+            continue
+        var migrated := _migrate(candidate_payload)
+        if migrated.is_empty():
+            continue
+        payload = migrated
+        recovered = candidate != _path(slot)
+        break
     if payload.is_empty():
         last_status = "Sauvegarde absente ou irrécupérable."
         save_finished.emit(slot, false, false)
-        return false
-    payload = _migrate(payload)
-    if payload.is_empty():
-        last_status = "Version de sauvegarde incompatible."
-        save_finished.emit(slot, false, recovered)
         return false
     _apply_payload(payload)
     active_slot = slot if slot >= 0 else active_slot
@@ -213,7 +219,8 @@ func _apply_payload(payload: Dictionary) -> void:
     if EndgameState.is_postgame_unlocked(): EndgameState.record_current_ending()
 
 func _migrate(payload: Dictionary) -> Dictionary:
-    var version := String(payload.get("version", "0.31"))
+    # Missing version is not proof of compatibility; reject unknown schemas.
+    var version := String(payload.get("version", ""))
     if version != SAVE_VERSION:
         return {}
     payload["campaign_memory"] = payload.get("campaign_memory",{})
@@ -248,11 +255,16 @@ func _atomic_write(path: String, text: String) -> bool:
     file.store_string(text)
     file.flush()
     file.close()
+    var absolute_path := ProjectSettings.globalize_path(path)
+    var absolute_temp := ProjectSettings.globalize_path(temp)
     if FileAccess.file_exists(path):
-        DirAccess.copy_absolute(ProjectSettings.globalize_path(path), ProjectSettings.globalize_path(_backup_for(path)))
-    if FileAccess.file_exists(path):
-        DirAccess.remove_absolute(ProjectSettings.globalize_path(path))
-    return DirAccess.rename_absolute(ProjectSettings.globalize_path(temp), ProjectSettings.globalize_path(path)) == OK
+        var backup_status := DirAccess.copy_absolute(absolute_path, ProjectSettings.globalize_path(_backup_for(path)))
+        if backup_status != OK:
+            return false
+        var removal_status := DirAccess.remove_absolute(absolute_path)
+        if removal_status != OK:
+            return false
+    return DirAccess.rename_absolute(absolute_temp, absolute_path) == OK
 
 func _read_payload(path: String) -> Dictionary:
     if not FileAccess.file_exists(path):
