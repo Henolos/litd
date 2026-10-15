@@ -6,6 +6,7 @@ const MAX_ROOMS_PER_RUN := 24
 const MAX_ACTIONS_PER_COMBAT := 180
 const NO_PROGRESS_LIMIT := 18
 const MAX_LOCKED_WAIT_FRAMES := 300
+const QA_TIME_SCALE := 4.0
 const COMBAT_POSITION_RULES := preload("res://scripts/core/combat_position_rules.gd")
 
 var failures: Array[String] = []
@@ -13,6 +14,7 @@ var runs: Array[Dictionary] = []
 var skill_usage: Dictionary = {}
 var skill_effects: Dictionary = {}
 var softlocks: Array[Dictionary] = []
+var recent_actions: Array[Dictionary] = []
 var controller: Control
 
 func _ready() -> void:
@@ -34,10 +36,16 @@ func _run() -> void:
     add_child(controller)
     await get_tree().process_frame
 
-    var required_methods := ["_start_roguelike_room_battle", "_use_skill_slot"]
+    var required_methods := ["_start_roguelike_room_battle", "_use_combat_skill", "_active_combat_hero"]
     for method_name: String in required_methods:
         if not controller.has_method(method_name):
             failures.append("controller_contract_missing_%s" % method_name)
+
+    # This is an end-to-end logic test, not a real-time animation test. Speed up
+    # SceneTree timers so combat presentation delays cannot consume the CI budget.
+    # Godot applies Engine.time_scale to create_timer() by default.
+    var previous_time_scale := Engine.time_scale
+    Engine.time_scale = QA_TIME_SCALE
 
     var started_ms := Time.get_ticks_msec()
     if failures.is_empty():
@@ -59,6 +67,7 @@ func _run() -> void:
         "suite": "player_bot_v2_autotest",
         "driver": "real_main_controller_current_api",
         "fixed_seeds": FIXED_SEEDS,
+        "qa_time_scale": QA_TIME_SCALE,
         "runs": runs,
         "skill_usage": skill_usage,
         "skill_effects": skill_effects,
@@ -70,6 +79,7 @@ func _run() -> void:
     }
     _write_report(report)
 
+    Engine.time_scale = previous_time_scale
     if failures.is_empty():
         print("PLAYER_BOT_V2_OK runs=%d softlocks=%d skills=%d" % [runs.size(), softlocks.size(), skill_usage.size()])
         get_tree().quit(0)
@@ -190,6 +200,7 @@ func _drive_real_combat(seed_value: int, room: Dictionary) -> Dictionary:
         return {"victory": false, "reason": "no_enemies", "actions": 0, "rounds": 0}
 
     var room_id := str(room.get("id", "bot_room"))
+    recent_actions.clear()
     var actions := 0
     var no_progress := 0
     var locked_wait_frames := 0
@@ -208,7 +219,16 @@ func _drive_real_combat(seed_value: int, room: Dictionary) -> Dictionary:
         var living_heroes := GameState.alive_heroes()
         if living_heroes.is_empty():
             break
-        var hero: Dictionary = living_heroes[0]
+
+        # Drive the same hero the real controller considers active. Using the
+        # first living party member here can select a slot from one hero and
+        # execute that slot on another, which creates artificial guard/posture
+        # loops and false action-cap softlocks.
+        var active_value: Variant = controller.call("_active_combat_hero")
+        if not (active_value is Dictionary) or (active_value as Dictionary).is_empty():
+            _record_softlock(seed_value, room_id, "missing_active_hero", actions)
+            return {"victory": false, "reason": "softlock", "actions": actions, "rounds": maxi(1, actions)}
+        var hero: Dictionary = active_value
 
         _select_lowest_hp_enemy()
         if ContentScopeDirector.is_unlocked("capture"):
@@ -229,7 +249,8 @@ func _drive_real_combat(seed_value: int, room: Dictionary) -> Dictionary:
         var party_hp_before := _party_hp_total()
         var slot := int(choice.get("slot", 0))
         var skill_id := str(choice.get("skill_id", "basic_strike"))
-        controller.call("_use_skill_slot", slot)
+        controller.call("_use_combat_skill", slot)
+        _resolve_pending_enemy_target()
         actions += 1
 
         var unlocked := await _wait_for_action_completion()
@@ -240,6 +261,20 @@ func _drive_real_combat(seed_value: int, room: Dictionary) -> Dictionary:
         var damage := maxi(0, enemy_hp_before - _enemy_hp_total())
         var healing := maxi(0, _party_hp_total() - party_hp_before)
         _record_skill(skill_id, damage, healing)
+        recent_actions.append({
+            "index": actions,
+            "hero": str(hero.get("id", "")),
+            "skill": skill_id,
+            "damage": damage,
+            "healing": healing,
+            "party_hp": _party_hp_total(),
+            "enemy_hp": _enemy_hp_total(),
+            "active_hero": str(controller.combat_active_hero_id),
+            "round": int(controller.combat_round_number),
+            "enemies": _qa_enemy_snapshot()
+        })
+        if recent_actions.size() > 24:
+            recent_actions.pop_front()
 
         var signature := _combat_state_signature()
         if signature == last_state_signature:
@@ -285,7 +320,8 @@ func _choose_real_skill(hero: Dictionary) -> Dictionary:
             score = 95.0 if injured_ratio < 0.42 else 10.0
             score += float(skill.get("heal", 0))
         elif effect == "guard" or effect == "posture":
-            score = 45.0 if injured_ratio < 0.65 else 15.0
+            # Re-applying an already active guard is not useful QA progress.
+            score = -100.0 if bool(hero.get("guarding", false)) else (45.0 if injured_ratio < 0.65 else 15.0)
         elif effect == "diagnostic":
             score = 24.0
         else:
@@ -299,6 +335,34 @@ func _choose_real_skill(hero: Dictionary) -> Dictionary:
     if best_slot < 0:
         return {"usable": false}
     return {"usable": true, "slot": best_slot, "skill_id": str(loadout[best_slot])}
+
+func _resolve_pending_enemy_target() -> void:
+    # Current combat UI intentionally opens an explicit target picker when more
+    # than one hostile target is legal. The QA bot must complete that same
+    # interaction instead of repeatedly re-pressing the skill button.
+    if not controller.has_method("_confirm_pending_enemy_target"):
+        return
+    var pending_slot := int(controller.get("pending_target_skill_slot"))
+    var pending_indices_value: Variant = controller.get("pending_target_indices")
+    if pending_slot < 0 or not (pending_indices_value is Array):
+        return
+    var pending_indices: Array = pending_indices_value
+    if pending_indices.is_empty():
+        return
+
+    var choice := -1
+    var best_hp := 2147483647
+    for index_value: Variant in pending_indices:
+        var index := int(index_value)
+        if index < 0 or index >= GameState.battle_enemies.size():
+            continue
+        var enemy: Dictionary = GameState.battle_enemies[index]
+        var hp := int(enemy.get("hp", 0))
+        if hp > 0 and hp < best_hp:
+            best_hp = hp
+            choice = index
+    if choice >= 0:
+        controller.call("_confirm_pending_enemy_target", choice)
 
 func _select_lowest_hp_enemy() -> void:
     var best_index := -1
@@ -383,7 +447,10 @@ func _enemy_hp_total() -> int:
     return total
 
 func _combat_state_signature() -> String:
-    return "%d:%d:%d:%d:e%d:l%s:s%s:log%d" % [
+    # Progress includes turn ownership and round advancement, not log chatter.
+    # A guard/support action can legitimately leave HP unchanged while still
+    # advancing the canonical combat state.
+    return "%d:%d:%d:%d:e%d:l%s:s%s:a%s:r%d:acted%s" % [
         _party_hp_total(),
         _enemy_hp_total(),
         GameState.alive_heroes().size(),
@@ -391,7 +458,9 @@ func _combat_state_signature() -> String:
         int(controller.selected_enemy),
         str(controller.battle_locked),
         str(GameState.current_screen),
-        GameState.log_lines.size()
+        str(controller.combat_active_hero_id),
+        int(controller.combat_round_number),
+        JSON.stringify(controller.combat_acted_hero_ids)
     ]
 
 func _lowest_party_hp_ratio() -> float:
@@ -406,8 +475,34 @@ func _cargo_size(runtime: Node) -> int:
         return 0
     return (runtime.active_run.get("cargo", []) as Array).size()
 
+func _qa_enemy_snapshot() -> Array[Dictionary]:
+    var result: Array[Dictionary] = []
+    for enemy_value: Variant in GameState.battle_enemies:
+        var enemy: Dictionary = enemy_value
+        result.append({
+            "id": str(enemy.get("id", enemy.get("name", ""))),
+            "hp": int(enemy.get("hp", 0)),
+            "max_hp": int(enemy.get("max_hp", 0)),
+            "position": int(enemy.get("combat_position", -1)),
+            "guarding": bool(enemy.get("guarding", false)),
+            "stunned": bool(enemy.get("stunned", false)),
+            "bleeding": int(enemy.get("bleeding", 0))
+        })
+    return result
+
 func _record_softlock(seed_value: int, room_id: String, reason: String, index: int) -> void:
-    softlocks.append({"seed":seed_value,"room_id":room_id,"reason":reason,"index":index})
+    softlocks.append({
+        "seed":seed_value,
+        "room_id":room_id,
+        "reason":reason,
+        "index":index,
+        "active_hero":str(controller.combat_active_hero_id),
+        "round":int(controller.combat_round_number),
+        "party_hp":_party_hp_total(),
+        "enemy_hp":_enemy_hp_total(),
+        "enemies":_qa_enemy_snapshot(),
+        "recent_actions":recent_actions.duplicate(true)
+    })
 
 func _write_report(report: Dictionary) -> void:
     var file := FileAccess.open(REPORT_PATH, FileAccess.WRITE)

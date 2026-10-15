@@ -41,6 +41,14 @@ func _ready() -> void:
     assert(int(Status.start_turn(immune).damage) == 0, "damage immunity does not remove duration")
     immune.afflictions = {"stun":3}
     assert(int(Status.apply_affliction(immune, "stun", 2).turns) == 3, "resistance must not cleanse an existing effect")
+    var chain_target := {"afflictions":{"stun":2}}
+    chain_target.afflictions = Status.finish_turn(chain_target)
+    for repeat in range(4):
+        var repeated: Dictionary = Status.apply_affliction(chain_target, "stun", 2)
+        assert(repeated.already_active and repeated.resisted and int(repeated.turns) == 1, "active stun must not be refreshed")
+        chain_target.afflictions = repeated.afflictions
+    chain_target.afflictions = Status.finish_turn(chain_target)
+    assert(chain_target.afflictions.is_empty() and int(chain_target.affliction_immunities.stun) == 1, "repeated stun must expire and grant recovery")
     var clamped := {"hp":40, "afflictions":{}, "affliction_resistances":{"poison":{"damage":-500,"duration":-500}}}
     assert(int(Status.apply_affliction(clamped, "poison", 2).turns) == 4)
     clamped.afflictions = {"poison":1}
@@ -120,5 +128,25 @@ func _ready() -> void:
     runtime.end_active_turn(); runtime.end_active_turn(); runtime.end_active_turn()
     assert(next_hero.afflictions.is_empty(), "hero effect expired at end of actor turn")
     assert(enemy.afflictions.is_empty(), "enemy stun expired after skipped enemy phase")
+    var trame_runtime := Runtime.new()
+    assert(trame_runtime.setup().ok)
+    var caster: Dictionary = trame_runtime.enemies[1]
+    caster["sandbox_action"] = {"id":"enemy_trame_probe", "effect":"trame_pressure", "trame_cost":1}
+    caster["afflictions"] = Status.apply_affliction(caster, "silence", 1).afflictions
+    trame_runtime.enemies[0]["hp"] = 0
+    var hp_before_trame := 0
+    for watcher in trame_runtime.heroes:
+        hp_before_trame += int(watcher.hp)
+    trame_runtime._enemy_phase()
+    var hp_during_silence := 0
+    for watcher in trame_runtime.heroes:
+        hp_during_silence += int(watcher.hp)
+    assert(hp_during_silence == hp_before_trame, "silenced enemy trame action must not damage a hero")
+    assert(not Status.has(caster, "silence"), "silence expires after skipped enemy turn")
+    trame_runtime._enemy_phase()
+    var hp_after_silence := 0
+    for watcher in trame_runtime.heroes:
+        hp_after_silence += int(watcher.hp)
+    assert(hp_after_silence < hp_before_trame, "enemy trame action resumes after silence expires")
     print("VEILLEURS_AFFLICTIONS_CONTRACT_OK")
     get_tree().quit(0)

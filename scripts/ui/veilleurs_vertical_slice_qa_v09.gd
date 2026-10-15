@@ -190,6 +190,12 @@ func _render_node() -> void:
             var discovered := slice.campaign.dungeon.discover_current_passages()
             message_label.text = "Passages découverts : %d" % discovered.get("discovered", []).size()
             _render_node())
+    for edge in slice.campaign.dungeon.procedural_plan.get("edges", []):
+        if str(edge.get("from", "")) == slice.campaign.dungeon.current_node and str(edge.get("requires", "")) == "unlock_from_deep_side" and not slice.campaign.dungeon.passage_is_open(edge):
+            var edge_id := str(edge["from"]) + ">" + str(edge["to"])
+            _add_action("Ouvrir le raccourci", func() -> void:
+                slice.campaign.dungeon.unlock_shortcut(edge_id)
+                _render_node())
     for next_id: String in slice.campaign.dungeon.available_next():
         var next_node: Dictionary = slice.campaign.dungeon.nodes_by_id.get(next_id, {})
         var label := "→ %s" % str(next_node.get("title_fr", next_id))

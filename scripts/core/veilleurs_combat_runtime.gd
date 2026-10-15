@@ -423,60 +423,17 @@ func _resolve_non_skill_decision(enemy_id: String, decision: Dictionary) -> Dict
     return _fallback_enemy_action(enemy_id, decision, "unsupported_decision")
 
 func _fallback_enemy_action(enemy_id: String, decision: Dictionary, reason: String) -> Dictionary:
-    var fallback: Dictionary = _enemy_step_v07_compat(enemy_id)
-    fallback["generated_skill_fallback"] = true
-    fallback["generated_skill_reason"] = reason
-    fallback["original_decision_reason"] = str(decision.get("reason", ""))
-    return fallback
-
-func _enemy_step_v07_compat(enemy_id: String) -> Dictionary:
-    if not combatants.has(enemy_id) or str((combatants[enemy_id] as Dictionary).get("team", "")) != "enemy":
-        return {"ok":false, "reason":"not_enemy"}
-    var decision: Dictionary = enemy_ai.decide(self, enemy_id)
-    var row: Dictionary = combatants[enemy_id]
-    var level := int(row.get("level", 1))
-    var progress_state := _progress_state_for(enemy_id)
-    if level >= 16:
-        if ultimate_runtime.pending.has(enemy_id):
-            var executed: Dictionary = ultimate_runtime.execute_pending(self, enemy_id, progress_state)
-            if bool(executed.get("ok", false)):
-                _apply_progress_state(enemy_id, executed.get("progress_state", {}))
-                executed["generated_ultimate"] = true
-                return executed
-        elif round_index % 4 == 1 and str(decision.get("target", "")) != "":
-            var prepared: Dictionary = ultimate_runtime.prepare(self, enemy_id, str(decision.get("target", "")), progress_state)
-            if bool(prepared.get("ok", false)) and bool(prepared.get("prepared", false)):
-                prepared["generated_ultimate"] = true
-                action_log.append(prepared.duplicate(true))
-                return prepared
-
-    var action := str(decision.get("action", "none"))
-    if action not in ["attack", "support"]:
-        return super.enemy_step(enemy_id)
-    var skill: Dictionary = skill_selector.select_skill(self, enemy_id, decision)
-    if skill.is_empty():
-        var fallback: Dictionary = super.enemy_step(enemy_id)
-        fallback["generated_skill_fallback"] = true
-        return fallback
-    var skill_action := skill_behavior.effective_action(skill)
-    var target_id := str(decision.get("target", ""))
-    if skill_action in ["guard", "heal", "transform"]:
-        target_id = enemy_id
-    elif skill_action == "support" and (target_id == "" or not combatants.has(target_id) or str((combatants[target_id] as Dictionary).get("team", "")) != "enemy"):
-        target_id = enemy_id
-    if target_id == "":
-        var fallback_no_target: Dictionary = super.enemy_step(enemy_id)
-        fallback_no_target["generated_skill_fallback"] = true
-        return fallback_no_target
-    var zone := str(decision.get("zone", "torso"))
-    var result: Dictionary = resolve_skill(enemy_id, target_id, str(skill.get("skill_id", "")), zone, -1)
-    if not bool(result.get("ok", false)):
-        var fallback_failed: Dictionary = super.enemy_step(enemy_id)
-        fallback_failed["generated_skill_fallback"] = true
-        fallback_failed["generated_skill_reason"] = str(result.get("reason", "failed"))
-        return fallback_failed
-    result["generated_skill"] = true
-    result["selected_tree"] = str((combatants[enemy_id] as Dictionary).get("chosen_tree", ""))
-    result["decision_reason"] = str(decision.get("reason", "tactical_skill"))
-    result["memory_used"] = bool(decision.get("memory_used", false))
-    return result
+    # Fail closed inside the canonical runtime. A failed/unsupported AI decision
+    # must never escape to a legacy enemy_step implementation.
+    var hold := {
+        "ok":true,
+        "action":"hold",
+        "enemy":enemy_id,
+        "decision_reason":"canonical_fallback",
+        "doctrine_used":bool(decision.get("doctrine_used", false)),
+        "generated_skill_fallback":true,
+        "generated_skill_reason":reason,
+        "original_decision_reason":str(decision.get("reason", ""))
+    }
+    action_log.append(hold.duplicate(true))
+    return hold

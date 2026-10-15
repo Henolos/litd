@@ -48,10 +48,11 @@ static func _resolve_affliction(hero: Dictionary, action: Dictionary, target: Di
     return {"ok":true,"kind":"affliction","hit":true,"target":str(target.get("id", "")),"affliction":kind,"turns":applied["turns"],"resisted":applied["resisted"]}
 
 
-static func resolve_enemy_attack(enemy: Dictionary, target: Dictionary, heroes: Array[Dictionary], round_index: int) -> Dictionary:
-    if STATUS_RESOLVER.has(enemy, "stun"):
+static func resolve_enemy_attack(enemy: Dictionary, target: Dictionary, heroes: Array[Dictionary], round_index: int, action: Dictionary = {}) -> Dictionary:
+    var blocked := STATUS_RESOLVER.action_block(enemy, action)
+    if not blocked.is_empty():
         enemy["afflictions"] = STATUS_RESOLVER.finish_turn(enemy)
-        return {"ok":true,"kind":"enemy_attack","skipped":true,"reason":"stun","target":str(target.get("id", ""))}
+        return {"ok":true,"kind":"enemy_attack","skipped":true,"reason":"stun" if blocked == "stunned" else blocked,"target":str(target.get("id", ""))}
     var impairment: int = STATUS_RESOLVER.accuracy_penalty(enemy)
     if impairment > 0 and HIT_RESOLVER.stable_roll(str(enemy.get("id", "")) + str(round_index)) < impairment:
         enemy["afflictions"] = STATUS_RESOLVER.finish_turn(enemy)

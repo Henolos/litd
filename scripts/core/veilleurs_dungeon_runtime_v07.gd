@@ -258,15 +258,12 @@ func _procedural_next() -> Array[String]:
     for edge in procedural_plan.get("edges", []):
         var from_id := str(edge.get("from", ""))
         var to_id := str(edge.get("to", ""))
-        var edge_id := from_id + ">" + to_id
         if from_id == current_node:
-            if bool(edge.get("hidden", false)) and edge_id not in discovered_edges:
-                continue
-            if str(edge.get("requires", "")) not in ["", "unlock_from_deep_side"]:
+            if not passage_is_open(edge):
                 continue
             if to_id not in result:
                 result.append(to_id)
-        elif to_id == current_node and from_id in visited and str(edge.get("kind", "")) != "retreat_shortcut":
+        elif to_id == current_node and from_id in visited and passage_is_open(edge):
             if from_id not in result:
                 result.append(from_id)
     return result
@@ -277,11 +274,48 @@ func discover_current_passages() -> Dictionary:
     var found: Array = []
     for edge in procedural_plan.get("edges", []):
         if str(edge.get("from", "")) == current_node and bool(edge.get("hidden", false)):
-            var edge_id := current_node + ">" + str(edge.get("to", ""))
-            if edge_id not in discovered_edges:
-                discovered_edges.append(edge_id)
+            var result := discover_passage(current_node + ">" + str(edge.get("to", "")))
+            if bool(result.get("changed", false)):
                 found.append(str(edge.get("to", "")))
     return {"ok":true, "discovered":found}
+
+# Passage state belongs to the canonical saved expedition, never to scene nodes.
+func passage_is_open(edge: Dictionary) -> bool:
+    var edge_id := str(edge.get("from", "")) + ">" + str(edge.get("to", ""))
+    if bool(edge.get("hidden", false)) and edge_id not in discovered_edges:
+        return false
+    var requirement := str(edge.get("requires", ""))
+    if requirement == "unlock_from_deep_side":
+        return edge_id in node_flags.get(str(edge.get("from", "")), {}).get("opened_shortcuts", [])
+    return requirement == ""
+
+func discover_passage(edge_id: String) -> Dictionary:
+    return _open_passage(edge_id, false)
+
+func unlock_shortcut(edge_id: String) -> Dictionary:
+    return _open_passage(edge_id, true)
+
+func _open_passage(edge_id: String, shortcut: bool) -> Dictionary:
+    for edge in procedural_plan.get("edges", []):
+        var source := str(edge.get("from", ""))
+        if source + ">" + str(edge.get("to", "")) != edge_id:
+            continue
+        if shortcut != (str(edge.get("requires", "")) == "unlock_from_deep_side") or (not shortcut and (not bool(edge.get("hidden", false)) or str(edge.get("requires", "")) != "")):
+            return {"ok":false, "reason":"wrong_passage_kind"}
+        if passage_is_open(edge):
+            return {"ok":true, "changed":false, "edge_id":edge_id}
+        if current_node != source:
+            return {"ok":false, "reason":"wrong_side"}
+        if not bool(node_flags.get(current_node, {}).get("completed", false)):
+            return {"ok":false, "reason":"room_not_cleared"}
+        if shortcut:
+            var opened: Array = node_flags[source].get("opened_shortcuts", []).duplicate()
+            opened.append(edge_id)
+            node_flags[source]["opened_shortcuts"] = opened
+        else:
+            discovered_edges.append(edge_id)
+        return {"ok":true, "changed":true, "edge_id":edge_id}
+    return {"ok":false, "reason":"unknown_passage"}
 
 func _room_rewards(node: Dictionary) -> Dictionary:
     var payload: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/dungeons/first_accord_combat.json"))
