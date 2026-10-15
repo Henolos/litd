@@ -261,9 +261,7 @@ func _atomic_write(path: String, text: String) -> bool:
         var backup_status := DirAccess.copy_absolute(absolute_path, ProjectSettings.globalize_path(_backup_for(path)))
         if backup_status != OK:
             return false
-        var removal_status := DirAccess.remove_absolute(absolute_path)
-        if removal_status != OK:
-            return false
+    # Avoid a deletion gap before replacement; verify on target platforms.
     return DirAccess.rename_absolute(absolute_temp, absolute_path) == OK
 
 func _read_payload(path: String) -> Dictionary:
