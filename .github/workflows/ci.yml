@@ -29,6 +29,14 @@ jobs:
         run: mkdir -p reports
       - name: Tests Python rapides
         run: python -m pytest -q --tb=short --junitxml=reports/pytest.xml
+      - name: Conserver le résultat de tous les tests Python
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: python-test-results
+          path: reports/pytest.xml
+          if-no-files-found: warn
+          retention-days: 7
 
   quality-full:
     if: ${{ github.event_name != 'pull_request' && github.event_name != 'merge_group' }}

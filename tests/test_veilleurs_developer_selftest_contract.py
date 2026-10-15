@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import ast
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -14,7 +15,7 @@ def test_developer_selftest_contract_is_focus_locked() -> None:
     data = json.loads(CONTRACT.read_text(encoding="utf-8"))
     assert data["mode"] == "developer_selftest"
     assert data["target_duration_minutes"] == [30, 45]
-    assert data["canonical_watchers"] == ["Sahen Varo", "Mira Sen", "Narem Osh", "Ysra Nahal"]
+    assert data["canonical_watchers"] == ["Mathilde", "Marec", "Anouk", "Aurélien"]
     assert [row["id"] for row in data["steps"]] == [
         "sanctuary_preparation",
         "short_exploration",
@@ -41,5 +42,16 @@ def test_developer_overlay_is_opt_in_only() -> None:
     assert "--developer-selftest" in overlay
     assert "OS.get_cmdline_user_args()" in overlay
     assert 'DEVELOPER_SELFTEST_ID = "developer-selftest"' in runner
-    assert 'launch_command += ["--", "--developer-selftest"]' in runner
+    additions = [
+        node.value for node in ast.walk(ast.parse(runner))
+        if isinstance(node, ast.AugAssign)
+        and isinstance(node.target, ast.Name)
+        and node.target.id == "launch_command"
+    ]
+    assert len(additions) == 1
+    flags = additions[0]
+    assert isinstance(flags, ast.List)
+    assert [ast.literal_eval(value) for value in flags.elts[:2]] == ["--", "--developer-selftest"]
+    assert isinstance(flags.elts[2], ast.JoinedStr)
+    assert flags.elts[2].values[0].value == "--selftest-report="
     assert "human_gate_promotion_allowed\": false" in overlay

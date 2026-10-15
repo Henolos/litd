@@ -27,7 +27,10 @@ def test_first_map_production_contract_is_complete():
         assert asset["export"].endswith(".glb")
     for enemy in data["enemy_profiles"]:
         assert enemy["rig"]
-        assert {"idle", "fear", "panic", "hit", "death"}.issubset(enemy["animations"])
+        if enemy["family"] == "first_veil_boss":
+            assert {"idle", "stagger", "phase_change", "death"}.issubset(enemy["animations"])
+        else:
+            assert {"idle", "fear", "panic", "hit", "death"}.issubset(enemy["animations"])
 
 
 def test_side_quests_are_live_persistent_and_guided():
@@ -38,13 +41,13 @@ def test_side_quests_are_live_persistent_and_guided():
     assert 'SideQuestRuntime="*res://scripts/core/side_quest_runtime.gd"' in project
     for state in ("offered", "active", "refused", "failed", "completed"):
         assert state in runtime
-    for method in ("accept_quest", "refuse_quest", "record_event", "serialize", "deserialize"):
-        assert "func " + method in runtime
+    for method in ("accept", "refuse", "record_event", "serialize", "deserialize"):
+        assert "func " + method + "(" in runtime
     assert "request_world_guidance" in runtime
     assert '"side_quests": SideQuestRuntime.serialize()' in saves
     assert "SideQuestRuntime.deserialize" in saves
-    assert "SideQuestRuntime.accept_quest" in giver
-    assert "SideQuestRuntime.refuse_quest" in giver
+    assert "SideQuestRuntime.accept(quest_id)" in giver
+    assert "SideQuestRuntime.refuse(quest_id)" in giver
 
 
 def test_equipped_skills_and_consumables_drive_combat():

@@ -46,9 +46,9 @@ def run() -> dict:
     meta_lines = [item for item in entries if item.get("fourth_wall") and item.get("meta_level") in {"direct", "abyssal"}]
     check("Quatrième mur : lignes directes/abyssales présentes", bool(meta_lines), str(len(meta_lines)))
     check("Quatrième mur : prise de conscience beatée", all(any(beat.get("awareness_shift") is True for beat in item["beats"]) for item in meta_lines))
-    check("Overrides : Darius direct", "fw_dar_direct_02" in overrides)
-    check("Overrides : Darius abyssal", "fw_dar_abyss_02" in overrides)
-    check("Overrides : Goule démo", "demo_darius_ghoul_01" in overrides)
+    check("Overrides : Mathilde direct", "fw_mat_direct_02" in overrides)
+    check("Overrides : Mathilde abyssal", "fw_mat_abyss_02" in overrides)
+    check("Overrides : Goule démo", "demo_mathilde_ghoul_01" in overrides)
     by_id = {item["line_id"]: item for item in entries}
     check("Overrides : origine explicite conservée", all(by_id[line_id]["direction_origin"] == "explicit_override" for line_id in overrides if line_id in by_id))
 

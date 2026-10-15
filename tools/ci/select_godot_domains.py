@@ -9,43 +9,37 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
+from functools import lru_cache
 from pathlib import Path
 
 ALL_DOMAINS = ("core-world", "audiovisual", "runtime", "veilleurs", "ui-qa")
 _ORDER = {name: index for index, name in enumerate(ALL_DOMAINS)}
+_DOMAIN_RUNNER = Path(__file__).resolve().parents[1] / "build/run_godot_ci_domain.sh"
+_DOMAIN_CASE = re.compile(r"^  ([a-z-]+)\)\s*\n(.*?)^    ;;", re.MULTILINE | re.DOTALL)
+_TEST_TARGET = re.compile(r"(?:res://)?((?:scenes|scripts)/tests/[\w.-]+\.(?:tscn|gd))")
 
 
-def _tests_for(path: str) -> set[str] | None:
-    low = path.lower()
-    selected: set[str] = set()
-
-    if any(token in low for token in (
-        "audio", "music", "sfx", "voice", "dialogue", "narrative",
-        "cinematic", "animation", "body_visual", "canonical_art", "movement",
-    )):
-        selected.add("audiovisual")
-    if any(token in low for token in (
-        "veilleurs", "affliction", "enemy_", "combat_", "first_accord",
-        "dungeon_", "hybrid_", "hemocorde", "anatomie", "entaille",
-    )):
-        selected.add("veilleurs")
-    if any(token in low for token in (
-        "ui_", "hud_", "mobile_", "qa_validation", "canonical_ui", "canonical_ux",
-    )):
-        selected.update(("runtime", "ui-qa"))
-    if any(token in low for token in (
-        "campaign_", "runtime_", "physical_", "first_descent", "ash_guidance",
-        "visual_vertical_slice", "visual_slice_runtime",
-    )):
-        selected.add("runtime")
-    if any(token in low for token in (
-        "psychology", "relationship", "decision_memory", "field_memory",
-        "field_encounter", "community_network", "systemic_cross",
-        "legendary_seven", "descendants_hall", "sanctuary_buildings", "core_smoke",
-    )):
-        selected.add("core-world")
-
-    return selected or None
+@lru_cache(maxsize=1)
+def domain_test_owners() -> dict[str, set[str]]:
+    """Index the tests actually invoked by each case in the domain runner."""
+    runner = _DOMAIN_RUNNER.read_text(encoding="utf-8")
+    owners: dict[str, set[str]] = {}
+    cases = _DOMAIN_CASE.findall(runner)
+    if {name for name, _ in cases} != set(ALL_DOMAINS) or len(cases) != len(ALL_DOMAINS):
+        raise ValueError("The Godot domain runner must declare every domain once")
+    for domain, body in cases:
+        targets = {
+            target
+            for line in body.splitlines()
+            if line.lstrip().startswith(("scene ", "run_checked "))
+            for target in _TEST_TARGET.findall(line)
+        }
+        if not targets:
+            raise ValueError(f"The Godot domain {domain} has no tests")
+        for target in targets:
+            owners.setdefault(target.lower(), set()).add(domain)
+    return owners
 
 
 def domains_for_path(raw_path: str) -> set[str] | None:
@@ -64,7 +58,9 @@ def domains_for_path(raw_path: str) -> set[str] | None:
         return set(ALL_DOMAINS)
 
     if low.startswith(("scripts/tests/", "scenes/tests/")):
-        return _tests_for(low)
+        # A test's filename does not reliably indicate which domain runs it.
+        # New tests without an owner get every domain until assigned.
+        return domain_test_owners().get(low)
 
     if low.startswith("scripts/ui/"):
         return {"runtime", "veilleurs", "ui-qa"}

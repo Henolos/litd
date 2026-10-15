@@ -2,9 +2,9 @@
   "version": 1,
   "design_source": "dramatic_voice_direction_pass_31",
   "overrides": {
-    "fw_dar_direct_02": {
+    "fw_mat_direct_02": {
       "objective": "forcer la présence extérieure à reconnaître le coût humain de ses scénarios",
-      "obstacle": "Darius ne peut ni voir ni contraindre celui qu'il interpelle",
+      "obstacle": "Mathilde ne peut ni voir ni contraindre celui qu'elle interpelle",
       "action": "accuser",
       "subtext": "je refuse d'être seulement une possibilité tactique dans ton esprit",
       "power_start": "observed_subject",
@@ -17,11 +17,11 @@
         {"start":0.72,"end":1.0,"intention":"retourner l'observation contre celui qui décide"}
       ],
       "contradiction": "colère froide contre peur d'être remplaçable",
-      "post_line_state": "Darius attend une réponse qu'il sait peut-être impossible"
+      "post_line_state": "Mathilde attend une réponse qu'elle sait peut-être impossible"
     },
-    "fw_dar_abyss_02": {
+    "fw_mat_abyss_02": {
       "objective": "nommer enfin l'observateur sans lui céder l'autorité intérieure",
-      "obstacle": "admettre cette présence peut déstabiliser tout ce que Darius croit comprendre",
+      "obstacle": "admettre cette présence peut déstabiliser tout ce que Mathilde croit comprendre",
       "action": "confronter",
       "subtext": "je t'ai vu me regarder aussi longtemps que j'ai regardé le danger",
       "power_start": "isolated_survivor",
@@ -45,16 +45,16 @@
       "listening_trigger": "la sensation que l'observateur attend toujours",
       "contradiction": "curiosité analytique contre peur intime"
     },
-    "fw_lys_abyss_01": {
+    "fw_ano_abyss_01": {
       "objective": "comprendre si l'observateur est une présence ou une condition du monde",
-      "obstacle": "Lysandra ne peut vérifier son intuition qu'en continuant à lui parler",
+      "obstacle": "Anouk ne peut vérifier son intuition qu'en continuant à lui parler",
       "action": "observer",
       "subtext": "j'ai peur que ton regard survive à chacun de nous",
       "preceding_thought": "même quand tout s'éteint, quelque chose reste attentif",
       "listening_trigger": "le retour de la perception après le silence",
       "contradiction": "tendresse pour les vivants contre terreur calme de ce qui demeure"
     },
-    "demo_darius_ghoul_01": {
+    "demo_mathilde_ghoul_01": {
       "objective": "empêcher le groupe de confondre recul et reddition",
       "obstacle": "la fatigue pousse à lire le comportement de la Goule comme une victoire acquise",
       "action": "avertir",
@@ -73,7 +73,7 @@
       "listening_trigger": "le même geste revient avec les mêmes détails",
       "contradiction": "fascination intellectuelle contre peur de ce que la répétition signifie"
     },
-    "demo_lysandra_fear_01": {
+    "demo_anouk_fear_01": {
       "objective": "redonner au groupe assez d'espace intérieur pour choisir malgré la peur",
       "obstacle": "la peur occupe toute l'attention et cherche à devenir la décision elle-même",
       "action": "ancrer",
@@ -82,7 +82,7 @@
       "listening_trigger": "le souffle et les gestes du groupe se désorganisent",
       "contradiction": "calme offert aux autres contre peur personnelle contenue"
     },
-    "demo_malvor_survivors_01": {
+    "demo_marec_survivors_01": {
       "objective": "empêcher le groupe de transformer une décision coûteuse en formule morale confortable",
       "obstacle": "les mots peuvent donner l'illusion que le poids matériel a disparu",
       "action": "désamorcer",

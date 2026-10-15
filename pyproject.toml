@@ -8,8 +8,8 @@ dependencies = ["pytest>=8.0,<9", "PyYAML>=6.0,<7"]
 supabase-sync = ["psycopg[binary]>=3.3,<4"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests/python"]
-addopts = "-ra --strict-markers"
+testpaths = ["tests"]
+addopts = "-ra --strict-markers --import-mode=importlib"
 markers = [
   "data: data-contract tests",
   "assets: asset integrity tests",
