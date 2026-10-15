@@ -255,9 +255,14 @@ func _atomic_write(path: String, text: String) -> bool:
     file.store_string(text)
     file.flush()
     file.close()
+    # Validate the staged bytes before replacing a known-good save.
+    if FileAccess.get_file_as_string(temp) != text:
+        return false
+    if _read_payload(temp).is_empty():
+        return false
     var absolute_path := ProjectSettings.globalize_path(path)
     var absolute_temp := ProjectSettings.globalize_path(temp)
-    if FileAccess.file_exists(path):
+    if FileAccess.file_exists(path) and not _read_payload(path).is_empty():
         var backup_status := DirAccess.copy_absolute(absolute_path, ProjectSettings.globalize_path(_backup_for(path)))
         if backup_status != OK:
             return false
