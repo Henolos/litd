@@ -5,6 +5,8 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$ROOT_DIR"
 
 DOMAIN="${1:-}"
+TIMING_FILE="$(mktemp)"
+trap 'rm -f "$TIMING_FILE"' EXIT
 ERROR_PATTERN='SCRIPT ERROR:|ERROR: Failed to load script|ERROR: Failed to create an autoload|ERROR: Failed to instantiate an autoload|ERROR: FATAL:|handle_crash: Program crashed'
 
 run_checked() {
@@ -13,10 +15,17 @@ run_checked() {
   local log_file
   log_file="$(mktemp)"
   echo "==> ${label}"
+  local start_s end_s elapsed_s resource_warnings
+  start_s="$(date +%s)"
   set +e
   "$@" 2>&1 | tee "$log_file"
   local command_status=${PIPESTATUS[0]}
   set -e
+  end_s="$(date +%s)"
+  elapsed_s=$((end_s - start_s))
+  resource_warnings="$(grep -Ec 'ERROR: [0-9]+ resources still in use at exit' "$log_file" || true)"
+  printf 'GODOT_CI_TIMING domain=%s label=%q seconds=%s resource_exit_warnings=%s exit_code=%s\n' "$DOMAIN" "$label" "$elapsed_s" "$resource_warnings" "$command_status"
+  printf '%s\t%s\t%s\t%s\n' "$elapsed_s" "$resource_warnings" "$command_status" "$label" >> "$TIMING_FILE"
   if [[ $command_status -ne 0 ]]; then
     echo "Godot a quitté avec le code ${command_status} pendant: ${label}" >&2
     rm -f "$log_file"
@@ -143,4 +152,6 @@ case "$DOMAIN" in
     ;;
 esac
 
+echo "==> Top 10 scénarios Godot (secondes / avertissements ressources / code / scénario)"
+sort -nr -k1,1 "$TIMING_FILE" | head -n 10
 echo "GODOT_CI_DOMAIN_OK:${DOMAIN}"
