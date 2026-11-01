@@ -174,7 +174,7 @@ jobs:
           SOURCE_CHECKPOINT_RUN_ID: ${{ github.event.workflow_run.id }}
 
       - name: Upload archive receipt
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: worm-archive-receipt-${{ github.event.workflow_run.id }}-${{ github.event.workflow_run.run_attempt }}
           path: reports/worm-archive-receipt.json

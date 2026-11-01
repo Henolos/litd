@@ -31,7 +31,7 @@ jobs:
         run: python -m pytest -q --tb=short --junitxml=reports/pytest.xml
       - name: Conserver le résultat de tous les tests Python
         if: always()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: python-test-results
           path: reports/pytest.xml
@@ -195,7 +195,7 @@ jobs:
         run: python -m tools.blender.generate_dismemberment_jobs --output reports/dismemberment-jobs.json
       - name: Simulation combat v2, économie et cycles NG+
         run: python -m tools.qa.combat_economy_sim_v2
-      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         if: always()
         with:
           name: qa-reports

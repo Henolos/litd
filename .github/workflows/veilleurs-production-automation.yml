@@ -78,7 +78,7 @@ jobs:
           fi
       - name: Upload production report
         if: always()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: veilleurs-production-contract-report
           path: build/automation/
@@ -154,7 +154,7 @@ jobs:
             -- timeout 90s godot --headless --path . res://scenes/tests/ui_player_journey_smoke.tscn
       - name: Upload Godot logs
         if: always()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: veilleurs-godot-quick-gate
           path: build/automation/
@@ -233,14 +233,14 @@ jobs:
             -- godot --headless --path . --export-debug "Android" build/android/LightInTheDark.apk
           test -s build/android/LightInTheDark.apk
       - name: Publish Android debug APK
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: veilleurs-android-debug-apk
           path: build/android/LightInTheDark.apk
           if-no-files-found: error
       - name: Publish Android export log
         if: always()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: veilleurs-android-export-log
           path: build/automation/android-export.log
