@@ -138,6 +138,7 @@ case "$DOMAIN" in
     scene 90 "Interface canonique Les Veilleurs" res://scenes/tests/canonical_ui_smoke.tscn
     scene 90 "Finition UX canonique" res://scenes/tests/canonical_ux_smoke.tscn
     scene 90 "Mobile tactile" res://scenes/tests/mobile_touch_smoke.tscn
+    scene 60 "Zones amputées masquées dans UI" res://scenes/tests/veilleurs_amputated_target_ui_smoke.tscn
     scene 90 "Salle QA intégrée" res://scenes/tests/qa_validation_room_smoke.tscn
     ;;
   *)
