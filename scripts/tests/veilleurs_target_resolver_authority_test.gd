@@ -45,6 +45,16 @@ func _ready() -> void:
     var move_attack := {"action_type":"attack_move", "range_cells":1}
     var move_verdict := TARGET_RESOLVER.validate_tactical_target(runtime, "hero", "far", move_attack)
     _expect(bool(move_verdict.get("ok", false)), "attack_move may acquire distant target before movement")
+    var zone_action := {"target":"enemy_zone","requires_body_zone":true}
+    var amputated_body := VeilleursBodyComponent.new()
+    amputated_body.missing_parts.append("left_arm")
+    var anatomical_target := {"hp":10,"body":amputated_body}
+    _expect(not TARGET_RESOLVER.can_target_body_zone(zone_action, anatomical_target, "left_arm"), "amputated component arm must not be targetable")
+    _expect(TARGET_RESOLVER.can_target_body_zone(zone_action, anatomical_target, "right_arm"), "intact arm must remain targetable")
+    _expect(not TARGET_RESOLVER.can_target_body_zone(zone_action, anatomical_target, "invalid_zone"), "invalid zone must not silently target torso")
+    var serialized_target := {"hp":10,"body":amputated_body.serialize()}
+    _expect(not TARGET_RESOLVER.can_target_body_zone(zone_action, serialized_target, "left_arm"), "serialized amputation must not be targetable")
+    _expect(TARGET_RESOLVER.can_target_body_zone(zone_action, serialized_target, "right_arm"), "serialized intact arm remains targetable")
     if failures.is_empty():
         print("VEILLEURS_TARGET_RESOLVER_AUTHORITY_OK")
         get_tree().quit(0)

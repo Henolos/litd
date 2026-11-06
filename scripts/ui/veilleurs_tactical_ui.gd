@@ -244,8 +244,18 @@ func _apply_selection_visuals() -> void:
         if target_selection_mode and entity_id != "":
             button.tooltip_text = ("Cible attaquable — touchez pour sélectionner" if target_candidate_ids.has(entity_id) else ("Hors portée / protégée" if blocked_target_ids.has(entity_id) else _entity_tooltip(entity_id)))
 
+    var target_row: Dictionary = (runtime_snapshot.get("combatants", {}) as Dictionary).get(selected_target, {})
+    var target_body: Variant = target_row.get("body", {})
+    var missing: Array = []
+    if target_body is Dictionary:
+        missing = (target_body as Dictionary).get("missing_parts", [])
+    elif target_body is VeilleursBodyComponent:
+        missing = (target_body as VeilleursBodyComponent).missing_parts
+    if missing.has(selected_zone):
+        selected_zone = "torso"
     for button: Button in zone_buttons:
         var zone := str(button.get_meta("zone", ""))
+        button.visible = not missing.has(zone)
         var base_text := str(button.get_meta("base_text", zone))
         var active := zone == selected_zone
         button.button_pressed = active
@@ -413,6 +423,9 @@ func _on_skill_pressed(slot: int) -> void:
     skill_slot_pressed.emit(slot)
 
 func _on_zone_pressed(zone: String) -> void:
+    var target_row: Dictionary = (runtime_snapshot.get("combatants", {}) as Dictionary).get(selected_target, {})
+    if not VeilleursTargetResolver.can_target_body_zone({"target":"enemy_zone"}, target_row, zone):
+        return
     _disarm_retreat()
     selected_zone = zone
     _apply_selection_visuals()
