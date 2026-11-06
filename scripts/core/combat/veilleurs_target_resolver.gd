@@ -2,7 +2,7 @@ extends RefCounted
 class_name VeilleursTargetResolver
 
 const RULES := preload("res://scripts/core/combat_targeting_rules.gd")
-const ZONES := ["head", "torso", "left_arm", "right_arm", "left_leg", "right_leg"]
+const ZONES: Array[String] = ["head", "torso", "left_arm", "right_arm", "left_leg", "right_leg"]
 
 static func normalize_zone(zone: String) -> String:
     return zone if zone in ZONES else "torso"
@@ -46,7 +46,14 @@ static func can_target_body_zone(action: Dictionary, target: Dictionary, zone: S
         return true
     if target.is_empty() or int(target.get("hp", 0)) <= 0:
         return false
-    return body_zones_for_action(action).has(normalize_zone(zone))
+    if not ZONES.has(zone) or not body_zones_for_action(action).has(zone):
+        return false
+    var body_value: Variant = target.get("body", null)
+    if body_value is Dictionary:
+        return not (body_value as Dictionary).get("missing_parts", []).has(zone)
+    if body_value is VeilleursBodyComponent:
+        return not (body_value as VeilleursBodyComponent).missing_parts.has(zone)
+    return true
 
 static func uses_rank_targeting(action: Dictionary) -> bool:
     return str(action.get("effect", "")) in ["attack", "affliction"] or action.has("source_stat") or action.has("branch")
