@@ -93,6 +93,7 @@ case "$DOMAIN" in
     scene 60 "Guidage des cendres" res://scenes/tests/ash_guidance_smoke.tscn
     ;;
   veilleurs)
+    scene 60 "Compaction: morts simultanées et idempotence" res://scenes/tests/enemy_rank_compaction_edge_cases_smoke.tscn
     run_checked "Payoffs des afflictions" timeout 60s godot --headless --path . --script scripts/tests/veilleurs_affliction_synergy_runtime_test.gd
     scene 60 "Contraintes corporelles des actions" res://scenes/tests/veilleurs_body_action_contract_smoke.tscn
     run_checked "Blessures localisées séparées" timeout 60s godot --headless --path . --script scripts/tests/veilleurs_localized_injury_layer_test.gd
