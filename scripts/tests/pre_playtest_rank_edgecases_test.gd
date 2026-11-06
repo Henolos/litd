@@ -3,6 +3,7 @@ extends Node
 # Pre-playtest rank regression: verify multiple casualties and stable survivor order.
 const POSITION_RUNTIME := preload("res://scripts/core/combat_position_runtime.gd")
 const TARGETING_RULES := preload("res://scripts/core/combat_targeting_rules.gd")
+const TARGET_RESOLVER := preload("res://scripts/core/combat/veilleurs_target_resolver.gd")
 var failures: Array[String] = []
 
 func _ready() -> void:
@@ -33,6 +34,11 @@ func _run() -> void:
     TARGETING_RULES.ensure_enemy_positions(enemies)
     _check(int(enemies[3].combat_position) == 1, "normalization must preserve live E2 rank")
     _check(TARGETING_RULES.targetable_indices(hero, melee, enemies).has(3), "rear survivor must remain targetable after normalization")
+    var anatomy := {"id": "basic_strike", "effect": "attack", "target": "enemy_zone", "allowed_body_zones": ["head", "torso"]}
+    _check(str(TARGET_RESOLVER.validate_target_contract(hero, anatomy, enemies[3], enemies).get("reason", "")) == "body_zone_required", "anatomical action must require a body zone")
+    _check(bool(TARGET_RESOLVER.validate_target_contract(hero, anatomy, enemies[3], enemies, "head").get("ok", false)), "compacted survivor head must remain targetable")
+    _check(str(TARGET_RESOLVER.validate_target_contract(hero, anatomy, enemies[3], enemies, "left_leg").get("reason", "")) == "body_zone_not_targetable", "forbidden anatomical zone must be rejected")
+    _check(not bool(TARGET_RESOLVER.validate_target_contract(hero, anatomy, enemies[1], enemies, "head").get("ok", false)), "dead enemy must reject anatomical targeting")
 
     enemies[0].hp = 0
     _check(runtime.compact_enemy_formation(enemies), "third casualty must compact")
