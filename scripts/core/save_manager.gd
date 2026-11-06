@@ -27,8 +27,9 @@ func save_game(slot: int = active_slot) -> bool:
     var envelope := {"checksum":body.sha256_text(),"body":body}
     var encoded := JSON.stringify(envelope)
     var success := _atomic_write(_path(slot), encoded)
+    # The per-slot envelope is authoritative. A legacy mirror is best-effort only.
     if success and slot == 0:
-        success = _atomic_write(SAVE_PATH, body)
+        _atomic_write(SAVE_PATH, body)
     if success:
         active_slot = slot if slot >= 0 else active_slot
         last_status = "Sauvegarde terminée."
@@ -74,11 +75,13 @@ func load_game(slot: int = active_slot) -> bool:
     last_operation = "load"
     slot = _valid_slot(slot)
     var recovered := false
-    var payload: Dictionary = _read_payload(SAVE_PATH) if slot == 0 else {}
-    if payload.is_empty():
-        payload = _read_payload(_path(slot))
+    var payload: Dictionary = _read_payload(_path(slot))
     if payload.is_empty():
         payload = _read_payload(_backup_path(slot))
+        recovered = not payload.is_empty()
+    # The unversioned legacy slot-0 mirror is only a last-resort fallback.
+    if payload.is_empty() and slot == 0:
+        payload = _read_payload(SAVE_PATH)
         recovered = not payload.is_empty()
     if payload.is_empty():
         last_status = "Sauvegarde absente ou irrécupérable."
@@ -248,11 +251,22 @@ func _atomic_write(path: String, text: String) -> bool:
     file.store_string(text)
     file.flush()
     file.close()
-    if FileAccess.file_exists(path):
-        DirAccess.copy_absolute(ProjectSettings.globalize_path(path), ProjectSettings.globalize_path(_backup_for(path)))
-    if FileAccess.file_exists(path):
-        DirAccess.remove_absolute(ProjectSettings.globalize_path(path))
-    return DirAccess.rename_absolute(ProjectSettings.globalize_path(temp), ProjectSettings.globalize_path(path)) == OK
+    var destination := ProjectSettings.globalize_path(path)
+    var temporary := ProjectSettings.globalize_path(temp)
+    var backup := ProjectSettings.globalize_path(_backup_for(path))
+    var had_previous := FileAccess.file_exists(path)
+    if had_previous:
+        # Preserve the previous valid generation until the new one is installed.
+        if DirAccess.copy_absolute(destination, backup) != OK:
+            return false
+        if DirAccess.remove_absolute(destination) != OK:
+            return false
+    if DirAccess.rename_absolute(temporary, destination) == OK:
+        return true
+    # Recover immediately if installation failed after removing the old file.
+    if had_previous:
+        DirAccess.copy_absolute(backup, destination)
+    return false
 
 func _read_payload(path: String) -> Dictionary:
     if not FileAccess.file_exists(path):
