@@ -2,7 +2,7 @@ extends RefCounted
 class_name VeilleursTargetResolver
 
 const RULES := preload("res://scripts/core/combat_targeting_rules.gd")
-const ZONES := ["head", "torso", "left_arm", "right_arm", "left_leg", "right_leg"]
+const ZONES: Array[String] = ["head", "torso", "left_arm", "right_arm", "left_leg", "right_leg"]
 
 static func normalize_zone(zone: String) -> String:
     return zone if zone in ZONES else "torso"
