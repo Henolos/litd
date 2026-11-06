@@ -62,6 +62,21 @@ func exercise(runtime_script: Script) -> void:
     var restored = runtime_script.new()
     check(restored.deserialize(JSON.parse_string(JSON.stringify(runtime.serialize()))), "restore")
     check(not restored.alive_ids("watcher").has(actor), "restored_body_death")
+    # Verify amputation and its action restrictions survive JSON save/load.
+    var amputated = runtime_script.new()
+    check(bool(amputated.setup_first_combat().get("ok", false)), "amputation_setup")
+    var amputated_actor := "ENT_WATCHER_marec"
+    var amputated_body: VeilleursBodyComponent = amputated.combatants[amputated_actor]["body"]
+    amputated_body.missing_parts = ["left_arm", "right_arm", "left_leg", "right_leg"]
+    var amputated_snapshot := JSON.stringify(amputated.serialize())
+    var amputated_restored = runtime_script.new()
+    check(amputated_restored.deserialize(JSON.parse_string(amputated_snapshot)), "amputation_restore")
+    var restored_body: VeilleursBodyComponent = amputated_restored.combatants[amputated_actor]["body"]
+    check(restored_body.missing_parts.has("left_arm") and restored_body.missing_parts.has("right_arm"), "amputated_arms_persist")
+    check(restored_body.missing_parts.has("left_leg") and restored_body.missing_parts.has("right_leg"), "amputated_legs_persist")
+    check(not bool(TARGET.validate_tactical_actor(amputated_restored, amputated_actor, {"action_type":"guard"}).get("ok", false)), "restored_guard_without_arms_blocked")
+    check(not bool(TARGET.validate_tactical_actor(amputated_restored, amputated_actor, {"action_type":"move"}).get("ok", false)), "restored_walk_without_legs_blocked")
+
     runtime.combatants[enemy]["body"].dead = true
     check(not runtime.alive_ids("enemy").has(enemy), "dead_enemy_membership")
     check(not bool(runtime.enemy_step(enemy).get("ok", false)), "dead_enemy_action")
