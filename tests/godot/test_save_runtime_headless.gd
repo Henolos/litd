@@ -19,7 +19,7 @@ func envelope(value: int) -> String:
 
 func cleanup() -> void:
     for suffix in ["", ".bak", ".tmp"]:
-        var p := PATH + suffix
+        var p: String = PATH + String(suffix)
         if FileAccess.file_exists(p):
             DirAccess.remove_absolute(ProjectSettings.globalize_path(p))
 
