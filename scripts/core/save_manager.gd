@@ -124,7 +124,11 @@ func all_slots_metadata() -> Array[Dictionary]:
 func delete_slot(slot: int) -> bool:
     slot = _valid_slot(slot)
     var removed := false
-    for path in [_path(slot), _backup_path(slot), _temp_path(slot)]:
+    var paths := [_path(slot), _backup_path(slot), _temp_path(slot)]
+    if slot == 0:
+        # A deleted slot must not be resurrected from the legacy mirror.
+        paths.append_array([SAVE_PATH, _backup_for(SAVE_PATH), _temp_for(SAVE_PATH)])
+    for path in paths:
         if FileAccess.file_exists(path):
             removed = DirAccess.remove_absolute(ProjectSettings.globalize_path(path)) == OK or removed
     return removed
