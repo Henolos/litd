@@ -46,6 +46,7 @@ run_checked "Import strict du projet" godot --headless --path . --import --quit
 
 case "$DOMAIN" in
   core-world)
+    run_checked "Sauvegarde: générations, corruption et compatibilité" timeout 60s godot --headless --path . --script scripts/tests/save_recovery_regression_smoke_test.gd
     scene 120 "Expédition procédurale jouable" res://scenes/tests/dungeon_playable_pipeline_smoke.tscn
     scene 540 "Parcours Premier Accord par les commandes joueur" res://scenes/tests/first_accord_playthrough_smoke.tscn
     run_checked "Premier Accord sur 24 graines indépendantes" timeout 540s godot --headless --path . res://scenes/tests/first_accord_playthrough_smoke.tscn -- --policies=focus,head,mixed --seed_start=1001 --seed_count=24
