@@ -46,15 +46,14 @@ static func can_target_body_zone(action: Dictionary, target: Dictionary, zone: S
         return true
     if target.is_empty() or int(target.get("hp", 0)) <= 0:
         return false
-    var normalized := normalize_zone(zone)
+    if not ZONES.has(zone) or not body_zones_for_action(action).has(zone):
+        return false
     var body_value: Variant = target.get("body", null)
     if body_value is Dictionary:
-        if (body_value as Dictionary).get("missing_parts", []) is Array and (body_value as Dictionary).get("missing_parts", []).has(normalized):
-            return false
-    elif body_value is VeilleursBodyComponent:
-        if (body_value as VeilleursBodyComponent).missing_parts.has(normalized):
-            return false
-    return body_zones_for_action(action).has(normalized)
+        return not (body_value as Dictionary).get("missing_parts", []).has(zone)
+    if body_value is VeilleursBodyComponent:
+        return not (body_value as VeilleursBodyComponent).missing_parts.has(zone)
+    return true
 
 static func uses_rank_targeting(action: Dictionary) -> bool:
     return str(action.get("effect", "")) in ["attack", "affliction"] or action.has("source_stat") or action.has("branch")

@@ -39,7 +39,7 @@ func _run() -> void:
     _check(bool(TARGET_RESOLVER.validate_target_contract(hero, anatomy, enemies[3], enemies, "head").get("ok", false)), "compacted survivor head must remain targetable")
     _check(str(TARGET_RESOLVER.validate_target_contract(hero, anatomy, enemies[3], enemies, "left_leg").get("reason", "")) == "body_zone_not_targetable", "forbidden anatomical zone must be rejected")
     _check(not bool(TARGET_RESOLVER.validate_target_contract(hero, anatomy, enemies[1], enemies, "head").get("ok", false)), "dead enemy must reject anatomical targeting")
-    var amputated := enemies[3].duplicate(true)
+    var amputated: Dictionary = enemies[3].duplicate(true)
     amputated["body"] = {"missing_parts": ["left_arm"]}
     var arm_action := {"id": "anatomy_probe", "effect": "attack", "target": "enemy_zone", "allowed_body_zones": ["left_arm", "right_arm"]}
     _check(not bool(TARGET_RESOLVER.validate_target_contract(hero, arm_action, amputated, enemies, "left_arm").get("ok", false)), "amputated left arm must not be targetable")
