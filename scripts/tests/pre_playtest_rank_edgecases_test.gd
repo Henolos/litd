@@ -2,6 +2,7 @@ extends Node
 
 # Pre-playtest rank regression: verify multiple casualties and stable survivor order.
 const POSITION_RUNTIME := preload("res://scripts/core/combat_position_runtime.gd")
+const TARGETING_RULES := preload("res://scripts/core/combat_targeting_rules.gd")
 var failures: Array[String] = []
 
 func _ready() -> void:
@@ -24,6 +25,14 @@ func _run() -> void:
     _check(int(enemies[0].combat_position) == 0, "front survivor must remain E1")
     _check(int(enemies[3].combat_position) == 1, "rear survivor must advance to E2")
     _check(not runtime.compact_enemy_formation(enemies), "second compaction must be idempotent")
+    var hero := {"id": "hero", "class_id": "watcher", "combat_position": 0}
+    var melee := {"id": "basic_strike", "effect": "attack"}
+    var targets := TARGETING_RULES.targetable_indices(hero, melee, enemies)
+    _check(targets.has(0) and targets.has(3), "both survivors must remain melee-targetable after compaction")
+    _check(not targets.has(1) and not targets.has(2), "dead enemies must not be targetable")
+    TARGETING_RULES.ensure_enemy_positions(enemies)
+    _check(int(enemies[3].combat_position) == 1, "normalization must preserve live E2 rank")
+    _check(TARGETING_RULES.targetable_indices(hero, melee, enemies).has(3), "rear survivor must remain targetable after normalization")
 
     enemies[0].hp = 0
     _check(runtime.compact_enemy_formation(enemies), "third casualty must compact")
