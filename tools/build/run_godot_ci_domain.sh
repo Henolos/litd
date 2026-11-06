@@ -102,6 +102,7 @@ case "$DOMAIN" in
     scene 60 "Contrat résolveurs de combat" res://scenes/tests/veilleurs_combat_resolvers_contract_test.tscn
     scene 60 "Autorité du ciblage anatomique" res://scenes/tests/veilleurs_target_resolver_authority_test.tscn
     scene 60 "Compaction formation ennemie" res://scenes/tests/enemy_formation_compaction_contract_test.tscn
+    run_checked "Regression morts multiples et rangs ennemis" timeout 60s godot --headless --path . --script scripts/tests/pre_playtest_rank_edgecases_test.gd
     scene 60 "Fallback ennemi canonique" res://scenes/tests/veilleurs_enemy_canonical_fallback_test.tscn
     scene 180 "Architecture procédurale complète" res://scenes/tests/dungeon_architecture_pipeline_smoke.tscn
     scene 60 "Modules physiques Premier Accord" res://scenes/tests/first_accord_module_blockout_smoke.tscn
