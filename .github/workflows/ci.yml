@@ -27,6 +27,9 @@ jobs:
         run: python -m pip install -r requirements-dev.txt
       - name: Préparer les rapports QA
         run: mkdir -p reports
+      - name: Vérifier les déclarations de preuves de la PR
+        if: ${{ github.event_name == 'pull_request' }}
+        run: python tools/qa/validate_pr_evidence.py --event "$GITHUB_EVENT_PATH"
       - name: Tests Python rapides
         run: python -m pytest -q --tb=short --junitxml=reports/pytest.xml
       - name: Conserver le résultat de tous les tests Python
