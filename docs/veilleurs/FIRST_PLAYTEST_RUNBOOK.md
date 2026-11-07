@@ -163,6 +163,6 @@ Le niveau 4 n'est jamais accordé sur la seule base d'une simulation tactile ou 
 
 Le workflow `LITD Web Playtest PWA` exporte le projet sous Godot 4.7.2 et GitHub Pages est désormais activé pour le dépôt. Le playtest Web public est disponible à l'adresse :
 
-`https://hodaesu.github.io/litd/`
+`https://henolos.github.io/litd/`
 
 Cette version est utile pour vérifier rapidement la première expérience sur iPhone et partager une build, mais elle ne remplace pas la validation mobile native sur appareil réel ni la future build iOS signée.
