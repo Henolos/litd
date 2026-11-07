@@ -75,22 +75,21 @@ func load_game(slot: int = active_slot) -> bool:
     last_operation = "load"
     slot = _valid_slot(slot)
     var recovered := false
-    var payload: Dictionary = _read_payload(_path(slot))
-    if payload.is_empty():
-        payload = _read_payload(_backup_path(slot))
-        recovered = not payload.is_empty()
-    # The unversioned legacy slot-0 mirror is only a last-resort fallback.
-    if payload.is_empty() and slot == 0:
-        payload = _read_payload(SAVE_PATH)
-        recovered = not payload.is_empty()
+    var payload: Dictionary = {}
+    var candidates: Array[String] = [_path(slot), _backup_path(slot)]
+    if slot == 0:
+        candidates.append(SAVE_PATH)
+    # An incompatible primary must not prevent recovery from a valid backup.
+    for candidate: String in candidates:
+        var candidate_payload: Dictionary = _migrate(_read_payload(candidate))
+        if candidate_payload.is_empty():
+            continue
+        payload = candidate_payload
+        recovered = candidate != _path(slot)
+        break
     if payload.is_empty():
         last_status = "Sauvegarde absente ou irrécupérable."
         save_finished.emit(slot, false, false)
-        return false
-    payload = _migrate(payload)
-    if payload.is_empty():
-        last_status = "Version de sauvegarde incompatible."
-        save_finished.emit(slot, false, recovered)
         return false
     _apply_payload(payload)
     active_slot = slot if slot >= 0 else active_slot
@@ -220,7 +219,7 @@ func _apply_payload(payload: Dictionary) -> void:
     if EndgameState.is_postgame_unlocked(): EndgameState.record_current_ending()
 
 func _migrate(payload: Dictionary) -> Dictionary:
-    var version := String(payload.get("version", "0.31"))
+    var version := String(payload.get("version", ""))
     if version != SAVE_VERSION:
         return {}
     payload["campaign_memory"] = payload.get("campaign_memory",{})
@@ -254,23 +253,34 @@ func _atomic_write(path: String, text: String) -> bool:
         return false
     file.store_string(text)
     file.flush()
+    var write_error := file.get_error()
     file.close()
+    # Never replace a good generation with truncated, corrupt or unknown data.
+    if write_error != OK or FileAccess.get_file_as_string(temp) != text:
+        return false
+    if _migrate(_read_payload(temp)).is_empty():
+        return false
     var destination := ProjectSettings.globalize_path(path)
     var temporary := ProjectSettings.globalize_path(temp)
     var backup := ProjectSettings.globalize_path(_backup_for(path))
-    var had_previous := FileAccess.file_exists(path)
-    if had_previous:
-        # Preserve the previous valid generation until the new one is installed.
+    var previous_is_valid := not _migrate(_read_payload(path)).is_empty()
+    if previous_is_valid:
+        # An already-corrupt primary must never overwrite the last good backup.
         if DirAccess.copy_absolute(destination, backup) != OK:
             return false
-        if DirAccess.remove_absolute(destination) != OK:
+        if FileAccess.get_file_as_string(path) != FileAccess.get_file_as_string(_backup_for(path)):
             return false
-    if DirAccess.rename_absolute(temporary, destination) == OK:
+    # Let the filesystem replace the destination; do not delete it first.
+    if _replace_save_file(temporary, destination) == OK:
         return true
-    # Recover immediately if installation failed after removing the old file.
-    if had_previous:
-        DirAccess.copy_absolute(backup, destination)
+    # Some backends may remove the destination even when replacement fails.
+    if previous_is_valid and _migrate(_read_payload(path)).is_empty():
+        if DirAccess.copy_absolute(backup, destination) != OK:
+            push_warning("Impossible de restaurer la sauvegarde principale ; secours conservé.")
     return false
+
+func _replace_save_file(from_path: String, to_path: String) -> Error:
+    return DirAccess.rename_absolute(from_path, to_path)
 
 func _read_payload(path: String) -> Dictionary:
     if not FileAccess.file_exists(path):
