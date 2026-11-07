@@ -24,6 +24,11 @@ func cleanup() -> void:
             DirAccess.remove_absolute(ProjectSettings.globalize_path(p))
 
 func _run() -> void:
+    var sandbox := OS.get_environment("LITD_SAVE_TEST_SANDBOX")
+    if sandbox.is_empty() or sandbox != OS.get_environment("XDG_DATA_HOME") or not OS.get_user_data_dir().begins_with(sandbox + "/"):
+        push_error("SAVE_RUNTIME_REQUIRES_ISOLATED_DATA_ROOT")
+        quit(1)
+        return
     cleanup()
     var manager := root.get_node_or_null("SaveManager")
     if manager == null:
