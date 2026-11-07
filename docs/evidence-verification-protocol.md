@@ -24,7 +24,11 @@ Ce protocole encadre les audits, recherches et décisions techniques documentés
 - Une PR déclarée « validée » alors que la CI ou les tests requis n'ont pas été confirmés.
 
 ## Évaluation pilote
-Sur dix travaux successifs, mesurer : proportion des affirmations déterminantes sourcées ; citations vérifiables ; recherches déclarées et réellement effectuées ; contradictions recherchées ; résultats de tests traçables ; erreurs détectées par revue indépendante. Comparer au point de départ et réviser les règles si elles produisent des formalités sans améliorer la fiabilité.
+Le contrôle déclaratif dans CI est non bloquant pendant le pilote : une description absente ou incomplète produit des erreurs visibles dans l'étape dédiée, puis les tests Python se poursuivent. Il ne fait pas partie des six contrôles obligatoires de main. Une transition vers un contrôle bloquant nécessite une décision et une validation dédiées.
+
+Point de départ du 7 novembre 2026 : les dix dernières PR fusionnées examinées (#581, #580, #579, #584, #585, #583, #582, #592, #591, #587) échouent toutes au contrôle de forme, ainsi que #551 encore ouverte. Ce résultat mesure une rupture de format, pas la qualité réelle des preuves ni le mérite de ces PR. Aucune description historique ne doit être présentée comme non vérifiée sur cette seule base.
+
+Sur dix nouveaux travaux successifs, mesurer : proportion des affirmations déterminantes sourcées ; citations vérifiables ; recherches déclarées et réellement effectuées ; contradictions recherchées ; résultats de tests traçables ; erreurs détectées par revue indépendante. Comparer au point de départ et réviser les règles si elles produisent des formalités sans améliorer la fiabilité. Documenter séparément les descriptions anciennes qui doivent encore être actualisées avant toute activation bloquante.
 
 ## Références méthodologiques à consulter
 - NIST AI Risk Management Framework : https://www.nist.gov/itl/ai-risk-management-framework
