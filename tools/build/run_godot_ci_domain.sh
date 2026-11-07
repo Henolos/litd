@@ -5,6 +5,8 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$ROOT_DIR"
 
 DOMAIN="${1:-}"
+TIMING_FILE="$(mktemp)"
+trap 'rm -f "$TIMING_FILE"' EXIT
 ERROR_PATTERN='SCRIPT ERROR:|ERROR: Failed to load script|ERROR: Failed to create an autoload|ERROR: Failed to instantiate an autoload|ERROR: FATAL:|handle_crash: Program crashed'
 
 run_checked() {
@@ -13,10 +15,17 @@ run_checked() {
   local log_file
   log_file="$(mktemp)"
   echo "==> ${label}"
+  local start_s end_s elapsed_s resource_warnings
+  start_s="$(date +%s)"
   set +e
   "$@" 2>&1 | tee "$log_file"
   local command_status=${PIPESTATUS[0]}
   set -e
+  end_s="$(date +%s)"
+  elapsed_s=$((end_s - start_s))
+  resource_warnings="$(grep -Ec 'ERROR: [0-9]+ resources still in use at exit' "$log_file" || true)"
+  printf 'GODOT_CI_TIMING domain=%s label=%q seconds=%s resource_exit_warnings=%s exit_code=%s\n' "$DOMAIN" "$label" "$elapsed_s" "$resource_warnings" "$command_status"
+  printf '%s\t%s\t%s\t%s\n' "$elapsed_s" "$resource_warnings" "$command_status" "$label" >> "$TIMING_FILE"
   if [[ $command_status -ne 0 ]]; then
     echo "Godot a quitté avec le code ${command_status} pendant: ${label}" >&2
     rm -f "$log_file"
@@ -46,6 +55,12 @@ run_checked "Import strict du projet" godot --headless --path . --import --quit
 
 case "$DOMAIN" in
   core-world)
+    save_delete_sandbox="$(mktemp -d)"
+    save_delete_status=0
+    run_checked "Suppression slot 0 sans résurrection (données isolées)" timeout 60s env XDG_DATA_HOME="$save_delete_sandbox" LITD_SAVE_DELETE_SANDBOX="$save_delete_sandbox" godot --headless --path . res://scenes/tests/save_slot0_delete_regression_smoke.tscn || save_delete_status=$?
+    rm -rf -- "$save_delete_sandbox"
+    if [[ "$save_delete_status" -ne 0 ]]; then exit "$save_delete_status"; fi
+    scene 60 "Sauvegarde: générations, corruption et compatibilité" res://scenes/tests/save_recovery_regression_smoke.tscn
     scene 120 "Expédition procédurale jouable" res://scenes/tests/dungeon_playable_pipeline_smoke.tscn
     scene 540 "Parcours Premier Accord par les commandes joueur" res://scenes/tests/first_accord_playthrough_smoke.tscn
     run_checked "Premier Accord sur 24 graines indépendantes" timeout 540s godot --headless --path . res://scenes/tests/first_accord_playthrough_smoke.tscn -- --policies=focus,head,mixed --seed_start=1001 --seed_count=24
@@ -93,15 +108,18 @@ case "$DOMAIN" in
     scene 60 "Guidage des cendres" res://scenes/tests/ash_guidance_smoke.tscn
     ;;
   veilleurs)
+    scene 60 "Compaction: morts simultanées et idempotence" res://scenes/tests/enemy_rank_compaction_edge_cases_smoke.tscn
     run_checked "Payoffs des afflictions" timeout 60s godot --headless --path . --script scripts/tests/veilleurs_affliction_synergy_runtime_test.gd
     scene 60 "Contraintes corporelles des actions" res://scenes/tests/veilleurs_body_action_contract_smoke.tscn
     run_checked "Blessures localisées séparées" timeout 60s godot --headless --path . --script scripts/tests/veilleurs_localized_injury_layer_test.gd
     scene 60 "Contrat dix afflictions" res://scenes/tests/veilleurs_afflictions_contract_test.tscn
+    scene 60 "Blessures, afflictions et soins" res://scenes/tests/veilleurs_injury_affliction_treatment_smoke.tscn
     scene 60 "IA ennemie explicable" res://scenes/tests/veilleurs_explainable_enemy_ai_test.tscn
     scene 60 "Procs équipement et afflictions" res://scenes/tests/veilleurs_equipment_affliction_proc_test.tscn
     scene 60 "Contrat résolveurs de combat" res://scenes/tests/veilleurs_combat_resolvers_contract_test.tscn
     scene 60 "Autorité du ciblage anatomique" res://scenes/tests/veilleurs_target_resolver_authority_test.tscn
     scene 60 "Compaction formation ennemie" res://scenes/tests/enemy_formation_compaction_contract_test.tscn
+    run_checked "Regression morts multiples et rangs ennemis" timeout 60s godot --headless --path . res://scenes/tests/pre_playtest_rank_edgecases_smoke.tscn
     scene 60 "Fallback ennemi canonique" res://scenes/tests/veilleurs_enemy_canonical_fallback_test.tscn
     scene 180 "Architecture procédurale complète" res://scenes/tests/dungeon_architecture_pipeline_smoke.tscn
     scene 60 "Modules physiques Premier Accord" res://scenes/tests/first_accord_module_blockout_smoke.tscn
@@ -135,6 +153,7 @@ case "$DOMAIN" in
     scene 90 "Interface canonique Les Veilleurs" res://scenes/tests/canonical_ui_smoke.tscn
     scene 90 "Finition UX canonique" res://scenes/tests/canonical_ux_smoke.tscn
     scene 90 "Mobile tactile" res://scenes/tests/mobile_touch_smoke.tscn
+    scene 60 "Zones amputées masquées dans UI" res://scenes/tests/veilleurs_amputated_target_ui_smoke.tscn
     scene 90 "Salle QA intégrée" res://scenes/tests/qa_validation_room_smoke.tscn
     ;;
   *)
@@ -143,4 +162,6 @@ case "$DOMAIN" in
     ;;
 esac
 
+echo "==> Top 10 scénarios Godot (secondes / avertissements ressources / code / scénario)"
+sort -nr -k1,1 "$TIMING_FILE" | sed -n '1,10p'
 echo "GODOT_CI_DOMAIN_OK:${DOMAIN}"
