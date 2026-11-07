@@ -51,16 +51,20 @@ scene() {
   fi
 }
 
+isolated_save_scene() {
+  local label="$1" path="$2" save_test_dir save_test_status=0
+  save_test_dir="$(mktemp -d)"
+  run_checked "$label" timeout 60s env XDG_DATA_HOME="$save_test_dir" LITD_SAVE_TEST_SANDBOX="$save_test_dir" LITD_SAVE_DELETE_SANDBOX="$save_test_dir" godot --headless --path . "$path" || save_test_status=$?
+  rm -rf -- "$save_test_dir"
+  return "$save_test_status"
+}
+
 run_checked "Import strict du projet" godot --headless --path . --import --quit
 
 case "$DOMAIN" in
   core-world)
-    save_delete_sandbox="$(mktemp -d)"
-    save_delete_status=0
-    run_checked "Suppression slot 0 sans résurrection (données isolées)" timeout 60s env XDG_DATA_HOME="$save_delete_sandbox" LITD_SAVE_DELETE_SANDBOX="$save_delete_sandbox" godot --headless --path . res://scenes/tests/save_slot0_delete_regression_smoke.tscn || save_delete_status=$?
-    rm -rf -- "$save_delete_sandbox"
-    if [[ "$save_delete_status" -ne 0 ]]; then exit "$save_delete_status"; fi
-    scene 60 "Sauvegarde: générations, corruption et compatibilité" res://scenes/tests/save_recovery_regression_smoke.tscn
+    isolated_save_scene "Suppression slot 0 sans résurrection (données isolées)" res://scenes/tests/save_slot0_delete_regression_smoke.tscn
+    isolated_save_scene "Sauvegarde: générations, corruption et compatibilité (données isolées)" res://scenes/tests/save_recovery_regression_smoke.tscn
     scene 120 "Expédition procédurale jouable" res://scenes/tests/dungeon_playable_pipeline_smoke.tscn
     scene 540 "Parcours Premier Accord par les commandes joueur" res://scenes/tests/first_accord_playthrough_smoke.tscn
     run_checked "Premier Accord sur 24 graines indépendantes" timeout 540s godot --headless --path . res://scenes/tests/first_accord_playthrough_smoke.tscn -- --policies=focus,head,mixed --seed_start=1001 --seed_count=24
