@@ -27,10 +27,9 @@ func save_game(slot: int = active_slot) -> bool:
     var envelope := {"checksum":body.sha256_text(),"body":body}
     var encoded := JSON.stringify(envelope)
     var success := _atomic_write(_path(slot), encoded)
+    # The per-slot envelope is authoritative. A legacy mirror is best-effort only.
     if success and slot == 0:
-        # Legacy mirror is best-effort; the checksummed slot is canonical.
-        if not _atomic_write(SAVE_PATH, body):
-            push_warning("Legacy save mirror could not be updated.")
+        _atomic_write(SAVE_PATH, body)
     if success:
         active_slot = slot if slot >= 0 else active_slot
         last_status = "Sauvegarde terminée."
@@ -77,18 +76,15 @@ func load_game(slot: int = active_slot) -> bool:
     slot = _valid_slot(slot)
     var recovered := false
     var payload: Dictionary = {}
-    # Prefer the checksummed canonical slot; legacy global file is last resort.
     var candidates: Array[String] = [_path(slot), _backup_path(slot)]
     if slot == 0:
         candidates.append(SAVE_PATH)
-    for candidate in candidates:
-        var candidate_payload := _read_payload(candidate)
+    # An incompatible primary must not prevent recovery from a valid backup.
+    for candidate: String in candidates:
+        var candidate_payload: Dictionary = _migrate(_read_payload(candidate))
         if candidate_payload.is_empty():
             continue
-        var migrated := _migrate(candidate_payload)
-        if migrated.is_empty():
-            continue
-        payload = migrated
+        payload = candidate_payload
         recovered = candidate != _path(slot)
         break
     if payload.is_empty():
@@ -127,7 +123,11 @@ func all_slots_metadata() -> Array[Dictionary]:
 func delete_slot(slot: int) -> bool:
     slot = _valid_slot(slot)
     var removed := false
-    for path in [_path(slot), _backup_path(slot), _temp_path(slot)]:
+    var paths := [_path(slot), _backup_path(slot), _temp_path(slot)]
+    if slot == 0:
+        # A deleted slot must not be resurrected from the legacy mirror.
+        paths.append_array([SAVE_PATH, _backup_for(SAVE_PATH), _temp_for(SAVE_PATH)])
+    for path in paths:
         if FileAccess.file_exists(path):
             removed = DirAccess.remove_absolute(ProjectSettings.globalize_path(path)) == OK or removed
     return removed
@@ -219,7 +219,6 @@ func _apply_payload(payload: Dictionary) -> void:
     if EndgameState.is_postgame_unlocked(): EndgameState.record_current_ending()
 
 func _migrate(payload: Dictionary) -> Dictionary:
-    # Missing version is not proof of compatibility; reject unknown schemas.
     var version := String(payload.get("version", ""))
     if version != SAVE_VERSION:
         return {}
@@ -254,20 +253,34 @@ func _atomic_write(path: String, text: String) -> bool:
         return false
     file.store_string(text)
     file.flush()
+    var write_error := file.get_error()
     file.close()
-    # Validate the staged bytes before replacing a known-good save.
-    if FileAccess.get_file_as_string(temp) != text:
+    # Never replace a good generation with truncated, corrupt or unknown data.
+    if write_error != OK or FileAccess.get_file_as_string(temp) != text:
         return false
-    if _read_payload(temp).is_empty():
+    if _migrate(_read_payload(temp)).is_empty():
         return false
-    var absolute_path := ProjectSettings.globalize_path(path)
-    var absolute_temp := ProjectSettings.globalize_path(temp)
-    if FileAccess.file_exists(path) and not _read_payload(path).is_empty():
-        var backup_status := DirAccess.copy_absolute(absolute_path, ProjectSettings.globalize_path(_backup_for(path)))
-        if backup_status != OK:
+    var destination := ProjectSettings.globalize_path(path)
+    var temporary := ProjectSettings.globalize_path(temp)
+    var backup := ProjectSettings.globalize_path(_backup_for(path))
+    var previous_is_valid := not _migrate(_read_payload(path)).is_empty()
+    if previous_is_valid:
+        # An already-corrupt primary must never overwrite the last good backup.
+        if DirAccess.copy_absolute(destination, backup) != OK:
             return false
-    # Avoid a deletion gap before replacement; verify on target platforms.
-    return DirAccess.rename_absolute(absolute_temp, absolute_path) == OK
+        if FileAccess.get_file_as_string(path) != FileAccess.get_file_as_string(_backup_for(path)):
+            return false
+    # Let the filesystem replace the destination; do not delete it first.
+    if _replace_save_file(temporary, destination) == OK:
+        return true
+    # Some backends may remove the destination even when replacement fails.
+    if previous_is_valid and _migrate(_read_payload(path)).is_empty():
+        if DirAccess.copy_absolute(backup, destination) != OK:
+            push_warning("Impossible de restaurer la sauvegarde principale ; secours conservé.")
+    return false
+
+func _replace_save_file(from_path: String, to_path: String) -> Error:
+    return DirAccess.rename_absolute(from_path, to_path)
 
 func _read_payload(path: String) -> Dictionary:
     if not FileAccess.file_exists(path):
