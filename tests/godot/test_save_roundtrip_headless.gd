@@ -33,6 +33,9 @@ func _run() -> void:
     var original_room: int = state.expedition_room
     var original_slot: int = manager.active_slot
     var original_party: Array = state.party.duplicate(true)
+    var equipment := root.get_node_or_null("EquipmentManager")
+    _check(equipment != null, "EquipmentManager autoload unavailable")
+    var original_equipment: Dictionary = equipment.serialize() if equipment != null else {}
     var hero_testable: bool = not state.party.is_empty() and state.party[0] is Dictionary
     _check(hero_testable, "No hero available for character round-trip test")
     if hero_testable:
@@ -46,6 +49,8 @@ func _run() -> void:
     state.light = 63
     state.supplies = 12
     state.expedition_room = 5
+    if equipment != null:
+        equipment.deserialize({"items": [{"instance_id": "save-roundtrip-item", "base_id": "test_blade", "slot": "weapon"}], "guild_stash": [{"instance_id": "save-roundtrip-stash", "base_id": "test_armor", "slot": "armor"}], "equipped_by_hero": {"save-roundtrip-hero": {"weapon": "save-roundtrip-item"}}, "drop_counter": 9, "generation_seed": 12345, "last_rewards": []})
 
     var saved: bool = manager.save_game(2)
     _check(saved, "Saving slot 2 failed")
@@ -60,6 +65,8 @@ func _run() -> void:
             state.party[0]["xp"] = 0
             state.party[0]["skill_points"] = 0
             state.party[0]["persistent_injuries"] = []
+        if equipment != null:
+            equipment.reset_new_game()
         var loaded: bool = manager.load_game(2)
         _check(loaded, "Loading slot 2 failed")
         if loaded:
@@ -68,6 +75,12 @@ func _run() -> void:
             _check(state.light == 63, "Light not restored")
             _check(state.supplies == 12, "Supplies not restored")
             _check(state.expedition_room == 5, "Expedition room not restored")
+            if equipment != null:
+                var restored_equipment: Dictionary = equipment.serialize()
+                _check(restored_equipment.get("items", []).size() == 1 and restored_equipment["items"][0].get("instance_id", "") == "save-roundtrip-item", "Inventory not restored")
+                _check(restored_equipment.get("guild_stash", []).size() == 1 and restored_equipment["guild_stash"][0].get("instance_id", "") == "save-roundtrip-stash", "Guild stash not restored")
+                _check(restored_equipment.get("equipped_by_hero", {}).get("save-roundtrip-hero", {}).get("weapon", "") == "save-roundtrip-item", "Equipped item not restored")
+                _check(int(restored_equipment.get("drop_counter", -1)) == 9, "Equipment drop counter not restored")
             if hero_testable:
                 _check(not state.party.is_empty() and int(state.party[0].get("hp", -1)) == 17, "Hero HP not restored")
                 _check(int(state.party[0].get("xp", -1)) == 123, "Hero XP not restored")
@@ -85,6 +98,8 @@ func _run() -> void:
     state.supplies = original_supplies
     state.expedition_room = original_room
     state.party = original_party
+    if equipment != null:
+        equipment.deserialize(original_equipment)
     manager.active_slot = original_slot
     manager.delete_slot(2)
 
