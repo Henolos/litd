@@ -37,6 +37,8 @@ jobs:
         run: mkdir -p reports
       - name: Import strict Godot
         run: godot --headless --path . --import --quit
+      - name: "QA : test du signalement F8"
+        run: timeout 30s godot --headless --path . --script res://scripts/qa/test_playtest_issue_marker.gd
       - name: "Bot v8 : contrat combat légal rapide"
         run: timeout 90s godot --headless --path . res://scenes/tests/player_bot_v8_fast_combat_contract.tscn
       - name: "Bot v9 : intégrité sauvegarde rapide"
