@@ -66,7 +66,7 @@ func _save_marker() -> void:
         return
     file.seek_end()
     if not file.store_line(JSON.stringify(record)):
-        push_error("Playtest report write failed: %s" % FileAccess.get_error())
+        push_error("Playtest report write failed: %s" % file.get_error())
         file.close()
         return
     file.close()
