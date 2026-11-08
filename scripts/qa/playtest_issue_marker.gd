@@ -1,0 +1,56 @@
+extends CanvasLayer
+## Local playtest marker. F8 opens a bug/feedback form; no network upload.
+const REPORT_PATH := "user://playtest_reports.jsonl"
+var dialog: ConfirmationDialog
+var category: OptionButton
+var notes: TextEdit
+
+func _ready() -> void:
+    layer = 120
+    process_mode = Node.PROCESS_MODE_ALWAYS
+    dialog = ConfirmationDialog.new()
+    dialog.title = "Signaler un probleme ou une suggestion"
+    dialog.ok_button_text = "Enregistrer"
+    dialog.cancel_button_text = "Annuler"
+    dialog.process_mode = Node.PROCESS_MODE_ALWAYS
+    add_child(dialog)
+    var content := VBoxContainer.new()
+    dialog.add_child(content)
+    category = OptionButton.new()
+    category.add_item("Bug / probleme")
+    category.add_item("Suggestion / amelioration")
+    content.add_child(category)
+    notes = TextEdit.new()
+    notes.custom_minimum_size = Vector2(480, 140)
+    notes.placeholder_text = "Que s'est-il passe ? Que devrais-je observer ?"
+    content.add_child(notes)
+    dialog.confirmed.connect(_save_marker)
+
+func _unhandled_key_input(event: InputEvent) -> void:
+    if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F8:
+        if dialog.visible:
+            dialog.hide()
+        else:
+            notes.text = ""
+            dialog.popup_centered()
+        get_viewport().set_input_as_handled()
+
+func _save_marker() -> void:
+    var record := {
+        "timestamp_utc": Time.get_datetime_string_from_system(true),
+        "kind": "bug" if category.selected == 0 else "suggestion",
+        "description": notes.text.strip_edges(),
+        "screen": GameState.current_screen,
+        "battle_round": GameState.battle_rounds,
+        "expedition_room": GameState.expedition_room,
+        "scene": get_tree().current_scene.scene_file_path if get_tree().current_scene else "",
+        "engine": Engine.get_version_info().get("string", "unknown")
+    }
+    var file := FileAccess.open(REPORT_PATH, FileAccess.READ_WRITE)
+    if file == null:
+        push_error("Playtest report could not be opened: %s" % FileAccess.get_open_error())
+        return
+    file.seek_end()
+    file.store_line(JSON.stringify(record))
+    file.close()
+    print("PLAYTEST_MARKER ", JSON.stringify(record))
