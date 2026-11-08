@@ -9,7 +9,7 @@ func _ready() -> void:
 func _run() -> void:
     var marker := MARKER_SCRIPT.new()
     get_tree().root.add_child(marker)
-    await process_frame
+    await get_tree().process_frame
     if marker.dialog == null or marker.category == null or marker.notes == null:
         push_error("Playtest marker form was not initialized")
         get_tree().quit(1)
