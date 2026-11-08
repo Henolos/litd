@@ -37,6 +37,9 @@ func _run() -> void:
     _check(hero_testable, "No hero available for character round-trip test")
     if hero_testable:
         state.party[0]["hp"] = 17
+        state.party[0]["xp"] = 123
+        state.party[0]["skill_points"] = 3
+        state.party[0]["persistent_injuries"] = [{"id": "roundtrip_test_injury", "severity": "minor", "untreated_runs": 2, "stabilized": false, "permanent": false}]
 
     state.gold = 321
     state.essence = 47
@@ -54,6 +57,9 @@ func _run() -> void:
         state.expedition_room = 0
         if hero_testable:
             state.party[0]["hp"] = 1
+            state.party[0]["xp"] = 0
+            state.party[0]["skill_points"] = 0
+            state.party[0]["persistent_injuries"] = []
         var loaded: bool = manager.load_game(2)
         _check(loaded, "Loading slot 2 failed")
         if loaded:
@@ -64,6 +70,10 @@ func _run() -> void:
             _check(state.expedition_room == 5, "Expedition room not restored")
             if hero_testable:
                 _check(not state.party.is_empty() and int(state.party[0].get("hp", -1)) == 17, "Hero HP not restored")
+                _check(int(state.party[0].get("xp", -1)) == 123, "Hero XP not restored")
+                _check(int(state.party[0].get("skill_points", -1)) == 3, "Hero skill points not restored")
+                var restored_injuries: Array = state.party[0].get("persistent_injuries", [])
+                _check(restored_injuries.size() == 1 and str(restored_injuries[0].get("id", "")) == "roundtrip_test_injury", "Persistent injury not restored")
 
     _check(not FileAccess.file_exists("user://litd_slot_0.json"), "Round-trip test modified slot 0")
     _check(not FileAccess.file_exists("user://litd_slot_1.json"), "Round-trip test modified slot 1")
