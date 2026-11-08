@@ -5,8 +5,11 @@ var dialog: ConfirmationDialog
 var category: OptionButton
 var notes: TextEdit
 var was_paused := false
+var marker_sequence := 0
+var session_id := ""
 
 func _ready() -> void:
+    session_id = "%s-%d" % [Time.get_datetime_string_from_system(true).replace(":", "-"), Time.get_ticks_msec()]
     layer = 120
     process_mode = Node.PROCESS_MODE_ALWAYS
     dialog = ConfirmationDialog.new()
@@ -46,6 +49,8 @@ func _on_dialog_visibility_changed() -> void:
 func _save_marker() -> void:
     var record := {
         "timestamp_utc": Time.get_datetime_string_from_system(true),
+        "session_id": session_id,
+        "marker_id": "%s-%04d" % [session_id, marker_sequence + 1],
         "kind": "bug" if category.selected == 0 else "suggestion",
         "description": notes.text.strip_edges(),
         "screen": GameState.current_screen,
@@ -54,12 +59,16 @@ func _save_marker() -> void:
         "scene": get_tree().current_scene.scene_file_path if get_tree().current_scene else "",
         "engine": Engine.get_version_info().get("string", "unknown")
     }
+    marker_sequence += 1
     var mode := FileAccess.READ_WRITE if FileAccess.file_exists(REPORT_PATH) else FileAccess.WRITE_READ
     var file := FileAccess.open(REPORT_PATH, mode)
     if file == null:
         push_error("Playtest report could not be opened: %s" % FileAccess.get_open_error())
         return
     file.seek_end()
-    file.store_line(JSON.stringify(record))
+    if not file.store_line(JSON.stringify(record)):
+        push_error("Playtest report write failed: %s" % FileAccess.get_error())
+        file.close()
+        return
     file.close()
     print("PLAYTEST_MARKER ", JSON.stringify(record))
