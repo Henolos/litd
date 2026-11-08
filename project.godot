@@ -122,6 +122,7 @@ Chapter10BossRuntime="*res://scripts/world/chapter_10_boss_runtime.gd"
 DeepVestigeBossRuntime="*res://scripts/world/deep_vestige_boss_runtime_v2.gd"
 AshlandsPlaytestSession="*res://scripts/world/ashlands_playtest_session.gd"
 QATestRoomState="*res://scripts/qa/qa_test_room_state.gd"
+PlaytestIssueMarker="*res://scripts/qa/playtest_issue_marker.gd"
 
 [editor_plugins]
 enabled=PackedStringArray("res://addons/veilleurs_pipeline/plugin.cfg")
