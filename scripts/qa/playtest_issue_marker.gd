@@ -59,7 +59,6 @@ func _save_marker() -> void:
         "scene": get_tree().current_scene.scene_file_path if get_tree().current_scene else "",
         "engine": Engine.get_version_info().get("string", "unknown")
     }
-    marker_sequence += 1
     var mode := FileAccess.READ_WRITE if FileAccess.file_exists(REPORT_PATH) else FileAccess.WRITE_READ
     var file := FileAccess.open(REPORT_PATH, mode)
     if file == null:
@@ -71,4 +70,5 @@ func _save_marker() -> void:
         file.close()
         return
     file.close()
+    marker_sequence += 1
     print("PLAYTEST_MARKER ", JSON.stringify(record))
