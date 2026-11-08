@@ -32,6 +32,11 @@ func _run() -> void:
     var original_supplies: int = state.supplies
     var original_room: int = state.expedition_room
     var original_slot: int = manager.active_slot
+    var original_party: Array = state.party.duplicate(true)
+    var hero_testable: bool = not state.party.is_empty() and state.party[0] is Dictionary
+    _check(hero_testable, "No hero available for character round-trip test")
+    if hero_testable:
+        state.party[0]["hp"] = 17
 
     state.gold = 321
     state.essence = 47
@@ -47,6 +52,8 @@ func _run() -> void:
         state.light = 3
         state.supplies = 4
         state.expedition_room = 0
+        if hero_testable:
+            state.party[0]["hp"] = 1
         var loaded: bool = manager.load_game(2)
         _check(loaded, "Loading slot 2 failed")
         if loaded:
@@ -55,6 +62,8 @@ func _run() -> void:
             _check(state.light == 63, "Light not restored")
             _check(state.supplies == 12, "Supplies not restored")
             _check(state.expedition_room == 5, "Expedition room not restored")
+            if hero_testable:
+                _check(not state.party.is_empty() and int(state.party[0].get("hp", -1)) == 17, "Hero HP not restored")
 
     _check(not FileAccess.file_exists("user://litd_slot_0.json"), "Round-trip test modified slot 0")
     _check(not FileAccess.file_exists("user://litd_slot_1.json"), "Round-trip test modified slot 1")
@@ -65,6 +74,7 @@ func _run() -> void:
     state.light = original_light
     state.supplies = original_supplies
     state.expedition_room = original_room
+    state.party = original_party
     manager.active_slot = original_slot
     manager.delete_slot(2)
 
