@@ -32,3 +32,4 @@ jobs:
           export LITD_SAVE_TEST_SANDBOX="$sandbox"
           bash tools/ci/run_godot_checked.sh --log "$sandbox/import.log" -- godot --headless --path . --import --quit
           bash tools/ci/run_godot_checked.sh --log "$sandbox/runtime.log" --expect SAVE_RUNTIME_CONTRACT_PASS -- godot --headless --path . --script res://tests/godot/test_save_runtime_headless.gd
+          bash tools/ci/run_godot_checked.sh --log "$sandbox/roundtrip.log" --expect SAVE_ROUNDTRIP_CONTRACT_PASS -- godot --headless --path . --script res://tests/godot/test_save_roundtrip_headless.gd
