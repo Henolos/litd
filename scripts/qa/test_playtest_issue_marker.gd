@@ -39,5 +39,50 @@ func _run() -> void:
         push_error("Marker counter did not advance")
         get_tree().quit(1)
         return
+    # Verify F8 opens and closes the dialog and restores the original pause state.
+    get_tree().paused = false
+    var f8 := InputEventKey.new()
+    f8.keycode = KEY_F8
+    f8.pressed = true
+    marker._unhandled_key_input(f8)
+    if not marker.dialog.visible or not get_tree().paused:
+        push_error("F8 did not open the form and pause gameplay")
+        get_tree().quit(1)
+        return
+    marker._unhandled_key_input(f8)
+    if marker.dialog.visible or get_tree().paused:
+        push_error("F8 did not close the form and restore gameplay")
+        get_tree().quit(1)
+        return
+    # An already paused game must remain paused after the form closes.
+    get_tree().paused = true
+    marker._unhandled_key_input(f8)
+    marker._unhandled_key_input(f8)
+    if not get_tree().paused:
+        push_error("F8 incorrectly unpaused an already paused game")
+        get_tree().quit(1)
+        return
+    get_tree().paused = false
+    # A second report must append a suggestion with a distinct marker ID.
+    marker.category.select(1)
+    marker.notes.text = "QA suggestion test"
+    marker._save_marker()
+    if marker.marker_sequence != 2:
+        push_error("Second report did not advance marker counter")
+        get_tree().quit(1)
+        return
+    var appended := FileAccess.open(REPORT_PATH, FileAccess.READ)
+    appended.seek(initial_size)
+    var first = JSON.parse_string(appended.get_line())
+    var second = JSON.parse_string(appended.get_line())
+    appended.close()
+    if not second is Dictionary or second.get("kind", "") != "suggestion" or second.get("description", "") != "QA suggestion test":
+        push_error("Suggestion report was not appended correctly")
+        get_tree().quit(1)
+        return
+    if first.get("marker_id", "") == second.get("marker_id", ""):
+        push_error("Marker IDs are not unique within the session")
+        get_tree().quit(1)
+        return
     print("PLAYTEST_MARKER_SMOKE_OK")
     get_tree().quit(0)
