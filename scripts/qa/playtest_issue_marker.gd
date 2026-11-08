@@ -4,6 +4,7 @@ const REPORT_PATH := "user://playtest_reports.jsonl"
 var dialog: ConfirmationDialog
 var category: OptionButton
 var notes: TextEdit
+var was_paused := false
 
 func _ready() -> void:
     layer = 120
@@ -25,6 +26,7 @@ func _ready() -> void:
     notes.placeholder_text = "Que s'est-il passe ? Que devrais-je observer ?"
     content.add_child(notes)
     dialog.confirmed.connect(_save_marker)
+    dialog.visibility_changed.connect(_on_dialog_visibility_changed)
 
 func _unhandled_key_input(event: InputEvent) -> void:
     if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F8:
@@ -32,8 +34,14 @@ func _unhandled_key_input(event: InputEvent) -> void:
             dialog.hide()
         else:
             notes.text = ""
+            was_paused = get_tree().paused
+            get_tree().paused = true
             dialog.popup_centered()
         get_viewport().set_input_as_handled()
+
+func _on_dialog_visibility_changed() -> void:
+    if not dialog.visible:
+        get_tree().paused = was_paused
 
 func _save_marker() -> void:
     var record := {
@@ -46,7 +54,8 @@ func _save_marker() -> void:
         "scene": get_tree().current_scene.scene_file_path if get_tree().current_scene else "",
         "engine": Engine.get_version_info().get("string", "unknown")
     }
-    var file := FileAccess.open(REPORT_PATH, FileAccess.READ_WRITE)
+    var mode := FileAccess.READ_WRITE if FileAccess.file_exists(REPORT_PATH) else FileAccess.WRITE_READ
+    var file := FileAccess.open(REPORT_PATH, mode)
     if file == null:
         push_error("Playtest report could not be opened: %s" % FileAccess.get_open_error())
         return
