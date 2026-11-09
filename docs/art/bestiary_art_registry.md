@@ -117,3 +117,9 @@ Toute modification future doit préciser la date, l'espèce, la décision, le st
 **Décision utilisateur :** le bestiaire comporte **40 créatures au total**, réparties en **35 monstres** (dont **10 hybrides**) avec **cinq apparences de référence par monstre**, et **5 boss distincts**. Les boss constituent les cinq créatures restantes ; ils ne sont **pas** les mini-boss, qui restent un niveau d'apparence des 35 monstres. **175 références conceptuelles** pour les 35 monstres ; le nombre d'apparences propres aux cinq boss n'est pas encore défini. Cette décision remplace les incertitudes précédentes sur le rôle des cinq restants.
 
 **Reste à décider :** identité des dix hybrides, identité des cinq boss, et système de variantes des boss. Ne pas reclasser arbitrairement les 40 espèces déjà listées. Aucun nouveau visuel produit.
+
+## Ordre de production validé — 2026-11-09
+
+**Décision utilisateur : exécution strictement séquentielle** : (1) achever les **25 monstres classiques** actuellement en conception, avec leurs cinq apparences ; (2) **ensuite seulement** concevoir les **10 hybrides** et leurs cinq apparences ; (3) **en dernier** concevoir les **5 boss** et leurs traitements propres. Ne pas commencer la sélection ni les fiches des hybrides ou boss tant que le lot des 25 n'est pas achevé et validé. Les 9 planches déclarées approuvées sont conservées ; les fiches Manticore et Nuckelavee restent à finaliser. Les 25 noms précis restent à vérifier avant de figer le lot. Les cinq apparences des monstres sont trois niveaux (normale/élite/mini-boss) et deux statuts combinables (Némésis/recrutée).
+
+**État :** ordre et quantités approuvés, enregistré ; exécution artistique non achevée. Ne pas confondre la validation de cette organisation avec la validation des 25 planches.
