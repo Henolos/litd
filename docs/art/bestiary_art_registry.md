@@ -111,3 +111,9 @@ Toute modification future doit préciser la date, l'espèce, la décision, le st
 **Point non tranché :** la phrase « et cinq monstres restants » pourrait signifier cinq monstres supplémentaires portant le total à 40, ou cinq monstres du catalogue de 40 réservés à une autre catégorie. Ne pas leur attribuer automatiquement cinq apparences ni modifier leur statut sans confirmation. Le catalogue historique de 40 est conservé à titre de référence jusqu'à clarification.
 
 **Statut :** périmètre 35 et quota de 10 hybrides enregistrés comme décision ; identité des 35, des 10 hybrides et rôle des cinq restants à définir. Aucune nouvelle illustration créée ou validée.
+
+## Clarification confirmée — 2026-11-09 : cinq boss
+
+**Décision utilisateur :** le bestiaire comporte **40 créatures au total**, réparties en **35 monstres** (dont **10 hybrides**) avec **cinq apparences de référence par monstre**, et **5 boss distincts**. Les boss constituent les cinq créatures restantes ; ils ne sont **pas** les mini-boss, qui restent un niveau d'apparence des 35 monstres. **175 références conceptuelles** pour les 35 monstres ; le nombre d'apparences propres aux cinq boss n'est pas encore défini. Cette décision remplace les incertitudes précédentes sur le rôle des cinq restants.
+
+**Reste à décider :** identité des dix hybrides, identité des cinq boss, et système de variantes des boss. Ne pas reclasser arbitrairement les 40 espèces déjà listées. Aucun nouveau visuel produit.
