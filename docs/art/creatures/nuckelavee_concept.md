@@ -90,3 +90,7 @@ Une illustration dominante en trois quarts (environ la moitié de la surface), u
 - [ ] Blessures et prothèses compatibles avec le statut recruté.
 - [ ] Cohérence d'éclairage et de présentation avec la planche Basilic.
 - [ ] Validation explicite des proportions et du degré d'exposition musculaire.
+
+## Décision utilisateur — 2026-11-09
+
+**VALIDÉ EN CONCEPTION (pas de validation d'image) :** Nuckelavee presque entièrement écorché, musculature majoritairement exposée, avec quelques membranes sombres conservées aux articulations pour rendre les volumes et mouvements lisibles. Cette décision fixe le dosage d'exposition musculaire recommandé dans la V2. Les proportions exactes, variantes et planche finale restent à valider. Aucune illustration nouvelle générée.
