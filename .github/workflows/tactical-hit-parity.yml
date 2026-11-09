@@ -1,0 +1,32 @@
+name: Tactical hit chance parity
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/core/veilleurs_tactical_combat_runtime.gd'
+      - 'scripts/core/combat/veilleurs_hit_resolver.gd'
+      - 'scripts/tests/tactical_hit_parity_test.gd'
+      - '.github/workflows/tactical-hit-parity.yml'
+  merge_group:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  hit-parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    container:
+      image: barichello/godot-ci:4.7.2
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Import Godot project
+        run: godot --headless --path . --import --quit
+      - name: Check tactical hit chance parity
+        shell: bash
+        run: |
+          set -euo pipefail
+          timeout 120s godot --headless --path . --script scripts/tests/tactical_hit_parity_test.gd 2>&1 | tee /tmp/tactical_hit_parity.log
+          grep -q 'TACTICAL_HIT_PARITY_OK' /tmp/tactical_hit_parity.log
+          if grep -Eq 'SCRIPT ERROR|Parse Error|Assertion failed' /tmp/tactical_hit_parity.log; then exit 1; fi
