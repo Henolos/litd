@@ -34,3 +34,27 @@ Choix karasu-tengu plutôt que daitengu, implantation de deux ailes dorsales sé
 ## Décision utilisateur du 9 novembre 2026
 
 **Karasu-tengu à tête de corbeau validé** plutôt que Daitengu au long nez humain. Cette validation porte sur le **type de tête et la direction de silhouette**, pas sur les proportions finales, le détail des ailes, les planches visuelles ou l'intégration Godot. Conserver la proposition des deux ailes dorsales séparées comme hypothèse anatomique à confirmer à l'étape suivante.
+
+
+## Consolidation anatomique des ailes — décision du 9 novembre 2026
+
+L'utilisateur a confirmé la poursuite de la consolidation des ailes dorsales. **Architecture retenue pour la fiche de conception : deux ailes indépendantes des deux bras**, articulées à une ceinture scapulaire dorsale adaptée. Cette décision valide le principe anatomique ; les proportions exactes et le visuel restent à approuver.
+
+### Articulations et implantation
+- Chaque aile possède une racine dorsolatérale, une articulation proximale mobile, un segment porteur et une extrémité de rémiges. Les racines doivent rester distinctes des épaules des bras et ne pas masquer les deux membres supérieurs en vue trois quarts.
+- Déploiement symétrique possible, mais chaque aile peut être blessée ou repliée séparément. En position de repos, les ailes se replient vers le dos, sans se confondre avec une cape.
+- L'armature thoracique est élargie dans le haut du dos ; musculature pectorale et dorsale renforcée, taille étroite et centre de gravité cohérent avec les phases au sol.
+- La proposition reste une **anatomie de fantasy**, pas une démonstration de faisabilité biomécanique du vol avec une masse humanoïde.
+
+### États à illustrer
+1. Neutre au sol, ailes repliées, bras et mains visibles.
+2. Menace, ailes semi-ouvertes, arme tenue en main.
+3. Vol ou attaque plongeante, ailes déployées et jambes libres.
+4. Aile gauche lésée, amplitude réduite.
+5. Aile droite absente, silhouette asymétrique et posture terrestre compensée.
+
+### Contrat de ciblage à implémenter ultérieurement
+IDs de conception : `head`, `torso`, `left_arm`, `right_arm`, `left_leg`, `right_leg`, `left_wing`, `right_wing`. Le profil anatomique spécifique et le rigging ne sont pas créés. Les règles souhaitées sont : chaque aile a trauma et état propres ; aile amputée exclue du ciblage ; perte d'une aile interdit le vol soutenu et l'attaque plongeante, mais ne supprime pas les attaques au sol ; bras amputé bloque les actions qui exigent la main correspondante. Ces conséquences ne sont **pas validées par tests Godot**.
+
+### Critères de validation visuelle
+Vues face, dos, profil, trois quarts, ailes repliées et déployées. Vérifier que les quatre attaches (deux bras, deux ailes) restent lisibles, que les ailes ne traversent ni vêtements ni équipement, et que l'asymétrie d'amputation reste identifiable. Le visage corvidé est déjà approuvé ; aucune planche finale approuvée.
