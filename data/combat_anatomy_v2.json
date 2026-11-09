@@ -420,6 +420,115 @@
           ]
         }
       ]
+    },
+    "cerberus": {
+      "parts": [
+        {
+          "id": "left_head",
+          "name": "Tête gauche",
+          "hit_modifier": -10,
+          "trauma_resistance": 1.15,
+          "severable": true,
+          "critical": false,
+          "tags": [
+            "sensor",
+            "attack"
+          ],
+          "consequence": "La perte de cette tête neutralise les attaques qui lui sont propres."
+        },
+        {
+          "id": "center_head",
+          "name": "Tête centrale",
+          "hit_modifier": -10,
+          "trauma_resistance": 1.15,
+          "severable": true,
+          "critical": false,
+          "tags": [
+            "sensor",
+            "attack"
+          ],
+          "consequence": "La perte de cette tête neutralise les attaques qui lui sont propres."
+        },
+        {
+          "id": "right_head",
+          "name": "Tête droite",
+          "hit_modifier": -10,
+          "trauma_resistance": 1.15,
+          "severable": true,
+          "critical": false,
+          "tags": [
+            "sensor",
+            "attack"
+          ],
+          "consequence": "La perte de cette tête neutralise les attaques qui lui sont propres."
+        },
+        {
+          "id": "body",
+          "name": "Corps",
+          "hit_modifier": 15,
+          "trauma_resistance": 1.3,
+          "severable": false,
+          "tags": [
+            "support"
+          ],
+          "consequence": "Blessure au tronc."
+        }
+      ]
+    },
+    "hydra": {
+      "parts": [
+        {
+          "id": "head_1",
+          "name": "Tête 1",
+          "hit_modifier": -10,
+          "trauma_resistance": 1.15,
+          "severable": true,
+          "critical": false,
+          "tags": [
+            "sensor",
+            "attack"
+          ],
+          "consequence": "La perte de cette tête neutralise les attaques qui lui sont propres."
+        },
+        {
+          "id": "head_2",
+          "name": "Tête 2",
+          "hit_modifier": -10,
+          "trauma_resistance": 1.15,
+          "severable": true,
+          "critical": false,
+          "tags": [
+            "sensor",
+            "attack"
+          ],
+          "consequence": "La perte de cette tête neutralise les attaques qui lui sont propres."
+        },
+        {
+          "id": "head_3",
+          "name": "Tête 3",
+          "hit_modifier": -10,
+          "trauma_resistance": 1.15,
+          "severable": true,
+          "critical": false,
+          "tags": [
+            "sensor",
+            "attack"
+          ],
+          "consequence": "La perte de cette tête neutralise les attaques qui lui sont propres."
+        },
+        {
+          "id": "body",
+          "name": "Corps",
+          "hit_modifier": 15,
+          "trauma_resistance": 1.4,
+          "severable": false,
+          "tags": [
+            "support"
+          ],
+          "consequence": "Blessure au tronc."
+        }
+      ],
+      "note": "Profil initial à trois têtes. Variantes et repousse non implémentées."
     }
   },
   "hero_specializations": {
