@@ -123,3 +123,15 @@ Toute modification future doit préciser la date, l'espèce, la décision, le st
 **Décision utilisateur : exécution strictement séquentielle** : (1) achever les **25 monstres classiques** actuellement en conception, avec leurs cinq apparences ; (2) **ensuite seulement** concevoir les **10 hybrides** et leurs cinq apparences ; (3) **en dernier** concevoir les **5 boss** et leurs traitements propres. Ne pas commencer la sélection ni les fiches des hybrides ou boss tant que le lot des 25 n'est pas achevé et validé. Les 9 planches déclarées approuvées sont conservées ; les fiches Manticore et Nuckelavee restent à finaliser. Les 25 noms précis restent à vérifier avant de figer le lot. Les cinq apparences des monstres sont trois niveaux (normale/élite/mini-boss) et deux statuts combinables (Némésis/recrutée).
 
 **État :** ordre et quantités approuvés, enregistré ; exécution artistique non achevée. Ne pas confondre la validation de cette organisation avec la validation des 25 planches.
+
+
+## Règle spécifique aux cinq boss — décision utilisateur du 2026-11-09
+
+**Les 5 boss distincts ont au maximum 2 états d'apparence, et non les 5 apparences des 35 monstres :**
+
+1. **État de base :** aspect initial du boss lors de sa première rencontre.
+2. **État de survivant marqué :** seulement si le boss a tué une partie de l'équipe et que les survivants ont été contraints d'abandonner le combat pour recommencer. À la rencontre suivante, **le même boss conserve les séquelles réellement subies** pendant le combat précédent : cicatrices, blessures, membres perdus, œil détruit, éventuelles prothèses si justifiées. L'aspect n'est pas une transformation générique ni une amélioration magique automatique.
+
+**Précision de conception :** « deux apparences » signifie deux **catégories d'état** (initial / marqué par l'historique), et non seulement deux images figées ; le deuxième état peut avoir des blessures différentes selon la partie. Un boss intact ne doit pas arborer de séquelles inventées. Le déclencheur exact, la persistance des données entre tentatives et la logique de retrait/recommencement devront être spécifiés et testés avant toute annonce d'implémentation.
+
+**Portée :** décision de design enregistrée, non implémentée, aucun artwork généré ; les mini-boss restent une variante des monstres classiques, pas l'un de ces cinq boss.
