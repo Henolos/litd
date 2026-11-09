@@ -63,3 +63,9 @@ Silhouette face/profil/dos/trois quarts, distinction claire du céphalothorax et
 - Cas à tester : attaque latérale atteignant deux côtés, verticale atteignant un seul, attaque d'un côté sans patte, pattes déjà amputées, sauvegarde/chargement, reproductibilité des dégâts et équilibre des attaques de zone.
 
 **Non résolu :** définition exacte de « latérale » dans le référentiel de combat, choix du côté pour une verticale frontale, nombre de pattes réellement touchées et répartition chiffrée. À spécifier avant intégration Godot.
+
+## Début d'intégration dans le runtime existant (2026-11-09)
+
+Commit `230136f` : ajout de `directional_group_candidates` dans `scripts/core/anatomy_runtime.gd`. La fonction filtre des identifiants de membres physiques existants selon l'axe `lateral`/`vertical`, le côté demandé pour `vertical`, et les amputations déjà enregistrées. Elle **ne crée pas de deuxième moteur de blessures** et n'applique aucun dégât. Convention temporaire : identifiants préfixés `left_` ou `right_`.
+
+**Limites bloquantes :** aucun profil Jorōgumo à huit pattes internes encore ajouté à `combat_anatomy_v2.json` ; la zone UI groupée n'est pas reliée au sélecteur ; aucune répartition des dégâts ni collision/trajectoire, aucun test Godot exécuté. La fonction n'est pas encore appelée par le flux de combat. Vérifier la compatibilité des identifiants, ajouter des tests déterministes et intégrer progressivement sans contourner la CI.
