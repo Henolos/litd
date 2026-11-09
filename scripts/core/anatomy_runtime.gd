@@ -96,8 +96,13 @@ func part_hit_chance(hero: Dictionary, part: Dictionary, enemy: Dictionary = {})
 
 func register_targeted_hit(hero: Dictionary, enemy: Dictionary, action: String, damage: int, part_id: String = "", technique_id: String = "") -> Dictionary:
     ensure_state(enemy)
-    var part := part_definition(enemy, part_id)
-    if part.is_empty():
+    var allowed := targetable_parts(enemy)
+    var part := {}
+    for candidate in allowed:
+        if str(candidate.get("id", "")) == part_id:
+            part = candidate
+            break
+    if part.is_empty() and part_id == "":
         part = selected_part(enemy)
     if part.is_empty():
         return {"severed": false, "trauma_added": 0, "message": "Aucune partie anatomique accessible."}
@@ -227,6 +232,10 @@ func _anatomy(enemy: Dictionary) -> Dictionary:
     var boss_anatomies: Dictionary = data.get("boss_anatomies", {})
     if encounter_id != "" and boss_anatomies.has(encounter_id):
         return boss_anatomies.get(encounter_id, {})
+    var species_id := str(enemy.get("anatomy_profile_id", ""))
+    var species_profiles: Dictionary = data.get("species_profiles", {})
+    if species_profiles.has(species_id):
+        return species_profiles[species_id]
     var profile_id := _profile_id(enemy)
     return data.get("generic_profiles", {}).get(profile_id, data.get("generic_profiles", {}).get("humanoid", {}))
 
