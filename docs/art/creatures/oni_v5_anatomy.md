@@ -56,3 +56,20 @@ Vues face, profil et trois quarts ; lecture claire des six zones principales ; c
 6. En UI, afficher la silhouette anatomique propre à l'espèce et désactiver clairement les zones perdues.
 
 **Résultat :** cohérence *conceptuelle* acceptable sous ces règles ; **compatibilité technique non vérifiée**. Blocage à lever avant validation technique : retrouver les structures effectives de ciblage, blessures, amputations et persistance dans le dépôt, puis ajouter les tests Godot adaptés. Cette revue n'autorise pas la production de planche finale.
+
+
+## Vérification contre le code existant — 2026-11-09
+
+**Sources lues sur la branche de travail :** `project.godot`, `scripts/core/anatomy_runtime.gd`, `scripts/core/dismemberment_runtime.gd`, `scripts/core/capture_wound_runtime.gd`, `scripts/core/persistent_injury_runtime.gd`, `scripts/ui/combat_body_presentation.gd`, `data/combat_anatomy_v2.json`.
+
+**Constats vérifiés dans les sources :**
+- `AnatomyRuntime.targetable_parts` exclut les IDs présents dans `dismembered_parts`, et `select_part` refuse un ID non ciblable.
+- `register_targeted_hit` calcule un trauma par partie et `_apply_part_loss` marque la partie perdue. Les tags `weapon`/`attack` diminuent les dégâts ; `mobility` provoque un étourdissement ; **ils ne prouvent pas à eux seuls le blocage d'une compétence ni une animation d'amputation**.
+- `combat_anatomy_v2.json` définit un profil humanoïde **générique de trois parties seulement** (`weapon_arm`, `support_leg`, `head`) : il ne représente pas les six zones latéralisées requises par l'Oni V5. Un profil dédié est nécessaire avant intégration.
+- `CaptureWoundRuntime.apply_to_latest_capture` copie les pertes et blessures dans `capture_wounds` et `disabled_anatomy_parts`. Toutefois, `provide_sanctuary_care` vide `disabled_anatomy_parts` à la fin des soins ; **ne pas assimiler cette remise en aptitude à une régénération anatomique**, et vérifier la représentation après soins.
+- `CombatBodyPresentation` anime actuellement le `Control` global (position, rotation, teinte) : **aucune preuve de masquage segmentaire du bras ou de la jambe** dans ce fichier.
+- `PersistentInjuryRuntime` gère des blessures persistantes du personnage mais n'établit pas, à lui seul, la persistance des pertes anatomiques de l'Oni entre les rencontres.
+
+**Verdict :** compatibilité **partielle** avec le moteur de ciblage existant, mais **non validée** pour six zones latéralisées, blocage de compétences, affichage des membres perdus, persistance et restauration. Aucun test Godot exécuté dans cette revue.
+
+**Actions techniques ultérieures, sans modifier le gameplay pendant le chantier artistique :** définir profil Oni dédié, assurer dépendances parent/sous-zone, vérifier sauvegarde/chargement, adapter rendu et compétences, créer tests Godot. Ne pas annoncer un fonctionnement complet avant preuve.
