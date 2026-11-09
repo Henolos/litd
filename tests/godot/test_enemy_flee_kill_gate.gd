@@ -17,8 +17,23 @@ func _initialize() -> void:
     if str(decision.get("action", "")) == "flee":
         _fail("enemy fled without killing a hero")
         return
-    enemy["hero_kills"] = 1
-    runtime.combatants[enemy_id] = enemy
+    # Confirm that a real enemy basic attack awards the kill, not a mocked counter.
+    var hero: Dictionary = runtime.combatants[hero_id]
+    hero["hp"] = 1
+    runtime.combatants[hero_id] = hero
+    var killed := false
+    for attempt in range(200):
+        var attack: Dictionary = runtime.call("_enemy_basic_attack", enemy_id, hero_id)
+        if bool(attack.get("hit", false)):
+            killed = int((runtime.combatants[hero_id] as Dictionary).get("hp", -1)) == 0
+            break
+        runtime.next_round()
+    if not killed:
+        _fail("enemy did not kill the 1-HP hero with a real basic attack")
+        return
+    if int((runtime.combatants[enemy_id] as Dictionary).get("hero_kills", 0)) != 1:
+        _fail("real killing blow did not increment this enemy's counter")
+        return
     decision = runtime.enemy_ai.decide(runtime, enemy_id)
     if str(decision.get("action", "")) != "flee":
         _fail("eligible critically wounded enemy did not flee: %s" % str(decision))
@@ -38,7 +53,7 @@ func _initialize() -> void:
     if str(restored.enemy_ai.decide(restored, other_enemy_id).get("action", "")) == "flee":
         _fail("another enemy inherited the kill permission")
         return
-    print("PASS: no flee without own kill, flee after kill, persistence, no shared kill")
+    print("PASS: no flee without own kill, real killing blow, flee after kill, persistence, no shared kill")
     quit(0)
 
 func _fail(message: String) -> void:
