@@ -334,3 +334,65 @@ func _clear_combat_transients_v48() -> void:
     _sandbox_restore_focus_v51 = false
     _sandbox_focus_confirm_v51 = false
     super._clear_combat_transients_v48()
+
+# Isolated anatomy selector: the runtime still validates every selection.
+const ANATOMY_SELECTOR_SCRIPT_V51 := preload("res://scripts/ui/anatomy_target_selector.gd")
+const ANATOMY_PROFILE_SCRIPT_V51 := preload("res://scripts/ui/anatomy_target_profile.gd")
+
+func _render_sandbox_zones() -> void:
+    var box := VBoxContainer.new()
+    box.name = "SandboxAnatomyPanelV51"
+    box.position = Vector2(470, 322)
+    box.size = Vector2(420, 180)
+    box.add_theme_constant_override("separation", 4)
+    content.add_child(box)
+    box.add_child(make_label("ZONE ANATOMIQUE", 13, CANON_GOLD))
+
+    var enemies: Array = _sandbox.get("enemies")
+    var target: Dictionary = {}
+    if _sandbox_selected_target >= 0 and _sandbox_selected_target < enemies.size():
+        target = enemies[_sandbox_selected_target]
+    var profile: Dictionary = ANATOMY_PROFILE_SCRIPT_V51.profile_for_enemy(target)
+    if not bool(profile.get("ok", false)):
+        box.add_child(make_label("Morphologie non vérifiée · sélection classique", 10, CANON_MUTED))
+        _render_anatomy_zone_fallback_v51(box)
+        return
+
+    var action := _sandbox_selected_action_data()
+    var allowed: Array = VeilleursTargetResolver.body_zones_for_action(action)
+    var rows: Array[Dictionary] = ANATOMY_PROFILE_SCRIPT_V51.display_zones(target, allowed)
+    var selector := ANATOMY_SELECTOR_SCRIPT_V51.new() as Control
+    selector.name = "SandboxAnatomySelectorV51"
+    selector.custom_minimum_size = Vector2(240, 150)
+    selector.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+    selector.size_flags_vertical = Control.SIZE_EXPAND_FILL
+    box.add_child(selector)
+    var zones: Array[Dictionary] = []
+    for row in rows:
+        var zone_id := str(row.get("id", ""))
+        var anchor: Vector2 = row.get("anchor", Vector2(0.5, 0.5))
+        var rect := Rect2(anchor - Vector2(0.11, 0.12), Vector2(0.22, 0.24))
+        var verdict := _sandbox.call("preview_action", _sandbox_selected_action, _sandbox_selected_target, zone_id)
+        var enabled := bool(row.get("available", false)) and bool(verdict.get("ok", false))
+        var reason := str(row.get("reason", ""))
+        if not enabled and reason == "":
+            reason = _sandbox_blocked_reason_v51(str(verdict.get("reason", "")))
+        zones.append({
+            "id": zone_id, "label": str(row.get("label", zone_id)),
+            "rect": rect, "targetable": enabled, "reason": reason
+        })
+    selector.call("set_zones", zones)
+    selector.call("set_selected_zone", _sandbox_selected_zone)
+    selector.connect("zone_selected", Callable(self, "_sandbox_select_zone"))
+    box.add_child(make_label("Sélection seule · confirmation à droite", 10, CANON_MUTED))
+
+func _render_anatomy_zone_fallback_v51(box: VBoxContainer) -> void:
+    var grid := GridContainer.new()
+    grid.columns = 2
+    grid.add_theme_constant_override("h_separation", 5)
+    grid.add_theme_constant_override("v_separation", 5)
+    box.add_child(grid)
+    for zone in ["head", "torso", "left_arm", "right_arm", "left_leg", "right_leg"]:
+        var selected := zone == _sandbox_selected_zone
+        var button := make_button(("◆ " if selected else "") + _zone_label_context(zone), func(z = zone): _sandbox_select_zone(str(z)), Vector2(190, 42))
+        grid.add_child(button)
