@@ -30,6 +30,24 @@ func _initialize() -> void:
     assert(outcome.get("damage_allocated", -1) == 11, "Damage budget changed")
     assert(outcome.get("resolved_member_ids", []).size() == 2, "Lateral hit must select two sides")
     assert(outcome.get("hits", []).size() == 2, "Missing physical hit results")
+    # JSON round-trip of combat anatomy state, independent of the visual rig.
+    # This checks data survival only; SaveManager integration is tested separately.
+    var combat_snapshot := {
+        "cerberus": cerberus.duplicate(true),
+        "hydra": hydra.duplicate(true),
+        "jorogumo": spider.duplicate(true)
+    }
+    var decoded: Variant = JSON.parse_string(JSON.stringify(combat_snapshot))
+    assert(decoded is Dictionary, "Anatomy snapshot JSON did not decode")
+    var restored: Dictionary = decoded
+    var restored_cerberus: Dictionary = restored["cerberus"]
+    assert(not _contains(runtime.targetable_parts(restored_cerberus), "left_head"), "Cerberus severed head restored")
+    assert(_contains(runtime.targetable_parts(restored_cerberus), "right_head"), "Cerberus healthy head lost on reload")
+    var restored_spider: Dictionary = restored["jorogumo"]
+    assert(restored_spider.get("dismembered_parts", []).has("left_spider_leg_1"), "Spider lost severed leg on reload")
+    assert(restored_spider.get("anatomy_part_trauma", {}) == spider.get("anatomy_part_trauma", {}), "Spider trauma changed on reload")
+    assert(restored_spider.get("anatomy_injuries", {}) == spider.get("anatomy_injuries", {}), "Spider injury states changed on reload")
+    assert(runtime.directional_group_candidates(restored_spider, group["members"], "vertical", "left").size() == 3, "Reload changed available legs")
     print("anatomy_multi_member_smoke: PASS")
     quit(0)
 
