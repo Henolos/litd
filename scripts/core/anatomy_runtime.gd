@@ -94,6 +94,28 @@ func part_hit_chance(hero: Dictionary, part: Dictionary, enemy: Dictionary = {})
     var targeting: Dictionary = data.get("targeting", {})
     return clampi(chance, int(targeting.get("part_hit_min", 35)), int(targeting.get("part_hit_max", 95)))
 
+
+# Resolve a grouped anatomical target without creating a second injury engine.
+# The caller must pass stable, left/right-tagged physical part IDs. Returns
+# candidate IDs only; register_targeted_hit remains the sole trauma writer.
+func directional_group_candidates(enemy: Dictionary, member_ids: Array, attack_axis: String, side: String = "") -> Array:
+    ensure_state(enemy)
+    var available: Array = []
+    var lost: Array = enemy.get("dismembered_parts", [])
+    if attack_axis != "lateral" and attack_axis != "vertical":
+        return available
+    if attack_axis == "vertical" and side != "left" and side != "right":
+        return available
+    for raw_id in member_ids:
+        var part_id := str(raw_id)
+        if lost.has(part_id) or part_definition(enemy, part_id).is_empty():
+            continue
+        if attack_axis == "vertical" and not part_id.begins_with(side + "_"):
+            continue
+        if not available.has(part_id):
+            available.append(part_id)
+    return available
+
 func register_targeted_hit(hero: Dictionary, enemy: Dictionary, action: String, damage: int, part_id: String = "", technique_id: String = "") -> Dictionary:
     ensure_state(enemy)
     var part := part_definition(enemy, part_id)
