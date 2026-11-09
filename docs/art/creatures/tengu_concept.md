@@ -30,3 +30,7 @@ Dark fantasy japonais sans éclats dorés dominants : pierre volcanique, bleu nu
 
 ## Décisions à valider
 Choix karasu-tengu plutôt que daitengu, implantation de deux ailes dorsales séparées des bras, proportions des jambes et du bec, et taille de l'envergure. Aucune planche approuvée à ce stade.
+
+## Décision utilisateur du 9 novembre 2026
+
+**Karasu-tengu à tête de corbeau validé** plutôt que Daitengu au long nez humain. Cette validation porte sur le **type de tête et la direction de silhouette**, pas sur les proportions finales, le détail des ailes, les planches visuelles ou l'intégration Godot. Conserver la proposition des deux ailes dorsales séparées comme hypothèse anatomique à confirmer à l'étape suivante.
