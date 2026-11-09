@@ -2,15 +2,15 @@ extends RefCounted
 class_name AnatomyTargetProfile
 
 # Presentation-only profiles. The combat resolver remains authoritative.
-const HUMANOID := "humanoid_biped"
-const ZONES := ["head", "torso", "left_arm", "right_arm", "left_leg", "right_leg"]
-const LABELS := {
+const HUMANOID = "humanoid_biped"
+const ZONES = ["head", "torso", "left_arm", "right_arm", "left_leg", "right_leg"]
+const LABELS = {
     "head": "Tête", "torso": "Torse",
     "left_arm": "Bras gauche", "right_arm": "Bras droit",
     "left_leg": "Jambe gauche", "right_leg": "Jambe droite"
 }
 # Normalized coordinates for a front-facing humanoid, not screen pixels.
-const ANCHORS := {
+const ANCHORS = {
     "head": Vector2(0.50, 0.12),
     "torso": Vector2(0.50, 0.38),
     "left_arm": Vector2(0.24, 0.42),
@@ -19,7 +19,7 @@ const ANCHORS := {
     "right_leg": Vector2(0.60, 0.77)
 }
 # Only provisional name-based candidates, not visually validated.
-const CANDIDATE_ENEMY_IDS := [2, 3, 13, 36]
+const CANDIDATE_ENEMY_IDS = [2, 3, 13, 36]
 
 static func profile_for_enemy(enemy: Dictionary) -> Dictionary:
     var id := int(enemy.get("id", -1))
