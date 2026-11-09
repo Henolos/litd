@@ -168,6 +168,8 @@ func _sandbox_build_preview_v51() -> Dictionary:
     preview["reason"] = str(verdict.get("reason", ""))
     if verdict.has("hit_chance"):
         preview["hit_chance"] = verdict["hit_chance"]
+    if verdict.has("hit_breakdown"):
+        preview["hit_breakdown"] = verdict["hit_breakdown"]
     if verdict.has("damage_on_hit"):
         preview["damage_on_hit"] = verdict["damage_on_hit"]
     return preview
@@ -201,6 +203,12 @@ func _render_sandbox_preview_v51() -> void:
         var estimate_label := make_label(estimate, 11, CANON_TEXT)
         estimate_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
         box.add_child(estimate_label)
+        if preview.has("hit_breakdown"):
+            var detail: Dictionary = preview["hit_breakdown"]
+            var breakdown_text := "Base %d%% · coordination %+d · posture %+d · états %+d" % [int(detail.get("base", 75)), int(detail.get("coordination", 0)), int(detail.get("posture", 0)), int(detail.get("status", 0))]
+            var breakdown_label := make_label(breakdown_text, 10, CANON_MUTED)
+            breakdown_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+            box.add_child(breakdown_label)
     if not bool(preview.get("ready", false)):
         var reason_label := make_label(_sandbox_blocked_reason_v51(str(preview.get("reason", ""))), 11, CANON_GOLD)
         reason_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
