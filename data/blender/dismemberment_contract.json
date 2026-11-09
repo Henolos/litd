@@ -9,89 +9,376 @@
     "vfx_socket_prefix": "FX_",
     "injury_shape_prefix": "INJ_"
   },
-  "required_collections": ["BODY", "ARMATURE", "DISMEMBERMENT", "WOUND_CAPS", "SOCKETS", "VFX_GUIDES"],
+  "required_collections": [
+    "BODY",
+    "ARMATURE",
+    "DISMEMBERMENT",
+    "WOUND_CAPS",
+    "SOCKETS",
+    "VFX_GUIDES"
+  ],
   "generic_profiles": {
     "humanoid": {
-      "weapon_arm": {"bone":"BONE_weapon_arm","sever_socket":"SEVER_weapon_arm","detached_mesh":"DETACHED_weapon_arm","wound_cap":"CAP_weapon_arm","vfx_socket":"FX_weapon_arm"},
-      "support_leg": {"bone":"BONE_support_leg","sever_socket":"SEVER_support_leg","detached_mesh":"DETACHED_support_leg","wound_cap":"CAP_support_leg","vfx_socket":"FX_support_leg"},
-      "head": {"bone":"BONE_head","sever_socket":"SEVER_head","detached_mesh":"DETACHED_head","wound_cap":"CAP_head","vfx_socket":"FX_head"}
+      "weapon_arm": {
+        "bone": "BONE_weapon_arm",
+        "sever_socket": "SEVER_weapon_arm",
+        "detached_mesh": "DETACHED_weapon_arm",
+        "wound_cap": "CAP_weapon_arm",
+        "vfx_socket": "FX_weapon_arm"
+      },
+      "support_leg": {
+        "bone": "BONE_support_leg",
+        "sever_socket": "SEVER_support_leg",
+        "detached_mesh": "DETACHED_support_leg",
+        "wound_cap": "CAP_support_leg",
+        "vfx_socket": "FX_support_leg"
+      },
+      "head": {
+        "bone": "BONE_head",
+        "sever_socket": "SEVER_head",
+        "detached_mesh": "DETACHED_head",
+        "wound_cap": "CAP_head",
+        "vfx_socket": "FX_head"
+      }
     },
     "beast": {
-      "forelimb": {"bone":"BONE_forelimb","sever_socket":"SEVER_forelimb","detached_mesh":"DETACHED_forelimb","wound_cap":"CAP_forelimb","vfx_socket":"FX_forelimb"},
-      "hind_leg": {"bone":"BONE_hind_leg","sever_socket":"SEVER_hind_leg","detached_mesh":"DETACHED_hind_leg","wound_cap":"CAP_hind_leg","vfx_socket":"FX_hind_leg"},
-      "jaw": {"bone":"BONE_jaw","sever_socket":"SEVER_jaw","detached_mesh":"DETACHED_jaw","wound_cap":"CAP_jaw","vfx_socket":"FX_jaw"}
+      "forelimb": {
+        "bone": "BONE_forelimb",
+        "sever_socket": "SEVER_forelimb",
+        "detached_mesh": "DETACHED_forelimb",
+        "wound_cap": "CAP_forelimb",
+        "vfx_socket": "FX_forelimb"
+      },
+      "hind_leg": {
+        "bone": "BONE_hind_leg",
+        "sever_socket": "SEVER_hind_leg",
+        "detached_mesh": "DETACHED_hind_leg",
+        "wound_cap": "CAP_hind_leg",
+        "vfx_socket": "FX_hind_leg"
+      },
+      "jaw": {
+        "bone": "BONE_jaw",
+        "sever_socket": "SEVER_jaw",
+        "detached_mesh": "DETACHED_jaw",
+        "wound_cap": "CAP_jaw",
+        "vfx_socket": "FX_jaw"
+      }
     },
     "arachnid": {
-      "front_leg": {"bone":"BONE_front_leg","sever_socket":"SEVER_front_leg","detached_mesh":"DETACHED_front_leg","wound_cap":"CAP_front_leg","vfx_socket":"FX_front_leg"},
-      "venom_appendage": {"bone":"BONE_venom_appendage","sever_socket":"SEVER_venom_appendage","detached_mesh":"DETACHED_venom_appendage","wound_cap":"CAP_venom_appendage","vfx_socket":"FX_venom_appendage"},
-      "rear_leg": {"bone":"BONE_rear_leg","sever_socket":"SEVER_rear_leg","detached_mesh":"DETACHED_rear_leg","wound_cap":"CAP_rear_leg","vfx_socket":"FX_rear_leg"}
+      "front_leg": {
+        "bone": "BONE_front_leg",
+        "sever_socket": "SEVER_front_leg",
+        "detached_mesh": "DETACHED_front_leg",
+        "wound_cap": "CAP_front_leg",
+        "vfx_socket": "FX_front_leg"
+      },
+      "venom_appendage": {
+        "bone": "BONE_venom_appendage",
+        "sever_socket": "SEVER_venom_appendage",
+        "detached_mesh": "DETACHED_venom_appendage",
+        "wound_cap": "CAP_venom_appendage",
+        "vfx_socket": "FX_venom_appendage"
+      },
+      "rear_leg": {
+        "bone": "BONE_rear_leg",
+        "sever_socket": "SEVER_rear_leg",
+        "detached_mesh": "DETACHED_rear_leg",
+        "wound_cap": "CAP_rear_leg",
+        "vfx_socket": "FX_rear_leg"
+      }
     },
     "aberration": {
-      "attack_appendage": {"bone":"BONE_attack_appendage","sever_socket":"SEVER_attack_appendage","detached_mesh":"DETACHED_attack_appendage","wound_cap":"CAP_attack_appendage","vfx_socket":"FX_attack_appendage"},
-      "anchor_appendage": {"bone":"BONE_anchor_appendage","sever_socket":"SEVER_anchor_appendage","detached_mesh":"DETACHED_anchor_appendage","wound_cap":"CAP_anchor_appendage","vfx_socket":"FX_anchor_appendage"}
+      "attack_appendage": {
+        "bone": "BONE_attack_appendage",
+        "sever_socket": "SEVER_attack_appendage",
+        "detached_mesh": "DETACHED_attack_appendage",
+        "wound_cap": "CAP_attack_appendage",
+        "vfx_socket": "FX_attack_appendage"
+      },
+      "anchor_appendage": {
+        "bone": "BONE_anchor_appendage",
+        "sever_socket": "SEVER_anchor_appendage",
+        "detached_mesh": "DETACHED_anchor_appendage",
+        "wound_cap": "CAP_anchor_appendage",
+        "vfx_socket": "FX_anchor_appendage"
+      }
     },
     "construct": {
-      "impact_plate": {"bone":"BONE_impact_plate","sever_socket":"","detached_mesh":"","wound_cap":"","vfx_socket":"FX_impact_plate","injury_shape":"INJ_impact_plate_cracked"},
-      "joint": {"bone":"BONE_joint","sever_socket":"","detached_mesh":"","wound_cap":"","vfx_socket":"FX_joint","injury_shape":"INJ_joint_broken"},
-      "core": {"bone":"BONE_core","sever_socket":"","detached_mesh":"","wound_cap":"","vfx_socket":"FX_core","injury_shape":"INJ_core_cracked"}
+      "impact_plate": {
+        "bone": "BONE_impact_plate",
+        "sever_socket": "",
+        "detached_mesh": "",
+        "wound_cap": "",
+        "vfx_socket": "FX_impact_plate",
+        "injury_shape": "INJ_impact_plate_cracked"
+      },
+      "joint": {
+        "bone": "BONE_joint",
+        "sever_socket": "",
+        "detached_mesh": "",
+        "wound_cap": "",
+        "vfx_socket": "FX_joint",
+        "injury_shape": "INJ_joint_broken"
+      },
+      "core": {
+        "bone": "BONE_core",
+        "sever_socket": "",
+        "detached_mesh": "",
+        "wound_cap": "",
+        "vfx_socket": "FX_core",
+        "injury_shape": "INJ_core_cracked"
+      }
     },
     "boss": {
-      "offensive_limb": {"bone":"BONE_offensive_limb","sever_socket":"SEVER_offensive_limb","detached_mesh":"DETACHED_offensive_limb","wound_cap":"CAP_offensive_limb","vfx_socket":"FX_offensive_limb"},
-      "anchor_limb": {"bone":"BONE_anchor_limb","sever_socket":"SEVER_anchor_limb","detached_mesh":"DETACHED_anchor_limb","wound_cap":"CAP_anchor_limb","vfx_socket":"FX_anchor_limb"},
-      "support_limb": {"bone":"BONE_support_limb","sever_socket":"SEVER_support_limb","detached_mesh":"DETACHED_support_limb","wound_cap":"CAP_support_limb","vfx_socket":"FX_support_limb"}
+      "offensive_limb": {
+        "bone": "BONE_offensive_limb",
+        "sever_socket": "SEVER_offensive_limb",
+        "detached_mesh": "DETACHED_offensive_limb",
+        "wound_cap": "CAP_offensive_limb",
+        "vfx_socket": "FX_offensive_limb"
+      },
+      "anchor_limb": {
+        "bone": "BONE_anchor_limb",
+        "sever_socket": "SEVER_anchor_limb",
+        "detached_mesh": "DETACHED_anchor_limb",
+        "wound_cap": "CAP_anchor_limb",
+        "vfx_socket": "FX_anchor_limb"
+      },
+      "support_limb": {
+        "bone": "BONE_support_limb",
+        "sever_socket": "SEVER_support_limb",
+        "detached_mesh": "DETACHED_support_limb",
+        "wound_cap": "CAP_support_limb",
+        "vfx_socket": "FX_support_limb"
+      }
+    },
+    "jorogumo": {
+      "head": {
+        "bone": "BONE_head",
+        "sever_socket": "SEVER_head",
+        "detached_mesh": "DETACHED_head",
+        "wound_cap": "CAP_head",
+        "vfx_socket": "FX_head"
+      },
+      "human_torso": {
+        "bone": "BONE_human_torso",
+        "sever_socket": "",
+        "detached_mesh": "",
+        "wound_cap": "",
+        "vfx_socket": "FX_human_torso"
+      },
+      "left_arm": {
+        "bone": "BONE_left_arm",
+        "sever_socket": "SEVER_left_arm",
+        "detached_mesh": "DETACHED_left_arm",
+        "wound_cap": "CAP_left_arm",
+        "vfx_socket": "FX_left_arm"
+      },
+      "right_arm": {
+        "bone": "BONE_right_arm",
+        "sever_socket": "SEVER_right_arm",
+        "detached_mesh": "DETACHED_right_arm",
+        "wound_cap": "CAP_right_arm",
+        "vfx_socket": "FX_right_arm"
+      },
+      "spider_thorax": {
+        "bone": "BONE_spider_thorax",
+        "sever_socket": "",
+        "detached_mesh": "",
+        "wound_cap": "",
+        "vfx_socket": "FX_spider_thorax"
+      },
+      "spider_abdomen": {
+        "bone": "BONE_spider_abdomen",
+        "sever_socket": "",
+        "detached_mesh": "",
+        "wound_cap": "",
+        "vfx_socket": "FX_spider_abdomen"
+      },
+      "left_spider_leg_1": {
+        "bone": "BONE_left_spider_leg_1",
+        "sever_socket": "SEVER_left_spider_leg_1",
+        "detached_mesh": "DETACHED_left_spider_leg_1",
+        "wound_cap": "CAP_left_spider_leg_1",
+        "vfx_socket": "FX_left_spider_leg_1"
+      },
+      "left_spider_leg_2": {
+        "bone": "BONE_left_spider_leg_2",
+        "sever_socket": "SEVER_left_spider_leg_2",
+        "detached_mesh": "DETACHED_left_spider_leg_2",
+        "wound_cap": "CAP_left_spider_leg_2",
+        "vfx_socket": "FX_left_spider_leg_2"
+      },
+      "left_spider_leg_3": {
+        "bone": "BONE_left_spider_leg_3",
+        "sever_socket": "SEVER_left_spider_leg_3",
+        "detached_mesh": "DETACHED_left_spider_leg_3",
+        "wound_cap": "CAP_left_spider_leg_3",
+        "vfx_socket": "FX_left_spider_leg_3"
+      },
+      "left_spider_leg_4": {
+        "bone": "BONE_left_spider_leg_4",
+        "sever_socket": "SEVER_left_spider_leg_4",
+        "detached_mesh": "DETACHED_left_spider_leg_4",
+        "wound_cap": "CAP_left_spider_leg_4",
+        "vfx_socket": "FX_left_spider_leg_4"
+      },
+      "right_spider_leg_1": {
+        "bone": "BONE_right_spider_leg_1",
+        "sever_socket": "SEVER_right_spider_leg_1",
+        "detached_mesh": "DETACHED_right_spider_leg_1",
+        "wound_cap": "CAP_right_spider_leg_1",
+        "vfx_socket": "FX_right_spider_leg_1"
+      },
+      "right_spider_leg_2": {
+        "bone": "BONE_right_spider_leg_2",
+        "sever_socket": "SEVER_right_spider_leg_2",
+        "detached_mesh": "DETACHED_right_spider_leg_2",
+        "wound_cap": "CAP_right_spider_leg_2",
+        "vfx_socket": "FX_right_spider_leg_2"
+      },
+      "right_spider_leg_3": {
+        "bone": "BONE_right_spider_leg_3",
+        "sever_socket": "SEVER_right_spider_leg_3",
+        "detached_mesh": "DETACHED_right_spider_leg_3",
+        "wound_cap": "CAP_right_spider_leg_3",
+        "vfx_socket": "FX_right_spider_leg_3"
+      },
+      "right_spider_leg_4": {
+        "bone": "BONE_right_spider_leg_4",
+        "sever_socket": "SEVER_right_spider_leg_4",
+        "detached_mesh": "DETACHED_right_spider_leg_4",
+        "wound_cap": "CAP_right_spider_leg_4",
+        "vfx_socket": "FX_right_spider_leg_4"
+      }
+    },
+    "cerberus": {
+      "left_head": {
+        "bone": "BONE_left_head",
+        "sever_socket": "SEVER_left_head",
+        "detached_mesh": "DETACHED_left_head",
+        "wound_cap": "CAP_left_head",
+        "vfx_socket": "FX_left_head"
+      },
+      "center_head": {
+        "bone": "BONE_center_head",
+        "sever_socket": "SEVER_center_head",
+        "detached_mesh": "DETACHED_center_head",
+        "wound_cap": "CAP_center_head",
+        "vfx_socket": "FX_center_head"
+      },
+      "right_head": {
+        "bone": "BONE_right_head",
+        "sever_socket": "SEVER_right_head",
+        "detached_mesh": "DETACHED_right_head",
+        "wound_cap": "CAP_right_head",
+        "vfx_socket": "FX_right_head"
+      },
+      "body": {
+        "bone": "BONE_body",
+        "sever_socket": "",
+        "detached_mesh": "",
+        "wound_cap": "",
+        "vfx_socket": "FX_body"
+      }
+    },
+    "hydra": {
+      "head_1": {
+        "bone": "BONE_head_1",
+        "sever_socket": "SEVER_head_1",
+        "detached_mesh": "DETACHED_head_1",
+        "wound_cap": "CAP_head_1",
+        "vfx_socket": "FX_head_1"
+      },
+      "head_2": {
+        "bone": "BONE_head_2",
+        "sever_socket": "SEVER_head_2",
+        "detached_mesh": "DETACHED_head_2",
+        "wound_cap": "CAP_head_2",
+        "vfx_socket": "FX_head_2"
+      },
+      "head_3": {
+        "bone": "BONE_head_3",
+        "sever_socket": "SEVER_head_3",
+        "detached_mesh": "DETACHED_head_3",
+        "wound_cap": "CAP_head_3",
+        "vfx_socket": "FX_head_3"
+      },
+      "body": {
+        "bone": "BONE_body",
+        "sever_socket": "",
+        "detached_mesh": "",
+        "wound_cap": "",
+        "vfx_socket": "FX_body"
+      }
     }
   },
   "unique_boss_naming": {
-    "mode":"part_id_driven",
-    "bone":"BONE_{part_id}",
-    "sever_socket":"SEVER_{part_id}",
-    "detached_mesh":"DETACHED_{part_id}",
-    "wound_cap":"CAP_{part_id}",
-    "vfx_socket":"FX_{part_id}",
-    "injury_shape":"INJ_{part_id}_{state}"
+    "mode": "part_id_driven",
+    "bone": "BONE_{part_id}",
+    "sever_socket": "SEVER_{part_id}",
+    "detached_mesh": "DETACHED_{part_id}",
+    "wound_cap": "CAP_{part_id}",
+    "vfx_socket": "FX_{part_id}",
+    "injury_shape": "INJ_{part_id}_{state}"
   },
   "presentation_modes": {
     "full": {
-      "detached_mesh":true,
-      "wound_cap":true,
-      "blood_spray":true,
-      "blood_decal":true,
-      "exposed_tissue":true,
-      "fallback":"dark_ash_for_non_biological"
+      "detached_mesh": true,
+      "wound_cap": true,
+      "blood_spray": true,
+      "blood_decal": true,
+      "exposed_tissue": true,
+      "fallback": "dark_ash_for_non_biological"
     },
     "reduced": {
-      "detached_mesh":false,
-      "wound_cap":true,
-      "blood_spray":false,
-      "blood_decal":false,
-      "exposed_tissue":false,
-      "fallback":"shadow_flash_and_ash"
+      "detached_mesh": false,
+      "wound_cap": true,
+      "blood_spray": false,
+      "blood_decal": false,
+      "exposed_tissue": false,
+      "fallback": "shadow_flash_and_ash"
     },
     "off": {
-      "detached_mesh":false,
-      "wound_cap":false,
-      "blood_spray":false,
-      "blood_decal":false,
-      "exposed_tissue":false,
-      "fallback":"hit_reaction_plus_anatomy_ui_only"
+      "detached_mesh": false,
+      "wound_cap": false,
+      "blood_spray": false,
+      "blood_decal": false,
+      "exposed_tissue": false,
+      "fallback": "hit_reaction_plus_anatomy_ui_only"
     }
   },
   "animation_contract": {
-    "required_generic": ["hit_anatomy","injury_react","critical_injury_react","dismember_react","guard_remaining_part","wounded_rage","wounded_retreat","panic_flee","phase_altered"],
-    "per_part_patterns": ["hit_{part_id}","injury_{part_id}","critical_{part_id}","dismember_{part_id}"],
-    "boss_phase_event":"phase_altered_{part_id}"
+    "required_generic": [
+      "hit_anatomy",
+      "injury_react",
+      "critical_injury_react",
+      "dismember_react",
+      "guard_remaining_part",
+      "wounded_rage",
+      "wounded_retreat",
+      "panic_flee",
+      "phase_altered"
+    ],
+    "per_part_patterns": [
+      "hit_{part_id}",
+      "injury_{part_id}",
+      "critical_{part_id}",
+      "dismember_{part_id}"
+    ],
+    "boss_phase_event": "phase_altered_{part_id}"
   },
   "godot_events": {
-    "injury":"anatomy_injury",
-    "critical_injury":"anatomy_critical",
-    "dismemberment":"anatomy_severed",
-    "boss_phase_change":"boss_anatomy_phase_altered"
+    "injury": "anatomy_injury",
+    "critical_injury": "anatomy_critical",
+    "dismemberment": "anatomy_severed",
+    "boss_phase_change": "boss_anatomy_phase_altered"
   },
   "export": {
-    "format":"glb",
-    "apply_transforms":true,
-    "preserve_armature_names":true,
-    "separate_detached_meshes":true,
-    "include_custom_properties":true
+    "format": "glb",
+    "apply_transforms": true,
+    "preserve_armature_names": true,
+    "separate_detached_meshes": true,
+    "include_custom_properties": true
   }
 }
