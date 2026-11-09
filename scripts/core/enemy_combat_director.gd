@@ -38,6 +38,8 @@ func choose_action(enemy: Dictionary, heroes: Array) -> Dictionary:
             continue
         if not _requirements_met(enemy, skill.get("requires", {})):
             continue
+        if not _organs_available(enemy, skill):
+            continue
         var scored := _score_action(enemy, skill)
         candidates.append({
             "skill": skill,
@@ -273,6 +275,20 @@ func intent_preview(enemy: Dictionary) -> String:
     if enemy_archetype in ["humanoid", "undead"]:
         return "Garde, rupture ou attaque directe"
     return "Attaque prédatrice"
+
+# Per-enemy ability requirements preserve historical behavior for existing enemies.
+# Example: anatomy_skill_organs = {"venom_sting": ["venom_tail"]}.
+func _organs_available(enemy: Dictionary, skill: Dictionary) -> bool:
+    var requirements: Dictionary = enemy.get("anatomy_skill_organs", {})
+    var skill_id := str(skill.get("id", ""))
+    var required: Array = requirements.get(skill_id, [])
+    if required.is_empty():
+        return true
+    var lost: Array = enemy.get("dismembered_parts", [])
+    for organ in required:
+        if lost.has(str(organ)):
+            return false
+    return true
 
 func _requirements_met(enemy: Dictionary, requirements: Dictionary) -> bool:
     var fear := int(enemy.get("enemy_fear", enemy.get("fear_gauge", 0)))
