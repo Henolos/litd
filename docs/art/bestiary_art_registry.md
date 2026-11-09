@@ -95,3 +95,11 @@ Minotaure V2 ; Gorgone ; Cerbère ; Harpie ; Hydre ; Cyclope V3 ; Chimère ; Bas
 - **Avancement du projet global LITD :** À évaluer.
 
 Toute modification future doit préciser la date, l'espèce, la décision, le statut (proposé / validé en conception / visuel validé), et le lien vers l'artwork effectivement validé lorsque disponible.
+
+## Périmètre prioritaire décidé le 9 novembre 2026
+
+**Décision utilisateur corrigée : 15 monstres, chacun avec cinq apparences de référence** (normale, élite, mini-boss, Némésis, recrutée), et non 20. Cela représente **75 références d'apparence conceptuelles**, sans impliquer 75 modèles ou illustrations indépendants : Némésis et recrutée sont des statuts superposables. **Les 40 espèces du catalogue général ne sont pas supprimées** : les 15 constituent le lot prioritaire, sous réserve d'une décision contraire.
+
+**Sélection proposée des 15 espèces (non encore confirmée individuellement) :** Minotaure, Gorgone, Cerbère, Harpie, Hydre, Cyclope, Chimère, Basilic, Sphinx, Oni, Manticore, Nuckelavee, Tengu, Qilin corrompu, Jorōgumo. Cette liste reprend les quinze premières espèces du catalogue actuel pour minimiser les changements et préserver les travaux en cours.
+
+**État :** quantité 15 et principe cinq apparences confirmés verbalement ; sélection des noms proposée, non validée ; aucune nouvelle planche générée ou approuvée.
