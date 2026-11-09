@@ -38,6 +38,8 @@ func _run() -> void:
     var original_equipment: Dictionary = equipment.serialize() if equipment != null else {}
     var hero_testable: bool = not state.party.is_empty() and state.party[0] is Dictionary
     _check(hero_testable, "No hero available for character round-trip test")
+    var hero_id: String = str(state.party[0].get("id", "")) if hero_testable else ""
+    _check(not hero_id.is_empty(), "Test hero has no stable id")
     if hero_testable:
         state.party[0]["hp"] = 17
         state.party[0]["xp"] = 123
@@ -50,7 +52,7 @@ func _run() -> void:
     state.supplies = 12
     state.expedition_room = 5
     if equipment != null:
-        equipment.deserialize({"items": [{"instance_id": "save-roundtrip-item", "base_id": "test_blade", "slot": "weapon"}], "guild_stash": [{"instance_id": "save-roundtrip-stash", "base_id": "test_armor", "slot": "armor"}], "equipped_by_hero": {"save-roundtrip-hero": {"weapon": "save-roundtrip-item"}}, "drop_counter": 9, "generation_seed": 12345, "last_rewards": []})
+        equipment.deserialize({"items": [{"instance_id": "save-roundtrip-item", "base_id": "test_blade", "slot": "weapon"}], "guild_stash": [{"instance_id": "save-roundtrip-stash", "base_id": "test_armor", "slot": "armor"}], "equipped_by_hero": {hero_id: {"weapon": "save-roundtrip-item"}}, "drop_counter": 9, "generation_seed": 12345, "last_rewards": []})
 
     var saved: bool = manager.save_game(2)
     _check(saved, "Saving slot 2 failed")
@@ -79,7 +81,7 @@ func _run() -> void:
                 var restored_equipment: Dictionary = equipment.serialize()
                 _check(restored_equipment.get("items", []).size() == 1 and restored_equipment["items"][0].get("instance_id", "") == "save-roundtrip-item", "Inventory not restored")
                 _check(restored_equipment.get("guild_stash", []).size() == 1 and restored_equipment["guild_stash"][0].get("instance_id", "") == "save-roundtrip-stash", "Guild stash not restored")
-                _check(restored_equipment.get("equipped_by_hero", {}).get("save-roundtrip-hero", {}).get("weapon", "") == "save-roundtrip-item", "Equipped item not restored")
+                _check(restored_equipment.get("equipped_by_hero", {}).get(hero_id, {}).get("weapon", "") == "save-roundtrip-item", "Equipped item not restored")
                 _check(int(restored_equipment.get("drop_counter", -1)) == 9, "Equipment drop counter not restored")
             if hero_testable:
                 _check(not state.party.is_empty() and int(state.party[0].get("hp", -1)) == 17, "Hero HP not restored")
@@ -87,6 +89,12 @@ func _run() -> void:
                 _check(int(state.party[0].get("skill_points", -1)) == 3, "Hero skill points not restored")
                 var restored_injuries: Array = state.party[0].get("persistent_injuries", [])
                 _check(restored_injuries.size() == 1 and str(restored_injuries[0].get("id", "")) == "roundtrip_test_injury", "Persistent injury not restored")
+                if restored_injuries.size() == 1:
+                    var restored_injury: Dictionary = restored_injuries[0]
+                    _check(str(restored_injury.get("severity", "")) == "minor", "Injury severity not restored")
+                    _check(int(restored_injury.get("untreated_runs", -1)) == 2, "Injury untreated-run counter not restored")
+                    _check(not bool(restored_injury.get("stabilized", true)), "Injury stabilization state not restored")
+                    _check(not bool(restored_injury.get("permanent", true)), "Injury permanence flag not restored")
 
     _check(not FileAccess.file_exists("user://litd_slot_0.json"), "Round-trip test modified slot 0")
     _check(not FileAccess.file_exists("user://litd_slot_1.json"), "Round-trip test modified slot 1")
