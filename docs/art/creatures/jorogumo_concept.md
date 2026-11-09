@@ -49,3 +49,17 @@ Silhouette face/profil/dos/trois quarts, distinction claire du céphalothorax et
 - Risque identifié : le runtime actuel n'a pas été démontré compatible avec un sélecteur groupé vers huit parties persistantes ; prévoir une couche de résolution sans remplacer les identifiants internes.
 
 **À arbitrer avant implémentation :** mode de choix de la patte effectivement touchée et seuils de mobilité.
+
+
+## Décision de direction des attaques — 2026-11-09
+
+**Demande utilisateur à appliquer au design :** les attaques latérales/horizontales peuvent atteindre des pattes des **deux côtés**, les attaques verticales atteignent des pattes d'**un seul côté**. Il s'agit d'une règle de conception à implémenter, non d'une fonctionnalité testée.
+
+- Garder une seule zone visible `spider_legs` et huit pattes internes distinctes, quatre à gauche et quatre à droite (affectation latérale stable).
+- Attaque `lateral` : ensemble candidat composé de pattes présentes des deux côtés, sous réserve de la portée réelle de l'arme, de l'orientation et de la trajectoire. Ne pas promettre que toutes sont touchées.
+- Attaque `vertical` : déterminer le côté frappé à partir de la position/visée ; seuls les membres présents de ce côté sont candidats. Une attaque verticale centrée ou sans côté déterminable doit demander une règle explicite de résolution, pas choisir silencieusement.
+- Calcul des dégâts : appliquer un budget de dégâts défini pour l'attaque et le répartir entre les membres effectivement touchés ; ne pas multiplier automatiquement les dégâts totaux par huit. Distinguer effets localisés, coups de zone et éventuels dégâts au corps.
+- Priorité à une collision/trajectoire fiable ; sinon sélection déterministe des membres candidats via seed et journalisation de la patte touchée. Ne jamais choisir une patte amputée.
+- Cas à tester : attaque latérale atteignant deux côtés, verticale atteignant un seul, attaque d'un côté sans patte, pattes déjà amputées, sauvegarde/chargement, reproductibilité des dégâts et équilibre des attaques de zone.
+
+**Non résolu :** définition exacte de « latérale » dans le référentiel de combat, choix du côté pour une verticale frontale, nombre de pattes réellement touchées et répartition chiffrée. À spécifier avant intégration Godot.
