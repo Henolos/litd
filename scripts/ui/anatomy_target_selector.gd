@@ -54,6 +54,7 @@ func _rebuild() -> void:
         button.offset_top = 0
         button.offset_right = 0
         button.offset_bottom = 0
+        button.toggle_mode = true
         button.focus_mode = Control.FOCUS_ALL
         button.pressed.connect(_on_zone_pressed.bind(zone_id))
         add_child(button)
@@ -64,7 +65,6 @@ func _refresh() -> void:
     for zone_id in _buttons:
         var button: Button = _buttons[zone_id]
         button.button_pressed = zone_id == _selected_zone
-        button.toggle_mode = true
 
 func _on_zone_pressed(zone_id: String) -> void:
     if not _buttons.has(zone_id) or (_buttons[zone_id] as Button).disabled:
