@@ -58,3 +58,12 @@ IDs de conception : `head`, `torso`, `left_arm`, `right_arm`, `left_leg`, `right
 
 ### Critères de validation visuelle
 Vues face, dos, profil, trois quarts, ailes repliées et déployées. Vérifier que les quatre attaches (deux bras, deux ailes) restent lisibles, que les ailes ne traversent ni vêtements ni équipement, et que l'asymétrie d'amputation reste identifiable. Le visage corvidé est déjà approuvé ; aucune planche finale approuvée.
+
+
+## Nouvelle règle de conception — plafond de sept zones ciblables (2026-11-09)
+
+**Décision utilisateur :** limiter à **sept zones de ciblage affichées au maximum** par créature. Pour le Karasu-tengu, les deux ailes partagent **une seule zone de sélection** `wings` ; les six autres sont `head`, `torso`, `left_arm`, `right_arm`, `left_leg`, `right_leg`. La proposition précédente de huit zones visibles est remplacée par ce plafond.
+
+**Séparer l'interface de l'état anatomique :** deux ailes physiques et deux états indépendants `left_wing`/`right_wing` peuvent être conservés dans les données, mais le joueur voit une zone `wings`. La règle précise de répartition des coups sur l'aile gauche/droite (par exemple celle encore intacte, ou choix contextuel) reste **à définir et à tester**, pour éviter un ciblage ambigu. Une zone groupée disparaît seulement si aucun de ses composants ne reste ciblable. Ne pas prétendre que `AnatomyRuntime` implémente déjà cette agrégation.
+
+**Portée du plafond :** s'applique aussi aux futures créatures à nombreux appendices (Jorōgumo notamment) ; les groupes anatomiques doivent rester cohérents avec blessures, amputations et affichage. Le nombre réel de membres, articulations et blessures internes n'est pas plafonné à sept.
