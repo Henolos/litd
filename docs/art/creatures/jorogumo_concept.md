@@ -34,3 +34,18 @@ Silhouette face/profil/dos/trois quarts, distinction claire du céphalothorax et
 **Correction validée :** les huit pattes arachnéennes forment **une seule zone de ciblage visible**, nommée `spider_legs`. Le total de zones visibles passe donc de 14 à **7** : tête humanoïde (1), torse humanoïde (1), bras gauche et droit (2), céphalothorax arachnéen (1), abdomen arachnéen (1), groupe des huit pattes (1). Le tableau antérieur de quatorze zones est une proposition **supplantée**, et non la configuration retenue.
 
 **Attention :** ce regroupement est spécifique à la Jorōgumo, **pas un plafond général** pour les autres créatures (Hydre, Tengu). Conserver huit pattes physiques et, si le gameplay l'exige, leurs états de blessure/amputation distincts en interne. L'attribution d'un coup à une patte précise, la disparition de la zone quand toutes les pattes sont perdues et les effets de mobilité restent à spécifier et tester. Aucun code Godot ni visuel validé à ce stade.
+
+
+## Proposition V1 — blessures des huit pattes sous une zone commune (2026-11-09)
+
+**État : spécification proposée, pas encore validée par l'utilisateur ni implémentée/testée.**
+
+- Interface : une zone ciblable `spider_legs` ; anatomie interne : huit pattes physiques distinctes `leg_1` à `leg_8`, chacune avec état `intact`, `injured`, `disabled` ou `severed`, trauma et séquelles persistantes. Les huit identifiants restent stables entre combats.
+- Résolution d'une attaque sur la zone : ne considérer que les pattes présentes. Priorité proposée : patte réellement intersectée par l'attaque si le moteur dispose d'une information spatiale fiable ; sinon sélection déterministe parmi les pattes présentes via le générateur aléatoire de combat avec seed, sans privilégier automatiquement la plus blessée. Journaliser la patte effectivement touchée et la présenter au joueur.
+- Les pattes amputées ne sont plus candidates. Si toutes sont amputées, la zone commune devient non ciblable. La perte d'une patte ne supprime pas la zone si les autres sont encore présentes.
+- Mobilité : calculer le nombre de pattes fonctionnelles, et distinguer blessure légère d'incapacité/amputation. Barème **indicatif à équilibrer** : 6 à 8 fonctionnelles = mobilité normale ou légèrement réduite ; 4 à 5 = pénalité modérée ; 2 à 3 = pénalité majeure et interdiction des attaques de bond ; 0 à 1 = immobilisation au sol, mais actions du buste possibles si leurs conditions sont satisfaites.
+- Éviter la régénération automatique des membres amputés par soins ordinaires ; la persistance doit être vérifiée dans capture, sauvegarde et recrutement.
+- Tests nécessaires : 8 pattes initiales, sélection reproductible à seed fixée, exclusion d'une patte amputée, maintien de la zone tant qu'une patte reste, retrait de la zone à zéro, paliers de mobilité, compatibilité Némésis/Recruté et sauvegarde/chargement.
+- Risque identifié : le runtime actuel n'a pas été démontré compatible avec un sélecteur groupé vers huit parties persistantes ; prévoir une couche de résolution sans remplacer les identifiants internes.
+
+**À arbitrer avant implémentation :** mode de choix de la patte effectivement touchée et seuils de mobilité.
