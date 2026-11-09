@@ -135,3 +135,9 @@ Toute modification future doit préciser la date, l'espèce, la décision, le st
 **Précision de conception :** « deux apparences » signifie deux **catégories d'état** (initial / marqué par l'historique), et non seulement deux images figées ; le deuxième état peut avoir des blessures différentes selon la partie. Un boss intact ne doit pas arborer de séquelles inventées. Le déclencheur exact, la persistance des données entre tentatives et la logique de retrait/recommencement devront être spécifiés et testés avant toute annonce d'implémentation.
 
 **Portée :** décision de design enregistrée, non implémentée, aucun artwork généré ; les mini-boss restent une variante des monstres classiques, pas l'un de ces cinq boss.
+
+## Répartition des inspirations mythologiques — décision utilisateur du 2026-11-09
+
+**Répartition décidée :** choisir **5 traditions mythologiques** pour les **25 monstres classiques**, à raison de **5 monstres par tradition** ; réserver les **5 autres traditions** aux **10 hybrides**, à raison de **2 hybrides par tradition**. Les **5 boss** restent une troisième phase, avec deux états d'apparence maximum suivant leur histoire de combat. Les dix traditions évoquées précédemment sont un **classement provisoire**, pas une taxonomie historique définitive ; l'identité des cinq traditions de chaque lot n'est pas encore validée.
+
+**Ordre inchangé :** terminer les 25 monstres classiques avant d'entamer les hybrides, puis les boss. **Attention :** certaines créatures et traditions se chevauchent (par exemple grecque/romaine, celtique/écossaise), et la répartition du catalogue de 40 espèces déjà proposé devra être revue sans déplacer arbitrairement les neuf planches déclarées validées. Aucun nouveau visuel produit.
