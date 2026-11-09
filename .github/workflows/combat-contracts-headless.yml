@@ -7,6 +7,7 @@ on:
       - 'scripts/core/combat_position_runtime.gd'
       - 'scripts/core/veilleurs_body_component.gd'
       - 'scripts/tests/combat_ranks_body_status_contract.gd'
+      - 'scenes/tests/combat_ranks_body_status_contract.tscn'
       - '.github/workflows/combat-contracts-headless.yml'
   workflow_dispatch:
 
@@ -23,4 +24,4 @@ jobs:
       - name: Import project
         run: timeout 120s godot --headless --path . --import --quit
       - name: Rank, body and affliction contracts
-        run: timeout 60s godot --headless --path . --script res://scripts/tests/combat_ranks_body_status_contract.gd
+        run: timeout 60s godot --headless --path . res://scenes/tests/combat_ranks_body_status_contract.tscn
