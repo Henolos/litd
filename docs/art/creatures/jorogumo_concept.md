@@ -28,3 +28,9 @@ Les pertes de pattes réduisent progressivement mobilité, stabilité et accès 
 
 ## Art à produire après validation écrite
 Silhouette face/profil/dos/trois quarts, distinction claire du céphalothorax et de l'abdomen, huit pattes lisibles, poses avec membres amputés, et déclinaisons Normal/Élite/Mini-boss avec statuts Némésis/Recruté transversaux.
+
+## Décision utilisateur — regroupement des huit pattes (2026-11-09)
+
+**Correction validée :** les huit pattes arachnéennes forment **une seule zone de ciblage visible**, nommée `spider_legs`. Le total de zones visibles passe donc de 14 à **7** : tête humanoïde (1), torse humanoïde (1), bras gauche et droit (2), céphalothorax arachnéen (1), abdomen arachnéen (1), groupe des huit pattes (1). Le tableau antérieur de quatorze zones est une proposition **supplantée**, et non la configuration retenue.
+
+**Attention :** ce regroupement est spécifique à la Jorōgumo, **pas un plafond général** pour les autres créatures (Hydre, Tengu). Conserver huit pattes physiques et, si le gameplay l'exige, leurs états de blessure/amputation distincts en interne. L'attribution d'un coup à une patte précise, la disparition de la zone quand toutes les pattes sont perdues et les effets de mobilité restent à spécifier et tester. Aucun code Godot ni visuel validé à ce stade.
