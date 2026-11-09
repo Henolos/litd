@@ -160,3 +160,7 @@ Toute modification future doit préciser la date, l'espèce, la décision, le st
 **Candidats japonais à examiner sans les déclarer approuvés :** Oni, Tengu, Jorōgumo, Kappa, Yuki-onna. Kitsune reste une alternative possible tant que le choix exact des quatre autres n'est pas validé. L'objectif est de varier les silhouettes et les anatomies ; le choix des espèces doit être approuvé avant leur planche finale.
 
 **Ordre général inchangé :** cinq mythologies classiques × cinq espèces, puis cinq mythologies hybrides × deux espèces, puis cinq boss. Les neuf planches précédemment déclarées validées sont conservées, même si leur répartition reste à consolider.
+
+## Lot japonais — sélection des cinq espèces validée oralement (2026-11-09)
+
+L'utilisateur a confirmé la liste **Oni, Tengu, Jorōgumo, Kappa, Yuki-onna** comme les cinq monstres classiques japonais. **Validation de sélection uniquement** : elle ne valide ni les cinq planches ni leur implémentation. L'Oni V5 reste en cours de consolidation technique et artistique. Les quatre autres sont à traiter successivement dans ce même lot avant d'ouvrir la mythologie nordique. Le Draugr reste en attente et sa fiche est conservée. 
