@@ -39,7 +39,24 @@ func targetable_parts(enemy: Dictionary) -> Array:
         if bool(part.get("finisher_only", false)) and int(enemy.get("hp", 0)) > 0:
             continue
         result.append(part.duplicate(true))
-    return result
+    for group_value in anatomy.get("target_groups", []):
+        var group: Dictionary = group_value
+        var members: Array = group.get("members", [])
+        var present: Array = []
+        for member in members:
+            if not lost.has(str(member)):
+                present.append(str(member))
+        if not present.is_empty():
+            result.append({"id": str(group.get("id", "")), "name": str(group.get("name", "")), "members": present, "hit_modifier": 0, "trauma_resistance": 1.0})
+    # Hide physical members belonging to a grouped target from the selector.
+    var grouped: Array = []
+    for group_value in anatomy.get("target_groups", []):
+        grouped.append_array(group_value.get("members", []))
+    var visible: Array = []
+    for part in result:
+        if not grouped.has(str(part.get("id", ""))):
+            visible.append(part)
+    return visible
 
 func select_part(enemy: Dictionary, part_id: String) -> bool:
     ensure_state(enemy)
@@ -70,6 +87,9 @@ func selected_part(enemy: Dictionary) -> Dictionary:
     return part_definition(enemy, str(enemy.get("selected_anatomy_part", "")))
 
 func part_definition(enemy: Dictionary, part_id: String) -> Dictionary:
+    for group_value in _anatomy(enemy).get("target_groups", []):
+        if str(group_value.get("id", "")) == part_id:
+            return {"id": part_id, "name": str(group_value.get("name", "")), "members": group_value.get("members", []), "hit_modifier": 0, "trauma_resistance": 1.0}
     for value in _anatomy(enemy).get("parts", []):
         var part: Dictionary = value
         if str(part.get("id", "")) == part_id:
@@ -123,6 +143,9 @@ func register_targeted_hit(hero: Dictionary, enemy: Dictionary, action: String, 
         part = selected_part(enemy)
     if part.is_empty():
         return {"severed": false, "trauma_added": 0, "message": "Aucune partie anatomique accessible."}
+
+    if part.has("members"):
+        return {"severed": false, "trauma_added": 0, "requires_direction": true, "message": "Trajectoire requise pour une zone groupee."}
 
     var threshold := part_threshold(enemy, part)
     var chance := part_hit_chance(hero, part, enemy)
@@ -182,6 +205,21 @@ func register_targeted_hit(hero: Dictionary, enemy: Dictionary, action: String, 
         "part_name": str(part.get("name", "partie")),
         "state": str(enemy.get("anatomy_part_states", {}).get(str(part.get("id", "")), "intact"))
     }
+
+# Explicit resolver for a grouped UI target. Damage is applied once via the
+# existing injury engine; this initial version selects the first eligible limb.
+func register_directional_group_hit(hero: Dictionary, enemy: Dictionary, action: String, damage: int, group_id: String, attack_axis: String, side: String, technique_id: String = "") -> Dictionary:
+    var group := part_definition(enemy, group_id)
+    if not group.has("members"):
+        return {"severed": false, "trauma_added": 0, "message": "Groupe inconnu."}
+    var candidates := directional_group_candidates(enemy, group.get("members", []), attack_axis, side)
+    if candidates.is_empty():
+        return {"severed": false, "trauma_added": 0, "message": "Aucun membre accessible."}
+    var chosen_id := str(candidates[0])
+    var outcome := register_targeted_hit(hero, enemy, action, damage, chosen_id, technique_id)
+    outcome["resolved_member_id"] = chosen_id
+    outcome["group_id"] = group_id
+    return outcome
 
 func anatomy_status(enemy: Dictionary) -> Array:
     ensure_state(enemy)
