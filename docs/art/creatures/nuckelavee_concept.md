@@ -94,3 +94,39 @@ Une illustration dominante en trois quarts (environ la moitié de la surface), u
 ## Décision utilisateur — 2026-11-09
 
 **VALIDÉ EN CONCEPTION (pas de validation d'image) :** Nuckelavee presque entièrement écorché, musculature majoritairement exposée, avec quelques membranes sombres conservées aux articulations pour rendre les volumes et mouvements lisibles. Cette décision fixe le dosage d'exposition musculaire recommandé dans la V2. Les proportions exactes, variantes et planche finale restent à valider. Aucune illustration nouvelle générée.
+
+
+## Anatomie de référence V3 — dossier de conception achevé, validation visuelle en attente
+
+**Portée :** ce chapitre clôt la *rédaction anatomique* demandée. Il ne constitue ni une illustration ni une validation finale des proportions par l'utilisateur.
+
+### Squelette et continuité corporelle
+- **Une seule entité fusionnée**, quatre membres porteurs équins et deux membres préhenseurs humanoïdes. Le buste humanoïde prend naissance au garrot, en arrière de la base de l'encolure équine ; **aucun bassin ni membres inférieurs humains**.
+- **Deux têtes** distinctes, chacune avec son cou et son orientation ; l'encolure équine avance horizontalement, le cou humanoïde prolonge le torse verticalement. La séparation des deux cous doit rester visible en profil.
+- **Colonne commune suggérée** : l'axe osseux du cheval se prolonge en un faisceau vertébral ascendant vers le buste. Ce raccord est un choix de design fantastique, pas une anatomie biomécanique réelle.
+- Épaules et omoplates humanoïdes intégrées dans la musculature dorsale équine, sans ligne de jonction nette. La base du torse doit montrer des faisceaux musculaires qui s'évasent vers les flancs du cheval.
+
+### Articulations, locomotion et ciblage
+- Jambes équines : épaule/coude/carpes pour les antérieurs, hanche/grasset/jarret pour les postérieurs, puis boulets et sabots ; **ne pas représenter le genou équin comme un genou humain inversé**.
+- Bras humanoïdes : épaule, coude, poignet et cinq doigts par main, avec articulations fonctionnelles. Mains atteignant approximativement la hauteur des genoux des antérieurs équins à l'arrêt.
+- Les six membres sont **comptables** sur la vue trois quarts et la vue de profil ; en vue de combat, autoriser un léger décalage de pose pour éviter les superpositions.
+- Zones de ciblage conceptuelles pour LITD : tête équine, tête humanoïde, buste humanoïde, thorax équin, abdomen/flancs, bras gauche/droit, antérieur gauche/droit, postérieur gauche/droit. Ce sont des **zones candidates** ; leur intégration au système de combat et les conséquences d'amputation restent à spécifier et tester, sans les présenter comme implémentées.
+- En cas de blessure ou d'amputation, préserver l'ancrage anatomique et la silhouette résultante ; ne jamais faire réapparaître le membre intact par simple changement de statut.
+
+### Surface et textures : décision déjà approuvée
+- Musculature **presque entièrement exposée** sur cheval et buste ; fines membranes sombres sur articulations, zones de frottement et raccord de fusion.
+- Tendons gris ivoire et vaisseaux bleu-noir localisés ; aucune couche de peau uniforme, pas de viscères visibles.
+- Volumes lisibles de loin avant tout détail de fibres. Éviter les nervures qui pourraient être prises pour des membres supplémentaires.
+
+### Pose anatomique de référence
+- Vue trois quarts avant : sabot antérieur avancé, bassin équin stable, encolure projetée vers l'avant, buste humanoïde légèrement incliné, bras ouverts juste assez pour montrer coudes et mains.
+- Vue latérale neutre : quatre appuis au sol, raccord garrot/torse dégagé, deux têtes séparées visuellement.
+- Vue arrière optionnelle pour contrôler les omoplates et la continuité des masses dorsales.
+
+### Interdits de conception
+- Pas de cavalier détachable, de selle, de taille humaine ou de jambes humaines.
+- Pas d'ailes, de troisième tête, de membres supplémentaires ou de tentacules.
+- Pas de symétrie artificielle qui masque les articulations, ni de brume qui efface les sabots.
+- Pas de prothèse obligatoire : seulement si un événement de jeu la justifie.
+
+**État de validation :** anatomie documentée et enregistrée ; dosage musculaire approuvé par l'utilisateur ; proportions, zones de ciblage, représentation en planche et variantes non encore approuvées ou testées.
