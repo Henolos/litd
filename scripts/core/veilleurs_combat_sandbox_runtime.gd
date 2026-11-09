@@ -107,6 +107,18 @@ func preview_action(action_id: String, target_index: int, zone: String = "torso"
     if str(prepared["target_side"]) == "enemy" and effect not in ["expose", "reveal_observation", "trame_control"]:
         var hit := CANONICAL_ADAPTER.HIT_RESOLVER.resolve(hero, action, target, str(prepared["zone"]), round)
         preview["hit_chance"] = clampi(int(hit["accuracy"]), 5, 97)
+        # Breakdown mirrors the sandbox hit resolver; do not substitute the tactical PRE/MOB formula.
+        var base_accuracy := int(action.get("accuracy", 75))
+        var coordination := int(hero.get("coordination_bonus", 0))
+        var status_penalty := int(preload("res://scripts/core/combat/veilleurs_status_resolver.gd").accuracy_penalty(hero))
+        var posture_bonus := 6 if str(hero.get("posture", "none")) == "precision" else 0
+        preview["hit_breakdown"] = {
+            "base": base_accuracy,
+            "coordination": coordination,
+            "status": -status_penalty,
+            "posture": posture_bonus,
+            "raw": base_accuracy + coordination - status_penalty + posture_bonus
+        }
         if effect != "inflict_affliction":
             var damage := CANONICAL_ADAPTER.DAMAGE_RESOLVER.resolve(hero, action, target, str(prepared["zone"]))
             preview["damage_on_hit"] = int(damage["damage"])
