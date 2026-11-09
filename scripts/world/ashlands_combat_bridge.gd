@@ -215,7 +215,15 @@ func _restore_exploration_position(target_position: Vector3) -> void:
     if not parties.is_empty() and parties[0] is Node3D: (parties[0] as Node3D).global_position = target_position
 
 func serialize() -> Dictionary:
-    return {"active":active,"encounter_id":encounter_id,"encounter_type":encounter_type,"return_zone_id":return_zone_id,"return_position":[return_position.x,return_position.y,return_position.z],"has_return_position":has_return_position,"miniboss_data":miniboss_data,"pending_loot":pending_loot}
+    var snapshot := {"active":active,"encounter_id":encounter_id,"encounter_type":encounter_type,"return_zone_id":return_zone_id,"return_position":[return_position.x,return_position.y,return_position.z],"has_return_position":has_return_position,"miniboss_data":miniboss_data,"pending_loot":pending_loot}
+    # Capture the combat state for future validated resume support. Do not
+    # restore it automatically until turn order and UI rehydration are tested.
+    if active:
+        snapshot["combat_snapshot_version"] = 1
+        snapshot["combat_enemies"] = GameState.battle_enemies.duplicate(true)
+        snapshot["combat_rounds"] = GameState.battle_rounds
+        snapshot["combat_selected_hero"] = GameState.selected_hero
+    return snapshot
 
 func deserialize(data: Dictionary) -> void:
     active = bool(data.get("active",false)); _resolving = false; encounter_id = str(data.get("encounter_id","")); encounter_type = str(data.get("encounter_type","")); return_zone_id = str(data.get("return_zone_id",""))
