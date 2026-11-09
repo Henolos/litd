@@ -103,3 +103,11 @@ Toute modification future doit préciser la date, l'espèce, la décision, le st
 **Sélection proposée des 15 espèces (non encore confirmée individuellement) :** Minotaure, Gorgone, Cerbère, Harpie, Hydre, Cyclope, Chimère, Basilic, Sphinx, Oni, Manticore, Nuckelavee, Tengu, Qilin corrompu, Jorōgumo. Cette liste reprend les quinze premières espèces du catalogue actuel pour minimiser les changements et préserver les travaux en cours.
 
 **État :** quantité 15 et principe cinq apparences confirmés verbalement ; sélection des noms proposée, non validée ; aucune nouvelle planche générée ou approuvée.
+
+## Rectification explicite du périmètre — 2026-11-09 (remplace le lot de 15)
+
+**Dernière instruction utilisateur, prioritaire : 35 monstres avec cinq apparences chacun, dont 10 hybrides parmi les 35.** Les chiffres précédents de 15 et 20 sont obsolètes. Les cinq apparences restent normale, élite, mini-boss, Némésis et recrutée ; les deux dernières sont des statuts combinables, pas des modèles forcément indépendants. **Volume cible : 35 × 5 = 175 références d'apparence**, dont 10 espèces hybrides incluses dans les 35, et non ajoutées aux 35.
+
+**Point non tranché :** la phrase « et cinq monstres restants » pourrait signifier cinq monstres supplémentaires portant le total à 40, ou cinq monstres du catalogue de 40 réservés à une autre catégorie. Ne pas leur attribuer automatiquement cinq apparences ni modifier leur statut sans confirmation. Le catalogue historique de 40 est conservé à titre de référence jusqu'à clarification.
+
+**Statut :** périmètre 35 et quota de 10 hybrides enregistrés comme décision ; identité des 35, des 10 hybrides et rôle des cinq restants à définir. Aucune nouvelle illustration créée ou validée.
