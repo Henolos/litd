@@ -172,6 +172,7 @@ func _register(definition: Dictionary, team: String) -> void:
         "family": str(definition.get("family", "WATCHERS" if team == "watcher" else "")),
         "combat_role": str(definition.get("combat_role", "watcher" if team == "watcher" else "assault")),
         "threat_value": float(definition.get("threat_value", 1.0)),
+        "hero_kills": 0,
         "remanence_stage": str(definition.get("remanence_stage", "normal")),
         "stats": stats,
         "hp": 80 + vigor,
@@ -253,7 +254,11 @@ func _enemy_basic_attack(attacker_id: String, target_id: String) -> Dictionary:
         var guard_bonus := float(target.get("guard_bonus", 0))
         var effective_armor := armor + guard_bonus
         var damage := maxi(1, int(round(float(attacker.get("weapon_power", 20)) * (1.0 - effective_armor / (effective_armor + 100.0)))))
-        target["hp"] = maxi(0, int(target.get("hp", 1)) - damage)
+        var hp_before := int(target.get("hp", 1))
+        target["hp"] = maxi(0, hp_before - damage)
+        if hp_before > 0 and int(target["hp"]) == 0 and str(target.get("team", "")) == "watcher":
+            attacker["hero_kills"] = int(attacker.get("hero_kills", 0)) + 1
+            combatants[attacker_id] = attacker
         target["guard_bonus"] = 0
         result["damage"] = damage
         result["target_hp"] = int(target["hp"])
