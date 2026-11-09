@@ -1,0 +1,35 @@
+# Oni V5 rituel — anatomie et ciblage (proposition V1)
+
+**État :** direction d'assombrissement approuvée verbalement le 9 novembre 2026 ; anatomie détaillée ci-dessous proposée, non encore validée visuellement. Aucun visuel généré.
+
+## Invariants visuels
+- Conserver la silhouette et les éléments rituels de l'Oni V5 déjà retenu. Pas de refonte gratuite.
+- Matières : peau sombre et mate, ombres profondes, métal noirci et touches de bronze discret. Réduire les éclats dorés et effets lumineux ; garder les contours lisibles en éclairage de combat.
+- Anatomie bipède humanoïde massive : deux bras, deux jambes, un torse, une tête ; cornes visibles comme repères de silhouette. Toute variation du nombre de cornes ou des ornements doit être vérifiée avec le modèle V5 avant validation.
+
+## Carte anatomique de travail
+- **Tête** : crâne, visage, mâchoire, cornes ; distinguer cornes et yeux pour ne pas rendre le ciblage ambigu.
+- **Cou et épaules** : transition tête/torse, protection éventuelle par les ornements rituels.
+- **Torse** : thorax et abdomen ; séparer visuellement l'armure/les liens rituels des zones biologiques.
+- **Bras gauche et droit** : épaule, coude, avant-bras, main, doigts et prise d'arme éventuelle ; silhouettes distinctes en trois quarts.
+- **Jambes gauche et droite** : hanche, genou, cheville, pied ; appuis lourds, stabilité en pose neutre et d'attaque.
+- **Ornements** : cordes, sceaux et éléments rituels sont des accessoires, pas des membres ni des points vitaux supplémentaires.
+
+## Ciblage et blessures : proposition non implémentée
+Zones candidates : tête, torse, bras gauche, bras droit, jambe gauche, jambe droite. Sous-zones possibles : yeux, mâchoire, mains, genoux. Les cornes pourraient être destructibles sans être traitées automatiquement comme des membres amputables.
+- Blessure : altération localisée cohérente avec la zone frappée.
+- Amputation : supprimer le segment concerné et adapter silhouette, prise d'arme, posture et animation ; ne pas le restaurer lors d'un passage élite/mini-boss ou Némésis/recruté.
+- Conserver un squelette compatible entre niveaux de puissance, avec adaptations de proportions sans changer arbitrairement le nombre de membres.
+- Les conséquences gameplay, rigging et tests Godot restent à spécifier ; rien n'est annoncé comme implémenté.
+
+## Cinq références d'apparence
+1. **Normal** : Oni V5 rituel assombri, anatomie de référence.
+2. **Élite** : masse musculaire et équipement renforcés, mais silhouette et articulations inchangées.
+3. **Mini-boss** : proportions plus imposantes, parure rituelle plus lourde, zones de ciblage toujours lisibles.
+4. **Némésis** : blessures et amputations héritées des confrontations réellement vécues, sans séquelles inventées.
+5. **Recruté** : insigne discret d'allégeance ; conserve ses cicatrices, ses membres manquants et son identité inquiétante.
+
+**Important :** les trois premiers sont des niveaux ; les deux derniers sont des statuts superposables, non cinq transformations exclusives.
+
+## Critères avant planche
+Vues face, profil et trois quarts ; lecture claire des six zones principales ; comparaison à l'Oni V5 de référence ; contraste réduit sans perte de lisibilité ; validation utilisateur des proportions, de la silhouette et des ornements. Ne pas générer d'image sans demande explicite.
