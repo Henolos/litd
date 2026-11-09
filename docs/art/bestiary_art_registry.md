@@ -141,3 +141,14 @@ Toute modification future doit préciser la date, l'espèce, la décision, le st
 **Répartition décidée :** choisir **5 traditions mythologiques** pour les **25 monstres classiques**, à raison de **5 monstres par tradition** ; réserver les **5 autres traditions** aux **10 hybrides**, à raison de **2 hybrides par tradition**. Les **5 boss** restent une troisième phase, avec deux états d'apparence maximum suivant leur histoire de combat. Les dix traditions évoquées précédemment sont un **classement provisoire**, pas une taxonomie historique définitive ; l'identité des cinq traditions de chaque lot n'est pas encore validée.
 
 **Ordre inchangé :** terminer les 25 monstres classiques avant d'entamer les hybrides, puis les boss. **Attention :** certaines créatures et traditions se chevauchent (par exemple grecque/romaine, celtique/écossaise), et la répartition du catalogue de 40 espèces déjà proposé devra être revue sans déplacer arbitrairement les neuf planches déclarées validées. Aucun nouveau visuel produit.
+
+
+## Attribution des traditions et reprise du lot classique — 2026-11-09
+
+**Cinq traditions classiques approuvées verbalement par l'utilisateur :** grecque, japonaise, nordique, égyptienne, indienne/hindoue, avec cinq créatures classiques par tradition (25 au total).
+
+**Cinq traditions réservées aux hybrides selon la répartition discutée :** celtique/irlandaise, écossaise/Orcades, chinoise, slave, traditions autochtones nord-américaines, avec deux hybrides par tradition (10 au total). Leur liste de créatures précise n'est pas validée ; l'emploi de traditions autochtones exige une vérification culturelle spécifique. **Nuckelavee**, d'origine orcadienne, conserve sa fiche anatomique V3 mais n'est pas compté parmi les 25 classiques dans cette organisation. Aucune œuvre ni fiche ne doit être supprimée.
+
+**Reprise autorisée :** continuer le chantier des 25 classiques, sans commencer les hybrides ni les boss. Proposition de travail pour les cinq créatures grecques, **non validée comme liste définitive** : Minotaure, Gorgone, Cerbère, Hydre, Cyclope. Les quatre premières et le Cyclope disposent de planches déclarées validées ; les autres planches grecques existantes (Chimère, Sphinx) restent conservées et leur classement exact reste à décider. Éviter de présenter 9/25 comme un nombre de classiques validés avant réconciliation des espèces avec les quotas mythologiques.
+
+**Action suivante proposée :** établir le tableau des 25 espèces candidates avec statut des planches et contradictions, puis rédiger la fiche du premier classique sans planche finale, en privilégiant l'Oni V5 dont l'assombrissement reste à réaliser. Aucune image générée ni test de jeu effectué.
