@@ -14,7 +14,7 @@ func decide(runtime: Variant, enemy_id: String) -> Dictionary:
         return {"action":"none", "reason":"dead"}
     var role := str(enemy.get("combat_role", "assault"))
     var hp_ratio := _hp_ratio(enemy)
-    if hp_ratio <= 0.18 and not STOIC_ROLES.has(role) and str(enemy.get("remanence_stage", "normal")) != "nemesis":
+    if hp_ratio <= 0.18 and int(enemy.get("hero_kills", 0)) > 0 and not STOIC_ROLES.has(role) and str(enemy.get("remanence_stage", "normal")) != "nemesis":
         var flee_cell: Vector2i = runtime.grid.position_of(enemy_id)
         flee_cell = _best_escape_cell(runtime, enemy_id)
         if flee_cell.x >= 0:
