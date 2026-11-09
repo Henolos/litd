@@ -1,17 +1,19 @@
-extends SceneTree
+extends Node
 
 const POSITIONS = preload("res://scripts/core/combat_position_runtime.gd")
 const BODY = preload("res://scripts/core/veilleurs_body_component.gd")
 const TARGET = preload("res://scripts/core/combat/veilleurs_target_resolver.gd")
 const STATUS = preload("res://scripts/core/combat/veilleurs_status_resolver.gd")
 
-func _initialize() -> void:
+var failures := 0
+
+func _ready() -> void:
     call_deferred("_run")
 
 func _assert(value: bool, message: String) -> void:
     if not value:
         push_error("COMBAT_CONTRACT_FAIL: " + message)
-        quit(1)
+        failures += 1
 
 func _run() -> void:
     var enemies: Array = [
@@ -47,4 +49,4 @@ func _run() -> void:
     _assert(STATUS.action_block(silenced, {"effect":"trame_bolt"}) == "silenced", "silence blocks trame")
     _assert(STATUS.action_block(silenced, {"effect":"attack"}) == "", "silence does not block basic attack")
     print("COMBAT_CONTRACT_OK")
-    quit(0)
+    get_tree().quit(1 if failures > 0 else 0)
