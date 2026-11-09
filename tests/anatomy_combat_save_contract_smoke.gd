@@ -30,8 +30,8 @@ func _initialize() -> void:
     var valid := decoded is Dictionary
     if valid:
         var payload: Dictionary = decoded
-        valid = payload.get("battle_rounds", -1) == 4
-        var enemies: Array = payload.get("battle_enemies", [])
+        valid = payload.get("combat_snapshot_version", -1) == 1 and payload.get("combat_rounds", -1) == 4
+        var enemies: Array = payload.get("combat_enemies", [])
         valid = valid and enemies.size() == 2
         if enemies.size() == 2:
             valid = valid and enemies[0].get("dismembered_parts", []).has("left_head")
