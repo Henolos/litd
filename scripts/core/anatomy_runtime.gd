@@ -233,7 +233,7 @@ func register_directional_group_hit(hero: Dictionary, enemy: Dictionary, action:
         return {"severed": false, "trauma_added": 0, "message": "Aucun membre accessible."}
     var results: Array = []
     var total_damage := maxi(0, damage)
-    var base_share := total_damage / selected.size()
+    var base_share := floori(float(total_damage) / float(selected.size()))
     var remainder := total_damage % selected.size()
     for i in range(selected.size()):
         var share := base_share + (1 if i < remainder else 0)
@@ -319,6 +319,9 @@ func _anatomy(enemy: Dictionary) -> Dictionary:
     return data.get("generic_profiles", {}).get(profile_id, data.get("generic_profiles", {}).get("humanoid", {}))
 
 func _profile_id(enemy: Dictionary) -> String:
+    var explicit_profile := str(enemy.get("dismemberment_profile", ""))
+    if explicit_profile != "" and data.get("generic_profiles", {}).has(explicit_profile):
+        return explicit_profile
     if _is_boss(enemy) or bool(enemy.get("is_miniboss", false)):
         return "boss"
     var enemy_id := int(enemy.get("id", -1))
