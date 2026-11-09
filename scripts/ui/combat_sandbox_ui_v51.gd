@@ -2,6 +2,64 @@ extends "res://scripts/ui/combat_sandbox_ui_v50.gd"
 
 # Combat Sandbox v51 — préparation non destructive + focus déterministe.
 
+
+const ANATOMY_PROFILE_V51 := preload("res://scripts/ui/anatomy_target_profile.gd")
+
+# Display-only selector. Attack execution remains behind the confirm button.
+func _render_sandbox_zones() -> void:
+    var enemies: Array = _sandbox.get("enemies")
+    if _sandbox_selected_target < 0 or _sandbox_selected_target >= enemies.size():
+        super._render_sandbox_zones()
+        return
+    var enemy: Dictionary = enemies[_sandbox_selected_target]
+    if not bool(ANATOMY_PROFILE_V51.profile_for_enemy(enemy).get("ok", false)):
+        super._render_sandbox_zones()
+        return
+    var action := _sandbox_selected_action_data()
+    var allowed: Array = []
+    var explicit_zones: Variant = action.get("allowed_body_zones", action.get("target_zones", []))
+    if explicit_zones is Array:
+        allowed = explicit_zones
+    var zones: Array[Dictionary] = ANATOMY_PROFILE_V51.display_zones(enemy, allowed)
+    var panel := PanelContainer.new()
+    panel.name = "SandboxAnatomySelectorV51"
+    panel.position = Vector2(470, 302)
+    panel.size = Vector2(420, 214)
+    panel.add_theme_stylebox_override("panel", panel_style(Color(0.025, 0.028, 0.038, 0.95)))
+    content.add_child(panel)
+    var canvas := Control.new()
+    canvas.custom_minimum_size = Vector2(416, 208)
+    panel.add_child(canvas)
+    var title_label := make_label("CIBLAGE ANATOMIQUE · PROVISOIRE", 11, CANON_GOLD)
+    title_label.position = Vector2(8, 4)
+    title_label.size = Vector2(400, 22)
+    canvas.add_child(title_label)
+    for segment in [
+        Rect2(190, 39, 36, 35), Rect2(174, 77, 68, 60),
+        Rect2(144, 79, 24, 66), Rect2(248, 79, 24, 66),
+        Rect2(180, 142, 25, 56), Rect2(211, 142, 25, 56)
+    ]:
+        var shape := ColorRect.new()
+        shape.color = Color(0.23, 0.27, 0.32, 0.68)
+        shape.position = segment.position
+        shape.size = segment.size
+        shape.mouse_filter = Control.MOUSE_FILTER_IGNORE
+        canvas.add_child(shape)
+    for row: Dictionary in zones:
+        var zone_id := str(row.get("id", ""))
+        var anchor: Vector2 = row.get("anchor", Vector2(0.5, 0.5))
+        var selected := zone_id == _sandbox_selected_zone
+        var label := ("◆ " if selected else "") + str(row.get("label", zone_id))
+        if bool(row.get("injured", false)):
+            label += " !"
+        var button := make_button(label, func(z = zone_id): _sandbox_select_zone(str(z)), Vector2(124, 37))
+        button.name = "AnatomyZone_" + zone_id
+        button.position = Vector2(clampf(anchor.x * 416.0 - 62.0, 2.0, 290.0), clampf(anchor.y * 190.0 + 12.0, 29.0, 166.0))
+        button.disabled = not bool(row.get("available", false))
+        button.tooltip_text = str(row.get("reason", "")) if button.disabled else "Sélectionner la zone · confirmer ensuite"
+        button.focus_mode = Control.FOCUS_ALL
+        canvas.add_child(button)
+
 var _sandbox_focus_return_name_v51 := ""
 var _sandbox_restore_focus_v51 := false
 var _sandbox_focus_confirm_v51 := false
