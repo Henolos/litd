@@ -152,3 +152,11 @@ Toute modification future doit préciser la date, l'espèce, la décision, le st
 **Reprise autorisée :** continuer le chantier des 25 classiques, sans commencer les hybrides ni les boss. Proposition de travail pour les cinq créatures grecques, **non validée comme liste définitive** : Minotaure, Gorgone, Cerbère, Hydre, Cyclope. Les quatre premières et le Cyclope disposent de planches déclarées validées ; les autres planches grecques existantes (Chimère, Sphinx) restent conservées et leur classement exact reste à décider. Éviter de présenter 9/25 comme un nombre de classiques validés avant réconciliation des espèces avec les quotas mythologiques.
 
 **Action suivante proposée :** établir le tableau des 25 espèces candidates avec statut des planches et contradictions, puis rédiger la fiche du premier classique sans planche finale, en privilégiant l'Oni V5 dont l'assombrissement reste à réaliser. Aucune image générée ni test de jeu effectué.
+
+## Méthode de production par mythologie — décision utilisateur du 2026-11-09
+
+**Nouvelle règle prioritaire :** traiter intégralement les cinq monstres classiques d'une même mythologie avant de passer à une autre. Le lot actif est **japonais**, commencé avec l'**Oni V5**. Après l'Oni, traiter les **quatre autres créatures japonaises** ; **ne pas passer au Draugr nordique** avant clôture et validation du lot japonais. La fiche Draugr déjà rédigée est conservée comme travail anticipé, **mise en attente**, sans validation supplémentaire.
+
+**Candidats japonais à examiner sans les déclarer approuvés :** Oni, Tengu, Jorōgumo, Kappa, Yuki-onna. Kitsune reste une alternative possible tant que le choix exact des quatre autres n'est pas validé. L'objectif est de varier les silhouettes et les anatomies ; le choix des espèces doit être approuvé avant leur planche finale.
+
+**Ordre général inchangé :** cinq mythologies classiques × cinq espèces, puis cinq mythologies hybrides × deux espèces, puis cinq boss. Les neuf planches précédemment déclarées validées sont conservées, même si leur répartition reste à consolider.
