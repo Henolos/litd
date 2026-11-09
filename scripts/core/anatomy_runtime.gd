@@ -206,20 +206,48 @@ func register_targeted_hit(hero: Dictionary, enemy: Dictionary, action: String, 
         "state": str(enemy.get("anatomy_part_states", {}).get(str(part.get("id", "")), "intact"))
     }
 
-# Explicit resolver for a grouped UI target. Damage is applied once via the
-# existing injury engine; this initial version selects the first eligible limb.
-func register_directional_group_hit(hero: Dictionary, enemy: Dictionary, action: String, damage: int, group_id: String, attack_axis: String, side: String, technique_id: String = "") -> Dictionary:
+# Grouped target resolution uses the existing trauma writer for every struck limb.
+# A lateral sweep may reach one present limb on each side; a vertical strike
+# reaches one present limb on the specified side. Selection is deterministic
+# by attack_index, avoiding repeated damage to the first limb in the list.
+# This function does not replace combat hit resolution or collision detection.
+func register_directional_group_hit(hero: Dictionary, enemy: Dictionary, action: String, damage: int, group_id: String, attack_axis: String, side: String, technique_id: String = "", attack_index: int = 0) -> Dictionary:
     var group := part_definition(enemy, group_id)
     if not group.has("members"):
         return {"severed": false, "trauma_added": 0, "message": "Groupe inconnu."}
     var candidates := directional_group_candidates(enemy, group.get("members", []), attack_axis, side)
     if candidates.is_empty():
         return {"severed": false, "trauma_added": 0, "message": "Aucun membre accessible."}
-    var chosen_id := str(candidates[0])
-    var outcome := register_targeted_hit(hero, enemy, action, damage, chosen_id, technique_id)
-    outcome["resolved_member_id"] = chosen_id
-    outcome["group_id"] = group_id
-    return outcome
+    var selected: Array = []
+    if attack_axis == "lateral":
+        for limb_side in ["left", "right"]:
+            var on_side: Array = []
+            for candidate in candidates:
+                if str(candidate).begins_with(limb_side + "_"):
+                    on_side.append(candidate)
+            if not on_side.is_empty():
+                selected.append(on_side[posmod(attack_index, on_side.size())])
+    else:
+        selected.append(candidates[posmod(attack_index, candidates.size())])
+    if selected.is_empty():
+        return {"severed": false, "trauma_added": 0, "message": "Aucun membre accessible."}
+    var results: Array = []
+    var total_damage := maxi(0, damage)
+    var base_share := total_damage / selected.size()
+    var remainder := total_damage % selected.size()
+    for i in range(selected.size()):
+        var share := base_share + (1 if i < remainder else 0)
+        var limb_id := str(selected[i])
+        var outcome := register_targeted_hit(hero, enemy, action, share, limb_id, technique_id)
+        outcome["resolved_member_id"] = limb_id
+        results.append(outcome)
+    return {"group_id": group_id, "resolved_member_ids": selected, "hits": results, "damage_allocated": total_damage, "severed": _any_group_severed(results)}
+
+func _any_group_severed(results: Array) -> bool:
+    for outcome in results:
+        if bool(outcome.get("severed", false)):
+            return true
+    return false
 
 func anatomy_status(enemy: Dictionary) -> Array:
     ensure_state(enemy)
