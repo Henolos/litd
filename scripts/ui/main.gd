@@ -162,7 +162,9 @@ func show_title() -> void:
         GameState.request_screen("sanctuary"), Vector2(440,58)))
     box.add_child(make_button("CONTINUER", func():
         if SaveManager.load_game():
-            GameState.request_screen("sanctuary"), Vector2(440,58)))
+            battle_locked = false
+            selected_enemy = 0
+            GameState.request_screen("combat" if AshlandsCombatBridge.active else "sanctuary"), Vector2(440,58)))
     if OS.is_debug_build():
         box.add_child(make_button("SALLE DE VALIDATION", func(): AshlandsSceneRouter.start_qa_validation_room(), Vector2(440,58)))
     box.add_child(make_button("QUITTER", func(): get_tree().quit(), Vector2(440,58)))
