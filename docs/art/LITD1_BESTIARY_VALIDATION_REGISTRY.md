@@ -13,9 +13,9 @@ Référence approuvée : **Hydre, fiche n°13**, bordures fines en **bronze viei
 | 05 | Gorgone | Oui | Non | Fiche n°05 lisible sur le JPEG reçu ; empreinte consignée ; image non archivée |
 | 06 | Cerbère | Oui | Non | Fiche n°06 lisible sur le JPEG reçu ; empreinte consignée ; image non archivée |
 | 07 | Harpie | Oui | Non | Fiche n°07 lisible sur le JPEG reçu ; empreinte consignée ; image non archivée |
-| À retrouver | Cyclope V3 | Oui | Non | Numéro historique à retrouver |
-| À retrouver | Chimère | Oui | Non | Numéro historique à retrouver |
-| À retrouver | Basilic | Oui | Non | Numéro historique à retrouver |
+| 09 | Cyclope V3 | Oui | Non | Numéro n°09 vérifié sur l'image reçue ; image non archivée |
+| 10 | Chimère | Oui | Non | Numéro n°10 vérifié sur l'image reçue ; image non archivée |
+| 11 | Basilic | Oui | Non | Numéro n°11 vérifié sur l'image reçue ; image non archivée |
 | 13 | Hydre | Oui | Non | Référence graphique ; fichier JPEG fourni en conversation, 1536×1024, SHA-256 `23d7e90aca6058a4394135d2eda92ac5d53e0cb3522244e3a583d2185dcc12f6` ; image non encore archivée dans GitHub |
 | 14 | Sphinx | Oui | Non | Validation explicite |
 | 15 | Oni V5 | Oui | Non | Validation explicite |
@@ -60,3 +60,9 @@ Quatre images originales JPEG de **1536 × 1024 px** reçues en conversation, vi
 - **n°05 Gorgone** : `77AE289B-32A8-4073-998D-34393EAABD26(1).jpeg` ; SHA-256 `825f35da6bc80f06caa683803d557a653028d139ef102205dcd836556fc0ea82`.
 - **n°06 Cerbère** : `51A31212-CCFB-4566-9709-373A0E4DC416(1).jpeg` ; SHA-256 `f10371084abdc7125824c322a559e8ba560bd468b46ed42edbc5a72851eaf8f6`.
 - **n°07 Harpie** : `CD69A2E9-6213-46C3-B129-0EC87A51E895(1).jpeg` ; SHA-256 `6f22b47843636b63457408c3b92a5b5b6feb7e609f1bd176cac1a3461913df04`.
+
+## Pièces reçues — fiches n°09 à n°11 (10 novembre 2026)
+Images JPEG originales 1536 × 1024 px, non retouchées. Numéros et noms lus directement sur les planches. Empreintes SHA-256 calculées sur les fichiers reçus ; aucune image binaire archivée dans ce commit.
+- **n°09 Cyclope V3** : `7482D63F-DF3A-4D46-8265-D8AC2B6A3A17(2).jpeg` ; SHA-256 `831a4008db014a815c65f19c06fcf227f56340d362d30209bad7d1a0f27610fe`.
+- **n°10 Chimère** : `9253391F-A4A8-424B-B67E-DD6E9D950E49(3).jpeg` ; SHA-256 `f86f6c59525ae93e42afd9d75d84cb7da6eba6451da356252e5827b49e47cd06`.
+- **n°11 Basilic** : `3A6736BC-BF31-4715-955C-3EE09BFE5C6E.jpeg` ; SHA-256 `b9ce75d1a597385868195cc99455dac6f63dbbcc84c55809996e8cc5972c221e`.
