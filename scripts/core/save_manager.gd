@@ -55,6 +55,9 @@ func load_qa_snapshot() -> bool:
     payload = _migrate(payload)
     if payload.is_empty():
         return false
+    if not _combat_payload_is_safe(payload):
+        last_status = "Instantané de combat incomplet : chargement refusé pour protéger la partie."
+        return false
     _apply_payload(payload)
     return true
 
@@ -82,7 +85,7 @@ func load_game(slot: int = active_slot) -> bool:
     # An incompatible primary must not prevent recovery from a valid backup.
     for candidate: String in candidates:
         var candidate_payload: Dictionary = _migrate(_read_payload(candidate))
-        if candidate_payload.is_empty():
+        if candidate_payload.is_empty() or not _combat_payload_is_safe(candidate_payload):
             continue
         payload = candidate_payload
         recovered = candidate != _path(slot)
@@ -180,6 +183,26 @@ func _build_payload() -> Dictionary:
         "living_exploration": ExplorationDirector.serialize(),
         "progression_scope": ContentScopeDirector.serialize()
     }
+
+func _combat_payload_is_safe(payload: Dictionary) -> bool:
+    var data: Dictionary = payload.get("ashlands_combat", {})
+    if not bool(data.get("active", false)):
+        return true
+    if str(payload.get("metadata", {}).get("screen", "")) != "combat":
+        return false
+    if int(data.get("combat_snapshot_version", -1)) != 1:
+        return false
+    var enemies: Variant = data.get("combat_enemies", null)
+    if not (enemies is Array) or enemies.is_empty():
+        return false
+    if int(data.get("combat_rounds", -1)) < 0 or int(data.get("combat_selected_hero", -1)) < 0:
+        return false
+    if str(data.get("encounter_id", "")) == "":
+        return false
+    for enemy in enemies:
+        if not (enemy is Dictionary) or not enemy.has("hp") or not enemy.has("max_hp"):
+            return false
+    return true
 
 func _apply_payload(payload: Dictionary) -> void:
     GameState.gold = int(payload.get("gold", 120)); GameState.essence = int(payload.get("essence", 18))
