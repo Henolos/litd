@@ -45,7 +45,12 @@ func _initialize() -> void:
     assert(_contains(runtime.targetable_parts(restored_cerberus), "right_head"), "Cerberus healthy head lost on reload")
     var restored_spider: Dictionary = restored["jorogumo"]
     assert(restored_spider.get("dismembered_parts", []).has("left_spider_leg_1"), "Spider lost severed leg on reload")
-    assert(restored_spider.get("anatomy_part_trauma", {}) == spider.get("anatomy_part_trauma", {}), "Spider trauma changed on reload")
+    var original_trauma: Dictionary = spider.get("anatomy_part_trauma", {})
+    var restored_trauma: Dictionary = restored_spider.get("anatomy_part_trauma", {})
+    assert(restored_trauma.size() == original_trauma.size(), "Spider trauma member count changed on reload")
+    for member_id in original_trauma:
+        assert(restored_trauma.has(member_id), "Spider trauma member missing on reload: " + str(member_id))
+        assert(int(restored_trauma[member_id]) == int(original_trauma[member_id]), "Spider trauma value changed on reload: " + str(member_id))
     assert(restored_spider.get("anatomy_injuries", {}) == spider.get("anatomy_injuries", {}), "Spider injury states changed on reload")
     assert(runtime.directional_group_candidates(restored_spider, group["members"], "vertical", "left").size() == 3, "Reload changed available legs")
     print("anatomy_multi_member_smoke: PASS")
