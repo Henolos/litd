@@ -20,13 +20,13 @@ Référence approuvée : **Hydre, fiche n°13**, bordures fines en **bronze viei
 | 14 | Sphinx | Oui | Non | Validation explicite |
 | 15 | Oni V5 | Oui | Non | Validation explicite |
 | 16 | Karasu-tengu | Oui | Non | Validation explicite |
-| 17 | Jorōgumo | Oui, sous réserve | Non | Bordures bronze demandées ; rendu corrigé non vérifié |
+| 17 | Jorōgumo | Oui, version harmonisée explicitement approuvée | Non | JPEG harmonisé reçu et identifié ; image non archivée dans GitHub |
 | 18 | Kappa | Oui | Non | Validation explicite |
 | 19 | Yuki-onna | Oui | Non | Validation explicite |
 | 20 | Nue | Oui | Non | Validation explicite |
 | 21 | Draugr | Oui | Non | Validation explicite |
 | 22 | Troll nordique | Oui | Non | Validation explicite |
-| 23 | Valkyrie spectrale | Oui | Non | Image originale non rattachée à un fichier GitHub vérifié ; générations ultérieures non automatiquement validées |
+| 23 | Valkyrie spectrale | Oui, version harmonisée explicitement approuvée | Non | JPEG harmonisé reçu et identifié ; image non archivée dans GitHub |
 | 24 | Loup décharné | Oui | Non | Renommé depuis la proposition Wendigo ; ne pas compter Wendigo séparément |
 | 25 | Golem de pierre runique | Oui | Non | Validation explicite ; nom entendu « Golem de Pierre Ronick » |
 | À identifier | Dernière planche approuvée | À clarifier | Non | Identité de l'image non confirmée, ne pas compter comme espèce supplémentaire |
@@ -36,7 +36,7 @@ Référence approuvée : **Hydre, fiche n°13**, bordures fines en **bronze viei
 ## Actions de consolidation
 1. Retrouver chaque image exacte et ses variantes, sans en inventer ni en régénérer.
 2. Pour chaque validation, consigner chemin de fichier, hash, date et source de la décision.
-3. Vérifier la Jorōgumo corrigée et la Valkyrie originale.
+3. Conserver les versions harmonisées de Jorōgumo et Valkyrie explicitement approuvées ; retrouver et archiver les fichiers image dans le dépôt.
 4. Réconcilier les numéros 1–12 et la dernière planche sans nom.
 5. Faire approuver le registre, puis fusionner par les protections GitHub et la merge queue.
 
@@ -48,3 +48,8 @@ Ce document est un **registre textuel de suivi** et ne contient **aucun fichier 
 - SHA-256 : `23d7e90aca6058a4394135d2eda92ac5d53e0cb3522244e3a583d2185dcc12f6`.
 - Identité visuelle contrôlée : fiche n°13 HYDRE, encadrements bronze vieilli.
 - **Important : ce commit enregistre la preuve et l'empreinte, pas les octets de l'image.** L'archivage du fichier image dans le dépôt reste à réaliser.
+
+## Pièces reçues et versions harmonisées approuvées — 10 novembre 2026
+- **Jorōgumo n°17** : version harmonisée approuvée explicitement par l'utilisateur ; fichier de travail `LITD1_Jorogumo_17_harmonisee.jpg`, SHA-256 `d222d618fe9ac3de1089ffef28978bb170bde654dfb58e00eb6bd3d33c25c1cc`.
+- **Valkyrie spectrale n°23** : version harmonisée approuvée explicitement par l'utilisateur ; fichier de travail `LITD1_Valkyrie_23_harmonisee.jpg`, SHA-256 `30a1f79497759885753ae0de383d0fb1c5086bf1646653131531defaa81aaa37`.
+- Les **deux originaux restent distincts** des versions harmonisées ; aucune image binaire n'a été transférée dans GitHub par ce commit.
