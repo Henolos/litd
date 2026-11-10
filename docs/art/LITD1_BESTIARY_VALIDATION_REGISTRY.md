@@ -78,3 +78,12 @@ Trois JPEG originaux de 1536 × 1024 pixels reçus et identifiés visuellement. 
 - **n°18 Kappa** : `A430C1F3-3ED5-42D7-BFF6-DDD1658E7767.jpeg` ; SHA-256 `80e742dbdafa813f63b0003e1226c02042eaeeddb7af8216349b83041ef82148`.
 - **n°19 Yuki-onna** : `12AD1B20-3F88-434F-A4C4-4578F26BCA62.jpeg` ; SHA-256 `9f20397e1b57e76ef4a73a739babb1f1546cac6b6e8b15ed1f8d52c0b0c295fa`.
 - **n°20 Nue** : `919F9801-B827-4677-84BB-25D948CDFC1B.jpeg` ; SHA-256 `580956a656f2e41538fe7db7f565cd1e76a1a8b07f21388c332479d519c60818`.
+
+## Pièces reçues — fiches n°21, 22, 24 et 25 (10 novembre 2026)
+Quatre JPEG originaux de 1536 × 1024 pixels reçus ; empreintes SHA-256 calculées sur les fichiers reçus. Référencement documentaire seulement : les binaires ne sont pas encore archivés dans GitHub. Ne pas confondre les mentions de validation imprimées dans les images avec une validation finale de l'utilisateur.
+- **n°21 Draugr** : `24C6B942-AD7A-4BC2-8D99-A4C294B2270C.jpeg` ; SHA-256 `fb0acb6a915ec134ee32d583993bf3a97181bf9a4f68baa1aee798a191f0a949` ; case « Je valide la planche » visible, confirmation non démontrée.
+- **n°22 Troll nordique** : `56E54133-57CA-41CB-B514-0D740FE55DD2.jpeg` ; SHA-256 `8ce2c11e61f917bce5fb62af2fd2bf762383f60329c3f6ae854ff959c781ad9c` ; pistes artistiques validées dans l'image.
+- **n°24 Wendigo** (variante à tête de loup cadavérique, précédemment appelée « Loup décharné ») : `74191949-B149-4A50-87F7-F15716B71813.jpeg` ; SHA-256 `e24caea7562a701cf61099416f62c62c8f4edb5d1f17df552bffd03e01e1110c` ; variante validée dans l'image.
+- **n°25 Golem de pierre runique** : `6D5E1043-25C6-4533-A8D6-E02042AD2EB6.jpeg` ; SHA-256 `1cec2ce9c55ef7abf20fef8ed83ecaf186957c143fd8fd111a8e3930f331d675` ; image mentionne explicitement « en attente de validation ».
+
+**Réception :** 20/20 planches attendues identifiées dans la conversation (selon le suivi antérieur de 16/20 et ces quatre pièces). **Validation artistique globale :** non acquise ; **archivage des binaires :** non réalisé.
