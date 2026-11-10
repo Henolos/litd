@@ -46,6 +46,17 @@ func _initialize() -> void:
     if decoded is Dictionary:
         var saved_enemies: Array = decoded.get("combat_enemies", [])
         valid = valid and saved_enemies.size() == 2 and saved_enemies[0].get("dismembered_parts", []).has("left_head")
+    # Rehydrate the saved state and check that the wounded limbs survive.
+    if decoded is Dictionary:
+        GameState.battle_enemies = []
+        GameState.battle_rounds = 0
+        GameState.selected_hero = 0
+        bridge.deserialize(decoded)
+        valid = valid and GameState.battle_rounds == 4 and GameState.selected_hero == 1
+        valid = valid and GameState.battle_enemies.size() == 2
+        if GameState.battle_enemies.size() == 2:
+            valid = valid and GameState.battle_enemies[0].get("dismembered_parts", []).has("left_head")
+            valid = valid and GameState.battle_enemies[1].get("anatomy_part_trauma", {}).get("right_spider_leg_2", -1) == 33
     bridge.active = original_active
     bridge.encounter_id = original_id
     bridge.encounter_type = original_type
