@@ -216,8 +216,7 @@ func _restore_exploration_position(target_position: Vector3) -> void:
 
 func serialize() -> Dictionary:
     var snapshot := {"active":active,"encounter_id":encounter_id,"encounter_type":encounter_type,"return_zone_id":return_zone_id,"return_position":[return_position.x,return_position.y,return_position.z],"has_return_position":has_return_position,"miniboss_data":miniboss_data,"pending_loot":pending_loot}
-    # Capture the combat state for future validated resume support. Do not
-    # restore it automatically until turn order and UI rehydration are tested.
+    # Capture the active turn and anatomy as a detached snapshot.
     if active:
         snapshot["combat_snapshot_version"] = 1
         snapshot["combat_enemies"] = GameState.battle_enemies.duplicate(true)
@@ -229,3 +228,7 @@ func deserialize(data: Dictionary) -> void:
     active = bool(data.get("active",false)); _resolving = false; encounter_id = str(data.get("encounter_id","")); encounter_type = str(data.get("encounter_type","")); return_zone_id = str(data.get("return_zone_id",""))
     var position_data: Array = data.get("return_position",[0,0,0]); if position_data.size() >= 3: return_position = Vector3(float(position_data[0]),float(position_data[1]),float(position_data[2]))
     has_return_position = bool(data.get("has_return_position",false)); miniboss_data = data.get("miniboss_data",{}).duplicate(true); pending_loot = data.get("pending_loot",{}).duplicate(true)
+    if active and int(data.get("combat_snapshot_version", -1)) == 1:
+        GameState.battle_enemies = data.get("combat_enemies", []).duplicate(true)
+        GameState.battle_rounds = int(data.get("combat_rounds", 0))
+        GameState.selected_hero = int(data.get("combat_selected_hero", 0))
