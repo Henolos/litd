@@ -87,3 +87,8 @@ Quatre JPEG originaux de 1536 × 1024 pixels reçus ; empreintes SHA-256 calcul�
 - **n°25 Golem de pierre runique** : `6D5E1043-25C6-4533-A8D6-E02042AD2EB6.jpeg` ; SHA-256 `1cec2ce9c55ef7abf20fef8ed83ecaf186957c143fd8fd111a8e3930f331d675` ; image mentionne explicitement « en attente de validation ».
 
 **Réception :** 20/20 planches attendues identifiées dans la conversation (selon le suivi antérieur de 16/20 et ces quatre pièces). **Validation artistique globale :** non acquise ; **archivage des binaires :** non réalisé.
+
+## Mise à jour des décisions et nouvelle pièce — 10 novembre 2026
+- **Golem de pierre runique** : validation artistique explicitement confirmée par l'utilisateur dans le message accompagnant le Kitsune ; la mention antérieure « en attente » sur l'image est désormais dépassée. Son original JPEG reste à archiver.
+- **Kitsune** : nouvelle planche reçue, nom affiché « KITSUNE », numéro **n°21** imprimé ; `33917F0E-170A-4B9B-869D-C7810F0C3873.jpeg`, 1536 × 1024 px, SHA-256 `d6e69dbaaedced4449e51abdd2bf5e4c455fb28fbbbd7507e18b1b21d9ab6f25`. **Conflit de numéro** avec Draugr n°21 : ne pas renuméroter arbitrairement, attribution canonique à décider. Image reçue, validation artistique du Kitsune non explicitement confirmée ; case cochée imprimée non probante. Original non archivé dans le dépôt.
+- **Inventaire** : 21 planches distinctes identifiées après ajout du Kitsune, sous réserve du rapprochement complet des entrées et des originaux ; le précédent indicateur 20/20 ne représente plus le périmètre actuel.
