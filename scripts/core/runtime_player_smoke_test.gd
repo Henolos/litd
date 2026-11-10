@@ -163,6 +163,8 @@ func _check_real_disk_save_roundtrip() -> void:
     var expected_capture_seed := CreatureManager.capture_seed
     var expected_expedition_seed := ExpeditionManager.expedition_seed
 
+    # An active encounter is only resumable when the saved UI is the combat screen.
+    GameState.current_screen = "combat"
     _check(SaveManager.save_game(), "SaveManager must write a real save file")
     _check(FileAccess.file_exists(SaveManager.SAVE_PATH), "Save file must exist on disk after save_game")
     if FileAccess.file_exists(SaveManager.SAVE_PATH):
@@ -204,6 +206,7 @@ func _check_real_disk_save_roundtrip() -> void:
         _check(EquipmentManager.has_instance(expected_item_id), "Disk load must restore generated equipment instance")
     _check(AshlandsCombatBridge.active, "Disk load must restore active combat bridge state")
     _check(AshlandsCombatBridge.encounter_id == "runtime_player_smoke", "Disk load must restore combat encounter id")
+    _check(GameState.battle_enemies.size() == 4, "Disk load must restore the four combat enemies")
 
 func _finish() -> void:
     AshlandsCombatBridge.active = false
