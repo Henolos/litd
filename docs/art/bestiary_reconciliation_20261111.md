@@ -33,3 +33,17 @@ Contrôle documentaire des registres de PR #607 et #608. Aucun binaire artistiqu
 - Contrôles CI créés : **0**.
 - Avancement du chantier actuel : **À évaluer**.
 - Avancement global LITD : **À évaluer**.
+
+## Contrôle des sept sources locales — 2026-11-11
+
+Archive locale examinée : `litd_sources_retrouvees_20261111.zip` ; **sept images**, toutes rangées dans `to_review/` dans l'archive. Aucun de ces binaires n'est présent dans cette PR.
+
+- **Kitsune n°26** : `same_layout_and_art_as_the_previous_kitsune_sheet.png` ; 1536 × 1024 ; SHA-256 `64e5abdb0b1e84f6c0c8646bd9f8b380b831bb46b9e310f4ef9b2f6bedb2015b`. La planche porte le numéro et la mention de validation attendus. Correspondance documentaire forte ; la présence dans GitHub reste à vérifier après import.
+- **Valkyrie n°23** : trois variantes (`LITD1_Valkyrie_23_harmonisee.jpg`, `LITD1_Valkyrie_spectrale_23.jpg`, `LITD1_Valkyrie_spectrale_23.png`). Version définitive non départagée.
+- **Golem runique** : `bestiaire_du_golem_runique.png` ; version affichant une attente de validation, décision ultérieure à rapprocher.
+- **Wendigo** : `planche_concept_art_du_wendigo_glacé.png` ; confirmer que la tête de loup cadavérique est celle de la planche approuvée.
+- **Troll** : `56E54133-57CA-41CB-B514-0D740FE55DD2.jpeg` ; validation des pistes ne suffit pas à confirmer une planche définitive.
+
+**Décision de classement :** les sept fichiers restent `to_review/` tant que leur importation et leur correspondance finale ne sont pas vérifiées ; Kitsune n°26 est le premier candidat au déplacement vers `validated/` après import.
+
+**Blocage technique observé :** l'environnement local ne résout pas `github.com` et le connecteur GitHub disponible pour les modifications de fichiers accepte uniquement le texte UTF-8. Le transfert binaire n'a donc pas été effectué. Ne pas annoncer d'images archivées.
