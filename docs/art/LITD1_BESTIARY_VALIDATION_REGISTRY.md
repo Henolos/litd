@@ -72,3 +72,9 @@ Fichiers JPEG fournis en conversation, identités confirmées visuellement ; ori
 - **n°14 Sphinx** : `9D5B728A-53F3-45DE-B47D-2C390F4CEBB4.jpeg` ; 1535 × 1024 px ; SHA-256 `9698a55919281af52d42d3fa1e0b718a64e9b66501ef1d9150d1900fabb7098a`.
 - **n°15 Oni V5** : `EA1BE1AD-A9CE-4FED-8DB7-0693697D14E4.jpeg` ; 1536 × 1024 px ; SHA-256 `9920292ec992c278320feb629ddae83b96193f1d78f5e3d1c4223727599b26be`.
 - **n°16 Karasu-tengu** : `EFB9F79B-CCA7-4409-AF9F-2B857E700247.jpeg` ; 1536 × 1024 px ; SHA-256 `5fd6c2f5e0cece136bf107f258ce21c67b1fd2d1e0cfa89af421f16749d2903b`.
+
+## Pièces reçues — fiches n°18 à n°20 (10 novembre 2026)
+Trois JPEG originaux de 1536 × 1024 pixels reçus et identifiés visuellement. Validations artistiques déjà exprimées en conversation ; pas de régénération ni retouche. Les formulaires visibles font partie des images. Les empreintes ci-dessous identifient les octets reçus ; **les fichiers binaires ne sont pas encore archivés dans le dépôt**.
+- **n°18 Kappa** : `A430C1F3-3ED5-42D7-BFF6-DDD1658E7767.jpeg` ; SHA-256 `80e742dbdafa813f63b0003e1226c02042eaeeddb7af8216349b83041ef82148`.
+- **n°19 Yuki-onna** : `12AD1B20-3F88-434F-A4C4-4578F26BCA62.jpeg` ; SHA-256 `9f20397e1b57e76ef4a73a739babb1f1546cac6b6e8b15ed1f8d52c0b0c295fa`.
+- **n°20 Nue** : `919F9801-B827-4677-84BB-25D948CDFC1B.jpeg` ; SHA-256 `580956a656f2e41538fe7db7f565cd1e76a1a8b07f21388c332479d519c60818`.
