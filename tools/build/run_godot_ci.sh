@@ -74,6 +74,7 @@ run_checked "Import strict du projet" godot --headless --path . --import --quit
 run_checked "Smoke test noyau" godot --headless --path . res://scenes/tests/core_smoke.tscn
 run_checked "Anatomie multi-membres : ciblage et persistance JSON" godot --headless --path . --script res://tests/anatomy_multi_member_smoke.gd
 run_checked "Anatomie : contrat de sauvegarde de combat" godot --headless --path . --script res://tests/anatomy_combat_save_contract_smoke.gd
+run_checked "Combat : récompense unique après reprise" godot --headless --path . --script res://tests/combat_reward_once_smoke.gd
 run_checked "Psychologie : Peur, traces durables et manifestations d'Espoir" godot --headless --path . res://scenes/tests/psychology_smoke.tscn
 run_checked "Relations : confiance, admiration, tensions et interposition" godot --headless --path . res://scenes/tests/relationship_smoke.tscn
 run_checked "Mémoire : décisions, convictions et conséquences différées" godot --headless --path . res://scenes/tests/decision_memory_smoke.tscn
