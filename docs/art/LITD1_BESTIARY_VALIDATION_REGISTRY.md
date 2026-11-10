@@ -16,7 +16,7 @@ Référence approuvée : **Hydre, fiche n°13**, bordures fines en **bronze viei
 | À retrouver | Cyclope V3 | Oui | Non | Numéro historique à retrouver |
 | À retrouver | Chimère | Oui | Non | Numéro historique à retrouver |
 | À retrouver | Basilic | Oui | Non | Numéro historique à retrouver |
-| 13 | Hydre | Oui | Non | Référence graphique |
+| 13 | Hydre | Oui | Non | Référence graphique ; fichier JPEG fourni en conversation, 1536×1024, SHA-256 `23d7e90aca6058a4394135d2eda92ac5d53e0cb3522244e3a583d2185dcc12f6` ; image non encore archivée dans GitHub |
 | 14 | Sphinx | Oui | Non | Validation explicite |
 | 15 | Oni V5 | Oui | Non | Validation explicite |
 | 16 | Karasu-tengu | Oui | Non | Validation explicite |
@@ -41,3 +41,10 @@ Référence approuvée : **Hydre, fiche n°13**, bordures fines en **bronze viei
 5. Faire approuver le registre, puis fusionner par les protections GitHub et la merge queue.
 
 Ce document est un **registre textuel de suivi** et ne contient **aucun fichier image**.
+
+## Pièce reçue : Hydre n°13
+- Source : pièce jointe de la conversation, fichier `397C93DD-C338-44EF-A556-1F5E586AC3DC(1).jpeg`.
+- Format et dimensions vérifiés : JPEG, 1536 × 1024 pixels.
+- SHA-256 : `23d7e90aca6058a4394135d2eda92ac5d53e0cb3522244e3a583d2185dcc12f6`.
+- Identité visuelle contrôlée : fiche n°13 HYDRE, encadrements bronze vieilli.
+- **Important : ce commit enregistre la preuve et l'empreinte, pas les octets de l'image.** L'archivage du fichier image dans le dépôt reste à réaliser.
