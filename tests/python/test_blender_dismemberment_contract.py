@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 from tools.blender.generate_dismemberment_jobs import build_jobs
@@ -9,9 +10,12 @@ def test_dismemberment_blender_jobs_cover_profiles_and_unique_bosses():
     jobs = build_jobs(ROOT)
     generic = [job for job in jobs if job["type"] == "generic_profile"]
     bosses = [job for job in jobs if job["type"] == "unique_boss"]
-    assert len(generic) == 6
+    # Check the generated roster against its source contract, not a stale count.
+    contract = json.loads((ROOT / "data/blender/dismemberment_contract.json").read_text(encoding="utf-8"))
+    expected_profiles = set(contract["generic_profiles"])
+    assert {job["profile_id"] for job in generic} == expected_profiles
     assert len(bosses) == 11
-    assert len(jobs) == 17
+    assert len(jobs) == len(expected_profiles) + len(bosses)
 
 
 def test_each_blender_anatomy_part_has_bone_and_vfx_socket():
