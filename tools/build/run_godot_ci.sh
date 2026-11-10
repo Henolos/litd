@@ -34,7 +34,13 @@ run_checked() {
   echo "==> ${label}"
 
   set +e
-  "$@" 2>&1 | tee "$log_file"
+  # Borne chaque invocation : un smoke test bloqué ne doit pas immobiliser la CI indéfiniment.
+  # Les scénarios avec leur propre timeout conservent leur limite plus courte.
+  if [[ "${1:-}" == "timeout" ]]; then
+    "$@" 2>&1 | tee "$log_file"
+  else
+    timeout --signal=TERM --kill-after=10s 300s "$@" 2>&1 | tee "$log_file"
+  fi
   local command_status=${PIPESTATUS[0]}
   set -e
 
