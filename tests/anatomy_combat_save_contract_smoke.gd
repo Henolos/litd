@@ -8,18 +8,23 @@ func _initialize() -> void:
         push_error("AshlandsCombatBridge autoload unavailable")
         quit(1)
         return
+    var game_state = get_root().get_node_or_null("GameState")
+    if game_state == null:
+        push_error("GameState autoload unavailable")
+        quit(1)
+        return
     var original_active: bool = bridge.active
     var original_id: String = bridge.encounter_id
     var original_type: String = bridge.encounter_type
-    var original_enemies: Array = GameState.battle_enemies.duplicate(true)
-    var original_rounds: int = GameState.battle_rounds
-    var original_selected_hero: int = GameState.selected_hero
+    var original_enemies: Array = game_state.battle_enemies.duplicate(true)
+    var original_rounds: int = game_state.battle_rounds
+    var original_selected_hero: int = game_state.selected_hero
     bridge.active = true
     bridge.encounter_id = "qa_anatomy_resume"
     bridge.encounter_type = "boss"
-    GameState.battle_rounds = 4
-    GameState.selected_hero = 1
-    GameState.battle_enemies = [
+    game_state.battle_rounds = 4
+    game_state.selected_hero = 1
+    game_state.battle_enemies = [
         {"id": "qa_cerberus", "dismemberment_profile": "cerberus", "hp": 70, "max_hp": 100,
          "dismembered_parts": ["left_head"], "anatomy_part_trauma": {"center_head": 19},
          "anatomy_injuries": {"center_head": "wounded"}},
@@ -42,27 +47,27 @@ func _initialize() -> void:
             valid = valid and enemies[1].get("dismembered_parts", []).has("left_spider_leg_1")
             valid = valid and enemies[1].get("anatomy_part_trauma", {}).get("right_spider_leg_2", -1) == 33
     # The snapshot must be a deep copy: later combat changes cannot rewrite a saved turn.
-    GameState.battle_enemies[0]["dismembered_parts"].clear()
+    game_state.battle_enemies[0]["dismembered_parts"].clear()
     if decoded is Dictionary:
         var saved_enemies: Array = decoded.get("combat_enemies", [])
         valid = valid and saved_enemies.size() == 2 and saved_enemies[0].get("dismembered_parts", []).has("left_head")
     # Rehydrate the saved state and check that the wounded limbs survive.
     if decoded is Dictionary:
-        GameState.battle_enemies = []
-        GameState.battle_rounds = 0
-        GameState.selected_hero = 0
+        game_state.battle_enemies = []
+        game_state.battle_rounds = 0
+        game_state.selected_hero = 0
         bridge.deserialize(decoded)
-        valid = valid and GameState.battle_rounds == 4 and GameState.selected_hero == 1
-        valid = valid and GameState.battle_enemies.size() == 2
-        if GameState.battle_enemies.size() == 2:
-            valid = valid and GameState.battle_enemies[0].get("dismembered_parts", []).has("left_head")
-            valid = valid and GameState.battle_enemies[1].get("anatomy_part_trauma", {}).get("right_spider_leg_2", -1) == 33
+        valid = valid and game_state.battle_rounds == 4 and game_state.selected_hero == 1
+        valid = valid and game_state.battle_enemies.size() == 2
+        if game_state.battle_enemies.size() == 2:
+            valid = valid and game_state.battle_enemies[0].get("dismembered_parts", []).has("left_head")
+            valid = valid and game_state.battle_enemies[1].get("anatomy_part_trauma", {}).get("right_spider_leg_2", -1) == 33
     bridge.active = original_active
     bridge.encounter_id = original_id
     bridge.encounter_type = original_type
-    GameState.battle_enemies = original_enemies
-    GameState.battle_rounds = original_rounds
-    GameState.selected_hero = original_selected_hero
+    game_state.battle_enemies = original_enemies
+    game_state.battle_rounds = original_rounds
+    game_state.selected_hero = original_selected_hero
     if not valid:
         push_error("Combat save contract missing anatomy or round state")
         quit(1)
