@@ -58,6 +58,9 @@ func load_qa_snapshot() -> bool:
     if not _combat_payload_is_safe(payload):
         last_status = "Instantané de combat incomplet : chargement refusé pour protéger la partie."
         return false
+    if not _combat_payload_is_safe(payload):
+        last_status = "Instantané de combat incomplet : chargement refusé pour protéger la partie."
+        return false
     _apply_payload(payload)
     return true
 
@@ -183,6 +186,26 @@ func _build_payload() -> Dictionary:
         "living_exploration": ExplorationDirector.serialize(),
         "progression_scope": ContentScopeDirector.serialize()
     }
+
+func _combat_payload_is_safe(payload: Dictionary) -> bool:
+    var data: Dictionary = payload.get("ashlands_combat", {})
+    if not bool(data.get("active", false)):
+        return true
+    if str(payload.get("metadata", {}).get("screen", "")) != "combat":
+        return false
+    if int(data.get("combat_snapshot_version", -1)) != 1:
+        return false
+    var enemies: Variant = data.get("combat_enemies", null)
+    if not (enemies is Array) or enemies.is_empty():
+        return false
+    if int(data.get("combat_rounds", -1)) < 0 or int(data.get("combat_selected_hero", -1)) < 0:
+        return false
+    if str(data.get("encounter_id", "")) == "":
+        return false
+    for enemy in enemies:
+        if not (enemy is Dictionary) or not enemy.has("hp") or not enemy.has("max_hp"):
+            return false
+    return true
 
 func _combat_payload_is_safe(payload: Dictionary) -> bool:
     var data: Dictionary = payload.get("ashlands_combat", {})
