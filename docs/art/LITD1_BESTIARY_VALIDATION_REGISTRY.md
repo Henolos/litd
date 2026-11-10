@@ -66,3 +66,9 @@ Images JPEG originales 1536 × 1024 px, non retouchées. Numéros et noms lus di
 - **n°09 Cyclope V3** : `7482D63F-DF3A-4D46-8265-D8AC2B6A3A17(2).jpeg` ; SHA-256 `831a4008db014a815c65f19c06fcf227f56340d362d30209bad7d1a0f27610fe`.
 - **n°10 Chimère** : `9253391F-A4A8-424B-B67E-DD6E9D950E49(3).jpeg` ; SHA-256 `f86f6c59525ae93e42afd9d75d84cb7da6eba6451da356252e5827b49e47cd06`.
 - **n°11 Basilic** : `3A6736BC-BF31-4715-955C-3EE09BFE5C6E.jpeg` ; SHA-256 `b9ce75d1a597385868195cc99455dac6f63dbbcc84c55809996e8cc5972c221e`.
+
+## Pièces reçues — fiches n°14 à n°16 (10 novembre 2026)
+Fichiers JPEG fournis en conversation, identités confirmées visuellement ; originaux non retouchés. Le formulaire de validation imprimé dans certaines images n'est pas une preuve supplémentaire de validation. Les décisions de validation viennent de la conversation. **Les octets des images ne sont pas archivés par ce commit.**
+- **n°14 Sphinx** : `9D5B728A-53F3-45DE-B47D-2C390F4CEBB4.jpeg` ; 1535 × 1024 px ; SHA-256 `9698a55919281af52d42d3fa1e0b718a64e9b66501ef1d9150d1900fabb7098a`.
+- **n°15 Oni V5** : `EA1BE1AD-A9CE-4FED-8DB7-0693697D14E4.jpeg` ; 1536 × 1024 px ; SHA-256 `9920292ec992c278320feb629ddae83b96193f1d78f5e3d1c4223727599b26be`.
+- **n°16 Karasu-tengu** : `EFB9F79B-CCA7-4409-AF9F-2B857E700247.jpeg` ; 1536 × 1024 px ; SHA-256 `5fd6c2f5e0cece136bf107f258ce21c67b1fd2d1e0cfa89af421f16749d2903b`.
