@@ -9,10 +9,10 @@ Référence approuvée : **Hydre, fiche n°13**, bordures fines en **bronze viei
 
 | Numéro de fiche | Créature | Validation artistique déclarée | Image canonique vérifiée dans GitHub | Observation |
 |---|---|---|---|---|
-| À retrouver | Minotaure V2 | Oui | Non | Numéro historique à retrouver |
-| À retrouver | Gorgone | Oui | Non | Numéro historique à retrouver |
-| À retrouver | Cerbère | Oui | Non | Numéro historique à retrouver |
-| À retrouver | Harpie | Oui | Non | Numéro historique à retrouver |
+| 04 | Minotaure V2 | Oui | Non | Fiche n°04 lisible sur le JPEG reçu ; empreinte consignée ; image non archivée |
+| 05 | Gorgone | Oui | Non | Fiche n°05 lisible sur le JPEG reçu ; empreinte consignée ; image non archivée |
+| 06 | Cerbère | Oui | Non | Fiche n°06 lisible sur le JPEG reçu ; empreinte consignée ; image non archivée |
+| 07 | Harpie | Oui | Non | Fiche n°07 lisible sur le JPEG reçu ; empreinte consignée ; image non archivée |
 | À retrouver | Cyclope V3 | Oui | Non | Numéro historique à retrouver |
 | À retrouver | Chimère | Oui | Non | Numéro historique à retrouver |
 | À retrouver | Basilic | Oui | Non | Numéro historique à retrouver |
@@ -53,3 +53,10 @@ Ce document est un **registre textuel de suivi** et ne contient **aucun fichier 
 - **Jorōgumo n°17** : version harmonisée approuvée explicitement par l'utilisateur ; fichier de travail `LITD1_Jorogumo_17_harmonisee.jpg`, SHA-256 `d222d618fe9ac3de1089ffef28978bb170bde654dfb58e00eb6bd3d33c25c1cc`.
 - **Valkyrie spectrale n°23** : version harmonisée approuvée explicitement par l'utilisateur ; fichier de travail `LITD1_Valkyrie_23_harmonisee.jpg`, SHA-256 `30a1f79497759885753ae0de383d0fb1c5086bf1646653131531defaa81aaa37`.
 - Les **deux originaux restent distincts** des versions harmonisées ; aucune image binaire n'a été transférée dans GitHub par ce commit.
+
+## Pièces reçues — fiches n°04 à n°07 (10 novembre 2026)
+Quatre images originales JPEG de **1536 × 1024 px** reçues en conversation, visuellement identifiées par leur titre et numéro imprimés. Aucune modification graphique effectuée. Les empreintes ci-dessous ont été calculées sur les fichiers effectivement reçus. **Le registre conserve les métadonnées et non les images binaires.**
+- **n°04 Minotaure V2** : `58BB6F02-5144-4489-B072-2D77DAF13CCA.jpeg` ; SHA-256 `4b91c4dd1eed8c04e084f5df89976228bb02a3240686069136e771ec601d0283`.
+- **n°05 Gorgone** : `77AE289B-32A8-4073-998D-34393EAABD26(1).jpeg` ; SHA-256 `825f35da6bc80f06caa683803d557a653028d139ef102205dcd836556fc0ea82`.
+- **n°06 Cerbère** : `51A31212-CCFB-4566-9709-373A0E4DC416(1).jpeg` ; SHA-256 `f10371084abdc7125824c322a559e8ba560bd468b46ed42edbc5a72851eaf8f6`.
+- **n°07 Harpie** : `CD69A2E9-6213-46C3-B129-0EC87A51E895(1).jpeg` ; SHA-256 `6f22b47843636b63457408c3b92a5b5b6feb7e609f1bd176cac1a3461913df04`.
