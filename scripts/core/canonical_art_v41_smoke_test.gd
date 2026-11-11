@@ -45,6 +45,47 @@ func run() -> void:
     var future_portrait := registry.resolve_asset("portrait.active_hero", {"entity_id": "future_test_hero"})
     _check(str(future_portrait.get("status", "")) in ["missing", "placeholder", "final"], "Missing future art must degrade safely instead of breaking runtime")
 
+    for enemy_id in [6, 7, 8, 10, 11]:
+        var enemy: Dictionary = DataLoader.enemies[enemy_id - 1]
+        var reference := registry.enemy_reference_path(enemy)
+        _check(reference.begins_with("res://art/library/bestiary/"), "Mapped enemy must resolve official reference: %d" % enemy_id)
+        _check(load(reference) is Texture2D, "Enemy original must import as a texture: %d" % enemy_id)
+        var portrait := registry.enemy_portrait_texture(enemy) as AtlasTexture
+        _check(portrait != null, "Combat must frame the character instead of shrinking the annotated sheet")
+        if portrait != null:
+            _check(portrait.atlas.resource_path == reference, "Framing must preserve the exact original source")
+            _check(portrait.region.size.y > portrait.region.size.x, "Combat framing must preserve a standing silhouette")
+        var slot := registry.resolve_asset("portrait.active_creature", {"entity_id": str(enemy_id)})
+        _check(str(slot.get("path", "")) == reference, "Dynamic enemy slot must agree with combat")
+        _check(registry.enemy_portrait_path({"enemy_id": enemy_id, "name": "Evolved captive"}) == reference, "Captive must retain its source enemy identity")
+    for enemy_id in [1, 9, 33, 38, 39]:
+        var enemy: Dictionary = DataLoader.enemies[enemy_id - 1]
+        _check(registry.enemy_reference_path(enemy) == "", "Unconfirmed identity must never acquire an unrelated plate")
+        _check(registry.enemy_portrait_path(enemy) == "res://assets/enemies/%s" % str(enemy["art"]), "Unmapped enemy must keep existing illustration")
+    _check(registry.enemy_reference_path({"id": "unknown", "name": "Oni"}) == "", "Names alone must not override stable enemy IDs")
+
+    CampaignMemoryDirector.codex_knowledge.clear()
+    GameMenuUI.open_menu("bestiary")
+    var revealed := 0
+    for button_value in GameMenuUI.content.find_children("*", "Button", true, false):
+        if (button_value as Button).text == "VOIR LA PLANCHE":
+            revealed += 1
+    _check(revealed == 0, "Unknown codex must not reveal annotated source sheets")
+    for enemy_id in [6, 7, 8, 10, 11]:
+        CampaignMemoryDirector.learn_enemy(DataLoader.enemies[enemy_id - 1], 5)
+    GameMenuUI.open_menu("bestiary")
+    revealed = 0
+    for button_value in GameMenuUI.content.find_children("*", "Button", true, false):
+        if (button_value as Button).text == "VOIR LA PLANCHE":
+            revealed += 1
+    _check(revealed == 5, "Completed codex must offer exactly five confirmed references")
+    GameMenuUI.call("_show_enemy_reference", DataLoader.enemies[7])
+    var viewer := GameMenuUI.get_node_or_null("OfficialBestiaryReference") as AcceptDialog
+    _check(viewer != null and viewer.visible, "Official reference must open from the real game menu")
+    if viewer != null:
+        viewer.queue_free()
+    GameMenuUI.close_menu()
+
     var serpent_character := {
         "id": "qa_serpent",
         "morphology": "SERPENTINE_ORGANIC"

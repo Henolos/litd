@@ -180,7 +180,7 @@ func show_combat() -> void:
         var column := VBoxContainer.new()
         column.mouse_filter = Control.MOUSE_FILTER_IGNORE
         var enemy_art := TextureRect.new()
-        enemy_art.texture = load("res://assets/enemies/%s" % str(enemy.get("art", "enemy_01.webp")))
+        enemy_art.texture = CanonicalArtRegistry.new().enemy_portrait_texture(enemy)
         enemy_art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
         enemy_art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
         enemy_art.custom_minimum_size = Vector2(140, 260)

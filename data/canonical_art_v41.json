@@ -80,6 +80,38 @@
     "results_options": {"focus": "consequences", "background_slot": "bg.results", "density": "medium"},
     "options": {"focus": "settings", "background_slot": "bg.overlay", "density": "medium"}
   },
+  "enemy_reference_bindings": {
+    "6": {
+      "subject_id": "gorgon",
+      "enemy_name": "Gorgone",
+      "path": "res://art/library/bestiary/gorgon/reference.jpeg",
+      "combat_region": [55, 438, 165, 274]
+    },
+    "7": {
+      "subject_id": "minotaur",
+      "enemy_name": "Minotaure",
+      "path": "res://art/library/bestiary/minotaur/reference.jpeg",
+      "combat_region": [70, 440, 140, 272]
+    },
+    "8": {
+      "subject_id": "oni",
+      "enemy_name": "Oni",
+      "path": "res://art/library/bestiary/oni/reference.jpeg",
+      "combat_region": [65, 433, 150, 221]
+    },
+    "10": {
+      "subject_id": "jorogumo",
+      "enemy_name": "Jorōgumo",
+      "path": "res://art/library/bestiary/jorogumo/reference.jpg",
+      "combat_region": [64, 417, 145, 220]
+    },
+    "11": {
+      "subject_id": "yuki_onna",
+      "enemy_name": "Yuki-Onna",
+      "path": "res://art/library/bestiary/yuki_onna/reference.jpeg",
+      "combat_region": [55, 425, 148, 230]
+    }
+  },
   "asset_slots": {
     "bg.title": {"kind": "background", "primary_path": "res://assets/art/v41/backgrounds/title.webp", "fallback_path": "res://assets/backgrounds/sanctuary.png", "ratio": "16:9", "required_at_runtime": false},
     "bg.sanctuary": {"kind": "background", "primary_path": "res://assets/art/v41/backgrounds/sanctuary.webp", "fallback_path": "res://assets/backgrounds/sanctuary.png", "ratio": "16:9", "required_at_runtime": true},

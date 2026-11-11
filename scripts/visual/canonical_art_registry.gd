@@ -50,10 +50,50 @@ func asset_slot(slot_id: String, bindings: Dictionary = {}) -> Dictionary:
     if not slots.has(slot_id):
         return {}
     var slot: Dictionary = (slots[slot_id] as Dictionary).duplicate(true)
+    if slot_id == "portrait.active_creature":
+        var reference := enemy_reference_path(bindings)
+        if reference != "":
+            slot["primary_path"] = reference
     for field in ["primary_path", "fallback_path"]:
         if slot.has(field):
             slot[field] = _bind_path(str(slot[field]), bindings)
     return slot
+
+# Stable game IDs are deliberately distinct from the numbers printed on plates.
+# Captured instances retain enemy_id even when their name evolves.
+func enemy_reference_path(character: Dictionary) -> String:
+    _ensure_loaded()
+    var identity: Variant = character.get("enemy_id", character.get("source_enemy_id", character.get("entity_id", character.get("id", ""))))
+    var enemy_id := str(int(identity)) if identity is int or identity is float else str(identity)
+    var references: Dictionary = _manifest.get("enemy_reference_bindings", {})
+    var reference: Dictionary = references.get(enemy_id, {})
+    var path := str(reference.get("path", ""))
+    return path if path != "" and ResourceLoader.exists(path) else ""
+
+func enemy_portrait_path(character: Dictionary) -> String:
+    var reference := enemy_reference_path(character)
+    if reference != "":
+        return reference
+    return "res://assets/enemies/%s" % str(character.get("art", "enemy_01.webp"))
+
+func enemy_portrait_texture(character: Dictionary) -> Texture2D:
+    var path := enemy_portrait_path(character)
+    var texture := load(path) as Texture2D
+    if enemy_reference_path(character) == "":
+        return texture
+    var references: Dictionary = _manifest.get("enemy_reference_bindings", {})
+    for reference_value: Variant in references.values():
+        var reference: Dictionary = reference_value
+        if str(reference.get("path", "")) != path:
+            continue
+        var region: Array = reference.get("combat_region", [])
+        if region.size() == 4:
+            var portrait := AtlasTexture.new()
+            portrait.atlas = texture
+            portrait.region = Rect2(float(region[0]), float(region[1]), float(region[2]), float(region[3]))
+            portrait.filter_clip = true
+            return portrait
+    return texture
 
 func resolve_asset(slot_id: String, bindings: Dictionary = {}) -> Dictionary:
     var slot := asset_slot(slot_id, bindings)

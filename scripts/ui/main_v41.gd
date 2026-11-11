@@ -76,6 +76,9 @@ func apply_texture_slot(target: TextureRect, slot_id: String, bindings: Dictiona
     var path := str(resolved.get("path", ""))
     if path == "":
         return resolved
+    if slot_id == "portrait.active_creature" and _canonical_art.enemy_reference_path(bindings) != "":
+        target.texture = _canonical_art.enemy_portrait_texture(bindings)
+        return resolved
     var resource: Resource = load(path)
     if resource is Texture2D:
         target.texture = resource as Texture2D

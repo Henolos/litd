@@ -53,6 +53,8 @@ def run(root=ROOT):
     resource_pattern=re.compile(r'res://[A-Za-z0-9_./-]+')
     broken=[]
     for p in list(root.rglob('*.gd'))+list(root.rglob('*.tscn'))+list(root.rglob('*.godot')):
+        if not p.is_file():
+            continue  # .godot/ is an import cache, not a project settings file.
         text=p.read_text(encoding='utf-8',errors='replace')
         for ref in resource_pattern.findall(text):
             # `res://reports/` is deliberately written by QA runners during execution.

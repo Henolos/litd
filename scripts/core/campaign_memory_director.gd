@@ -45,7 +45,8 @@ func record_sanctuary_change(change_id: String, description: String) -> void:
     memory_changed.emit()
 
 func learn_enemy(enemy: Dictionary, amount: int = 1) -> void:
-    var enemy_id := String(enemy.get("id", ""))
+    var identity: Variant = enemy.get("id", "")
+    var enemy_id := str(int(identity)) if identity is int or identity is float else str(identity)
     var entry: Dictionary = codex_knowledge.get(enemy_id, {"encounters":0,"defeated":0,"max_knowledge":5})
     entry["name"] = String(enemy.get("name", "Créature"))
     entry["encounters"] = int(entry.get("encounters", 0)) + maxi(0, amount)

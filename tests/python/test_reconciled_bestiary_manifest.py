@@ -68,5 +68,6 @@ def test_complete_collection_claim_requires_every_registered_original():
         assert pending == 0
         assert data["scope"]["binary_imported_in_this_lot"] == len(data["assets"])
         expected = {a["archived_path"] for a in data["assets"]}
-        actual = {p.relative_to(ROOT).as_posix() for p in (ROOT / "art/library/bestiary").glob("*/reference.*")}
+        # Godot generates reference.jpeg.import sidecars during a real import.
+        actual = {p.relative_to(ROOT).as_posix() for p in (ROOT / "art/library/bestiary").glob("*/reference.*") if p.suffix != ".import"}
         assert actual == expected

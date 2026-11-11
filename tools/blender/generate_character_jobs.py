@@ -58,6 +58,8 @@ def normalize_jobs(jobs: list[dict]) -> list[dict]:
 def build_jobs(root: Path = ROOT) -> list[dict]:
     heroes = json.loads((root / "data/heroes.json").read_text(encoding="utf-8"))
     enemies = json.loads((root / "data/enemies.json").read_text(encoding="utf-8"))
+    art = json.loads((root / "data/canonical_art_v41.json").read_text(encoding="utf-8"))
+    references = art.get("enemy_reference_bindings", {})
     minibosses = json.loads((root / "data/levels/ashlands_minibosses.json").read_text(encoding="utf-8"))
     jobs = []
     for hero in heroes:
@@ -66,8 +68,9 @@ def build_jobs(root: Path = ROOT) -> list[dict]:
     for enemy in enemies:
         identifier = f"enemy_{int(enemy['id']):02d}_{slug(enemy['name'])}"
         category = "boss" if enemy.get("boss", False) else "enemy"
+        reference = references.get(str(enemy["id"]), {}).get("path", f"assets/enemies/{enemy['art']}").removeprefix("res://")
         jobs.append(_job(identifier, enemy["name"], category, "hostile_humanoid",
-                         f"assets/enemies/{enemy['art']}", enemy["hp"], boss=enemy.get("boss", False)))
+                         reference, enemy["hp"], boss=enemy.get("boss", False)))
     for pool_name in ("normal_pool", "secret_pool"):
         for enemy in minibosses[pool_name]:
             jobs.append(_job(enemy["id"], enemy["name"], "miniboss", enemy["archetype"],

@@ -353,10 +353,11 @@ func _render_bestiary() -> void:
     content.add_child(_label("Le codex révèle progressivement nom, vitalité, dégâts, intention et particularités.", 14, MUTED))
     var captured_ids: Array[String] = []
     for creature_value: Variant in CreatureManager.captured_creatures:
-        captured_ids.append(String((creature_value as Dictionary).get("source_enemy_id", (creature_value as Dictionary).get("id", ""))))
+        captured_ids.append(str(int((creature_value as Dictionary).get("enemy_id", (creature_value as Dictionary).get("source_enemy_id", -1)))))
     for enemy_value: Variant in DataLoader.enemies:
         var enemy: Dictionary = enemy_value
-        var enemy_id := String(enemy.get("id", ""))
+        var identity: Variant = enemy.get("id", "")
+        var enemy_id := str(int(identity)) if identity is int or identity is float else str(identity)
         var knowledge := CampaignMemoryDirector.knowledge(enemy_id)
         var title := String(enemy.get("name", "Créature")) if knowledge >= 1 else "Silhouette inconnue"
         content.add_child(_label("◆ %s · CONNAISSANCE %d/5%s" % [title, knowledge, " · CAPTURÉE" if captured_ids.has(enemy_id) else ""], 16, GOLD if knowledge >= 1 else MUTED))
@@ -372,6 +373,29 @@ func _render_bestiary() -> void:
             facts.append("traits +%s / −%s" % [", ".join(traits.get("positive", [])), ", ".join(traits.get("negative", []))])
         if not facts.is_empty():
             content.add_child(_label(" · ".join(facts), 13, TEXT))
+        # Full plates contain annotations: do not reveal them before codex completion.
+        if knowledge >= 5 and CanonicalArtRegistry.new().enemy_reference_path(enemy) != "":
+            content.add_child(_button("VOIR LA PLANCHE", func(reference_enemy = enemy.duplicate(true)): _show_enemy_reference(reference_enemy), Vector2(250, 40)))
+
+func _show_enemy_reference(enemy: Dictionary) -> void:
+    var path := CanonicalArtRegistry.new().enemy_reference_path(enemy)
+    if path == "":
+        return
+    var viewer := AcceptDialog.new()
+    viewer.name = "OfficialBestiaryReference"
+    viewer.title = str(enemy.get("name", "Créature")) + " — Référence artistique"
+    viewer.process_mode = Node.PROCESS_MODE_ALWAYS
+    viewer.get_ok_button().text = "FERMER"
+    var art := TextureRect.new()
+    art.texture = load(path) as Texture2D
+    art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+    art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+    art.custom_minimum_size = Vector2(320, 200)
+    viewer.add_child(art)
+    viewer.confirmed.connect(viewer.queue_free)
+    viewer.canceled.connect(viewer.queue_free)
+    add_child(viewer)
+    viewer.popup_centered_clamped(Vector2i(1120, 780), 0.9)
 
 func _render_records() -> void:
     content.add_child(_label("CONTRATS DE CHASSE ACTIFS", 18, GOLD))
