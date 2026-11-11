@@ -35,7 +35,7 @@ func _compact_combat_card_labels() -> void:
             var enemy: Dictionary = enemy_value
             var enemy_name := str(enemy.get("name", ""))
             if enemy_name != "" and label.text.contains(enemy_name) and label.text.contains("PV "):
-                label.text = "%s\nE%d · PV %d/%d" % [enemy_name, int(enemy.get("combat_position", 0)) + 1, int(enemy.get("hp", 0)), int(enemy.get("max_hp", 1))]
+                label.text = "%s\nE%d · PV %d/%d" % [enemy_name, int(enemy.get("combat_position", 0)) + 1, int(enemy.get("hp", 0)), int(enemy.get("max_hp", enemy.get("hp", 1)))]
                 break
 
 func _install_combat_inspection_hotspots() -> void:
