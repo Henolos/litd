@@ -5,10 +5,10 @@ extends "res://scripts/core/ui_roguelike_journey_smoke_test_v2.gd"
 # comme vue d'ensemble optionnelle, puis la progression reprend par les passages.
 
 const CANONICAL_PORTRAIT_PATHS := [
-    "res://art/library/heroes/mathilde/reference.jpg",
-    "res://art/library/heroes/marec/reference.jpg",
-    "res://art/library/heroes/anouk/reference.jpg",
-    "res://art/library/heroes/aurelien/reference.jpg"
+    "res://assets/art/v41/portraits/mathilde.tres",
+    "res://assets/art/v41/portraits/marec.tres",
+    "res://assets/art/v41/portraits/anouk.tres",
+    "res://assets/art/v41/portraits/aurelien.tres"
 ]
 
 func _drive_title_and_departure() -> void:

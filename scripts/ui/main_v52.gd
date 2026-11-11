@@ -7,18 +7,13 @@ extends "res://scripts/ui/main_v51.gd"
 
 const LEGACY_CARD_PREFIX := "res://assets/heroes/"
 const OFFICIAL_PORTRAIT_PREFIX := "res://art/library/heroes/"
+const RUNTIME_PORTRAIT_PREFIX := "res://assets/art/v41/portraits/"
 const CANONICAL_HERO_IDS := ["mathilde", "marec", "anouk", "aurelien"]
 const CANONICAL_ROLES := {
     "mathilde": "Duelliste",
     "marec": "Briseur",
     "anouk": "Mystique",
     "aurelien": "Chirurgien"
-}
-const CANONICAL_PORTRAITS := {
-    "mathilde": "res://art/library/heroes/mathilde/reference.jpg",
-    "marec": "res://art/library/heroes/marec/reference.jpg",
-    "anouk": "res://art/library/heroes/anouk/reference.jpg",
-    "aurelien": "res://art/library/heroes/aurelien/reference.jpg"
 }
 
 func _show_hero_profile() -> void:
@@ -34,11 +29,11 @@ func _replace_hero_profile_portrait_v52() -> void:
     var hero_id := str(hero.get("canonical_id", hero.get("id", ""))).to_lower()
     if not CANONICAL_HERO_IDS.has(hero_id):
         return
-    var portrait_texture := load(str(CANONICAL_PORTRAITS.get(hero_id, ""))) as Texture2D
+    var portrait_texture := load(_canonical_art.hero_portrait_path(hero)) as Texture2D
     if portrait_texture == null:
         return
 
-    # Keep the inherited profile slot uncropped and tagged with the same
+    # Keep the inherited profile slot tagged with the same
     # canonical identity used by combat and the shared hero_art() resolver.
     for node_value in content.find_children("*", "TextureRect", true, false):
         var portrait_slot := node_value as TextureRect
@@ -55,7 +50,27 @@ func _replace_hero_profile_portrait_v52() -> void:
 func show_combat() -> void:
     super.show_combat()
     _replace_legacy_hero_cards_v52()
+    var reach := make_label("Survolez ou sélectionnez une technique pour consulter sa portée.", 12, MUTED)
+    reach.name = "CombatReachHintV52"
+    reach.position = Vector2(24, 472)
+    reach.size = Vector2(600, 32)
+    content.add_child(reach)
     _show_skill_target_reach_v52()
+    call_deferred("_fit_combat_popups_v52")
+
+# Wrapped labels can briefly report a very tall minimum before their container
+# has a width. PanelContainer grows to that value and does not shrink itself.
+func _fit_combat_popups_v52() -> void:
+    await get_tree().process_frame
+    await get_tree().process_frame
+    if GameState.current_screen != "combat" or not is_instance_valid(content):
+        return
+    for panel_name in ["CombatPositionMenuV42", "CombatItemMenuV42"]:
+        var panel := content.get_node_or_null(panel_name) as Control
+        if panel == null:
+            continue
+        panel.size.y = panel.get_combined_minimum_size().y
+        panel.position.y = minf(panel.position.y, 504.0 - panel.size.y)
 
 func _show_skill_target_reach_v52() -> void:
     if GameState.current_screen != "combat" or not is_instance_valid(content) or battle_locked:
@@ -67,7 +82,7 @@ func _show_skill_target_reach_v52() -> void:
     var buttons := content.find_children("*", "Button", true, false)
     for slot in range(mini(HeroSkillManager.COMBAT_LOADOUT_SIZE, loadout.size())):
         var skill: Dictionary = HeroSkillManager.combat_skill(hero, loadout[slot])
-        if skill.is_empty() or str(skill.get("effect", "")).to_lower() not in ["attack", "affliction", "diagnostic"]:
+        if skill.is_empty():
             continue
         var prefix := "%d · " % (slot + 1)
         for node_value: Variant in buttons:
@@ -76,7 +91,9 @@ func _show_skill_target_reach_v52() -> void:
                 continue
             var summary := ""
             var names: Array[String] = []
-            if not COMBAT_POSITION_RULES.is_usable(hero, skill):
+            if str(skill.get("effect", "")).to_lower() not in ["attack", "affliction", "diagnostic"]:
+                summary = "Soutien · choisissez la technique pour préparer son effet"
+            elif not COMBAT_POSITION_RULES.is_usable(hero, skill):
                 summary = "CIBLES : rang du héros incompatible"
             else:
                 var indices: Array[int] = COMBAT_TARGETING_RULES.targetable_indices(hero, skill, GameState.battle_enemies)
@@ -88,9 +105,20 @@ func _show_skill_target_reach_v52() -> void:
                     ranks.append("E%d" % (int(enemy.get("combat_position", 0)) + 1))
                     names.append("%s (E%d)" % [str(enemy.get("name", "Ennemi")), int(enemy.get("combat_position", 0)) + 1])
                 summary = "CIBLES : %s" % (", ".join(ranks) if not ranks.is_empty() else "aucune à portée")
-            button.text = "%s\n%s" % [button.text, summary]
+            button.text = "%d · %s" % [slot + 1, str(skill.get("name", "Technique"))]
+            var allowed := COMBAT_POSITION_RULES.position_label(COMBAT_POSITION_RULES.allowed_positions(hero, skill))
+            var reach := "Rangs : %s · %s" % [allowed, summary]
+            button.mouse_entered.connect(func(): _set_combat_reach_v52(reach))
+            button.focus_entered.connect(func(): _set_combat_reach_v52(reach))
+            if pending_target_skill_slot == slot:
+                _set_combat_reach_v52(reach)
             button.tooltip_text += "\n%s" % (", ".join(names) if not names.is_empty() else summary)
             break
+
+func _set_combat_reach_v52(text: String) -> void:
+    var reach := content.get_node_or_null("CombatReachHintV52") as Label
+    if reach != null:
+        reach.text = text
 
 func _replace_legacy_hero_cards_v52() -> void:
     if not is_instance_valid(content):
@@ -106,7 +134,7 @@ func _replace_legacy_hero_cards_v52() -> void:
         if texture_rect == null or texture_rect.texture == null:
             continue
         var resource_path := str(texture_rect.texture.resource_path)
-        if resource_path.begins_with(LEGACY_CARD_PREFIX) or resource_path.begins_with(OFFICIAL_PORTRAIT_PREFIX):
+        if resource_path.begins_with(LEGACY_CARD_PREFIX) or resource_path.begins_with(OFFICIAL_PORTRAIT_PREFIX) or resource_path.begins_with(RUNTIME_PORTRAIT_PREFIX):
             legacy_portraits.append(texture_rect)
 
     var ordered_heroes: Array[Dictionary] = _heroes_by_position()
@@ -122,7 +150,7 @@ func _replace_legacy_hero_cards_v52() -> void:
             portrait_slot.visible = false
             continue
 
-        var portrait_path := str(CANONICAL_PORTRAITS.get(hero_id, ""))
+        var portrait_path := _canonical_art.hero_portrait_path(hero)
         var portrait_texture := load(portrait_path) as Texture2D
         if portrait_texture == null:
             # Never fall back to a legacy card with an obsolete printed identity.

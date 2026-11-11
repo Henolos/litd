@@ -127,7 +127,13 @@ func show_combat() -> void:
         finish_defeat()
         return
 
-    var bg := full_texture("res://assets/backgrounds/crypts.webp")
+    # The concept background has baked-in fighters, HP and wave counters.
+    # Use the existing near-black surface until an environment-only asset is approved.
+    var bg := ColorRect.new()
+    bg.name = "CombatBackgroundV52"
+    bg.color = DARK
+    bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     content.add_child(bg)
     var shade := ColorRect.new()
     shade.color = Color(0, 0, 0, 0.24)
@@ -147,43 +153,46 @@ func show_combat() -> void:
         log.add_child(make_label("• " + line, 12, MUTED))
 
     var heroes_row := HBoxContainer.new()
+    heroes_row.name = "CombatHeroesRow"
     heroes_row.position = Vector2(35, 160)
     heroes_row.size = Vector2(560, 330)
-    heroes_row.add_theme_constant_override("separation", -8)
+    heroes_row.add_theme_constant_override("separation", 8)
     content.add_child(heroes_row)
     var ordered_heroes: Array[Dictionary] = _heroes_by_position()
     for hero_value in ordered_heroes:
         var displayed: Dictionary = hero_value
         var active: bool = str(displayed.get("id", "")) == combat_active_hero_id
         var card := VBoxContainer.new()
-        card.custom_minimum_size = Vector2(140, 320)
+        card.custom_minimum_size = Vector2(128, 300)
         var art := TextureRect.new()
         art.texture = load(hero_art(displayed))
         art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
         art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-        art.custom_minimum_size = Vector2(138, 250)
+        art.custom_minimum_size = Vector2(128, 230)
         art.modulate = Color(1.0, 1.0, 1.0, 1.0 if int(displayed.get("hp", 0)) > 0 else 0.30)
         card.add_child(art)
         card.add_child(make_label("%s%s\nPV %d/%d · P%d" % ["▶ " if active else "", str(displayed.get("name", "Héros")), int(displayed.get("hp", 0)), int(displayed.get("max_hp", 1)), int(displayed.get("combat_position", 0)) + 1], 12, GOLD if active else TEXT))
         heroes_row.add_child(card)
 
     var enemies_row := HBoxContainer.new()
+    enemies_row.name = "CombatEnemiesRow"
     enemies_row.position = Vector2(650, 155)
     enemies_row.size = Vector2(600, 340)
-    enemies_row.add_theme_constant_override("separation", -5)
+    enemies_row.add_theme_constant_override("separation", 8)
     content.add_child(enemies_row)
     for i in range(GameState.battle_enemies.size()):
         var enemy: Dictionary = GameState.battle_enemies[i]
         var button := Button.new()
         button.flat = true
-        button.custom_minimum_size = Vector2(145, 330)
+        button.custom_minimum_size = Vector2(140, 300)
         var column := VBoxContainer.new()
         column.mouse_filter = Control.MOUSE_FILTER_IGNORE
+        column.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
         var enemy_art := TextureRect.new()
         enemy_art.texture = load("res://assets/enemies/%s" % str(enemy.get("art", "enemy_01.webp")))
         enemy_art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
         enemy_art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-        enemy_art.custom_minimum_size = Vector2(140, 260)
+        enemy_art.custom_minimum_size = Vector2(140, 230)
         enemy_art.modulate = Color(1,1,1,1.0 if int(enemy.get("hp",0)) > 0 else 0.25)
         column.add_child(enemy_art)
         column.add_child(make_label("%s\nPV %d/%d" % [str(enemy.get("name", "Ennemi")), int(enemy.get("hp",0)), int(enemy.get("max_hp",1))], 11, GOLD if i == selected_enemy else TEXT))
@@ -192,18 +201,22 @@ func show_combat() -> void:
         enemies_row.add_child(button)
 
     var loadout_row := HBoxContainer.new()
+    loadout_row.name = "CombatSkillsRow"
     loadout_row.position = Vector2(24, 510)
-    loadout_row.size = Vector2(1220, 60)
+    loadout_row.size = Vector2(1220, 48)
     loadout_row.add_theme_constant_override("separation", 7)
     content.add_child(loadout_row)
     var loadout: Array[String] = HeroSkillManager.combat_loadout(hero)
     for slot in range(HeroSkillManager.COMBAT_LOADOUT_SIZE):
         var skill: Dictionary = HeroSkillManager.combat_skill(hero, loadout[slot])
-        var skill_button := make_button("%d · %s" % [slot + 1, str(skill.get("name", "Technique"))], func(slot_index = slot): _use_combat_skill(int(slot_index)), Vector2(292, 54))
+        var skill_button := make_button("%d · %s" % [slot + 1, str(skill.get("name", "Technique"))], func(slot_index = slot): _use_combat_skill(int(slot_index)), Vector2(292, 48))
+        skill_button.add_theme_font_size_override("font_size", 14)
+        skill_button.clip_text = true
         skill_button.tooltip_text = str(skill.get("description", ""))
         loadout_row.add_child(skill_button)
 
     var extra_row := HBoxContainer.new()
+    extra_row.name = "CombatUtilityRow"
     extra_row.position = Vector2(24, 580)
     extra_row.size = Vector2(1220, 58)
     extra_row.add_theme_constant_override("separation", 8)

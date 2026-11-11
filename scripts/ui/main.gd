@@ -71,6 +71,9 @@ func refresh_header() -> void:
 
 func clear_content() -> void:
     for child in content.get_children():
+        # Release the old tree immediately: subsequent render passes must not
+        # rediscover queued portraits/buttons while constructing the next frame.
+        content.remove_child(child)
         child.queue_free()
 
 func panel_style(color := PANEL) -> StyleBoxFlat:
@@ -96,6 +99,17 @@ func make_button(text: String, callback: Callable, min_size := Vector2(190, 52))
     b.add_theme_color_override("font_color", TEXT)
     b.add_theme_stylebox_override("normal", panel_style())
     b.add_theme_stylebox_override("hover", panel_style(Color(0.12, 0.09, 0.06, 0.98)))
+    b.add_theme_stylebox_override("pressed", panel_style(Color(0.055, 0.048, 0.038, 1.0)))
+    b.add_theme_stylebox_override("disabled", panel_style(Color(0.015, 0.016, 0.020, 0.96)))
+    var focus := StyleBoxFlat.new()
+    focus.bg_color = Color(0, 0, 0, 0)
+    focus.border_color = Color(0.48, 0.40, 0.27, 0.9)
+    focus.set_border_width_all(1)
+    b.add_theme_stylebox_override("focus", focus)
+    b.add_theme_color_override("font_hover_color", TEXT)
+    b.add_theme_color_override("font_pressed_color", GOLD)
+    b.add_theme_color_override("font_focus_color", TEXT)
+    b.add_theme_color_override("font_disabled_color", MUTED)
     b.pressed.connect(callback)
     return b
 
@@ -343,7 +357,7 @@ func hero_art(hero: Dictionary) -> String:
     # named Veilleur's official plate merely because they share a class.
     var hero_id := str(hero.get("canonical_id", hero.get("id", ""))).to_lower()
     if hero_id in ["mathilde", "marec", "anouk", "aurelien"]:
-        return "res://art/library/heroes/%s/reference.jpg" % hero_id
+        return CanonicalArtRegistry.new().hero_portrait_path(hero)
     var c := DataLoader.find_by_id(DataLoader.classes, hero.get("class_id"))
     return "res://assets/heroes/%s" % c.get("art","inquisitor.webp")
 

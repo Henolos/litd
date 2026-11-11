@@ -38,3 +38,25 @@ def test_art_catalogue_does_not_expand_playable_quartet_or_replace_generic_class
 def test_dynamic_art_slot_points_to_official_catalogue():
     registry = json.loads((ROOT / "data/canonical_art_v41.json").read_text(encoding="utf-8"))
     assert registry["asset_slots"]["portrait.active_hero"]["primary_path"] == "res://art/library/heroes/{entity_id}/reference.jpg"
+
+
+def test_runtime_portraits_are_individual_regions_of_the_unchanged_originals():
+    import re
+    registry = json.loads((ROOT / "data/canonical_art_v41.json").read_text(encoding="utf-8"))
+    portraits = registry["hero_portrait_bindings"]
+    assert set(portraits) == QUARTET
+    sources = json.loads((ROOT / "docs/art/validated_heroes_manifest_20261111.json").read_text(encoding="utf-8"))
+    dimensions = {a["hero"]: (a["width"], a["height"]) for a in sources["assets"]}
+    for hero, path in portraits.items():
+        assert path.endswith(".tres")
+        resource = (ROOT / path.removeprefix("res://")).read_text(encoding="utf-8")
+        assert 'type="AtlasTexture"' in resource
+        assert f'path="res://art/library/heroes/{hero}/reference.jpg"' in resource
+        match = re.search(r"region = Rect2\(([^)]+)\)", resource)
+        assert match is not None
+        x, y, width, height = map(float, match[1].split(","))
+        source_width, source_height = dimensions[hero]
+        assert x >= 0 and y >= 0 and width > 0 and height > 0
+        assert x + width <= source_width and y + height <= source_height
+        assert width < source_width / 2 and height < source_height / 2
+        assert "filter_clip = true" in resource

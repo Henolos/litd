@@ -52,7 +52,7 @@ func _render_enemy_rank_markers() -> void:
         var enemy: Dictionary = GameState.battle_enemies[index]
         var rank := int(enemy.get("combat_position", 0)) + 1
         var marker := make_label("E%d" % rank, 13, GOLD if index == selected_enemy else MUTED)
-        marker.position = Vector2(654 + float(index) * 140.0, 150)
+        marker.position = Vector2(654 + float(index) * 148.0, 150)
         marker.size = Vector2(58, 24)
         content.add_child(marker)
 

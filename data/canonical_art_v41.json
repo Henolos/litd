@@ -1,4 +1,10 @@
 {
+  "hero_portrait_bindings": {
+    "mathilde": "res://assets/art/v41/portraits/mathilde.tres",
+    "marec": "res://assets/art/v41/portraits/marec.tres",
+    "anouk": "res://assets/art/v41/portraits/anouk.tres",
+    "aurelien": "res://assets/art/v41/portraits/aurelien.tres"
+  },
   "version": 41,
   "name": "LITD Les Veilleurs - Direction artistique canonique v41",
   "purpose": "Séparer définitivement la direction artistique du gameplay afin de pouvoir remplacer progressivement tous les placeholders sans modifier les règles de jeu.",

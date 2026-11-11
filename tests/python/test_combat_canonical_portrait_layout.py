@@ -35,13 +35,13 @@ def test_skill_and_context_rows_remain_below_hero_area():
     assert "extra_row.position = Vector2(24, 580)" in base
 
 
-def test_hero_profile_reuses_canonical_portraits_without_cropping():
+def test_hero_profile_reuses_the_shared_runtime_portrait_resolver():
     layer = (ROOT / "scripts/ui/main_v52.gd").read_text(encoding="utf-8")
 
     assert "func _show_hero_profile() -> void:" in layer
     assert "_replace_hero_profile_portrait_v52()" in layer
     assert 'var hero: Dictionary = _selected_hero()' in layer
-    for hero_id in ("mathilde", "marec", "anouk", "aurelien"):
-        assert f'"{hero_id}": "res://art/library/heroes/{hero_id}/reference.jpg"' in layer
+    assert "_canonical_art.hero_portrait_path(hero)" in layer
+    assert "CANONICAL_PORTRAITS :=" not in layer
     assert "portrait_slot.texture = portrait_texture" in layer
     assert "portrait_slot.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED" in layer

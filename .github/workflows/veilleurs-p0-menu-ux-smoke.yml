@@ -6,6 +6,11 @@ on:
       - 'project.godot'
       - 'scripts/ui/combat_sandbox_ui_v51.gd'
       - 'scripts/tests/hud_visual_capture.gd'
+      - 'scripts/tests/combat_portrait_hud_capture.gd'
+      - 'scripts/ui/main*.gd'
+      - 'scripts/visual/canonical_art_registry.gd'
+      - 'data/canonical_art_v41.json'
+      - 'assets/art/v41/portraits/**'
       - 'scripts/ui/combatant_inspection_ui.gd'
       - 'scripts/tests/combatant_inspection_input_smoke_test.gd'
       - 'scenes/tests/combatant_inspection_input_smoke.tscn'
@@ -48,12 +53,22 @@ jobs:
           timeout 120s xvfb-run -a -s '-screen 0 1920x1080x24' godot --path . --rendering-method gl_compatibility --audio-driver Dummy --script scripts/tests/hud_visual_capture.gd 2>&1 | tee reports/hud_visual/render.log
           grep -q 'HUD_VISUAL_CAPTURE_OK captures=8' reports/hud_visual/render.log
           if grep -Eq 'SCRIPT ERROR|Assertion failed|Parse Error' reports/hud_visual/render.log; then exit 1; fi
+      - name: Render and click the real campaign combat
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/combat_portrait_hud
+          timeout 120s xvfb-run -a -s '-screen 0 1920x1080x24' godot --path . --rendering-method gl_compatibility --audio-driver Dummy --script scripts/tests/combat_portrait_hud_capture.gd 2>&1 | tee reports/combat_portrait_hud/render.log
+          grep -q 'COMBAT_PORTRAIT_HUD_OK captures=20' reports/combat_portrait_hud/render.log
+          if grep -Eq 'SCRIPT ERROR|Assertion failed|Parse Error' reports/combat_portrait_hud/render.log; then exit 1; fi
       - name: Publish rendered evidence
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: desktop-hud-evidence
-          path: reports/hud_visual/
+          path: |
+            reports/hud_visual/
+            reports/combat_portrait_hud/
           retention-days: 30
   menu-navigation-reflow:
     runs-on: ubuntu-latest

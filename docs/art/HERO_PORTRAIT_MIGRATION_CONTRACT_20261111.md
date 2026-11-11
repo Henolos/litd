@@ -25,3 +25,9 @@ Les planches originales sont affichées sans recadrage ni transformation du fich
 Le nettoyage `c9c5dc80` retire seulement les neuf variantes `_2.webp` et quatre SVG sans consommateur retrouvé. Dix cartes de classes et toutes les ressources ennemis sont conservées. Les 211 tests ciblés, l’import Godot, le catalogue et le parcours joueur passent après nettoyage ; la CI du dernier commit et la merge queue restent à contrôler avant fusion.
 
 Preuves, limites et état de suivi détaillés : `HERO_RUNTIME_DEPENDENCIES_20261111.md` et `hero_cleanup_evidence_20261111.json`. Les propositions ci-dessus ne signifient pas que des textures dérivées ont été produites ou qu’un playtest visuel a eu lieu.
+
+## Correction portraits et HUD après fusion de #610
+
+La correction dédiée depuis main `14f214278b26628e8e9b6d8bdc5b79227d169d02` remplace le chargement des planches dans les quatre emplacements actifs par des ressources AtlasTexture `assets/art/v41/portraits/<id>.tres`. Les régions référencent directement les JPEG immuables, sans génération ni recompression. La table `hero_portrait_bindings` du registre v41 est commune à `hero_art()`, au profil et au combat v52. Les six originaux et les références Blender sont préservés ; Éffrie et Lya restent non jouables.
+
+Voir `COMBAT_PORTRAITS_HUD_FIX_20261111.md` pour les causes racines, contrôles et limites. L’état historique ci-dessus ne constitue pas une validation du rendu corrigé.

@@ -194,9 +194,9 @@ func _highlight_pending_enemy_targets() -> void:
 
 func _apply_target_button_highlight(button: Button, strong: bool) -> void:
     var style := StyleBoxFlat.new()
-    style.bg_color = Color(0.30, 0.22, 0.08, 0.20 if strong else 0.10)
-    style.border_color = Color(1.0, 0.82, 0.34, 0.98 if strong else 0.72)
-    style.set_border_width_all(3 if strong else 2)
+    style.bg_color = Color(0.07, 0.06, 0.04, 0.65 if strong else 0.35)
+    style.border_color = Color(0.58, 0.47, 0.29, 0.90 if strong else 0.65)
+    style.set_border_width_all(2 if strong else 1)
     style.corner_radius_top_left = 5
     style.corner_radius_top_right = 5
     style.corner_radius_bottom_left = 5

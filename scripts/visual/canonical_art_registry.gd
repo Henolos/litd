@@ -50,10 +50,23 @@ func asset_slot(slot_id: String, bindings: Dictionary = {}) -> Dictionary:
     if not slots.has(slot_id):
         return {}
     var slot: Dictionary = (slots[slot_id] as Dictionary).duplicate(true)
+    if slot_id == "portrait.active_hero":
+        var portraits: Dictionary = _manifest.get("hero_portrait_bindings", {})
+        var hero_id := str(bindings.get("entity_id", "")).to_lower()
+        if portraits.has(hero_id):
+            slot["primary_path"] = portraits[hero_id]
     for field in ["primary_path", "fallback_path"]:
         if slot.has(field):
             slot[field] = _bind_path(str(slot[field]), bindings)
     return slot
+
+# Named heroes resolve through the same manifest in the legacy UI and v41 slots.
+# The original plate is never a fallback for a missing combat crop.
+func hero_portrait_path(character: Dictionary) -> String:
+    _ensure_loaded()
+    var hero_id := str(character.get("canonical_id", character.get("entity_id", character.get("id", "")))).to_lower()
+    var portraits: Dictionary = _manifest.get("hero_portrait_bindings", {})
+    return str(portraits.get(hero_id, ""))
 
 func resolve_asset(slot_id: String, bindings: Dictionary = {}) -> Dictionary:
     var slot := asset_slot(slot_id, bindings)

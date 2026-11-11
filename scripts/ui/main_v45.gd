@@ -19,7 +19,7 @@ func show_combat() -> void:
 
 func _compact_combat_card_labels() -> void:
     # Les informations détaillées passent dans le panneau contextuel. Sur le champ
-    # de bataille on conserve seulement l'identité et le rang pour réduire le bruit.
+    # de bataille on conserve l'identité, le rang et les PV réels.
     for node_value: Variant in content.find_children("*", "Label", true, false):
         var label := node_value as Label
         if label == null:
@@ -29,13 +29,13 @@ func _compact_combat_card_labels() -> void:
             var hero_name := str(hero.get("name", ""))
             if hero_name != "" and label.text.contains(hero_name) and label.text.contains("PV ") and label.text.contains("P"):
                 var active := str(hero.get("id", "")) == combat_active_hero_id
-                label.text = "%s%s\nR%d" % ["▶ " if active else "", hero_name, int(hero.get("combat_position", 0)) + 1]
+                label.text = "%s%s\nR%d · PV %d/%d" % ["▶ " if active else "", hero_name, int(hero.get("combat_position", 0)) + 1, int(hero.get("hp", 0)), int(hero.get("max_hp", 1))]
                 break
         for enemy_value: Variant in GameState.battle_enemies:
             var enemy: Dictionary = enemy_value
             var enemy_name := str(enemy.get("name", ""))
             if enemy_name != "" and label.text.contains(enemy_name) and label.text.contains("PV "):
-                label.text = "%s\nE%d" % [enemy_name, int(enemy.get("combat_position", 0)) + 1]
+                label.text = "%s\nE%d · PV %d/%d" % [enemy_name, int(enemy.get("combat_position", 0)) + 1, int(enemy.get("hp", 0)), int(enemy.get("max_hp", 1))]
                 break
 
 func _install_combat_inspection_hotspots() -> void:
@@ -47,8 +47,8 @@ func _install_combat_inspection_hotspots() -> void:
         var hotspot := Button.new()
         hotspot.name = "InspectHeroV45_%d" % visual_index
         hotspot.flat = true
-        hotspot.position = Vector2(35.0 + float(visual_index) * 132.0, 160.0)
-        hotspot.size = Vector2(132.0, 320.0)
+        hotspot.position = Vector2(35.0 + float(visual_index) * 136.0, 160.0)
+        hotspot.size = Vector2(128.0, 300.0)
         hotspot.z_index = 65
         hotspot.focus_mode = Control.FOCUS_ALL
         hotspot.tooltip_text = "Voir l'état de %s" % str(hero.get("name", "Héros"))
@@ -60,8 +60,8 @@ func _install_combat_inspection_hotspots() -> void:
         var hotspot := Button.new()
         hotspot.name = "InspectEnemyV45_%d" % enemy_index
         hotspot.flat = true
-        hotspot.position = Vector2(650.0 + float(enemy_index) * 140.0, 155.0)
-        hotspot.size = Vector2(140.0, 330.0)
+        hotspot.position = Vector2(650.0 + float(enemy_index) * 148.0, 155.0)
+        hotspot.size = Vector2(140.0, 300.0)
         hotspot.z_index = 65
         hotspot.focus_mode = Control.FOCUS_ALL
         hotspot.tooltip_text = "Voir l'état de %s" % str(enemy.get("name", "Ennemi"))

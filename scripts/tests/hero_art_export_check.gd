@@ -10,5 +10,11 @@ func _initialize() -> void:
             push_error("EXPORTED_HERO_ART_MISSING: %s" % path)
             quit(1)
             return
+    for hero_id in ["mathilde", "marec", "anouk", "aurelien"]:
+        var portrait := load("res://assets/art/v41/portraits/%s.tres" % hero_id) as AtlasTexture
+        if portrait == null or portrait.atlas == null or not portrait.region.has_area():
+            push_error("EXPORTED_HERO_PORTRAIT_MISSING: " + hero_id)
+            quit(1)
+            return
     print("EXPORTED_HERO_ART_OK: six official textures loaded from Web pack")
     quit(0)
