@@ -1,6 +1,6 @@
 # LITD 1 — Réconciliation du bestiaire (11 novembre 2026)
 
-> État courant : transfert rétabli, sept images mesurées, trois références archivées et vérifiées depuis GitHub. Les mentions de blocage et de zéro import ci-dessous sont historiques et sont remplacées par la dernière section. Aucune revalidation artistique n’est demandée.
+> État courant : **21/21 originaux documentés récupérés, archivés et vérifiés depuis GitHub**. Les mentions de blocage et d’import partiel ci-dessous sont historiques et sont remplacées par la dernière section. Aucune revalidation artistique n’est demandée.
 
 ## Périmètre et preuves
 Contrôle documentaire des registres de PR #607 et #608. Aucun binaire artistique importé ou validé par ce document. Les 68 images existantes dans main et les deux branches ne constituent pas une archive des planches du bestiaire (constat de l'audit Work communiqué par l'utilisateur).
@@ -77,7 +77,7 @@ Rétablir le transfert des octets, mesurer les SHA-256, identifier les variantes
 Chantier : Bibliothèque artistique LITD 1. Statut : 🟠 BLOQUÉ sur le transfert des originaux du bestiaire ; réconciliation documentaire avancée. Avancement du chantier actuel : À évaluer. Avancement du projet global LITD 1 : À évaluer.
 
 
-## Réparation vérifiée du transfert — état courant
+## Réparation vérifiée du transfert — historique du premier lot de trois
 
 L’erreur `Library prepare_materialize is not available` provenait du chemin d’accès utilisé par le programme local. L’opération intégrée à Work a été appelée avec succès ; l’archive a été récupérée avec ses métadonnées. Cela rétablit ce transfert, sans prétendre corriger globalement le programme local ou le service. Aucun changement de permission ou de protection du dépôt n’a été nécessaire.
 
@@ -100,3 +100,20 @@ Les quatre autres fichiers sont les deux autres variantes de Valkyrie, le PNG du
 **Suite :** retrouver les dix-huit originaux correspondant aux empreintes attendues, poursuivre l’archivage et vérifier la CI. #609 reste en brouillon ; aucune fusion n’est annoncée. La validation artistique du propriétaire est conservée.
 
 Chantier : Bibliothèque artistique LITD 1. Statut : 🟡 À CONSOLIDER — transfert rétabli et trois références vérifiées, collection incomplète. Avancement du chantier actuel : À évaluer. Avancement du projet global LITD 1 : À évaluer. Couverture binaire des références documentées : **3/21 (14,3 %)** ; ce ratio ne mesure pas l’avancement global du chantier ou du jeu.
+
+
+## Collection documentaire complète — état courant
+
+Les dix-huit originaux manquants ont été retrouvés sous leurs noms exacts dans les pièces disponibles, puis téléchargés. **18/18 SHA-256 correspondent au manifeste attendu** avant import. Les fichiers se décodent en JPEG ; dimensions 1536 × 1024, sauf le Sphinx original en **1535 × 1024**. Aucun redimensionnement, aucune retouche ni recompression n’a été effectué.
+
+Le contrôle visuel des sources confirme les titres et sujets des vingt-et-une références : Minotaure, Gorgone, Cerbère, Harpie, Cyclope V3, Chimère, Basilic, Hydre, Sphinx, Oni V5, Karasu-tengu, Jorōgumo, Kappa, Yuki-onna, Nue, Draugr, Troll, Valkyrie spectrale, Loup décharné/Wendigo à tête de loup, Golem de pierre runique et Kitsune. Les numéros canoniques n°22–25 attribués dans les registres ne sont pas prétendus imprimés sur les planches qui ne les affichent pas. Les anciens bandeaux de validation imprimés ne remplacent pas les décisions du propriétaire ; sa validation artistique reste acquise.
+
+Les dix-huit fichiers sont ajoutés dans `art/library/bestiary/{subject_id}/reference.jpeg` (Jorōgumo : `reference.jpg`) au commit **cd550267ae79b60765f0213933cd437add5b6c6d**. Les trois originaux du premier lot restent inchangés. Une nouvelle récupération Git de ce commit a permis de lire les octets des **21 fichiers** et de recalculer leurs SHA-256 : **21/21 conformes aux empreintes attendues**. Chaque entrée du manifeste contient désormais le chemin archivé, la taille, les dimensions, l’empreinte mesurée et le commit vérifié.
+
+La réception des dix-huit fichiers ne dépend plus de l’archive de sept candidats : les quatre variantes différentes de cette archive restent conservées et ne sont pas substituées aux références courantes. Aucun ennemi actif, fichier de héros, scène, script de gameplay, statistique ou compétence n’est modifié par le lot. Les correspondances `runtime_enemy_id` restent nulles : l’archivage ne constitue pas une migration du bestiaire jouable.
+
+Le contrôle d’intégrité du catalogue vérifie réellement les vingt-et-un fichiers archivés. Un contrôle supplémentaire interdit de déclarer la collection complète si une entrée est encore en attente, si le compteur ne correspond pas ou si un original manque au catalogue. La CI du commit final reste à lire après envoi.
+
+**Périmètre terminé matériellement :** récupération et archivage des 21 références documentées. **Validations encore distinctes :** contrôles CI finaux et éventuelle fusion protégée, affichage en jeu, correspondance des espèces avec les 39 images ennemis actuelles, anatomies/variantes, quotas et conception des 40 créatures. #606–#608 restent séparées ; aucune de ces PR n’est fusionnée ni fermée par cette opération.
+
+Chantier : Bibliothèque artistique LITD 1. Statut : 🟡 À CONSOLIDER — collection source complète, validations finales et intégration au jeu distinctes. Avancement du chantier actuel : À évaluer. Avancement du projet global LITD 1 : À évaluer. Couverture binaire des références documentées : **21/21 (100 %)** ; ce ratio porte exclusivement sur les originaux du manifeste et ne mesure pas l’avancement global du chantier ou du jeu.

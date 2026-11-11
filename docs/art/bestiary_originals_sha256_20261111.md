@@ -3,7 +3,7 @@
 Archive locale : litd_sources_retrouvees_20261111.zip
 SHA-256 de l'archive : 56f5b6c1577805e27fdef25f7050e474a105a740de865db9d06f251c70fc5790
 
-**État courant :** archive récupérée et sept empreintes mesurées. Kitsune, Valkyrie harmonisée et Troll sont archivés dans `art/library/bestiary/` et leurs octets récupérés de GitHub concordent. Les quatre autres variantes restent distinctes des références courantes. Les détails et statuts actuels sont dans `reconciled_bestiary_manifest_20261111.json`. Aucune image existante n’est supprimée ou écrasée.
+**Portée historique de ce fichier :** les sept images de l’archive initiale et leurs empreintes. La collection courante contient désormais **21/21 références documentées archivées et vérifiées depuis GitHub** ; consulter `reconciled_bestiary_manifest_20261111.json`. Les quatre variantes différentes de l’archive restent distinctes des références courantes. Aucune image existante n’est supprimée ou écrasée.
 
 ```text
 64e5abdb0b1e84f6c0c8646bd9f8b380b831bb46b9e310f4ef9b2f6bedb2015b  to_review/same_layout_and_art_as_the_previous_kitsune_sheet.png

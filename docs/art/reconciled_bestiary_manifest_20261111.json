@@ -3,10 +3,10 @@
   "owner_approval_rule": "Toute planche transmise par le propriétaire est officielle ; une version plus récente remplace l’ancienne. Ne pas redemander la validation artistique.",
   "scope": {
     "documented_official_plates": 21,
-    "binary_imported_in_this_lot": 3,
+    "binary_imported_in_this_lot": 21,
     "runtime_migration": false,
     "existing_enemy_images_preserved": 39,
-    "binary_still_pending": 18
+    "binary_still_pending": 0
   },
   "production_plan": {
     "classical_monsters": 25,
@@ -25,16 +25,24 @@
       "art_status": "validated_by_owner",
       "source_filename": "58BB6F02-5144-4489-B072-2D77DAF13CCA.jpeg",
       "expected_sha256": "4b91c4dd1eed8c04e084f5df89976228bb02a3240686069136e771ec601d0283",
-      "binary_status": "pending_retrieval",
-      "measured_sha256": null,
-      "archived_path": null,
+      "binary_status": "verified_in_github",
+      "measured_sha256": "4b91c4dd1eed8c04e084f5df89976228bb02a3240686069136e771ec601d0283",
+      "archived_path": "art/library/bestiary/minotaur/reference.jpeg",
       "planned_target_path": "art/library/bestiary/minotaur/reference.jpeg",
       "runtime_enemy_id": null,
       "source_evidence": {
         "pr": "#608",
         "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
         "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
-      }
+      },
+      "size_bytes": 852177,
+      "width": 1536,
+      "height": 1024,
+      "github_verified_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "github_blob_sha": "c6b9fa55a78bcfe73ffafe5ed70ae311683a3903",
+      "last_github_verification_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "visual_identity_check": "source_title_and_subject_reviewed",
+      "game_display_status": "not_checked"
     },
     {
       "asset_id": "LITD-BEST-PLATE-0002",
@@ -44,16 +52,24 @@
       "art_status": "validated_by_owner",
       "source_filename": "77AE289B-32A8-4073-998D-34393EAABD26(1).jpeg",
       "expected_sha256": "825f35da6bc80f06caa683803d557a653028d139ef102205dcd836556fc0ea82",
-      "binary_status": "pending_retrieval",
-      "measured_sha256": null,
-      "archived_path": null,
+      "binary_status": "verified_in_github",
+      "measured_sha256": "825f35da6bc80f06caa683803d557a653028d139ef102205dcd836556fc0ea82",
+      "archived_path": "art/library/bestiary/gorgon/reference.jpeg",
       "planned_target_path": "art/library/bestiary/gorgon/reference.jpeg",
       "runtime_enemy_id": null,
       "source_evidence": {
         "pr": "#608",
         "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
         "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
-      }
+      },
+      "size_bytes": 893632,
+      "width": 1536,
+      "height": 1024,
+      "github_verified_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "github_blob_sha": "df851ec7884144a6b98bba89c3933dc4d4269d94",
+      "last_github_verification_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "visual_identity_check": "source_title_and_subject_reviewed",
+      "game_display_status": "not_checked"
     },
     {
       "asset_id": "LITD-BEST-PLATE-0003",
@@ -63,16 +79,24 @@
       "art_status": "validated_by_owner",
       "source_filename": "51A31212-CCFB-4566-9709-373A0E4DC416(1).jpeg",
       "expected_sha256": "f10371084abdc7125824c322a559e8ba560bd468b46ed42edbc5a72851eaf8f6",
-      "binary_status": "pending_retrieval",
-      "measured_sha256": null,
-      "archived_path": null,
+      "binary_status": "verified_in_github",
+      "measured_sha256": "f10371084abdc7125824c322a559e8ba560bd468b46ed42edbc5a72851eaf8f6",
+      "archived_path": "art/library/bestiary/cerberus/reference.jpeg",
       "planned_target_path": "art/library/bestiary/cerberus/reference.jpeg",
       "runtime_enemy_id": null,
       "source_evidence": {
         "pr": "#608",
         "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
         "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
-      }
+      },
+      "size_bytes": 877310,
+      "width": 1536,
+      "height": 1024,
+      "github_verified_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "github_blob_sha": "60ae4314647c5b20178552f631cac37fb4b9fa71",
+      "last_github_verification_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "visual_identity_check": "source_title_and_subject_reviewed",
+      "game_display_status": "not_checked"
     },
     {
       "asset_id": "LITD-BEST-PLATE-0004",
@@ -82,16 +106,24 @@
       "art_status": "validated_by_owner",
       "source_filename": "CD69A2E9-6213-46C3-B129-0EC87A51E895(1).jpeg",
       "expected_sha256": "6f22b47843636b63457408c3b92a5b5b6feb7e609f1bd176cac1a3461913df04",
-      "binary_status": "pending_retrieval",
-      "measured_sha256": null,
-      "archived_path": null,
+      "binary_status": "verified_in_github",
+      "measured_sha256": "6f22b47843636b63457408c3b92a5b5b6feb7e609f1bd176cac1a3461913df04",
+      "archived_path": "art/library/bestiary/harpy/reference.jpeg",
       "planned_target_path": "art/library/bestiary/harpy/reference.jpeg",
       "runtime_enemy_id": null,
       "source_evidence": {
         "pr": "#608",
         "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
         "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
-      }
+      },
+      "size_bytes": 925923,
+      "width": 1536,
+      "height": 1024,
+      "github_verified_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "github_blob_sha": "dcd0fa4cd253b2db531fb3d6e5206142e1f4ec98",
+      "last_github_verification_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "visual_identity_check": "source_title_and_subject_reviewed",
+      "game_display_status": "not_checked"
     },
     {
       "asset_id": "LITD-BEST-PLATE-0005",
@@ -101,16 +133,24 @@
       "art_status": "validated_by_owner",
       "source_filename": "7482D63F-DF3A-4D46-8265-D8AC2B6A3A17(2).jpeg",
       "expected_sha256": "831a4008db014a815c65f19c06fcf227f56340d362d30209bad7d1a0f27610fe",
-      "binary_status": "pending_retrieval",
-      "measured_sha256": null,
-      "archived_path": null,
+      "binary_status": "verified_in_github",
+      "measured_sha256": "831a4008db014a815c65f19c06fcf227f56340d362d30209bad7d1a0f27610fe",
+      "archived_path": "art/library/bestiary/cyclops/reference.jpeg",
       "planned_target_path": "art/library/bestiary/cyclops/reference.jpeg",
       "runtime_enemy_id": null,
       "source_evidence": {
         "pr": "#608",
         "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
         "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
-      }
+      },
+      "size_bytes": 915544,
+      "width": 1536,
+      "height": 1024,
+      "github_verified_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "github_blob_sha": "46599b89f5147f05c1445a6054594cebc22ca085",
+      "last_github_verification_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "visual_identity_check": "source_title_and_subject_reviewed",
+      "game_display_status": "not_checked"
     },
     {
       "asset_id": "LITD-BEST-PLATE-0006",
@@ -120,16 +160,24 @@
       "art_status": "validated_by_owner",
       "source_filename": "9253391F-A4A8-424B-B67E-DD6E9D950E49(3).jpeg",
       "expected_sha256": "f86f6c59525ae93e42afd9d75d84cb7da6eba6451da356252e5827b49e47cd06",
-      "binary_status": "pending_retrieval",
-      "measured_sha256": null,
-      "archived_path": null,
+      "binary_status": "verified_in_github",
+      "measured_sha256": "f86f6c59525ae93e42afd9d75d84cb7da6eba6451da356252e5827b49e47cd06",
+      "archived_path": "art/library/bestiary/chimera/reference.jpeg",
       "planned_target_path": "art/library/bestiary/chimera/reference.jpeg",
       "runtime_enemy_id": null,
       "source_evidence": {
         "pr": "#608",
         "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
         "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
-      }
+      },
+      "size_bytes": 926841,
+      "width": 1536,
+      "height": 1024,
+      "github_verified_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "github_blob_sha": "340c01a87a3b2c67595c6569d910a9f8c82c0d8b",
+      "last_github_verification_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "visual_identity_check": "source_title_and_subject_reviewed",
+      "game_display_status": "not_checked"
     },
     {
       "asset_id": "LITD-BEST-PLATE-0007",
@@ -139,16 +187,24 @@
       "art_status": "validated_by_owner",
       "source_filename": "3A6736BC-BF31-4715-955C-3EE09BFE5C6E.jpeg",
       "expected_sha256": "b9ce75d1a597385868195cc99455dac6f63dbbcc84c55809996e8cc5972c221e",
-      "binary_status": "pending_retrieval",
-      "measured_sha256": null,
-      "archived_path": null,
+      "binary_status": "verified_in_github",
+      "measured_sha256": "b9ce75d1a597385868195cc99455dac6f63dbbcc84c55809996e8cc5972c221e",
+      "archived_path": "art/library/bestiary/basilisk/reference.jpeg",
       "planned_target_path": "art/library/bestiary/basilisk/reference.jpeg",
       "runtime_enemy_id": null,
       "source_evidence": {
         "pr": "#608",
         "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
         "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
-      }
+      },
+      "size_bytes": 863306,
+      "width": 1536,
+      "height": 1024,
+      "github_verified_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "github_blob_sha": "38071260631f42535a557fce0903397dcd4606ab",
+      "last_github_verification_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "visual_identity_check": "source_title_and_subject_reviewed",
+      "game_display_status": "not_checked"
     },
     {
       "asset_id": "LITD-BEST-PLATE-0008",
@@ -158,16 +214,24 @@
       "art_status": "validated_by_owner",
       "source_filename": "397C93DD-C338-44EF-A556-1F5E586AC3DC(1).jpeg",
       "expected_sha256": "23d7e90aca6058a4394135d2eda92ac5d53e0cb3522244e3a583d2185dcc12f6",
-      "binary_status": "pending_retrieval",
-      "measured_sha256": null,
-      "archived_path": null,
+      "binary_status": "verified_in_github",
+      "measured_sha256": "23d7e90aca6058a4394135d2eda92ac5d53e0cb3522244e3a583d2185dcc12f6",
+      "archived_path": "art/library/bestiary/hydra/reference.jpeg",
       "planned_target_path": "art/library/bestiary/hydra/reference.jpeg",
       "runtime_enemy_id": null,
       "source_evidence": {
         "pr": "#608",
         "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
         "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
-      }
+      },
+      "size_bytes": 888413,
+      "width": 1536,
+      "height": 1024,
+      "github_verified_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "github_blob_sha": "3772b82a9371963eee62cfe7011ef0588d907a09",
+      "last_github_verification_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "visual_identity_check": "source_title_and_subject_reviewed",
+      "game_display_status": "not_checked"
     },
     {
       "asset_id": "LITD-BEST-PLATE-0009",
@@ -177,16 +241,24 @@
       "art_status": "validated_by_owner",
       "source_filename": "9D5B728A-53F3-45DE-B47D-2C390F4CEBB4.jpeg",
       "expected_sha256": "9698a55919281af52d42d3fa1e0b718a64e9b66501ef1d9150d1900fabb7098a",
-      "binary_status": "pending_retrieval",
-      "measured_sha256": null,
-      "archived_path": null,
+      "binary_status": "verified_in_github",
+      "measured_sha256": "9698a55919281af52d42d3fa1e0b718a64e9b66501ef1d9150d1900fabb7098a",
+      "archived_path": "art/library/bestiary/sphinx/reference.jpeg",
       "planned_target_path": "art/library/bestiary/sphinx/reference.jpeg",
       "runtime_enemy_id": null,
       "source_evidence": {
         "pr": "#608",
         "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
         "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
-      }
+      },
+      "size_bytes": 957824,
+      "width": 1535,
+      "height": 1024,
+      "github_verified_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "github_blob_sha": "dfca3d2d3d0732fdaca7cf9cc09e7317584c45d7",
+      "last_github_verification_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "visual_identity_check": "source_title_and_subject_reviewed",
+      "game_display_status": "not_checked"
     },
     {
       "asset_id": "LITD-BEST-PLATE-0010",
@@ -196,16 +268,24 @@
       "art_status": "validated_by_owner",
       "source_filename": "EA1BE1AD-A9CE-4FED-8DB7-0693697D14E4.jpeg",
       "expected_sha256": "9920292ec992c278320feb629ddae83b96193f1d78f5e3d1c4223727599b26be",
-      "binary_status": "pending_retrieval",
-      "measured_sha256": null,
-      "archived_path": null,
+      "binary_status": "verified_in_github",
+      "measured_sha256": "9920292ec992c278320feb629ddae83b96193f1d78f5e3d1c4223727599b26be",
+      "archived_path": "art/library/bestiary/oni/reference.jpeg",
       "planned_target_path": "art/library/bestiary/oni/reference.jpeg",
       "runtime_enemy_id": null,
       "source_evidence": {
         "pr": "#608",
         "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
         "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
-      }
+      },
+      "size_bytes": 950703,
+      "width": 1536,
+      "height": 1024,
+      "github_verified_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "github_blob_sha": "bbe6d8a12c509cdc0a45491ec2862726c1c134f4",
+      "last_github_verification_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "visual_identity_check": "source_title_and_subject_reviewed",
+      "game_display_status": "not_checked"
     },
     {
       "asset_id": "LITD-BEST-PLATE-0011",
@@ -215,16 +295,24 @@
       "art_status": "validated_by_owner",
       "source_filename": "EFB9F79B-CCA7-4409-AF9F-2B857E700247.jpeg",
       "expected_sha256": "5fd6c2f5e0cece136bf107f258ce21c67b1fd2d1e0cfa89af421f16749d2903b",
-      "binary_status": "pending_retrieval",
-      "measured_sha256": null,
-      "archived_path": null,
+      "binary_status": "verified_in_github",
+      "measured_sha256": "5fd6c2f5e0cece136bf107f258ce21c67b1fd2d1e0cfa89af421f16749d2903b",
+      "archived_path": "art/library/bestiary/karasu_tengu/reference.jpeg",
       "planned_target_path": "art/library/bestiary/karasu_tengu/reference.jpeg",
       "runtime_enemy_id": null,
       "source_evidence": {
         "pr": "#608",
         "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
         "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
-      }
+      },
+      "size_bytes": 927659,
+      "width": 1536,
+      "height": 1024,
+      "github_verified_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "github_blob_sha": "5de7a1773ed3a24648a3fb94254272834a017cc8",
+      "last_github_verification_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "visual_identity_check": "source_title_and_subject_reviewed",
+      "game_display_status": "not_checked"
     },
     {
       "asset_id": "LITD-BEST-PLATE-0012",
@@ -234,16 +322,24 @@
       "art_status": "validated_by_owner",
       "source_filename": "LITD1_Jorogumo_17_harmonisee.jpg",
       "expected_sha256": "d222d618fe9ac3de1089ffef28978bb170bde654dfb58e00eb6bd3d33c25c1cc",
-      "binary_status": "pending_retrieval",
-      "measured_sha256": null,
-      "archived_path": null,
+      "binary_status": "verified_in_github",
+      "measured_sha256": "d222d618fe9ac3de1089ffef28978bb170bde654dfb58e00eb6bd3d33c25c1cc",
+      "archived_path": "art/library/bestiary/jorogumo/reference.jpg",
       "planned_target_path": "art/library/bestiary/jorogumo/reference.jpg",
       "runtime_enemy_id": null,
       "source_evidence": {
         "pr": "#608",
         "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
         "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
-      }
+      },
+      "size_bytes": 999903,
+      "width": 1536,
+      "height": 1024,
+      "github_verified_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "github_blob_sha": "d7774e666c5c64e89d625d66ca7b5d9f02fd082f",
+      "last_github_verification_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "visual_identity_check": "source_title_and_subject_reviewed",
+      "game_display_status": "not_checked"
     },
     {
       "asset_id": "LITD-BEST-PLATE-0013",
@@ -253,16 +349,24 @@
       "art_status": "validated_by_owner",
       "source_filename": "A430C1F3-3ED5-42D7-BFF6-DDD1658E7767.jpeg",
       "expected_sha256": "80e742dbdafa813f63b0003e1226c02042eaeeddb7af8216349b83041ef82148",
-      "binary_status": "pending_retrieval",
-      "measured_sha256": null,
-      "archived_path": null,
+      "binary_status": "verified_in_github",
+      "measured_sha256": "80e742dbdafa813f63b0003e1226c02042eaeeddb7af8216349b83041ef82148",
+      "archived_path": "art/library/bestiary/kappa/reference.jpeg",
       "planned_target_path": "art/library/bestiary/kappa/reference.jpeg",
       "runtime_enemy_id": null,
       "source_evidence": {
         "pr": "#608",
         "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
         "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
-      }
+      },
+      "size_bytes": 946366,
+      "width": 1536,
+      "height": 1024,
+      "github_verified_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "github_blob_sha": "dc6ea8c5ea211d2890295b5383d8de2b7cb96b03",
+      "last_github_verification_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "visual_identity_check": "source_title_and_subject_reviewed",
+      "game_display_status": "not_checked"
     },
     {
       "asset_id": "LITD-BEST-PLATE-0014",
@@ -272,16 +376,24 @@
       "art_status": "validated_by_owner",
       "source_filename": "12AD1B20-3F88-434F-A4C4-4578F26BCA62.jpeg",
       "expected_sha256": "9f20397e1b57e76ef4a73a739babb1f1546cac6b6e8b15ed1f8d52c0b0c295fa",
-      "binary_status": "pending_retrieval",
-      "measured_sha256": null,
-      "archived_path": null,
+      "binary_status": "verified_in_github",
+      "measured_sha256": "9f20397e1b57e76ef4a73a739babb1f1546cac6b6e8b15ed1f8d52c0b0c295fa",
+      "archived_path": "art/library/bestiary/yuki_onna/reference.jpeg",
       "planned_target_path": "art/library/bestiary/yuki_onna/reference.jpeg",
       "runtime_enemy_id": null,
       "source_evidence": {
         "pr": "#608",
         "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
         "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
-      }
+      },
+      "size_bytes": 1019311,
+      "width": 1536,
+      "height": 1024,
+      "github_verified_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "github_blob_sha": "676b5229a640307edceba6824d5966ffece0776f",
+      "last_github_verification_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "visual_identity_check": "source_title_and_subject_reviewed",
+      "game_display_status": "not_checked"
     },
     {
       "asset_id": "LITD-BEST-PLATE-0015",
@@ -291,16 +403,24 @@
       "art_status": "validated_by_owner",
       "source_filename": "919F9801-B827-4677-84BB-25D948CDFC1B.jpeg",
       "expected_sha256": "580956a656f2e41538fe7db7f565cd1e76a1a8b07f21388c332479d519c60818",
-      "binary_status": "pending_retrieval",
-      "measured_sha256": null,
-      "archived_path": null,
+      "binary_status": "verified_in_github",
+      "measured_sha256": "580956a656f2e41538fe7db7f565cd1e76a1a8b07f21388c332479d519c60818",
+      "archived_path": "art/library/bestiary/nue/reference.jpeg",
       "planned_target_path": "art/library/bestiary/nue/reference.jpeg",
       "runtime_enemy_id": null,
       "source_evidence": {
         "pr": "#608",
         "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
         "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
-      }
+      },
+      "size_bytes": 982325,
+      "width": 1536,
+      "height": 1024,
+      "github_verified_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "github_blob_sha": "e164fa88302aae7f9a3fe0cffa0ae489d224d9c3",
+      "last_github_verification_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "visual_identity_check": "source_title_and_subject_reviewed",
+      "game_display_status": "not_checked"
     },
     {
       "asset_id": "LITD-BEST-PLATE-0016",
@@ -310,16 +430,24 @@
       "art_status": "validated_by_owner",
       "source_filename": "24C6B942-AD7A-4BC2-8D99-A4C294B2270C.jpeg",
       "expected_sha256": "fb0acb6a915ec134ee32d583993bf3a97181bf9a4f68baa1aee798a191f0a949",
-      "binary_status": "pending_retrieval",
-      "measured_sha256": null,
-      "archived_path": null,
+      "binary_status": "verified_in_github",
+      "measured_sha256": "fb0acb6a915ec134ee32d583993bf3a97181bf9a4f68baa1aee798a191f0a949",
+      "archived_path": "art/library/bestiary/draugr/reference.jpeg",
       "planned_target_path": "art/library/bestiary/draugr/reference.jpeg",
       "runtime_enemy_id": null,
       "source_evidence": {
         "pr": "#608",
         "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
         "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
-      }
+      },
+      "size_bytes": 941808,
+      "width": 1536,
+      "height": 1024,
+      "github_verified_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "github_blob_sha": "519fef3da0602942d092b01b2f1ffc677c40db8a",
+      "last_github_verification_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "visual_identity_check": "source_title_and_subject_reviewed",
+      "game_display_status": "not_checked"
     },
     {
       "asset_id": "LITD-BEST-PLATE-0017",
@@ -344,7 +472,10 @@
       "github_verified_commit": "2aa8657c7f2c9d277a0a39d8fb4adc315cc45df5",
       "github_blob_sha": "f995901596d3f2d7dece59cf111967be9089a141",
       "width": 1536,
-      "height": 1024
+      "height": 1024,
+      "last_github_verification_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "visual_identity_check": "source_title_and_subject_reviewed",
+      "game_display_status": "not_checked"
     },
     {
       "asset_id": "LITD-BEST-PLATE-0018",
@@ -370,7 +501,10 @@
       "github_verified_commit": "2aa8657c7f2c9d277a0a39d8fb4adc315cc45df5",
       "github_blob_sha": "452a6f21f81c13770b8c849d485172c00427ed57",
       "width": 1536,
-      "height": 1024
+      "height": 1024,
+      "last_github_verification_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "visual_identity_check": "source_title_and_subject_reviewed",
+      "game_display_status": "not_checked"
     },
     {
       "asset_id": "LITD-BEST-PLATE-0019",
@@ -380,9 +514,9 @@
       "art_status": "validated_by_owner",
       "source_filename": "74191949-B149-4A50-87F7-F15716B71813.jpeg",
       "expected_sha256": "e24caea7562a701cf61099416f62c62c8f4edb5d1f17df552bffd03e01e1110c",
-      "binary_status": "pending_retrieval",
-      "measured_sha256": null,
-      "archived_path": null,
+      "binary_status": "verified_in_github",
+      "measured_sha256": "e24caea7562a701cf61099416f62c62c8f4edb5d1f17df552bffd03e01e1110c",
+      "archived_path": "art/library/bestiary/emaciated_wolf/reference.jpeg",
       "planned_target_path": "art/library/bestiary/emaciated_wolf/reference.jpeg",
       "runtime_enemy_id": null,
       "source_evidence": {
@@ -394,7 +528,15 @@
         "Wendigo",
         "Loup décharné"
       ],
-      "version_note": "Original JPEG à tête de loup documenté dans #608 ; ne pas substituer le PNG Wendigo glacé de l’archive candidate."
+      "version_note": "Original JPEG à tête de loup documenté dans #608 ; ne pas substituer le PNG Wendigo glacé de l’archive candidate.",
+      "size_bytes": 626884,
+      "width": 1536,
+      "height": 1024,
+      "github_verified_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "github_blob_sha": "003e8d8b6f0d12a5dcc7aa366c7c09e94af7e598",
+      "last_github_verification_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "visual_identity_check": "source_title_and_subject_reviewed",
+      "game_display_status": "not_checked"
     },
     {
       "asset_id": "LITD-BEST-PLATE-0020",
@@ -404,9 +546,9 @@
       "art_status": "validated_by_owner",
       "source_filename": "6D5E1043-25C6-4533-A8D6-E02042AD2EB6.jpeg",
       "expected_sha256": "1cec2ce9c55ef7abf20fef8ed83ecaf186957c143fd8fd111a8e3930f331d675",
-      "binary_status": "pending_retrieval",
-      "measured_sha256": null,
-      "archived_path": null,
+      "binary_status": "verified_in_github",
+      "measured_sha256": "1cec2ce9c55ef7abf20fef8ed83ecaf186957c143fd8fd111a8e3930f331d675",
+      "archived_path": "art/library/bestiary/runic_stone_golem/reference.jpeg",
       "planned_target_path": "art/library/bestiary/runic_stone_golem/reference.jpeg",
       "runtime_enemy_id": null,
       "source_evidence": {
@@ -414,7 +556,15 @@
         "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
         "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
       },
-      "version_note": "La décision ultérieure du propriétaire et sa règle permanente prévalent sur la mention imprimée « en attente »."
+      "version_note": "La décision ultérieure du propriétaire et sa règle permanente prévalent sur la mention imprimée « en attente ».",
+      "size_bytes": 848613,
+      "width": 1536,
+      "height": 1024,
+      "github_verified_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "github_blob_sha": "ed9ff907ede3071b311f0b7ce1d21a4effaeb3fc",
+      "last_github_verification_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "visual_identity_check": "source_title_and_subject_reviewed",
+      "game_display_status": "not_checked"
     },
     {
       "asset_id": "LITD-BEST-PLATE-0021",
@@ -440,10 +590,13 @@
       "github_verified_commit": "2aa8657c7f2c9d277a0a39d8fb4adc315cc45df5",
       "github_blob_sha": "df1cc51b12262155c7fa4f9ee17c367ca160ff3a",
       "width": 1536,
-      "height": 1024
+      "height": 1024,
+      "last_github_verification_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+      "visual_identity_check": "source_title_and_subject_reviewed",
+      "game_display_status": "not_checked"
     }
   ],
-  "retrieval_status": "resolved_via_work_materialization",
+  "retrieval_status": "complete_for_documented_plates",
   "source_archive": {
     "filename": "litd_sources_retrouvees_20261111.zip",
     "size_bytes": 13328381,
@@ -475,5 +628,171 @@
       }
     ],
     "note": "Quatre versions distinctes conservées dans l’archive ; elles ne remplacent pas les références dont les empreintes diffèrent. Aucune corruption n’est déduite de cette différence."
-  }
+  },
+  "complete_verification_commit": "cd550267ae79b60765f0213933cd437add5b6c6d",
+  "additional_source_files": [
+    {
+      "subject": "minotaur",
+      "source_filename": "58BB6F02-5144-4489-B072-2D77DAF13CCA.jpeg",
+      "sha256": "4b91c4dd1eed8c04e084f5df89976228bb02a3240686069136e771ec601d0283",
+      "size_bytes": 852177,
+      "width": 1536,
+      "height": 1024,
+      "format": "JPEG"
+    },
+    {
+      "subject": "gorgon",
+      "source_filename": "77AE289B-32A8-4073-998D-34393EAABD26(1).jpeg",
+      "sha256": "825f35da6bc80f06caa683803d557a653028d139ef102205dcd836556fc0ea82",
+      "size_bytes": 893632,
+      "width": 1536,
+      "height": 1024,
+      "format": "JPEG"
+    },
+    {
+      "subject": "cerberus",
+      "source_filename": "51A31212-CCFB-4566-9709-373A0E4DC416(1).jpeg",
+      "sha256": "f10371084abdc7125824c322a559e8ba560bd468b46ed42edbc5a72851eaf8f6",
+      "size_bytes": 877310,
+      "width": 1536,
+      "height": 1024,
+      "format": "JPEG"
+    },
+    {
+      "subject": "harpy",
+      "source_filename": "CD69A2E9-6213-46C3-B129-0EC87A51E895(1).jpeg",
+      "sha256": "6f22b47843636b63457408c3b92a5b5b6feb7e609f1bd176cac1a3461913df04",
+      "size_bytes": 925923,
+      "width": 1536,
+      "height": 1024,
+      "format": "JPEG"
+    },
+    {
+      "subject": "cyclops",
+      "source_filename": "7482D63F-DF3A-4D46-8265-D8AC2B6A3A17(2).jpeg",
+      "sha256": "831a4008db014a815c65f19c06fcf227f56340d362d30209bad7d1a0f27610fe",
+      "size_bytes": 915544,
+      "width": 1536,
+      "height": 1024,
+      "format": "JPEG"
+    },
+    {
+      "subject": "chimera",
+      "source_filename": "9253391F-A4A8-424B-B67E-DD6E9D950E49(3).jpeg",
+      "sha256": "f86f6c59525ae93e42afd9d75d84cb7da6eba6451da356252e5827b49e47cd06",
+      "size_bytes": 926841,
+      "width": 1536,
+      "height": 1024,
+      "format": "JPEG"
+    },
+    {
+      "subject": "basilisk",
+      "source_filename": "3A6736BC-BF31-4715-955C-3EE09BFE5C6E.jpeg",
+      "sha256": "b9ce75d1a597385868195cc99455dac6f63dbbcc84c55809996e8cc5972c221e",
+      "size_bytes": 863306,
+      "width": 1536,
+      "height": 1024,
+      "format": "JPEG"
+    },
+    {
+      "subject": "hydra",
+      "source_filename": "397C93DD-C338-44EF-A556-1F5E586AC3DC(1).jpeg",
+      "sha256": "23d7e90aca6058a4394135d2eda92ac5d53e0cb3522244e3a583d2185dcc12f6",
+      "size_bytes": 888413,
+      "width": 1536,
+      "height": 1024,
+      "format": "JPEG"
+    },
+    {
+      "subject": "sphinx",
+      "source_filename": "9D5B728A-53F3-45DE-B47D-2C390F4CEBB4.jpeg",
+      "sha256": "9698a55919281af52d42d3fa1e0b718a64e9b66501ef1d9150d1900fabb7098a",
+      "size_bytes": 957824,
+      "width": 1535,
+      "height": 1024,
+      "format": "JPEG"
+    },
+    {
+      "subject": "oni",
+      "source_filename": "EA1BE1AD-A9CE-4FED-8DB7-0693697D14E4.jpeg",
+      "sha256": "9920292ec992c278320feb629ddae83b96193f1d78f5e3d1c4223727599b26be",
+      "size_bytes": 950703,
+      "width": 1536,
+      "height": 1024,
+      "format": "JPEG"
+    },
+    {
+      "subject": "karasu_tengu",
+      "source_filename": "EFB9F79B-CCA7-4409-AF9F-2B857E700247.jpeg",
+      "sha256": "5fd6c2f5e0cece136bf107f258ce21c67b1fd2d1e0cfa89af421f16749d2903b",
+      "size_bytes": 927659,
+      "width": 1536,
+      "height": 1024,
+      "format": "JPEG"
+    },
+    {
+      "subject": "jorogumo",
+      "source_filename": "LITD1_Jorogumo_17_harmonisee.jpg",
+      "sha256": "d222d618fe9ac3de1089ffef28978bb170bde654dfb58e00eb6bd3d33c25c1cc",
+      "size_bytes": 999903,
+      "width": 1536,
+      "height": 1024,
+      "format": "JPEG"
+    },
+    {
+      "subject": "kappa",
+      "source_filename": "A430C1F3-3ED5-42D7-BFF6-DDD1658E7767.jpeg",
+      "sha256": "80e742dbdafa813f63b0003e1226c02042eaeeddb7af8216349b83041ef82148",
+      "size_bytes": 946366,
+      "width": 1536,
+      "height": 1024,
+      "format": "JPEG"
+    },
+    {
+      "subject": "yuki_onna",
+      "source_filename": "12AD1B20-3F88-434F-A4C4-4578F26BCA62.jpeg",
+      "sha256": "9f20397e1b57e76ef4a73a739babb1f1546cac6b6e8b15ed1f8d52c0b0c295fa",
+      "size_bytes": 1019311,
+      "width": 1536,
+      "height": 1024,
+      "format": "JPEG"
+    },
+    {
+      "subject": "nue",
+      "source_filename": "919F9801-B827-4677-84BB-25D948CDFC1B.jpeg",
+      "sha256": "580956a656f2e41538fe7db7f565cd1e76a1a8b07f21388c332479d519c60818",
+      "size_bytes": 982325,
+      "width": 1536,
+      "height": 1024,
+      "format": "JPEG"
+    },
+    {
+      "subject": "draugr",
+      "source_filename": "24C6B942-AD7A-4BC2-8D99-A4C294B2270C.jpeg",
+      "sha256": "fb0acb6a915ec134ee32d583993bf3a97181bf9a4f68baa1aee798a191f0a949",
+      "size_bytes": 941808,
+      "width": 1536,
+      "height": 1024,
+      "format": "JPEG"
+    },
+    {
+      "subject": "emaciated_wolf",
+      "source_filename": "74191949-B149-4A50-87F7-F15716B71813.jpeg",
+      "sha256": "e24caea7562a701cf61099416f62c62c8f4edb5d1f17df552bffd03e01e1110c",
+      "size_bytes": 626884,
+      "width": 1536,
+      "height": 1024,
+      "format": "JPEG"
+    },
+    {
+      "subject": "runic_stone_golem",
+      "source_filename": "6D5E1043-25C6-4533-A8D6-E02042AD2EB6.jpeg",
+      "sha256": "1cec2ce9c55ef7abf20fef8ed83ecaf186957c143fd8fd111a8e3930f331d675",
+      "size_bytes": 848613,
+      "width": 1536,
+      "height": 1024,
+      "format": "JPEG"
+    }
+  ],
+  "verification_limits": "21/21 originaux documentés archivés et vérifiés par SHA-256. Titres et sujets contrôlés sur les sources. Ce lot ne valide ni les 40 créatures prévues, ni les variantes, ni l’affichage en jeu, ni les statistiques imprimées."
 }
