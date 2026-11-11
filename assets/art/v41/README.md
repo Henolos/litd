@@ -5,7 +5,7 @@ Ce dossier est le point d’entrée de la passe artistique définitive. Les scri
 ## Structure cible
 
 - `backgrounds/` : écrans 16:9 et variantes assombries.
-- `portraits/` : portraits de héros humanoïdes, nommés par `entity_id`.
+- Portraits officiels : `art/library/heroes/{entity_id}/reference.jpg`, originaux vérifiés par SHA-256 ; le slot `portrait.active_hero` les résout directement.
 - `creatures/` : portraits des créatures recrutables, nommés par `entity_id`.
 - `anatomy/` : schémas anatomiques par morphologie réelle.
 - `ui/` : cadres, nine-patches, ornements et séparateurs.
