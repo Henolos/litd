@@ -1,0 +1,66 @@
+VEILLEURS_PLAYER_VALIDATION_AUDIT_OK
+VEILLEURS_SYSTEM_MATURITY_AUDIT_OK
+Systems tracked: 5 | Combat stage: technically_validated
+VEILLEURS_FIRST_PLAYTEST_KIT_OK
+VEILLEURS_PLAYTEST_READINESS_AUDIT_OK
+VEILLEURS_MATURITY_DASHBOARD_OK
+PASS - data/capturable_creatures.json présent
+PASS - data/capturable_creatures.json JSON valide type=list
+PASS - data/capturable_creatures.json IDs uniques []
+PASS - data/capturable_creatures.json contrat []
+PASS - data/classes.json présent
+PASS - data/classes.json JSON valide type=list
+PASS - data/classes.json IDs uniques []
+PASS - data/classes.json contrat []
+PASS - data/dialogues.json présent
+PASS - data/dialogues.json JSON valide type=list
+PASS - data/dialogues.json IDs uniques []
+PASS - data/dialogues.json contrat []
+PASS - data/enemies.json présent
+PASS - data/enemies.json JSON valide type=list
+PASS - data/enemies.json IDs uniques []
+PASS - data/enemies.json contrat []
+PASS - data/equipment.json présent
+PASS - data/equipment.json JSON valide type=list
+PASS - data/equipment.json IDs uniques []
+PASS - data/equipment.json contrat []
+PASS - data/equipment_affixes.json présent
+PASS - data/equipment_affixes.json JSON valide type=list
+PASS - data/equipment_affixes.json IDs uniques []
+PASS - data/equipment_affixes.json contrat []
+PASS - data/equipment_rarities.json présent
+PASS - data/equipment_rarities.json JSON valide type=list
+PASS - data/equipment_rarities.json IDs uniques []
+PASS - data/equipment_rarities.json contrat []
+PASS - data/events.json présent
+PASS - data/events.json JSON valide type=list
+PASS - data/events.json IDs uniques []
+PASS - data/events.json contrat []
+PASS - data/heroes.json présent
+PASS - data/heroes.json JSON valide type=list
+PASS - data/heroes.json IDs uniques []
+PASS - data/heroes.json contrat []
+PASS - data/quests.json présent
+PASS - data/quests.json JSON valide type=list
+PASS - data/quests.json IDs uniques []
+PASS - data/quests.json contrat []
+PASS - data/races.json présent
+PASS - data/races.json JSON valide type=list
+PASS - data/races.json IDs uniques []
+PASS - data/races.json contrat []
+PASS - data/skills.json présent
+PASS - data/skills.json JSON valide type=list
+PASS - data/skills.json IDs uniques []
+PASS - data/skills.json contrat []
+PASS - Références classes des héros
+PASS - Références races des héros
+PASS - Illustrations référencées présentes
+PASS - Références res:// valides
+PASS - Aucun marqueur de conflit Git
+PASS - Workflows YAML valides
+PASS - Gate joueur vertical Les Veilleurs
+PASS - Maturité des systèmes Les Veilleurs
+PASS - Kit premier playtest Les Veilleurs
+PASS - Readiness playtest Wave 2 Les Veilleurs
+PASS - Tableau de maturité Les Veilleurs
+RESULT: 59 passed, 0 failed

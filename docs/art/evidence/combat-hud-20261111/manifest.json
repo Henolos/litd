@@ -1,0 +1,257 @@
+{
+  "captures": [
+    {
+      "file": "overview_960x540.png",
+      "rendered_size": [
+        960,
+        540
+      ],
+      "window_size": [
+        960,
+        540
+      ],
+      "sha256": "f1fa3843ea7953f9413d26e66ac947484650feb30be2da02104bed1699b7bd6a"
+    },
+    {
+      "file": "targeting_960x540.png",
+      "rendered_size": [
+        960,
+        540
+      ],
+      "window_size": [
+        960,
+        540
+      ],
+      "sha256": "d074c89502f064ac26bb25509ff7ceb5cb4c284ca4fdf98e7beb29c7829f0b04"
+    },
+    {
+      "file": "inspection_960x540.png",
+      "rendered_size": [
+        960,
+        540
+      ],
+      "window_size": [
+        960,
+        540
+      ],
+      "sha256": "0aa655c5ed610d0362c55a2a74b474da3cae72ef53dcbde633e0dd164a254872"
+    },
+    {
+      "file": "formation_960x540.png",
+      "rendered_size": [
+        960,
+        540
+      ],
+      "window_size": [
+        960,
+        540
+      ],
+      "sha256": "de53a034415b36db22929dfa562ee0cef2c7e9cad3589e7a1a6ffdb1a8351091"
+    },
+    {
+      "file": "items_960x540.png",
+      "rendered_size": [
+        960,
+        540
+      ],
+      "window_size": [
+        960,
+        540
+      ],
+      "sha256": "9e2da7526bcd083cf33a54500ea2708d92fb8bd0dd143020f16f1692705459f5"
+    },
+    {
+      "file": "overview_1280x720.png",
+      "rendered_size": [
+        1280,
+        720
+      ],
+      "window_size": [
+        1280,
+        720
+      ],
+      "sha256": "e6720348c4799178afcf3d8131ca4675894a6dc507ddbe5eeb2503be7af92716"
+    },
+    {
+      "file": "targeting_1280x720.png",
+      "rendered_size": [
+        1280,
+        720
+      ],
+      "window_size": [
+        1280,
+        720
+      ],
+      "sha256": "7783f101744ae3179e4a90293e087860c2a5dbbe53a7b8aeb8919d3a34dc6b1f"
+    },
+    {
+      "file": "inspection_1280x720.png",
+      "rendered_size": [
+        1280,
+        720
+      ],
+      "window_size": [
+        1280,
+        720
+      ],
+      "sha256": "c71ceb67c77036f227f5af2def97b641a584a8a09d700a573aa1cfe5af6b5e25"
+    },
+    {
+      "file": "formation_1280x720.png",
+      "rendered_size": [
+        1280,
+        720
+      ],
+      "window_size": [
+        1280,
+        720
+      ],
+      "sha256": "565690208bbe5c86a02a6b215f6351cb7aa671a5688c60782e5d6ce23a3e4461"
+    },
+    {
+      "file": "items_1280x720.png",
+      "rendered_size": [
+        1280,
+        720
+      ],
+      "window_size": [
+        1280,
+        720
+      ],
+      "sha256": "05e9e0f32fc14c377c6343d1ad8253f9b39d6a928cbb535df6071f282216d90b"
+    },
+    {
+      "file": "overview_1920x1080.png",
+      "rendered_size": [
+        1920,
+        1080
+      ],
+      "window_size": [
+        1920,
+        1080
+      ],
+      "sha256": "905c50e753125017c335b208a7d7509c6802c2e77e6f296caaf844b7da5b1362"
+    },
+    {
+      "file": "targeting_1920x1080.png",
+      "rendered_size": [
+        1920,
+        1080
+      ],
+      "window_size": [
+        1920,
+        1080
+      ],
+      "sha256": "0fd82547791a0a779f204e07f43c5c740f97de0b88c6c30b3dcde9e41bed6b88"
+    },
+    {
+      "file": "inspection_1920x1080.png",
+      "rendered_size": [
+        1920,
+        1080
+      ],
+      "window_size": [
+        1920,
+        1080
+      ],
+      "sha256": "b4ef0cc42be169148c0720d0f595f40e9d99304ef48dd010328579c36cb2d83d"
+    },
+    {
+      "file": "formation_1920x1080.png",
+      "rendered_size": [
+        1920,
+        1080
+      ],
+      "window_size": [
+        1920,
+        1080
+      ],
+      "sha256": "9f4fe66c2355d3a66d6ca274e6d6488620db8a4093c5cc52afa704b1206064d7"
+    },
+    {
+      "file": "items_1920x1080.png",
+      "rendered_size": [
+        1920,
+        1080
+      ],
+      "window_size": [
+        1920,
+        1080
+      ],
+      "sha256": "157b0610e5e8eec2fcece4cfb6ecda16dae537293cdcbf57b6f2c1f676d8a833"
+    },
+    {
+      "file": "overview_844x390.png",
+      "rendered_size": [
+        693,
+        390
+      ],
+      "window_size": [
+        844,
+        390
+      ],
+      "sha256": "66da2b95bf799f8bf11883f991efc9ccd8d2ac81be69b8de389c8b4a886fb8a3"
+    },
+    {
+      "file": "targeting_844x390.png",
+      "rendered_size": [
+        693,
+        390
+      ],
+      "window_size": [
+        844,
+        390
+      ],
+      "sha256": "8b053956c2dac8015370191e492d9e5d37cedf404b7e48d3465b09a9113870ac"
+    },
+    {
+      "file": "inspection_844x390.png",
+      "rendered_size": [
+        693,
+        390
+      ],
+      "window_size": [
+        844,
+        390
+      ],
+      "sha256": "e8b321800ff26aac756fd7cab611222f9d40e7e2a4c8259f082ff587e3d17794"
+    },
+    {
+      "file": "formation_844x390.png",
+      "rendered_size": [
+        693,
+        390
+      ],
+      "window_size": [
+        844,
+        390
+      ],
+      "sha256": "2e56714b48d2949d40771c60eb6e605fd0761c94bf9dcf438e0567b304b4559c"
+    },
+    {
+      "file": "items_844x390.png",
+      "rendered_size": [
+        693,
+        390
+      ],
+      "window_size": [
+        844,
+        390
+      ],
+      "sha256": "6e1f9b7309bd38abda735de6cd0929d9f2a1486ec1f90cd2971354965cda9c28"
+    }
+  ],
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "revision": "96087645447b2186ed77e477dd66af48ec9fbdc5",
+  "scope": "Real Godot scene, simulated mouse/keyboard; physical Windows and touch remain separate.",
+  "code_tree": "c944769971a2355d9e36f6d1d3ab0ad1b6f64cda",
+  "originals": {
+    "aurelien": "0d9fff31df8ad2e662b886edb63b47e01d158570e779b3f634d6cc39a66e4670",
+    "marec": "e809e9b407c7a7c08ec40b4a2d4e323e04571391ea874bd2e007308516030cf9",
+    "anouk": "134aa4d0a452a90249a8cea15e8b2ee6f3d15eabccf66d2a7ebeb04adda76907",
+    "mathilde": "2a8bc5dc4a7eb6fbb04f3652d49a3f4da2aea08dc89ed8d963ae36a6860e4484",
+    "effrie": "50f0237610cce571cf2ad34f593022cf1ee4e3724805fb331f546169c7f7a9da",
+    "lya": "b4705bd27991495ed38cbdce7f59203f901c2a8e18c90f3fe0a9fa70e1664272"
+  },
+  "preview_format": "JPEG quality 88, exported from actual PNG captures without retouching; lossless PNGs produced by CI."
+}

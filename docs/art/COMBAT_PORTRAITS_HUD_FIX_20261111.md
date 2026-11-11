@@ -31,8 +31,37 @@ Référence technique consultée : [Godot AtlasTexture](https://docs.godotengine
 
 ## Contrôles et limites
 
-Les preuves finales sont ajoutées après l’exécution sur le commit de correction. Le script `combat_portrait_hud_capture.gd` charge la vraie scène et vérifie identités/cadrages, non-chevauchement, commandes dans le viewport, clics compétences/inspection/objets/position et absence de mutation des héros lors de la préparation. Il couvre fenêtres 960×540, 1280×720, 1920×1080, format compact 844×390 et plein écran pour le rendu. Le format compact conserve le ratio du jeu : le viewport rendu est 693×390, sans redimensionnement artificiel des preuves. Cela démontre le cadrage et les interactions simulées, pas une ergonomie tactile physique validée. La réconciliation des images d’ennemis reste dans #612.
+Les preuves finales ci-dessous sont liées au commit de correction. Le script `combat_portrait_hud_capture.gd` charge la vraie scène et vérifie identités/cadrages, non-chevauchement, commandes dans le viewport, clics compétences/inspection/objets/position et absence de mutation des héros lors de la préparation. Il couvre fenêtres 960×540, 1280×720, 1920×1080, format compact 844×390 ; le plein écran est traité séparément. Le format compact conserve le ratio du jeu : le viewport rendu est 693×390, sans redimensionnement artificiel des preuves. Cela démontre le cadrage et les interactions simulées, pas une ergonomie tactile physique validée. La réconciliation des images d’ennemis reste dans #612.
 
-Le workflow de rendu existant conserve ses huit captures sandbox et ajoute 21 captures du vrai combat de campagne. Les exports vérifient aussi le chargement des quatre AtlasTexture dans le paquet. Les résultats CI et le fonctionnement du binaire Windows doivent être contrôlés avant toute validation finale. Aucun succès Linux ne prouve une exécution native Windows. Les avertissements ObjectDB/ressources à la fermeture sont consignés, sans les confondre avec une erreur de script ou les déclarer résolus.
+Le workflow de rendu existant conserve ses huit captures sandbox et ajoute 20 captures du vrai combat de campagne. Les exports vérifient aussi le chargement des quatre AtlasTexture dans le paquet. Les résultats CI et le fonctionnement du binaire Windows doivent être contrôlés avant toute validation finale. Aucun succès Linux ne prouve une exécution native Windows. Les avertissements ObjectDB/ressources à la fermeture sont consignés, sans les confondre avec une erreur de script ou les déclarer résolus.
 
 Chantier : Correction portraits et HUD LITD 1 — 🟠 EN COURS. Avancement du chantier actuel : À évaluer avant consolidation des preuves finales. Avancement du projet global : À évaluer. Pas de fusion tant que les validations obligatoires manquent.
+
+## Résultats locaux consolidés
+
+Code publié : `96087645447b2186ed77e477dd66af48ec9fbdc5`, arbre `c944769971a2355d9e36f6d1d3ab0ad1b6f64cda`. L’égalité de cet arbre avec `git write-tree` local a été vérifiée. Les preuves ajoutées ensuite ne changent pas ce code.
+
+| Contrôle réellement exécuté | Résultat |
+| --- | --- |
+| Import Godot officiel 4.7.2 final | Code 0, aucune erreur de script détectée |
+| Python complet sur copie Git propre | 1 842 réussites, deux SyntaxWarning préexistants |
+| Audit projet sur copie Git propre | 59 réussites, aucun échec |
+| Nouveau contrôle campagne, headless | Identités, cadrages, géométrie, clics et non-mutation : OK |
+| Rendu campagne OpenGL llvmpipe | 20 captures, quatre formats, sans erreur de script |
+| Rendu sandbox existant | Huit captures, aperçu et inspection : OK |
+| Smokes Godot | Catalogue artistique, UI canonique, parcours joueur, rangs/amputations, sandbox combat, HUD mobile, inspection : marqueurs de succès |
+| Originaux héros | Six SHA-256 conformes ; aucune modification des fichiers ou du roster |
+| Plein écran graphique local | Non validé : changement dynamique bloqué, puis essai `--fullscreen` arrêté après 60 s sans marqueur de fin |
+| Exécution native Windows et tactile physique | Non disponibles dans cet environnement Linux |
+
+Les captures individuelles de contrôle ont été réellement examinées : quatre bustes corrects, aucune annotation sur les héros, rangées sans chevauchement, menus ajustés et commandes accessibles. Les prévisualisations JPEG ci-jointes proviennent des PNG sans retouche ; les SHA-256 des vingt PNG sont dans `evidence/combat-hud-20261111/manifest.json`. À 844×390, la géométrie tient mais les textes et cibles physiques sont petits : ne pas certifier une ergonomie tactile de campagne sur cette seule simulation.
+
+Les avertissements de fermeture restent : généralement 15–37 objets ObjectDB et 3–5 ressources selon le scénario. Une première suite Python sur le dossier importé a donné 1 échec / 1 840 réussites à cause des sidecars `.import` du bestiaire ; la copie Git propre donne le résultat complet ci-dessus. Un essai initial de copie sans métadonnées Git a échoué sur deux gardes qui utilisent `git ls-files` ; relancé correctement dans une copie Git. Une première commande de parcours utilisait un nom de scène inexistant ; corrigée vers `ui_player_journey_smoke.tscn`, qui réussit. Aucun échec n’a été présenté comme une réussite.
+
+![Après, 1280×720](evidence/combat-hud-20261111/overview_1280x720.jpg)
+
+![Formation, petite fenêtre](evidence/combat-hud-20261111/formation_960x540.jpg)
+
+Prochaine priorité : contrôler CI et exports Windows sur la PR, puis exécuter le binaire natif et vérifier le plein écran sur PC. PR en brouillon ; aucune fusion autorisée par ces seuls résultats.
+
+Le journal QA versionné conserve ses lignes et résultats, avec suppression des seuls espaces de fin de ligne.
