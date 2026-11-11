@@ -90,7 +90,7 @@
     "bg.combat": {"kind": "background", "primary_path": "res://assets/art/v41/backgrounds/combat_frame.webp", "fallback_path": "", "ratio": "16:9", "required_at_runtime": false},
     "bg.overlay": {"kind": "background", "primary_path": "res://assets/art/v41/backgrounds/overlay.webp", "fallback_path": "", "ratio": "16:9", "required_at_runtime": false},
     "bg.results": {"kind": "background", "primary_path": "res://assets/art/v41/backgrounds/results.webp", "fallback_path": "res://assets/backgrounds/sanctuary.png", "ratio": "16:9", "required_at_runtime": false},
-    "portrait.active_hero": {"kind": "portrait", "primary_path": "res://assets/art/v41/portraits/{entity_id}.webp", "fallback_path": "", "ratio": "3:4", "required_at_runtime": false, "dynamic": true},
+    "portrait.active_hero": {"kind": "portrait", "primary_path": "res://art/library/heroes/{entity_id}/reference.jpg", "fallback_path": "", "ratio": "3:4", "required_at_runtime": false, "dynamic": true},
     "portrait.active_creature": {"kind": "portrait", "primary_path": "res://assets/art/v41/creatures/{entity_id}.webp", "fallback_path": "", "ratio": "3:4", "required_at_runtime": false, "dynamic": true},
     "body.active_entity": {"kind": "body_diagram", "primary_path": "res://assets/art/v41/anatomy/{morphology}.webp", "fallback_path": "", "ratio": "2:3", "required_at_runtime": false, "dynamic": true},
     "frame.panel": {"kind": "nine_patch", "primary_path": "res://assets/art/v41/ui/panel_frame.webp", "fallback_path": "", "ratio": "free", "required_at_runtime": false},
