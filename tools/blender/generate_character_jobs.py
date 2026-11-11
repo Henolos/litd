@@ -62,7 +62,7 @@ def build_jobs(root: Path = ROOT) -> list[dict]:
     jobs = []
     for hero in heroes:
         jobs.append(_job(hero["id"], hero["name"], "hero", hero["class_id"],
-                         f"assets/heroes/{hero['class_id']}.webp", hero["max_hp"], recruitable=True))
+                         f"art/library/heroes/{hero.get('canonical_id', hero['id'])}/reference.jpg", hero["max_hp"], recruitable=True))
     for enemy in enemies:
         identifier = f"enemy_{int(enemy['id']):02d}_{slug(enemy['name'])}"
         category = "boss" if enemy.get("boss", False) else "enemy"

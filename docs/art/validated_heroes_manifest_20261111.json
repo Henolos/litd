@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "source": "Six fichiers JPEG transmis par l'utilisateur le 2026-11-11",
+  "art_approval": "validated_by_user",
+  "binary_archived_in_github": true,
+  "notes": "Originaux du ZIP LITD_HEROS_6_PLANCHES_WORK (15).zip : six SHA-256 conformes avant import et après récupération depuis GitHub au commit dd8de4963e9b5445370aff22acabba298881aa5b. Éffrie et Lya restent hors du quatuor jouable.",
+  "assets": [
+    {
+      "id": "LITD-HERO-001",
+      "hero": "aurelien",
+      "art_status": "validated",
+      "binary_status": "verified_in_github",
+      "target_path": "art/library/heroes/aurelien/reference.jpg",
+      "sha256": "0d9fff31df8ad2e662b886edb63b47e01d158570e779b3f634d6cc39a66e4670",
+      "width": 1122,
+      "height": 1402,
+      "size_bytes": 538071,
+      "source_archive_member": "art/library/heroes/aurelien/reference.jpg"
+    },
+    {
+      "id": "LITD-HERO-002",
+      "hero": "marec",
+      "art_status": "validated",
+      "binary_status": "verified_in_github",
+      "target_path": "art/library/heroes/marec/reference.jpg",
+      "sha256": "e809e9b407c7a7c08ec40b4a2d4e323e04571391ea874bd2e007308516030cf9",
+      "width": 1024,
+      "height": 1536,
+      "size_bytes": 733565,
+      "source_archive_member": "art/library/heroes/marec/reference.jpg"
+    },
+    {
+      "id": "LITD-HERO-003",
+      "hero": "anouk",
+      "art_status": "validated",
+      "binary_status": "verified_in_github",
+      "target_path": "art/library/heroes/anouk/reference.jpg",
+      "sha256": "134aa4d0a452a90249a8cea15e8b2ee6f3d15eabccf66d2a7ebeb04adda76907",
+      "width": 1122,
+      "height": 1402,
+      "size_bytes": 792554,
+      "source_archive_member": "art/library/heroes/anouk/reference.jpg"
+    },
+    {
+      "id": "LITD-HERO-004",
+      "hero": "mathilde",
+      "art_status": "validated",
+      "binary_status": "verified_in_github",
+      "target_path": "art/library/heroes/mathilde/reference.jpg",
+      "sha256": "2a8bc5dc4a7eb6fbb04f3652d49a3f4da2aea08dc89ed8d963ae36a6860e4484",
+      "width": 1022,
+      "height": 1536,
+      "size_bytes": 631931,
+      "source_archive_member": "art/library/heroes/mathilde/reference.jpg"
+    },
+    {
+      "id": "LITD-HERO-005",
+      "hero": "effrie",
+      "art_status": "validated",
+      "binary_status": "verified_in_github",
+      "target_path": "art/library/heroes/effrie/reference.jpg",
+      "sha256": "50f0237610cce571cf2ad34f593022cf1ee4e3724805fb331f546169c7f7a9da",
+      "width": 1149,
+      "height": 1369,
+      "size_bytes": 620653,
+      "source_archive_member": "art/library/heroes/effrie/reference.jpg"
+    },
+    {
+      "id": "LITD-HERO-006",
+      "hero": "lya",
+      "art_status": "validated",
+      "binary_status": "verified_in_github",
+      "target_path": "art/library/heroes/lya/reference.jpg",
+      "sha256": "b4705bd27991495ed38cbdce7f59203f901c2a8e18c90f3fe0a9fa70e1664272",
+      "width": 1536,
+      "height": 1024,
+      "size_bytes": 744724,
+      "source_archive_member": "art/library/heroes/lya/reference.jpg"
+    }
+  ],
+  "source_archive": "LITD_HEROS_6_PLANCHES_WORK (15).zip",
+  "github_verified_commit": "dd8de4963e9b5445370aff22acabba298881aa5b"
+}

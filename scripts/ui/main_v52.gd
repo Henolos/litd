@@ -6,6 +6,7 @@ extends "res://scripts/ui/main_v51.gd"
 # Les quatre Veilleurs disposent désormais de portraits canoniques dédiés.
 
 const LEGACY_CARD_PREFIX := "res://assets/heroes/"
+const OFFICIAL_PORTRAIT_PREFIX := "res://art/library/heroes/"
 const CANONICAL_HERO_IDS := ["mathilde", "marec", "anouk", "aurelien"]
 const CANONICAL_ROLES := {
     "mathilde": "Duelliste",
@@ -14,10 +15,10 @@ const CANONICAL_ROLES := {
     "aurelien": "Chirurgien"
 }
 const CANONICAL_PORTRAITS := {
-    "mathilde": "res://assets/heroes/duelist.webp",
-    "marec": "res://assets/heroes/breaker.webp",
-    "anouk": "res://assets/heroes/mystic.webp",
-    "aurelien": "res://assets/heroes/surgeon.webp"
+    "mathilde": "res://art/library/heroes/mathilde/reference.jpg",
+    "marec": "res://art/library/heroes/marec/reference.jpg",
+    "anouk": "res://art/library/heroes/anouk/reference.jpg",
+    "aurelien": "res://art/library/heroes/aurelien/reference.jpg"
 }
 
 func _show_hero_profile() -> void:
@@ -37,9 +38,8 @@ func _replace_hero_profile_portrait_v52() -> void:
     if portrait_texture == null:
         return
 
-    # The inherited profile still asks hero_art(), which may resolve to an old
-    # class card carrying another character's printed identity. Replace that
-    # slot with the same canonical portrait source used by combat.
+    # Keep the inherited profile slot uncropped and tagged with the same
+    # canonical identity used by combat and the shared hero_art() resolver.
     for node_value in content.find_children("*", "TextureRect", true, false):
         var portrait_slot := node_value as TextureRect
         if portrait_slot == null:
@@ -106,7 +106,7 @@ func _replace_legacy_hero_cards_v52() -> void:
         if texture_rect == null or texture_rect.texture == null:
             continue
         var resource_path := str(texture_rect.texture.resource_path)
-        if resource_path.begins_with(LEGACY_CARD_PREFIX):
+        if resource_path.begins_with(LEGACY_CARD_PREFIX) or resource_path.begins_with(OFFICIAL_PORTRAIT_PREFIX):
             legacy_portraits.append(texture_rect)
 
     var ordered_heroes: Array[Dictionary] = _heroes_by_position()

@@ -37,6 +37,11 @@ func run() -> void:
 
     var sanctuary_asset := registry.resolve_asset("bg.sanctuary")
     _check(str(sanctuary_asset.get("status", "missing")) in ["placeholder", "final"], "Sanctuary must always resolve to a visible background during the replacement pipeline")
+    for hero_id in ["mathilde", "marec", "anouk", "aurelien", "effrie", "lya"]:
+        var portrait := registry.resolve_asset("portrait.active_hero", {"entity_id": hero_id})
+        var expected_path := "res://art/library/heroes/%s/reference.jpg" % hero_id
+        _check(str(portrait.get("path", "")) == expected_path, "Official plate must resolve: %s" % hero_id)
+        _check(load(expected_path) is Texture2D, "Official JPEG must import as a texture: %s" % hero_id)
     var future_portrait := registry.resolve_asset("portrait.active_hero", {"entity_id": "future_test_hero"})
     _check(str(future_portrait.get("status", "")) in ["missing", "placeholder", "final"], "Missing future art must degrade safely instead of breaking runtime")
 
@@ -62,6 +67,12 @@ func run() -> void:
 
     var main := get_tree().current_scene
     if main != null and main.name == "Main":
+        for hero_id in ["mathilde", "marec", "anouk", "aurelien"]:
+            var expected_path := "res://art/library/heroes/%s/reference.jpg" % hero_id
+            _check(str(main.call("hero_art", {"id": hero_id})) == expected_path, "Inherited UI must resolve official identity")
+            _check(str(main.call("hero_art", {"id": "saved_instance", "canonical_id": hero_id})) == expected_path, "Saved canonical identity must resolve official plate")
+        _check(str(main.call("hero_art", {"id": "generic_recruit", "class_id": "duelist"})) == "res://assets/heroes/duelist.webp", "Generic recruit must retain its own class art")
+        _check(GameState.party.size() == 4, "Art import must preserve the starting quartet")
         main.call("show_screen", "sanctuary")
         await _frames(4)
         var marker := main.find_child("CanonicalArtContractV41", true, false)
