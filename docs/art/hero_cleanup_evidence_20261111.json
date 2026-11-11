@@ -1,0 +1,92 @@
+{
+  "audited_commit": "23bd6a7d8b1c3a8bb385276e1de607b6c644cea6",
+  "tracked_files": 2587,
+  "utf8_text_files_scanned": 2516,
+  "preserved_class_art": [
+    "assets/heroes/inquisitor.webp",
+    "assets/heroes/vestal.webp",
+    "assets/heroes/mystic.webp",
+    "assets/heroes/ranger.webp",
+    "assets/heroes/breaker.webp",
+    "assets/heroes/surgeon.webp",
+    "assets/heroes/watcher.webp",
+    "assets/heroes/scout.webp",
+    "assets/heroes/occultist.webp",
+    "assets/heroes/duelist.webp"
+  ],
+  "deleted_unused_candidates": [
+    {
+      "path": "assets/heroes/breaker_2.webp",
+      "sha256": "30f96785cd14d1ac982f7798e49da980df38cb1b4e3e4bcf7644eb7ab0667286",
+      "historical_mentions": []
+    },
+    {
+      "path": "assets/heroes/canonical/anouk.svg",
+      "sha256": "80620fad26f90d6f6829229136cad5c46bfab6663eab1a21d63b86effbd16743",
+      "historical_mentions": []
+    },
+    {
+      "path": "assets/heroes/canonical/aurelien.svg",
+      "sha256": "94f2d164589b37efca75b21f4c663406e656817c4040a77c54078f77b01fde22",
+      "historical_mentions": []
+    },
+    {
+      "path": "assets/heroes/canonical/marec.svg",
+      "sha256": "25cff12497c1a74c2138227bc8d94b22f621cea442f52ec94b180e0b9ba8380c",
+      "historical_mentions": []
+    },
+    {
+      "path": "assets/heroes/canonical/mathilde.svg",
+      "sha256": "3ba00cbfbbb2a6e5d52f5764cbfdfc2fdd7fe7f1d88dae25cb3b87ebfa670ba9",
+      "historical_mentions": []
+    },
+    {
+      "path": "assets/heroes/duelist_2.webp",
+      "sha256": "a52a444f2e9219367d564617c43caba3d78473dcc1ff79df3ff13a11505206dc",
+      "historical_mentions": []
+    },
+    {
+      "path": "assets/heroes/inquisitor_2.webp",
+      "sha256": "215ce0b27a04629136f9698f9e871a27b2b3c332a171aac656d8b41182ef4bda",
+      "historical_mentions": []
+    },
+    {
+      "path": "assets/heroes/mystic_2.webp",
+      "sha256": "ae9b0c5628ebcfa5eb788333a97264ebbd30d5b476b4aa7c423555246fb61d26",
+      "historical_mentions": []
+    },
+    {
+      "path": "assets/heroes/occultist_2.webp",
+      "sha256": "b5824a1cf6601172bb6d0400e9f297340f0b0a6d97827f293474ebe153969f17",
+      "historical_mentions": []
+    },
+    {
+      "path": "assets/heroes/ranger_2.webp",
+      "sha256": "7c683a8f4e29fec850f9ad75d39c42014fe5f7cce1e96f9e8f6b93fdbb064f1f",
+      "historical_mentions": []
+    },
+    {
+      "path": "assets/heroes/surgeon_2.webp",
+      "sha256": "c330033b4f50b88af0250bcafec30f29d0babfb911667c1b3fd3c28294276618",
+      "historical_mentions": []
+    },
+    {
+      "path": "assets/heroes/vestal_2.webp",
+      "sha256": "4af41919f29c81c6a318fae4d3901f4c90e55dc30077fe1d9e4f67e331cb2eb2",
+      "historical_mentions": []
+    },
+    {
+      "path": "assets/heroes/watcher_2.webp",
+      "sha256": "ad37e461483cb147f4529f93e41a1292098d741d05f167dc7263ec823e901d60",
+      "historical_mentions": []
+    }
+  ],
+  "branches_checked": [
+    "main",
+    "#606",
+    "#607",
+    "#608",
+    "#609"
+  ],
+  "reason": "No consumer found outside historical art inventory; class art references and all enemy resources retained."
+}

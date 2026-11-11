@@ -1,66 +1,74 @@
-# Dépendances vérifiées des portraits — 2026-11-11
+# Intégration des six planches officielles — 2026-11-11
 
-Source : `scripts/ui/main_v52.gd` lu sur `main` (avant fusion de #610).
+## Révisions et gouvernance contrôlées
 
-- Ligne 8 : `LEGACY_CARD_PREFIX = "res://assets/heroes/"`.
-- Lignes 16–20 : `CANONICAL_PORTRAITS` lie `mathilde` à `duelist.webp`, `marec` à `breaker.webp`, `anouk` à `mystic.webp` et `aurelien` à `surgeon.webp`.
-- Ligne 36 : chargement des textures à partir de cette table.
-- Ligne 40 : commentaire indiquant que le profil hérité peut appeler `hero_art()` et revenir sur une ancienne carte.
-- Ligne 125 : autre utilisation de `CANONICAL_PORTRAITS`.
-
-## Conséquences
-Les quatre fichiers WEBP sont **encore référencés par le code actif** : ne pas les supprimer avant import et migration des JPEG validés. La table doit pointer vers `art/library/heroes/{hero}/reference.jpg` après récupération et contrôle des six fichiers.
-
-Les deux autres héros validés, Éffrie et Lya, ne sont pas dans cette table à quatre entrées : leur ajout au catalogue artistique ne signifie pas leur activation dans le quatuor jouable.
-
-## Étapes non effectuées
-- Aucun JPEG transféré dans GitHub ni récupéré pour contrôle SHA-256.
-- Aucun chemin runtime modifié.
-- Aucune suppression d'image.
-- Aucun test Godot exécuté.
-
-La lecture exhaustive de toutes les références (autres scripts, scènes, ressources, tests et PWA) reste à faire avant nettoyage.
-
-## Recontrôle effectué le 2026-11-11
-
-### Révisions observées avant modification documentaire
-| Référence | Dernier commit | État GitHub |
+| Référence | Commit recontrôlé au début de la reprise | État |
 | --- | --- | --- |
-| main | ee634021eb0e31334a63bf94d3889d36862e53a6 | Branche protégée |
-| #606 | aa51751008e9807024f117816e4a2d0edacdf440 | Brouillon, fusion possible sans conflit signalé |
-| #607 | 7d0428e8feb1732473dd7371d166606994e75ca2 | Brouillon, fusion possible sans conflit signalé |
-| #608 | f6e1193abaa25e3cfd42a72c82149582486eaff2 | Brouillon, fusion possible sans conflit signalé |
-| #609 | ab5ac3bb2f3525052ccc5fcc7ca2e24dc402faa9 | Brouillon, fusion possible sans conflit signalé |
-| #610 | c0359c120b81266ab984497b72ca981c5ae47f22 | Brouillon, fusion possible sans conflit signalé |
+| main | ee634021eb0e31334a63bf94d3889d36862e53a6 | Protégée |
+| #606 | aa51751008e9807024f117816e4a2d0edacdf440 | Brouillon ouvert |
+| #607 | 7d0428e8feb1732473dd7371d166606994e75ca2 | Brouillon ouvert |
+| #608 | f6e1193abaa25e3cfd42a72c82149582486eaff2 | Brouillon ouvert |
+| #609 | ab5ac3bb2f3525052ccc5fcc7ca2e24dc402faa9 | Brouillon ouvert |
+| #610 | d59b263308ddb406d3869e780701d2140efa3c20 | Brouillon ouvert |
 
-Le ruleset actif `23145847` impose PR, résolution des discussions, contrôles stricts `quality`, `godot-smoke`, `guardian`, `validate`, `remanence-smoke`, `Merge Execution Gate`, et merge queue ALLGREEN. Aucun acteur de contournement. L'endpoint historique de protection renvoie 403 à la connexion intégrée ; le ruleset actif a bien été lu séparément.
+Le ruleset actif `23145847` impose une PR, la résolution des discussions, les contrôles stricts `quality`, `godot-smoke`, `guardian`, `validate`, `remanence-smoke`, `Merge Execution Gate`, et une merge queue ALLGREEN. Aucun acteur ne peut contourner ces règles. L’endpoint historique de protection renvoie 403 à la connexion intégrée ; les règles actives ont été lues séparément. Aucun ref temporaire de file n’était visible au contrôle initial ; cela ne constitue pas une lecture exhaustive de son état GraphQL.
 
-### Dépendances supplémentaires lues directement
-Lecture de 57 fichiers : les 53 scripts `scripts/ui/main*.gd`, `project.godot`, `export_presets.cfg`, `scenes/Main.tscn` et `tests/python/test_combat_canonical_portrait_layout.py`. Lecture complémentaire de `data/classes.json`, `data/heroes.json`, `data/canonical_art_v41.json`, `scripts/visual/canonical_art_registry.gd` et `scripts/core/canonical_art_v41_smoke_test.gd`.
+## Originaux importés et vérifiés
 
-- `project.godot:3` démarre `scenes/Main.tscn`, dont la ressource script ligne 59 est `main_v52.gd`.
-- `scripts/ui/main.gd:341-343` définit `hero_art()` depuis `data/classes.json`, avec repli sur `inquisitor.webp`. Appels aux lignes 372 et 668.
-- Autres appels hérités : `main_v30.gd:161` et `main_v38.gd:213`. Une simple modification de CANONICAL_PORTRAITS n'élimine donc pas les anciennes références.
-- `data/classes.json` conserve dix champs `art` : inquisitor, vestal, mystic, ranger, breaker, surgeon, watcher, scout, occultist et duelist, tous WEBP. Ne pas attribuer arbitrairement les six héros à toutes ces classes : préserver les identités et le gameplay.
-- `main_v52.gd` détecte les emplacements de combat par le préfixe `res://assets/heroes/`. Une migration de `hero_art()` doit aussi adapter cette détection, faute de quoi les portraits et leurs métadonnées risquent de ne plus être traités.
-- `tests/python/test_combat_canonical_portrait_layout.py:39-46` impose encore les quatre anciens chemins WEBP ; le test doit migrer avec le code et contrôler les chemins officiels.
-- `data/heroes.json` contient les quatre héros canoniques Mathilde, Marec, Anouk et Aurélien ; aucune activation d'Éffrie ou Lya effectuée.
-- `data/canonical_art_v41.json:93` déclare aussi le chemin dynamique optionnel `assets/art/v41/portraits/{entity_id}.webp` : examiner ses consommateurs lors de la migration complète.
-- Export Web : PWA activée, shell HTML personnalisé vide, `all_resources`, filtres inclusion/exclusion vides. Aucun service worker ni fichier `.uid` ou `.import` versionné dans l'arbre consulté. Cela ne valide pas les caches générés, les UID locaux ou l'export Web.
-- Sur la branche #607, `scripts/ui/main.gd:343-345` conserve le même chargement par classe. Cette PR modifie 22 fichiers, dont du code et des tests : elle ne constitue pas un lot purement documentaire. #608 et #609 ne modifient que leur registre ; #606 reste un chantier gameplay séparé.
+Archive exacte : `LITD_HEROS_6_PLANCHES_WORK (15).zip` (4 061 056 octets). Les six SHA-256 ont été mesurés depuis les membres du ZIP et correspondent au manifeste. Import sans retouche, sans recompression et sans modification des dimensions au commit `dd8de4963e9b5445370aff22acabba298881aa5b`. Les six fichiers ont ensuite été téléchargés depuis raw.githubusercontent.com sur ce commit immuable : six empreintes à nouveau conformes. Les octets importés restent inchangés dans les commits suivants.
 
-### Intégrité et disponibilité
-Le manifeste JSON a été parsé : six entrées, identifiants et empreintes uniques, empreintes au format SHA-256, chemins conformes à `art/library/heroes/{hero}/reference.jpg`, six statuts `pending_import`. Aucun fichier n'existe encore sous `art/library/heroes/` dans l'arbre de #610 consulté. Ce contrôle structurel ne vérifie pas les octets des images.
+| Personnage | Chemin | Octets |
+| --- | --- | --- |
+| Mathilde | art/library/heroes/mathilde/reference.jpg | 631931 |
+| Marec | art/library/heroes/marec/reference.jpg | 733565 |
+| Anouk | art/library/heroes/anouk/reference.jpg | 792554 |
+| Aurélien | art/library/heroes/aurelien/reference.jpg | 538071 |
+| Éffrie | art/library/heroes/effrie/reference.jpg | 620653 |
+| Lya | art/library/heroes/lya/reference.jpg | 744724 |
 
-Une archive candidate nommée `LITD_HEROS_6_PLANCHES_WORK.zip` a été retrouvée parmi les fichiers transmis précédemment. Sa récupération locale échoue sur DNS ; le clonage HTTPS du dépôt échoue aussi sur DNS. `gh auth status` signale par ailleurs un jeton local invalide, tandis que la connexion GitHub intégrée permet les lectures effectuées. Aucun écart SHA-256 ne peut être affirmé ou exclu sans les octets. Importation, migration et suppressions suspendues à ce contrôle préalable.
+Les empreintes complètes, dimensions et statuts binaires sont dans `validated_heroes_manifest_20261111.json`. La validation artistique du propriétaire est acquise. Éffrie et Lya restent des références artistiques ; `data/heroes.json` conserve exactement Mathilde, Marec, Anouk et Aurélien.
 
-### Contrôles et limites
-- Inventaire recontrôlé sur l'arbre complet non tronqué de main : 23 images héros (19 WEBP et 4 SVG), 39 WEBP ennemis, 1 planche conceptuelle ennemis. Le contenu de ces répertoires est identique dans l'arbre #610 consulté.
-- Au commit c0359c1, sept exécutions Actions trouvées, toutes terminées avec succès : CI, Merge Execution Enforcement, Knowledge Governance, Trieur Safe Archive, Knowledge Guardian, Trieur Governance, Remanence Smoke. Ce résultat précède la présente mise à jour et ne valide aucun import d'image.
-- Aucun test Godot exécuté : aucun exécutable Godot trouvé dans PATH ; pas de copie locale complète ni d'images récupérées. Aucun affichage, import de textures, UID ou cache PWA validé.
-- Recherche indexée GitHub sans résultat, y compris pour des chaînes présentes dans le code lu : ces résultats négatifs ne prouvent aucune absence. L'audit exhaustif de tous les scripts, scènes, ressources, configurations, tests, documents et branches reste à terminer.
-- Aucun binaire ajouté ou supprimé, aucun chemin runtime modifié, aucune fusion effectuée.
+## Dépendances auditées et migration
 
-Chantier : Bibliothèque artistique LITD 1. Statut : 🟠 BLOQUÉ sur la récupération des originaux. Avancement du chantier actuel : À évaluer. Avancement du projet global LITD 1 : À évaluer.
+Audit de tous les fichiers suivis décodables en UTF-8 (2 516 fichiers texte au commit `23bd6a7d8b1c3a8bb385276e1de607b6c644cea6`), couvrant scripts, scènes, ressources, JSON, configurations, workflows, outils, tests et documents. Les branches main, #606, #607, #608, #609 ont été récupérées et contrôlées pour les ressources candidates au nettoyage. Les chargements dynamiques de portraits identifiés ont été suivis jusqu’à leurs données. Aucun `.uid` ou `.import` n’était suivi dans l’arbre initial ; les fichiers générés localement ne sont pas ajoutés en masse.
 
-Prochaine priorité : récupérer l'archive, confronter les six SHA-256 au manifeste, importer les octets inchangés et les revérifier depuis GitHub avant toute migration ou suppression.
+- `project.godot` → `scenes/Main.tscn` → `scripts/ui/main_v52.gd` reste le chemin de démarrage.
+- `scripts/ui/main.gd::hero_art()` choisit d’abord l’identité canonique du héros (y compris `canonical_id` des sauvegardes), puis la carte de classe pour les recrues génériques. Cela couvre aussi les appels hérités de `main_v30.gd` et `main_v38.gd`.
+- `main_v52.gd` utilise les quatre JPEG et reconnaît les emplacements par les deux préfixes, ancien et officiel ; les métadonnées, l’ordre des rangs et le comportement responsive sont conservés. Portraits affichés sans recadrage.
+- `data/classes.json` conserve ses dix références utiles ; une classe ne reçoit pas arbitrairement l’identité d’un héros. Ces dix WEBP et le repli Inquisiteur sont conservés.
+- `data/canonical_art_v41.json::portrait.active_hero` résout `art/library/heroes/{entity_id}/reference.jpg` ; `CanonicalArtRegistry` conserve son repli sûr pour une identité absente.
+- `tools/blender/generate_character_jobs.py` et `data/blender/character_jobs.json` pointent les quatre jobs héros vers les planches officielles. Les 52 jobs restent cohérents ; aucune production Blender exécutée par cette PR.
+- Tests Python des portraits migrés ; ajout de contrôles d’intégrité, unicité, chemins, roster et jobs. Le test Godot artistique charge les six textures et vérifie les identités héritées et génériques. Le parcours joueur utilise les quatre nouveaux chemins.
+- `.github/workflows/build.yml` surveille désormais `art/**` et charge les six textures depuis le PCK Web exporté via `scripts/tests/hero_art_export_check.gd` avant publication de l’artefact CI.
+
+## Nettoyage limité
+
+Neuf variantes `_2.webp` et les quatre SVG `assets/heroes/canonical/` ont été retirés après audit sans consommateur retrouvé (hors mentions historiques d’inventaire), contrôle des branches pertinentes et premiers tests réussis. Liste exacte, SHA-256 et mentions historiques conservés dans `hero_cleanup_evidence_20261111.json`. Suppression par commit normal ; aucun historique réécrit.
+
+Conservés : dix cartes de classes, 39 images ennemis, la planche conceptuelle ennemis et les cinq arrière-plans. Inventaire résultant : 61 images, dont six JPEG officiels et dix WEBP de classes. Les anciens chemins mentionnés dans les sections historiques des audits ne sont pas des liens de chargement actifs.
+
+## Contrôles effectivement exécutés
+
+| Contrôle | Résultat et portée |
+| --- | --- |
+| SHA-256 avant et après GitHub | 6/6 conformes au manifeste au commit d’import dd8de496 |
+| Dimensions JPEG | Contrôlées par lecture des originaux ; aucune image transformée |
+| Python ciblé après nettoyage | 211 tests réussis |
+| Générateur Blender `--check` | 52 jobs courants |
+| Import Godot 4.7.2 après nettoyage | Réussi, code 0 ; pas d’erreur GDScript détectée |
+| Catalogue Godot après nettoyage | `CANONICAL_ART_V41_SMOKE_OK` |
+| Parcours joueur avant nettoyage | `UI_PLAYER_JOURNEY_SMOKE_OK`, code 0, quatre portraits officiels vérifiés |
+| Suite Python CI au commit 23bd6a7d | 1 831 tests réussis, deux avertissements Python préexistants |
+| CI et cinq domaines Godot au commit 23bd6a7d | Réussis ; 21 workflows terminés avec succès |
+| Exports Web, Windows, Linux au commit 23bd6a7d | Réussis |
+| Paquet Web au commit 23bd6a7d | `EXPORTED_HERO_ART_OK` : six textures chargées depuis le paquet exporté |
+| PWA générée au commit 23bd6a7d | Artefact téléchargé et service worker inspecté : `index.pck` et `index.wasm` cacheables, version `1794390060|17255168`, suppression des anciens caches du même préfixe à l’activation |
+| Dernier commit incluant suppressions et documentation | CI à recontrôler après son envoi ; aucune fusion annoncée à ce stade |
+
+Limites explicites : la première tentative de suite Python locale sous Windows n’était pas valide (encodage système, puis absence de bash). Avec UTF-8, 693 tests passent avant l’arrêt sur un test nécessitant bash ; la suite Linux CI fournit la validation complète. L’audit QA global lancé directement dans le dossier importé échoue sur le répertoire `.godot` traité comme un fichier par son parcours ; ce problème local n’est pas présenté comme un audit réussi. Les smokes Godot signalent des objets/ressources encore utilisés à la fermeture malgré leurs marqueurs de réussite ; l’export Linux signale également l’absence de fontconfig dans le conteneur. Aucun contrôle visuel humain ou mise à jour effective d’un ancien cache de navigateur installé n’est affirmé. Aucun déploiement Web déclenché manuellement.
+
+## Suivi
+
+Chantier : Bibliothèque artistique LITD 1. Statut : 🟠 EN COURS, validation finale du nettoyage et fusion protégée à effectuer. Avancement du chantier actuel : À évaluer (la réconciliation du bestiaire reste ouverte). Avancement du projet global LITD 1 : À évaluer.
+
+Prochaine étape : valider le dernier commit sur GitHub, contrôler les discussions et protections à nouveau, puis utiliser la merge queue sans contournement. Les PR #606–#609 restent distinctes et ne sont ni fusionnées ni fermées dans cette opération.

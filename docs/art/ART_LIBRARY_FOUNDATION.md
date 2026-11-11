@@ -1,6 +1,6 @@
 # LITD 1 — Fondation de la bibliothèque artistique
 
-Statut : fondation documentaire en cours ; six planches héros validées par le propriétaire, import binaire et intégration technique en attente.
+Statut : six originaux importés et vérifiés depuis GitHub ; migration technique réalisée, nettoyage des ressources inutilisées en validation CI. La réconciliation du bestiaire reste ouverte.
 
 ## Objectif
 Un registre canonique unique pour les planches, personnages secondaires, équipements, objets, décors et interfaces. Les PR #607, #608 et #609 restent des sources historiques tant que leurs données ne sont pas réconciliées. Ne pas supprimer ni fermer ces PR avant reprise vérifiée.
@@ -71,5 +71,5 @@ Exemple de structure uniquement : l'identifiant illustratif n'est attribué à a
 ## Suivi
 - Avancement du chantier actuel : À évaluer.
 - Avancement global LITD 1 : À évaluer.
-- Six planches héros validées artistiquement par le propriétaire ; aucun binaire importé, aucune CI ajoutée, aucune intégration technique validée.
+- Six planches originales importées (SHA-256 avant/après GitHub conformes) ; portraits canoniques et références Blender migrés ; contrôles automatiques du catalogue et du paquet Web ajoutés. Les validations sont détaillées dans l’audit technique ; les contrôles du dernier commit restent requis avant fusion.
 - Audit technique actualisé : `HERO_RUNTIME_DEPENDENCIES_20261111.md`.
