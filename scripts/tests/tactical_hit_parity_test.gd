@@ -2,7 +2,17 @@ extends SceneTree
 
 const RUNTIME := preload("res://scripts/core/veilleurs_tactical_combat_runtime.gd")
 const HIT := preload("res://scripts/core/combat/veilleurs_hit_resolver.gd")
-const ZONES := ["head", "torso", "left_arm", "right_arm", "left_leg", "right_leg"]
+
+# Frozen legacy formula from main before the refactor. Do not call HIT here:
+# comparing two callers of the same resolver would not detect a shared regression.
+static func legacy_hit_chance(attacker: Dictionary, target: Dictionary, skill: Dictionary, zone: String, zone_mods: Dictionary, clamps: Dictionary) -> int:
+    var attacker_stats: Dictionary = attacker.get("stats", {})
+    var target_stats: Dictionary = target.get("stats", {})
+    var chance := 75.0
+    chance += (float(attacker_stats.get("PRE", 50)) - float(target_stats.get("MOB", 50))) * 0.45
+    chance += float(skill.get("precision_mod", 0))
+    chance += float(zone_mods.get(zone, 0))
+    return clampi(int(round(chance)), int(clamps.get("min_percent", 10)), int(clamps.get("max_percent", 97)))
 
 func _initialize() -> void:
     var runtime = RUNTIME.new()
@@ -10,8 +20,8 @@ func _initialize() -> void:
     if db.watchers_by_id.size() != 4 or db.enemies_by_id.size() != 24:
         _fail("expected four heroes and twenty-four enemies")
         return
-    var zones: Array[String] = []
     var zone_mods: Dictionary = db.combat_constants.get("zone_accuracy_mod", {})
+    var zones: Array[String] = []
     for key in zone_mods.keys():
         zones.append(str(key))
     if zones.is_empty():
@@ -26,26 +36,35 @@ func _initialize() -> void:
             var enemy_def: Dictionary = db.enemy(str(enemy_id))
             var target := {"stats": enemy_def.get("stats", {})}
             for zone in zones:
-                var skill := {"precision_mod": 0}
-                var actual := int(runtime.call("_hit_chance", attacker, target, skill, zone))
-                var expected := int(HIT.resolve_tactical(attacker, skill, target, zone, zone_mods, clamps, 0, 0, false, 1)["accuracy"])
-                if actual != expected:
-                    _fail("hit chance mismatch: %s / %s / %s: %d vs %d" % [hero_id, enemy_id, zone, actual, expected])
+                if not _check(runtime, attacker, target, {"precision_mod": 0}, zone, zone_mods, clamps, "hero/enemy %s/%s" % [hero_id, enemy_id]):
                     return
                 cases += 1
-    for delta in [-150, -40, 0, 40, 150]:
-        for zone in zones:
-            var attacker := {"stats": {"PRE": 50 + delta}}
-            var target := {"stats": {"MOB": 50}}
-            var skill := {"precision_mod": 7}
-            var actual := int(runtime.call("_hit_chance", attacker, target, skill, zone))
-            var expected := int(HIT.resolve_tactical(attacker, skill, target, zone, zone_mods, clamps, 0, 0, false, 1)["accuracy"])
-            if actual != expected:
-                _fail("boundary mismatch at delta %d zone %s" % [delta, zone])
+    # Cover rounding, clamping, missing defaults, nonzero precision and unknown zones.
+    var samples: Array[Dictionary] = [
+        {"a": {"stats": {"PRE": -100}}, "t": {"stats": {"MOB": 150}}, "s": {"precision_mod": -13}},
+        {"a": {"stats": {"PRE": 200}}, "t": {"stats": {"MOB": -100}}, "s": {"precision_mod": 13}},
+        {"a": {"stats": {"PRE": 51}}, "t": {"stats": {"MOB": 50}}, "s": {"precision_mod": 0}},
+        {"a": {"stats": {"PRE": 49}}, "t": {"stats": {"MOB": 50}}, "s": {"precision_mod": 0}},
+        {"a": {"stats": {"PRE": 50}}, "t": {"stats": {"MOB": 50}}, "s": {"precision_mod": 7}},
+        {"a": {}, "t": {}, "s": {}},
+        {"a": {"stats": {}}, "t": {"stats": {}}, "s": {}},
+    ]
+    for sample in samples:
+        for zone in zones + ["unknown_zone"]:
+            if not _check(runtime, sample["a"], sample["t"], sample["s"], zone, zone_mods, clamps, "edge case %d" % cases):
                 return
             cases += 1
-    print("TACTICAL_HIT_PARITY_OK cases=%d heroes=4 enemies=24 zones=%d" % [cases, zones.size()])
+    print("TACTICAL_HIT_PARITY_OK cases=%d heroes=4 enemies=24 zones=%d independent_legacy=true" % [cases, zones.size()])
     quit(0)
+
+func _check(runtime: RefCounted, attacker: Dictionary, target: Dictionary, skill: Dictionary, zone: String, zone_mods: Dictionary, clamps: Dictionary, label: String) -> bool:
+    var expected := legacy_hit_chance(attacker, target, skill, zone, zone_mods, clamps)
+    var actual := int(runtime.call("_hit_chance", attacker, target, skill, zone))
+    var resolver := int(HIT.resolve_tactical(attacker, skill, target, zone, zone_mods, clamps, 0, 0, false, 1)["accuracy"])
+    if actual != expected or resolver != expected:
+        _fail("%s zone=%s: legacy=%d runtime=%d resolver=%d" % [label, zone, expected, actual, resolver])
+        return false
+    return true
 
 func _fail(message: String) -> void:
     push_error(message)
