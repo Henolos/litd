@@ -43,8 +43,8 @@ class ValidatedHeroArtLibraryTests(unittest.TestCase):
                 data = file_path.read_bytes()
                 self.assertEqual(len(data), asset["size_bytes"])
                 self.assertEqual(hashlib.sha256(data).hexdigest(), asset["sha256"])
-                self.assertTrue(data.startswith(b"\\xff\\xd8\\xff"), f"Not JPEG: {path}")
-                self.assertTrue(data.endswith(b"\\xff\\xd9"), f"Truncated JPEG: {path}")
+                self.assertTrue(data.startswith(b"\xff\xd8\xff"), f"Not JPEG: {path}")
+                self.assertTrue(data.endswith(b"\xff\xd9"), f"Truncated JPEG: {path}")
 
     def test_no_unregistered_hero_originals(self):
         expected = {a["target_path"] for a in self.assets}
@@ -55,7 +55,7 @@ class ValidatedHeroArtLibraryTests(unittest.TestCase):
     def test_quartet_runtime_mapping_remains_unchanged(self):
         # Guardrail only: this test does not change or activate gameplay characters.
         code = (ROOT / "scripts/ui/main_v52.gd").read_text(encoding="utf-8")
-        match = re.search(r"const CANONICAL_HERO_IDS := \\[(.*?)\\]", code)
+        match = re.search(r"const CANONICAL_HERO_IDS := \[(.*?)\]", code)
         self.assertIsNotNone(match)
         active = set(re.findall(r'"([^"]+)"', match.group(1)))
         self.assertEqual(active, PLAYABLE_QUARTET)
