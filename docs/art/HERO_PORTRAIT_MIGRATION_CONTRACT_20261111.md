@@ -1,11 +1,11 @@
 # Contrat de migration des portraits LITD 1 — audit complémentaire
 
-## État vérifié sur main (2026-11-11)
+## État historique de main avant la migration (2026-11-11)
 
 - `scripts/ui/main_v52.gd` référence `res://assets/heroes/{duelist,breaker,mystic,surgeon}.webp` pour Mathilde, Marec, Anouk, Aurélien. Les références sont chargées dans le profil et l'interface de combat.
 - `data/canonical_art_v41.json` définit `portrait.active_hero` via `res://assets/art/v41/portraits/{entity_id}.webp` (entrée dynamique, `required_at_runtime=false`).
 - `scripts/visual/canonical_art_registry.gd` charge ce second manifeste.
-- La PR #610 est ouverte en brouillon ; les six JPEG validés ne sont pas encore importés.
+- Cet inventaire décrit main avant la fusion de #610. Sur la branche de la PR, les six JPEG ont depuis été importés et vérifiés ; voir l’état courant ci-dessous.
 
 ## Décisions techniques provisoires
 
@@ -16,8 +16,12 @@
 5. Avant toute suppression de WebP/SVG, inventorier leurs références dans scripts, scènes, ressources, tests, documentation et caches PWA.
 6. Ajouter des tests : unicité des identités, existence des ressources, cohérence entre registre et interface, absence de référence active supprimée, import Godot et vérification visuelle lorsque disponible.
 
-## Statut
+## État courant vérifié dans #610
 
-Audit des deux systèmes : **vérifié par lecture de fichiers**.
-Architecture cible : **proposée, non implémentée**.
-Import JPEG, génération runtime, tests Godot et nettoyage : **non réalisés**.
+Les six originaux ont été importés au commit `dd8de4963e9b5445370aff22acabba298881aa5b` et leurs six SHA-256 revérifiés après récupération depuis GitHub. La migration `23bd6a7d` couvre `hero_art()`, la table et la détection des emplacements v52, le slot dynamique v41 et les références Blender. Les identités, statistiques et quatuor jouable sont conservés.
+
+Les planches originales sont affichées sans recadrage ni transformation du fichier source. Une production séparée de portraits optimisés reste une proposition ultérieure ; sa lisibilité n’est pas présentée comme validée visuellement par ces tests automatisés.
+
+Le nettoyage `c9c5dc80` retire seulement les neuf variantes `_2.webp` et quatre SVG sans consommateur retrouvé. Dix cartes de classes et toutes les ressources ennemis sont conservées. Les 211 tests ciblés, l’import Godot, le catalogue et le parcours joueur passent après nettoyage ; la CI du dernier commit et la merge queue restent à contrôler avant fusion.
+
+Preuves, limites et état de suivi détaillés : `HERO_RUNTIME_DEPENDENCIES_20261111.md` et `hero_cleanup_evidence_20261111.json`. Les propositions ci-dessus ne signifient pas que des textures dérivées ont été produites ou qu’un playtest visuel a eu lieu.
