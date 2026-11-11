@@ -1,6 +1,6 @@
 # LITD 1 — Réconciliation du bestiaire (11 novembre 2026)
 
-> Les sections initiales ci-dessous sont un historique. La mise à jour courante en fin de document remplace leurs demandes de revalidation et leurs statuts techniques dépassés.
+> État courant : transfert rétabli, sept images mesurées, trois références archivées et vérifiées depuis GitHub. Les mentions de blocage et de zéro import ci-dessous sont historiques et sont remplacées par la dernière section. Aucune revalidation artistique n’est demandée.
 
 ## Périmètre et preuves
 Contrôle documentaire des registres de PR #607 et #608. Aucun binaire artistique importé ou validé par ce document. Les 68 images existantes dans main et les deux branches ne constituent pas une archive des planches du bestiaire (constat de l'audit Work communiqué par l'utilisateur).
@@ -51,7 +51,7 @@ Archive locale examinée : `litd_sources_retrouvees_20261111.zip` ; **sept image
 **Blocage technique observé :** l'environnement local ne résout pas `github.com` et le connecteur GitHub disponible pour les modifications de fichiers accepte uniquement le texte UTF-8. Le transfert binaire n'a donc pas été effectué. Ne pas annoncer d'images archivées.
 
 
-## Reprise après fusion de #610 — état courant
+## Reprise après fusion de #610 — état historique avant réparation du transfert
 
 ### Réalisé et vérifié
 
@@ -75,3 +75,28 @@ Les dix cartes de classes et les 39 images ennemis conservées par #610 restent 
 Rétablir le transfert des octets, mesurer les SHA-256, identifier les variantes par leurs empreintes, puis importer les fichiers correspondants sans retouche et vérifier leur récupération GitHub. Les données de gameplay ne recevront aucune correspondance d’espèce supposée. Les tests de cohérence du manifeste sont distincts des tests d’intégrité binaire ; la PR reste en brouillon tant que les originaux ne sont pas archivés et vérifiés.
 
 Chantier : Bibliothèque artistique LITD 1. Statut : 🟠 BLOQUÉ sur le transfert des originaux du bestiaire ; réconciliation documentaire avancée. Avancement du chantier actuel : À évaluer. Avancement du projet global LITD 1 : À évaluer.
+
+
+## Réparation vérifiée du transfert — état courant
+
+L’erreur `Library prepare_materialize is not available` provenait du chemin d’accès utilisé par le programme local. L’opération intégrée à Work a été appelée avec succès ; l’archive a été récupérée avec ses métadonnées. Cela rétablit ce transfert, sans prétendre corriger globalement le programme local ou le service. Aucun changement de permission ou de protection du dépôt n’a été nécessaire.
+
+L’archive reçue mesure **13 328 381 octets** ; SHA-256 `56f5b6c1577805e27fdef25f7050e474a105a740de865db9d06f251c70fc5790`, conforme au manifeste ajouté dans `2aa8657c`. Son contrôle CRC ZIP réussit. Les sept images ont été lues et leurs SHA-256 mesurés.
+
+Trois images correspondent exactement aux références du catalogue :
+
+| Référence | Fichier archivé | Octets |
+| --- | --- | --- |
+| Kitsune n°26 | `art/library/bestiary/kitsune/reference.png` | 2724055 |
+| Valkyrie harmonisée n°23 | `art/library/bestiary/spectral_valkyrie/reference.jpg` | 816654 |
+| Troll nordique n°22 | `art/library/bestiary/nordic_troll/reference.jpeg` | 756669 |
+
+Ces trois fichiers ont été importés sans retouche ni recompression dans `349ef50d54f0ec8cb091053c13f6ce5cb12853f9`. Leurs octets ont été récupérés à nouveau par clonage Git sur `2aa8657c7f2c9d277a0a39d8fb4adc315cc45df5`, puis les SHA-256 recalculés et comparés à l’archive et au catalogue. Les tailles et identifiants d’objets Git concordent également. Le manifeste distingue désormais les **trois** statuts `verified_in_github` des **dix-huit** `pending_retrieval`.
+
+Les quatre autres fichiers sont les deux autres variantes de Valkyrie, le PNG du Golem et le PNG Wendigo glacé. Ils ont des empreintes différentes des références courantes documentées ; cette différence indique des versions distinctes, pas une corruption démontrée. Ils restent conservés dans l’archive et ne sont pas substitués aux références attendues. Aucun fichier ennemi actif ou héros n’est supprimé ni modifié et aucune correspondance avec les identifiants du gameplay n’est créée.
+
+**Contrôles :** récupération de l’archive, CRC ZIP, sept SHA-256 sources et trois SHA-256 après clonage GitHub réussis. Les contrôles automatisés du commit mettant à jour ces statuts restent à lire après son envoi. Aucun nouveau playtest visuel n’est effectué dans cette réparation ; l’expiration précédente de l’accès à la fenêtre Godot reste un problème distinct.
+
+**Suite :** retrouver les dix-huit originaux correspondant aux empreintes attendues, poursuivre l’archivage et vérifier la CI. #609 reste en brouillon ; aucune fusion n’est annoncée. La validation artistique du propriétaire est conservée.
+
+Chantier : Bibliothèque artistique LITD 1. Statut : 🟡 À CONSOLIDER — transfert rétabli et trois références vérifiées, collection incomplète. Avancement du chantier actuel : À évaluer. Avancement du projet global LITD 1 : À évaluer. Couverture binaire des références documentées : **3/21 (14,3 %)** ; ce ratio ne mesure pas l’avancement global du chantier ou du jeu.

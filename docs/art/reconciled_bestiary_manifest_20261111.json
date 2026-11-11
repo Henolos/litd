@@ -3,9 +3,10 @@
   "owner_approval_rule": "Toute planche transmise par le propriétaire est officielle ; une version plus récente remplace l’ancienne. Ne pas redemander la validation artistique.",
   "scope": {
     "documented_official_plates": 21,
-    "binary_imported_in_this_lot": 0,
+    "binary_imported_in_this_lot": 3,
     "runtime_migration": false,
-    "existing_enemy_images_preserved": 39
+    "existing_enemy_images_preserved": 39,
+    "binary_still_pending": 18
   },
   "production_plan": {
     "classical_monsters": 25,
@@ -14,7 +15,7 @@
     "total_creatures": 40,
     "note": "Organisation de conception documentée dans #607 ; la correspondance des planches aux quotas reste ouverte. Les numéros de fiches ne sont pas les positions du catalogue d’espèces."
   },
-  "retrieval_blocker": "L’archive litd_sources_retrouvees_20261111.zip a été retrouvée, mais le helper de téléchargement ne trouve pas Library prepare_materialize. Aucun octet récupéré, aucun SHA mesuré dans cette reprise.",
+  "retrieval_blocker": null,
   "assets": [
     {
       "asset_id": "LITD-BEST-PLATE-0001",
@@ -328,16 +329,22 @@
       "art_status": "validated_by_owner",
       "source_filename": "56E54133-57CA-41CB-B514-0D740FE55DD2.jpeg",
       "expected_sha256": "8ce2c11e61f917bce5fb62af2fd2bf762383f60329c3f6ae854ff959c781ad9c",
-      "binary_status": "pending_retrieval",
-      "measured_sha256": null,
-      "archived_path": null,
+      "binary_status": "verified_in_github",
+      "measured_sha256": "8ce2c11e61f917bce5fb62af2fd2bf762383f60329c3f6ae854ff959c781ad9c",
+      "archived_path": "art/library/bestiary/nordic_troll/reference.jpeg",
       "planned_target_path": "art/library/bestiary/nordic_troll/reference.jpeg",
       "runtime_enemy_id": null,
       "source_evidence": {
         "pr": "#608",
         "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
         "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
-      }
+      },
+      "size_bytes": 756669,
+      "source_archive_member": "to_review/56E54133-57CA-41CB-B514-0D740FE55DD2.jpeg",
+      "github_verified_commit": "2aa8657c7f2c9d277a0a39d8fb4adc315cc45df5",
+      "github_blob_sha": "f995901596d3f2d7dece59cf111967be9089a141",
+      "width": 1536,
+      "height": 1024
     },
     {
       "asset_id": "LITD-BEST-PLATE-0018",
@@ -347,9 +354,9 @@
       "art_status": "validated_by_owner",
       "source_filename": "LITD1_Valkyrie_23_harmonisee.jpg",
       "expected_sha256": "30a1f79497759885753ae0de383d0fb1c5086bf1646653131531defaa81aaa37",
-      "binary_status": "pending_retrieval",
-      "measured_sha256": null,
-      "archived_path": null,
+      "binary_status": "verified_in_github",
+      "measured_sha256": "30a1f79497759885753ae0de383d0fb1c5086bf1646653131531defaa81aaa37",
+      "archived_path": "art/library/bestiary/spectral_valkyrie/reference.jpg",
       "planned_target_path": "art/library/bestiary/spectral_valkyrie/reference.jpg",
       "runtime_enemy_id": null,
       "source_evidence": {
@@ -357,7 +364,13 @@
         "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
         "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
       },
-      "version_note": "Version harmonisée explicitement approuvée dans #608 ; les deux autres variantes de l’archive ne la remplacent pas par défaut."
+      "version_note": "Version harmonisée explicitement approuvée dans #608 ; les deux autres variantes de l’archive ne la remplacent pas par défaut.",
+      "size_bytes": 816654,
+      "source_archive_member": "to_review/LITD1_Valkyrie_23_harmonisee.jpg",
+      "github_verified_commit": "2aa8657c7f2c9d277a0a39d8fb4adc315cc45df5",
+      "github_blob_sha": "452a6f21f81c13770b8c849d485172c00427ed57",
+      "width": 1536,
+      "height": 1024
     },
     {
       "asset_id": "LITD-BEST-PLATE-0019",
@@ -411,9 +424,9 @@
       "art_status": "validated_by_owner",
       "source_filename": "same_layout_and_art_as_the_previous_kitsune_sheet.png",
       "expected_sha256": "64e5abdb0b1e84f6c0c8646bd9f8b380b831bb46b9e310f4ef9b2f6bedb2015b",
-      "binary_status": "pending_retrieval",
-      "measured_sha256": null,
-      "archived_path": null,
+      "binary_status": "verified_in_github",
+      "measured_sha256": "64e5abdb0b1e84f6c0c8646bd9f8b380b831bb46b9e310f4ef9b2f6bedb2015b",
+      "archived_path": "art/library/bestiary/kitsune/reference.png",
       "planned_target_path": "art/library/bestiary/kitsune/reference.png",
       "runtime_enemy_id": null,
       "source_evidence": {
@@ -421,7 +434,46 @@
         "path": "docs/art/bestiary_reconciliation_20261111.md",
         "commit": "ab5ac3bb2f3525052ccc5fcc7ca2e24dc402faa9"
       },
-      "version_note": "Numéro canonique 26 décidé par le propriétaire ; version finale documentée dans #609. Empreinte attendue, non mesurée dans cette reprise."
+      "version_note": "Numéro canonique 26 décidé par le propriétaire ; original récupéré, mesuré et comparé aux octets clonés depuis GitHub.",
+      "size_bytes": 2724055,
+      "source_archive_member": "to_review/same_layout_and_art_as_the_previous_kitsune_sheet.png",
+      "github_verified_commit": "2aa8657c7f2c9d277a0a39d8fb4adc315cc45df5",
+      "github_blob_sha": "df1cc51b12262155c7fa4f9ee17c367ca160ff3a",
+      "width": 1536,
+      "height": 1024
     }
-  ]
+  ],
+  "retrieval_status": "resolved_via_work_materialization",
+  "source_archive": {
+    "filename": "litd_sources_retrouvees_20261111.zip",
+    "size_bytes": 13328381,
+    "sha256": "56f5b6c1577805e27fdef25f7050e474a105a740de865db9d06f251c70fc5790",
+    "zip_crc_valid": true,
+    "verification_commit": "2aa8657c7f2c9d277a0a39d8fb4adc315cc45df5",
+    "images_measured": 7,
+    "images_matching_current_references": 3,
+    "other_versions": [
+      {
+        "member": "to_review/LITD1_Valkyrie_spectrale_23.jpg",
+        "size_bytes": 586815,
+        "sha256": "bb428520bf0df492e5291d3c793fcdace29b534260da1f08a444e11f8503e4de"
+      },
+      {
+        "member": "to_review/LITD1_Valkyrie_spectrale_23.png",
+        "size_bytes": 2987061,
+        "sha256": "8894728e0e2c65821b8663e85bdb8a52fc8ecbe2c742e5cd55b233576f7d98e0"
+      },
+      {
+        "member": "to_review/bestiaire_du_golem_runique.png",
+        "size_bytes": 2995236,
+        "sha256": "639bb78c08a710229f3038bd943e786c283c3d2c78e6ecf6d7c04759bdc8e3fd"
+      },
+      {
+        "member": "to_review/planche_concept_art_du_wendigo_glacé.png",
+        "size_bytes": 2690448,
+        "sha256": "8e8412b4f28471fb65e5d1548b697573cd7a7868484a109ffb786e97976cd9ea"
+      }
+    ],
+    "note": "Quatre versions distinctes conservées dans l’archive ; elles ne remplacent pas les références dont les empreintes diffèrent. Aucune corruption n’est déduite de cette différence."
+  }
 }

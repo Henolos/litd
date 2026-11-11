@@ -3,7 +3,7 @@
 Archive locale : litd_sources_retrouvees_20261111.zip
 SHA-256 de l'archive : 56f5b6c1577805e27fdef25f7050e474a105a740de865db9d06f251c70fc5790
 
-**IMPORTANT : ce manifeste ne prouve pas la présence des images dans GitHub.** Les sept binaires restent à importer dans assets/art/bestiary/to_review/ et leurs empreintes doivent être recalculées après récupération depuis GitHub. Aucune image existante ne doit être supprimée ou écrasée.
+**État courant :** archive récupérée et sept empreintes mesurées. Kitsune, Valkyrie harmonisée et Troll sont archivés dans `art/library/bestiary/` et leurs octets récupérés de GitHub concordent. Les quatre autres variantes restent distinctes des références courantes. Les détails et statuts actuels sont dans `reconciled_bestiary_manifest_20261111.json`. Aucune image existante n’est supprimée ou écrasée.
 
 ```text
 64e5abdb0b1e84f6c0c8646bd9f8b380b831bb46b9e310f4ef9b2f6bedb2015b  to_review/same_layout_and_art_as_the_previous_kitsune_sheet.png
@@ -15,4 +15,4 @@ bb428520bf0df492e5291d3c793fcdace29b534260da1f08a444e11f8503e4de  to_review/LITD
 8ce2c11e61f917bce5fb62af2fd2bf762383f60329c3f6ae854ff959c781ad9c  to_review/56E54133-57CA-41CB-B514-0D740FE55DD2.jpeg
 ```
 
-Statut : sept candidats à examiner ; Kitsune n°26 porte une mention de validation. Valkyrie n°23 comporte trois variantes non départagées. Golem, Wendigo et Troll demandent réconciliation documentaire.
+Statut : sept sources mesurées, trois références courantes archivées et vérifiées. La Valkyrie harmonisée est identifiée par son empreinte approuvée ; les deux autres variantes ne la remplacent pas. Le Golem PNG et le Wendigo glacé PNG diffèrent des JPEG courants attendus.
