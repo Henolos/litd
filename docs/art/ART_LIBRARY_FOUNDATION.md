@@ -1,16 +1,21 @@
 # LITD 1 — Fondation de la bibliothèque artistique
 
-Statut : proposition de gouvernance, sans import d'images et sans validation artistique supplémentaire.
+Statut : fondation documentaire en cours ; six planches héros validées par le propriétaire, import binaire et intégration technique en attente.
 
 ## Objectif
 Un registre canonique unique pour les planches, personnages secondaires, équipements, objets, décors et interfaces. Les PR #607, #608 et #609 restent des sources historiques tant que leurs données ne sont pas réconciliées. Ne pas supprimer ni fermer ces PR avant reprise vérifiée.
+
+## Validation artistique du propriétaire
+Toute planche artistique transmise par le propriétaire du projet est considérée comme validée et devient la référence officielle du personnage concerné. Une planche plus récente fournie par le propriétaire remplace la référence artistique antérieure. Les anciennes versions ne doivent plus être présentées comme officielles. Cette validation artistique est acquise indépendamment des contrôles d'intégrité, d'archivage et d'intégration technique, qui restent obligatoires.
+
+Les références officielles actuelles sont Mathilde, Marec, Anouk, Aurélien, Éffrie et Lya, selon le manifeste `validated_heroes_manifest_20261111.json`. Éffrie et Lya restent des entrées artistiques : aucune activation dans le quatuor jouable sans décision spécifique du propriétaire.
 
 ## Règles
 1. Une ressource reçoit un identifiant immuable indépendant de son numéro de planche imprimé, de son nom et de son chemin.
 2. Conserver distincts : espèce/sujet, planche, fichier original, version, variante, état de validation artistique, état d'archivage, état d'intégration Godot.
 3. Une validation de conception ne valide ni un rendu précis ni son archivage. Un texte ou une empreinte seule ne constitue pas un fichier binaire archivé.
 4. Conserver le nom original, le format, les dimensions, le SHA-256 complet, la provenance, les droits à vérifier, le chemin canonique et la preuve de validation.
-5. Ne jamais écraser un original ; importer d'abord en zone de revue, comparer les empreintes, puis promouvoir une version exacte après vérification.
+5. Préserver les octets originaux sans recompression ni retouche. Comparer les empreintes avant import, puis après récupération de GitHub. Une référence plus récente fournie par le propriétaire remplace le fichier courant par commit normal, sans réécrire l'historique Git.
 6. Ne pas déplacer les ressources Godot existantes sans audit des références, UID et tests.
 7. Les PR de lots artistiques sont séparées des PR gameplay. Le catalogue est unique, mais chaque PR doit rester cohérente et contrôlable.
 8. Vérifier en CI les schémas, l'unicité des identifiants, les chemins et les empreintes disponibles ; respecter pull_request et merge_group si requis.
@@ -61,9 +66,10 @@ Exemple de structure uniquement : l'identifiant illustratif n'est attribué à a
 3. Définir puis tester un schéma de catalogue et un importateur en simulation.
 4. Importer un petit lot sans écrasement et vérifier les empreintes après récupération.
 5. Ajouter les contrôles CI, y compris merge_group si nécessaire.
-6. Faire valider les correspondances visuelles, puis proposer la fusion selon les protections.
+6. Appliquer les validations artistiques du propriétaire déjà acquises, vérifier les correspondances des fichiers et l'intégration technique, puis proposer la fusion selon les protections.
 
 ## Suivi
 - Avancement du chantier actuel : À évaluer.
 - Avancement global LITD 1 : À évaluer.
-- Aucun binaire importé, aucune CI ajoutée, aucune validation artistique nouvelle.
+- Six planches héros validées artistiquement par le propriétaire ; aucun binaire importé, aucune CI ajoutée, aucune intégration technique validée.
+- Audit technique actualisé : `HERO_RUNTIME_DEPENDENCIES_20261111.md`.
