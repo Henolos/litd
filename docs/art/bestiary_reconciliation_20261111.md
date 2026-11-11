@@ -1,5 +1,7 @@
 # LITD 1 — Réconciliation du bestiaire (11 novembre 2026)
 
+> Les sections initiales ci-dessous sont un historique. La mise à jour courante en fin de document remplace leurs demandes de revalidation et leurs statuts techniques dépassés.
+
 ## Périmètre et preuves
 Contrôle documentaire des registres de PR #607 et #608. Aucun binaire artistique importé ou validé par ce document. Les 68 images existantes dans main et les deux branches ne constituent pas une archive des planches du bestiaire (constat de l'audit Work communiqué par l'utilisateur).
 
@@ -47,3 +49,29 @@ Archive locale examinée : `litd_sources_retrouvees_20261111.zip` ; **sept image
 **Décision de classement :** les sept fichiers restent `to_review/` tant que leur importation et leur correspondance finale ne sont pas vérifiées ; Kitsune n°26 est le premier candidat au déplacement vers `validated/` après import.
 
 **Blocage technique observé :** l'environnement local ne résout pas `github.com` et le connecteur GitHub disponible pour les modifications de fichiers accepte uniquement le texte UTF-8. Le transfert binaire n'a donc pas été effectué. Ne pas annoncer d'images archivées.
+
+
+## Reprise après fusion de #610 — état courant
+
+### Réalisé et vérifié
+
+- Main recontrôlé après la fusion `23fabf00` ; #606, #607, #608 et #609 toujours ouverts en brouillon au début de la reprise. Main est intégré à cette branche sans réécriture de l’historique.
+- Lecture croisée des trois registres, de l’inventaire des pièces et de l’audit binaire. Un manifeste JSON rapproche les 21 références documentées, leurs noms de fichiers, empreintes **attendues** et sources immuables : `reconciled_bestiary_manifest_20261111.json`.
+- La règle permanente du propriétaire prime : toute planche qu’il transmet est officielle, une version plus récente remplace l’ancienne. Aucune revalidation artistique n’est demandée. L’identité des octets et l’ordre des versions restent des vérifications techniques distinctes.
+- Le manifeste ne compte pas deux fois Wendigo et Loup décharné ; son entrée n°24 désigne le JPEG à tête de loup, pas le PNG glacé candidat. Kitsune conserve le n°26, Draugr le n°21. La Valkyrie harmonisée est identifiée par l’empreinte de #608. Le Golem n’est plus déclaré artistiquement en attente sur la seule foi d’une mention imprimée ancienne.
+- Les 40 créatures de conception (25 classiques + 10 hybrides + 5 boss) ne sont pas assimilées aux 21 planches documentées. La répartition aux quotas reste ouverte ; aucune espèce, morphologie ou statistique n’est modifiée.
+- #607 contient aussi des changements d’anatomie, sauvegarde et UI : elle ne sera pas fusionnée comme un simple registre documentaire. #606 reste un chantier gameplay distinct ; aucune de ces deux PR n’est fusionnée ni fermée ici.
+
+### Blocage binaire constaté
+
+L’archive `litd_sources_retrouvees_20261111.zip` est retrouvée (version 5, 13 328 381 octets). La récupération par le mécanisme prescrit échoue : `Library prepare_materialize is not available`. Une première tentative rencontrait un profil utilisateur Windows absent ; une fois ce point corrigé, l’indisponibilité de l’opération de transfert persiste. Le rétablissement de cette opération dans Work permettra de reprendre le téléchargement. Aucune nouvelle autorisation artistique n’est nécessaire.
+
+**Aucune image ennemie importée, aucun SHA-256 d’image ennemie mesuré, aucune ressource ennemie supprimée ou migrée dans cette reprise.** Les empreintes du manifeste proviennent des registres cités ; elles ne constituent pas une nouvelle mesure des fichiers. La présence et l’identité des variantes candidates ne sont pas présentées comme vérifiées.
+
+Les dix cartes de classes et les 39 images ennemis conservées par #610 restent intactes. Les six originaux héros de main ne sont pas modifiés.
+
+### Suite prioritaire
+
+Rétablir le transfert des octets, mesurer les SHA-256, identifier les variantes par leurs empreintes, puis importer les fichiers correspondants sans retouche et vérifier leur récupération GitHub. Les données de gameplay ne recevront aucune correspondance d’espèce supposée. Les tests de cohérence du manifeste sont distincts des tests d’intégrité binaire ; la PR reste en brouillon tant que les originaux ne sont pas archivés et vérifiés.
+
+Chantier : Bibliothèque artistique LITD 1. Statut : 🟠 BLOQUÉ sur le transfert des originaux du bestiaire ; réconciliation documentaire avancée. Avancement du chantier actuel : À évaluer. Avancement du projet global LITD 1 : À évaluer.

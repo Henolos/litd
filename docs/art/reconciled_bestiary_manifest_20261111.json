@@ -1,0 +1,427 @@
+{
+  "schema_version": 1,
+  "owner_approval_rule": "Toute planche transmise par le propriétaire est officielle ; une version plus récente remplace l’ancienne. Ne pas redemander la validation artistique.",
+  "scope": {
+    "documented_official_plates": 21,
+    "binary_imported_in_this_lot": 0,
+    "runtime_migration": false,
+    "existing_enemy_images_preserved": 39
+  },
+  "production_plan": {
+    "classical_monsters": 25,
+    "hybrids": 10,
+    "bosses": 5,
+    "total_creatures": 40,
+    "note": "Organisation de conception documentée dans #607 ; la correspondance des planches aux quotas reste ouverte. Les numéros de fiches ne sont pas les positions du catalogue d’espèces."
+  },
+  "retrieval_blocker": "L’archive litd_sources_retrouvees_20261111.zip a été retrouvée, mais le helper de téléchargement ne trouve pas Library prepare_materialize. Aucun octet récupéré, aucun SHA mesuré dans cette reprise.",
+  "assets": [
+    {
+      "asset_id": "LITD-BEST-PLATE-0001",
+      "subject_id": "minotaur",
+      "display_name": "Minotaure V2",
+      "canonical_plate_number": 4,
+      "art_status": "validated_by_owner",
+      "source_filename": "58BB6F02-5144-4489-B072-2D77DAF13CCA.jpeg",
+      "expected_sha256": "4b91c4dd1eed8c04e084f5df89976228bb02a3240686069136e771ec601d0283",
+      "binary_status": "pending_retrieval",
+      "measured_sha256": null,
+      "archived_path": null,
+      "planned_target_path": "art/library/bestiary/minotaur/reference.jpeg",
+      "runtime_enemy_id": null,
+      "source_evidence": {
+        "pr": "#608",
+        "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
+        "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
+      }
+    },
+    {
+      "asset_id": "LITD-BEST-PLATE-0002",
+      "subject_id": "gorgon",
+      "display_name": "Gorgone",
+      "canonical_plate_number": 5,
+      "art_status": "validated_by_owner",
+      "source_filename": "77AE289B-32A8-4073-998D-34393EAABD26(1).jpeg",
+      "expected_sha256": "825f35da6bc80f06caa683803d557a653028d139ef102205dcd836556fc0ea82",
+      "binary_status": "pending_retrieval",
+      "measured_sha256": null,
+      "archived_path": null,
+      "planned_target_path": "art/library/bestiary/gorgon/reference.jpeg",
+      "runtime_enemy_id": null,
+      "source_evidence": {
+        "pr": "#608",
+        "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
+        "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
+      }
+    },
+    {
+      "asset_id": "LITD-BEST-PLATE-0003",
+      "subject_id": "cerberus",
+      "display_name": "Cerbère",
+      "canonical_plate_number": 6,
+      "art_status": "validated_by_owner",
+      "source_filename": "51A31212-CCFB-4566-9709-373A0E4DC416(1).jpeg",
+      "expected_sha256": "f10371084abdc7125824c322a559e8ba560bd468b46ed42edbc5a72851eaf8f6",
+      "binary_status": "pending_retrieval",
+      "measured_sha256": null,
+      "archived_path": null,
+      "planned_target_path": "art/library/bestiary/cerberus/reference.jpeg",
+      "runtime_enemy_id": null,
+      "source_evidence": {
+        "pr": "#608",
+        "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
+        "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
+      }
+    },
+    {
+      "asset_id": "LITD-BEST-PLATE-0004",
+      "subject_id": "harpy",
+      "display_name": "Harpie",
+      "canonical_plate_number": 7,
+      "art_status": "validated_by_owner",
+      "source_filename": "CD69A2E9-6213-46C3-B129-0EC87A51E895(1).jpeg",
+      "expected_sha256": "6f22b47843636b63457408c3b92a5b5b6feb7e609f1bd176cac1a3461913df04",
+      "binary_status": "pending_retrieval",
+      "measured_sha256": null,
+      "archived_path": null,
+      "planned_target_path": "art/library/bestiary/harpy/reference.jpeg",
+      "runtime_enemy_id": null,
+      "source_evidence": {
+        "pr": "#608",
+        "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
+        "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
+      }
+    },
+    {
+      "asset_id": "LITD-BEST-PLATE-0005",
+      "subject_id": "cyclops",
+      "display_name": "Cyclope V3",
+      "canonical_plate_number": 9,
+      "art_status": "validated_by_owner",
+      "source_filename": "7482D63F-DF3A-4D46-8265-D8AC2B6A3A17(2).jpeg",
+      "expected_sha256": "831a4008db014a815c65f19c06fcf227f56340d362d30209bad7d1a0f27610fe",
+      "binary_status": "pending_retrieval",
+      "measured_sha256": null,
+      "archived_path": null,
+      "planned_target_path": "art/library/bestiary/cyclops/reference.jpeg",
+      "runtime_enemy_id": null,
+      "source_evidence": {
+        "pr": "#608",
+        "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
+        "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
+      }
+    },
+    {
+      "asset_id": "LITD-BEST-PLATE-0006",
+      "subject_id": "chimera",
+      "display_name": "Chimère",
+      "canonical_plate_number": 10,
+      "art_status": "validated_by_owner",
+      "source_filename": "9253391F-A4A8-424B-B67E-DD6E9D950E49(3).jpeg",
+      "expected_sha256": "f86f6c59525ae93e42afd9d75d84cb7da6eba6451da356252e5827b49e47cd06",
+      "binary_status": "pending_retrieval",
+      "measured_sha256": null,
+      "archived_path": null,
+      "planned_target_path": "art/library/bestiary/chimera/reference.jpeg",
+      "runtime_enemy_id": null,
+      "source_evidence": {
+        "pr": "#608",
+        "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
+        "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
+      }
+    },
+    {
+      "asset_id": "LITD-BEST-PLATE-0007",
+      "subject_id": "basilisk",
+      "display_name": "Basilic",
+      "canonical_plate_number": 11,
+      "art_status": "validated_by_owner",
+      "source_filename": "3A6736BC-BF31-4715-955C-3EE09BFE5C6E.jpeg",
+      "expected_sha256": "b9ce75d1a597385868195cc99455dac6f63dbbcc84c55809996e8cc5972c221e",
+      "binary_status": "pending_retrieval",
+      "measured_sha256": null,
+      "archived_path": null,
+      "planned_target_path": "art/library/bestiary/basilisk/reference.jpeg",
+      "runtime_enemy_id": null,
+      "source_evidence": {
+        "pr": "#608",
+        "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
+        "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
+      }
+    },
+    {
+      "asset_id": "LITD-BEST-PLATE-0008",
+      "subject_id": "hydra",
+      "display_name": "Hydre",
+      "canonical_plate_number": 13,
+      "art_status": "validated_by_owner",
+      "source_filename": "397C93DD-C338-44EF-A556-1F5E586AC3DC(1).jpeg",
+      "expected_sha256": "23d7e90aca6058a4394135d2eda92ac5d53e0cb3522244e3a583d2185dcc12f6",
+      "binary_status": "pending_retrieval",
+      "measured_sha256": null,
+      "archived_path": null,
+      "planned_target_path": "art/library/bestiary/hydra/reference.jpeg",
+      "runtime_enemy_id": null,
+      "source_evidence": {
+        "pr": "#608",
+        "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
+        "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
+      }
+    },
+    {
+      "asset_id": "LITD-BEST-PLATE-0009",
+      "subject_id": "sphinx",
+      "display_name": "Sphinx",
+      "canonical_plate_number": 14,
+      "art_status": "validated_by_owner",
+      "source_filename": "9D5B728A-53F3-45DE-B47D-2C390F4CEBB4.jpeg",
+      "expected_sha256": "9698a55919281af52d42d3fa1e0b718a64e9b66501ef1d9150d1900fabb7098a",
+      "binary_status": "pending_retrieval",
+      "measured_sha256": null,
+      "archived_path": null,
+      "planned_target_path": "art/library/bestiary/sphinx/reference.jpeg",
+      "runtime_enemy_id": null,
+      "source_evidence": {
+        "pr": "#608",
+        "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
+        "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
+      }
+    },
+    {
+      "asset_id": "LITD-BEST-PLATE-0010",
+      "subject_id": "oni",
+      "display_name": "Oni V5",
+      "canonical_plate_number": 15,
+      "art_status": "validated_by_owner",
+      "source_filename": "EA1BE1AD-A9CE-4FED-8DB7-0693697D14E4.jpeg",
+      "expected_sha256": "9920292ec992c278320feb629ddae83b96193f1d78f5e3d1c4223727599b26be",
+      "binary_status": "pending_retrieval",
+      "measured_sha256": null,
+      "archived_path": null,
+      "planned_target_path": "art/library/bestiary/oni/reference.jpeg",
+      "runtime_enemy_id": null,
+      "source_evidence": {
+        "pr": "#608",
+        "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
+        "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
+      }
+    },
+    {
+      "asset_id": "LITD-BEST-PLATE-0011",
+      "subject_id": "karasu_tengu",
+      "display_name": "Karasu-tengu",
+      "canonical_plate_number": 16,
+      "art_status": "validated_by_owner",
+      "source_filename": "EFB9F79B-CCA7-4409-AF9F-2B857E700247.jpeg",
+      "expected_sha256": "5fd6c2f5e0cece136bf107f258ce21c67b1fd2d1e0cfa89af421f16749d2903b",
+      "binary_status": "pending_retrieval",
+      "measured_sha256": null,
+      "archived_path": null,
+      "planned_target_path": "art/library/bestiary/karasu_tengu/reference.jpeg",
+      "runtime_enemy_id": null,
+      "source_evidence": {
+        "pr": "#608",
+        "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
+        "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
+      }
+    },
+    {
+      "asset_id": "LITD-BEST-PLATE-0012",
+      "subject_id": "jorogumo",
+      "display_name": "Jorōgumo",
+      "canonical_plate_number": 17,
+      "art_status": "validated_by_owner",
+      "source_filename": "LITD1_Jorogumo_17_harmonisee.jpg",
+      "expected_sha256": "d222d618fe9ac3de1089ffef28978bb170bde654dfb58e00eb6bd3d33c25c1cc",
+      "binary_status": "pending_retrieval",
+      "measured_sha256": null,
+      "archived_path": null,
+      "planned_target_path": "art/library/bestiary/jorogumo/reference.jpg",
+      "runtime_enemy_id": null,
+      "source_evidence": {
+        "pr": "#608",
+        "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
+        "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
+      }
+    },
+    {
+      "asset_id": "LITD-BEST-PLATE-0013",
+      "subject_id": "kappa",
+      "display_name": "Kappa",
+      "canonical_plate_number": 18,
+      "art_status": "validated_by_owner",
+      "source_filename": "A430C1F3-3ED5-42D7-BFF6-DDD1658E7767.jpeg",
+      "expected_sha256": "80e742dbdafa813f63b0003e1226c02042eaeeddb7af8216349b83041ef82148",
+      "binary_status": "pending_retrieval",
+      "measured_sha256": null,
+      "archived_path": null,
+      "planned_target_path": "art/library/bestiary/kappa/reference.jpeg",
+      "runtime_enemy_id": null,
+      "source_evidence": {
+        "pr": "#608",
+        "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
+        "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
+      }
+    },
+    {
+      "asset_id": "LITD-BEST-PLATE-0014",
+      "subject_id": "yuki_onna",
+      "display_name": "Yuki-onna",
+      "canonical_plate_number": 19,
+      "art_status": "validated_by_owner",
+      "source_filename": "12AD1B20-3F88-434F-A4C4-4578F26BCA62.jpeg",
+      "expected_sha256": "9f20397e1b57e76ef4a73a739babb1f1546cac6b6e8b15ed1f8d52c0b0c295fa",
+      "binary_status": "pending_retrieval",
+      "measured_sha256": null,
+      "archived_path": null,
+      "planned_target_path": "art/library/bestiary/yuki_onna/reference.jpeg",
+      "runtime_enemy_id": null,
+      "source_evidence": {
+        "pr": "#608",
+        "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
+        "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
+      }
+    },
+    {
+      "asset_id": "LITD-BEST-PLATE-0015",
+      "subject_id": "nue",
+      "display_name": "Nue",
+      "canonical_plate_number": 20,
+      "art_status": "validated_by_owner",
+      "source_filename": "919F9801-B827-4677-84BB-25D948CDFC1B.jpeg",
+      "expected_sha256": "580956a656f2e41538fe7db7f565cd1e76a1a8b07f21388c332479d519c60818",
+      "binary_status": "pending_retrieval",
+      "measured_sha256": null,
+      "archived_path": null,
+      "planned_target_path": "art/library/bestiary/nue/reference.jpeg",
+      "runtime_enemy_id": null,
+      "source_evidence": {
+        "pr": "#608",
+        "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
+        "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
+      }
+    },
+    {
+      "asset_id": "LITD-BEST-PLATE-0016",
+      "subject_id": "draugr",
+      "display_name": "Draugr",
+      "canonical_plate_number": 21,
+      "art_status": "validated_by_owner",
+      "source_filename": "24C6B942-AD7A-4BC2-8D99-A4C294B2270C.jpeg",
+      "expected_sha256": "fb0acb6a915ec134ee32d583993bf3a97181bf9a4f68baa1aee798a191f0a949",
+      "binary_status": "pending_retrieval",
+      "measured_sha256": null,
+      "archived_path": null,
+      "planned_target_path": "art/library/bestiary/draugr/reference.jpeg",
+      "runtime_enemy_id": null,
+      "source_evidence": {
+        "pr": "#608",
+        "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
+        "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
+      }
+    },
+    {
+      "asset_id": "LITD-BEST-PLATE-0017",
+      "subject_id": "nordic_troll",
+      "display_name": "Troll nordique",
+      "canonical_plate_number": 22,
+      "art_status": "validated_by_owner",
+      "source_filename": "56E54133-57CA-41CB-B514-0D740FE55DD2.jpeg",
+      "expected_sha256": "8ce2c11e61f917bce5fb62af2fd2bf762383f60329c3f6ae854ff959c781ad9c",
+      "binary_status": "pending_retrieval",
+      "measured_sha256": null,
+      "archived_path": null,
+      "planned_target_path": "art/library/bestiary/nordic_troll/reference.jpeg",
+      "runtime_enemy_id": null,
+      "source_evidence": {
+        "pr": "#608",
+        "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
+        "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
+      }
+    },
+    {
+      "asset_id": "LITD-BEST-PLATE-0018",
+      "subject_id": "spectral_valkyrie",
+      "display_name": "Valkyrie spectrale",
+      "canonical_plate_number": 23,
+      "art_status": "validated_by_owner",
+      "source_filename": "LITD1_Valkyrie_23_harmonisee.jpg",
+      "expected_sha256": "30a1f79497759885753ae0de383d0fb1c5086bf1646653131531defaa81aaa37",
+      "binary_status": "pending_retrieval",
+      "measured_sha256": null,
+      "archived_path": null,
+      "planned_target_path": "art/library/bestiary/spectral_valkyrie/reference.jpg",
+      "runtime_enemy_id": null,
+      "source_evidence": {
+        "pr": "#608",
+        "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
+        "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
+      },
+      "version_note": "Version harmonisée explicitement approuvée dans #608 ; les deux autres variantes de l’archive ne la remplacent pas par défaut."
+    },
+    {
+      "asset_id": "LITD-BEST-PLATE-0019",
+      "subject_id": "emaciated_wolf",
+      "display_name": "Loup décharné",
+      "canonical_plate_number": 24,
+      "art_status": "validated_by_owner",
+      "source_filename": "74191949-B149-4A50-87F7-F15716B71813.jpeg",
+      "expected_sha256": "e24caea7562a701cf61099416f62c62c8f4edb5d1f17df552bffd03e01e1110c",
+      "binary_status": "pending_retrieval",
+      "measured_sha256": null,
+      "archived_path": null,
+      "planned_target_path": "art/library/bestiary/emaciated_wolf/reference.jpeg",
+      "runtime_enemy_id": null,
+      "source_evidence": {
+        "pr": "#608",
+        "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
+        "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
+      },
+      "aliases": [
+        "Wendigo",
+        "Loup décharné"
+      ],
+      "version_note": "Original JPEG à tête de loup documenté dans #608 ; ne pas substituer le PNG Wendigo glacé de l’archive candidate."
+    },
+    {
+      "asset_id": "LITD-BEST-PLATE-0020",
+      "subject_id": "runic_stone_golem",
+      "display_name": "Golem de pierre runique",
+      "canonical_plate_number": 25,
+      "art_status": "validated_by_owner",
+      "source_filename": "6D5E1043-25C6-4533-A8D6-E02042AD2EB6.jpeg",
+      "expected_sha256": "1cec2ce9c55ef7abf20fef8ed83ecaf186957c143fd8fd111a8e3930f331d675",
+      "binary_status": "pending_retrieval",
+      "measured_sha256": null,
+      "archived_path": null,
+      "planned_target_path": "art/library/bestiary/runic_stone_golem/reference.jpeg",
+      "runtime_enemy_id": null,
+      "source_evidence": {
+        "pr": "#608",
+        "path": "docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md",
+        "commit": "f6e1193abaa25e3cfd42a72c82149582486eaff2"
+      },
+      "version_note": "La décision ultérieure du propriétaire et sa règle permanente prévalent sur la mention imprimée « en attente »."
+    },
+    {
+      "asset_id": "LITD-BEST-PLATE-0021",
+      "subject_id": "kitsune",
+      "display_name": "Kitsune",
+      "canonical_plate_number": 26,
+      "art_status": "validated_by_owner",
+      "source_filename": "same_layout_and_art_as_the_previous_kitsune_sheet.png",
+      "expected_sha256": "64e5abdb0b1e84f6c0c8646bd9f8b380b831bb46b9e310f4ef9b2f6bedb2015b",
+      "binary_status": "pending_retrieval",
+      "measured_sha256": null,
+      "archived_path": null,
+      "planned_target_path": "art/library/bestiary/kitsune/reference.png",
+      "runtime_enemy_id": null,
+      "source_evidence": {
+        "pr": "#609",
+        "path": "docs/art/bestiary_reconciliation_20261111.md",
+        "commit": "ab5ac3bb2f3525052ccc5fcc7ca2e24dc402faa9"
+      },
+      "version_note": "Numéro canonique 26 décidé par le propriétaire ; version finale documentée dans #609. Empreinte attendue, non mesurée dans cette reprise."
+    }
+  ]
+}
