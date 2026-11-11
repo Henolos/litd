@@ -182,15 +182,13 @@ func _register(definition: Dictionary, team: String) -> void:
     }
 
 func _hit_chance(attacker: Dictionary, target: Dictionary, skill: Dictionary, zone: String) -> int:
-    var attacker_stats: Dictionary = attacker.get("stats", {})
-    var target_stats: Dictionary = target.get("stats", {})
+    # Shared tactical resolver is the single source of truth for PRE/MOB, zone and clamps.
     var zone_mods: Dictionary = content_db.combat_constants.get("zone_accuracy_mod", {})
-    var chance := 75.0
-    chance += (float(attacker_stats.get("PRE", 50)) - float(target_stats.get("MOB", 50))) * 0.45
-    chance += float(skill.get("precision_mod", 0))
-    chance += float(zone_mods.get(zone, 0))
     var clamps: Dictionary = content_db.combat_constants.get("hit_clamp", {})
-    return clampi(int(round(chance)), int(clamps.get("min_percent", 10)), int(clamps.get("max_percent", 97)))
+    var hit: Dictionary = preload("res://scripts/core/combat/veilleurs_hit_resolver.gd").resolve_tactical(
+        attacker, skill, target, zone, zone_mods, clamps, 0, 0, false, 1
+    )
+    return int(hit["accuracy"])
 
 func _damage(attacker: Dictionary, target: Dictionary, skill: Dictionary) -> int:
     var attacker_stats: Dictionary = attacker.get("stats", {})
