@@ -12,6 +12,7 @@ on:
       - 'scenes/**'
       - 'scripts/**'
       - 'assets/**'
+      - 'art/**'
       - 'data/**'
       - 'tools/ci/canon_freshness_gate.py'
       - 'tools/ci/select_export_targets.py'
@@ -23,6 +24,7 @@ on:
       - 'scenes/**'
       - 'scripts/**'
       - 'assets/**'
+      - 'art/**'
       - 'data/**'
       - 'tools/ci/canon_freshness_gate.py'
       - 'tools/ci/select_export_targets.py'
@@ -96,6 +98,19 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       - run: mkdir -p "${{ matrix.path }}"
       - run: godot --headless --path . --export-release "${{ matrix.preset }}"
+      - name: Verify official textures in exported Web pack
+        if: ${{ matrix.preset == 'Web' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          godot --headless --path . --main-pack build/web/index.pck \
+            --script res://scripts/tests/hero_art_export_check.gd 2>&1 | tee /tmp/hero-art-export.log
+          grep -q 'EXPORTED_HERO_ART_OK' /tmp/hero-art-export.log
+          if grep -E 'SCRIPT ERROR:|ERROR: Failed to load|Parse Error' /tmp/hero-art-export.log; then
+            exit 1
+          fi
+          test -s build/web/index.service.worker.js
+          grep -q 'index.pck' build/web/index.service.worker.js
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: ${{ matrix.artifact }}

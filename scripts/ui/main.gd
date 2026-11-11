@@ -339,6 +339,11 @@ func show_sanctuary() -> void:
     content.add_child(save)
 
 func hero_art(hero: Dictionary) -> String:
+    # Resolve identity before class: a generic recruit must never borrow a
+    # named Veilleur's official plate merely because they share a class.
+    var hero_id := str(hero.get("canonical_id", hero.get("id", ""))).to_lower()
+    if hero_id in ["mathilde", "marec", "anouk", "aurelien"]:
+        return "res://art/library/heroes/%s/reference.jpg" % hero_id
     var c := DataLoader.find_by_id(DataLoader.classes, hero.get("class_id"))
     return "res://assets/heroes/%s" % c.get("art","inquisitor.webp")
 
