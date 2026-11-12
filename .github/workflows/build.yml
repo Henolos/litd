@@ -16,6 +16,7 @@ on:
       - 'data/**'
       - 'tools/ci/canon_freshness_gate.py'
       - 'tools/ci/select_export_targets.py'
+      - 'tools/ci/test_pwa_cache_update.cjs'
   pull_request:
     paths:
       - '.github/workflows/build.yml'
@@ -28,6 +29,7 @@ on:
       - 'data/**'
       - 'tools/ci/canon_freshness_gate.py'
       - 'tools/ci/select_export_targets.py'
+      - 'tools/ci/test_pwa_cache_update.cjs'
 
 concurrency:
   group: builds-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
@@ -116,3 +118,73 @@ jobs:
           name: ${{ matrix.artifact }}
           path: ${{ matrix.path }}
           if-no-files-found: error
+
+
+  pwa-baseline:
+    name: Export PWA baseline
+    needs: [canon-freshness, select-exports]
+    if: ${{ github.event_name == 'pull_request' && needs.select-exports.outputs.build_any == 'true' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    container:
+      image: barichello/godot-ci:4.7.2@sha256:cdcca31e9194fd59a68a63f4b1b9c3981716819c520cd6f7966c5d72ca7246bd
+    env:
+      XDG_DATA_HOME: /root/.local/share
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          persist-credentials: false
+      - name: Export the previous version without altering its worker
+        run: |
+          mkdir -p build/pwa-baseline
+          godot --headless --path . --export-release Web build/pwa-baseline/index.html
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: pwa-baseline-web
+          path: build/pwa-baseline
+          if-no-files-found: error
+          retention-days: 7
+
+  pwa-cache-update:
+    name: PWA cache update (Chromium)
+    needs: [export, pwa-baseline]
+    if: ${{ github.event_name == 'pull_request' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          name: pwa-baseline-web
+          path: ${{ runner.temp }}/pwa-baseline
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          name: light-in-the-dark-web
+          path: ${{ runner.temp }}/pwa-candidate
+      - name: Install the pinned browser test tools
+        run: |
+          npm install --prefix "$RUNNER_TEMP/pwa-tools" --no-save --ignore-scripts playwright@1.65.0
+          "$RUNNER_TEMP/pwa-tools/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Check old cache then normal activation of the new export
+        env:
+          PWA_BASELINE_REF: ${{ github.event.pull_request.base.sha }}
+          PWA_CANDIDATE_REF: ${{ github.event.pull_request.head.sha }}
+        run: |
+          export PWA_PLAYWRIGHT_MODULE="$RUNNER_TEMP/pwa-tools/node_modules/playwright"
+          node tools/ci/test_pwa_cache_update.cjs \
+            "$RUNNER_TEMP/pwa-baseline" "$RUNNER_TEMP/pwa-candidate" \
+            reports/pwa-cache-update
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        if: ${{ always() }}
+        with:
+          name: pwa-cache-update-evidence
+          path: reports/pwa-cache-update
+          if-no-files-found: warn
+          retention-days: 7
