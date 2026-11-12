@@ -17,6 +17,8 @@ var summon_requests: Array[Dictionary] = []
 
 func _init() -> void:
     super()
+    # Release the base catalog before replacing this owned Node.
+    content_db.free()
     content_db = CONTENT_DB_V07_SCRIPT.new() as VeilleursContentDBV07Runtime
     content_db.reload()
     skill_behavior = BEHAVIOR_V07_SCRIPT.new() as VeilleursSkillBehaviorRuntimeV07

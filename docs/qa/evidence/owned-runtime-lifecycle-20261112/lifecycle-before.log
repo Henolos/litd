@@ -1,0 +1,577 @@
+WorkerThreadPool: 9 threads, 2 max low-priority.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+SDL: Init OK!
+Using "default" pen tablet driver...
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+CORE API HASH: 2004498165
+EDITOR API HASH: 1696660745
+SceneTreeFTI: traversal method DEFAULT
+Loading resource: res://scripts/core/game_settings.gd remapped: res://scripts/core/game_settings.gd
+Completed load for: 'res://scripts/core/game_settings.gd' remapped 'res://scripts/core/game_settings.gd' at thread -1
+Loading resource: res://scripts/core/data_loader.gd remapped: res://scripts/core/data_loader.gd
+Completed load for: 'res://scripts/core/data_loader.gd' remapped 'res://scripts/core/data_loader.gd' at thread -1
+Loading resource: res://scripts/core/ngplus_boss_recruitment.gd remapped: res://scripts/core/ngplus_boss_recruitment.gd
+Completed load for: 'res://scripts/core/ngplus_boss_recruitment.gd' remapped 'res://scripts/core/ngplus_boss_recruitment.gd' at thread -1
+Loading resource: res://scripts/core/dismemberment_runtime.gd remapped: res://scripts/core/dismemberment_runtime.gd
+Completed load for: 'res://scripts/core/dismemberment_runtime.gd' remapped 'res://scripts/core/dismemberment_runtime.gd' at thread -1
+Loading resource: res://scripts/core/psychology_combat_director.gd remapped: res://scripts/core/psychology_combat_director.gd
+Completed load for: 'res://scripts/core/psychology_combat_director.gd' remapped 'res://scripts/core/psychology_combat_director.gd' at thread -1
+Loading resource: res://scripts/core/enemy_combat_director.gd remapped: res://scripts/core/enemy_combat_director.gd
+Completed load for: 'res://scripts/core/enemy_combat_director.gd' remapped 'res://scripts/core/enemy_combat_director.gd' at thread -1
+Loading resource: res://scripts/core/combat_preview_director.gd remapped: res://scripts/core/combat_preview_director.gd
+Completed load for: 'res://scripts/core/combat_preview_director.gd' remapped 'res://scripts/core/combat_preview_director.gd' at thread -1
+Loading resource: res://scripts/core/action_timeline_director.gd remapped: res://scripts/core/action_timeline_director.gd
+Completed load for: 'res://scripts/core/action_timeline_director.gd' remapped 'res://scripts/core/action_timeline_director.gd' at thread -1
+Loading resource: res://scripts/core/effect_tooltip_formatter.gd remapped: res://scripts/core/effect_tooltip_formatter.gd
+Completed load for: 'res://scripts/core/effect_tooltip_formatter.gd' remapped 'res://scripts/core/effect_tooltip_formatter.gd' at thread -1
+Loading resource: res://scripts/core/veilleurs_corpse_interaction_runtime.gd remapped: res://scripts/core/veilleurs_corpse_interaction_runtime.gd
+Completed load for: 'res://scripts/core/veilleurs_corpse_interaction_runtime.gd' remapped 'res://scripts/core/veilleurs_corpse_interaction_runtime.gd' at thread -1
+Loading resource: res://scripts/core/movement_registry.gd remapped: res://scripts/core/movement_registry.gd
+Completed load for: 'res://scripts/core/movement_registry.gd' remapped 'res://scripts/core/movement_registry.gd' at thread -1
+Loading resource: res://scripts/core/decision_memory_political_bridge.gd remapped: res://scripts/core/decision_memory_political_bridge.gd
+Completed load for: 'res://scripts/core/decision_memory_political_bridge.gd' remapped 'res://scripts/core/decision_memory_political_bridge.gd' at thread -1
+Loading resource: res://scripts/core/narrative_library.gd remapped: res://scripts/core/narrative_library.gd
+Completed load for: 'res://scripts/core/narrative_library.gd' remapped 'res://scripts/core/narrative_library.gd' at thread -1
+Loading resource: res://scripts/core/base_game_narrative_director.gd remapped: res://scripts/core/base_game_narrative_director.gd
+Completed load for: 'res://scripts/core/base_game_narrative_director.gd' remapped 'res://scripts/core/base_game_narrative_director.gd' at thread -1
+Loading resource: res://scripts/core/music_library.gd remapped: res://scripts/core/music_library.gd
+Completed load for: 'res://scripts/core/music_library.gd' remapped 'res://scripts/core/music_library.gd' at thread -1
+Loading resource: res://scripts/core/sfx_library.gd remapped: res://scripts/core/sfx_library.gd
+Completed load for: 'res://scripts/core/sfx_library.gd' remapped 'res://scripts/core/sfx_library.gd' at thread -1
+Loading resource: res://scripts/core/prototype_audio_bank.gd remapped: res://scripts/core/prototype_audio_bank.gd
+Completed load for: 'res://scripts/core/prototype_audio_bank.gd' remapped 'res://scripts/core/prototype_audio_bank.gd' at thread -1
+Loading resource: res://scripts/core/sfx_runtime.gd remapped: res://scripts/core/sfx_runtime.gd
+Completed load for: 'res://scripts/core/sfx_runtime.gd' remapped 'res://scripts/core/sfx_runtime.gd' at thread -1
+Loading resource: res://scripts/core/systemic_cross_afterlife_runtime.gd remapped: res://scripts/core/systemic_cross_afterlife_runtime.gd
+Completed load for: 'res://scripts/core/systemic_cross_afterlife_runtime.gd' remapped 'res://scripts/core/systemic_cross_afterlife_runtime.gd' at thread -1
+Loading resource: res://scripts/core/legendary_seven_relationship_runtime.gd remapped: res://scripts/core/legendary_seven_relationship_runtime.gd
+Completed load for: 'res://scripts/core/legendary_seven_relationship_runtime.gd' remapped 'res://scripts/core/legendary_seven_relationship_runtime.gd' at thread -1
+Loading resource: res://scripts/core/sanctuary_state.gd remapped: res://scripts/core/sanctuary_state.gd
+Completed load for: 'res://scripts/core/sanctuary_state.gd' remapped 'res://scripts/core/sanctuary_state.gd' at thread -1
+Loading resource: res://scripts/ui/context_hud.gd remapped: res://scripts/ui/context_hud.gd
+Completed load for: 'res://scripts/ui/context_hud.gd' remapped 'res://scripts/ui/context_hud.gd' at thread -1
+Loading resource: res://scripts/ui/political_ui.gd remapped: res://scripts/ui/political_ui.gd
+Completed load for: 'res://scripts/ui/political_ui.gd' remapped 'res://scripts/ui/political_ui.gd' at thread -1
+Loading resource: res://scripts/ui/quest_journal_ui.gd remapped: res://scripts/ui/quest_journal_ui.gd
+Completed load for: 'res://scripts/ui/quest_journal_ui.gd' remapped 'res://scripts/ui/quest_journal_ui.gd' at thread -1
+Loading resource: res://scripts/ui/base_game_side_story_ui.gd remapped: res://scripts/ui/base_game_side_story_ui.gd
+Completed load for: 'res://scripts/ui/base_game_side_story_ui.gd' remapped 'res://scripts/ui/base_game_side_story_ui.gd' at thread -1
+Loading resource: res://scripts/ui/game_menu_ui.gd remapped: res://scripts/ui/game_menu_ui.gd
+Completed load for: 'res://scripts/ui/game_menu_ui.gd' remapped 'res://scripts/ui/game_menu_ui.gd' at thread -1
+Loading resource: res://scripts/ui/remanence_archives_ui.gd remapped: res://scripts/ui/remanence_archives_ui.gd
+Completed load for: 'res://scripts/ui/remanence_archives_ui.gd' remapped 'res://scripts/ui/remanence_archives_ui.gd' at thread -1
+Loading resource: res://scripts/ui/combatant_inspection_ui.gd remapped: res://scripts/ui/combatant_inspection_ui.gd
+Completed load for: 'res://scripts/ui/combatant_inspection_ui.gd' remapped 'res://scripts/ui/combatant_inspection_ui.gd' at thread -1
+Loading resource: res://scripts/ui/chapter_08_journal_ui.gd remapped: res://scripts/ui/chapter_08_journal_ui.gd
+Completed load for: 'res://scripts/ui/chapter_08_journal_ui.gd' remapped 'res://scripts/ui/chapter_08_journal_ui.gd' at thread -1
+Loading resource: res://scripts/ui/chapter_09_journal_ui.gd remapped: res://scripts/ui/chapter_09_journal_ui.gd
+Completed load for: 'res://scripts/ui/chapter_09_journal_ui.gd' remapped 'res://scripts/ui/chapter_09_journal_ui.gd' at thread -1
+Loading resource: res://scripts/ui/chapter_10_journal_ui.gd remapped: res://scripts/ui/chapter_10_journal_ui.gd
+Completed load for: 'res://scripts/ui/chapter_10_journal_ui.gd' remapped 'res://scripts/ui/chapter_10_journal_ui.gd' at thread -1
+Loading resource: res://scripts/ui/deep_vestige_ui.gd remapped: res://scripts/ui/deep_vestige_ui.gd
+Completed load for: 'res://scripts/ui/deep_vestige_ui.gd' remapped 'res://scripts/ui/deep_vestige_ui.gd' at thread -1
+Loading resource: res://scripts/ui/context_menu_ui_v3.gd remapped: res://scripts/ui/context_menu_ui_v3.gd
+Completed load for: 'res://scripts/ui/context_menu_ui_v3.gd' remapped 'res://scripts/ui/context_menu_ui_v3.gd' at thread -1
+Loading resource: res://scripts/ui/endgame_ui.gd remapped: res://scripts/ui/endgame_ui.gd
+Completed load for: 'res://scripts/ui/endgame_ui.gd' remapped 'res://scripts/ui/endgame_ui.gd' at thread -1
+Loading resource: res://scripts/world/chapter_01_encounter_injector.gd remapped: res://scripts/world/chapter_01_encounter_injector.gd
+Completed load for: 'res://scripts/world/chapter_01_encounter_injector.gd' remapped 'res://scripts/world/chapter_01_encounter_injector.gd' at thread -1
+Loading resource: res://scripts/world/field_encounter_injector.gd remapped: res://scripts/world/field_encounter_injector.gd
+Completed load for: 'res://scripts/world/field_encounter_injector.gd' remapped 'res://scripts/world/field_encounter_injector.gd' at thread -1
+Loading resource: res://scripts/world/veilleurs_playable_bridge.gd remapped: res://scripts/world/veilleurs_playable_bridge.gd
+Completed load for: 'res://scripts/world/veilleurs_playable_bridge.gd' remapped 'res://scripts/world/veilleurs_playable_bridge.gd' at thread -1
+Loading resource: res://scripts/core/adaptive_music_director.gd remapped: res://scripts/core/adaptive_music_director.gd
+Completed load for: 'res://scripts/core/adaptive_music_director.gd' remapped 'res://scripts/core/adaptive_music_director.gd' at thread -1
+Loading resource: res://scripts/core/layered_music_runtime.gd remapped: res://scripts/core/layered_music_runtime.gd
+Completed load for: 'res://scripts/core/layered_music_runtime.gd' remapped 'res://scripts/core/layered_music_runtime.gd' at thread -1
+Loading resource: res://scripts/core/dialogue_director.gd remapped: res://scripts/core/dialogue_director.gd
+Completed load for: 'res://scripts/core/dialogue_director.gd' remapped 'res://scripts/core/dialogue_director.gd' at thread -1
+Loading resource: res://scripts/core/voice_runtime.gd remapped: res://scripts/core/voice_runtime.gd
+Completed load for: 'res://scripts/core/voice_runtime.gd' remapped 'res://scripts/core/voice_runtime.gd' at thread -1
+Loading resource: res://scripts/world/chapter_01_boss_runtime.gd remapped: res://scripts/world/chapter_01_boss_runtime.gd
+Completed load for: 'res://scripts/world/chapter_01_boss_runtime.gd' remapped 'res://scripts/world/chapter_01_boss_runtime.gd' at thread -1
+Loading resource: res://scripts/world/chapter_02_boss_runtime.gd remapped: res://scripts/world/chapter_02_boss_runtime.gd
+Completed load for: 'res://scripts/world/chapter_02_boss_runtime.gd' remapped 'res://scripts/world/chapter_02_boss_runtime.gd' at thread -1
+Loading resource: res://scripts/world/chapter_03_boss_runtime.gd remapped: res://scripts/world/chapter_03_boss_runtime.gd
+Completed load for: 'res://scripts/world/chapter_03_boss_runtime.gd' remapped 'res://scripts/world/chapter_03_boss_runtime.gd' at thread -1
+Loading resource: res://scripts/world/chapter_04_boss_runtime.gd remapped: res://scripts/world/chapter_04_boss_runtime.gd
+Completed load for: 'res://scripts/world/chapter_04_boss_runtime.gd' remapped 'res://scripts/world/chapter_04_boss_runtime.gd' at thread -1
+Loading resource: res://scripts/world/chapter_05_boss_runtime.gd remapped: res://scripts/world/chapter_05_boss_runtime.gd
+Completed load for: 'res://scripts/world/chapter_05_boss_runtime.gd' remapped 'res://scripts/world/chapter_05_boss_runtime.gd' at thread -1
+Loading resource: res://scripts/world/chapter_06_boss_runtime.gd remapped: res://scripts/world/chapter_06_boss_runtime.gd
+Completed load for: 'res://scripts/world/chapter_06_boss_runtime.gd' remapped 'res://scripts/world/chapter_06_boss_runtime.gd' at thread -1
+Loading resource: res://scripts/world/chapter_07_boss_runtime.gd remapped: res://scripts/world/chapter_07_boss_runtime.gd
+Completed load for: 'res://scripts/world/chapter_07_boss_runtime.gd' remapped 'res://scripts/world/chapter_07_boss_runtime.gd' at thread -1
+Loading resource: res://scripts/world/chapter_08_boss_runtime.gd remapped: res://scripts/world/chapter_08_boss_runtime.gd
+Completed load for: 'res://scripts/world/chapter_08_boss_runtime.gd' remapped 'res://scripts/world/chapter_08_boss_runtime.gd' at thread -1
+Loading resource: res://scripts/world/chapter_09_boss_runtime.gd remapped: res://scripts/world/chapter_09_boss_runtime.gd
+Completed load for: 'res://scripts/world/chapter_09_boss_runtime.gd' remapped 'res://scripts/world/chapter_09_boss_runtime.gd' at thread -1
+Loading resource: res://scripts/world/chapter_10_boss_runtime.gd remapped: res://scripts/world/chapter_10_boss_runtime.gd
+Completed load for: 'res://scripts/world/chapter_10_boss_runtime.gd' remapped 'res://scripts/world/chapter_10_boss_runtime.gd' at thread -1
+Loading resource: res://scripts/world/deep_vestige_boss_runtime_v2.gd remapped: res://scripts/world/deep_vestige_boss_runtime_v2.gd
+Completed load for: 'res://scripts/world/deep_vestige_boss_runtime_v2.gd' remapped 'res://scripts/world/deep_vestige_boss_runtime_v2.gd' at thread -1
+Loading resource: res://scripts/world/ashlands_playtest_session.gd remapped: res://scripts/world/ashlands_playtest_session.gd
+Completed load for: 'res://scripts/world/ashlands_playtest_session.gd' remapped 'res://scripts/world/ashlands_playtest_session.gd' at thread -1
+Loaded system CA certificates
+Loading resource: res://scenes/tests/owned_runtime_lifecycle_smoke.tscn remapped: res://scenes/tests/owned_runtime_lifecycle_smoke.tscn
+Loading resource: res://scripts/tests/owned_runtime_lifecycle_smoke.gd remapped: res://scripts/tests/owned_runtime_lifecycle_smoke.gd
+Loading resource: res://scenes/dungeon/DungeonProxyRoom.tscn remapped: res://scenes/dungeon/DungeonProxyRoom.tscn
+Loading resource: res://scripts/world/dungeon_proxy_room_v2.gd remapped: res://scripts/world/dungeon_proxy_room_v2.gd
+Loading resource: res://scenes/dungeon/DungeonProxyExplorer.tscn remapped: res://scenes/dungeon/DungeonProxyExplorer.tscn
+Loading resource: res://scripts/world/dungeon_proxy_explorer_v2.gd remapped: res://scripts/world/dungeon_proxy_explorer_v2.gd
+Completed load for: 'res://scripts/world/dungeon_proxy_explorer_v2.gd' remapped 'res://scripts/world/dungeon_proxy_explorer_v2.gd' at thread -1
+Completed load for: 'res://scenes/dungeon/DungeonProxyExplorer.tscn' remapped 'res://scenes/dungeon/DungeonProxyExplorer.tscn' at thread -1
+Completed load for: 'res://scripts/world/dungeon_proxy_room_v2.gd' remapped 'res://scripts/world/dungeon_proxy_room_v2.gd' at thread -1
+Completed load for: 'res://scenes/dungeon/DungeonProxyRoom.tscn' remapped 'res://scenes/dungeon/DungeonProxyRoom.tscn' at thread -1
+Completed load for: 'res://scripts/tests/owned_runtime_lifecycle_smoke.gd' remapped 'res://scripts/tests/owned_runtime_lifecycle_smoke.gd' at thread -1
+Completed load for: 'res://scenes/tests/owned_runtime_lifecycle_smoke.tscn' remapped 'res://scenes/tests/owned_runtime_lifecycle_smoke.tscn' at thread -1
+ERROR: Catalog must be freed with its owner: res://scripts/core/veilleurs_tactical_combat_runtime.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_tactical_combat_runtime.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Catalog must be freed with its owner: res://scripts/core/veilleurs_tactical_combat_runtime.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_tactical_combat_runtime.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Catalog must be freed with its owner: res://scripts/core/veilleurs_tactical_combat_runtime.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_tactical_combat_runtime.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Catalog must be freed with its owner: res://scripts/core/veilleurs_tactical_combat_runtime_v2.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_tactical_combat_runtime_v2.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Catalog must be freed with its owner: res://scripts/core/veilleurs_tactical_combat_runtime_v2.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_tactical_combat_runtime_v2.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Catalog must be freed with its owner: res://scripts/core/veilleurs_tactical_combat_runtime_v2.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_tactical_combat_runtime_v2.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Catalog must be freed with its owner: res://scripts/core/veilleurs_tactical_combat_runtime_v07.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_tactical_combat_runtime_v07.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_tactical_combat_runtime_v07.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Catalog must be freed with its owner: res://scripts/core/veilleurs_tactical_combat_runtime_v07.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_tactical_combat_runtime_v07.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_tactical_combat_runtime_v07.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Catalog must be freed with its owner: res://scripts/core/veilleurs_tactical_combat_runtime_v07.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_tactical_combat_runtime_v07.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_tactical_combat_runtime_v07.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Catalog must be freed with its owner: res://scripts/core/veilleurs_combat_runtime.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_combat_runtime.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_combat_runtime.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Catalog must be freed with its owner: res://scripts/core/veilleurs_combat_runtime.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_combat_runtime.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_combat_runtime.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Catalog must be freed with its owner: res://scripts/core/veilleurs_combat_runtime.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_combat_runtime.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_combat_runtime.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Catalog must be freed with its owner: res://scripts/core/veilleurs_campaign_runtime_v07.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_campaign_runtime_v07.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_campaign_runtime_v07.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Catalog must be freed with its owner: res://scripts/core/veilleurs_campaign_runtime_v07.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_campaign_runtime_v07.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_campaign_runtime_v07.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Catalog must be freed with its owner: res://scripts/core/veilleurs_campaign_runtime_v07.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_campaign_runtime_v07.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_campaign_runtime_v07.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Catalog must be freed with its owner: res://scripts/core/veilleurs_hybrid_generation_bridge.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_hybrid_generation_bridge.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Catalog must be freed with its owner: res://scripts/core/veilleurs_hybrid_generation_bridge.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_hybrid_generation_bridge.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Catalog must be freed with its owner: res://scripts/core/veilleurs_hybrid_generation_bridge.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in res://scripts/core/veilleurs_hybrid_generation_bridge.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Position helper must be freed with Main
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in Main
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Position helper must be freed with Main
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in Main
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Position helper must be freed with Main
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+ERROR: Creation/destruction left a new orphan in Main
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] run (res://scripts/tests/owned_runtime_lifecycle_smoke.gd:41)
+WARNING: 43 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2431)
+ERROR: 6 resources still in use at exit.
+   at: clear (core/io/resource.cpp:817)
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"
+Leaked instance: GDScriptNativeClass:9223372049991336690 - Reference count: 5
+Leaked instance: GDScriptNativeClass:9223372053145453486 - Reference count: 1
+Leaked instance: GDScript:9223372114768168564 - Reference count: 6
+Leaked instance: GDScript:9223372131226617471 - Reference count: 2
+Leaked instance: GDScript:9223372117922285193 - Reference count: 21
+Leaked instance: GDScript:9223372135337035429 - Reference count: 6
+Leaked instance: Node:270180288246 - Node path:
+Leaked instance: Node:271623128830 - Node path:
+Leaked instance: GDScript:9223372353524729746 - Reference count: 3
+Leaked instance: GDScript:9223372490644916205 - Reference count: 3
+Leaked instance: Node:473402706386 - Node path:
+Leaked instance: Node:474979764691 - Node path:
+Leaked instance: Node:473922800084 - Node path:
+Leaked instance: Node:474442893781 - Node path:
+Leaked instance: Node:495481522646 - Node path:
+Leaked instance: Node:476120615383 - Node path:
+Leaked instance: Node:476691040728 - Node path:
+Leaked instance: Node:475550190041 - Node path:
+Leaked instance: Node:479190845914 - Node path:
+Leaked instance: Node:477227911643 - Node path:
+Leaked instance: Node:483116714461 - Node path:
+Leaked instance: Node:481153780190 - Node path:
+Leaked instance: Node:478653975007 - Node path:
+Leaked instance: Node:487277464032 - Node path:
+Leaked instance: Node:480616909281 - Node path:
+Leaked instance: Node:492277074402 - Node path:
+Leaked instance: Node:482579843555 - Node path:
+Leaked instance: Node:496068725220 - Node path:
+Leaked instance: Node:494894320101 - Node path:
+Leaked instance: Node:492864276966 - Node path:
+Leaked instance: Node:485197089257 - Node path:
+Leaked instance: Node:484660218346 - Node path:
+Leaked instance: Node:490834233835 - Node path:
+Leaked instance: Node:486740593132 - Node path:
+Leaked instance: Node:490247031277 - Node path:
+Leaked instance: Node:488804190703 - Node path:
+Leaked instance: Node:494307117552 - Node path:
+Leaked instance: Node:496840477170 - Node path:
+Leaked instance: RefCounted:9223372533712030195 - Reference count: 1
+Leaked instance: Node:497075358196 - Node path:
+Leaked instance: RefCounted:9223372533946911221 - Reference count: 1
+Leaked instance: Node:497310239222 - Node path:
+Leaked instance: RefCounted:9223372534181792247 - Reference count: 1
+Hint: Leaked instances typically happen when nodes are removed from the scene tree (with `remove_child()`) but not freed (with `free()` or `queue_free()`).
+Resource still in use: res://scripts/core/content_db.gd (GDScript)
+Resource still in use: res://scripts/core/veilleurs_content_db_v07.gd (GDScript)
+Resource still in use: res://scripts/core/veilleurs_content_db_v07_runtime.gd (GDScript)
+Resource still in use: res://scripts/core/veilleurs_content_db_v081_canonical.gd (GDScript)
+Resource still in use: res://scripts/core/veilleurs_corpse_tactical_runtime.gd (GDScript)
+Resource still in use: res://scripts/core/combat_position_runtime.gd (GDScript)
+Orphan StringName: _slot_blocked_by_corpse (static: 0, total: 1)
+Orphan StringName: load_errors (static: 0, total: 31)
+Orphan StringName: _ready (static: 1, total: 2)
+Orphan StringName: DESTROYED_STATES (static: 0, total: 1)
+Orphan StringName: production_summary (static: 0, total: 1)
+Orphan StringName: ULTIMATES_PATH (static: 0, total: 1)
+Orphan StringName: VeilleursContentDBV07 (static: 0, total: 3)
+Orphan StringName: skills_by_entity (static: 0, total: 31)
+Orphan StringName: _validate_dungeon_graph (static: 0, total: 1)
+Orphan StringName: ultimate (static: 0, total: 1)
+Orphan StringName: available_moves (static: 0, total: 1)
+Orphan StringName: economy (static: 0, total: 12)
+Orphan StringName: _dismemberment_for (static: 0, total: 1)
+Orphan StringName: _split_tags (static: 0, total: 1)
+Orphan StringName: skills_by_id (static: 0, total: 31)
+Orphan StringName: _load_production_trees (static: 0, total: 1)
+Orphan StringName: skills_for (static: 0, total: 2)
+Orphan StringName: _index_production_skill (static: 0, total: 1)
+Orphan StringName: archives (static: 0, total: 12)
+Orphan StringName: PROGRESSION_PATH (static: 0, total: 1)
+Orphan StringName: ARCHIVES_PATH (static: 0, total: 1)
+Orphan StringName: LOADOUTS_PATH (static: 0, total: 1)
+Orphan StringName: _index_skill (static: 0, total: 1)
+Orphan StringName: recruitment (static: 0, total: 12)
+Orphan StringName: _canonical_activation (static: 0, total: 1)
+Orphan StringName: boss_tree (static: 0, total: 1)
+Orphan StringName: VeilleursContentDBV07Runtime (static: 0, total: 3)
+Orphan StringName: progression (static: 0, total: 12)
+Orphan StringName: khar_sen (static: 0, total: 12)
+Orphan StringName: _watcher_skill_counts (static: 0, total: 1)
+Orphan StringName: _validate (static: 0, total: 1)
+Orphan StringName: ultimates_by_entity (static: 0, total: 12)
+Orphan StringName: V07_ROOT (static: 0, total: 1)
+Orphan StringName: dungeons_by_id (static: 0, total: 12)
+Orphan StringName: BOSS_TREE_PATH (static: 0, total: 1)
+Orphan StringName: summary (static: 0, total: 1)
+Orphan StringName: _load_dictionary (static: 0, total: 1)
+Orphan StringName: VeilleursContentDBV081Canonical (static: 0, total: 3)
+Orphan StringName: production_load_errors (static: 0, total: 12)
+Orphan StringName: compact_enemy_formation (static: 0, total: 1)
+Orphan StringName: ultimates_by_id (static: 0, total: 12)
+Orphan StringName: ROOT (static: 0, total: 1)
+Orphan StringName: enemy_tree (static: 0, total: 1)
+Orphan StringName: production_skills_by_id (static: 0, total: 12)
+Orphan StringName: _canonical_action (static: 0, total: 1)
+Orphan StringName: watcher (static: 0, total: 1)
+Orphan StringName: _validate_entity_ultimates (static: 0, total: 1)
+Orphan StringName: boss_trees_by_id (static: 0, total: 12)
+Orphan StringName: skill (static: 0, total: 2)
+Orphan StringName: _validate_v07 (static: 0, total: 1)
+Orphan StringName: production_skill (static: 0, total: 1)
+Orphan StringName: VeilleursCorpseTacticalRuntime (static: 0, total: 3)
+Orphan StringName: ENEMY_TREE_PATH (static: 0, total: 1)
+Orphan StringName: formation_snapshot (static: 0, total: 1)
+Orphan StringName: _corpse_runtime (static: 0, total: 5)
+Orphan StringName: _index_entities (static: 0, total: 1)
+Orphan StringName: initialize_battle (static: 0, total: 1)
+Orphan StringName: CONSTANTS_PATH (static: 0, total: 1)
+Orphan StringName: enemies_by_id (static: 0, total: 31)
+Orphan StringName: BOSSES_PATH (static: 0, total: 1)
+Orphan StringName: CANONICAL_WATCHER_ULTIMATES_PATH (static: 0, total: 1)
+Orphan StringName: "scripts/core/combat_position_runtime.gd" (static: 0, total: 1)
+Orphan StringName: ENEMIES_PATH (static: 0, total: 1)
+Orphan StringName: place (static: 0, total: 1)
+Orphan StringName: WATCHERS_PATH (static: 0, total: 1)
+Orphan StringName: MAX_SLOT (static: 0, total: 2)
+Orphan StringName: _load_v07_dictionary (static: 0, total: 1)
+Orphan StringName: _precision_for (static: 0, total: 1)
+Orphan StringName: _load_ultimates (static: 0, total: 2)
+Orphan StringName: _tree_count_for (static: 0, total: 1)
+Orphan StringName: consume_for_skill (static: 0, total: 1)
+Orphan StringName: _index_v07_entities (static: 0, total: 1)
+Orphan StringName: dungeon (static: 0, total: 1)
+Orphan StringName: _load_v07 (static: 0, total: 1)
+Orphan StringName: _ensure_first_accord (static: 0, total: 1)
+Orphan StringName: starter_loadouts (static: 0, total: 31)
+Orphan StringName: _load_dungeons (static: 0, total: 1)
+Orphan StringName: _row_to_dictionary (static: 0, total: 1)
+Orphan StringName: SKILL_CATALOG_PATH (static: 0, total: 1)
+Orphan StringName: boss (static: 0, total: 2)
+Orphan StringName: dungeon_roadmap (static: 0, total: 12)
+Orphan StringName: enemy (static: 0, total: 1)
+Orphan StringName: Node (static: 4, total: 5)
+Orphan StringName: CANONICAL_SKILL_PATHS (static: 0, total: 1)
+Orphan StringName: move (static: 0, total: 1)
+Orphan StringName: production_skills_by_entity (static: 0, total: 12)
+Orphan StringName: cover_for_slot (static: 0, total: 1)
+Orphan StringName: production_skills_for (static: 0, total: 1)
+Orphan StringName: ECONOMY_PATH (static: 0, total: 1)
+Orphan StringName: _index_canonical_or_production_ultimate (static: 0, total: 1)
+Orphan StringName: _effect_for (static: 0, total: 1)
+Orphan StringName: RefCounted (static: 0, total: 1)
+Orphan StringName: starter_loadout (static: 0, total: 1)
+Orphan StringName: bosses_by_id (static: 0, total: 12)
+Orphan StringName: CORPSE_RUNTIME (static: 0, total: 1)
+Orphan StringName: VeilleursContentDB (static: 0, total: 3)
+Orphan StringName: enemy_move_action (static: 0, total: 1)
+Orphan StringName: DUNGEON_PATHS (static: 0, total: 1)
+Orphan StringName: _preferred_enemy_slot (static: 0, total: 1)
+Orphan StringName: enemy_skill_profiles (static: 0, total: 12)
+Orphan StringName: combat_constants (static: 0, total: 31)
+Orphan StringName: _target_for (static: 0, total: 1)
+Orphan StringName: watchers_by_id (static: 0, total: 31)
+Orphan StringName: position_of (static: 0, total: 1)
+Orphan StringName: can_move (static: 0, total: 1)
+Orphan StringName: enemy_trees_by_id (static: 0, total: 12)
+Orphan StringName: skill_context (static: 0, total: 1)
+Orphan StringName: ENEMY_PROFILE_PATH (static: 0, total: 1)
+Orphan StringName: _count_skills_for_prefix (static: 0, total: 1)
+Orphan StringName: reload (static: 0, total: 2)
+Orphan StringName: ultimates_for (static: 0, total: 1)
+Orphan StringName: MIN_SLOT (static: 0, total: 2)
+Orphan StringName: DUNGEON_ROADMAP_PATH (static: 0, total: 1)
+Orphan StringName: _assign_missing_positions (static: 0, total: 1)
+Orphan StringName: RECRUITMENT_PATH (static: 0, total: 1)
+Orphan StringName: destroy (static: 0, total: 1)
+Orphan StringName: snapshot (static: 0, total: 1)
+Orphan StringName: PROFILE_BY_TREE (static: 0, total: 1)
+Orphan StringName: entity (static: 0, total: 2)
+Orphan StringName: _load_canonical_skill_catalog (static: 0, total: 1)
+Orphan StringName: can_move_to_slot (static: 0, total: 1)
+StringName: 121 unclaimed string names at exit.

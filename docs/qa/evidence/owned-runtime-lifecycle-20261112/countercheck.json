@@ -1,0 +1,14 @@
+[
+  {
+    "variant": "before",
+    "exit_code": 1,
+    "new_orphan_errors": 30,
+    "shutdown_warning": true
+  },
+  {
+    "variant": "after",
+    "exit_code": 0,
+    "new_orphan_errors": 0,
+    "shutdown_warning": false
+  }
+]

@@ -101,6 +101,7 @@ case "$DOMAIN" in
     scene 90 "Corps visuel systémique v42" res://scenes/tests/body_visual_v42_smoke.tscn
     ;;
   runtime)
+    scene 60 "Libération des ressources des runtimes" res://scenes/tests/owned_runtime_lifecycle_smoke.tscn
     scene 0 "HUD intelligent" res://scenes/tests/hud_director_smoke.tscn
     scene 0 "Vertical slice visuel" res://scenes/tests/visual_vertical_slice_smoke.tscn
     scene 0 "Vertical slice runtime" res://scenes/tests/visual_slice_runtime_smoke.tscn
