@@ -28,10 +28,17 @@ def validate(root: Path = ROOT, group: str = 'all') -> list[str]:
     for name in manifest['removed_runtime_files']:
         if (root / name).exists():
             errors.append('retired_runtime_returned:' + name)
-    allowed = set(manifest['technical_scripts'])
+    # The immutable reset manifest describes the retained base. Explicitly reviewed
+    # prototypes can extend it without granting old gameplay a path back in.
+    prototype_manifest = root / 'docs/reconstruction/COMBAT_A_PROTOTYPE_MANIFEST.json'
+    prototypes = json.loads(prototype_manifest.read_text()) if prototype_manifest.exists() else {'scripts': [], 'scenes': []}
+    allowed = set(manifest['technical_scripts']) | set(prototypes['scripts'])
     production = {p.relative_to(root).as_posix() for p in (root / 'scripts').rglob('*.gd') if '/tests/' not in p.as_posix()}
     if production != allowed:
         errors.append('technical_script_scope:' + repr(sorted(production ^ allowed)))
+    for name in prototypes['scripts'] + prototypes['scenes']:
+        if name in manifest['removed_runtime_files'] or not (root / name).is_file():
+            errors.append('prototype_scope_invalid:' + name)
     project = (root / 'project.godot').read_text()
     if 'run/main_scene=' in project or 'GameState=' in project or 'VeilleursRuntime=' in project:
         errors.append('retired_game_bootstrap_returned')
