@@ -21,6 +21,12 @@ var encounters_by_id: Dictionary = {}
 var encounter_rows: Array[Dictionary] = []
 var load_errors: Array[String] = []
 
+# This helper is owned here but is not a child of the scene tree.
+func _notification(what: int) -> void:
+    if what == NOTIFICATION_PREDELETE and is_instance_valid(content_db):
+        content_db.free()
+        content_db = null
+
 func _init() -> void:
     content_db = CONTENT_DB_SCRIPT.new() as VeilleursContentDB
     content_db.reload()

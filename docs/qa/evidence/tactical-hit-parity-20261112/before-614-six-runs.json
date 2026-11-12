@@ -1,0 +1,104 @@
+[
+  {
+    "run": 1,
+    "parity_ok": true,
+    "diagnostics": [
+      "TACTICAL_HIT_PARITY_OK cases=625 heroes=4 enemies=24 zones=6 independent_legacy=true"
+    ]
+  },
+  {
+    "run": 2,
+    "parity_ok": true,
+    "diagnostics": [
+      "TACTICAL_HIT_PARITY_OK cases=625 heroes=4 enemies=24 zones=6 independent_legacy=true",
+      "Leaked instance: AudioStreamWAV:9223372356326525283 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356376856933 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356578183535 - Reference count: 1",
+      "Leaked instance: AudioStreamWAV:9223372356561406320 - Reference count: 1",
+      "Leaked instance: AudioStreamWAV:9223372356645292404 - Reference count: 2",
+      "Leaked instance: AudioStreamWAV:9223372356662069621 - Reference count: 2",
+      "Leaked instance: AudioStreamWAV:9223372356678846838 - Reference count: 2",
+      "Leaked instance: AudioStreamWAV:9223372356695624055 - Reference count: 2",
+      "Leaked instance: AudioStreamWAV:9223372356712401272 - Reference count: 2",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356729178489 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356745955706 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356762732923 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356779510140 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356796287357 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356813064574 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356829841791 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356846619008 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356863396225 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356880173442 - Reference count: 1",
+      "WARNING: 19 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ]
+  },
+  {
+    "run": 3,
+    "parity_ok": true,
+    "diagnostics": [
+      "TACTICAL_HIT_PARITY_OK cases=625 heroes=4 enemies=24 zones=6 independent_legacy=true",
+      "Leaked instance: AudioStreamWAV:9223372356326525283 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356376856933 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356578183535 - Reference count: 1",
+      "Leaked instance: AudioStreamWAV:9223372356561406320 - Reference count: 1",
+      "Leaked instance: AudioStreamWAV:9223372356645292404 - Reference count: 2",
+      "Leaked instance: AudioStreamWAV:9223372356662069621 - Reference count: 2",
+      "Leaked instance: AudioStreamWAV:9223372356678846838 - Reference count: 2",
+      "Leaked instance: AudioStreamWAV:9223372356695624055 - Reference count: 2",
+      "Leaked instance: AudioStreamWAV:9223372356712401272 - Reference count: 2",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356729178489 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356745955706 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356762732923 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356779510140 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356796287357 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356813064574 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356829841791 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356846619008 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356863396225 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356880173442 - Reference count: 1",
+      "WARNING: 19 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ]
+  },
+  {
+    "run": 4,
+    "parity_ok": true,
+    "diagnostics": [
+      "TACTICAL_HIT_PARITY_OK cases=625 heroes=4 enemies=24 zones=6 independent_legacy=true",
+      "Leaked instance: AudioStreamWAV:9223372356326525283 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356376856933 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356578183535 - Reference count: 1",
+      "Leaked instance: AudioStreamWAV:9223372356561406320 - Reference count: 1",
+      "Leaked instance: AudioStreamWAV:9223372356645292404 - Reference count: 2",
+      "Leaked instance: AudioStreamWAV:9223372356662069621 - Reference count: 2",
+      "Leaked instance: AudioStreamWAV:9223372356678846838 - Reference count: 2",
+      "Leaked instance: AudioStreamWAV:9223372356695624055 - Reference count: 2",
+      "Leaked instance: AudioStreamWAV:9223372356712401272 - Reference count: 2",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356729178489 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356745955706 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356762732923 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356779510140 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356796287357 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356813064574 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356829841791 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356846619008 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356863396225 - Reference count: 1",
+      "Leaked instance: AudioStreamPlaybackWAV:9223372356880173442 - Reference count: 1",
+      "WARNING: 19 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+    ]
+  },
+  {
+    "run": 5,
+    "parity_ok": true,
+    "diagnostics": [
+      "TACTICAL_HIT_PARITY_OK cases=625 heroes=4 enemies=24 zones=6 independent_legacy=true"
+    ]
+  },
+  {
+    "run": 6,
+    "parity_ok": true,
+    "diagnostics": [
+      "TACTICAL_HIT_PARITY_OK cases=625 heroes=4 enemies=24 zones=6 independent_legacy=true"
+    ]
+  }
+]

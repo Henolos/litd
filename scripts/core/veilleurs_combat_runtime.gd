@@ -31,6 +31,8 @@ var last_phase_event: Dictionary = {}
 
 func _init() -> void:
     super()
+    # Release the base catalog before replacing this owned Node.
+    content_db.free()
     content_db = RUNTIME_CONTENT_DB_SCRIPT.new() as VeilleursContentDBV081Canonical
     content_db.reload()
     skill_behavior = RUNTIME_BEHAVIOR_SCRIPT.new() as VeilleursSkillBehaviorRuntimeV07

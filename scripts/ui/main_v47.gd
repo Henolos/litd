@@ -11,6 +11,12 @@ const FORMATION_V47_MARKER := "formation_v47_initialized"
 const COMBAT_POSITION_RUNTIME_V47 := preload("res://scripts/core/combat_position_runtime.gd")
 var _combat_position_runtime_v47: Node = COMBAT_POSITION_RUNTIME_V47.new()
 
+# This helper is owned here but is not a child of the scene tree.
+func _notification(what: int) -> void:
+    if what == NOTIFICATION_PREDELETE and is_instance_valid(_combat_position_runtime_v47):
+        _combat_position_runtime_v47.free()
+        _combat_position_runtime_v47 = null
+
 func show_combat() -> void:
     # Repack survivors before the inherited HUD/targeting pass. This guarantees
     # that a former E4 becomes E3/E2/E1 as front enemies die.

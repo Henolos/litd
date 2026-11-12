@@ -15,6 +15,9 @@ static func legacy_hit_chance(attacker: Dictionary, target: Dictionary, skill: D
     return clampi(int(round(chance)), int(clamps.get("min_percent", 10)), int(clamps.get("max_percent", 97)))
 
 func _initialize() -> void:
+    call_deferred("_run")
+
+func _run() -> void:
     var runtime = RUNTIME.new()
     var db = runtime.content_db
     if db.watchers_by_id.size() != 4 or db.enemies_by_id.size() != 24:
@@ -55,7 +58,7 @@ func _initialize() -> void:
                 return
             cases += 1
     print("TACTICAL_HIT_PARITY_OK cases=%d heroes=4 enemies=24 zones=%d independent_legacy=true" % [cases, zones.size()])
-    quit(0)
+    _finish.call_deferred(0)
 
 func _check(runtime: RefCounted, attacker: Dictionary, target: Dictionary, skill: Dictionary, zone: String, zone_mods: Dictionary, clamps: Dictionary, label: String) -> bool:
     var expected := legacy_hit_chance(attacker, target, skill, zone, zone_mods, clamps)
@@ -68,4 +71,31 @@ func _check(runtime: RefCounted, attacker: Dictionary, target: Dictionary, skill
 
 func _fail(message: String) -> void:
     push_error(message)
-    quit(1)
+    _finish.call_deferred(1)
+
+func _finish(exit_code: int) -> void:
+    # The project autoloads start audio even for this arithmetic-only test.
+    # Use their existing teardown APIs before shutting down the audio server.
+    var playbacks: Array[WeakRef] = []
+    for player: Node in root.find_children("*", "AudioStreamPlayer", true, false):
+        if player.has_stream_playback():
+            playbacks.append(weakref(player.get_stream_playback()))
+    root.get_node("AudioDirector").reset_runtime()
+    root.get_node("LayeredMusicRuntime").reset_runtime()
+    root.get_node("PrototypeAudioBank").clear_cache()
+    # stop() queues audio-server cleanup; a single process frame may precede
+    # the next audio mix. Observe release rather than sleeping a fixed delay.
+    var deadline := Time.get_ticks_msec() + 2000
+    while _has_live_playback(playbacks):
+        if Time.get_ticks_msec() >= deadline:
+            push_error("Audio playback did not release before parity test shutdown")
+            exit_code = 1
+            break
+        await process_frame
+    quit(exit_code)
+
+func _has_live_playback(playbacks: Array[WeakRef]) -> bool:
+    for playback: WeakRef in playbacks:
+        if playback.get_ref() != null:
+            return true
+    return false
