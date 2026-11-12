@@ -21,12 +21,20 @@ jobs:
       image: barichello/godot-ci:4.7.2
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Install Godot font dependency
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends libfontconfig1
       - name: Import Godot project
-        run: godot --headless --path . --import --quit
+        shell: bash
+        run: |
+          set -euo pipefail
+          godot --headless --path . --import --quit 2>&1 | tee /tmp/tactical_hit_import.log
+          if grep -Eq 'ERROR:|SCRIPT ERROR|Parse Error|Assertion failed|ObjectDB instances were leaked|resources still in use' /tmp/tactical_hit_import.log; then exit 1; fi
       - name: Check tactical hit chance parity
         shell: bash
         run: |
           set -euo pipefail
           timeout 120s godot --headless --path . --script scripts/tests/tactical_hit_parity_test.gd 2>&1 | tee /tmp/tactical_hit_parity.log
-          grep -q 'TACTICAL_HIT_PARITY_OK' /tmp/tactical_hit_parity.log
-          if grep -Eq 'SCRIPT ERROR|Parse Error|Assertion failed' /tmp/tactical_hit_parity.log; then exit 1; fi
+          grep -qx 'TACTICAL_HIT_PARITY_OK cases=625 heroes=4 enemies=24 zones=6 independent_legacy=true' /tmp/tactical_hit_parity.log
+          if grep -Eq 'ERROR:|SCRIPT ERROR|Parse Error|Assertion failed|ObjectDB instances were leaked|resources still in use' /tmp/tactical_hit_parity.log; then exit 1; fi

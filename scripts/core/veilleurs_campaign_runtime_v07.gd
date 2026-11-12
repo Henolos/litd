@@ -21,6 +21,12 @@ var recruit_progress: Dictionary = {}
 var recruits_this_expedition := 0
 var expeditions_started := 0
 
+# This helper is owned here but is not a child of the scene tree.
+func _notification(what: int) -> void:
+    if what == NOTIFICATION_PREDELETE and is_instance_valid(content_db):
+        content_db.free()
+        content_db = null
+
 func _init() -> void:
     content_db = DB_SCRIPT.new() as VeilleursContentDBV07Runtime
     content_db.reload()
