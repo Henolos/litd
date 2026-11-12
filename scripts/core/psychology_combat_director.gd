@@ -55,7 +55,7 @@ func target_score(enemy: Dictionary, hero: Dictionary, round_number: int = 1) ->
     var boss := _is_boss(enemy)
     if boss:
         score *= float(rules.get("boss_fear_multiplier", 1.35))
-    elif int(enemy.get("fear", 0)) >= int(data.get("enemy_pressure", {}).get("minimum_enemy_fear", 5)):
+    elif int(enemy.get("enemy_fear", enemy.get("fear_gauge", 0))) >= int(data.get("enemy_pressure", {}).get("minimum_enemy_fear", 5)):
         score *= float(rules.get("high_fear_enemy_multiplier", 1.20))
 
     var boss_rule := _boss_rule(enemy)
@@ -69,7 +69,7 @@ func apply_enemy_pressure(enemy: Dictionary, hero: Dictionary, round_number: int
     if enemy.is_empty() or hero.is_empty() or int(hero.get("hp", 0)) <= 0:
         return {}
     var rules: Dictionary = data.get("enemy_pressure", {})
-    var enemy_fear := int(enemy.get("fear", 0))
+    var enemy_fear := int(enemy.get("enemy_fear", enemy.get("fear_gauge", 0)))
     var boss := _is_boss(enemy)
     if enemy_fear < int(rules.get("minimum_enemy_fear", 5)) and not boss:
         return {}
@@ -148,7 +148,7 @@ func enemy_archetype(enemy: Dictionary) -> String:
         return str(boss_rule.get("archetype", "breaker"))
     if _is_boss(enemy):
         return "breaker"
-    if int(enemy.get("fear", 0)) >= int(data.get("enemy_pressure", {}).get("minimum_enemy_fear", 5)):
+    if int(enemy.get("enemy_fear", enemy.get("fear_gauge", 0))) >= int(data.get("enemy_pressure", {}).get("minimum_enemy_fear", 5)):
         return "predator"
     return "opportunist"
 
