@@ -6,7 +6,7 @@ def data(name): return json.loads((ROOT/'data'/name).read_text(encoding='utf-8')
 
 class ProjectTests(unittest.TestCase):
     def test_project_file(self): self.assertTrue((ROOT/'project.godot').is_file())
-    def test_main_scene(self): self.assertTrue((ROOT/'scenes/Main.tscn').is_file())
+    def test_no_retired_main_scene(self): self.assertFalse((ROOT/'scenes/Main.tscn').exists())
     def test_class_count(self): self.assertGreaterEqual(len(data('classes.json')),10)
     def test_race_count(self): self.assertGreaterEqual(len(data('races.json')),4)
     def test_enemy_count(self): self.assertEqual(len(data('enemies.json')),39)
@@ -40,10 +40,12 @@ class ProjectTests(unittest.TestCase):
     def test_class_images(self):
         for x in data('classes.json'): self.assertTrue((ROOT/'assets/heroes'/x['art']).is_file())
     def test_backgrounds(self): self.assertGreaterEqual(len(list((ROOT/'assets/backgrounds').glob('*'))),5)
-    def test_autoload_order(self):
+    def test_technical_autoloads_without_gameplay(self):
         text=(ROOT/'project.godot').read_text(encoding='utf-8')
-        self.assertLess(text.index('DataLoader='),text.index('GameState='))
-        self.assertLess(text.index('DataLoader='),text.index('EquipmentManager='))
+        self.assertIn('SaveManager=',text)
+        self.assertIn('GameSettings=',text)
+        self.assertNotIn('GameState=',text)
+        self.assertNotIn('EquipmentManager=',text)
     def test_save_version(self):
         text=(ROOT/'scripts/core/save_manager.gd').read_text(encoding='utf-8')
         self.assertIn('"version"',text)

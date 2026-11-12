@@ -1,0 +1,88 @@
+::group::[GODOT 1/7 - 14%] Import strict du socle
+GODOT_PROGRESS step=1/7 percent=14 status=START file=PROJECT_IMPORT
+==> Import strict du socle
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started Project initialization (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Scanning file structure...[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | Loading global class names...[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | Verifying GDExtensions...[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | Creating autoload scripts...[39m[0m
+[  66% ] [90m[1mfirst_scan_filesystem[22m | Initializing plugins...[39m[0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | Starting file scan...[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | Started Registering global classes... (3 steps)[39m[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  25% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  50% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[92m[ DONE ][39m [1mupdate_scripts_classes[22m
+[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Started Loading editor (5 steps)[39m[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Loading editor layout...[39m[0m
+[  16% ] [90m[1mloading_editor_layout[22m | Loading docks...[39m[0m
+[92m[ DONE ][39m [1mloading_editor_layout[22m
+[0m
+GODOT_PROGRESS step=1/7 percent=14 status=DONE file=PROJECT_IMPORT
+::endgroup::
+::group::[GODOT 2/7 - 28%] Compilation et génération déterministe
+GODOT_PROGRESS step=2/7 percent=28 status=START file=res://tests/godot/test_technical_foundation_headless.gd
+==> Compilation et génération déterministe
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+TECHNICAL_FOUNDATION_OK scripts=17 seeds=100
+GODOT_CHECKED_OK log=/tmp/tmp.j21Pn2N92s/technical.log
+GODOT_PROGRESS step=2/7 percent=28 status=DONE file=res://tests/godot/test_technical_foundation_headless.gd
+::endgroup::
+::group::[GODOT 3/7 - 42%] Intégrité stockage
+GODOT_PROGRESS step=3/7 percent=42 status=START file=res://tests/godot/test_save_runtime_headless.gd
+==> Intégrité stockage
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+SAVE_RUNTIME_CONTRACT_PASS
+GODOT_CHECKED_OK log=/tmp/tmp.j21Pn2N92s/runtime.log
+GODOT_PROGRESS step=3/7 percent=42 status=DONE file=res://tests/godot/test_save_runtime_headless.gd
+::endgroup::
+::group::[GODOT 4/7 - 57%] Rejets checksum et version
+GODOT_PROGRESS step=4/7 percent=57 status=START file=res://tests/godot/test_save_negative_headless.gd
+==> Rejets checksum et version
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+SAVE_NEGATIVE_CONTRACT_PASS
+GODOT_CHECKED_OK log=/tmp/tmp.j21Pn2N92s/negative.log
+GODOT_PROGRESS step=4/7 percent=57 status=DONE file=res://tests/godot/test_save_negative_headless.gd
+::endgroup::
+::group::[GODOT 5/7 - 71%] Sauvegarde et chargement
+GODOT_PROGRESS step=5/7 percent=71 status=START file=res://tests/godot/test_save_roundtrip_headless.gd
+==> Sauvegarde et chargement
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+SAVE_ROUNDTRIP_CONTRACT_PASS
+GODOT_CHECKED_OK log=/tmp/tmp.j21Pn2N92s/roundtrip.log
+GODOT_PROGRESS step=5/7 percent=71 status=DONE file=res://tests/godot/test_save_roundtrip_headless.gd
+::endgroup::
+::group::[GODOT 6/7 - 85%] Récupération après panne
+GODOT_PROGRESS step=6/7 percent=85 status=START file=res://scenes/tests/save_recovery_regression_smoke.tscn
+==> Récupération après panne
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ERROR: Failed to open '/tmp/tmp.j21Pn2N92s/godot/app_userdata/Light in the Dark/litd_save_backup_blocked.json.bak'.
+   at: copy (core/io/dir_access.cpp:423)
+   GDScript backtrace (most recent call first):
+       [0] _atomic_write (res://scripts/core/save_manager.gd:204)
+       [1] _test_replacement_failures (res://scripts/tests/save_recovery_regression_smoke_test.gd:65)
+       [2] _run (res://scripts/tests/save_recovery_regression_smoke_test.gd:20)
+SAVE_RECOVERY_REGRESSION_OK
+GODOT_CHECKED_OK log=/tmp/tmp.j21Pn2N92s/recovery.log
+GODOT_PROGRESS step=6/7 percent=85 status=DONE file=res://scenes/tests/save_recovery_regression_smoke.tscn
+::endgroup::
+::group::[GODOT 7/7 - 100%] Isolation des slots
+GODOT_PROGRESS step=7/7 percent=100 status=START file=res://scenes/tests/save_slot0_delete_regression_smoke.tscn
+==> Isolation des slots
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+SAVE_SLOT0_DELETE_REGRESSION_OK
+GODOT_CHECKED_OK log=/tmp/tmp.j21Pn2N92s/delete.log
+GODOT_PROGRESS step=7/7 percent=100 status=DONE file=res://scenes/tests/save_slot0_delete_regression_smoke.tscn
+::endgroup::
+GODOT_CI_STRICT_OK

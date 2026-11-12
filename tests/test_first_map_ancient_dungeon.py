@@ -38,20 +38,7 @@ def test_chapter_registers_dungeon_as_optional_content() -> None:
     assert "zone_16_salles_du_premier_accord" not in stage_zones
 
 
-def test_dungeon_scene_and_router_are_registered() -> None:
-    scene = ROOT / "scenes/world/terre_des_cendres/zone_16_salles_du_premier_accord.tscn"
-    assert scene.exists()
-    router = (ROOT / "scripts/world/ashlands_scene_router.gd").read_text(encoding="utf-8")
-    assert '"zone_16_salles_du_premier_accord"' in router
 
-def test_dangerous_entry_requires_a_second_confirmation() -> None:
-    gate = (ROOT / "scripts/world/zone_transition_gate.gd").read_text(encoding="utf-8")
-    builder = (ROOT / "scripts/world/ashlands_blockout_builder.gd").read_text(encoding="utf-8")
-    assert "dangerous_dungeon_confirmation_requested" in gate
-    assert '"dangerous_dungeon_confirmation"' in gate
-    assert "_danger_confirmation_until" in gate
-    assert "gate.dangerous_entry = gate.dungeon and gate.optional_content" in builder
-    assert "Vos blessures et pertes persisteront" in builder
 
 
 def test_authored_dungeon_map_has_three_connected_depths() -> None:
@@ -105,13 +92,3 @@ def test_authored_map_preserves_exploration_rules() -> None:
         "civic_depths",
         "accord_heart",
     }
-
-
-def test_authored_map_builder_replaces_generic_dungeon_layout() -> None:
-    builder = (ROOT / "scripts/world/ashlands_blockout_builder.gd").read_text(encoding="utf-8")
-    dungeon_builder = (ROOT / "scripts/world/first_accord_dungeon_map_builder.gd").read_text(encoding="utf-8")
-    assert 'FIRST_ACCORD_DUNGEON_MAP.generate(_root())' in builder
-    assert builder.count('zone_id == "zone_16_salles_du_premier_accord"') >= 3
-    assert "AuthoredDungeonMap" in dungeon_builder
-    assert "AshGuidanceGraph" in dungeon_builder
-    assert "_build_path_tiles" in dungeon_builder

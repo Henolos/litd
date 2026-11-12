@@ -69,14 +69,6 @@ def test_major_scenes_have_specific_blocking_overrides():
         assert overrides[scene_id]["blocking"].strip()
 
 
-def test_runtime_attaches_direction_to_scenes_dialogue_and_choice_responses():
-    runtime = RUNTIME.read_text(encoding="utf-8")
-    assert 'THEATRICAL_DIRECTION_PATH := "res://data/narrative/main_script/theatrical_direction.json"' in runtime
-    assert "func theatrical_scene_direction(" in runtime
-    assert "func performance_for_line(" in runtime
-    assert 'scene_payload["theatrical_direction"]' in runtime
-    assert 'payload["performance"] = performance_for_line(' in runtime
-    assert 'prepared["performance"] = performance_for_line(' in runtime
 
 
 def test_manifest_makes_theatrical_direction_part_of_production_contract():

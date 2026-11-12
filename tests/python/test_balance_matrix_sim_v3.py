@@ -14,40 +14,10 @@ from tools.qa.balance_matrix_sim_v3 import (
 ROOT = Path(__file__).resolve().parents[2]
 
 
-def test_exact_runtime_blocks_keep_minibosses_and_bosses_separate() -> None:
-    profiles = extract_runtime_campaign_profiles(ROOT)
-    miniboss_ids = {row["encounter_id"] for row in profiles["minibosses"]}
-    boss_ids = {row["encounter_id"] for row in profiles["bosses"]}
-
-    assert len(miniboss_ids) == 8
-    assert len(boss_ids) == 11
-    assert miniboss_ids.isdisjoint(boss_ids)
-    assert "c02_broken_curator" in miniboss_ids
-    assert "c10_unpaid_cost" in miniboss_ids
-    assert "c02_marker_warden" in boss_ids
-    assert "c10_boss_final" in boss_ids
 
 
-def test_exact_runtime_boss_profiles_cover_chapters_one_through_ten() -> None:
-    profiles = extract_runtime_campaign_profiles(ROOT)
-    chapters = sorted({int(row["chapter_number"]) for row in profiles["bosses"]})
-    assert chapters == list(range(1, 11))
 
 
-def test_campaign_normal_pack_and_miniboss_tuning_match_runtime() -> None:
-    bridge = (ROOT / "scripts/world/ashlands_combat_bridge.gd").read_text(encoding="utf-8")
-    rules = json.loads((ROOT / "data/roguelike/roguelike_rules.json").read_text(encoding="utf-8"))
-    matrix = json.loads((ROOT / "data/roguelike/balance_matrix.json").read_text(encoding="utf-8"))
-
-    assert NORMAL_ENEMY_IDS == (1, 8, 1, 8)
-    assert 'var encounter_class := encounter_type if encounter_type in ["elite", "miniboss", "boss"] else "normal"' in bridge
-    assert 'templates: Array[int] = [1, 8]' in bridge
-    assert matrix["campaign"]["normal_enemy_ids"] == [1, 8, 1, 8]
-    assert rules["combat_balance"]["encounter_group_sizes"]["normal"] == [4, 4]
-    assert rules["combat_balance"]["encounter_group_sizes"]["elite"] == [2, 3]
-    assert rules["combat_balance"]["encounter_group_sizes"]["miniboss"] == [1, 2]
-    assert rules["combat_balance"]["encounter_group_sizes"]["boss"] == [1, 1]
-    assert rules["combat_balance"]["campaign_miniboss_hp_multiplier"] == 1.65
 
 
 def test_campaign_duration_guardrails_accept_clear_three_step_hierarchy() -> None:

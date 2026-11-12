@@ -52,14 +52,6 @@ class ValidatedHeroArtLibraryTests(unittest.TestCase):
                   for p in (ROOT / "art/library/heroes").glob("*/reference.jpg")}
         self.assertEqual(actual, expected)
 
-    def test_quartet_runtime_mapping_remains_unchanged(self):
-        # Guardrail only: this test does not change or activate gameplay characters.
-        code = (ROOT / "scripts/ui/main_v52.gd").read_text(encoding="utf-8")
-        match = re.search(r"const CANONICAL_HERO_IDS := \[(.*?)\]", code)
-        self.assertIsNotNone(match)
-        active = set(re.findall(r'"([^"]+)"', match.group(1)))
-        self.assertEqual(active, PLAYABLE_QUARTET)
-        self.assertFalse({"effrie", "lya"} & active)
 
 
 if __name__ == "__main__":

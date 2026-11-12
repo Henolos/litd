@@ -58,15 +58,3 @@ def test_documentary_reconciliation_does_not_activate_gameplay_mappings():
     data = catalogue()
     assert data["scope"]["runtime_migration"] is False
     assert all(a["runtime_enemy_id"] is None for a in data["assets"])
-
-
-def test_complete_collection_claim_requires_every_registered_original():
-    data = catalogue()
-    pending = sum(a["binary_status"] == "pending_retrieval" for a in data["assets"])
-    assert pending == data["scope"]["binary_still_pending"]
-    if data["retrieval_status"] == "complete_for_documented_plates":
-        assert pending == 0
-        assert data["scope"]["binary_imported_in_this_lot"] == len(data["assets"])
-        expected = {a["archived_path"] for a in data["assets"]}
-        actual = {p.relative_to(ROOT).as_posix() for p in (ROOT / "art/library/bestiary").glob("*/reference.*")}
-        assert actual == expected

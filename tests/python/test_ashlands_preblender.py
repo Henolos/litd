@@ -62,24 +62,7 @@ class AshlandsPreBlenderTests(unittest.TestCase):
             self.assertLessEqual(abs(x), width / 2, entry['id'])
             self.assertLessEqual(abs(z), depth / 2, entry['id'])
 
-    def test_lore_runtime_collection_and_reader_contracts_exist(self):
-        collectible = (ROOT / 'scripts/world/lore_collectible.gd').read_text(encoding='utf-8')
-        runtime = (ROOT / 'scripts/world/ashlands_zone_runtime.gd').read_text(encoding='utf-8')
-        builder = (ROOT / 'scripts/world/ashlands_blockout_builder.gd').read_text(encoding='utf-8')
-        hud = (ROOT / 'scripts/world/ashlands_hud.gd').read_text(encoding='utf-8')
-        self.assertIn('AshlandsRuntime.collect_lore(entry)', collectible)
-        self.assertIn('"collected_lore": collected_lore', runtime)
-        self.assertIn('_build_lore_slots()', builder)
-        self.assertIn('_on_lore_discovered', hud)
-        self.assertIn('_meets_madness_requirement', collectible)
 
-    def test_environmental_lore_has_production_markers(self):
-        stories = self.lore['environmental_scenes']
-        self.assertEqual(len(stories), 3)
-        self.assertEqual(len({story['id'] for story in stories}), 3)
-        builder = (ROOT / 'scripts/world/ashlands_blockout_builder.gd').read_text(encoding='utf-8')
-        self.assertIn('_build_storytelling_markers()', builder)
-        self.assertIn('environmental_storytelling', builder)
 
     def test_all_authored_zones_are_registered(self):
         self.assertEqual(len(self.manifest['zones']), 16)
@@ -88,11 +71,6 @@ class AshlandsPreBlenderTests(unittest.TestCase):
         ids = [z['id'] for z in self.manifest['zones']]
         self.assertEqual(len(ids), len(set(ids)))
 
-    def test_all_zone_scenes_exist(self):
-        special = {'zone_07_cimetiere': 'zone_07_cimetiere_blockout.tscn'}
-        for z in self.manifest['zones']:
-            filename = special.get(z['id'], z['id'] + '.tscn')
-            self.assertTrue((ROOT / 'scenes/world/terre_des_cendres' / filename).is_file(), filename)
 
     def test_every_zone_has_a_layout_profile(self):
         manifest_ids = {zone['id'] for zone in self.manifest['zones']}
@@ -161,52 +139,8 @@ class AshlandsPreBlenderTests(unittest.TestCase):
         crow = self.survival['corpse_harvest']['crow']
         self.assertTrue(any(x['item'] == 'food' and x['max'] >= 1 for x in crow))
 
-    def test_required_runtime_scripts_exist(self):
-        required = [
-            'scripts/core/expedition_manager.gd',
-            'scripts/world/ashlands_miniboss_director.gd',
-            'scripts/world/ashlands_scene_router.gd',
-            'scripts/world/ash_volume.gd',
-            'scripts/world/resource_node.gd',
-            'scripts/world/lore_collectible.gd',
-            'scripts/world/corpse_harvest.gd',
-            'scripts/world/campfire_interaction.gd',
-            'scripts/world/zone_transition_gate.gd',
-            'scripts/world/shortcut_gate.gd',
-            'scripts/world/encounter_trigger.gd',
-            'scripts/world/exploration_party_controller.gd',
-            'scripts/world/isometric_camera_rig.gd',
-            'scripts/world/ashlands_performance_probe.gd',
-            'scripts/world/ashlands_ambience_controller.gd',
-            'scripts/world/isometric_occludable.gd',
-            'scripts/world/isometric_occlusion_manager.gd',
-            'scripts/world/mobile_exploration_controls.gd',
-            'scripts/world/ashlands_blockout_builder.gd',
-            'scripts/world/ashlands_layout_generator.gd',
-            'scripts/world/ashlands_asset_registry.gd',
-            'scripts/world/ashlands_playtest_session.gd',
-            'scripts/world/ashlands_playtest_panel.gd',
-        ]
-        for rel in required:
-            self.assertTrue((ROOT / rel).is_file(), rel)
 
-    def test_navigation_and_return_position_contracts_exist(self):
-        builder = (ROOT / 'scripts/world/ashlands_blockout_builder.gd').read_text(encoding='utf-8')
-        bridge = (ROOT / 'scripts/world/ashlands_combat_bridge.gd').read_text(encoding='utf-8')
-        self.assertIn('agent_radius = 0.6', builder)
-        self.assertIn('PARSED_GEOMETRY_STATIC_COLLIDERS', builder)
-        self.assertIn('return_position', bridge)
-        self.assertIn('_restore_exploration_position', bridge)
 
-    def test_mobile_occlusion_and_ambience_contracts_exist(self):
-        mobile_scene = (ROOT / 'scenes/world/terre_des_cendres/mobile_exploration_controls.tscn').read_text(encoding='utf-8')
-        layout = (ROOT / 'scripts/world/ashlands_layout_generator.gd').read_text(encoding='utf-8')
-        ambience = (ROOT / 'scripts/world/ashlands_ambience_controller.gd').read_text(encoding='utf-8')
-        self.assertIn('anchor_bottom = 1.0', mobile_scene)
-        self.assertIn('ZoomIn', mobile_scene)
-        self.assertIn('OCCLUDABLE_SCRIPT.new()', layout)
-        self.assertIn('AshVFXPlaceholder', ambience)
-        self.assertIn('WindLoopPlaceholder', ambience)
 
     def test_blender_handoff_covers_every_zone_and_slot(self):
         zone_ids = {zone['id'] for zone in self.manifest['zones']}
@@ -229,30 +163,8 @@ class AshlandsPreBlenderTests(unittest.TestCase):
                 self.assertEqual(len(profile['focus_offset']), 3)
                 self.assertTrue(profile['intent'])
 
-    def test_orthographic_zoom_changes_camera_size(self):
-        rig = (ROOT / 'scripts/world/isometric_camera_rig.gd').read_text(encoding='utf-8')
-        self.assertIn('camera.size = distance', rig)
-        self.assertIn('apply_zone_profile(AshlandsRuntime.current_zone_id)', rig)
 
-    def test_playtest_harness_covers_routes_camera_mobile_and_performance(self):
-        session = (ROOT / 'scripts/world/ashlands_playtest_session.gd').read_text(encoding='utf-8')
-        builder = (ROOT / 'scripts/world/ashlands_blockout_builder.gd').read_text(encoding='utf-8')
-        project = (ROOT / 'project.godot').read_text(encoding='utf-8')
-        for gate in ('primary_route_checked', 'bypass_route_checked', 'camera_checked', 'mobile_checked', 'performance'):
-            self.assertIn(gate, session)
-        self.assertIn('OS.is_debug_build()', builder)
-        self.assertIn('AshlandsPlaytestSession=', project)
 
-    def test_pacing_targets_and_route_telemetry_cover_all_zones(self):
-        zone_ids = {zone['id'] for zone in self.manifest['zones']}
-        self.assertEqual(set(self.pacing_targets['zones']), zone_ids)
-        for zone_id, targets in self.pacing_targets['zones'].items():
-            for route in ('primary_seconds', 'bypass_seconds'):
-                self.assertEqual(len(targets[route]), 2, f'{zone_id}:{route}')
-                self.assertLess(targets[route][0], targets[route][1])
-        session = (ROOT / 'scripts/world/ashlands_playtest_session.gd').read_text(encoding='utf-8')
-        for contract in ('duration_seconds', 'distance_m', 'average_speed_mps', 'trail', 'within_target'):
-            self.assertIn(contract, session)
 
     def test_blender_production_jobs_are_complete_and_current(self):
         from tools.blender.generate_ashlands_jobs import build_plan
@@ -267,10 +179,6 @@ class AshlandsPreBlenderTests(unittest.TestCase):
             self.assertEqual(job['deliverables']['collision_policy'], 'keep_blockout_until_approved')
             self.assertGreaterEqual(len(job['approval_gates']), 7)
 
-    def test_project_registers_ashlands_autoloads(self):
-        text = (ROOT / 'project.godot').read_text(encoding='utf-8')
-        for name in ('ExpeditionManager=', 'AshlandsMinibossDirector=', 'AshlandsRuntime=', 'AshlandsSceneRouter='):
-            self.assertIn(name, text)
 
     def test_every_zone_has_an_authored_blueprint(self):
         zone_ids = {z['id'] for z in self.manifest['zones']}

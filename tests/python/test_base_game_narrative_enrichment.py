@@ -90,36 +90,10 @@ def test_rare_reactions_and_banter_are_chapter_bounded():
     assert {int(entry["chapter"]) for entry in data["expedition_banter"]} == set(range(1, 11))
 
 
-def test_side_quest_runtime_loads_supplemental_cycle_zero_stories():
-    runtime = SIDE_RUNTIME.read_text(encoding="utf-8")
-    assert '"res://data/quests.json"' in runtime
-    assert '"res://data/narrative/base_game_side_stories.json"' in runtime
-    assert "func _quest_available(" in runtime
-    assert "available_chapter" in runtime
-    assert "func offered_quests_for_current_chapter(" in runtime
 
 
-def test_enrichment_runtime_is_autoloaded_and_persistent():
-    project = PROJECT.read_text(encoding="utf-8")
-    runtime = ENRICHMENT_RUNTIME.read_text(encoding="utf-8")
-    save = SAVE_MANAGER.read_text(encoding="utf-8")
-    assert 'BaseGameEnrichmentRuntime="*res://scripts/core/base_game_enrichment_runtime.gd"' in project
-    for func in ["request_optional", "request_rare", "request_banter", "request_relationship", "serialize", "deserialize"]:
-        assert f"func {func}(" in runtime
-    assert '"base_game_enrichment": BaseGameEnrichmentRuntime.serialize()' in save
-    assert 'BaseGameEnrichmentRuntime.deserialize(payload.get("base_game_enrichment",{}))' in save
 
 
-def test_side_story_ui_surfaces_supplemental_quests_in_journal():
-    project = PROJECT.read_text(encoding="utf-8")
-    ui = SIDE_STORY_UI.read_text(encoding="utf-8")
-    assert 'BaseGameSideStoryUI="*res://scripts/ui/base_game_side_story_ui.gd"' in project
-    assert "SideQuestRuntime.definitions.keys()" in ui
-    assert "EndgameState.active_cycle <= 0" in ui
-    assert "SideQuestRuntime.accept(quest_id)" in ui
-    assert "SideQuestRuntime.refuse(quest_id)" in ui
-    assert "SideQuestRuntime.track(quest_id)" in ui
-    assert 'screen_name == "quest_journal"' in ui
 
 
 def test_pre_dubbing_contract_covers_core_recurring_cast():

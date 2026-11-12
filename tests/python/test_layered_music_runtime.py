@@ -40,16 +40,3 @@ def test_training_scenarios_define_orchestration_expectations() -> None:
     assert crisis["expect"]["layers"] == ["pulse", "percussion", "strings", "choir", "crisis"]
     boss = next(item for item in scenarios if item["id"] == "boss_final_phase_crisis")
     assert boss["expect"]["layers"][-1] == "crisis"
-
-
-def test_runtime_keeps_stems_running_and_uses_two_banks() -> None:
-    runtime = (ROOT / "scripts/core/layered_music_runtime.gd").read_text(encoding="utf-8")
-    project = (ROOT / "project.godot").read_text(encoding="utf-8")
-    godot_ci = (ROOT / "tools/build/run_godot_ci.sh").read_text(encoding="utf-8")
-    assert 'LayeredMusicRuntime="*res://scripts/core/layered_music_runtime.gd"' in project
-    assert "preview_layer_ids" in runtime
-    assert "player.play(0.0)" in runtime
-    assert "_banks" in runtime and "range(2)" in runtime
-    assert "cue_generation" in runtime
-    assert "narrative_override" in runtime
-    assert "layered_music_smoke.tscn" in godot_ci

@@ -31,34 +31,3 @@ def test_first_map_production_contract_is_complete():
             assert {"idle", "stagger", "phase_change", "death"}.issubset(enemy["animations"])
         else:
             assert {"idle", "fear", "panic", "hit", "death"}.issubset(enemy["animations"])
-
-
-def test_side_quests_are_live_persistent_and_guided():
-    project = (ROOT / "project.godot").read_text(encoding="utf-8")
-    runtime = (ROOT / "scripts/core/side_quest_runtime.gd").read_text(encoding="utf-8")
-    saves = (ROOT / "scripts/core/save_manager.gd").read_text(encoding="utf-8")
-    giver = (ROOT / "scripts/ui/quest_giver_presentation.gd").read_text(encoding="utf-8")
-    assert 'SideQuestRuntime="*res://scripts/core/side_quest_runtime.gd"' in project
-    for state in ("offered", "active", "refused", "failed", "completed"):
-        assert state in runtime
-    for method in ("accept", "refuse", "record_event", "serialize", "deserialize"):
-        assert "func " + method + "(" in runtime
-    assert "request_world_guidance" in runtime
-    assert '"side_quests": SideQuestRuntime.serialize()' in saves
-    assert "SideQuestRuntime.deserialize" in saves
-    assert "SideQuestRuntime.accept(quest_id)" in giver
-    assert "SideQuestRuntime.refuse(quest_id)" in giver
-
-
-def test_equipped_skills_and_consumables_drive_combat():
-    combat = (ROOT / "scripts/ui/main.gd").read_text(encoding="utf-8")
-    assert "for slot in range(4)" in combat
-    assert "HeroSkillManager.combat_loadout" in combat
-    assert "HeroSkillManager.combat_skill" in combat
-    assert "func _use_skill_slot" in combat
-    assert "func _use_combat_item" in combat
-    assert "CombatLoadoutManager.consume" in combat
-    assert 'CombatLoadoutManager.HEAL_SLOT' in combat
-    assert 'CombatLoadoutManager.GRENADE_SLOT' in combat
-    assert 'enemy["burning"] = 2' in combat
-    assert 'enemy["accuracy_down"] = 2' in combat

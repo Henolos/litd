@@ -53,12 +53,6 @@ def test_stale_starting_hero_identities_are_not_active():
     assert STALE_IDS.isdisjoint({h["canonical_id"] for h in heroes})
 
 
-def test_no_legacy_quartet_canonicalization_bridge_remains():
-    source = GAME_STATE_PATH.read_text(encoding="utf-8")
-    assert "CANONICAL_PARTY_IDENTITIES" not in source
-    assert "canonicalize_party_identity" not in source
-    for stale_id in {"malvor", "lysandra", "darius", "sahen_varo", "mira_sen", "narem_osh", "ysra_nahal"}:
-        assert stale_id not in source
 
 
 def test_existing_designs_and_world_constraints_are_preserved():

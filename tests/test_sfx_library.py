@@ -8,10 +8,6 @@ from tools.qa.sfx_library_audit import run
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_sfx_library_audit_is_clean() -> None:
-    payload = run(ROOT)
-    failures = [item for item in payload["checks"] if not item["ok"]]
-    assert not failures, failures
 
 
 def test_sfx_catalog_has_broad_gameplay_coverage() -> None:

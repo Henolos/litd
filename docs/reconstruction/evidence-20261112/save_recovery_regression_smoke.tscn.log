@@ -1,0 +1,9 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ERROR: Failed to open '/tmp/tmp.ch7AbQup1i/godot/app_userdata/Light in the Dark/litd_save_backup_blocked.json.bak'.
+   at: copy (core/io/dir_access.cpp:423)
+   GDScript backtrace (most recent call first):
+       [0] _atomic_write (res://scripts/core/save_manager.gd:204)
+       [1] _test_replacement_failures (res://scripts/tests/save_recovery_regression_smoke_test.gd:65)
+       [2] _run (res://scripts/tests/save_recovery_regression_smoke_test.gd:20)
+SAVE_RECOVERY_REGRESSION_OK

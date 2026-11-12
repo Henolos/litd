@@ -118,24 +118,8 @@ def test_player_created_character_has_no_forced_fixed_dialogue_voice():
                         assert not option["label"].startswith("«"), "player choices must be intentions, not forced quotes"
 
 
-def test_runtime_is_autoloaded_and_can_run_authored_scenes():
-    project = PROJECT.read_text(encoding="utf-8")
-    runtime = RUNTIME.read_text(encoding="utf-8")
-    assert 'MainNarrativeScriptRuntime="*res://scripts/core/main_narrative_script_runtime.gd"' in project
-    assert 'const MANIFEST_PATH := "res://data/narrative/main_script/manifest.json"' in runtime
-    for function_name in [
-        "chapter_script", "chapter_scenes", "scene", "scenes_for_trigger",
-        "start_scene", "advance", "choose", "available_options", "serialize", "deserialize"
-    ]:
-        assert f"func {function_name}(" in runtime
-    assert "EndgameState.active_cycle > 0" in runtime
 
 
-def test_active_main_script_position_is_saved_and_restored():
-    save_manager = SAVE_MANAGER.read_text(encoding="utf-8")
-    assert '"main_narrative_script": MainNarrativeScriptRuntime.serialize()' in save_manager
-    assert 'MainNarrativeScriptRuntime.deserialize(payload.get("main_narrative_script",{}))' in save_manager
-    assert 'payload["main_narrative_script"] = payload.get("main_narrative_script",{})' in save_manager
 
 
 def test_no_known_legacy_english_placeholders_reappear():

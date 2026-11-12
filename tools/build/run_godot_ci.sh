@@ -70,59 +70,18 @@ run_checked() {
   echo "::endgroup::"
 }
 
-run_checked "Import strict du projet" godot --headless --path . --import --quit
-run_checked "Smoke test noyau" godot --headless --path . res://scenes/tests/core_smoke.tscn
-run_checked "Psychologie : Peur, traces durables et manifestations d'Espoir" godot --headless --path . res://scenes/tests/psychology_smoke.tscn
-run_checked "Relations : confiance, admiration, tensions et interposition" godot --headless --path . res://scenes/tests/relationship_smoke.tscn
-run_checked "Mémoire : décisions, convictions et conséquences différées" godot --headless --path . res://scenes/tests/decision_memory_smoke.tscn
-run_checked "Mémoire de terrain : recrutement, retraite, boss et réévaluation" godot --headless --path . res://scenes/tests/field_memory_smoke.tscn
-run_checked "Monde réactif : survivants, ressources et retours différés" godot --headless --path . res://scenes/tests/field_encounter_smoke.tscn
-run_checked "Sanctuaire vivant : personnes, rumeurs et quêtes émergentes" godot --headless --path . res://scenes/tests/community_network_smoke.tscn
-run_checked "Croisements systémiques : choix, cascades, mémoire, routes, économie et anti-rejeu" godot --headless --path . res://scenes/tests/systemic_cross_smoke.tscn
-run_checked "Mise en scène des croisements : retour au Sanctuaire, silences, mortalité et anti-rejeu" godot --headless --path . res://scenes/tests/systemic_cross_narrative_smoke.tscn
-run_checked "Conséquences différées : relations, rumeurs, Rémanence et priorité des scènes" godot --headless --path . res://scenes/tests/systemic_cross_afterlife_smoke.tscn
-run_checked "Relations des Sept : ouverture, friction, rupture, réparation, lien durable et deuil" godot --headless --path . res://scenes/tests/legendary_seven_relationship_smoke.tscn
-run_checked "Narration : bibliothèque transmédiatique, dialogues et mise en scène" godot --headless --path . res://scenes/tests/narrative_library_smoke.tscn
-run_checked "Musique : bibliothèque, licences et accompagnement narratif" godot --headless --path . res://scenes/tests/music_library_smoke.tscn
-run_checked "Bruitages : bibliothèque, licences et sound design" godot --headless --path . res://scenes/tests/sfx_library_smoke.tscn
-run_checked "Audio adaptatif : exploration, combat, Peur et boss" godot --headless --path . res://scenes/tests/audio_director_smoke.tscn
-run_checked "Entraînement musical adaptatif : tension, crise, boss et priorité narrative" godot --headless --path . res://scenes/tests/adaptive_music_smoke.tscn
-run_checked "Orchestration verticale : stems synchronisés sans redémarrer le morceau" godot --headless --path . res://scenes/tests/layered_music_smoke.tscn
-run_checked "Audio audible : PCM local, SFX 2D/3D, loops et crossfades" godot --headless --path . res://scenes/tests/audio_runtime_smoke.tscn
-run_checked "Audio narratif : dialogues, Sanctuaire, silence et motifs" godot --headless --path . res://scenes/tests/narrative_audio_smoke.tscn
-run_checked "Dialogues réactifs : mortalité, voix et quatrième mur" godot --headless --path . res://scenes/tests/dialogue_director_smoke.tscn
-run_checked "Voix synthétiques : manifest approuvé et fallback texte" godot --headless --path . res://scenes/tests/voice_runtime_smoke.tscn
-run_checked "Mise en scène : Physical Bible, proxémie, blocking, caméra et handoff" godot --headless --path . res://scenes/tests/cinematic_direction_smoke.tscn
-run_checked "Corps : Peur, Folie, blessures, locomotion et marqueurs de combat" godot --headless --path . res://scenes/tests/body_state_smoke.tscn
-run_checked "Animation visible : AnimationTree et poses procédurales temporaires" godot --headless --path . res://scenes/tests/body_state_visual_smoke.tscn
-run_checked "Mouvements : compétences, ennemis, boss, interactions et file Blender" godot --headless --path . res://scenes/tests/movement_registry_smoke.tscn
-run_checked "HUD intelligent : divulgation progressive, priorités, journal silencieux et confirmation tactile" godot --headless --path . res://scenes/tests/hud_director_smoke.tscn
-run_checked "Vertical slice visuel : Darius, Goule, shader, caméra et arène proxy" godot --headless --path . res://scenes/tests/visual_vertical_slice_smoke.tscn
-run_checked "Vertical slice runtime : import, animations et mini-combat" godot --headless --path . res://scenes/tests/visual_slice_runtime_smoke.tscn
-run_checked "Parcours campagne I→X, fin, postgame et NG+" godot --headless --path . res://scenes/tests/campaign_e2e_smoke.tscn
-run_checked "Opérations joueur : scènes, expédition, équipement, capture et sauvegarde disque" godot --headless --path . res://scenes/tests/runtime_player_smoke.tscn
-run_checked "Première Descente : tentative unique, chronique et anti-farm" godot --headless --path . res://scenes/tests/first_descent_smoke.tscn
-run_checked "Les Veilleurs VS001 : recrutement, lumière, bruit, Goules et loot" godot --headless --path . res://scenes/tests/veilleurs_vs001_smoke.tscn
-run_checked "Les Veilleurs VS001 physique : S1-S8, collisions, retour et passage secret" timeout 60s godot --headless --path . res://scenes/tests/veilleurs_vs001_physical_smoke.tscn
-run_checked "Les Veilleurs VS001 jouable : quatuor, exploration physique, interactions, combats et secret S8" timeout 90s godot --headless --path . res://scenes/tests/veilleurs_vs001_playable_smoke.tscn
-run_checked "Les Veilleurs VS001 persistance : corps, blessures, recrue, carte et reprise" timeout 90s godot --headless --path . res://scenes/tests/veilleurs_vs001_persistence_ui_smoke.tscn
-run_checked "Les Veilleurs canon : 180 compétences, 12 ultimes, resolvers et cadavres" timeout 90s godot --headless --path . res://scenes/tests/veilleurs_canonical_skills_corpses_smoke.tscn
-run_checked "Les Veilleurs jouables : Entaille, Anatomie et Suture" timeout 90s godot --headless --path . res://scenes/tests/veilleurs_entaille_anatomie_suture_smoke.tscn
-run_checked "Les Veilleurs réactions cliniques : six hooks, transformations et postures" timeout 90s godot --headless --path . res://scenes/tests/veilleurs_clinical_reactions_smoke.tscn
-run_checked "Les Veilleurs Hémocorde : anatomie, hémorragie, choc et garde-fous" timeout 90s godot --headless --path . res://scenes/tests/veilleurs_hemocorde_smoke.tscn
-run_checked "Les Veilleurs Hémocorde réactions : Retour sanguin, Pointe réflexe et budget partagé" timeout 90s godot --headless --path . res://scenes/tests/veilleurs_hemocorde_reactions_smoke.tscn
-run_checked "Hall des Descendants : chronique, morts, relique et retour au Sanctuaire" timeout 60s godot --headless --path . res://scenes/tests/descendants_hall_smoke.tscn
-run_checked "Donjon physique : salles réelles, fog of war et secrets cachés" timeout 60s godot --headless --path . res://scenes/tests/physical_dungeon_smoke.tscn
-run_checked "Blockout 3D : dimensions, collisions, ancres et passages secrets" timeout 60s godot --headless --path . res://scenes/tests/first_veil_proxy_smoke.tscn
-run_checked "Guidage : cendres vers boss et quêtes, couleur selon proximité" timeout 60s godot --headless --path . res://scenes/tests/ash_guidance_smoke.tscn
-run_checked "Parcours UI joueur : Sanctuaire, exploration, combat, récompenses et retour" timeout 90s godot --headless --path . res://scenes/tests/ui_player_journey_smoke.tscn
-run_checked "Interface canonique Les Veilleurs : 10 écrans, hotspots sans rectangles et HUD réel" timeout 90s godot --headless --path . res://scenes/tests/canonical_ui_smoke.tscn
-run_checked "Finition UX canonique : feedbacks, aide contextuelle, états rares et tactile" timeout 90s godot --headless --path . res://scenes/tests/canonical_ux_smoke.tscn
-run_checked "Direction artistique canonique v41 : tokens, slots, morphologies et amputations" timeout 90s godot --headless --path . res://scenes/tests/canonical_art_v41_smoke.tscn
-run_checked "Corps visuel systemique v42 : F3, F4, equipement, transfert d'arme et morphologies" timeout 90s godot --headless --path . res://scenes/tests/body_visual_v42_smoke.tscn
-run_checked "Bâtiments du Sanctuaire : Chapelle, Taverne et Mémorial" timeout 60s godot --headless --path . res://scenes/tests/sanctuary_buildings_smoke.tscn
-run_checked "Mobile tactile : formats iPhone, cibles tactiles et ScreenTouch" timeout 90s godot --headless --path . res://scenes/tests/mobile_touch_smoke.tscn
+sandbox_dir=$(mktemp -d)
+trap 'rm -rf "$sandbox_dir"' EXIT
+export XDG_DATA_HOME="$sandbox_dir"
+export LITD_SAVE_TEST_SANDBOX="$sandbox_dir"
+export LITD_SAVE_DELETE_SANDBOX="$sandbox_dir"
 
-run_checked "Salle QA intégrée : déplacement, dialogue, coffre, butin, états, blessure, cendres et snapshot" timeout 90s godot --headless --path . res://scenes/tests/qa_validation_room_smoke.tscn
+run_checked "Import strict du socle" godot --headless --path . --import --quit
+run_checked "Compilation et génération déterministe" bash tools/ci/run_godot_checked.sh --log "$sandbox_dir/technical.log" --expect TECHNICAL_FOUNDATION_OK -- godot --headless --path . --script res://tests/godot/test_technical_foundation_headless.gd
+run_checked "Intégrité stockage" bash tools/ci/run_godot_checked.sh --log "$sandbox_dir/runtime.log" --expect SAVE_RUNTIME_CONTRACT_PASS -- godot --headless --path . --script res://tests/godot/test_save_runtime_headless.gd
+run_checked "Rejets checksum et version" bash tools/ci/run_godot_checked.sh --log "$sandbox_dir/negative.log" --expect SAVE_NEGATIVE_CONTRACT_PASS -- godot --headless --path . --script res://tests/godot/test_save_negative_headless.gd
+run_checked "Sauvegarde et chargement" bash tools/ci/run_godot_checked.sh --log "$sandbox_dir/roundtrip.log" --expect SAVE_ROUNDTRIP_CONTRACT_PASS -- godot --headless --path . --script res://tests/godot/test_save_roundtrip_headless.gd
+run_checked "Récupération après panne" bash tools/ci/run_godot_checked.sh --log "$sandbox_dir/recovery.log" --expect SAVE_RECOVERY_REGRESSION_OK -- godot --headless --path . res://scenes/tests/save_recovery_regression_smoke.tscn
+run_checked "Isolation des slots" bash tools/ci/run_godot_checked.sh --log "$sandbox_dir/delete.log" --expect SAVE_SLOT0_DELETE_REGRESSION_OK -- godot --headless --path . res://scenes/tests/save_slot0_delete_regression_smoke.tscn
 
 echo "GODOT_CI_STRICT_OK"

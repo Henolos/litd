@@ -20,12 +20,6 @@ def test_combat_contract_has_actions_and_authoritative_markers():
         assert data["combat_actions"][action]["required_markers"]
     assert data["authority"]["gameplay_timing"] == "Godot"
 
-def test_runtime_combines_psychology_injury_personality_and_relation():
-    runtime = (ROOT / "scripts/core/body_state_director.gd").read_text(encoding="utf-8")
-    for token in ["_psychological_state","_physical_state","character_signature","relation_intent","combat_action_plan","hit_reaction","gameplay_timing_scale"]:
-        assert token in runtime
-    assert "mobility_injury" in runtime
-    assert "dismembered_parts" in runtime
 
 def test_blender_handoff_has_no_gameplay_authority():
     data = json.loads((ROOT / "data/body_state_animation_contract.json").read_text(encoding="utf-8"))

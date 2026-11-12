@@ -15,9 +15,6 @@ def _load(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def test_legendary_seven_relationships_audit_is_green() -> None:
-    report = audit_legendary_seven_relationships(ROOT)
-    assert report["ok"], report["errors"]
 
 
 def test_all_twenty_one_unordered_pairs_exist_once() -> None:

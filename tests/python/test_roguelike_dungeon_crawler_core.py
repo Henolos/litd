@@ -51,33 +51,3 @@ def test_loot_and_hazards_are_systemic():
     assert rules["cursed_item_chance"] > 0
     assert rules["unidentified_relic_chance"] > 0
     assert {"fire", "poison_gas", "pit", "light_source", "darkness"} <= set(rules["hazards"])
-
-
-def test_runtime_exposes_roguelike_gameplay_contracts():
-    src = RUNTIME.read_text(encoding="utf-8")
-    for function in (
-        "start_run", "generate_dungeon", "enter_room", "dim_light", "current_risk_profile",
-        "generate_loot", "can_capture", "register_capture", "record_permadeath",
-        "commit_party_deaths", "record_enemy_knowledge", "archive_lore", "unlock_meta",
-        "hazard_interactions", "extraction_summary", "finish_run", "serialize", "deserialize",
-    ):
-        assert f"func {function}(" in src
-    assert 'contains("angel")' in src
-    assert 'contains("ange")' in src
-
-
-def test_expedition_manager_routes_existing_gameplay_into_roguelike_runtime():
-    src = EXPEDITION.read_text(encoding="utf-8")
-    assert 'preload("res://scripts/core/roguelike_runtime.gd")' in src
-    assert "roguelike_runtime.start_run(expedition_seed)" in src
-    assert "roguelike_runtime.commit_party_deaths(reason)" in src
-    assert "roguelike_runtime.finish_run(reason)" in src
-    assert '"roguelike": roguelike_runtime.serialize()' in src
-    assert "roguelike_runtime.deserialize(data.get(\"roguelike\", {}))" in src
-
-
-def test_ultimate_progression_contract_is_preserved():
-    src = RUNTIME.read_text(encoding="utf-8")
-    assert "if level >= 48:" in src
-    assert "if level >= 32:" in src
-    assert "if level >= 16:" in src

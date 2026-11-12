@@ -76,23 +76,8 @@ class RandomEquipmentTests(unittest.TestCase):
         covered = {class_id for affix in specials for class_id in affix.get("classes", [])}
         self.assertEqual({"occultist", "breaker", "vestal", "watcher"}, covered)
 
-    def test_runtime_serializes_seed_counter_instances_and_equipped_slots(self):
-        script = (ROOT / "scripts/core/equipment_manager.gd").read_text(encoding="utf-8")
-        for key in ("instance_id", "seed", "drop_counter", "generation_seed", "equipped_by_hero"):
-            self.assertIn(f'"{key}"', script)
-        self.assertIn("func serialize()", script)
-        self.assertIn("func deserialize(data: Dictionary)", script)
 
-    def test_save_manager_persists_equipment_without_regeneration(self):
-        script = (ROOT / "scripts/core/save_manager.gd").read_text(encoding="utf-8")
-        compact_script = "".join(script.split())
-        self.assertIn('"equipment":EquipmentManager.serialize()', compact_script)
-        self.assertIn('EquipmentManager.deserialize(payload.get("equipment",{}))', compact_script)
 
-    def test_four_test_rooms_award_the_four_class_bundles_in_order(self):
-        script = (ROOT / "scripts/ui/main.gd").read_text(encoding="utf-8")
-        self.assertIn("GameState.expedition_room - 2", script)
-        self.assertIn("EquipmentManager.grant_test_level_bundle", script)
 
     def test_weapon_bonuses_scale_every_three_levels_and_cap_at_three(self):
         def multiplier(level: int) -> float:
@@ -111,21 +96,6 @@ class RandomEquipmentTests(unittest.TestCase):
         }
         self.assertEqual(expected, {level: multiplier(level) for level in expected})
 
-    def test_runtime_scales_all_equipment_using_the_saved_hero_level(self):
-        manager = (ROOT / "scripts/core/equipment_manager.gd").read_text(encoding="utf-8")
-        main = (ROOT / "scripts/ui/main.gd").read_text(encoding="utf-8")
-        self.assertIn("func weapon_level_multiplier(level: int) -> float:", manager)
-        self.assertIn("func effective_bonuses_for_level(item: Dictionary, level: int)", manager)
-        self.assertIn('if slot not in ["weapon", "armor", "ring", "necklace"]:', manager)
-        self.assertIn('if slot != "weapon" and key == "hp_bonus":', manager)
-        self.assertIn('item["slot"] in ["weapon", "armor", "ring", "necklace"]', manager)
-        self.assertIn("MAX_WEAPON_LEVEL_MULTIPLIER: float = 3.0", manager)
-        self.assertIn('return "ring_1"', manager)
-        self.assertIn('return "ring_2"', manager)
-        self.assertIn('slots["ring_1"] = slots["ring"]', manager)
-        self.assertIn('int(hero.get("level", 1))', manager)
-        self.assertIn("effective_bonuses_for_level(item, hero_level)", manager)
-        self.assertIn("EquipmentManager.describe_item(item, hero_level)", main)
 
 
 if __name__ == "__main__":

@@ -47,16 +47,3 @@ def test_bounty_targets_are_valid_for_the_current_dungeon():
         assert archetype["target_source"]
         assert archetype["counts"]
         assert all(count > 0 for count in archetype["counts"])
-
-def test_bounty_runtime_is_saved_and_wired():
-    project = (ROOT / "project.godot").read_text(encoding="utf-8")
-    save = (ROOT / "scripts" / "core" / "save_manager.gd").read_text(encoding="utf-8")
-    game = (ROOT / "scripts" / "core" / "game_state.gd").read_text(encoding="utf-8")
-    combat = (ROOT / "scripts" / "ui" / "main.gd").read_text(encoding="utf-8")
-    journal = (ROOT / "scripts" / "ui" / "quest_journal_ui.gd").read_text(encoding="utf-8")
-    assert 'BountyContractDirector="*res://scripts/core/bounty_contract_director.gd"' in project
-    assert '"bounty_contracts": BountyContractDirector.serialize()' in save
-    assert 'BountyContractDirector.deserialize' in save
-    assert 'BountyContractDirector.reset_new_game()' in game
-    assert 'BountyContractDirector.record_event("enemy_defeated"' in combat
-    assert "CONTRATS DE CHASSE" in journal

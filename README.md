@@ -1,5 +1,7 @@
 # Light in the Dark — LITD Universe
 
+> **Reconstruction LITD 1 — 12 novembre 2026.** Cette branche supprime l’ancien gameplay et conserve le socle technique, le lore et les références artistiques. Aucun jeu n’est actuellement lançable. Les descriptions et commandes historiques ci-dessous ne valent pas validation de cette branche. Voir [périmètre et résultats réels](docs/reconstruction/RESET_20261112.md).
+
 Dépôt Godot principal de **Light in the Dark**, regroupant les systèmes, contenus, outils QA et branches de production de LITD Universe. La cible technique active de **LITD : Les Veilleurs** est Godot 4.7.x, avec CI épinglée sur Godot 4.7.2.
 
 ## LITD : Les Veilleurs

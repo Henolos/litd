@@ -174,30 +174,3 @@ def test_major_choices_have_immediate_and_later_perceptible_consequences():
         for entry in data["consequences"]
         if int(entry["source_chapter"]) < 10
     )
-
-
-def test_runtime_exposes_story_scenes_arcs_revelations_and_consequences_without_extending_ngplus():
-    project = PROJECT.read_text(encoding="utf-8")
-    director = DIRECTOR.read_text(encoding="utf-8")
-    assert 'BaseGameNarrativeDirector="*res://scripts/core/base_game_narrative_director.gd"' in project
-    assert 'const KEY_SCENES_PATH := "res://data/narrative/base_game_key_scenes.json"' in director
-    assert 'const CHARACTER_ARCS_PATH := "res://data/narrative/base_game_character_arcs.json"' in director
-    assert 'const REVELATION_MATRIX_PATH := "res://data/narrative/base_game_revelation_matrix.json"' in director
-    assert 'const CONSEQUENCE_MATRIX_PATH := "res://data/narrative/base_game_consequence_matrix.json"' in director
-    assert 'func current_human_question()' in director
-    assert 'func environmental_beats(' in director
-    assert 'func key_scenes(' in director
-    assert 'func key_scene(' in director
-    assert 'func character_arc(' in director
-    assert 'func character_knowledge(' in director
-    assert 'func revelation(' in director
-    assert 'func revelation_established(' in director
-    assert 'func revelation_can_be_clue(' in director
-    assert 'func consequence(' in director
-    assert 'func consequences_from_chapter(' in director
-    assert 'func consequence_echoes_for_chapter(' in director
-    assert 'func select_and_log(' in director
-    assert 'return EndgameState.active_cycle <= 0' in director
-    assert 'select_and_log("closing", _last_chapter_id)' in director
-    assert 'select_and_log("opening", current_id)' in director
-    assert 'select_and_log("first_major_discovery", current_id)' in director

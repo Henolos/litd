@@ -8,8 +8,6 @@ from tools.playtest.summarize_naive_playtests import summarize
 from tools.qa.veilleurs_playtest_readiness_audit import validate
 
 
-def test_readiness_contract_is_coherent() -> None:
-    assert validate() == []
 
 
 def test_naive_pack_contains_five_neutral_sessions(tmp_path: Path) -> None:

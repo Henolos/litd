@@ -1,30 +1,17 @@
 from pathlib import Path
-import unittest
-
 
 ROOT = Path(__file__).resolve().parents[2]
-PRODUCTION = ROOT / ".github" / "workflows" / "veilleurs-production-automation.yml"
-WINDOWS = ROOT / ".github" / "workflows" / "veilleurs-first-playtest-windows.yml"
 
 
-class SharedGodotRunnerContractTests(unittest.TestCase):
-    def test_production_workflow_uses_shared_checked_runner(self):
-        text = PRODUCTION.read_text(encoding="utf-8")
-        self.assertGreaterEqual(text.count("tools/ci/run_godot_checked.sh"), 8)
-        self.assertNotIn("SCRIPT ERROR:", text)
-
-    def test_windows_playtest_uses_shared_checked_runner(self):
-        text = WINDOWS.read_text(encoding="utf-8")
-        self.assertGreaterEqual(text.count("tools/ci/run_godot_checked.sh"), 7)
-        self.assertNotIn("SCRIPT ERROR:", text)
-        self.assertIn("barichello/godot-ci:4.7.2@sha256:", text)
-
-    def test_shared_runner_changes_trigger_both_workflows(self):
-        production = PRODUCTION.read_text(encoding="utf-8")
-        windows = WINDOWS.read_text(encoding="utf-8")
-        self.assertIn("'tools/ci/run_godot_checked.sh'", production)
-        self.assertEqual(windows.count("'tools/ci/run_godot_checked.sh'"), 2)
+def test_technical_suite_uses_shared_checked_runner_and_result_sentinels():
+    runner = (ROOT / 'tools/build/run_godot_ci.sh').read_text()
+    assert runner.count('tools/ci/run_godot_checked.sh') == 6
+    for token in ['SAVE_RUNTIME_CONTRACT_PASS', 'SAVE_NEGATIVE_CONTRACT_PASS', 'SAVE_ROUNDTRIP_CONTRACT_PASS', 'SAVE_RECOVERY_REGRESSION_OK', 'SAVE_SLOT0_DELETE_REGRESSION_OK', 'TECHNICAL_FOUNDATION_OK']:
+        assert '--expect ' + token in runner
 
 
-if __name__ == "__main__":
-    unittest.main()
+def test_destructive_storage_checks_have_an_isolated_user_directory():
+    runner = (ROOT / 'tools/build/run_godot_ci.sh').read_text()
+    assert 'export XDG_DATA_HOME="$sandbox_dir"' in runner
+    assert 'export LITD_SAVE_TEST_SANDBOX="$sandbox_dir"' in runner
+    assert 'export LITD_SAVE_DELETE_SANDBOX="$sandbox_dir"' in runner

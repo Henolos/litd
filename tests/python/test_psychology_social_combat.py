@@ -6,10 +6,6 @@ from tools.qa.psychology_social_combat_audit import run
 ROOT = Path(__file__).resolve().parents[2]
 
 
-def test_psychology_social_combat_audit_has_no_errors():
-    report = run(ROOT)
-    failed = [f"{item['name']}: {item['detail']}" for item in report["checks"] if not item["ok"]]
-    assert not failed, failed
 
 
 def test_fear_targeting_prefers_terrified_and_panic_states():
