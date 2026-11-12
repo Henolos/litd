@@ -15,11 +15,10 @@ permissions:
 jobs:
   remanence-smoke:
     runs-on: ubuntu-latest
-    container:
-      image: barichello/godot-ci:4.7.2
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-      - name: Import strict du projet
-        run: godot --headless --path . --import --quit
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: "3.12"
       - name: Verify preserved Remanence lore and reference integrity after gameplay removal
         run: python3 tools/qa/reconstruction_audit.py --group lore

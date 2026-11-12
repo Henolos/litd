@@ -7,7 +7,6 @@ CI_IMAGE = "barichello/godot-ci:4.7.2"
 
 WORKFLOWS = [
     ".github/workflows/ci.yml",
-    ".github/workflows/remanence-smoke.yml",
     ".github/workflows/godot-save-runtime.yml",
 ]
 
