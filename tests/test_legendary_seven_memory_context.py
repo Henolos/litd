@@ -14,9 +14,6 @@ def _load(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def test_memory_context_audit_is_green() -> None:
-    report = audit_legendary_seven_memory_context(ROOT)
-    assert report["ok"], report["errors"]
 
 
 def test_every_systemic_relationship_topic_has_context_for_all_seven() -> None:

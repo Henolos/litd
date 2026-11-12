@@ -1,0 +1,2281 @@
+{
+  "passed": 1430,
+  "failed": 372,
+  "collection_errors": 7,
+  "failures": [
+    {
+      "module": "",
+      "test": "tests.python.test_player_interaction_presentation",
+      "kind": "error",
+      "message": "collection failure"
+    },
+    {
+      "module": "",
+      "test": "tests.test_combat_formation_contract",
+      "kind": "error",
+      "message": "collection failure"
+    },
+    {
+      "module": "",
+      "test": "tests.test_combatant_inspection",
+      "kind": "error",
+      "message": "collection failure"
+    },
+    {
+      "module": "",
+      "test": "tests.test_quest_giver_staging",
+      "kind": "error",
+      "message": "collection failure"
+    },
+    {
+      "module": "",
+      "test": "tests.test_quest_givers_and_texts",
+      "kind": "error",
+      "message": "collection failure"
+    },
+    {
+      "module": "",
+      "test": "tests.test_runtime_body_staging",
+      "kind": "error",
+      "message": "collection failure"
+    },
+    {
+      "module": "",
+      "test": "tests.test_unified_game_menu",
+      "kind": "error",
+      "message": "collection failure"
+    },
+    {
+      "module": "tests.python.test_adaptive_music_director",
+      "test": "test_adaptive_music_runtime_contract",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/adaptive_music_director.gd'"
+    },
+    {
+      "module": "tests.python.test_anatomy_system_v2",
+      "test": "test_advanced_anatomy_system_has_no_hard_errors",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_anatomy_system_v2",
+      "test": "test_all_ten_requested_anatomy_steps_are_guarded",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_anatomy_system_v2",
+      "test": "test_unique_boss_anatomies_include_campaign_and_deep_vestiges",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_ash_guidance",
+      "test": "test_dungeon_guidance_points_to_route_not_through_walls",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/dungeon_proxy_room.gd'"
+    },
+    {
+      "module": "tests.python.test_ash_guidance",
+      "test": "test_player_guidance_supports_boss_and_quest_modes",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/dungeon_proxy_explorer.gd'"
+    },
+    {
+      "module": "tests.python.test_ash_guidance",
+      "test": "test_guidance_runtime_uses_swirl_layers_and_proximity",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ash_guidance_trail.gd'"
+    },
+    {
+      "module": "tests.python.test_ash_guidance",
+      "test": "test_boss_route_excludes_hidden_secret_rooms",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/ash_guidance_policy.gd'"
+    },
+    {
+      "module": "tests.python.test_ash_guidance",
+      "test": "test_fear_makes_ash_hesitate_without_changing_objective_axis",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ash_guidance_trail.gd'"
+    },
+    {
+      "module": "tests.python.test_ash_guidance",
+      "test": "test_major_danger_adds_forward_bursts",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ash_guidance_trail.gd'"
+    },
+    {
+      "module": "tests.python.test_ash_guidance",
+      "test": "test_safe_context_calms_particle_motion",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ash_guidance_trail.gd'"
+    },
+    {
+      "module": "tests.python.test_ash_guidance",
+      "test": "test_emotions_are_fed_from_party_risk_and_room_context",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ash_guidance_trail.gd'"
+    },
+    {
+      "module": "tests.python.test_ash_guidance",
+      "test": "test_ash_guidance_is_request_only_and_timed",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ash_guidance_trail.gd'"
+    },
+    {
+      "module": "tests.python.test_ash_guidance",
+      "test": "test_ash_guidance_can_be_requested_by_key_or_touch_double_tap",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/dungeon_proxy_explorer.gd'"
+    },
+    {
+      "module": "tests.python.test_ash_guidance",
+      "test": "test_live_objectives_prioritize_tracked_quest_then_boss_fallback",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/dungeon_proxy_explorer.gd'"
+    },
+    {
+      "module": "tests.python.test_ash_guidance",
+      "test": "test_request_recalculates_and_reports_when_no_path_exists",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/dungeon_proxy_explorer.gd'"
+    },
+    {
+      "module": "tests.python.test_ashlands_politics",
+      "test": "test_political_runtime_is_autoloaded_and_saved",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/political_state.gd'"
+    },
+    {
+      "module": "tests.python.test_ashlands_preblender.AshlandsPreBlenderTests",
+      "test": "test_all_zone_scenes_exist",
+      "kind": "failure",
+      "message": "AssertionError: False is not true : zone_01_faubourg_cendreux.tscn"
+    },
+    {
+      "module": "tests.python.test_ashlands_preblender.AshlandsPreBlenderTests",
+      "test": "test_environmental_lore_has_production_markers",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ashlands_blockout_builder.gd'"
+    },
+    {
+      "module": "tests.python.test_ashlands_preblender.AshlandsPreBlenderTests",
+      "test": "test_lore_runtime_collection_and_reader_contracts_exist",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/lore_collectible.gd'"
+    },
+    {
+      "module": "tests.python.test_ashlands_preblender.AshlandsPreBlenderTests",
+      "test": "test_mobile_occlusion_and_ambience_contracts_exist",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/world/terre_des_cendres/mobile_exploration_controls.tscn'"
+    },
+    {
+      "module": "tests.python.test_ashlands_preblender.AshlandsPreBlenderTests",
+      "test": "test_navigation_and_return_position_contracts_exist",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ashlands_blockout_builder.gd'"
+    },
+    {
+      "module": "tests.python.test_ashlands_preblender.AshlandsPreBlenderTests",
+      "test": "test_orthographic_zoom_changes_camera_size",
+      "kind": "failure",
+      "message": "AssertionError: 'apply_zone_profile(AshlandsRuntime.current_zone_id)' not found in 'extends Node3D\\nclass_name IsometricCameraRig\\n\\nconst CAMERA_PROFILES_PATH := \"res://data/levels/ashlands_camera_profiles.json\"\\n\\n@export var target_path: NodePath\\n@export var zone_profile_id := \"\"\\n@export var pitch_degrees := 40.0\\n@export var yaw_degrees := 45.0\\n@export var distance := 14.0\\n@export var height_offset := 1.5\\n@export var framing_offset := Vector3.ZERO\\n@export var follow_lerp := 8.0\\n@expor"
+    },
+    {
+      "module": "tests.python.test_ashlands_preblender.AshlandsPreBlenderTests",
+      "test": "test_pacing_targets_and_route_telemetry_cover_all_zones",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ashlands_playtest_session.gd'"
+    },
+    {
+      "module": "tests.python.test_ashlands_preblender.AshlandsPreBlenderTests",
+      "test": "test_playtest_harness_covers_routes_camera_mobile_and_performance",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ashlands_playtest_session.gd'"
+    },
+    {
+      "module": "tests.python.test_ashlands_preblender.AshlandsPreBlenderTests",
+      "test": "test_project_registers_ashlands_autoloads",
+      "kind": "failure",
+      "message": "AssertionError: 'ExpeditionManager=' not found in '[application]\\nconfig/name=\"Light in the Dark\"\\nconfig/features=PackedStringArray(\"4.7\")\\n\\n[autoload]\\nGameSettings=\"*res://scripts/core/game_settings.gd\"\\nSaveManager=\"*res://scripts/core/save_manager.gd\"\\nMusicLibrary=\"*res://scripts/core/music_library.gd\"\\nSfxLibrary=\"*res://scripts/core/sfx_library.gd\"\\nPrototypeAudioBank=\"*res://scripts/core/prototype_audio_bank.gd\"\\nSfxRuntime=\"*res://scripts/core/sfx_runtime.gd\"\\n\\n[display]\\nwindow/size"
+    },
+    {
+      "module": "tests.python.test_ashlands_preblender.AshlandsPreBlenderTests",
+      "test": "test_required_runtime_scripts_exist",
+      "kind": "failure",
+      "message": "AssertionError: False is not true : scripts/core/expedition_manager.gd"
+    },
+    {
+      "module": "tests.python.test_balance_audit",
+      "test": "test_balance_audit_has_no_hard_errors",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/hero_skill_manager.gd'"
+    },
+    {
+      "module": "tests.python.test_balance_audit",
+      "test": "test_balance_audit_covers_core_progression_systems",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/hero_skill_manager.gd'"
+    },
+    {
+      "module": "tests.python.test_balance_matrix_sim_v2",
+      "test": "test_runtime_profiles_cover_all_campaign_boss_chapters",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ashlands_combat_bridge.gd'"
+    },
+    {
+      "module": "tests.python.test_balance_matrix_sim_v2",
+      "test": "test_runtime_profiles_use_live_boss_stats",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ashlands_combat_bridge.gd'"
+    },
+    {
+      "module": "tests.python.test_balance_matrix_sim_v2",
+      "test": "test_runtime_aligned_matrix_reports_live_profile_source",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ashlands_combat_bridge.gd'"
+    },
+    {
+      "module": "tests.python.test_balance_matrix_sim_v3",
+      "test": "test_exact_runtime_blocks_keep_minibosses_and_bosses_separate",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ashlands_combat_bridge.gd'"
+    },
+    {
+      "module": "tests.python.test_balance_matrix_sim_v3",
+      "test": "test_exact_runtime_boss_profiles_cover_chapters_one_through_ten",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ashlands_combat_bridge.gd'"
+    },
+    {
+      "module": "tests.python.test_balance_matrix_sim_v3",
+      "test": "test_campaign_normal_pack_and_miniboss_tuning_match_runtime",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ashlands_combat_bridge.gd'"
+    },
+    {
+      "module": "tests.python.test_base_game_narrative_contract",
+      "test": "test_runtime_exposes_story_scenes_arcs_revelations_and_consequences_without_extending_ngplus",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/base_game_narrative_director.gd'"
+    },
+    {
+      "module": "tests.python.test_base_game_narrative_enrichment",
+      "test": "test_side_quest_runtime_loads_supplemental_cycle_zero_stories",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/side_quest_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_base_game_narrative_enrichment",
+      "test": "test_enrichment_runtime_is_autoloaded_and_persistent",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/base_game_enrichment_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_base_game_narrative_enrichment",
+      "test": "test_side_story_ui_surfaces_supplemental_quests_in_journal",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/base_game_side_story_ui.gd'"
+    },
+    {
+      "module": "tests.python.test_body_state_animation_director",
+      "test": "test_runtime_combines_psychology_injury_personality_and_relation",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/body_state_director.gd'"
+    },
+    {
+      "module": "tests.python.test_body_state_visual_adapter",
+      "test": "test_visual_adapter_supports_animation_tree_and_procedural_fallback",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/visual/body_state_visual_adapter.gd'"
+    },
+    {
+      "module": "tests.python.test_body_state_visual_adapter",
+      "test": "test_visual_adapter_receives_all_body_layers",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/visual/body_state_visual_adapter.gd'"
+    },
+    {
+      "module": "tests.python.test_body_state_visual_adapter",
+      "test": "test_visual_slice_controller_is_connected_to_body_adapter",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/visual/visual_slice_animation_controller.gd'"
+    },
+    {
+      "module": "tests.python.test_body_state_visual_adapter",
+      "test": "test_runtime_updates_visible_bodies_after_damage_and_psychology",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/visual/visual_slice_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_campaign_e2e_smoke",
+      "test": "test_campaign_e2e_smoke_script_covers_critical_player_journey",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/campaign_e2e_smoke_test.gd'"
+    },
+    {
+      "module": "tests.python.test_capturable_creatures",
+      "test": "test_creature_runtime_and_save_contracts",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/creature_manager.gd'"
+    },
+    {
+      "module": "tests.python.test_capturable_creatures",
+      "test": "test_creatures_share_the_hero_level_cap",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/game_state.gd'"
+    },
+    {
+      "module": "tests.python.test_capture_health_indicator",
+      "test": "test_capture_readiness_is_centralized_and_respects_unlock_and_threshold",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/creature_manager.gd'"
+    },
+    {
+      "module": "tests.python.test_capture_health_indicator",
+      "test": "test_enemy_health_bar_has_accessible_capture_indicator",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main.gd'"
+    },
+    {
+      "module": "tests.python.test_capture_health_indicator",
+      "test": "test_indicator_handles_insufficient_essence_without_false_ready_state",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_01_vertical_slice",
+      "test": "test_vertical_slice_is_autoloaded_reset_saved_and_visible_in_journal",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/game_state.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_02_runtime",
+      "test": "test_chapter_two_save_version_and_runtime_contracts",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/chapter_02_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_03_runtime",
+      "test": "test_chapter_three_has_six_playable_zones_and_six_actors",
+      "kind": "failure",
+      "message": "AssertionError: assert False\n +  where False = exists()\n +    where exists = (PosixPath('/workspace/scratch/4a2e32cee2b7/litd') / 'scenes/world/chapter_03/c03_abandoned_relay.tscn').exists"
+    },
+    {
+      "module": "tests.python.test_chapter_03_runtime",
+      "test": "test_chapter_three_runtime_builder_router_and_combat_are_connected",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/chapter_03_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_03_runtime",
+      "test": "test_chapter_three_is_autoloaded_saved_reset_and_visible_in_journal",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/game_state.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_04_runtime",
+      "test": "test_chapter_four_world_has_six_scenes_and_twelve_fragments",
+      "kind": "failure",
+      "message": "AssertionError: assert False\n +  where False = exists()\n +    where exists = (PosixPath('/workspace/scratch/4a2e32cee2b7/litd') / 'scenes/world/chapter_04/c04_buried_city.tscn').exists"
+    },
+    {
+      "module": "tests.python.test_chapter_04_runtime",
+      "test": "test_archaeology_requires_cross_source_confirmation",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/chapter_04_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_04_runtime",
+      "test": "test_measure_and_chorus_reach_combat_runtime",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ashlands_combat_bridge.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_04_runtime",
+      "test": "test_chapter_four_is_routed_saved_reset_and_visible_in_journal",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ashlands_scene_router.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_05_runtime",
+      "test": "test_chapter_five_has_eight_stages_and_seven_playable_zones",
+      "kind": "failure",
+      "message": "AssertionError: assert False\n +  where False = exists()\n +    where exists = (PosixPath('/workspace/scratch/4a2e32cee2b7/litd') / 'scenes/world/chapter_05/c05_black_glass_crypts.tscn').exists"
+    },
+    {
+      "module": "tests.python.test_chapter_05_runtime",
+      "test": "test_general_of_silex_is_mechanical_not_hp_sponge",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/chapter_05_boss_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_05_runtime",
+      "test": "test_chapter_five_is_routed_saved_reset_and_visible_in_journal",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ashlands_scene_router.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_06_runtime",
+      "test": "test_chapter_six_world_has_seven_scenes_and_cross_source_signals",
+      "kind": "failure",
+      "message": "AssertionError: assert False\n +  where False = exists()\n +    where exists = (PosixPath('/workspace/scratch/4a2e32cee2b7/litd') / 'scenes/world/chapter_06/c06_timeless_garden.tscn').exists"
+    },
+    {
+      "module": "tests.python.test_chapter_06_runtime",
+      "test": "test_creature_mediation_has_direct_and_non_blocking_proxy_paths",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/chapter_06_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_06_runtime",
+      "test": "test_saen_contact_requires_evidence_but_keeps_ontology_open",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/chapter_06_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_06_runtime",
+      "test": "test_walking_boundary_uses_three_environmental_anchors_without_claiming_agency",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/chapter_06_boss_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_06_runtime",
+      "test": "test_shifted_wayfarer_has_a_real_mechanical_contract",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/chapter_06_boss_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_06_runtime",
+      "test": "test_chapter_six_is_autoloaded_routed_saved_reset_and_in_journal",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ashlands_scene_router.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_07_runtime",
+      "test": "test_living_responsible_world_has_seven_scenes_and_crossed_sources",
+      "kind": "failure",
+      "message": "AssertionError: assert False\n +  where False = exists()\n +    where exists = (PosixPath('/workspace/scratch/4a2e32cee2b7/litd') / 'scenes/world/chapter_07/c07_engineer_refuge.tscn').exists"
+    },
+    {
+      "module": "tests.python.test_chapter_07_runtime",
+      "test": "test_bram_and_veyra_require_old_and_new_evidence_before_status_choice",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/chapter_07_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_07_runtime",
+      "test": "test_edras_and_pilgrim_follow_global_boss_rule",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/chapter_07_boss_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_07_runtime",
+      "test": "test_confined_observation_is_conditional_and_cannot_reopen_the_veil",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/chapter_07_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_07_runtime",
+      "test": "test_chapter_seven_is_autoloaded_routed_saved_reset_and_in_journal",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ashlands_scene_router.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_08_runtime",
+      "test": "test_chapter_eight_has_eight_stage_world_tour_and_four_campaign_quests",
+      "kind": "failure",
+      "message": "AssertionError: assert False\n +  where False = exists()\n +    where exists = (PosixPath('/workspace/scratch/4a2e32cee2b7/litd') / 'scenes/world/chapter_08/c08_varkhane_border.tscn').exists"
+    },
+    {
+      "module": "tests.python.test_chapter_08_runtime",
+      "test": "test_both_chapter_eight_bosses_use_authority_as_a_mechanical_defense",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/chapter_08_boss_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_08_runtime",
+      "test": "test_chapter_eight_runtime_requires_cross_source_understanding",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/chapter_08_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_08_runtime",
+      "test": "test_chapter_eight_is_routed_saved_reset_and_contextually_visible",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ashlands_scene_router.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_08_runtime",
+      "test": "test_each_outer_world_has_an_ancient_trace_and_deep_vestige",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/chapter_08_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_08_runtime",
+      "test": "test_outer_world_vestiges_use_generic_extensible_routing",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/deep_vestige_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_09_runtime",
+      "test": "test_chapter_nine_has_eight_stage_synthesis_loop_and_seven_zones",
+      "kind": "failure",
+      "message": "AssertionError: assert False\n +  where False = exists()\n +    where exists = (PosixPath('/workspace/scratch/4a2e32cee2b7/litd') / 'scenes/world/chapter_09/c09_tree_node.tscn').exists"
+    },
+    {
+      "module": "tests.python.test_chapter_09_runtime",
+      "test": "test_deep_truths_raise_confidence_but_are_not_required_for_stage_two",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/chapter_09_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_09_runtime",
+      "test": "test_consensus_boss_requires_three_perspectives_and_has_three_resolutions",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/chapter_09_boss_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_09_runtime",
+      "test": "test_fear_miniboss_teaches_probability_narrowing_not_creation_from_nothing",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ashlands_combat_bridge.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_09_runtime",
+      "test": "test_chapter_nine_is_routed_saved_reset_and_contextually_visible",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ashlands_scene_router.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_10_runtime",
+      "test": "test_chapter_ten_has_eight_stages_seven_zones_and_campaign_quests",
+      "kind": "failure",
+      "message": "AssertionError: assert False\n +  where False = exists()\n +    where exists = (PosixPath('/workspace/scratch/4a2e32cee2b7/litd') / 'scenes/world/chapter_10/c10_world_council.tscn').exists"
+    },
+    {
+      "module": "tests.python.test_chapter_10_runtime",
+      "test": "test_final_choices_are_inherited_from_campaign_not_created_by_chapter_ten",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/chapter_10_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_10_runtime",
+      "test": "test_unpaid_cost_and_common_rupture_follow_mechanical_boss_rule",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/chapter_10_boss_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_chapter_10_runtime",
+      "test": "test_chapter_ten_is_routed_autoloaded_saved_reset_and_visible",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ashlands_scene_router.gd'"
+    },
+    {
+      "module": "tests.python.test_combat_canonical_portrait_layout",
+      "test": "test_canonical_portraits_reuse_responsive_combat_slots",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main_v52.gd'"
+    },
+    {
+      "module": "tests.python.test_combat_canonical_portrait_layout",
+      "test": "test_rear_line_canonical_starters_keep_real_attacks",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/hero_skill_manager_v2.gd'"
+    },
+    {
+      "module": "tests.python.test_combat_canonical_portrait_layout",
+      "test": "test_skill_and_context_rows_remain_below_hero_area",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main_v30.gd'"
+    },
+    {
+      "module": "tests.python.test_combat_canonical_portrait_layout",
+      "test": "test_hero_profile_reuses_canonical_portraits_without_cropping",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main_v52.gd'"
+    },
+    {
+      "module": "tests.python.test_combat_economy_sim",
+      "test": "test_combat_economy_simulation_has_no_hard_errors",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/hero_skill_manager.gd'"
+    },
+    {
+      "module": "tests.python.test_combat_economy_sim",
+      "test": "test_combat_economy_simulation_covers_required_checkpoints",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/hero_skill_manager.gd'"
+    },
+    {
+      "module": "tests.python.test_combat_economy_sim",
+      "test": "test_combat_economy_simulation_confirms_v2_and_reward_corrections",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/hero_skill_manager.gd'"
+    },
+    {
+      "module": "tests.python.test_combat_four_skill_loadouts",
+      "test": "test_main_scene_activates_four_skill_combat_layer",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_combat_four_skill_loadouts",
+      "test": "test_each_hero_has_exactly_four_interchangeable_combat_skill_slots",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/hero_skill_manager.gd'"
+    },
+    {
+      "module": "tests.python.test_combat_four_skill_loadouts",
+      "test": "test_combat_has_four_skills_plus_separate_context_actions",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main_v30.gd'"
+    },
+    {
+      "module": "tests.python.test_combat_item_transfer_action_cost",
+      "test": "test_v34_item_rules_survive_the_current_main_ui_layer",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main_v34.gd'"
+    },
+    {
+      "module": "tests.python.test_combat_item_transfer_action_cost",
+      "test": "test_transfer_changes_carrier_without_applying_item_effect",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/combat_inventory_rules.gd'"
+    },
+    {
+      "module": "tests.python.test_combat_position_rules",
+      "test": "test_main_scene_activates_position_layer",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_combat_position_rules",
+      "test": "test_position_rules_define_front_and_back_contracts",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/combat_position_rules.gd'"
+    },
+    {
+      "module": "tests.python.test_combat_position_rules",
+      "test": "test_wrong_rank_disables_skill_and_runtime_rejects_it",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main_v31.gd'"
+    },
+    {
+      "module": "tests.python.test_combat_position_rules",
+      "test": "test_position_change_remains_a_separate_turn_action",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main_v30.gd'"
+    },
+    {
+      "module": "tests.python.test_combat_targeting_ranges",
+      "test": "test_targeting_rules_define_four_enemy_ranks_and_frontline_screening",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/combat_targeting_rules.gd'"
+    },
+    {
+      "module": "tests.python.test_combat_targeting_ranges",
+      "test": "test_melee_reach_and_ranged_profiles_are_distinct",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/combat_targeting_rules.gd'"
+    },
+    {
+      "module": "tests.python.test_combat_targeting_ranges",
+      "test": "test_forced_movement_supports_push_and_pull",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/combat_targeting_rules.gd'"
+    },
+    {
+      "module": "tests.python.test_combat_targeting_ranges",
+      "test": "test_targeting_ui_refuses_invalid_target_without_consuming_turn",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main_v32.gd'"
+    },
+    {
+      "module": "tests.python.test_combat_targeting_ranges",
+      "test": "test_main_scene_activates_targeting_layer",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_community_network",
+      "test": "test_community_network_audit_has_no_errors",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/community_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_community_network",
+      "test": "test_living_sanctuary_has_people_rumors_and_emergent_quests_without_moral_meter",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/community_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_community_network",
+      "test": "test_community_save_is_additive_and_keeps_existing_version_contract",
+      "kind": "failure",
+      "message": "assert '\"community\": CommunityRuntime.serialize()' in 'extends Node\\n\\nsignal save_started(slot: int)\\nsignal save_finished(slot: int, success: bool, recovered: bool)\\n\\nco...h: String) -> String:\\n    return path + \".bak\"\\n\\nfunc _temp_for(path: String) -> String:\\n    return path + \".tmp\"\\n'"
+    },
+    {
+      "module": "tests.python.test_complete_python_collection",
+      "test": "test_default_pytest_collection_includes_every_test_module",
+      "kind": "failure",
+      "message": "AssertionError: tests/python/test_adaptive_music_director.py::test_adaptive_music_runtime_contract\n  tests/python/test_adaptive_music_director.py::test_narrative_music_priority_contract\n  tests/python/test_anatomy_system_v2.py::test_advanced_anatomy_system_has_no_hard_errors\n  tests/python/test_anatomy_system_v2.py::test_all_ten_requested_anatomy_steps_are_guarded\n  tests/python/test_anatomy_system_v2.py::test_unique_boss_anatomies_include_campaign_and_deep_vestiges\n  tests/python/test_ancient_v"
+    },
+    {
+      "module": "tests.python.test_context_hud",
+      "test": "test_context_hud_is_autoloaded",
+      "kind": "failure",
+      "message": "assert 'ContextHUD=\"*res://scripts/ui/context_hud.gd\"' in '[application]\\nconfig/name=\"Light in the Dark\"\\nconfig/features=PackedStringArray(\"4.7\")\\n\\n[autoload]\\nGameSettings=...entKey,\"physical_keycode\":45)]}\\n\\ngame_menu={\"deadzone\":0.5,\"events\":[Object(InputEventKey,\"physical_keycode\":73)]}\\n'"
+    },
+    {
+      "module": "tests.python.test_context_hud",
+      "test": "test_hud_is_hidden_by_default_and_only_explicitly_enabled_when_useful",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/context_hud.gd'"
+    },
+    {
+      "module": "tests.python.test_context_hud",
+      "test": "test_hidden_hud_restores_full_screen_content",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/context_hud.gd'"
+    },
+    {
+      "module": "tests.python.test_context_hud",
+      "test": "test_hud_can_be_temporarily_requested_by_contextual_interactions",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/context_hud.gd'"
+    },
+    {
+      "module": "tests.python.test_context_menu_clarity",
+      "test": "test_context_menu_v3_is_active_and_layers_v2",
+      "kind": "failure",
+      "message": "assert 'ContextMenuUI=\"*res://scripts/ui/context_menu_ui_v3.gd\"' in '[application]\\nconfig/name=\"Light in the Dark\"\\nconfig/features=PackedStringArray(\"4.7\")\\n\\n[autoload]\\nGameSettings=...entKey,\"physical_keycode\":45)]}\\n\\ngame_menu={\"deadzone\":0.5,\"events\":[Object(InputEventKey,\"physical_keycode\":73)]}\\n'"
+    },
+    {
+      "module": "tests.python.test_context_menu_clarity",
+      "test": "test_context_menu_uses_progressive_disclosure",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/context_menu_ui_v2.gd'"
+    },
+    {
+      "module": "tests.python.test_context_menu_clarity",
+      "test": "test_inventory_and_journal_have_simple_filters",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/context_menu_ui_v2.gd'"
+    },
+    {
+      "module": "tests.python.test_context_menu_clarity",
+      "test": "test_skills_show_one_branch_at_a_time",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/context_menu_ui_v2.gd'"
+    },
+    {
+      "module": "tests.python.test_context_menu_clarity",
+      "test": "test_options_are_split_into_categories",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/context_menu_ui_v2.gd'"
+    },
+    {
+      "module": "tests.python.test_context_menu_ui",
+      "test": "test_context_menu_is_registered_and_has_input_action",
+      "kind": "failure",
+      "message": "assert 'ContextMenuUI=\"*res://scripts/ui/context_menu_ui_v3.gd\"' in '[application]\\nconfig/name=\"Light in the Dark\"\\nconfig/features=PackedStringArray(\"4.7\")\\n\\n[autoload]\\nGameSettings=...entKey,\"physical_keycode\":45)]}\\n\\ngame_menu={\"deadzone\":0.5,\"events\":[Object(InputEventKey,\"physical_keycode\":73)]}\\n'"
+    },
+    {
+      "module": "tests.python.test_context_menu_ui",
+      "test": "test_context_menu_exposes_requested_tabs_and_live_managers",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/context_menu_ui_v2.gd'"
+    },
+    {
+      "module": "tests.python.test_context_menu_ui",
+      "test": "test_journal_visibly_separates_campaign_and_dungeon_quests",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/context_menu_ui_v2.gd'"
+    },
+    {
+      "module": "tests.python.test_context_menu_ui",
+      "test": "test_options_persist_to_user_config",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/context_menu_ui.gd'"
+    },
+    {
+      "module": "tests.python.test_decision_memory",
+      "test": "test_decision_memory_audit_has_no_errors",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/decision_memory_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_decision_memory",
+      "test": "test_later_events_can_reframe_old_decisions_without_new_hud_meters",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/decision_memory_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_deep_vestige_expansion",
+      "test": "test_deep_vestige_runtime_is_generic_and_persistent",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/deep_vestige_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_deep_vestige_expansion",
+      "test": "test_deep_vestige_bosses_have_distinct_counterplay",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/deep_vestige_boss_runtime_v2.gd'"
+    },
+    {
+      "module": "tests.python.test_deep_vestige_expansion",
+      "test": "test_deep_vestige_ui_lists_all_indexed_dungeons_dynamically",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/deep_vestige_ui.gd'"
+    },
+    {
+      "module": "tests.python.test_deep_vestiges_and_boss_contracts",
+      "test": "test_ashai_vestige_is_full_optional_dungeon_with_high_end_rewards",
+      "kind": "failure",
+      "message": "AssertionError: assert False\n +  where False = exists()\n +    where exists = (PosixPath('/workspace/scratch/4a2e32cee2b7/litd') / 'scenes/world/deep_vestiges/va01_threshold_gallery.tscn').exists"
+    },
+    {
+      "module": "tests.python.test_deep_vestiges_and_boss_contracts",
+      "test": "test_deep_vestige_is_routed_autoloaded_saved_and_reset",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ashlands_scene_router.gd'"
+    },
+    {
+      "module": "tests.python.test_deep_vestiges_and_boss_contracts",
+      "test": "test_seventh_voice_is_connected_to_combat_and_punishes_repetition",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ashlands_combat_bridge.gd'"
+    },
+    {
+      "module": "tests.python.test_descendants_hall_ui",
+      "test": "test_main_scene_uses_descendants_hall_layer",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_descendants_hall_ui",
+      "test": "test_descendants_hall_keeps_progressive_disclosure_contract",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main_v26.gd'"
+    },
+    {
+      "module": "tests.python.test_dismemberment",
+      "test": "test_dismemberment_audit_has_no_hard_errors",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/dismemberment_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_dismemberment",
+      "test": "test_dismemberment_is_tactical_not_instant_boss_kill",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/dismemberment_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_dismemberment",
+      "test": "test_dismemberment_keeps_accessibility_presentation_modes",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/dismemberment_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_displacement_combat",
+      "test": "test_displacement_combat_has_no_hard_errors",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_displacement_combat",
+      "test": "test_displacement_combat_covers_push_pull_fear_and_limb_loss",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_displacement_combat",
+      "test": "test_displacement_combat_has_four_limb_linked_boss_maneuvers",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_dungeon_proxy_web_render_contract",
+      "test": "test_web_room_preserves_static_render_support",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'scripts/world/dungeon_proxy_room_v2.gd'"
+    },
+    {
+      "module": "tests.python.test_dungeon_proxy_web_render_contract",
+      "test": "test_web_room_forces_a_current_camera_after_rebuild",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'scripts/world/dungeon_proxy_room_v2.gd'"
+    },
+    {
+      "module": "tests.python.test_dungeon_proxy_web_render_contract",
+      "test": "test_room_scene_declares_environment_and_lights",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'scenes/dungeon/DungeonProxyRoom.tscn'"
+    },
+    {
+      "module": "tests.python.test_dungeon_proxy_web_render_contract",
+      "test": "test_explorer_scene_declares_current_camera",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'scenes/dungeon/DungeonProxyExplorer.tscn'"
+    },
+    {
+      "module": "tests.python.test_encounter_group_sizes",
+      "test": "test_dungeon_runtime_uses_group_size_contract",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main_v25.gd'"
+    },
+    {
+      "module": "tests.python.test_encounter_group_sizes",
+      "test": "test_campaign_runtime_uses_same_group_size_contract",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ashlands_combat_bridge.gd'"
+    },
+    {
+      "module": "tests.python.test_endgame_postgame_ngplus",
+      "test": "test_endgame_runtime_is_autoloaded_saved_and_supports_both_postgame_paths",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/endgame_state.gd'"
+    },
+    {
+      "module": "tests.python.test_endgame_postgame_ngplus",
+      "test": "test_postgame_ui_exposes_continue_immediate_ngplus_and_optional_legacy_choice",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/endgame_ui.gd'"
+    },
+    {
+      "module": "tests.python.test_endgame_postgame_ngplus",
+      "test": "test_ng_plus_does_not_overwrite_light_in_the_dark_campaign_choices",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/endgame_state.gd'"
+    },
+    {
+      "module": "tests.python.test_enemy_family_tactics",
+      "test": "test_enemy_family_tactics_have_no_hard_errors",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_enemy_family_tactics",
+      "test": "test_all_generic_enemies_are_assigned_exactly_once",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_enemy_family_tactics",
+      "test": "test_family_behaviors_and_limb_reactions_are_distinct",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_environment_interaction_contract",
+      "test": "test_common_contract_exposes_descriptor_and_result_fields",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/environment_interaction_contract.gd'"
+    },
+    {
+      "module": "tests.python.test_environment_interaction_contract",
+      "test": "test_exploration_controller_no_longer_knows_interaction_subtypes",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/exploration_party_controller.gd'"
+    },
+    {
+      "module": "tests.python.test_environment_interaction_contract",
+      "test": "test_representative_environment_objects_implement_common_surface",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/shortcut_gate.gd'"
+    },
+    {
+      "module": "tests.python.test_environment_interaction_contract",
+      "test": "test_specialized_effect_methods_are_preserved",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/shortcut_gate.gd'"
+    },
+    {
+      "module": "tests.python.test_field_encounters",
+      "test": "test_reactive_field_encounter_audit_has_no_errors",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/field_encounter_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_field_encounters",
+      "test": "test_survivor_choice_uses_real_expedition_resources_and_has_no_moral_meter",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/field_encounter_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_field_encounters",
+      "test": "test_reactive_encounters_are_saved_and_injected_into_3d_exploration",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/field_encounter_injector.gd'"
+    },
+    {
+      "module": "tests.python.test_field_memory",
+      "test": "test_field_memory_audit_has_no_errors",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/field_memory_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_field_memory",
+      "test": "test_field_memory_covers_real_campaign_choices_without_new_hud_meter",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/field_memory_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_field_memory",
+      "test": "test_field_memories_keep_context_and_can_change_later",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/field_memory_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_first_descent_challenge",
+      "test": "test_first_descent_runtime_is_persistent_and_non_farmable",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/first_descent_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_first_descent_challenge",
+      "test": "test_expedition_manager_records_attempt_before_play_and_serializes_it",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/expedition_manager.gd'"
+    },
+    {
+      "module": "tests.python.test_first_veil_proxy_spatial_architecture",
+      "test": "test_runtime_resolves_gameplay_anchors_ports_and_connector_types",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/first_veil_proxy_plan_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_first_veil_proxy_spatial_architecture",
+      "test": "test_walkable_proxy_builds_collision_anchors_and_exit_areas",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/dungeon_proxy_room.gd'"
+    },
+    {
+      "module": "tests.python.test_first_veil_proxy_spatial_architecture",
+      "test": "test_main_v28_exposes_walkable_proxy_without_revealing_secrets",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_full_party_combat",
+      "test": "test_full_party_combat_audit_has_no_errors",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_full_party_combat",
+      "test": "test_all_hero_skill_stats_are_consumed",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_full_party_combat",
+      "test": "test_main_scene_routes_through_v15_to_v2_chain",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_godot_domain_selector.GodotDomainSelectorTests",
+      "test": "test_runner_index_covers_all_domains_and_existing_targets",
+      "kind": "failure",
+      "message": "AssertionError: False is not true"
+    },
+    {
+      "module": "tests.python.test_guild_stash",
+      "test": "test_guild_stash_is_saved_and_preserves_item_instances",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/equipment_manager.gd'"
+    },
+    {
+      "module": "tests.python.test_guild_stash",
+      "test": "test_equipped_items_cannot_be_stored",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/equipment_manager.gd'"
+    },
+    {
+      "module": "tests.python.test_guild_stash",
+      "test": "test_guild_chest_is_accessible_from_company",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main.gd'"
+    },
+    {
+      "module": "tests.python.test_hero_relationships",
+      "test": "test_hero_relationships_audit_has_no_errors",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/relationship_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_hero_relationships",
+      "test": "test_relationships_are_persistent_but_not_extra_hud_gauges",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/relationship_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_hero_relationships",
+      "test": "test_relationships_have_combat_and_sanctuary_consequences",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/relationship_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_hero_skill_trees",
+      "test": "test_every_playable_hero_has_three_fifteen_skill_trees",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/hero_skill_manager.gd'"
+    },
+    {
+      "module": "tests.python.test_hero_skill_trees",
+      "test": "test_hero_tree_choice_is_irreversible_and_saved_in_party",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/hero_skill_manager.gd'"
+    },
+    {
+      "module": "tests.python.test_hero_skill_trees",
+      "test": "test_hero_skills_are_available_in_ui_and_combat",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main.gd'"
+    },
+    {
+      "module": "tests.python.test_hero_skill_trees",
+      "test": "test_each_hero_uses_distinct_effect_profiles_and_scaling",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/hero_skill_manager.gd'"
+    },
+    {
+      "module": "tests.python.test_hybrid_dungeon_generation",
+      "test": "test_runtime_uses_hybrid_generator_with_safe_fallback",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/hybrid_dungeon_generator.gd'"
+    },
+    {
+      "module": "tests.python.test_knowledge_discovery_ui_contract",
+      "test": "test_contract_is_read_only_and_reconciles_existing_sources",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/knowledge_discovery_ui_contract.gd'"
+    },
+    {
+      "module": "tests.python.test_knowledge_discovery_ui_contract",
+      "test": "test_dedicated_strict_godot_smoke_is_wired",
+      "kind": "failure",
+      "message": "AssertionError: assert False\n +  where False = exists()\n +    where exists = PosixPath('/workspace/scratch/4a2e32cee2b7/litd/scenes/tests/knowledge_discovery_ui_contract_smoke.tscn').exists"
+    },
+    {
+      "module": "tests.python.test_layered_music_runtime",
+      "test": "test_runtime_keeps_stems_running_and_uses_two_banks",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/layered_music_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_level_scaling_policy",
+      "test": "test_campaign_and_dungeon_level_policies_are_separate",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/level_scaling_policy.gd'"
+    },
+    {
+      "module": "tests.python.test_level_scaling_policy",
+      "test": "test_visible_ui_enforces_and_displays_the_dungeon_requirement",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_main_campaign",
+      "test": "test_campaign_is_autoloaded_reset_saved_and_shown_in_journal",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/game_state.gd'"
+    },
+    {
+      "module": "tests.python.test_main_narrative_full_script",
+      "test": "test_runtime_is_autoloaded_and_can_run_authored_scenes",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/main_narrative_script_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_main_narrative_full_script",
+      "test": "test_active_main_script_position_is_saved_and_restored",
+      "kind": "failure",
+      "message": "assert '\"main_narrative_script\": MainNarrativeScriptRuntime.serialize()' in 'extends Node\\n\\nsignal save_started(slot: int)\\nsignal save_finished(slot: int, success: bool, recovered: bool)\\n\\nco...h: String) -> String:\\n    return path + \".bak\"\\n\\nfunc _temp_for(path: String) -> String:\\n    return path + \".tmp\"\\n'"
+    },
+    {
+      "module": "tests.python.test_main_narrative_theatrical_direction",
+      "test": "test_runtime_attaches_direction_to_scenes_dialogue_and_choice_responses",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/main_narrative_script_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_mobile_3d_room_contract",
+      "test": "test_dungeon_proxy_explorer_scene_is_touch_ready_and_lit",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/dungeon/DungeonProxyExplorer.tscn'"
+    },
+    {
+      "module": "tests.python.test_mobile_3d_room_contract",
+      "test": "test_dungeon_proxy_explorer_v2_exposes_touch_navigation_and_interaction",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/dungeon_proxy_explorer_v2.gd'"
+    },
+    {
+      "module": "tests.python.test_mobile_3d_room_contract",
+      "test": "test_isometric_proxy_room_does_not_render_ceiling_over_camera",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/dungeon_proxy_room_v2.gd'"
+    },
+    {
+      "module": "tests.python.test_mobile_ui_contract",
+      "test": "test_mobile_ui_keeps_aspect_and_routes_through_v15",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_mobile_ui_contract",
+      "test": "test_mobile_touch_targets_and_bounds_are_guarded",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main_v14.gd'"
+    },
+    {
+      "module": "tests.python.test_mobile_ui_contract",
+      "test": "test_mobile_touch_smoke_is_in_strict_godot_ci",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/mobile_touch_smoke_test.gd'"
+    },
+    {
+      "module": "tests.python.test_narrative_audio_scene_hooks",
+      "test": "test_narrative_audio_scene_hooks_are_grounded_in_real_runtime_data",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/narrative_audio_director.gd'"
+    },
+    {
+      "module": "tests.python.test_ngplus_boss_recruitment",
+      "test": "test_recruited_boss_level_tracks_party_average_instead_of_boss_hp_template",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/ngplus_boss_recruitment.gd'"
+    },
+    {
+      "module": "tests.python.test_ngplus_boss_recruitment",
+      "test": "test_ngplus_boss_recruitment_uses_unique_encounter_ids_not_shared_enemy_ids",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/ngplus_boss_recruitment.gd'"
+    },
+    {
+      "module": "tests.python.test_ngplus_boss_recruitment",
+      "test": "test_bosses_remain_unrecruitable_outside_ngplus_but_use_existing_capture_action_inside_it",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/ngplus_boss_recruitment.gd'"
+    },
+    {
+      "module": "tests.python.test_ngplus_boss_recruitment",
+      "test": "test_boss_companions_get_generated_skill_trees_and_keep_signature",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/ngplus_boss_recruitment.gd'"
+    },
+    {
+      "module": "tests.python.test_ngplus_boss_recruitment",
+      "test": "test_boss_recruitment_is_autoloaded_without_changing_regular_creature_roster",
+      "kind": "failure",
+      "message": "assert 'BossRecruitmentState=\"*res://scripts/core/ngplus_boss_recruitment.gd\"' in '[application]\\nconfig/name=\"Light in the Dark\"\\nconfig/features=PackedStringArray(\"4.7\")\\n\\n[autoload]\\nGameSettings=...entKey,\"physical_keycode\":45)]}\\n\\ngame_menu={\"deadzone\":0.5,\"events\":[Object(InputEventKey,\"physical_keycode\":73)]}\\n'"
+    },
+    {
+      "module": "tests.python.test_ngplus_cycle_variants",
+      "test": "test_ngplus_variations_are_connected_to_runtime",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/ngplus_cycle_director.gd'"
+    },
+    {
+      "module": "tests.python.test_ngplus_multitree_skills",
+      "test": "test_hero_skill_manager_keeps_single_tree_initial_cycle_but_opens_ngplus",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/hero_skill_manager.gd'"
+    },
+    {
+      "module": "tests.python.test_ngplus_multitree_skills",
+      "test": "test_creatures_and_boss_recruits_can_mix_trees_in_ngplus",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/creature_manager.gd'"
+    },
+    {
+      "module": "tests.python.test_ngplus_multitree_skills",
+      "test": "test_ngplus_skill_ui_relabels_locked_branches_as_open",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_ngplus_multitree_skills",
+      "test": "test_multitree_does_not_grant_free_points_or_ignore_level_requirements",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/hero_skill_manager.gd'"
+    },
+    {
+      "module": "tests.python.test_outer_world_deep_vestiges",
+      "test": "test_each_outer_world_vestige_has_miniboss_and_boss_combat_identity",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ashlands_combat_bridge.gd'"
+    },
+    {
+      "module": "tests.python.test_outer_world_deep_vestiges",
+      "test": "test_generic_deep_vestige_builder_avoids_twenty_four_duplicate_scenes",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/deep_vestige_blockout_builder.gd'"
+    },
+    {
+      "module": "tests.python.test_physical_first_veil_dungeon",
+      "test": "test_main_scene_activates_physical_dungeon_layer",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_physical_first_veil_dungeon",
+      "test": "test_secret_rooms_are_real_but_not_revealed_before_discovery",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/first_veil_dungeon_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_physical_first_veil_dungeon",
+      "test": "test_macro_map_uses_fog_of_war_and_room_screen",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main_v27.gd'"
+    },
+    {
+      "module": "tests.python.test_physical_first_veil_dungeon",
+      "test": "test_physical_state_is_serialized_inside_existing_run_state",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/first_veil_dungeon_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_political_ui",
+      "test": "test_political_runtime_and_save_contracts",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/political_state.gd'"
+    },
+    {
+      "module": "tests.python.test_project.ProjectTests",
+      "test": "test_autoload_order",
+      "kind": "failure",
+      "message": "ValueError: substring not found"
+    },
+    {
+      "module": "tests.python.test_project.ProjectTests",
+      "test": "test_main_scene",
+      "kind": "failure",
+      "message": "AssertionError: False is not true"
+    },
+    {
+      "module": "tests.python.test_psychology_combat",
+      "test": "test_psychology_combat_audit_has_no_errors",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/psychology_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_psychology_combat",
+      "test": "test_fear_is_the_only_visible_psychological_meter_and_hope_is_event_driven",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main_v16.gd'"
+    },
+    {
+      "module": "tests.python.test_psychology_combat",
+      "test": "test_panic_and_fear_penalties_are_deterministic_and_data_driven",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/psychology_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_psychology_social_combat",
+      "test": "test_psychology_social_combat_audit_has_no_errors",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/psychology_combat_director.gd'"
+    },
+    {
+      "module": "tests.python.test_random_equipment.RandomEquipmentTests",
+      "test": "test_four_test_rooms_award_the_four_class_bundles_in_order",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main.gd'"
+    },
+    {
+      "module": "tests.python.test_random_equipment.RandomEquipmentTests",
+      "test": "test_runtime_scales_all_equipment_using_the_saved_hero_level",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/equipment_manager.gd'"
+    },
+    {
+      "module": "tests.python.test_random_equipment.RandomEquipmentTests",
+      "test": "test_runtime_serializes_seed_counter_instances_and_equipped_slots",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/equipment_manager.gd'"
+    },
+    {
+      "module": "tests.python.test_random_equipment.RandomEquipmentTests",
+      "test": "test_save_manager_persists_equipment_without_regeneration",
+      "kind": "failure",
+      "message": "AssertionError: '\"equipment\":EquipmentManager.serialize()' not found in 'extendsNodesignalsave_started(slot:int)signalsave_finished(slot:int,success:bool,recovered:bool)constSAVE_PATH:=\"user://light_in_the_dark_save.json\"constSAVE_VERSION:=\"0.31\"constSLOT_COUNT:=3constAUTOSAVE_SLOT:=-1constQA_SNAPSHOT_PATH:=\"user://litd_qa_snapshot.json\"varactive_slot:=0varlast_status:=\"\"varlast_operation:=\"\"varsession_started_ms:=0#Opaquesnapshot:thestorageservicenolongerdependsonretiredgamesystems.var_snapshot"
+    },
+    {
+      "module": "tests.python.test_reconciled_bestiary_manifest",
+      "test": "test_complete_collection_claim_requires_every_registered_original",
+      "kind": "failure",
+      "message": "AssertionError: assert {'art/library....import', ...} == {'art/library...ce.jpeg', ...}\n  \n  Extra items in the left set:\n  'art/library/bestiary/basilisk/reference.jpeg.import'\n  'art/library/bestiary/oni/reference.jpeg.import'\n  'art/library/bestiary/cerberus/reference.jpeg.import'\n  'art/library/bestiary/hydra/reference.jpeg.import'\n  'art/library/bestiary/kappa/reference.jpeg.import'...\n  \n  ...Full output truncated (17 lines hidden), use '-vv' to show"
+    },
+    {
+      "module": "tests.python.test_roguelike_dungeon_crawler_core",
+      "test": "test_runtime_exposes_roguelike_gameplay_contracts",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/roguelike_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_roguelike_dungeon_crawler_core",
+      "test": "test_expedition_manager_routes_existing_gameplay_into_roguelike_runtime",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/expedition_manager.gd'"
+    },
+    {
+      "module": "tests.python.test_roguelike_dungeon_crawler_core",
+      "test": "test_ultimate_progression_contract_is_preserved",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/roguelike_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_roguelike_telemetry_sim_v2",
+      "test": "test_v2_detects_effective_light_interval_through_ui_compensation",
+      "kind": "failure",
+      "message": "assert 1 == 2"
+    },
+    {
+      "module": "tests.python.test_roguelike_visible_ui",
+      "test": "test_main_scene_uses_roguelike_ui_layer",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_roguelike_visible_ui",
+      "test": "test_visible_expedition_uses_procedural_runtime",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main_v24.gd'"
+    },
+    {
+      "module": "tests.python.test_roguelike_visible_ui",
+      "test": "test_visible_ui_exposes_push_your_luck_choices",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main_v24.gd'"
+    },
+    {
+      "module": "tests.python.test_roguelike_visible_ui",
+      "test": "test_visible_capture_respects_roguelike_gate_before_creature_manager",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main_v24.gd'"
+    },
+    {
+      "module": "tests.python.test_runtime_player_smoke",
+      "test": "test_runtime_player_smoke_covers_real_player_operations",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/runtime_player_smoke_test.gd'"
+    },
+    {
+      "module": "tests.python.test_sanctuary_buildings",
+      "test": "test_sanctuary_buildings_audit_has_no_errors",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_sanctuary_buildings",
+      "test": "test_sanctuary_v16_keeps_v15_mobile_layer_and_three_real_screens",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_sanctuary_buildings",
+      "test": "test_memorial_is_limited_per_chapter_and_tavern_chapel_cost_resources",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main_v16.gd'"
+    },
+    {
+      "module": "tests.python.test_sanctuary_buildings",
+      "test": "test_psychology_v16_exposes_fear_but_not_numeric_madness_or_hope",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main_v16.gd'"
+    },
+    {
+      "module": "tests.python.test_sanctuary_states",
+      "test": "test_state_runtime_is_driven_by_politics_resources_and_campaign_flags",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/sanctuary_state.gd'"
+    },
+    {
+      "module": "tests.python.test_sanctuary_states",
+      "test": "test_sanctuary_state_is_in_quest_journal_not_large_sanctuary_banner",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/quest_journal_ui.gd'"
+    },
+    {
+      "module": "tests.python.test_save_schema",
+      "test": "test_save_manager_mentions_all_schema_keys",
+      "kind": "failure",
+      "message": "assert '\"creatures\"' in 'extends Node\\n\\nsignal save_started(slot: int)\\nsignal save_finished(slot: int, success: bool, recovered: bool)\\n\\nco...h: String) -> String:\\n    return path + \".bak\"\\n\\nfunc _temp_for(path: String) -> String:\\n    return path + \".tmp\"\\n'"
+    },
+    {
+      "module": "tests.python.test_skill_tree_ui_v33",
+      "test": "test_v33_preserves_loadout_and_ports_focused_skill_tree_ui",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main_v33.gd'"
+    },
+    {
+      "module": "tests.python.test_social_politics",
+      "test": "test_runtime_persists_events_and_world_memory_and_ui_exposes_social_layer",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/political_state.gd'"
+    },
+    {
+      "module": "tests.python.test_systemic_cross_narrative_runtime",
+      "test": "test_systemic_cross_narrative_audit_passes",
+      "kind": "failure",
+      "message": "AssertionError: {'errors': ['Fichier requis absent: scripts/core/systemic_cross_narrative_runtime.gd', 'Fichier requis absent: scripts...'Fichier requis absent: scenes/tests/systemic_cross_narrative_smoke.tscn'], 'ok': False, 'summary': {}, 'warnings': []}\nassert False"
+    },
+    {
+      "module": "tests.python.test_systemic_cross_narrative_runtime",
+      "test": "test_runtime_has_no_new_morality_or_reputation_meter",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/systemic_cross_narrative_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_systemic_cross_runtime",
+      "test": "test_systemic_cross_runtime_audit_passes",
+      "kind": "failure",
+      "message": "AssertionError: {'errors': ['Fichier requis absent: scripts/core/systemic_cross_runtime.gd', 'Fichier requis absent: scripts/core/comm...trap.gd', 'Fichier requis absent: scenes/tests/systemic_cross_smoke.tscn'], 'ok': False, 'summary': {}, 'warnings': []}\nassert False"
+    },
+    {
+      "module": "tests.python.test_systemic_cross_runtime",
+      "test": "test_runtime_keeps_moral_scores_out_of_cross_consequences",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/systemic_cross_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_systemic_cross_runtime",
+      "test": "test_save_contract_keeps_existing_version_and_adds_systemic_state",
+      "kind": "failure",
+      "message": "assert '\"systemic_cross\": SystemicCrossRuntime.serialize()' in 'extends Node\\n\\nsignal save_started(slot: int)\\nsignal save_finished(slot: int, success: bool, recovered: bool)\\n\\nco...h: String) -> String:\\n    return path + \".bak\"\\n\\nfunc _temp_for(path: String) -> String:\\n    return path + \".tmp\"\\n'"
+    },
+    {
+      "module": "tests.python.test_systemic_cross_runtime",
+      "test": "test_existing_economy_consumes_cross_pressure_without_changing_reputation",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/political_state.gd'"
+    },
+    {
+      "module": "tests.python.test_systemic_cross_runtime",
+      "test": "test_named_death_and_anti_replay_are_covered_by_godot_smoke",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/systemic_cross_smoke_test.gd'"
+    },
+    {
+      "module": "tests.python.test_tactical_combat",
+      "test": "test_tactical_combat_has_no_hard_errors",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_tactical_combat",
+      "test": "test_tactical_combat_has_four_unique_initial_ranks_and_profiles",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_tactical_combat",
+      "test": "test_tactical_combat_locks_movement_targeting_techniques_and_synergies",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_ui_player_journey_smoke",
+      "test": "test_ui_player_journey_drives_real_interface_and_scene_changes",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/ui_player_journey_smoke_test.gd'"
+    },
+    {
+      "module": "tests.python.test_ui_player_journey_smoke",
+      "test": "test_real_campaign_expedition_and_reward_ui_are_connected",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main_v13.gd'"
+    },
+    {
+      "module": "tests.python.test_validated_hero_art_library.ValidatedHeroArtLibraryTests",
+      "test": "test_quartet_runtime_mapping_remains_unchanged",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main_v52.gd'"
+    },
+    {
+      "module": "tests.python.test_veilleurs_canonical_roster",
+      "test": "test_no_legacy_quartet_canonicalization_bridge_remains",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/game_state.gd'"
+    },
+    {
+      "module": "tests.python.test_veilleurs_ten_system_integration",
+      "test": "test_01_characters_and_stats_are_connected_to_runtime",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/game_state.gd'"
+    },
+    {
+      "module": "tests.python.test_veilleurs_ten_system_integration",
+      "test": "test_02_skills_and_effects_use_the_canonical_veilleurs_contract",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/world/veilleurs/voices_under_sanctuary_playable.tscn'"
+    },
+    {
+      "module": "tests.python.test_veilleurs_ten_system_integration",
+      "test": "test_03_states_and_statuses_are_resolved_in_the_combat_pipeline",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/veilleurs_combat_sandbox_runtime.gd'"
+    },
+    {
+      "module": "tests.python.test_veilleurs_ten_system_integration",
+      "test": "test_04_enemy_ai_keeps_family_tactics_and_observed_reactions",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.python.test_veilleurs_ten_system_integration",
+      "test": "test_05_equipment_and_loot_share_persistent_item_instances",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/equipment_manager.gd'"
+    },
+    {
+      "module": "tests.python.test_veilleurs_ten_system_integration",
+      "test": "test_06_inventory_has_one_authority_instead_of_a_duplicate_manager",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/equipment_manager.gd'"
+    },
+    {
+      "module": "tests.python.test_veilleurs_ten_system_integration",
+      "test": "test_07_expeditions_connect_generation_inventory_and_save_state",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/expedition_manager.gd'"
+    },
+    {
+      "module": "tests.python.test_veilleurs_ten_system_integration",
+      "test": "test_08_save_and_remanence_round_trip_the_systemic_state",
+      "kind": "failure",
+      "message": "AssertionError: assert ['missing:bri...view.gd', ...] == []\n  \n  Left contains 7 more items, first extra item: 'missing:bridge:scripts/world/veilleurs_vs001_playable_bridge.gd'\n  Use -v to get more diff"
+    },
+    {
+      "module": "tests.python.test_veilleurs_ten_system_integration",
+      "test": "test_09_ui_ux_is_connected_to_the_playable_slice_contract",
+      "kind": "failure",
+      "message": "AssertionError: assert ['missing_fil...orld.gd', ...] == []\n  \n  Left contains 8 more items, first extra item: 'missing_file:scenes/world/veilleurs/voices_under_sanctuary_playable.tscn'\n  Use -v to get more diff"
+    },
+    {
+      "module": "tests.python.test_veilleurs_ten_system_integration",
+      "test": "test_10_vertical_slice_is_technically_ready_without_faking_human_playtests",
+      "kind": "failure",
+      "message": "AssertionError: assert ['missing_fil...orld.gd', ...] == []\n  \n  Left contains 8 more items, first extra item: 'missing_file:scenes/world/veilleurs/voices_under_sanctuary_playable.tscn'\n  Use -v to get more diff"
+    },
+    {
+      "module": "tests.python.test_veilleurs_ten_system_integration",
+      "test": "test_tactical_movement_and_corpses_are_in_the_same_validation_gate",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.test_audio_director",
+      "test": "test_audio_director_contract_is_complete",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/audio_director.gd'"
+    },
+    {
+      "module": "tests.test_audio_runtime",
+      "test": "test_audio_runtime_contract",
+      "kind": "failure",
+      "message": "AssertionError: assert ['missing req...ontroller.gd'] == []\n  \n  Left contains 2 more items, first extra item: 'missing required audio runtime file: scripts/core/audio_director.gd'\n  Use -v to get more diff"
+    },
+    {
+      "module": "tests.test_canonical_target_contract_v2",
+      "test": "test_target_resolver_owns_rank_and_body_zone_contract",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/combat/veilleurs_target_resolver.gd'"
+    },
+    {
+      "module": "tests.test_canonical_target_contract_v2",
+      "test": "test_sandbox_checks_target_contract_before_canonical_resolution",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/veilleurs_combat_sandbox_runtime.gd'"
+    },
+    {
+      "module": "tests.test_canonical_target_contract_v2",
+      "test": "test_existing_death_compaction_remains_the_only_formation_compaction_path",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/combat_position_runtime.gd'"
+    },
+    {
+      "module": "tests.test_cinematic_canonical_quartet",
+      "test": "test_cinematic_smoke_targets_current_canon",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/cinematic_direction_smoke_test.gd'"
+    },
+    {
+      "module": "tests.test_complete_pre_pc_workstreams",
+      "test": "test_enemy_combat_is_contextual_and_connected",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/enemy_combat_director.gd'"
+    },
+    {
+      "module": "tests.test_complete_pre_pc_workstreams",
+      "test": "test_menu_finishes_bestiary_records_comparison_and_accessibility",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/game_menu_ui.gd'"
+    },
+    {
+      "module": "tests.test_contextual_exploration_hud",
+      "test": "test_exploration_hud_is_invisible_by_default_and_event_driven",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/hud_director.gd'"
+    },
+    {
+      "module": "tests.test_contextual_exploration_hud",
+      "test": "test_exploration_information_has_bounded_lifetimes",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/hud_director.gd'"
+    },
+    {
+      "module": "tests.test_contextual_exploration_hud",
+      "test": "test_status_is_explicit_and_cross_input_ready",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/context_hud.gd'"
+    },
+    {
+      "module": "tests.test_contextual_exploration_hud",
+      "test": "test_combat_and_full_menus_clear_exploration_overlay",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/context_hud.gd'"
+    },
+    {
+      "module": "tests.test_contextual_exploration_hud",
+      "test": "test_cinders_remain_world_guidance_without_hud_marker",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/hud_director.gd'"
+    },
+    {
+      "module": "tests.test_contextual_exploration_hud",
+      "test": "test_quest_updates_use_contextual_overlay",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/side_quest_runtime.gd'"
+    },
+    {
+      "module": "tests.test_contextual_exploration_hud",
+      "test": "test_fear_and_hope_are_postures_not_visible_gauges",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/context_hud.gd'"
+    },
+    {
+      "module": "tests.test_contextual_exploration_hud",
+      "test": "test_fear_penalizes_and_hope_rewards_combat",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/psychology_runtime.gd'"
+    },
+    {
+      "module": "tests.test_dialogue_library",
+      "test": "test_dialogue_library_audit_has_no_errors",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/narrative_library.gd'"
+    },
+    {
+      "module": "tests.test_dialogue_library",
+      "test": "test_dialogue_library_keeps_sources_as_abstract_reference_only",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/narrative_library.gd'"
+    },
+    {
+      "module": "tests.test_dialogue_library",
+      "test": "test_dialogue_library_covers_voice_staging_and_subtext",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/narrative_library.gd'"
+    },
+    {
+      "module": "tests.test_first_map_ancient_dungeon",
+      "test": "test_dungeon_scene_and_router_are_registered",
+      "kind": "failure",
+      "message": "AssertionError: assert False\n +  where False = exists()\n +    where exists = PosixPath('/workspace/scratch/4a2e32cee2b7/litd/scenes/world/terre_des_cendres/zone_16_salles_du_premier_accord.tscn').exists"
+    },
+    {
+      "module": "tests.test_first_map_ancient_dungeon",
+      "test": "test_dangerous_entry_requires_a_second_confirmation",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/zone_transition_gate.gd'"
+    },
+    {
+      "module": "tests.test_first_map_ancient_dungeon",
+      "test": "test_authored_map_builder_replaces_generic_dungeon_layout",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ashlands_blockout_builder.gd'"
+    },
+    {
+      "module": "tests.test_first_map_gameplay_completion",
+      "test": "test_side_quests_are_live_persistent_and_guided",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/side_quest_runtime.gd'"
+    },
+    {
+      "module": "tests.test_first_map_gameplay_completion",
+      "test": "test_equipped_skills_and_consumables_drive_combat",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main.gd'"
+    },
+    {
+      "module": "tests.test_first_map_quests_and_bounties",
+      "test": "test_bounty_runtime_is_saved_and_wired",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/game_state.gd'"
+    },
+    {
+      "module": "tests.test_hud_director_contract",
+      "test": "test_runtime_and_smoke_are_wired",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/hud_director.gd'"
+    },
+    {
+      "module": "tests.test_legendary_seven_memory_context",
+      "test": "test_memory_context_audit_is_green",
+      "kind": "failure",
+      "message": "AssertionError: ['Fichier requis absent: scripts/core/legendary_seven_relationship_runtime.gd', 'Fichier requis absent: scripts/core/legendary_seven_relationship_smoke_test.gd']\nassert False"
+    },
+    {
+      "module": "tests.test_legendary_seven_relationships",
+      "test": "test_legendary_seven_relationships_audit_is_green",
+      "kind": "failure",
+      "message": "AssertionError: ['Fichier requis absent: scripts/core/legendary_seven_relationship_runtime.gd', 'Fichier requis absent: scripts/core/l..._seven_relationship_smoke_bootstrap.gd', 'Fichier requis absent: scenes/tests/legendary_seven_relationship_smoke.tscn']\nassert False"
+    },
+    {
+      "module": "tests.test_living_exploration",
+      "test": "test_all_twelve_exploration_pillars_are_implemented",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/exploration_director.gd'"
+    },
+    {
+      "module": "tests.test_living_exploration",
+      "test": "test_exploration_uses_world_cues_not_permanent_markers",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/exploration_director.gd'"
+    },
+    {
+      "module": "tests.test_living_exploration",
+      "test": "test_roles_use_posture_traits_and_injuries",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/exploration_director.gd'"
+    },
+    {
+      "module": "tests.test_living_exploration",
+      "test": "test_patrols_react_to_noise_and_hero_reputation",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/exploration_director.gd'"
+    },
+    {
+      "module": "tests.test_living_exploration",
+      "test": "test_retreat_has_real_retention_and_pursuit_consequences",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/expedition_manager.gd'"
+    },
+    {
+      "module": "tests.test_living_exploration",
+      "test": "test_exploration_state_is_saved_and_reset",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/game_state.gd'"
+    },
+    {
+      "module": "tests.test_living_exploration",
+      "test": "test_camp_uses_any_available_healing_capability",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/exploration_director.gd'"
+    },
+    {
+      "module": "tests.test_music_library",
+      "test": "test_music_library_audit_is_green",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/music_library_smoke_test.gd'"
+    },
+    {
+      "module": "tests.test_narrative_audio",
+      "test": "test_narrative_audio_contract_is_valid",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/narrative_audio_director.gd'"
+    },
+    {
+      "module": "tests.test_narrative_library",
+      "test": "test_narrative_library_audit_has_no_errors",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/narrative_library.gd'"
+    },
+    {
+      "module": "tests.test_narrative_library",
+      "test": "test_sidequests_mix_multiple_narrative_families",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/narrative_library.gd'"
+    },
+    {
+      "module": "tests.test_opening_bird_intro",
+      "test": "test_proxy_contains_people_arts_fleet_and_four_heroes",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/cinematics/opening_city_proxy_builder.gd'"
+    },
+    {
+      "module": "tests.test_opening_bird_intro",
+      "test": "test_runtime_connects_city_heroes_and_contextual_tutorial",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/cinematics/opening_bird_intro_director.gd'"
+    },
+    {
+      "module": "tests.test_opening_bird_intro",
+      "test": "test_first_zone_injects_opening_only_once",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ashlands_blockout_builder.gd'"
+    },
+    {
+      "module": "tests.test_persistent_injuries_and_context_traits",
+      "test": "test_any_character_with_healing_capability_treats_every_injury",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/persistent_injury_runtime.gd'"
+    },
+    {
+      "module": "tests.test_persistent_injuries_and_context_traits",
+      "test": "test_ambidextrous_is_contextual_and_respects_two_handed_weapons",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/character_trait_director.gd'"
+    },
+    {
+      "module": "tests.test_persistent_injuries_and_context_traits",
+      "test": "test_persistent_injuries_are_wired_to_gameplay_and_save",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/game_state.gd'"
+    },
+    {
+      "module": "tests.test_playtest_p0_ux_contract",
+      "test": "test_player_main_keeps_playtest_ux_layers_active",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.test_playtest_p0_ux_contract",
+      "test": "test_hub_and_mission_departure_remain_guided",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main_v51.gd'"
+    },
+    {
+      "module": "tests.test_playtest_p0_ux_contract",
+      "test": "test_room_navigation_is_direct_and_macro_map_is_optional",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main_v51.gd'"
+    },
+    {
+      "module": "tests.test_playtest_p0_ux_contract",
+      "test": "test_combatant_inspection_remains_bound_to_heroes_and_enemies",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main.gd'"
+    },
+    {
+      "module": "tests.test_playtest_p0_ux_contract",
+      "test": "test_combatant_inspection_is_contextual_and_keeps_controls_available",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/combatant_inspection_ui.gd'"
+    },
+    {
+      "module": "tests.test_playtest_p0_ux_contract",
+      "test": "test_enemy_inspection_uses_canonical_knowledge_before_revealing_details",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/veilleurs_ui_state_adapter.gd'"
+    },
+    {
+      "module": "tests.test_progressive_system_unlocks",
+      "test": "test_campaign_progression_can_never_require_grinding",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/content_scope_director.gd'"
+    },
+    {
+      "module": "tests.test_progressive_system_unlocks",
+      "test": "test_injuries_are_persistent_and_contextually_explained",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/persistent_injury_runtime.gd'"
+    },
+    {
+      "module": "tests.test_progressive_system_unlocks",
+      "test": "test_progression_state_is_saved",
+      "kind": "failure",
+      "message": "assert 'ContentScopeDirector=\"*res://scripts/core/content_scope_director.gd\"' in '[application]\\nconfig/name=\"Light in the Dark\"\\nconfig/features=PackedStringArray(\"4.7\")\\n\\n[autoload]\\nGameSettings=...entKey,\"physical_keycode\":45)]}\\n\\ngame_menu={\"deadzone\":0.5,\"events\":[Object(InputEventKey,\"physical_keycode\":73)]}\\n'"
+    },
+    {
+      "module": "tests.test_progressive_system_unlocks",
+      "test": "test_world_activity_is_not_gated_by_progression",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/exploration_director.gd'"
+    },
+    {
+      "module": "tests.test_progressive_system_unlocks",
+      "test": "test_locked_capabilities_are_hidden_in_ui",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main.gd'"
+    },
+    {
+      "module": "tests.test_qa_validation_room",
+      "test": "test_qa_room_uses_real_interaction_and_combat_contracts",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/qa/qa_test_room_controller.gd'"
+    },
+    {
+      "module": "tests.test_qa_validation_room",
+      "test": "test_qa_room_is_routable_but_hidden_from_production_menu",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/ashlands_scene_router.gd'"
+    },
+    {
+      "module": "tests.test_sfx_library",
+      "test": "test_sfx_library_audit_is_clean",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/sfx_library_smoke_test.gd'"
+    },
+    {
+      "module": "tests.test_skill_production_scope",
+      "test": "test_hero_catalog_is_preserved_but_production_is_bounded",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/hero_skill_manager.gd'"
+    },
+    {
+      "module": "tests.test_skill_production_scope",
+      "test": "test_current_ui_hides_reserve_without_deleting_it",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main_v33.gd'"
+    },
+    {
+      "module": "tests.test_twelve_reference_gaps",
+      "test": "test_campaign_bounties_are_offered_and_acceptable",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/bounty_contract_director.gd'"
+    },
+    {
+      "module": "tests.test_twelve_reference_gaps",
+      "test": "test_accessibility_and_audio_are_applied",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/accessibility_director.gd'"
+    },
+    {
+      "module": "tests.test_twelve_reference_gaps",
+      "test": "test_tactical_preview_and_partial_timeline_are_live",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/combat_preview_director.gd'"
+    },
+    {
+      "module": "tests.test_twelve_reference_gaps",
+      "test": "test_effect_tooltips_explain_full_lifecycle",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/effect_tooltip_formatter.gd'"
+    },
+    {
+      "module": "tests.test_twelve_reference_gaps",
+      "test": "test_expedition_reports_cover_requested_outcomes",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/expedition_report_director.gd'"
+    },
+    {
+      "module": "tests.test_twelve_reference_gaps",
+      "test": "test_preparation_presets_and_nonblocking_warnings",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/expedition_preparation_director.gd'"
+    },
+    {
+      "module": "tests.test_twelve_reference_gaps",
+      "test": "test_replayable_help_and_glossary_are_complete",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/game_menu_ui.gd'"
+    },
+    {
+      "module": "tests.test_twelve_reference_gaps",
+      "test": "test_campaign_memory_and_progressive_codex_are_persistent",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/campaign_memory_director.gd'"
+    },
+    {
+      "module": "tests.test_twelve_reference_gaps",
+      "test": "test_expanded_audio_options_are_visible",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/game_menu_ui.gd'"
+    },
+    {
+      "module": "tests.test_twelve_reference_gaps",
+      "test": "test_ui_navigation_is_consolidated_without_new_numbered_layer",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/ui_section_registry.gd'"
+    },
+    {
+      "module": "tests.test_twelve_reference_gaps",
+      "test": "test_all_new_modules_are_registered_and_reset",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/game_state.gd'"
+    },
+    {
+      "module": "tests.test_veilleurs_affliction_builds",
+      "test": "test_affliction_runtime_reuses_shared_status_and_hit_resolvers",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/veilleurs_affliction_skill_runtime.gd'"
+    },
+    {
+      "module": "tests.test_veilleurs_affliction_synergy_runtime",
+      "test": "test_runtime_reuses_status_resolver_and_does_not_duplicate_damage",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/combat/veilleurs_affliction_synergy_runtime.gd'"
+    },
+    {
+      "module": "tests.test_veilleurs_affliction_synergy_runtime",
+      "test": "test_three_declared_cross_build_synergies_have_runtime_receipts",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/combat/veilleurs_affliction_synergy_runtime.gd'"
+    },
+    {
+      "module": "tests.test_veilleurs_canonical_skills",
+      "test": "test_veilleurs_canonical_skills_contract_is_coherent",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/world/veilleurs/voices_under_sanctuary_playable.tscn'"
+    },
+    {
+      "module": "tests.test_veilleurs_clinical_resolvers",
+      "test": "test_clinical_runtime_uses_existing_body_and_persistent_injury_systems",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/veilleurs_clinical_combat_runtime.gd'"
+    },
+    {
+      "module": "tests.test_veilleurs_clinical_resolvers",
+      "test": "test_main_v37_is_additive_and_keeps_clinical_and_item_layers",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.test_veilleurs_clinical_resolvers",
+      "test": "test_clinical_reactions_are_automatic_causal_hooks",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/veilleurs_clinical_reaction_runtime.gd'"
+    },
+    {
+      "module": "tests.test_veilleurs_clinical_resolvers",
+      "test": "test_clinical_transformations_and_postures_have_runtime_state",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/veilleurs_clinical_reaction_runtime.gd'"
+    },
+    {
+      "module": "tests.test_veilleurs_clinical_resolvers",
+      "test": "test_suture_does_not_fallback_to_generic_hp_healing",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/veilleurs_clinical_combat_runtime.gd'"
+    },
+    {
+      "module": "tests.test_veilleurs_developer_selftest_contract",
+      "test": "test_developer_overlay_is_opt_in_only",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scenes/Main.tscn'"
+    },
+    {
+      "module": "tests.test_veilleurs_hemocorde",
+      "test": "test_hemocorde_is_a_separate_prototype_bridge_without_parallel_blood_hp",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/veilleurs_hemocorde_runtime.gd'"
+    },
+    {
+      "module": "tests.test_veilleurs_hemocorde",
+      "test": "test_hemocorde_collapse_is_conditional_and_cannot_instant_kill",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/veilleurs_hemocorde_runtime.gd'"
+    },
+    {
+      "module": "tests.test_veilleurs_hemocorde",
+      "test": "test_hemocorde_reactions_are_automatic_and_share_aureliens_budget",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/veilleurs_clinical_reaction_runtime.gd'"
+    },
+    {
+      "module": "tests.test_veilleurs_hemocorde",
+      "test": "test_main_orders_medical_movement_then_blood_return",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/main_v36.gd'"
+    },
+    {
+      "module": "tests.test_veilleurs_hemocorde",
+      "test": "test_router_keeps_clinical_and_hemocorde_runtimes_separate",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/veilleurs_skill_resolver_router.gd'"
+    },
+    {
+      "module": "tests.test_veilleurs_repository_integrity",
+      "test": "test_veilleurs_repository_integrity",
+      "kind": "failure",
+      "message": "assert 1 == 0\n +  where 1 = main()"
+    },
+    {
+      "module": "tests.test_veilleurs_system_maturity",
+      "test": "test_veilleurs_system_maturity_registry_is_coherent",
+      "kind": "failure",
+      "message": "AssertionError: combat_core missing evidence path: scripts/core/veilleurs_vs001_smoke_test.gd"
+    },
+    {
+      "module": "tests.test_veilleurs_ultimate_hemocorde_runtime_audit",
+      "test": "test_veilleurs_v062_hemocorde_runtime_contract",
+      "kind": "failure",
+      "message": "assert 1 == 0\n +  where 1 = <function main at 0x7fda371ce520>()\n +    where <function main at 0x7fda371ce520> = audit.main"
+    },
+    {
+      "module": "tests.test_veilleurs_v081_canonical_production_audit",
+      "test": "test_v081_canonical_production_audit",
+      "kind": "failure",
+      "message": "AssertionError: Traceback (most recent call last):\n    File \"/workspace/scratch/4a2e32cee2b7/litd/tools/qa/veilleurs_v081_canonical_production_audit.py\", line 105, in <module>\n      raise SystemExit(main())\n                       ^^^^^^\n    File \"/workspace/scratch/4a2e32cee2b7/litd/tools/qa/veilleurs_v081_canonical_production_audit.py\", line 79, in main\n      ultimate_runtime = (ROOT / \"scripts\" / \"core\" / \"veilleurs_ultimate_runtime.gd\").read_text(encoding=\"utf-8\")\n                         ^^^"
+    },
+    {
+      "module": "tests.test_veilleurs_vs001_legacy_boundary",
+      "test": "test_declared_critical_legacy_dependencies_exist",
+      "kind": "failure",
+      "message": "AssertionError: missing declared VS001 dependency: scripts/core/veilleurs_vs001_runtime.gd\nassert False\n +  where False = exists()\n +    where exists = (PosixPath('/workspace/scratch/4a2e32cee2b7/litd') / 'scripts/core/veilleurs_vs001_runtime.gd').exists"
+    },
+    {
+      "module": "tests.test_veilleurs_vs001_legacy_boundary",
+      "test": "test_canonical_runtime_facade_is_neutral_and_v09_backed",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/veilleurs_runtime.gd'"
+    },
+    {
+      "module": "tests.test_veilleurs_vs001_legacy_boundary",
+      "test": "test_new_saves_use_neutral_key_but_legacy_key_remains_readable",
+      "kind": "failure",
+      "message": "assert '\"veilleurs\": _build_veilleurs_payload()' in 'extends Node\\n\\nsignal save_started(slot: int)\\nsignal save_finished(slot: int, success: bool, recovered: bool)\\n\\nco...h: String) -> String:\\n    return path + \".bak\"\\n\\nfunc _temp_for(path: String) -> String:\\n    return path + \".tmp\"\\n'"
+    },
+    {
+      "module": "tests.test_veilleurs_vs001_legacy_boundary",
+      "test": "test_modern_runtime_chain_does_not_depend_on_vs001",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/core/veilleurs_runtime.gd'"
+    },
+    {
+      "module": "tests.test_veilleurs_vs001_persistence_ui",
+      "test": "test_veilleurs_vs001_persistence_ui_contract",
+      "kind": "failure",
+      "message": "AssertionError: assert ['missing:bri...view.gd', ...] == []\n  \n  Left contains 7 more items, first extra item: 'missing:bridge:scripts/world/veilleurs_vs001_playable_bridge.gd'\n  Use -v to get more diff"
+    },
+    {
+      "module": "tests.test_veilleurs_vs001_playable",
+      "test": "test_veilleurs_vs001_playable_contract",
+      "kind": "failure",
+      "message": "AssertionError: assert ['missing_fil...orld.gd', ...] == []\n  \n  Left contains 8 more items, first extra item: 'missing_file:scenes/world/veilleurs/voices_under_sanctuary_playable.tscn'\n  Use -v to get more diff"
+    },
+    {
+      "module": "tests.test_veilleurs_vs001_player_entry",
+      "test": "test_canonical_player_entry_uses_neutral_runtime",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/veilleurs_playable_bridge.gd'"
+    },
+    {
+      "module": "tests.test_veilleurs_vs001_player_entry",
+      "test": "test_legacy_bridge_is_resume_only_in_normal_boot",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/world/veilleurs_vs001_playable_bridge.gd'"
+    },
+    {
+      "module": "tests.test_veilleurs_vs001_player_entry",
+      "test": "test_production_scene_has_no_legacy_dependency",
+      "kind": "failure",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4a2e32cee2b7/litd/scripts/ui/veilleurs_vertical_slice.gd'"
+    },
+    {
+      "module": "tests.test_visual_vertical_slice",
+      "test": "test_godot_proxy_and_shader_contract_exist",
+      "kind": "failure",
+      "message": "AssertionError: assert False\n +  where False = exists()\n +    where exists = (PosixPath('/workspace/scratch/4a2e32cee2b7/litd') / 'scenes/visual/visual_vertical_slice_proxy.tscn').exists"
+    }
+  ]
+}

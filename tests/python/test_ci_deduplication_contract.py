@@ -21,18 +21,6 @@ class CIDeduplicationContractTests(unittest.TestCase):
         self.assertNotIn("godot_progress_bridge.py", workflow)
         self.assertNotIn("barichello/godot-ci", workflow)
 
-    def test_production_full_regression_is_manual_only(self):
-        workflow = (ROOT / ".github/workflows/veilleurs-production-automation.yml").read_text(
-            encoding="utf-8"
-        )
-        self.assertIn(
-            "if: ${{ github.event_name == 'workflow_dispatch' && inputs.full_suite }}",
-            workflow,
-        )
-        self.assertNotIn(
-            "github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.full_suite)",
-            workflow,
-        )
 
 
 if __name__ == "__main__":

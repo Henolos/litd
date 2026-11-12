@@ -46,13 +46,3 @@ def test_world_first_and_accessibility_rules_are_explicit() -> None:
     assert contract["accessibility"]["normal_contrast_ratio_min"] >= 4.5
     assert contract["accessibility"]["high_contrast_target"] >= 7.0
     assert contract["touch"]["touch_target_min_px"] >= 48
-
-
-def test_runtime_and_smoke_are_wired() -> None:
-    project = (ROOT / "project.godot").read_text(encoding="utf-8")
-    runtime = (ROOT / "scripts/ui/hud_director.gd").read_text(encoding="utf-8")
-    ci = (ROOT / "tools/build/run_godot_ci.sh").read_text(encoding="utf-8")
-    assert 'HUDDirector="*res://scripts/ui/hud_director.gd"' in project
-    for required in ["route_event", "summarize_statuses", "request_action", "consume_journal_backlog"]:
-        assert f"func {required}" in runtime
-    assert "res://scenes/tests/hud_director_smoke.tscn" in ci

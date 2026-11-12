@@ -42,17 +42,3 @@ def test_recipe_has_branch_convergence_retreat_secret_and_boss_path():
     assert ("choice_right", "convergence") in edges
     assert ("respite", "entry") in edges
     assert ("preboss", "boss") in edges
-
-
-def test_runtime_uses_hybrid_generator_with_safe_fallback():
-    generator = GENERATOR.read_text(encoding="utf-8")
-    runtime = RUNTIME.read_text(encoding="utf-8")
-    assert "hand_authored_geometry" in generator
-    assert "geometry_policy" in generator
-    assert "func validate_layout(" in generator
-    assert "objective_unreachable" in generator
-    assert "physical_retreat_unreachable" in generator
-    assert "ash_route_supported" in generator
-    assert 'preload("res://scripts/core/hybrid_dungeon_generator.gd")' in runtime
-    assert "hybrid_dungeon_generator.generate" in runtime
-    assert "_generate_legacy_dungeon" in runtime

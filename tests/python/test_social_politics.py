@@ -60,31 +60,3 @@ def test_world_memory_has_hooks_for_future_cities():
     assert memory_tags <= hook_tags
     target_cities = {target["city"] for hook in hooks["hooks"] for target in hook["targets"]}
     assert {"orun_sai", "jian_lu", "dhor_khal", "sorye", "tessen", "lhaor"} <= target_cities
-
-
-def test_runtime_persists_events_and_world_memory_and_ui_exposes_social_layer():
-    runtime = (ROOT / "scripts/core/political_state.gd").read_text()
-    ui = (ROOT / "scripts/ui/political_ui.gd").read_text()
-    for contract in (
-        "func conversation_for(npc_id: String)",
-        "func relationship_for(a: String, b: String)",
-        "func social_factions()",
-        "func available_social_events()",
-        "func trigger_next_social_event()",
-        "func visible_consequences()",
-        "func active_rumors()",
-        "func active_inscriptions()",
-        "func future_effects()",
-        '"seen_events": seen_events.duplicate()',
-        '"world_memory_tags": world_memory_tags.duplicate()',
-    ):
-        assert contract in runtime
-    for ui_contract in (
-        "PoliticalState.conversation_for",
-        "PoliticalState.social_factions()",
-        "PoliticalState.active_rumors()",
-        "PoliticalState.active_inscriptions()",
-        "PoliticalState.future_effects()",
-        "PoliticalState.trigger_next_social_event()",
-    ):
-        assert ui_contract in ui

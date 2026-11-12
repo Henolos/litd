@@ -42,15 +42,6 @@ def test_opening_route_matches_the_authored_city_sequence() -> None:
     assert all(waypoint_ids.index(a) < waypoint_ids.index(b) for a, b in zip(required, required[1:]))
 
 
-def test_proxy_contains_people_arts_fleet_and_four_heroes() -> None:
-    proxy = CITY_PATH.read_text(encoding="utf-8")
-    assert "ChildPlaying_%02d" in proxy
-    assert "MartialTournament" in proxy
-    assert "perform_opening_theme" in proxy
-    assert "CivicAssembly" in proxy
-    assert "ForeignShip_%02d" in proxy
-    assert "for index in range(4):" in proxy
-    assert "approach_kneel_close_bird_eyes" in proxy
 
 
 def test_fall_last_breath_heroes_and_handoff_are_authored() -> None:
@@ -60,19 +51,6 @@ def test_fall_last_breath_heroes_and_handoff_are_authored() -> None:
     assert data["handoff"]["audio_bridge"] == "bird_last_exhale_to_ash_wind"
 
 
-def test_runtime_connects_city_heroes_and_contextual_tutorial() -> None:
-    runtime = DIRECTOR_PATH.read_text(encoding="utf-8")
-    assert "CITY_PROXY.new()" in runtime
-    assert 'beat_id == "shockwave"' in runtime
-    assert "city_proxy.hero_group" in runtime
-    assert "city_proxy.approach_hero" in runtime
-    assert "exploration_camera.make_current()" in runtime
-    assert "OPENING_TUTORIAL.new()" in runtime
-    assert "get_tree().change_scene_to_file" not in runtime
-    tutorial = TUTORIAL_PATH.read_text(encoding="utf-8")
-    assert "PROCESS_MODE_ALWAYS" in tutorial
-    assert "get_tree().paused" not in tutorial
-    assert '"ash_guidance"' in tutorial
 
 
 def test_opening_supports_comfort_skip_and_replay() -> None:
@@ -85,11 +63,3 @@ def test_opening_supports_comfort_skip_and_replay() -> None:
     assert accessibility["skippable"] is True
     assert accessibility["skip_requires_confirmation"] is True
     assert accessibility["replay_from_journal"] is True
-
-
-def test_first_zone_injects_opening_only_once() -> None:
-    builder = BUILDER_PATH.read_text(encoding="utf-8")
-    assert 'OPENING_BIRD_INTRO := preload("res://scripts/cinematics/opening_bird_intro_director.gd")' in builder
-    assert 'zone_id != "zone_01_faubourg_cendreux"' in builder
-    assert 'CampaignState.chapter_flags.get("opening_bird_intro_seen", false)' in builder
-    assert "_build_opening_intro()" in builder

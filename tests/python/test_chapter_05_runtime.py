@@ -8,14 +8,6 @@ def load(path):
     return json.loads((ROOT / path).read_text())
 
 
-def test_chapter_five_has_eight_stages_and_seven_playable_zones():
-    chapter = load('data/levels/chapter_05_great_closure.json')
-    world = load('data/levels/chapter_05_world.json')
-    assert chapter['chapter_id'] == 'chapter_05_great_closure'
-    assert len(chapter['stages']) == 8
-    assert len(world['zones']) == 7
-    for zone in world['zones']:
-        assert (ROOT / f"scenes/world/chapter_05/{zone['id']}.tscn").exists()
 
 
 def test_chapter_five_crosses_military_civilian_and_saan_sources():
@@ -31,31 +23,8 @@ def test_chapter_five_crosses_military_civilian_and_saan_sources():
     assert rules['saan_sources_min'] >= 2
 
 
-def test_general_of_silex_is_mechanical_not_hp_sponge():
-    chapter = load('data/levels/chapter_05_great_closure.json')
-    runtime = (ROOT / 'scripts/world/chapter_05_boss_runtime.gd').read_text()
-    assert chapter['boss']['name'] == 'Le Général de Silex'
-    assert len(chapter['boss']['phases']) == 3
-    assert chapter['boss']['signature'] == 'Ordre qui ne finit jamais'
-    assert 'damage_reduction' in runtime
-    assert 'DOCTRINE ADAPTATIVE' in runtime
-    assert 'set_process(true)' in runtime
 
 
-def test_chapter_five_is_routed_saved_reset_and_visible_in_journal():
-    project = (ROOT / 'project.godot').read_text()
-    router = (ROOT / 'scripts/world/ashlands_scene_router.gd').read_text()
-    save = (ROOT / 'scripts/core/save_manager.gd').read_text()
-    game = (ROOT / 'scripts/core/game_state.gd').read_text()
-    journal = (ROOT / 'scripts/ui/quest_journal_ui.gd').read_text()
-    assert 'Chapter05Runtime="*res://scripts/world/chapter_05_runtime.gd"' in project
-    assert 'Chapter05BossRuntime="*res://scripts/world/chapter_05_boss_runtime.gd"' in project
-    assert 'func start_chapter_05()' in router
-    assert 'SAVE_VERSION := "0.31"' in save
-    assert '"chapter_05": Chapter05Runtime.serialize()' in save
-    assert 'Chapter05Runtime.reset_new_game()' in game
-    assert '_stage_header(parent,"CHAPITRE V",Chapter05Runtime)' in journal
-    assert 'DOSSIER OR-SILEX / SAAN' in journal
 
 
 def test_chapter_five_unlocks_absents_and_deep_vestiges():

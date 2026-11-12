@@ -66,23 +66,23 @@ func _test_replacement_failures() -> void:
     _check(str(SaveManager._read_payload(BLOCKED_PATH).get("marker", "")) == "safe", "backup copy failure preserves primary")
 
 func _test_slot_zero_fallback() -> void:
-    GameState.gold = 100
+    SaveManager.set_snapshot({"gold": 100})
     _check(SaveManager.save_game(0), "first slot zero save")
     DirAccess.remove_absolute(ProjectSettings.globalize_path(SaveManager.SAVE_PATH))
     _check(DirAccess.make_dir_absolute(SaveManager.SAVE_PATH) == OK, "block legacy mirror destination")
-    GameState.gold = 200
+    SaveManager.set_snapshot({"gold": 200})
     _check(SaveManager.save_game(0), "canonical write succeeds despite legacy mirror failure")
     DirAccess.remove_absolute(ProjectSettings.globalize_path(SaveManager.SAVE_PATH))
     var legacy := SaveManager._build_payload()
     legacy["gold"] = 5
     _check(_write_raw(SaveManager.SAVE_PATH, JSON.stringify(legacy)), "seed stale legacy mirror")
-    _check(SaveManager.load_game(0) and GameState.gold == 200, "canonical outranks stale legacy")
+    _check(SaveManager.load_game(0) and int(SaveManager.get_snapshot().get("gold", -1)) == 200, "canonical outranks stale legacy")
     for invalid: String in ["{bad-json", JSON.stringify({"version": "99.0", "gold": 999}), JSON.stringify({"gold": 999})]:
         _check(_write_raw(SaveManager._path(0), invalid), "inject invalid slot zero primary")
-        _check(SaveManager.load_game(0) and GameState.gold == 100, "valid backup outranks invalid primary and stale legacy")
+        _check(SaveManager.load_game(0) and int(SaveManager.get_snapshot().get("gold", -1)) == 100, "valid backup outranks invalid primary and stale legacy")
     DirAccess.remove_absolute(ProjectSettings.globalize_path(SaveManager._path(0)))
     DirAccess.remove_absolute(ProjectSettings.globalize_path(SaveManager._backup_path(0)))
-    _check(SaveManager.load_game(0) and GameState.gold == 5, "legacy is last resort")
+    _check(SaveManager.load_game(0) and int(SaveManager.get_snapshot().get("gold", -1)) == 5, "legacy is last resort")
     SaveManager.delete_slot(0)
 
 func _write_raw(path: String, body: String) -> bool:

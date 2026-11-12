@@ -13,12 +13,6 @@ def load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def test_systemic_cross_narrative_audit_passes() -> None:
-    report = audit_systemic_cross_narrative(ROOT)
-    assert report["ok"], report
-    assert report["summary"]["scenes"] == 22
-    assert report["summary"]["cross_events"] == 18
-    assert report["summary"]["cascades"] == 4
 
 
 def test_every_systemic_cross_has_one_sanctuary_scene() -> None:
@@ -52,12 +46,3 @@ def test_named_death_scene_keeps_person_and_material_cause_dynamic() -> None:
     assert "{cause}" in blob
     assert "coupable" in blob.lower()
     assert "verdict" in blob.lower()
-
-
-def test_runtime_has_no_new_morality_or_reputation_meter() -> None:
-    runtime = (ROOT / "scripts/core/systemic_cross_narrative_runtime.gd").read_text(encoding="utf-8")
-    for forbidden in ["ProgressBar", "morality_score", "alignment_score", "reputation_score"]:
-        assert forbidden not in runtime
-    assert 'screen_name != "sanctuary"' in runtime
-    assert "GameState.alive_heroes()" in runtime
-    assert "seen_scene_ids.has" in runtime

@@ -8,13 +8,7 @@ CI_IMAGE = "barichello/godot-ci:4.7.2"
 WORKFLOWS = [
     ".github/workflows/ci.yml",
     ".github/workflows/remanence-smoke.yml",
-    ".github/workflows/veilleurs-production-automation.yml",
-    ".github/workflows/veilleurs-v06.yml",
-    ".github/workflows/veilleurs-v07-production.yml",
-    ".github/workflows/veilleurs-v08-wave2.yml",
-    ".github/workflows/veilleurs-v09-wave3.yml",
-    ".github/workflows/build.yml",
-    ".github/workflows/nightly.yml",
+    ".github/workflows/godot-save-runtime.yml",
 ]
 
 ACTIVE_VERSION_FILES = [
@@ -75,9 +69,3 @@ def test_no_active_43_version_lock_remains():
         text = read(path)
         for marker in forbidden:
             assert marker not in text, f"{path}: stale marker {marker}"
-
-
-def test_android_export_template_matches_pinned_ci_patch():
-    workflow = read(".github/workflows/veilleurs-production-automation.yml")
-    assert "export_templates/4.7.2.stable" in workflow
-    assert "editor_settings-4.7.tres" in workflow

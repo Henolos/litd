@@ -1,6 +1,5 @@
 extends SceneTree
 
-# Real SaveManager round-trip smoke test. Run ONLY in an isolated user:// root.
 var failures := 0
 
 func _initialize() -> void:
@@ -12,105 +11,35 @@ func _check(ok: bool, message: String) -> void:
         push_error(message)
 
 func _run() -> void:
-    var sandbox: String = OS.get_environment("LITD_SAVE_TEST_SANDBOX")
+    var sandbox := OS.get_environment("LITD_SAVE_TEST_SANDBOX")
     if sandbox.is_empty() or sandbox != OS.get_environment("XDG_DATA_HOME") or not OS.get_user_data_dir().begins_with(sandbox + "/"):
         push_error("SAVE_ROUNDTRIP_REQUIRES_ISOLATED_DATA_ROOT")
         quit(1)
         return
-
-    var manager := root.get_node_or_null("SaveManager")
-    var state := root.get_node_or_null("GameState")
-    if manager == null or state == null:
-        push_error("SaveManager or GameState autoload unavailable")
-        quit(1)
-        return
-
-    # Preserve the in-memory state as well as the isolated disk state.
-    var original_gold: int = state.gold
-    var original_essence: int = state.essence
-    var original_light: int = state.light
-    var original_supplies: int = state.supplies
-    var original_room: int = state.expedition_room
-    var original_slot: int = manager.active_slot
-    var original_party: Array = state.party.duplicate(true)
-    var equipment := root.get_node_or_null("EquipmentManager")
-    _check(equipment != null, "EquipmentManager autoload unavailable")
-    var original_equipment: Dictionary = equipment.serialize() if equipment != null else {}
-    var hero_testable: bool = not state.party.is_empty() and state.party[0] is Dictionary
-    _check(hero_testable, "No hero available for character round-trip test")
-    var hero_id: String = str(state.party[0].get("id", "")) if hero_testable else ""
-    _check(not hero_id.is_empty(), "Test hero has no stable id")
-    if hero_testable:
-        state.party[0]["hp"] = 17
-        state.party[0]["xp"] = 123
-        state.party[0]["skill_points"] = 3
-        state.party[0]["persistent_injuries"] = [{"id": "roundtrip_test_injury", "severity": "minor", "untreated_runs": 2, "stabilized": false, "permanent": false}]
-
-    state.gold = 321
-    state.essence = 47
-    state.light = 63
-    state.supplies = 12
-    state.expedition_room = 5
-    if equipment != null:
-        equipment.deserialize({"items": [{"instance_id": "save-roundtrip-item", "base_id": "test_blade", "slot": "weapon"}], "guild_stash": [{"instance_id": "save-roundtrip-stash", "base_id": "test_armor", "slot": "armor"}], "equipped_by_hero": {hero_id: {"weapon": "save-roundtrip-item"}}, "drop_counter": 9, "generation_seed": 12345, "last_rewards": []})
-
-    var saved: bool = manager.save_game(2)
-    _check(saved, "Saving slot 2 failed")
-    if saved:
-        state.gold = 1
-        state.essence = 2
-        state.light = 3
-        state.supplies = 4
-        state.expedition_room = 0
-        if hero_testable:
-            state.party[0]["hp"] = 1
-            state.party[0]["xp"] = 0
-            state.party[0]["skill_points"] = 0
-            state.party[0]["persistent_injuries"] = []
-        if equipment != null:
-            equipment.reset_new_game()
-        var loaded: bool = manager.load_game(2)
-        _check(loaded, "Loading slot 2 failed")
-        if loaded:
-            _check(state.gold == 321, "Gold not restored")
-            _check(state.essence == 47, "Essence not restored")
-            _check(state.light == 63, "Light not restored")
-            _check(state.supplies == 12, "Supplies not restored")
-            _check(state.expedition_room == 5, "Expedition room not restored")
-            if equipment != null:
-                var restored_equipment: Dictionary = equipment.serialize()
-                _check(restored_equipment.get("items", []).size() == 1 and restored_equipment["items"][0].get("instance_id", "") == "save-roundtrip-item", "Inventory not restored")
-                _check(restored_equipment.get("guild_stash", []).size() == 1 and restored_equipment["guild_stash"][0].get("instance_id", "") == "save-roundtrip-stash", "Guild stash not restored")
-                _check(restored_equipment.get("equipped_by_hero", {}).get(hero_id, {}).get("weapon", "") == "save-roundtrip-item", "Equipped item not restored")
-                _check(int(restored_equipment.get("drop_counter", -1)) == 9, "Equipment drop counter not restored")
-            if hero_testable:
-                _check(not state.party.is_empty() and int(state.party[0].get("hp", -1)) == 17, "Hero HP not restored")
-                _check(int(state.party[0].get("xp", -1)) == 123, "Hero XP not restored")
-                _check(int(state.party[0].get("skill_points", -1)) == 3, "Hero skill points not restored")
-                var restored_injuries: Array = state.party[0].get("persistent_injuries", [])
-                _check(restored_injuries.size() == 1 and str(restored_injuries[0].get("id", "")) == "roundtrip_test_injury", "Persistent injury not restored")
-                if restored_injuries.size() == 1:
-                    var restored_injury: Dictionary = restored_injuries[0]
-                    _check(str(restored_injury.get("severity", "")) == "minor", "Injury severity not restored")
-                    _check(int(restored_injury.get("untreated_runs", -1)) == 2, "Injury untreated-run counter not restored")
-                    _check(not bool(restored_injury.get("stabilized", true)), "Injury stabilization state not restored")
-                    _check(not bool(restored_injury.get("permanent", true)), "Injury permanence flag not restored")
-
-    _check(not FileAccess.file_exists("user://litd_slot_0.json"), "Round-trip test modified slot 0")
-    _check(not FileAccess.file_exists("user://litd_slot_1.json"), "Round-trip test modified slot 1")
-    _check(not FileAccess.file_exists("user://litd_autosave.json"), "Round-trip test modified autosave")
-
-    state.gold = original_gold
-    state.essence = original_essence
-    state.light = original_light
-    state.supplies = original_supplies
-    state.expedition_room = original_room
-    state.party = original_party
-    if equipment != null:
-        equipment.deserialize(original_equipment)
-    manager.active_slot = original_slot
+    var manager := root.get_node("SaveManager")
+    var snapshot := {"gold":321, "party":[{"id":"fixture", "hp":17, "persistent_injuries":[{"severity":"minor"}]}], "equipment":{"items":[{"instance_id":"item"}]}, "future_module":{"unknown_key":[1,2,3]}}
+    manager.set_snapshot(snapshot)
+    snapshot["gold"] = 0
+    _check(manager.save_game(2), "Save opaque state")
+    manager.set_snapshot({})
+    _check(manager.load_game(2), "Load opaque state")
+    var restored: Dictionary = manager.get_snapshot()
+    _check(int(restored.get("gold", -1)) == 321, "Snapshot input must be copied")
+    _check(int(restored.get("party", [{}])[0].get("hp", -1)) == 17 and restored["party"][0]["persistent_injuries"][0]["severity"] == "minor", "Nested character state preserved")
+    _check(restored.get("equipment", {}) == snapshot["equipment"], "Inventory state preserved")
+    _check(int(restored.get("future_module", {}).get("unknown_key", [-1])[0]) == 1 and restored["future_module"]["unknown_key"].size() == 3, "Unknown modules preserved")
+    restored["party"].clear()
+    _check(manager.get_snapshot()["party"].size() == 1, "Snapshot output must be copied")
+    _check(not FileAccess.file_exists("user://litd_slot_0.json"), "Other slot untouched")
+    _check(manager.autosave("contract"), "Autosave")
+    _check(manager.save_qa_snapshot(), "QA snapshot save")
+    manager.set_snapshot({})
+    _check(manager.load_qa_snapshot(), "QA snapshot load")
+    _check(int(manager.get_snapshot().get("gold", -1)) == 321, "QA state restored")
+    _check(manager.all_slots_metadata().size() == 4, "Three slots plus autosave")
     manager.delete_slot(2)
-
+    manager.delete_slot(manager.AUTOSAVE_SLOT)
+    manager.delete_qa_snapshot()
     if failures == 0:
         print("SAVE_ROUNDTRIP_CONTRACT_PASS")
-    quit(1 if failures > 0 else 0)
+    quit(1 if failures else 0)

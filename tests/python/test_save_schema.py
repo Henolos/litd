@@ -12,6 +12,10 @@ def test_save_payload_ranges(gold,essence,light,supplies):
     assert payload['gold'] >= 0 and 0 <= payload['light'] <= 100
 
 @pytest.mark.save
-def test_save_manager_mentions_all_schema_keys():
+def test_save_manager_preserves_opaque_snapshot_without_gameplay_dependencies():
     text=(ROOT/'scripts/core/save_manager.gd').read_text()
-    for key in SCHEMA_KEYS: assert f'"{key}"' in text
+    assert 'func set_snapshot(' in text
+    assert 'func get_snapshot(' in text
+    assert '_snapshot.duplicate(true)' in text
+    assert 'GameState' not in text
+    assert '"version"' in text

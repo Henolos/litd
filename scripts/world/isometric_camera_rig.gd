@@ -4,6 +4,7 @@ class_name IsometricCameraRig
 const CAMERA_PROFILES_PATH := "res://data/levels/ashlands_camera_profiles.json"
 
 @export var target_path: NodePath
+@export var zone_profile_id := ""
 @export var pitch_degrees := 40.0
 @export var yaw_degrees := 45.0
 @export var distance := 14.0
@@ -19,7 +20,7 @@ var target: Node3D
 
 func _ready() -> void:
     add_to_group("isometric_camera_rig")
-    apply_zone_profile(AshlandsRuntime.current_zone_id)
+    apply_zone_profile(zone_profile_id)
     if target_path != NodePath(""):
         target = get_node_or_null(target_path) as Node3D
     _apply_camera_transform()

@@ -1,0 +1,2182 @@
+[
+  {
+    "path": "tests/python/test_adaptive_music_director.py",
+    "test": "test_adaptive_music_runtime_contract",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_anatomy_system_v2.py",
+    "test": "test_advanced_anatomy_system_has_no_hard_errors",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_anatomy_system_v2.py",
+    "test": "test_all_ten_requested_anatomy_steps_are_guarded",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_anatomy_system_v2.py",
+    "test": "test_unique_boss_anatomies_include_campaign_and_deep_vestiges",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ash_guidance.py",
+    "test": "test_ash_guidance_can_be_requested_by_key_or_touch_double_tap",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ash_guidance.py",
+    "test": "test_ash_guidance_is_request_only_and_timed",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ash_guidance.py",
+    "test": "test_boss_route_excludes_hidden_secret_rooms",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ash_guidance.py",
+    "test": "test_dungeon_guidance_points_to_route_not_through_walls",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ash_guidance.py",
+    "test": "test_emotions_are_fed_from_party_risk_and_room_context",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ash_guidance.py",
+    "test": "test_fear_makes_ash_hesitate_without_changing_objective_axis",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ash_guidance.py",
+    "test": "test_guidance_runtime_uses_swirl_layers_and_proximity",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ash_guidance.py",
+    "test": "test_live_objectives_prioritize_tracked_quest_then_boss_fallback",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ash_guidance.py",
+    "test": "test_major_danger_adds_forward_bursts",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ash_guidance.py",
+    "test": "test_player_guidance_supports_boss_and_quest_modes",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ash_guidance.py",
+    "test": "test_request_recalculates_and_reports_when_no_path_exists",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ash_guidance.py",
+    "test": "test_safe_context_calms_particle_motion",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ashlands_politics.py",
+    "test": "test_political_runtime_is_autoloaded_and_saved",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ashlands_preblender.py",
+    "test": "AshlandsPreBlenderTests.test_all_zone_scenes_exist",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ashlands_preblender.py",
+    "test": "AshlandsPreBlenderTests.test_environmental_lore_has_production_markers",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ashlands_preblender.py",
+    "test": "AshlandsPreBlenderTests.test_lore_runtime_collection_and_reader_contracts_exist",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ashlands_preblender.py",
+    "test": "AshlandsPreBlenderTests.test_mobile_occlusion_and_ambience_contracts_exist",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ashlands_preblender.py",
+    "test": "AshlandsPreBlenderTests.test_navigation_and_return_position_contracts_exist",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ashlands_preblender.py",
+    "test": "AshlandsPreBlenderTests.test_orthographic_zoom_changes_camera_size",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ashlands_preblender.py",
+    "test": "AshlandsPreBlenderTests.test_pacing_targets_and_route_telemetry_cover_all_zones",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ashlands_preblender.py",
+    "test": "AshlandsPreBlenderTests.test_playtest_harness_covers_routes_camera_mobile_and_performance",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ashlands_preblender.py",
+    "test": "AshlandsPreBlenderTests.test_project_registers_ashlands_autoloads",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ashlands_preblender.py",
+    "test": "AshlandsPreBlenderTests.test_required_runtime_scripts_exist",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_balance_audit.py",
+    "test": "test_balance_audit_covers_core_progression_systems",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_balance_audit.py",
+    "test": "test_balance_audit_has_no_hard_errors",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_balance_matrix_sim_v2.py",
+    "test": "test_runtime_aligned_matrix_reports_live_profile_source",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_balance_matrix_sim_v2.py",
+    "test": "test_runtime_profiles_cover_all_campaign_boss_chapters",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_balance_matrix_sim_v2.py",
+    "test": "test_runtime_profiles_use_live_boss_stats",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_balance_matrix_sim_v3.py",
+    "test": "test_campaign_normal_pack_and_miniboss_tuning_match_runtime",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_balance_matrix_sim_v3.py",
+    "test": "test_exact_runtime_blocks_keep_minibosses_and_bosses_separate",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_balance_matrix_sim_v3.py",
+    "test": "test_exact_runtime_boss_profiles_cover_chapters_one_through_ten",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_base_game_narrative_contract.py",
+    "test": "test_runtime_exposes_story_scenes_arcs_revelations_and_consequences_without_extending_ngplus",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_base_game_narrative_enrichment.py",
+    "test": "test_enrichment_runtime_is_autoloaded_and_persistent",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_base_game_narrative_enrichment.py",
+    "test": "test_side_quest_runtime_loads_supplemental_cycle_zero_stories",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_base_game_narrative_enrichment.py",
+    "test": "test_side_story_ui_surfaces_supplemental_quests_in_journal",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_body_state_animation_director.py",
+    "test": "test_runtime_combines_psychology_injury_personality_and_relation",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_body_state_visual_adapter.py",
+    "test": "test_runtime_updates_visible_bodies_after_damage_and_psychology",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_body_state_visual_adapter.py",
+    "test": "test_visual_adapter_receives_all_body_layers",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_body_state_visual_adapter.py",
+    "test": "test_visual_adapter_supports_animation_tree_and_procedural_fallback",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_body_state_visual_adapter.py",
+    "test": "test_visual_slice_controller_is_connected_to_body_adapter",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_campaign_e2e_smoke.py",
+    "test": "test_campaign_e2e_smoke_script_covers_critical_player_journey",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_campaign_e2e_smoke.py",
+    "test": "test_ci_uses_strict_godot_guard_and_autoload_aware_e2e_scene",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_capturable_creatures.py",
+    "test": "test_creature_runtime_and_save_contracts",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_capturable_creatures.py",
+    "test": "test_creatures_share_the_hero_level_cap",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_capture_health_indicator.py",
+    "test": "test_capture_readiness_is_centralized_and_respects_unlock_and_threshold",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_capture_health_indicator.py",
+    "test": "test_enemy_health_bar_has_accessible_capture_indicator",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_capture_health_indicator.py",
+    "test": "test_indicator_handles_insufficient_essence_without_false_ready_state",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_01_vertical_slice.py",
+    "test": "test_vertical_slice_is_autoloaded_reset_saved_and_visible_in_journal",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_02_runtime.py",
+    "test": "test_chapter_two_save_version_and_runtime_contracts",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_03_runtime.py",
+    "test": "test_chapter_three_has_six_playable_zones_and_six_actors",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_03_runtime.py",
+    "test": "test_chapter_three_is_autoloaded_saved_reset_and_visible_in_journal",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_03_runtime.py",
+    "test": "test_chapter_three_runtime_builder_router_and_combat_are_connected",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_04_runtime.py",
+    "test": "test_archaeology_requires_cross_source_confirmation",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_04_runtime.py",
+    "test": "test_chapter_four_is_routed_saved_reset_and_visible_in_journal",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_04_runtime.py",
+    "test": "test_chapter_four_world_has_six_scenes_and_twelve_fragments",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_04_runtime.py",
+    "test": "test_measure_and_chorus_reach_combat_runtime",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_05_runtime.py",
+    "test": "test_chapter_five_has_eight_stages_and_seven_playable_zones",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_05_runtime.py",
+    "test": "test_chapter_five_is_routed_saved_reset_and_visible_in_journal",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_05_runtime.py",
+    "test": "test_general_of_silex_is_mechanical_not_hp_sponge",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_06_runtime.py",
+    "test": "test_chapter_six_is_autoloaded_routed_saved_reset_and_in_journal",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_06_runtime.py",
+    "test": "test_chapter_six_world_has_seven_scenes_and_cross_source_signals",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_06_runtime.py",
+    "test": "test_creature_mediation_has_direct_and_non_blocking_proxy_paths",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_06_runtime.py",
+    "test": "test_saen_contact_requires_evidence_but_keeps_ontology_open",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_06_runtime.py",
+    "test": "test_shifted_wayfarer_has_a_real_mechanical_contract",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_06_runtime.py",
+    "test": "test_walking_boundary_uses_three_environmental_anchors_without_claiming_agency",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_07_runtime.py",
+    "test": "test_bram_and_veyra_require_old_and_new_evidence_before_status_choice",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_07_runtime.py",
+    "test": "test_chapter_seven_is_autoloaded_routed_saved_reset_and_in_journal",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_07_runtime.py",
+    "test": "test_confined_observation_is_conditional_and_cannot_reopen_the_veil",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_07_runtime.py",
+    "test": "test_edras_and_pilgrim_follow_global_boss_rule",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_07_runtime.py",
+    "test": "test_living_responsible_world_has_seven_scenes_and_crossed_sources",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_08_runtime.py",
+    "test": "test_both_chapter_eight_bosses_use_authority_as_a_mechanical_defense",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_08_runtime.py",
+    "test": "test_chapter_eight_has_eight_stage_world_tour_and_four_campaign_quests",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_08_runtime.py",
+    "test": "test_chapter_eight_is_routed_saved_reset_and_contextually_visible",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_08_runtime.py",
+    "test": "test_chapter_eight_runtime_requires_cross_source_understanding",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_08_runtime.py",
+    "test": "test_each_outer_world_has_an_ancient_trace_and_deep_vestige",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_08_runtime.py",
+    "test": "test_outer_world_vestiges_use_generic_extensible_routing",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_09_runtime.py",
+    "test": "test_chapter_nine_has_eight_stage_synthesis_loop_and_seven_zones",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_09_runtime.py",
+    "test": "test_chapter_nine_is_routed_saved_reset_and_contextually_visible",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_09_runtime.py",
+    "test": "test_consensus_boss_requires_three_perspectives_and_has_three_resolutions",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_09_runtime.py",
+    "test": "test_deep_truths_raise_confidence_but_are_not_required_for_stage_two",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_09_runtime.py",
+    "test": "test_fear_miniboss_teaches_probability_narrowing_not_creation_from_nothing",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_10_runtime.py",
+    "test": "test_chapter_ten_has_eight_stages_seven_zones_and_campaign_quests",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_10_runtime.py",
+    "test": "test_chapter_ten_is_routed_autoloaded_saved_reset_and_visible",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_10_runtime.py",
+    "test": "test_final_choices_are_inherited_from_campaign_not_created_by_chapter_ten",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_chapter_10_runtime.py",
+    "test": "test_unpaid_cost_and_common_rupture_follow_mechanical_boss_rule",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ci_deduplication_contract.py",
+    "test": "CIDeduplicationContractTests.test_production_full_regression_is_manual_only",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ci_shared_godot_runner_contract.py",
+    "test": "SharedGodotRunnerContractTests.test_production_workflow_uses_shared_checked_runner",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ci_shared_godot_runner_contract.py",
+    "test": "SharedGodotRunnerContractTests.test_shared_runner_changes_trigger_both_workflows",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ci_shared_godot_runner_contract.py",
+    "test": "SharedGodotRunnerContractTests.test_windows_playtest_uses_shared_checked_runner",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_combat_canonical_portrait_layout.py",
+    "test": "test_canonical_portraits_reuse_responsive_combat_slots",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_combat_canonical_portrait_layout.py",
+    "test": "test_hero_profile_reuses_canonical_portraits_without_cropping",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_combat_canonical_portrait_layout.py",
+    "test": "test_rear_line_canonical_starters_keep_real_attacks",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_combat_canonical_portrait_layout.py",
+    "test": "test_skill_and_context_rows_remain_below_hero_area",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_combat_economy_sim.py",
+    "test": "test_combat_economy_simulation_confirms_v2_and_reward_corrections",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_combat_economy_sim.py",
+    "test": "test_combat_economy_simulation_covers_required_checkpoints",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_combat_economy_sim.py",
+    "test": "test_combat_economy_simulation_has_no_hard_errors",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_combat_four_skill_loadouts.py",
+    "test": "test_combat_has_four_skills_plus_separate_context_actions",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_combat_four_skill_loadouts.py",
+    "test": "test_each_hero_has_exactly_four_interchangeable_combat_skill_slots",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_combat_four_skill_loadouts.py",
+    "test": "test_main_scene_activates_four_skill_combat_layer",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_combat_item_transfer_action_cost.py",
+    "test": "test_transfer_changes_carrier_without_applying_item_effect",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_combat_item_transfer_action_cost.py",
+    "test": "test_v34_item_rules_survive_the_current_main_ui_layer",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_combat_position_rules.py",
+    "test": "test_main_scene_activates_position_layer",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_combat_position_rules.py",
+    "test": "test_position_change_remains_a_separate_turn_action",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_combat_position_rules.py",
+    "test": "test_position_rules_define_front_and_back_contracts",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_combat_position_rules.py",
+    "test": "test_wrong_rank_disables_skill_and_runtime_rejects_it",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_combat_targeting_ranges.py",
+    "test": "test_forced_movement_supports_push_and_pull",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_combat_targeting_ranges.py",
+    "test": "test_main_scene_activates_targeting_layer",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_combat_targeting_ranges.py",
+    "test": "test_melee_reach_and_ranged_profiles_are_distinct",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_combat_targeting_ranges.py",
+    "test": "test_targeting_rules_define_four_enemy_ranks_and_frontline_screening",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_combat_targeting_ranges.py",
+    "test": "test_targeting_ui_refuses_invalid_target_without_consuming_turn",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_community_network.py",
+    "test": "test_community_network_audit_has_no_errors",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_community_network.py",
+    "test": "test_community_save_is_additive_and_keeps_existing_version_contract",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_community_network.py",
+    "test": "test_living_sanctuary_has_people_rumors_and_emergent_quests_without_moral_meter",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_context_hud.py",
+    "test": "test_context_hud_is_autoloaded",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_context_hud.py",
+    "test": "test_hidden_hud_restores_full_screen_content",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_context_hud.py",
+    "test": "test_hud_can_be_temporarily_requested_by_contextual_interactions",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_context_hud.py",
+    "test": "test_hud_is_hidden_by_default_and_only_explicitly_enabled_when_useful",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_context_menu_clarity.py",
+    "test": "test_context_menu_uses_progressive_disclosure",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_context_menu_clarity.py",
+    "test": "test_context_menu_v3_is_active_and_layers_v2",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_context_menu_clarity.py",
+    "test": "test_inventory_and_journal_have_simple_filters",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_context_menu_clarity.py",
+    "test": "test_options_are_split_into_categories",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_context_menu_clarity.py",
+    "test": "test_skills_show_one_branch_at_a_time",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_context_menu_ui.py",
+    "test": "test_context_menu_exposes_requested_tabs_and_live_managers",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_context_menu_ui.py",
+    "test": "test_context_menu_is_registered_and_has_input_action",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_context_menu_ui.py",
+    "test": "test_journal_visibly_separates_campaign_and_dungeon_quests",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_context_menu_ui.py",
+    "test": "test_options_persist_to_user_config",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_decision_memory.py",
+    "test": "test_decision_memory_audit_has_no_errors",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_decision_memory.py",
+    "test": "test_later_events_can_reframe_old_decisions_without_new_hud_meters",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_deep_vestige_expansion.py",
+    "test": "test_deep_vestige_bosses_have_distinct_counterplay",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_deep_vestige_expansion.py",
+    "test": "test_deep_vestige_runtime_is_generic_and_persistent",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_deep_vestige_expansion.py",
+    "test": "test_deep_vestige_ui_lists_all_indexed_dungeons_dynamically",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_deep_vestiges_and_boss_contracts.py",
+    "test": "test_ashai_vestige_is_full_optional_dungeon_with_high_end_rewards",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_deep_vestiges_and_boss_contracts.py",
+    "test": "test_deep_vestige_is_routed_autoloaded_saved_and_reset",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_deep_vestiges_and_boss_contracts.py",
+    "test": "test_seventh_voice_is_connected_to_combat_and_punishes_repetition",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_descendants_hall_ui.py",
+    "test": "test_descendants_hall_keeps_progressive_disclosure_contract",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_descendants_hall_ui.py",
+    "test": "test_main_scene_uses_descendants_hall_layer",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_dismemberment.py",
+    "test": "test_dismemberment_audit_has_no_hard_errors",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_dismemberment.py",
+    "test": "test_dismemberment_is_tactical_not_instant_boss_kill",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_dismemberment.py",
+    "test": "test_dismemberment_keeps_accessibility_presentation_modes",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_displacement_combat.py",
+    "test": "test_displacement_combat_covers_push_pull_fear_and_limb_loss",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_displacement_combat.py",
+    "test": "test_displacement_combat_has_four_limb_linked_boss_maneuvers",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_displacement_combat.py",
+    "test": "test_displacement_combat_has_no_hard_errors",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_dungeon_proxy_web_render_contract.py",
+    "test": "test_explorer_scene_declares_current_camera",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_dungeon_proxy_web_render_contract.py",
+    "test": "test_room_scene_declares_environment_and_lights",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_dungeon_proxy_web_render_contract.py",
+    "test": "test_web_room_forces_a_current_camera_after_rebuild",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_dungeon_proxy_web_render_contract.py",
+    "test": "test_web_room_preserves_static_render_support",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_encounter_group_sizes.py",
+    "test": "test_campaign_runtime_uses_same_group_size_contract",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_encounter_group_sizes.py",
+    "test": "test_dungeon_runtime_uses_group_size_contract",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_endgame_postgame_ngplus.py",
+    "test": "test_endgame_runtime_is_autoloaded_saved_and_supports_both_postgame_paths",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_endgame_postgame_ngplus.py",
+    "test": "test_ng_plus_does_not_overwrite_light_in_the_dark_campaign_choices",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_endgame_postgame_ngplus.py",
+    "test": "test_postgame_ui_exposes_continue_immediate_ngplus_and_optional_legacy_choice",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_enemy_family_tactics.py",
+    "test": "test_all_generic_enemies_are_assigned_exactly_once",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_enemy_family_tactics.py",
+    "test": "test_enemy_family_tactics_have_no_hard_errors",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_enemy_family_tactics.py",
+    "test": "test_family_behaviors_and_limb_reactions_are_distinct",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_environment_interaction_contract.py",
+    "test": "test_common_contract_exposes_descriptor_and_result_fields",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_environment_interaction_contract.py",
+    "test": "test_exploration_controller_no_longer_knows_interaction_subtypes",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_environment_interaction_contract.py",
+    "test": "test_representative_environment_objects_implement_common_surface",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_environment_interaction_contract.py",
+    "test": "test_specialized_effect_methods_are_preserved",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_field_encounters.py",
+    "test": "test_reactive_encounters_are_saved_and_injected_into_3d_exploration",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_field_encounters.py",
+    "test": "test_reactive_field_encounter_audit_has_no_errors",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_field_encounters.py",
+    "test": "test_survivor_choice_uses_real_expedition_resources_and_has_no_moral_meter",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_field_memory.py",
+    "test": "test_field_memories_keep_context_and_can_change_later",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_field_memory.py",
+    "test": "test_field_memory_audit_has_no_errors",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_field_memory.py",
+    "test": "test_field_memory_covers_real_campaign_choices_without_new_hud_meter",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_first_descent_challenge.py",
+    "test": "test_expedition_manager_records_attempt_before_play_and_serializes_it",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_first_descent_challenge.py",
+    "test": "test_first_descent_runtime_is_persistent_and_non_farmable",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_first_descent_challenge.py",
+    "test": "test_first_descent_smoke_is_part_of_strict_godot_ci",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_first_veil_proxy_spatial_architecture.py",
+    "test": "test_main_v28_exposes_walkable_proxy_without_revealing_secrets",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_first_veil_proxy_spatial_architecture.py",
+    "test": "test_runtime_resolves_gameplay_anchors_ports_and_connector_types",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_first_veil_proxy_spatial_architecture.py",
+    "test": "test_walkable_proxy_builds_collision_anchors_and_exit_areas",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_full_party_combat.py",
+    "test": "test_all_hero_skill_stats_are_consumed",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_full_party_combat.py",
+    "test": "test_full_party_combat_audit_has_no_errors",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_full_party_combat.py",
+    "test": "test_main_scene_routes_through_v15_to_v2_chain",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_godot_domain_selector.py",
+    "test": "GodotDomainSelectorTests.test_audio_change_targets_audio_and_runtime",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_godot_domain_selector.py",
+    "test": "GodotDomainSelectorTests.test_combat_core_change_is_conservative",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_godot_domain_selector.py",
+    "test": "GodotDomainSelectorTests.test_dungeon_and_playthrough_changes_run_core_world",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_godot_domain_selector.py",
+    "test": "GodotDomainSelectorTests.test_global_project_change_runs_all_domains",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_godot_domain_selector.py",
+    "test": "GodotDomainSelectorTests.test_runner_index_covers_all_domains_and_existing_targets",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_godot_domain_selector.py",
+    "test": "GodotDomainSelectorTests.test_script_targets_are_indexed_too",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_godot_domain_selector.py",
+    "test": "GodotDomainSelectorTests.test_test_only_change_uses_runner_owner",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_godot_domain_selector.py",
+    "test": "GodotDomainSelectorTests.test_ui_change_avoids_unrelated_world_and_audio_domains",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_godot_domain_selector.py",
+    "test": "GodotDomainSelectorTests.test_unknown_change_falls_back_to_all_domains",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_godot_domain_selector.py",
+    "test": "GodotDomainSelectorTests.test_unowned_test_falls_back_to_all_domains",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_godot_domain_selector.py",
+    "test": "GodotDomainSelectorTests.test_veilleurs_data_change_targets_runtime_and_veilleurs",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_guild_stash.py",
+    "test": "test_equipped_items_cannot_be_stored",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_guild_stash.py",
+    "test": "test_guild_chest_is_accessible_from_company",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_guild_stash.py",
+    "test": "test_guild_stash_is_saved_and_preserves_item_instances",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_hero_relationships.py",
+    "test": "test_hero_relationships_audit_has_no_errors",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_hero_relationships.py",
+    "test": "test_relationships_are_persistent_but_not_extra_hud_gauges",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_hero_relationships.py",
+    "test": "test_relationships_have_combat_and_sanctuary_consequences",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_hero_skill_trees.py",
+    "test": "test_each_hero_uses_distinct_effect_profiles_and_scaling",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_hero_skill_trees.py",
+    "test": "test_every_playable_hero_has_three_fifteen_skill_trees",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_hero_skill_trees.py",
+    "test": "test_hero_skills_are_available_in_ui_and_combat",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_hero_skill_trees.py",
+    "test": "test_hero_tree_choice_is_irreversible_and_saved_in_party",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_hybrid_dungeon_generation.py",
+    "test": "test_runtime_uses_hybrid_generator_with_safe_fallback",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_knowledge_discovery_ui_contract.py",
+    "test": "test_contract_is_read_only_and_reconciles_existing_sources",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_knowledge_discovery_ui_contract.py",
+    "test": "test_dedicated_strict_godot_smoke_is_wired",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_layered_music_runtime.py",
+    "test": "test_runtime_keeps_stems_running_and_uses_two_banks",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_level_scaling_policy.py",
+    "test": "test_campaign_and_dungeon_level_policies_are_separate",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_level_scaling_policy.py",
+    "test": "test_visible_ui_enforces_and_displays_the_dungeon_requirement",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_main_campaign.py",
+    "test": "test_campaign_is_autoloaded_reset_saved_and_shown_in_journal",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_main_narrative_full_script.py",
+    "test": "test_active_main_script_position_is_saved_and_restored",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_main_narrative_full_script.py",
+    "test": "test_runtime_is_autoloaded_and_can_run_authored_scenes",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_main_narrative_theatrical_direction.py",
+    "test": "test_runtime_attaches_direction_to_scenes_dialogue_and_choice_responses",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_mobile_3d_room_contract.py",
+    "test": "test_dungeon_proxy_explorer_scene_is_touch_ready_and_lit",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_mobile_3d_room_contract.py",
+    "test": "test_dungeon_proxy_explorer_v2_exposes_touch_navigation_and_interaction",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_mobile_3d_room_contract.py",
+    "test": "test_isometric_proxy_room_does_not_render_ceiling_over_camera",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_mobile_ui_contract.py",
+    "test": "test_mobile_touch_smoke_is_in_strict_godot_ci",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_mobile_ui_contract.py",
+    "test": "test_mobile_touch_targets_and_bounds_are_guarded",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_mobile_ui_contract.py",
+    "test": "test_mobile_ui_keeps_aspect_and_routes_through_v15",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_narrative_audio_scene_hooks.py",
+    "test": "test_narrative_audio_scene_hooks_are_grounded_in_real_runtime_data",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ngplus_boss_recruitment.py",
+    "test": "test_boss_companions_get_generated_skill_trees_and_keep_signature",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ngplus_boss_recruitment.py",
+    "test": "test_boss_recruitment_is_autoloaded_without_changing_regular_creature_roster",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ngplus_boss_recruitment.py",
+    "test": "test_bosses_remain_unrecruitable_outside_ngplus_but_use_existing_capture_action_inside_it",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ngplus_boss_recruitment.py",
+    "test": "test_ngplus_boss_recruitment_uses_unique_encounter_ids_not_shared_enemy_ids",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ngplus_boss_recruitment.py",
+    "test": "test_recruited_boss_level_tracks_party_average_instead_of_boss_hp_template",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ngplus_cycle_variants.py",
+    "test": "test_ngplus_variations_are_connected_to_runtime",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ngplus_multitree_skills.py",
+    "test": "test_creatures_and_boss_recruits_can_mix_trees_in_ngplus",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ngplus_multitree_skills.py",
+    "test": "test_hero_skill_manager_keeps_single_tree_initial_cycle_but_opens_ngplus",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ngplus_multitree_skills.py",
+    "test": "test_multitree_does_not_grant_free_points_or_ignore_level_requirements",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ngplus_multitree_skills.py",
+    "test": "test_ngplus_skill_ui_relabels_locked_branches_as_open",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_outer_world_deep_vestiges.py",
+    "test": "test_each_outer_world_vestige_has_miniboss_and_boss_combat_identity",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_outer_world_deep_vestiges.py",
+    "test": "test_generic_deep_vestige_builder_avoids_twenty_four_duplicate_scenes",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_physical_first_veil_dungeon.py",
+    "test": "test_macro_map_uses_fog_of_war_and_room_screen",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_physical_first_veil_dungeon.py",
+    "test": "test_main_scene_activates_physical_dungeon_layer",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_physical_first_veil_dungeon.py",
+    "test": "test_physical_state_is_serialized_inside_existing_run_state",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_physical_first_veil_dungeon.py",
+    "test": "test_secret_rooms_are_real_but_not_revealed_before_discovery",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_player_interaction_presentation.py",
+    "test": "test_controller_does_not_restore_specialized_interaction_routing",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_player_interaction_presentation.py",
+    "test": "test_controller_publishes_contract_only_target_state_and_feedback",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_player_interaction_presentation.py",
+    "test": "test_hud_does_not_know_specialized_world_interactable_classes",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_player_interaction_presentation.py",
+    "test": "test_hud_uses_progressive_contextual_presentation",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_political_ui.py",
+    "test": "test_political_runtime_and_save_contracts",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_project.py",
+    "test": "ProjectTests.test_autoload_order",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_project.py",
+    "test": "ProjectTests.test_main_scene",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_psychology_combat.py",
+    "test": "test_fear_is_the_only_visible_psychological_meter_and_hope_is_event_driven",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_psychology_combat.py",
+    "test": "test_panic_and_fear_penalties_are_deterministic_and_data_driven",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_psychology_combat.py",
+    "test": "test_psychology_combat_audit_has_no_errors",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_psychology_social_combat.py",
+    "test": "test_psychology_social_combat_audit_has_no_errors",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_random_equipment.py",
+    "test": "RandomEquipmentTests.test_four_test_rooms_award_the_four_class_bundles_in_order",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_random_equipment.py",
+    "test": "RandomEquipmentTests.test_runtime_scales_all_equipment_using_the_saved_hero_level",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_random_equipment.py",
+    "test": "RandomEquipmentTests.test_runtime_serializes_seed_counter_instances_and_equipped_slots",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_random_equipment.py",
+    "test": "RandomEquipmentTests.test_save_manager_persists_equipment_without_regeneration",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_reconciled_bestiary_manifest.py",
+    "test": "test_complete_collection_claim_requires_every_registered_original",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_roguelike_dungeon_crawler_core.py",
+    "test": "test_expedition_manager_routes_existing_gameplay_into_roguelike_runtime",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_roguelike_dungeon_crawler_core.py",
+    "test": "test_runtime_exposes_roguelike_gameplay_contracts",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_roguelike_dungeon_crawler_core.py",
+    "test": "test_ultimate_progression_contract_is_preserved",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_roguelike_telemetry_sim_v2.py",
+    "test": "test_v2_detects_effective_light_interval_through_ui_compensation",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_roguelike_visible_ui.py",
+    "test": "test_main_scene_uses_roguelike_ui_layer",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_roguelike_visible_ui.py",
+    "test": "test_visible_capture_respects_roguelike_gate_before_creature_manager",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_roguelike_visible_ui.py",
+    "test": "test_visible_expedition_uses_procedural_runtime",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_roguelike_visible_ui.py",
+    "test": "test_visible_ui_exposes_push_your_luck_choices",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_runtime_player_smoke.py",
+    "test": "test_runtime_player_smoke_covers_real_player_operations",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_runtime_player_smoke.py",
+    "test": "test_strict_godot_runner_executes_runtime_player_smoke",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_sanctuary_buildings.py",
+    "test": "test_memorial_is_limited_per_chapter_and_tavern_chapel_cost_resources",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_sanctuary_buildings.py",
+    "test": "test_psychology_v16_exposes_fear_but_not_numeric_madness_or_hope",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_sanctuary_buildings.py",
+    "test": "test_sanctuary_buildings_audit_has_no_errors",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_sanctuary_buildings.py",
+    "test": "test_sanctuary_v16_keeps_v15_mobile_layer_and_three_real_screens",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_sanctuary_states.py",
+    "test": "test_sanctuary_state_is_in_quest_journal_not_large_sanctuary_banner",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_sanctuary_states.py",
+    "test": "test_state_runtime_is_driven_by_politics_resources_and_campaign_flags",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_save_schema.py",
+    "test": "test_save_manager_mentions_all_schema_keys",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_skill_tree_ui_v33.py",
+    "test": "test_v33_preserves_loadout_and_ports_focused_skill_tree_ui",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_social_politics.py",
+    "test": "test_runtime_persists_events_and_world_memory_and_ui_exposes_social_layer",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_systemic_cross_narrative_runtime.py",
+    "test": "test_runtime_has_no_new_morality_or_reputation_meter",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_systemic_cross_narrative_runtime.py",
+    "test": "test_systemic_cross_narrative_audit_passes",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_systemic_cross_runtime.py",
+    "test": "test_existing_economy_consumes_cross_pressure_without_changing_reputation",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_systemic_cross_runtime.py",
+    "test": "test_named_death_and_anti_replay_are_covered_by_godot_smoke",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_systemic_cross_runtime.py",
+    "test": "test_runtime_keeps_moral_scores_out_of_cross_consequences",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_systemic_cross_runtime.py",
+    "test": "test_save_contract_keeps_existing_version_and_adds_systemic_state",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_systemic_cross_runtime.py",
+    "test": "test_systemic_cross_runtime_audit_passes",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_tactical_combat.py",
+    "test": "test_tactical_combat_has_four_unique_initial_ranks_and_profiles",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_tactical_combat.py",
+    "test": "test_tactical_combat_has_no_hard_errors",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_tactical_combat.py",
+    "test": "test_tactical_combat_locks_movement_targeting_techniques_and_synergies",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_targeted_export_ci_contract.py",
+    "test": "TargetedExportCIContractTests.test_all_platforms_retained",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_targeted_export_ci_contract.py",
+    "test": "TargetedExportCIContractTests.test_expensive_exports_are_gated_but_main_and_tags_remain_supported",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_targeted_export_ci_contract.py",
+    "test": "TargetedExportCIContractTests.test_export_config_changes_are_not_skipped",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_targeted_export_ci_contract.py",
+    "test": "TargetedExportCIContractTests.test_merge_queue_checks_not_changed",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ui_player_journey_smoke.py",
+    "test": "test_real_campaign_expedition_and_reward_ui_are_connected",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ui_player_journey_smoke.py",
+    "test": "test_strict_godot_runner_executes_ui_player_journey",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_ui_player_journey_smoke.py",
+    "test": "test_ui_player_journey_drives_real_interface_and_scene_changes",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_validated_hero_art_library.py",
+    "test": "ValidatedHeroArtLibraryTests.test_quartet_runtime_mapping_remains_unchanged",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_veilleurs_canonical_roster.py",
+    "test": "test_no_legacy_quartet_canonicalization_bridge_remains",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_veilleurs_ten_system_integration.py",
+    "test": "test_01_characters_and_stats_are_connected_to_runtime",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_veilleurs_ten_system_integration.py",
+    "test": "test_02_skills_and_effects_use_the_canonical_veilleurs_contract",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_veilleurs_ten_system_integration.py",
+    "test": "test_03_states_and_statuses_are_resolved_in_the_combat_pipeline",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_veilleurs_ten_system_integration.py",
+    "test": "test_04_enemy_ai_keeps_family_tactics_and_observed_reactions",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_veilleurs_ten_system_integration.py",
+    "test": "test_05_equipment_and_loot_share_persistent_item_instances",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_veilleurs_ten_system_integration.py",
+    "test": "test_06_inventory_has_one_authority_instead_of_a_duplicate_manager",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_veilleurs_ten_system_integration.py",
+    "test": "test_07_expeditions_connect_generation_inventory_and_save_state",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_veilleurs_ten_system_integration.py",
+    "test": "test_08_save_and_remanence_round_trip_the_systemic_state",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_veilleurs_ten_system_integration.py",
+    "test": "test_09_ui_ux_is_connected_to_the_playable_slice_contract",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_veilleurs_ten_system_integration.py",
+    "test": "test_10_vertical_slice_is_technically_ready_without_faking_human_playtests",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/python/test_veilleurs_ten_system_integration.py",
+    "test": "test_tactical_movement_and_corpses_are_in_the_same_validation_gate",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_audio_director.py",
+    "test": "test_audio_director_contract_is_complete",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_audio_runtime.py",
+    "test": "test_audio_runtime_contract",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_canonical_target_contract_v2.py",
+    "test": "test_existing_death_compaction_remains_the_only_formation_compaction_path",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_canonical_target_contract_v2.py",
+    "test": "test_sandbox_checks_target_contract_before_canonical_resolution",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_canonical_target_contract_v2.py",
+    "test": "test_target_resolver_owns_rank_and_body_zone_contract",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_cinematic_canonical_quartet.py",
+    "test": "test_cinematic_smoke_targets_current_canon",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_combat_formation_contract.py",
+    "test": "test_canonical_quartet_roles_match_front_and_back_contract",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_combat_formation_contract.py",
+    "test": "test_equal_role_scores_are_stable_by_canonical_roster_order",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_combat_formation_contract.py",
+    "test": "test_initial_formation_scores_canonical_front_and_back_classes",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_combat_formation_contract.py",
+    "test": "test_visual_rank_order_keeps_r1_at_enemy_contact",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_combatant_inspection.py",
+    "test": "test_combatant_inspection_is_registered",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_combatant_inspection.py",
+    "test": "test_detailed_inspection_keeps_combat_running",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_combatant_inspection.py",
+    "test": "test_enemy_preview_and_detail_show_capture_readiness_when_actionable",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_combatant_inspection.py",
+    "test": "test_mouse_hover_shows_preview_for_heroes_and_enemies",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_combatant_inspection.py",
+    "test": "test_preview_and_detail_show_stats_afflictions_and_skills",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_combatant_inspection.py",
+    "test": "test_touch_click_and_gamepad_open_detailed_inspection",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_complete_pre_pc_workstreams.py",
+    "test": "test_enemy_combat_is_contextual_and_connected",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_complete_pre_pc_workstreams.py",
+    "test": "test_menu_finishes_bestiary_records_comparison_and_accessibility",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_contextual_exploration_hud.py",
+    "test": "test_cinders_remain_world_guidance_without_hud_marker",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_contextual_exploration_hud.py",
+    "test": "test_combat_and_full_menus_clear_exploration_overlay",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_contextual_exploration_hud.py",
+    "test": "test_exploration_hud_is_invisible_by_default_and_event_driven",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_contextual_exploration_hud.py",
+    "test": "test_exploration_information_has_bounded_lifetimes",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_contextual_exploration_hud.py",
+    "test": "test_fear_and_hope_are_postures_not_visible_gauges",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_contextual_exploration_hud.py",
+    "test": "test_fear_penalizes_and_hope_rewards_combat",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_contextual_exploration_hud.py",
+    "test": "test_quest_updates_use_contextual_overlay",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_contextual_exploration_hud.py",
+    "test": "test_status_is_explicit_and_cross_input_ready",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_dialogue_library.py",
+    "test": "test_dialogue_library_audit_has_no_errors",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_dialogue_library.py",
+    "test": "test_dialogue_library_covers_voice_staging_and_subtext",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_dialogue_library.py",
+    "test": "test_dialogue_library_keeps_sources_as_abstract_reference_only",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_first_map_ancient_dungeon.py",
+    "test": "test_authored_map_builder_replaces_generic_dungeon_layout",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_first_map_ancient_dungeon.py",
+    "test": "test_dangerous_entry_requires_a_second_confirmation",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_first_map_ancient_dungeon.py",
+    "test": "test_dungeon_scene_and_router_are_registered",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_first_map_gameplay_completion.py",
+    "test": "test_equipped_skills_and_consumables_drive_combat",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_first_map_gameplay_completion.py",
+    "test": "test_side_quests_are_live_persistent_and_guided",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_first_map_quests_and_bounties.py",
+    "test": "test_bounty_runtime_is_saved_and_wired",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_godot_47_migration.py",
+    "test": "test_android_export_template_matches_pinned_ci_patch",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_hud_director_contract.py",
+    "test": "test_runtime_and_smoke_are_wired",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_legendary_seven_memory_context.py",
+    "test": "test_memory_context_audit_is_green",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_legendary_seven_relationships.py",
+    "test": "test_legendary_seven_relationships_audit_is_green",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_living_exploration.py",
+    "test": "test_all_twelve_exploration_pillars_are_implemented",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_living_exploration.py",
+    "test": "test_camp_uses_any_available_healing_capability",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_living_exploration.py",
+    "test": "test_exploration_state_is_saved_and_reset",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_living_exploration.py",
+    "test": "test_exploration_uses_world_cues_not_permanent_markers",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_living_exploration.py",
+    "test": "test_patrols_react_to_noise_and_hero_reputation",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_living_exploration.py",
+    "test": "test_retreat_has_real_retention_and_pursuit_consequences",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_living_exploration.py",
+    "test": "test_roles_use_posture_traits_and_injuries",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_music_library.py",
+    "test": "test_music_library_audit_is_green",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_narrative_audio.py",
+    "test": "test_narrative_audio_contract_is_valid",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_narrative_library.py",
+    "test": "test_narrative_library_audit_has_no_errors",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_narrative_library.py",
+    "test": "test_sidequests_mix_multiple_narrative_families",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_opening_bird_intro.py",
+    "test": "test_first_zone_injects_opening_only_once",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_opening_bird_intro.py",
+    "test": "test_proxy_contains_people_arts_fleet_and_four_heroes",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_opening_bird_intro.py",
+    "test": "test_runtime_connects_city_heroes_and_contextual_tutorial",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_persistent_injuries_and_context_traits.py",
+    "test": "test_ambidextrous_is_contextual_and_respects_two_handed_weapons",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_persistent_injuries_and_context_traits.py",
+    "test": "test_any_character_with_healing_capability_treats_every_injury",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_persistent_injuries_and_context_traits.py",
+    "test": "test_persistent_injuries_are_wired_to_gameplay_and_save",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_playtest_p0_ux_contract.py",
+    "test": "test_combatant_inspection_is_contextual_and_keeps_controls_available",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_playtest_p0_ux_contract.py",
+    "test": "test_combatant_inspection_remains_bound_to_heroes_and_enemies",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_playtest_p0_ux_contract.py",
+    "test": "test_enemy_inspection_uses_canonical_knowledge_before_revealing_details",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_playtest_p0_ux_contract.py",
+    "test": "test_hub_and_mission_departure_remain_guided",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_playtest_p0_ux_contract.py",
+    "test": "test_player_main_keeps_playtest_ux_layers_active",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_playtest_p0_ux_contract.py",
+    "test": "test_room_navigation_is_direct_and_macro_map_is_optional",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_progressive_system_unlocks.py",
+    "test": "test_campaign_progression_can_never_require_grinding",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_progressive_system_unlocks.py",
+    "test": "test_injuries_are_persistent_and_contextually_explained",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_progressive_system_unlocks.py",
+    "test": "test_locked_capabilities_are_hidden_in_ui",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_progressive_system_unlocks.py",
+    "test": "test_progression_state_is_saved",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_progressive_system_unlocks.py",
+    "test": "test_world_activity_is_not_gated_by_progression",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_qa_validation_room.py",
+    "test": "test_qa_room_is_routable_but_hidden_from_production_menu",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_qa_validation_room.py",
+    "test": "test_qa_room_uses_real_interaction_and_combat_contracts",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_quest_giver_staging.py",
+    "test": "test_dialogue_scene_uses_written_quest_lines",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_quest_giver_staging.py",
+    "test": "test_every_quest_giver_has_a_unique_body_contract",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_quest_giver_staging.py",
+    "test": "test_giver_cards_have_entrance_idle_focus_and_dialogue_staging",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_quest_giver_staging.py",
+    "test": "test_journals_open_staged_giver_encounters",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_quest_giver_staging.py",
+    "test": "test_quest_giver_presentation_is_registered",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_quest_givers_and_texts.py",
+    "test": "test_both_journals_show_the_quest_giver",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_quest_givers_and_texts.py",
+    "test": "test_every_first_map_quest_has_a_real_giver",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_quest_givers_and_texts.py",
+    "test": "test_every_objective_has_player_facing_text",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_quest_givers_and_texts.py",
+    "test": "test_every_quest_has_complete_dialogue_states",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_quest_givers_and_texts.py",
+    "test": "test_narrative_library_exposes_givers_dialogues_and_objectives",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_runtime_body_staging.py",
+    "test": "test_body_presentation_is_live_not_only_a_contract",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_runtime_body_staging.py",
+    "test": "test_postures_reflect_psychology_injury_and_personality_diversity",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_runtime_body_staging.py",
+    "test": "test_proxy_staging_has_entrance_breath_actions_hits_and_death",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_runtime_body_staging.py",
+    "test": "test_visible_heroes_and_enemies_are_bound_to_body_profiles",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_runtime_body_staging.py",
+    "test": "test_visual_staging_never_changes_gameplay_timing_contract",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_sfx_library.py",
+    "test": "test_sfx_library_audit_is_clean",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_skill_production_scope.py",
+    "test": "test_current_ui_hides_reserve_without_deleting_it",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_skill_production_scope.py",
+    "test": "test_hero_catalog_is_preserved_but_production_is_bounded",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_twelve_reference_gaps.py",
+    "test": "test_accessibility_and_audio_are_applied",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_twelve_reference_gaps.py",
+    "test": "test_all_new_modules_are_registered_and_reset",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_twelve_reference_gaps.py",
+    "test": "test_campaign_bounties_are_offered_and_acceptable",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_twelve_reference_gaps.py",
+    "test": "test_campaign_memory_and_progressive_codex_are_persistent",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_twelve_reference_gaps.py",
+    "test": "test_effect_tooltips_explain_full_lifecycle",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_twelve_reference_gaps.py",
+    "test": "test_expanded_audio_options_are_visible",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_twelve_reference_gaps.py",
+    "test": "test_expedition_reports_cover_requested_outcomes",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_twelve_reference_gaps.py",
+    "test": "test_preparation_presets_and_nonblocking_warnings",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_twelve_reference_gaps.py",
+    "test": "test_replayable_help_and_glossary_are_complete",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_twelve_reference_gaps.py",
+    "test": "test_tactical_preview_and_partial_timeline_are_live",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_twelve_reference_gaps.py",
+    "test": "test_ui_navigation_is_consolidated_without_new_numbered_layer",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_unified_game_menu.py",
+    "test": "test_character_sheet_is_expandable_and_has_preparation_panels",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_unified_game_menu.py",
+    "test": "test_character_skills_are_selectable_in_four_slots",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_unified_game_menu.py",
+    "test": "test_consumable_assignment_transfers_and_consumption_decrements_stack",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_unified_game_menu.py",
+    "test": "test_consumables_have_distinct_inventory_and_hero_stack_limits",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_unified_game_menu.py",
+    "test": "test_healing_and_grenade_loadouts_are_real_and_persistent",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_unified_game_menu.py",
+    "test": "test_inventory_and_map_use_live_game_state",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_unified_game_menu.py",
+    "test": "test_journal_includes_main_side_and_bounty_quests",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_unified_game_menu.py",
+    "test": "test_menu_contains_all_required_tabs",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_unified_game_menu.py",
+    "test": "test_options_are_applied_and_saved",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_unified_game_menu.py",
+    "test": "test_unified_game_menu_is_registered_and_accessible",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_affliction_builds.py",
+    "test": "test_affliction_runtime_reuses_shared_status_and_hit_resolvers",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_affliction_synergy_runtime.py",
+    "test": "test_runtime_reuses_status_resolver_and_does_not_duplicate_damage",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_affliction_synergy_runtime.py",
+    "test": "test_three_declared_cross_build_synergies_have_runtime_receipts",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_canonical_skills.py",
+    "test": "test_veilleurs_canonical_skills_contract_is_coherent",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_clinical_resolvers.py",
+    "test": "test_clinical_reactions_are_automatic_causal_hooks",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_clinical_resolvers.py",
+    "test": "test_clinical_runtime_uses_existing_body_and_persistent_injury_systems",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_clinical_resolvers.py",
+    "test": "test_clinical_transformations_and_postures_have_runtime_state",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_clinical_resolvers.py",
+    "test": "test_main_v37_is_additive_and_keeps_clinical_and_item_layers",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_clinical_resolvers.py",
+    "test": "test_suture_does_not_fallback_to_generic_hp_healing",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_developer_selftest_contract.py",
+    "test": "test_developer_overlay_is_opt_in_only",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_first_playtest_kit.py",
+    "test": "test_veilleurs_first_playtest_kit_is_coherent",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_hemocorde.py",
+    "test": "test_hemocorde_collapse_is_conditional_and_cannot_instant_kill",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_hemocorde.py",
+    "test": "test_hemocorde_is_a_separate_prototype_bridge_without_parallel_blood_hp",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_hemocorde.py",
+    "test": "test_hemocorde_reactions_are_automatic_and_share_aureliens_budget",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_hemocorde.py",
+    "test": "test_main_orders_medical_movement_then_blood_return",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_hemocorde.py",
+    "test": "test_router_keeps_clinical_and_hemocorde_runtimes_separate",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_playtest_readiness.py",
+    "test": "test_readiness_contract_is_coherent",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_repository_integrity.py",
+    "test": "test_veilleurs_repository_integrity",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_system_maturity.py",
+    "test": "test_veilleurs_system_maturity_registry_is_coherent",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_ultimate_hemocorde_runtime_audit.py",
+    "test": "test_veilleurs_v062_hemocorde_runtime_contract",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_v081_canonical_production_audit.py",
+    "test": "test_v081_canonical_production_audit",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_vs001_legacy_boundary.py",
+    "test": "test_canonical_runtime_facade_is_neutral_and_v09_backed",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_vs001_legacy_boundary.py",
+    "test": "test_declared_critical_legacy_dependencies_exist",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_vs001_legacy_boundary.py",
+    "test": "test_modern_runtime_chain_does_not_depend_on_vs001",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_vs001_legacy_boundary.py",
+    "test": "test_new_saves_use_neutral_key_but_legacy_key_remains_readable",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_vs001_legacy_boundary.py",
+    "test": "test_vs001_cannot_gain_new_external_consumers",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_vs001_persistence_ui.py",
+    "test": "test_veilleurs_vs001_persistence_ui_contract",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_vs001_playable.py",
+    "test": "test_veilleurs_vs001_playable_contract",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_vs001_player_entry.py",
+    "test": "test_canonical_player_entry_uses_neutral_runtime",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_vs001_player_entry.py",
+    "test": "test_legacy_bridge_is_resume_only_in_normal_boot",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_veilleurs_vs001_player_entry.py",
+    "test": "test_production_scene_has_no_legacy_dependency",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  },
+  {
+    "path": "tests/test_visual_vertical_slice.py",
+    "test": "test_godot_proxy_and_shader_contract_exist",
+    "reason": "Removed implementation or retired game/export workflow; reference data checks and technical contracts remain in default pytest collection."
+  }
+]

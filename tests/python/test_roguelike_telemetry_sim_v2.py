@@ -16,12 +16,6 @@ def test_v2_uses_live_main_v25_encounter_budget() -> None:
     assert ROOM_ENCOUNTER_IDS["boss"] == [38]
 
 
-def test_v2_detects_effective_light_interval_through_ui_compensation() -> None:
-    payload = simulate(ROOT, runs=60, seed=260821).payload
-    contract = payload["runtime_contract"]
-    assert contract["configured_light_decay_interval"] == 2
-    assert contract["effective_light_decay_interval"] == 2
-    assert contract["runtime_implements_room_decay_interval"] is True
 
 
 def test_v2_reports_runtime_aligned_model_metadata() -> None:

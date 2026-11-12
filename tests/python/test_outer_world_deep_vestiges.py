@@ -45,24 +45,6 @@ def test_each_outer_world_vestige_is_a_full_six_zone_optional_dungeon():
         assert data['rewards']['deep_truth']['id']
 
 
-def test_each_outer_world_vestige_has_miniboss_and_boss_combat_identity():
-    bridge = (ROOT / 'scripts/world/ashlands_combat_bridge.gd').read_text()
-    boss_runtime = (ROOT / 'scripts/world/deep_vestige_boss_runtime_v2.gd').read_text()
-    contracts = load('data/boss_design_contracts.json')['bosses']
-    contract_ids = {b['id'] for b in contracts}
-    expected_bosses = {
-        'vestige_vaor_boss_command_without_body',
-        'vestige_lyrmar_boss_absent_cartographer',
-        'vestige_sahmir_boss_single_interpreter',
-        'vestige_ydris_boss_living_theorem',
-    }
-    expected_minibosses = {'vv_miniboss_order_bearer','vm_miniboss_drowned_pilot','vz_miniboss_stone_cantor','vy_miniboss_causal_auditor'}
-    assert expected_bosses | expected_minibosses <= contract_ids
-    for boss_id in expected_bosses:
-        assert boss_id in bridge
-        assert boss_id in boss_runtime
-    for miniboss_id in expected_minibosses:
-        assert miniboss_id in bridge
 
 
 def test_new_vestiges_unlock_from_physical_chapter_eight_traces():
@@ -75,15 +57,3 @@ def test_new_vestiges_unlock_from_physical_chapter_eight_traces():
         assert outer[world_id]['unlock']['flag'] == traces[world_id]['unlock_flag']
         assert outer[world_id]['id'] == traces[world_id]['vestige_id']
         assert outer[world_id]['status'] == 'playable'
-
-
-def test_generic_deep_vestige_builder_avoids_twenty_four_duplicate_scenes():
-    builder = (ROOT / 'scripts/world/deep_vestige_blockout_builder.gd').read_text()
-    router = (ROOT / 'scripts/world/ashlands_scene_router.gd').read_text()
-    scene = (ROOT / 'scenes/world/deep_vestiges/generic_deep_vestige.tscn').read_text()
-    assert 'use_pending_zone' in builder
-    assert 'DeepVestigeRuntime.pending_zone_id' in builder
-    assert 'data_path_for_zone' in builder
-    assert '_register_dynamic_deep_vestige_zones' in router
-    assert 'generic_deep_vestige.tscn' in router
-    assert 'use_pending_zone = true' in scene

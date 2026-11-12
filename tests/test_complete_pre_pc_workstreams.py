@@ -8,18 +8,6 @@ def load(path):
     return json.loads((ROOT / path).read_text(encoding="utf-8"))
 
 
-def test_enemy_combat_is_contextual_and_connected():
-    data = load("data/enemy_combat_profiles.json")
-    assert len(data["skills"]) >= 8
-    assert {"power", "target"}.issubset(data["skills"][0])
-    director = (ROOT / "scripts/core/enemy_combat_director.gd").read_text(encoding="utf-8")
-    combat = (ROOT / "scripts/ui/main.gd").read_text(encoding="utf-8")
-    project = (ROOT / "project.godot").read_text(encoding="utf-8")
-    assert 'EnemyCombatDirector="*res://scripts/core/enemy_combat_director.gd"' in project
-    assert "func choose_action" in director
-    assert "func apply_secondary" in director
-    assert "EnemyCombatDirector.choose_action" in combat
-    assert "EnemyCombatDirector.apply_secondary" in combat
 
 
 def test_character_and_giver_blender_contracts_are_exhaustive():
@@ -72,20 +60,6 @@ def test_audio_contract_preserves_litd_identity_and_legal_sources():
     assert audio["mix"]["sample_rate"] == 48000
 
 
-def test_menu_finishes_bestiary_records_comparison_and_accessibility():
-    menu = (ROOT / "scripts/ui/game_menu_ui.gd").read_text(encoding="utf-8")
-    registry = (ROOT / "scripts/ui/ui_section_registry.gd").read_text(encoding="utf-8")
-    settings = (ROOT / "scripts/core/game_settings.gd").read_text(encoding="utf-8")
-    for section, label in (("bestiary", "BESTIAIRE"), ("records", "PRIMES")):
-        assert f'"id":"{section}","label":"{label}"' in registry
-    assert "UI_SECTIONS.entries()" in menu
-    for token in ("func _equipment_comparison", "func _render_bestiary", "func _render_records"):
-        assert token in menu
-    for setting in ("text_scale", "high_contrast", "reduce_flashes", "color_assist"):
-        assert setting in settings
-    assert "Taille du texte" in menu
-    assert "Contraste renforcé" in menu
-    assert "Réduire les flashs" in menu
 
 
 def test_non_pc_boundary_is_explicit():

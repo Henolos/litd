@@ -35,18 +35,6 @@ def test_ngplus_cycle_profiles_cover_four_replay_layers():
         assert profile["narrative_echoes"]
 
 
-def test_ngplus_variations_are_connected_to_runtime():
-    project = (ROOT / "project.godot").read_text(encoding="utf-8")
-    director = (ROOT / "scripts/core/ngplus_cycle_director.gd").read_text(encoding="utf-8")
-    dungeon = (ROOT / "scripts/core/hybrid_dungeon_generator.gd").read_text(encoding="utf-8")
-    enemies = (ROOT / "scripts/core/enemy_combat_director.gd").read_text(encoding="utf-8")
-
-    assert 'NgPlusCycleDirector="*res://scripts/core/ngplus_cycle_director.gd"' in project
-    assert "dungeon_context(seed_value, dungeon_id)" in dungeon
-    assert "visit_kind == \"campaign_first_visit\" and not ngplus_active" in dungeon
-    assert "modify_enemy_action" in enemies
-    assert "narrative_echo" in director
-    assert "world_variant" in director
 
 
 def test_ngplus_wow_contract_requires_early_visible_change():

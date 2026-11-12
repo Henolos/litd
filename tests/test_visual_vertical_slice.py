@@ -43,18 +43,6 @@ def test_vertical_slice_blender_jobs_are_deterministic_and_proxy_gated() -> None
     assert all(job["art_bible_authoritative"] is True for job in generated["jobs"])
 
 
-def test_godot_proxy_and_shader_contract_exist() -> None:
-    data = _load("data/visual_vertical_slice.json")
-    assert (ROOT / "scenes/visual/visual_vertical_slice_proxy.tscn").exists()
-    assert (ROOT / "scripts/world/visual_vertical_slice_proxy.gd").exists()
-    shader = ROOT / data["shader"]["godot_path"].replace("res://", "")
-    outline = ROOT / data["shader"]["outline_path"].replace("res://", "")
-    assert shader.exists()
-    assert outline.exists()
-    shader_text = shader.read_text(encoding="utf-8")
-    assert "diffuse_toon" in shader_text
-    assert "specular_disabled" in shader_text
-    assert "micro" not in shader_text.lower()
 
 
 def test_pc_handoff_keeps_reference_ingest_manual() -> None:

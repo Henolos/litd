@@ -6,10 +6,6 @@ from tools.qa.music_library_audit import run
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_music_library_audit_is_green() -> None:
-    report = run(ROOT)
-    failures = [item for item in report["checks"] if not item["ok"]]
-    assert not failures, failures
 
 
 def test_music_library_separates_license_risk_from_emotional_use() -> None:

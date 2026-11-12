@@ -14,6 +14,15 @@ var last_status := ""
 var last_operation := ""
 var session_started_ms := 0
 
+# Opaque snapshot: the storage service no longer depends on retired game systems.
+var _snapshot: Dictionary = {}
+
+func set_snapshot(payload: Dictionary) -> void:
+    _snapshot = payload.duplicate(true)
+
+func get_snapshot() -> Dictionary:
+    return _snapshot.duplicate(true)
+
 func _ready() -> void:
     session_started_ms = Time.get_ticks_msec()
 
@@ -33,7 +42,7 @@ func save_game(slot: int = active_slot) -> bool:
     if success:
         active_slot = slot if slot >= 0 else active_slot
         last_status = "Sauvegarde terminée."
-        GameState.add_log("Partie sauvegardée%s." % (" automatiquement" if slot == AUTOSAVE_SLOT else ""))
+
     else:
         last_status = "Échec de la sauvegarde."
     save_finished.emit(slot, success, false)
@@ -94,7 +103,7 @@ func load_game(slot: int = active_slot) -> bool:
     _apply_payload(payload)
     active_slot = slot if slot >= 0 else active_slot
     last_status = "Sauvegarde de secours restaurée." if recovered else "Sauvegarde chargée."
-    GameState.add_log(last_status)
+
     save_finished.emit(slot, true, recovered)
     return true
 
@@ -132,91 +141,17 @@ func delete_slot(slot: int) -> bool:
             removed = DirAccess.remove_absolute(ProjectSettings.globalize_path(path)) == OK or removed
     return removed
 
-func _build_veilleurs_payload() -> Dictionary:
-    var payload: Dictionary = VeilleursRuntime.serialize()
-    if VeilleursVS001WorldRuntime.is_active():
-        payload["compatibility_mode"] = "legacy_vs001"
-        payload["legacy_vs001"] = VeilleursVS001PlayableBridge.serialize()
+func _build_payload() -> Dictionary:
+    var payload := _snapshot.duplicate(true)
+    payload["version"] = SAVE_VERSION
+    var metadata: Dictionary = payload.get("metadata", {}).duplicate(true)
+    metadata["timestamp"] = Time.get_datetime_string_from_system()
+    metadata["play_seconds"] = int((Time.get_ticks_msec() - session_started_ms) / 1000)
+    payload["metadata"] = metadata
     return payload
 
-func _build_payload() -> Dictionary:
-    var veilleurs_active := VeilleursRuntime.is_active() or VeilleursVS001WorldRuntime.is_active()
-    var veilleurs_runtime := ""
-    if VeilleursVS001WorldRuntime.is_active():
-        veilleurs_runtime = "legacy_vs001"
-    elif VeilleursRuntime.is_active():
-        veilleurs_runtime = "0.9.0"
-    return {
-        "version": SAVE_VERSION,
-        "metadata": {
-            "timestamp": Time.get_datetime_string_from_system(),
-            "chapter": CampaignState.current_chapter_number(),
-            "zone": AshlandsRuntime.current_zone_id,
-            "mode": "veilleurs" if veilleurs_active else "litd1",
-            "veilleurs_runtime": veilleurs_runtime,
-            "party": GameState.party.map(func(hero: Dictionary): return {"id":hero.get("id", ""),"name":hero.get("name", ""),"hp":hero.get("hp", 0),"max_hp":hero.get("max_hp", 0)}),
-            "play_seconds": int((Time.get_ticks_msec() - session_started_ms) / 1000),
-            "screen": GameState.current_screen
-        },
-        "gold": GameState.gold, "essence": GameState.essence, "light": GameState.light, "supplies": GameState.supplies,
-        "party": GameState.party, "equipment": EquipmentManager.serialize(), "combat_loadouts": CombatLoadoutManager.serialize(),
-        "creatures": CreatureManager.serialize(), "politics": PoliticalState.serialize(), "campaign": CampaignState.serialize(),
-        "main_narrative_script": MainNarrativeScriptRuntime.serialize(),
-        "base_game_enrichment": BaseGameEnrichmentRuntime.serialize(),
-        "side_quests": SideQuestRuntime.serialize(), "bounty_contracts": BountyContractDirector.serialize(),
-        "hero_renown": EnemyFearDirector.serialize(), "chapter_01": Chapter01Runtime.serialize(),
-        "chapter_02": Chapter02Runtime.serialize(), "chapter_03": Chapter03Runtime.serialize(), "chapter_04": Chapter04Runtime.serialize(),
-        "chapter_05": Chapter05Runtime.serialize(), "chapter_06": Chapter06Runtime.serialize(), "chapter_07": Chapter07Runtime.serialize(),
-        "chapter_08": Chapter08Runtime.serialize(), "chapter_09": Chapter09Runtime.serialize(), "chapter_10": Chapter10Runtime.serialize(),
-        "endgame": EndgameState.serialize(), "deep_vestiges": DeepVestigeRuntime.serialize(), "expedition_room": GameState.expedition_room,
-        "ashlands": AshlandsRuntime.serialize(), "expedition": ExpeditionManager.serialize(), "field_encounters": FieldEncounterRuntime.serialize(),
-        "community": CommunityRuntime.serialize(), "systemic_cross": SystemicCrossRuntime.serialize(),
-        "systemic_cross_narrative": SystemicCrossNarrativeRuntime.serialize(),
-        "ashlands_minibosses": AshlandsMinibossDirector.serialize(),
-        "ashlands_combat": AshlandsCombatBridge.serialize(), "campaign_memory": CampaignMemoryDirector.serialize(),
-        "remanence": RemanenceRuntime.serialize(),
-        "veilleurs": _build_veilleurs_payload(),
-        "expedition_reports": ExpeditionReportDirector.serialize(), "preparation_presets": ExpeditionPreparationDirector.serialize(),
-        "living_exploration": ExplorationDirector.serialize(),
-        "progression_scope": ContentScopeDirector.serialize()
-    }
-
 func _apply_payload(payload: Dictionary) -> void:
-    GameState.gold = int(payload.get("gold", 120)); GameState.essence = int(payload.get("essence", 18))
-    GameState.light = int(payload.get("light", 75)); GameState.supplies = int(payload.get("supplies", 8))
-    GameState.party = payload.get("party", DataLoader.heroes.duplicate(true))
-    for hero_value: Variant in GameState.party:
-        var hero: Dictionary = hero_value
-        HeroSkillManager.prepare_hero(hero); EnemyFearDirector.prepare_hero(hero); PersistentInjuryRuntime.prepare_character(hero)
-    EquipmentManager.deserialize(payload.get("equipment",{})); CombatLoadoutManager.deserialize(payload.get("combat_loadouts",{}))
-    CreatureManager.deserialize(payload.get("creatures",{})); GameState.expedition_room = int(payload.get("expedition_room",0))
-    PoliticalState.deserialize(payload.get("politics",{})); CampaignState.deserialize(payload.get("campaign",{}))
-    MainNarrativeScriptRuntime.deserialize(payload.get("main_narrative_script",{}))
-    BaseGameEnrichmentRuntime.deserialize(payload.get("base_game_enrichment",{}))
-    SideQuestRuntime.deserialize(payload.get("side_quests",{})); BountyContractDirector.deserialize(payload.get("bounty_contracts",{}))
-    EnemyFearDirector.deserialize(payload.get("hero_renown",{})); AshlandsRuntime.deserialize(payload.get("ashlands",{}))
-    Chapter01Runtime.deserialize(payload.get("chapter_01",{})); Chapter02Runtime.deserialize(payload.get("chapter_02",{}))
-    Chapter03Runtime.deserialize(payload.get("chapter_03",{})); Chapter04Runtime.deserialize(payload.get("chapter_04",{}))
-    Chapter05Runtime.deserialize(payload.get("chapter_05",{})); Chapter06Runtime.deserialize(payload.get("chapter_06",{}))
-    Chapter07Runtime.deserialize(payload.get("chapter_07",{})); Chapter08Runtime.deserialize(payload.get("chapter_08",{}))
-    Chapter09Runtime.deserialize(payload.get("chapter_09",{})); Chapter10Runtime.deserialize(payload.get("chapter_10",{}))
-    EndgameState.deserialize(payload.get("endgame",{})); DeepVestigeRuntime.deserialize(payload.get("deep_vestiges",{}))
-    ExpeditionManager.deserialize(payload.get("expedition",{})); FieldEncounterRuntime.deserialize(payload.get("field_encounters",{}))
-    CommunityRuntime.deserialize(payload.get("community",{})); SystemicCrossRuntime.deserialize(payload.get("systemic_cross",{}))
-    SystemicCrossNarrativeRuntime.deserialize(payload.get("systemic_cross_narrative",{}))
-    AshlandsMinibossDirector.deserialize(payload.get("ashlands_minibosses",{}))
-    AshlandsCombatBridge.deserialize(payload.get("ashlands_combat",{})); CampaignMemoryDirector.deserialize(payload.get("campaign_memory",{}))
-    RemanenceRuntime.deserialize(payload.get("remanence",{}))
-    var veilleurs_payload: Dictionary = payload.get("veilleurs",{})
-    VeilleursRuntime.deserialize(veilleurs_payload)
-    VeilleursVS001PlayableBridge.deserialize(veilleurs_payload.get("legacy_vs001",{}))
-    ExpeditionReportDirector.deserialize(payload.get("expedition_reports",{})); ExpeditionPreparationDirector.deserialize(payload.get("preparation_presets",{}))
-    ExplorationDirector.deserialize(payload.get("living_exploration",{}))
-    ContentScopeDirector.deserialize(payload.get("progression_scope",{}))
-    Chapter01Runtime.refresh_progress(); Chapter02Runtime.refresh_progress(); Chapter03Runtime.refresh_progress(); Chapter04Runtime.refresh_progress()
-    Chapter05Runtime.refresh_progress(); Chapter06Runtime.refresh_progress(); Chapter07Runtime.refresh_progress(); Chapter08Runtime.refresh_progress()
-    Chapter09Runtime.refresh_progress(); Chapter10Runtime.refresh_progress(); DeepVestigeRuntime.refresh_unlocks()
-    if EndgameState.is_postgame_unlocked(): EndgameState.record_current_ending()
+    _snapshot = payload.duplicate(true)
 
 func _migrate(payload: Dictionary) -> Dictionary:
     var version := String(payload.get("version", ""))
@@ -285,14 +220,19 @@ func _replace_save_file(from_path: String, to_path: String) -> Error:
 func _read_payload(path: String) -> Dictionary:
     if not FileAccess.file_exists(path):
         return {}
-    var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+    var parser := JSON.new()
+    if parser.parse(FileAccess.get_file_as_string(path)) != OK:
+        return {}
+    var parsed: Variant = parser.data
     if parsed is not Dictionary:
         return {}
     if parsed.has("body"):
         var body := String(parsed.get("body", ""))
         if String(parsed.get("checksum", "")) != body.sha256_text():
             return {}
-        var payload_value: Variant = JSON.parse_string(body)
+        if parser.parse(body) != OK:
+            return {}
+        var payload_value: Variant = parser.data
         return payload_value if payload_value is Dictionary else {}
     if parsed.has("payload"):
         var old_payload: Variant = parsed.get("payload", {})

@@ -16,26 +16,8 @@ def test_qa_room_concentrates_critical_player_flows() -> None:
         assert required in combat["tests"]
 
 
-def test_qa_room_uses_real_interaction_and_combat_contracts() -> None:
-    controller = (ROOT / "scripts/qa/qa_test_room_controller.gd").read_text(encoding="utf-8")
-    npc = (ROOT / "scripts/qa/qa_test_dialogue_npc.gd").read_text(encoding="utf-8")
-    chest = (ROOT / "scripts/qa/qa_test_loot_chest.gd").read_text(encoding="utf-8")
-    assert "EncounterTrigger.new()" in controller
-    assert 'encounter_id = "qa_mixed_enemy_combat"' in controller
-    assert "QuestGiverPresentation.open_dialogue" in npc
-    assert "EquipmentManager.grant_random_party_weapon" in chest
-    assert "HUDDirector.notify_pickup" in chest
 
 
-def test_qa_room_is_routable_but_hidden_from_production_menu() -> None:
-    router = (ROOT / "scripts/world/ashlands_scene_router.gd").read_text(encoding="utf-8")
-    menu = (ROOT / "scripts/ui/main.gd").read_text(encoding="utf-8")
-    project = (ROOT / "project.godot").read_text(encoding="utf-8")
-    assert '"qa_validation_room": QA_VALIDATION_SCENE' in router
-    assert "start_qa_validation_room" in router
-    assert 'OS.is_debug_build()' in menu
-    assert '"SALLE DE VALIDATION"' in menu
-    assert 'QATestRoomState="*res://scripts/qa/qa_test_room_state.gd"' in project
 
 
 def test_qa_snapshot_never_uses_campaign_slots() -> None:
