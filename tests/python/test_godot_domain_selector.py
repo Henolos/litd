@@ -9,7 +9,7 @@ def test_unknown_and_project_changes_get_complete_technical_suite():
 
 def test_every_runner_target_exists_and_has_an_owner():
     owners = domain_test_owners()
-    assert len(owners) == 6
+    assert len(owners) == 7
     for path, domains in owners.items():
         assert Path(path).is_file()
         assert domains == {'technical'}

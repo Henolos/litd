@@ -78,6 +78,7 @@ export LITD_SAVE_DELETE_SANDBOX="$sandbox_dir"
 
 run_checked "Import strict du socle" godot --headless --path . --import --quit
 run_checked "Compilation et génération déterministe" bash tools/ci/run_godot_checked.sh --log "$sandbox_dir/technical.log" --expect TECHNICAL_FOUNDATION_OK -- godot --headless --path . --script res://tests/godot/test_technical_foundation_headless.gd
+run_checked "Combat A expérimental" bash tools/ci/run_godot_checked.sh --log "$sandbox_dir/combat-a.log" --expect COMBAT_A_EXPERIMENT_OK -- godot --headless --path . --script res://tests/godot/test_combat_a_headless.gd
 run_checked "Intégrité stockage" bash tools/ci/run_godot_checked.sh --log "$sandbox_dir/runtime.log" --expect SAVE_RUNTIME_CONTRACT_PASS -- godot --headless --path . --script res://tests/godot/test_save_runtime_headless.gd
 run_checked "Rejets checksum et version" bash tools/ci/run_godot_checked.sh --log "$sandbox_dir/negative.log" --expect SAVE_NEGATIVE_CONTRACT_PASS -- godot --headless --path . --script res://tests/godot/test_save_negative_headless.gd
 run_checked "Sauvegarde et chargement" bash tools/ci/run_godot_checked.sh --log "$sandbox_dir/roundtrip.log" --expect SAVE_ROUNDTRIP_CONTRACT_PASS -- godot --headless --path . --script res://tests/godot/test_save_roundtrip_headless.gd

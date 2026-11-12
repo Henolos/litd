@@ -1,0 +1,5 @@
+{
+  "phase": "combat_a_experiment",
+  "scripts": ["scripts/prototype/combat_a.gd"],
+  "scenes": ["scenes/prototype/combat_a.tscn"]
+}
