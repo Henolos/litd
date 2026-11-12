@@ -1,0 +1,39 @@
+{
+  "tested_commit": "09a7d99ff27d7e24de077e0c24665f7e2cd4692b",
+  "recorded_at": "2026-11-12T06:49:20.384280+00:00",
+  "local_qa_exports": true,
+  "temporary_scene_included": "res://scenes/tests/bestiary_visual_review_tmp.tscn",
+  "production_code_modified": false,
+  "outputs": [
+    {
+      "file": "exports/candidate/linux/LightInTheDark.pck",
+      "bytes": 76983172,
+      "sha256": "f53fade400f269239e6455eefe07c4cf93202c20e6cb83498294bd088a3f81d9"
+    },
+    {
+      "file": "exports/candidate/linux/LightInTheDark.x86_64",
+      "bytes": 73519416,
+      "sha256": "d9f79ab89b5ae369aeed11c6052d402e8218cd503bf85b4a235f9c30c46a7c63"
+    },
+    {
+      "file": "exports/candidate/windows/LightInTheDark.pck",
+      "bytes": 76983172,
+      "sha256": "f53fade400f269239e6455eefe07c4cf93202c20e6cb83498294bd088a3f81d9"
+    },
+    {
+      "file": "exports/candidate/windows/LightInTheDark.exe",
+      "bytes": 109127680,
+      "sha256": "4a9eaded8955ef789ab02651ed9d2dde80328fbb342bd2a6db4db33e86305668"
+    },
+    {
+      "file": "exports/candidate/web/index.pck",
+      "bytes": 76983172,
+      "sha256": "f53fade400f269239e6455eefe07c4cf93202c20e6cb83498294bd088a3f81d9"
+    },
+    {
+      "file": "exports/candidate/web/index.wasm",
+      "bytes": 39514754,
+      "sha256": "fc74679e3b97f76878947fcd4fbe1268cbfa6188182a2e33bbc3f5dc9bfa57d0"
+    }
+  ]
+}

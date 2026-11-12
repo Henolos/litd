@@ -52,3 +52,31 @@ Les exports utilisent toujours `all_resources` ; les nouveaux originaux sont imp
 Sources primaires consultées le 11 novembre 2026 : [AtlasTexture](https://docs.godotengine.org/fr/4.x/classes/class_atlastexture.html), [AcceptDialog](https://docs.godotengine.org/fr/4.x/classes/class_acceptdialog.html), [merge queue GitHub](https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/merging-a-pull-request-with-a-merge-queue?tool=cli). Le comportement est aussi exécuté avec le moteur 4.7.2 ; la documentation 4.x peut décrire des fonctions plus récentes.
 
 Chantier : Bibliothèque artistique LITD 1 — 🟡 À CONSOLIDER. Avancement du chantier actuel : À évaluer. Avancement du projet global LITD 1 : À évaluer. Les 21/21 concernent uniquement l'inventaire des originaux documentés.
+
+## Reprise de validation — 12 novembre 2026
+
+Version du code contrôlée : `09a7d99ff27d7e24de077e0c24665f7e2cd4692b` (PR #612, toujours en brouillon). La reprise part d'une copie Git propre de ce commit ; aucun original artistique ni fichier de production n'est retouché. Les ajouts du présent lot sont uniquement des preuves et de la documentation.
+
+### Réalisé et vérifié dans cette reprise
+
+- **Yuki-Onna en combat observée** sous Godot officiel 4.7.2, rendu Compatibility/llvmpipe, fenêtre 1280 × 720. Scénario temporaire avec les données de test en mémoire ; emplacement E1, autres adversaires Minotaure, Oni et Jorōgumo. Il s'agit du vrai rendu `Main.tscn`, ouvert par `show_screen("combat")`, et non d'une maquette. La référence officielle est cadrée sur la silhouette ; fragments des repères de taille encore visibles sur les bords. Pas de campagne complète ni de validation du HUD général.
+- **7 tests Python ciblés réussis**, intégrité des correspondances et manifeste inclus. Le premier lancement n'a pas trouvé pytest ; le lancement retenu utilise les dépendances QA déjà présentes, sans modification du projet.
+- **Smoke artistique local réussi** : `CANONICAL_ART_V41_SMOKE_OK`. Les avertissements existants de **15 instances ObjectDB et 5 ressources retenues à la fermeture persistent** ; ils ne sont pas déclarés corrigés.
+- **Exports locaux Web, Windows et Linux générés** avec les modèles officiels 4.7.2, archive complète vérifiée par SHA-512 `ca4d71c4d7b81dfc15d1a98baa07534aa95b03fdda78a0075b06672e1648d2e5f40980c9adc28d23e1b92e732ee7bf3461997aa804af74ec2fcd7a93ccb84079`.
+- Les trois paquets PCK locaux ont la même empreinte SHA-256 `f53fade400f269239e6455eefe07c4cf93202c20e6cb83498294bd088a3f81d9` (76 983 172 octets). Le smoke artistique est également exécuté depuis les paquets **Linux et Web**, avec le moteur natif headless : marqueur OK dans les deux cas, mêmes avertissements de fermeture. Cela vérifie la disponibilité des références empaquetées ; cela ne constitue ni une exécution Windows ni une exécution WebAssembly en navigateur.
+
+![Yuki-Onna réellement affichée dans le combat de contrôle](evidence/validation-612-20261112/yuki-combat.png)
+
+Les exports sont des **exports locaux de QA**, contenant le scénario temporaire de contrôle en plus des ressources habituelles. Le HTML local a ensuite reçu un argument de démarrage vers ce scénario pour préparer la comparaison de cache. Ils ne sont pas présentés comme les artefacts CI ni comme des livrables de distribution. Aucun binaire d'export n'est ajouté au dépôt.
+
+### Blocages encore ouverts
+
+- À la dernière interrogation du commit `09a7d99f`, **21/21 workflows GitHub sont toujours `queued`**. Pour les exécutions CI et Builds, les collections de tâches et d'artefacts sont vides. Aucun résultat CI, aucun export CI validé ; la cause de l'attente n'est pas établie. Aucun doublon de workflow ni relancement ajouté.
+- **Cache/PWA non validé** : une version Web de main et une version de #612 ont été préparées pour comparaison sur une même origine locale, sans purge du cache. La navigation a rencontré d'abord une connexion refusée, puis un refus explicite de la politique de sécurité du navigateur. La tentative s'arrête à ce refus, sans contournement. Aucune observation du chargement Web, du cache ancien ni de son renouvellement n'est annoncée.
+- La vérification du service worker exporté constate un `CACHE_VERSION` généré et une logique de remplacement des caches ; cette lecture statique ne prouve pas le comportement réel en navigateur. Sources de référence consultées : [documentation Godot Web](https://docs.godotengine.org/en/4.5/tutorials/export/exporting_for_web.html) et [cycle de cache PWA, MDN](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Caching).
+
+Preuves : [journaux et capture](evidence/validation-612-20261112/), [empreintes des exports locaux](evidence/validation-612-20261112/exports.json), [états GitHub du commit contrôlé](evidence/validation-612-20261112/github-runs.json).
+
+**Prochaine priorité :** obtenir les résultats CI et les artefacts de #612, puis effectuer le test de renouvellement PWA dans un navigateur autorisé. PR maintenue en brouillon, aucune fusion.
+
+Chantier : validation de #612 — 🟠 BLOQUÉ pour CI/exports CI et cache navigateur ; contrôle visuel ciblé de Yuki-Onna terminé. Avancement du chantier actuel : **À évaluer**. Avancement du projet global LITD 1 : **À évaluer**.
