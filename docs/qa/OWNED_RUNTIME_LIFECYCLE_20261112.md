@@ -39,3 +39,7 @@ Sources officielles consultées : [Object et PREDELETE](https://docs.godotengine
 [Journaux de preuve](evidence/owned-runtime-lifecycle-20261112/) : comparaison avant/après, codes de sortie, journaux UI, artistique, Python et rangs. Les journaux d'intégration portent sur `f29973e3` avec le correctif local appliqué ; les validations CI du nouveau commit restent distinctes.
 
 Chantier : ressources retenues à la fermeture Godot — 🟡 À CONSOLIDER (défaut initial corrigé localement ; CI et retenues audio à suivre). Avancement du chantier actuel : **À évaluer**. Avancement du projet global LITD 1 : **À évaluer**.
+
+## Complément : fermeture du test de parité
+
+Le [suivi de la parité tactique](TACTICAL_HIT_PARITY_20261112.md) complète ce lot avec l’installation de fontconfig dans son conteneur CI, une fermeture explicite des lectures audio du test et des contrôles stricts sur les journaux. Six essais locaux corrigés ne retiennent plus d’objets ; les autres scénarios audio restent un suivi distinct. Les validations du commit initial restent identifiées ci-dessus et ne valent pas validation du complément.

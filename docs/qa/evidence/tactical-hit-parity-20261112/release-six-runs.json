@@ -1,0 +1,44 @@
+[
+  {
+    "run": 1,
+    "parity_ok": true,
+    "diagnostics": [
+      "TACTICAL_HIT_PARITY_OK cases=625 heroes=4 enemies=24 zones=6 independent_legacy=true"
+    ]
+  },
+  {
+    "run": 2,
+    "parity_ok": true,
+    "diagnostics": [
+      "TACTICAL_HIT_PARITY_OK cases=625 heroes=4 enemies=24 zones=6 independent_legacy=true"
+    ]
+  },
+  {
+    "run": 3,
+    "parity_ok": true,
+    "diagnostics": [
+      "TACTICAL_HIT_PARITY_OK cases=625 heroes=4 enemies=24 zones=6 independent_legacy=true"
+    ]
+  },
+  {
+    "run": 4,
+    "parity_ok": true,
+    "diagnostics": [
+      "TACTICAL_HIT_PARITY_OK cases=625 heroes=4 enemies=24 zones=6 independent_legacy=true"
+    ]
+  },
+  {
+    "run": 5,
+    "parity_ok": true,
+    "diagnostics": [
+      "TACTICAL_HIT_PARITY_OK cases=625 heroes=4 enemies=24 zones=6 independent_legacy=true"
+    ]
+  },
+  {
+    "run": 6,
+    "parity_ok": true,
+    "diagnostics": [
+      "TACTICAL_HIT_PARITY_OK cases=625 heroes=4 enemies=24 zones=6 independent_legacy=true"
+    ]
+  }
+]

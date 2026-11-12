@@ -1,0 +1,124 @@
+WorkerThreadPool: 9 threads, 2 max low-priority.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+SDL: Init OK!
+Using "default" pen tablet driver...
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+CORE API HASH: 2004498165
+EDITOR API HASH: 1696660745
+Loading resource: res://scripts/tests/tactical_hit_parity_test.gd remapped: res://scripts/tests/tactical_hit_parity_test.gd
+Completed load for: 'res://scripts/tests/tactical_hit_parity_test.gd' remapped 'res://scripts/tests/tactical_hit_parity_test.gd' at thread -1
+SceneTreeFTI: traversal method DEFAULT
+Loading resource: res://scripts/core/game_settings.gd remapped: res://scripts/core/game_settings.gd
+Completed load for: 'res://scripts/core/game_settings.gd' remapped 'res://scripts/core/game_settings.gd' at thread -1
+Loading resource: res://scripts/core/data_loader.gd remapped: res://scripts/core/data_loader.gd
+Completed load for: 'res://scripts/core/data_loader.gd' remapped 'res://scripts/core/data_loader.gd' at thread -1
+Loading resource: res://scripts/core/ngplus_boss_recruitment.gd remapped: res://scripts/core/ngplus_boss_recruitment.gd
+Completed load for: 'res://scripts/core/ngplus_boss_recruitment.gd' remapped 'res://scripts/core/ngplus_boss_recruitment.gd' at thread -1
+Loading resource: res://scripts/core/dismemberment_runtime.gd remapped: res://scripts/core/dismemberment_runtime.gd
+Completed load for: 'res://scripts/core/dismemberment_runtime.gd' remapped 'res://scripts/core/dismemberment_runtime.gd' at thread -1
+Loading resource: res://scripts/core/psychology_combat_director.gd remapped: res://scripts/core/psychology_combat_director.gd
+Completed load for: 'res://scripts/core/psychology_combat_director.gd' remapped 'res://scripts/core/psychology_combat_director.gd' at thread -1
+Loading resource: res://scripts/core/enemy_combat_director.gd remapped: res://scripts/core/enemy_combat_director.gd
+Completed load for: 'res://scripts/core/enemy_combat_director.gd' remapped 'res://scripts/core/enemy_combat_director.gd' at thread -1
+Loading resource: res://scripts/core/combat_preview_director.gd remapped: res://scripts/core/combat_preview_director.gd
+Completed load for: 'res://scripts/core/combat_preview_director.gd' remapped 'res://scripts/core/combat_preview_director.gd' at thread -1
+Loading resource: res://scripts/core/action_timeline_director.gd remapped: res://scripts/core/action_timeline_director.gd
+Completed load for: 'res://scripts/core/action_timeline_director.gd' remapped 'res://scripts/core/action_timeline_director.gd' at thread -1
+Loading resource: res://scripts/core/effect_tooltip_formatter.gd remapped: res://scripts/core/effect_tooltip_formatter.gd
+Completed load for: 'res://scripts/core/effect_tooltip_formatter.gd' remapped 'res://scripts/core/effect_tooltip_formatter.gd' at thread -1
+Loading resource: res://scripts/core/veilleurs_corpse_interaction_runtime.gd remapped: res://scripts/core/veilleurs_corpse_interaction_runtime.gd
+Completed load for: 'res://scripts/core/veilleurs_corpse_interaction_runtime.gd' remapped 'res://scripts/core/veilleurs_corpse_interaction_runtime.gd' at thread -1
+Loading resource: res://scripts/core/movement_registry.gd remapped: res://scripts/core/movement_registry.gd
+Completed load for: 'res://scripts/core/movement_registry.gd' remapped 'res://scripts/core/movement_registry.gd' at thread -1
+Loading resource: res://scripts/core/decision_memory_political_bridge.gd remapped: res://scripts/core/decision_memory_political_bridge.gd
+Completed load for: 'res://scripts/core/decision_memory_political_bridge.gd' remapped 'res://scripts/core/decision_memory_political_bridge.gd' at thread -1
+Loading resource: res://scripts/core/narrative_library.gd remapped: res://scripts/core/narrative_library.gd
+Completed load for: 'res://scripts/core/narrative_library.gd' remapped 'res://scripts/core/narrative_library.gd' at thread -1
+Loading resource: res://scripts/core/base_game_narrative_director.gd remapped: res://scripts/core/base_game_narrative_director.gd
+Completed load for: 'res://scripts/core/base_game_narrative_director.gd' remapped 'res://scripts/core/base_game_narrative_director.gd' at thread -1
+Loading resource: res://scripts/core/music_library.gd remapped: res://scripts/core/music_library.gd
+Completed load for: 'res://scripts/core/music_library.gd' remapped 'res://scripts/core/music_library.gd' at thread -1
+Loading resource: res://scripts/core/sfx_library.gd remapped: res://scripts/core/sfx_library.gd
+Completed load for: 'res://scripts/core/sfx_library.gd' remapped 'res://scripts/core/sfx_library.gd' at thread -1
+Loading resource: res://scripts/core/prototype_audio_bank.gd remapped: res://scripts/core/prototype_audio_bank.gd
+Completed load for: 'res://scripts/core/prototype_audio_bank.gd' remapped 'res://scripts/core/prototype_audio_bank.gd' at thread -1
+Loading resource: res://scripts/core/sfx_runtime.gd remapped: res://scripts/core/sfx_runtime.gd
+Completed load for: 'res://scripts/core/sfx_runtime.gd' remapped 'res://scripts/core/sfx_runtime.gd' at thread -1
+Loading resource: res://scripts/core/systemic_cross_afterlife_runtime.gd remapped: res://scripts/core/systemic_cross_afterlife_runtime.gd
+Completed load for: 'res://scripts/core/systemic_cross_afterlife_runtime.gd' remapped 'res://scripts/core/systemic_cross_afterlife_runtime.gd' at thread -1
+Loading resource: res://scripts/core/legendary_seven_relationship_runtime.gd remapped: res://scripts/core/legendary_seven_relationship_runtime.gd
+Completed load for: 'res://scripts/core/legendary_seven_relationship_runtime.gd' remapped 'res://scripts/core/legendary_seven_relationship_runtime.gd' at thread -1
+Loading resource: res://scripts/core/sanctuary_state.gd remapped: res://scripts/core/sanctuary_state.gd
+Completed load for: 'res://scripts/core/sanctuary_state.gd' remapped 'res://scripts/core/sanctuary_state.gd' at thread -1
+Loading resource: res://scripts/ui/context_hud.gd remapped: res://scripts/ui/context_hud.gd
+Completed load for: 'res://scripts/ui/context_hud.gd' remapped 'res://scripts/ui/context_hud.gd' at thread -1
+Loading resource: res://scripts/ui/political_ui.gd remapped: res://scripts/ui/political_ui.gd
+Completed load for: 'res://scripts/ui/political_ui.gd' remapped 'res://scripts/ui/political_ui.gd' at thread -1
+Loading resource: res://scripts/ui/quest_journal_ui.gd remapped: res://scripts/ui/quest_journal_ui.gd
+Completed load for: 'res://scripts/ui/quest_journal_ui.gd' remapped 'res://scripts/ui/quest_journal_ui.gd' at thread -1
+Loading resource: res://scripts/ui/base_game_side_story_ui.gd remapped: res://scripts/ui/base_game_side_story_ui.gd
+Completed load for: 'res://scripts/ui/base_game_side_story_ui.gd' remapped 'res://scripts/ui/base_game_side_story_ui.gd' at thread -1
+Loading resource: res://scripts/ui/game_menu_ui.gd remapped: res://scripts/ui/game_menu_ui.gd
+Completed load for: 'res://scripts/ui/game_menu_ui.gd' remapped 'res://scripts/ui/game_menu_ui.gd' at thread -1
+Loading resource: res://scripts/ui/remanence_archives_ui.gd remapped: res://scripts/ui/remanence_archives_ui.gd
+Completed load for: 'res://scripts/ui/remanence_archives_ui.gd' remapped 'res://scripts/ui/remanence_archives_ui.gd' at thread -1
+Loading resource: res://scripts/ui/combatant_inspection_ui.gd remapped: res://scripts/ui/combatant_inspection_ui.gd
+Completed load for: 'res://scripts/ui/combatant_inspection_ui.gd' remapped 'res://scripts/ui/combatant_inspection_ui.gd' at thread -1
+Loading resource: res://scripts/ui/chapter_08_journal_ui.gd remapped: res://scripts/ui/chapter_08_journal_ui.gd
+Completed load for: 'res://scripts/ui/chapter_08_journal_ui.gd' remapped 'res://scripts/ui/chapter_08_journal_ui.gd' at thread -1
+Loading resource: res://scripts/ui/chapter_09_journal_ui.gd remapped: res://scripts/ui/chapter_09_journal_ui.gd
+Completed load for: 'res://scripts/ui/chapter_09_journal_ui.gd' remapped 'res://scripts/ui/chapter_09_journal_ui.gd' at thread -1
+Loading resource: res://scripts/ui/chapter_10_journal_ui.gd remapped: res://scripts/ui/chapter_10_journal_ui.gd
+Completed load for: 'res://scripts/ui/chapter_10_journal_ui.gd' remapped 'res://scripts/ui/chapter_10_journal_ui.gd' at thread -1
+Loading resource: res://scripts/ui/deep_vestige_ui.gd remapped: res://scripts/ui/deep_vestige_ui.gd
+Completed load for: 'res://scripts/ui/deep_vestige_ui.gd' remapped 'res://scripts/ui/deep_vestige_ui.gd' at thread -1
+Loading resource: res://scripts/ui/context_menu_ui_v3.gd remapped: res://scripts/ui/context_menu_ui_v3.gd
+Completed load for: 'res://scripts/ui/context_menu_ui_v3.gd' remapped 'res://scripts/ui/context_menu_ui_v3.gd' at thread -1
+Loading resource: res://scripts/ui/endgame_ui.gd remapped: res://scripts/ui/endgame_ui.gd
+Completed load for: 'res://scripts/ui/endgame_ui.gd' remapped 'res://scripts/ui/endgame_ui.gd' at thread -1
+Loading resource: res://scripts/world/chapter_01_encounter_injector.gd remapped: res://scripts/world/chapter_01_encounter_injector.gd
+Completed load for: 'res://scripts/world/chapter_01_encounter_injector.gd' remapped 'res://scripts/world/chapter_01_encounter_injector.gd' at thread -1
+Loading resource: res://scripts/world/field_encounter_injector.gd remapped: res://scripts/world/field_encounter_injector.gd
+Completed load for: 'res://scripts/world/field_encounter_injector.gd' remapped 'res://scripts/world/field_encounter_injector.gd' at thread -1
+Loading resource: res://scripts/world/veilleurs_playable_bridge.gd remapped: res://scripts/world/veilleurs_playable_bridge.gd
+Completed load for: 'res://scripts/world/veilleurs_playable_bridge.gd' remapped 'res://scripts/world/veilleurs_playable_bridge.gd' at thread -1
+Loading resource: res://scripts/core/adaptive_music_director.gd remapped: res://scripts/core/adaptive_music_director.gd
+Completed load for: 'res://scripts/core/adaptive_music_director.gd' remapped 'res://scripts/core/adaptive_music_director.gd' at thread -1
+Loading resource: res://scripts/core/layered_music_runtime.gd remapped: res://scripts/core/layered_music_runtime.gd
+Completed load for: 'res://scripts/core/layered_music_runtime.gd' remapped 'res://scripts/core/layered_music_runtime.gd' at thread -1
+Loading resource: res://scripts/core/dialogue_director.gd remapped: res://scripts/core/dialogue_director.gd
+Completed load for: 'res://scripts/core/dialogue_director.gd' remapped 'res://scripts/core/dialogue_director.gd' at thread -1
+Loading resource: res://scripts/core/voice_runtime.gd remapped: res://scripts/core/voice_runtime.gd
+Completed load for: 'res://scripts/core/voice_runtime.gd' remapped 'res://scripts/core/voice_runtime.gd' at thread -1
+Loading resource: res://scripts/world/chapter_01_boss_runtime.gd remapped: res://scripts/world/chapter_01_boss_runtime.gd
+Completed load for: 'res://scripts/world/chapter_01_boss_runtime.gd' remapped 'res://scripts/world/chapter_01_boss_runtime.gd' at thread -1
+Loading resource: res://scripts/world/chapter_02_boss_runtime.gd remapped: res://scripts/world/chapter_02_boss_runtime.gd
+Completed load for: 'res://scripts/world/chapter_02_boss_runtime.gd' remapped 'res://scripts/world/chapter_02_boss_runtime.gd' at thread -1
+Loading resource: res://scripts/world/chapter_03_boss_runtime.gd remapped: res://scripts/world/chapter_03_boss_runtime.gd
+Completed load for: 'res://scripts/world/chapter_03_boss_runtime.gd' remapped 'res://scripts/world/chapter_03_boss_runtime.gd' at thread -1
+Loading resource: res://scripts/world/chapter_04_boss_runtime.gd remapped: res://scripts/world/chapter_04_boss_runtime.gd
+Completed load for: 'res://scripts/world/chapter_04_boss_runtime.gd' remapped 'res://scripts/world/chapter_04_boss_runtime.gd' at thread -1
+Loading resource: res://scripts/world/chapter_05_boss_runtime.gd remapped: res://scripts/world/chapter_05_boss_runtime.gd
+Completed load for: 'res://scripts/world/chapter_05_boss_runtime.gd' remapped 'res://scripts/world/chapter_05_boss_runtime.gd' at thread -1
+Loading resource: res://scripts/world/chapter_06_boss_runtime.gd remapped: res://scripts/world/chapter_06_boss_runtime.gd
+Completed load for: 'res://scripts/world/chapter_06_boss_runtime.gd' remapped 'res://scripts/world/chapter_06_boss_runtime.gd' at thread -1
+Loading resource: res://scripts/world/chapter_07_boss_runtime.gd remapped: res://scripts/world/chapter_07_boss_runtime.gd
+Completed load for: 'res://scripts/world/chapter_07_boss_runtime.gd' remapped 'res://scripts/world/chapter_07_boss_runtime.gd' at thread -1
+Loading resource: res://scripts/world/chapter_08_boss_runtime.gd remapped: res://scripts/world/chapter_08_boss_runtime.gd
+Completed load for: 'res://scripts/world/chapter_08_boss_runtime.gd' remapped 'res://scripts/world/chapter_08_boss_runtime.gd' at thread -1
+Loading resource: res://scripts/world/chapter_09_boss_runtime.gd remapped: res://scripts/world/chapter_09_boss_runtime.gd
+Completed load for: 'res://scripts/world/chapter_09_boss_runtime.gd' remapped 'res://scripts/world/chapter_09_boss_runtime.gd' at thread -1
+Loading resource: res://scripts/world/chapter_10_boss_runtime.gd remapped: res://scripts/world/chapter_10_boss_runtime.gd
+Completed load for: 'res://scripts/world/chapter_10_boss_runtime.gd' remapped 'res://scripts/world/chapter_10_boss_runtime.gd' at thread -1
+Loading resource: res://scripts/world/deep_vestige_boss_runtime_v2.gd remapped: res://scripts/world/deep_vestige_boss_runtime_v2.gd
+Completed load for: 'res://scripts/world/deep_vestige_boss_runtime_v2.gd' remapped 'res://scripts/world/deep_vestige_boss_runtime_v2.gd' at thread -1
+Loading resource: res://scripts/world/ashlands_playtest_session.gd remapped: res://scripts/world/ashlands_playtest_session.gd
+Completed load for: 'res://scripts/world/ashlands_playtest_session.gd' remapped 'res://scripts/world/ashlands_playtest_session.gd' at thread -1
+Loaded system CA certificates
+TACTICAL_HIT_PARITY_OK cases=625 heroes=4 enemies=24 zones=6 independent_legacy=true
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"
