@@ -31,3 +31,13 @@ Décision du 12 novembre 2026 : l'ancien code devient une archive historique en 
 
 Statut : À CONSOLIDER. Avancement du chantier actuel : À évaluer. Avancement du projet global : À évaluer.
 Ce document n'autorise aucune suppression ni migration automatique.
+
+## Manifestes officiels retrouvés le 12 novembre 2026
+- docs/art/validated_heroes_manifest_20261111.json : six héros (Aurélien, Marec, Anouk, Mathilde, Èffrie, Lya), SHA-256, dimensions et tailles documentés. Quatre seulement sont jouables.
+- docs/art/reconciled_bestiary_manifest_20261111.json : 21 planches documentées, identités, provenance, chemins et empreintes historiques.
+- docs/art/bestiary_originals_sha256_20261111.md : sept sources de l'archive initiale, et non le manifeste courant complet.
+- Les chemins ont été retrouvés via les listes de fichiers des PR #609 et #610 puis lus sur main.
+- Limite : ces lectures prouvent l'existence des manifestes et des valeurs consignées, pas une nouvelle comparaison SHA-256 des 27 binaires.
+
+## Condition de passage à la nouvelle bibliothèque
+La bibliothèque neuve ne reçoit que des copies des originaux après recalcul des empreintes et contrôle de provenance. Les manifestes historiques sont des références de contrôle ; aucune scène, script, configuration, workflow ou ressource exécutable de l'ancien projet ne doit être transféré.
