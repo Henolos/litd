@@ -41,6 +41,6 @@ Cette revue porte sur les noms et chemins modifiés de ces PR. Elle n'est pas un
 
 ## Vérifications et prochaine décision
 
-Sur la branche locale, Godot 4.6.3 a réussi le test `COMBAT_A_EXPERIMENT_OK`, l'import, les six contrôles techniques et la suite `GODOT_CI_STRICT_OK`. L'audit des références renvoie `RECONSTRUCTION_ALL_AUDIT_OK`. La scène a été ouverte dans une fenêtre Godot et une cible a été attaquée en cliquant : le tour est passé de Mathilde à Marec, les PV de la bonne cible sont passés de 8 à 4 et le journal a affiché la conséquence. La CI distante 4.7.2 et le playtest d'un nouveau joueur restent à faire.
+Sur la branche locale, Godot 4.6.3 a réussi le test `COMBAT_A_EXPERIMENT_OK`, l'import, les six contrôles techniques et la suite `GODOT_CI_STRICT_OK`. L'audit des références renvoie `RECONSTRUCTION_ALL_AUDIT_OK`. La scène a été ouverte dans une fenêtre Godot et une cible a été attaquée en cliquant : le tour est passé de Mathilde à Marec, les PV de la bonne cible sont passés de 8 à 4 et le journal a affiché la conséquence. Sur le commit publié `a7ad5de9`, la CI distante a réussi **1 389 tests Python** et la suite Godot **4.7.2** avec `COMBAT_A_EXPERIMENT_OK` et `GODOT_CI_STRICT_OK`. Le playtest d'un nouveau joueur reste à faire.
 
 Décision après le premier playtest : **garder, modifier ou supprimer** cette interface et ces règles de base avant de construire Combat B.
