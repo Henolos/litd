@@ -2040,3 +2040,22 @@ Ne pas présenter l’une de ces interprétations comme validée avant clarifica
 - **Réalisé :** ajout de la décision V7.8 au document maître et contrôle de conservation intégrale de V7.7.
 - **Non réalisé :** implémentation Godot, tests en jeu et équilibrage.
 - **Chantier : 🟡 À CONSOLIDER.** Avancement du chantier actuel : À évaluer. Avancement du projet global : À évaluer.
+
+---
+
+## V7.10 — Règle de méthode : comparaison des jeux avant les choix multiples (17 novembre 2026)
+
+**Statut : VALIDÉ EN MÉTHODE par décision explicite de l'utilisateur.** Cette règle n'entérine aucune mécanique de gameplay particulière.
+
+Avant de proposer plusieurs options pour un arbitrage de conception de LITD 1, effectuer une recherche documentée sur les solutions effectivement utilisées dans des jeux comparables (RPG tactiques, dungeon crawlers, roguelikes ou jeux pertinents pour la mécanique étudiée).
+
+1. **Définir la question** et les contraintes déjà validées de LITD 1 ; ne pas rouvrir arbitrairement les décisions prises.
+2. **Étudier des références pertinentes** et leur fonctionnement réel, en privilégiant les sources primaires (documentation, notes de mise à jour, présentations de développeurs, gameplay observable), complétées lorsque utile par des analyses indépendantes et retours de joueurs.
+3. **Confronter les approches**, y compris leurs échecs et limites, sans présenter comme vérifié un fonctionnement non confirmé.
+4. **Présenter les choix adaptés à LITD 1** avec, pour chacun, exemples sourcés, avantages, inconvénients, risques de frustration, lisibilité tactique, cohérence avec les systèmes existants et coût ou complexité de production.
+5. **Formuler une recommandation argumentée**, distinguer les faits vérifiés des hypothèses et indiquer les points à tester.
+6. **Attendre l'arbitrage explicite de l'utilisateur** avant de marquer une option comme validée ; consigner ensuite la décision et les questions restantes dans le document maître.
+
+**Principe directeur :** s'inspirer des enseignements des autres jeux sans reproduire leurs mécaniques à l'identique. Adapter la profondeur de la recherche à l'importance du choix ; ne pas inventer de références ni de résultats de tests.
+
+**Portée de cette mise à jour :** règle documentaire uniquement. Aucune recherche comparative particulière, implémentation Godot ni validation en jeu n'est revendiquée ici.
