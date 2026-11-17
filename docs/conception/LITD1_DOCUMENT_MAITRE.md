@@ -2040,3 +2040,22 @@ Ne pas présenter l’une de ces interprétations comme validée avant clarifica
 - **Réalisé :** ajout de la décision V7.8 au document maître et contrôle de conservation intégrale de V7.7.
 - **Non réalisé :** implémentation Godot, tests en jeu et équilibrage.
 - **Chantier : 🟡 À CONSOLIDER.** Avancement du chantier actuel : À évaluer. Avancement du projet global : À évaluer.
+
+---
+## V7.10 — Contribution effective au défi individuel (17 novembre 2026)
+
+### Décision validée en conception
+- Une contribution au défi individuel compte **uniquement si l'action du héros produit un effet réel et utile pendant l'affrontement contre l'adversaire désigné**. Une simple tentative, même pertinente, ne suffit pas si elle reste sans effet.
+- Exemples admissibles : infliger effectivement des dégâts ; appliquer une altération qui prend effet ; restaurer des points de vie réellement perdus ; empêcher ou réduire effectivement des dégâts par une protection ; produire un autre effet offensif ou défensif mesurable et pertinent.
+- Exemples non admissibles : attaque manquée ou sans effet ; altération entièrement résistée ; soin ne restaurant aucun point de vie ; protection qui ne prévient aucun dommage ; simple présence dans le groupe.
+- Les règles précédentes demeurent : le coup final n'est pas requis ; le héros doit être vivant lors de la victoire ; la validation intervient immédiatement à la victoire, sans retour au refuge.
+
+### Points encore ouverts
+- **Seuil validé : un seul effet réel et utile suffit** à remplir le critère de contribution active du défi individuel. Aucune quantité minimale supplémentaire de dégâts, de soins ou de protections n'est requise. Les autres conditions du défi, notamment la victoire contre l'adversaire désigné et la survie du héros à cette victoire, restent applicables.
+- Effets indirects et cas limites (dégâts sur la durée, soins préventifs, boucliers absorbants, contrôle ayant un effet sans dégâts, etc.).
+- Victoire par capture, identification de l'adversaire désigné et paramètres d'équilibrage.
+
+### Exécution et suivi
+- **Validé :** règle de conception confirmée oralement par l'utilisateur le 17 novembre 2026.
+- **Non réalisé :** implémentation Godot, tests automatisés, essais en jeu et équilibrage.
+- **Statut :** 🟡 À CONSOLIDER. **Avancement du chantier actuel : À évaluer. Avancement du projet global : À évaluer.**
