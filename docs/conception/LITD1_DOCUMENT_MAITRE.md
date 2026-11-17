@@ -2216,3 +2216,25 @@ Décisions explicites formulées par l'utilisateur au cours de la conception du 
 - **Réalisé :** enregistrement de la direction narrative et de la hiérarchie des personnages sur la branche de travail.
 - **Non réalisé :** modification de `main`, fusion, écriture de scénario définitif, implémentation ou tests Godot.
 - **Statut :** 🟡 À CONSOLIDER. Avancement du chantier actuel : À évaluer ; avancement du projet global : À évaluer.
+
+
+---
+## V7.18 — Personnages autonomes et évolutifs ; recherche interdisciplinaire en psychologie (17 novembre 2026)
+
+### Décisions explicitement validées en conception
+- **Option D : personnages autonomes et évolutifs.** Les personnages rencontrés possèdent une existence, des motivations et une psychologie propres ; ils peuvent évoluer avec ou sans l'intervention du joueur et leurs relations avec celui-ci peuvent laisser des traces.
+- Cette orientation approfondit V7.17 : les **personnages rencontrés**, et non les héros jouables, restent les **figures centrales de l'expérience narrative** et une motivation essentielle pour poursuivre les expéditions.
+- **Mener un travail de recherche comparatif** sur les personnages marquants du **jeu vidéo, du cinéma, du théâtre, des animes** et, lorsque pertinent, d'autres œuvres, afin d'étudier ce qui les rend mémorables et de nourrir la conception des personnages de LITD 1.
+- **Étudier la psychologie** et ses apports pertinents pour renforcer la profondeur, la crédibilité et les contradictions des personnages. Distinguer les travaux psychologiques étayés, les analyses critiques d'œuvres et les hypothèses créatives ; ne pas confondre psychologie de personnages fictifs et diagnostic clinique.
+
+### Compatibilité et limites de l'arbitrage
+- Compatible avec V7.16 (narration hybride, ironie, humour noir et quatrième mur) et V7.17 (tragédie absurde, satire du RPG, métanarration, primauté des personnages rencontrés).
+- Les personnages peuvent avoir une vie indépendante tout en réagissant aux expéditions ; ne pas les réduire à des distributeurs de quêtes, à leur opinion du joueur ou à un mécanisme relationnel uniforme.
+- **Non validés à ce stade :** corpus précis de personnages et d'œuvres, théories psychologiques retenues, méthode de recherche définitive, profils individuels, arcs narratifs, fréquence des changements, mécanismes de mémoire et de relation, dialogues et implémentation.
+- **Rester au niveau des grandes lignes** avant toute conception détaillée ; la recherche demandée est une **étape à réaliser**, non une étude déjà effectuée.
+
+### Traçabilité et exécution
+- Choix explicite : « Personnages autonomes et évolutifs » ; annotation : « il va falloir se renseigner sur les personnages mythique du jeux vidéo, du cinéma, du théâtre, des animes etc étudier leur psychologie, étudier la psychologie pour renforcer ».
+- **Réalisé :** consignation des décisions et de l'exigence de recherche sur la branche de travail uniquement.
+- **Non réalisé :** recherche comparative approfondie, validation d'un corpus, modification de `main`, fusion, implémentation ou test en jeu.
+- **Statut :** 🟡 À CONSOLIDER. Avancement du chantier actuel : À évaluer ; avancement du projet global : À évaluer.
