@@ -2051,7 +2051,7 @@ Ne pas présenter l’une de ces interprétations comme validée avant clarifica
 - Les règles précédentes demeurent : le coup final n'est pas requis ; le héros doit être vivant lors de la victoire ; la validation intervient immédiatement à la victoire, sans retour au refuge.
 
 ### Points encore ouverts
-- Seuil de contribution : un seul effet utile suffit-il ou faut-il un minimum ?
+- **Seuil validé : un seul effet réel et utile suffit** à remplir le critère de contribution active du défi individuel. Aucune quantité minimale supplémentaire de dégâts, de soins ou de protections n'est requise. Les autres conditions du défi, notamment la victoire contre l'adversaire désigné et la survie du héros à cette victoire, restent applicables.
 - Effets indirects et cas limites (dégâts sur la durée, soins préventifs, boucliers absorbants, contrôle ayant un effet sans dégâts, etc.).
 - Victoire par capture, identification de l'adversaire désigné et paramètres d'équilibrage.
 
