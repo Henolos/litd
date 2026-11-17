@@ -2059,3 +2059,61 @@ Ne pas présenter l’une de ces interprétations comme validée avant clarifica
 - **Validé :** règle de conception confirmée oralement par l'utilisateur le 17 novembre 2026.
 - **Non réalisé :** implémentation Godot, tests automatisés, essais en jeu et équilibrage.
 - **Statut :** 🟡 À CONSOLIDER. **Avancement du chantier actuel : À évaluer. Avancement du projet global : À évaluer.**
+
+
+---
+## V7.11 — Règle de méthode : comparaison des jeux avant les choix multiples (17 novembre 2026)
+
+**Statut : VALIDÉ EN MÉTHODE par décision explicite de l'utilisateur.** Cette règle n'entérine aucune mécanique de gameplay particulière.
+
+Avant de proposer plusieurs options pour un arbitrage de conception de LITD 1, effectuer une recherche documentée sur les solutions effectivement utilisées dans des jeux comparables (RPG tactiques, dungeon crawlers, roguelikes ou jeux pertinents pour la mécanique étudiée).
+
+1. **Définir la question** et les contraintes déjà validées de LITD 1 ; ne pas rouvrir arbitrairement les décisions prises.
+2. **Étudier des références pertinentes** et leur fonctionnement réel, en privilégiant les sources primaires (documentation, notes de mise à jour, présentations de développeurs, gameplay observable), complétées lorsque utile par des analyses indépendantes et retours de joueurs.
+3. **Confronter les approches**, y compris leurs échecs et limites, sans présenter comme vérifié un fonctionnement non confirmé.
+4. **Présenter les choix adaptés à LITD 1** avec, pour chacun, exemples sourcés, avantages, inconvénients, risques de frustration, lisibilité tactique, cohérence avec les systèmes existants et coût ou complexité de production.
+5. **Formuler une recommandation argumentée**, distinguer les faits vérifiés des hypothèses et indiquer les points à tester.
+6. **Attendre l'arbitrage explicite de l'utilisateur** avant de marquer une option comme validée ; consigner ensuite la décision et les questions restantes dans le document maître.
+
+**Principe directeur :** s'inspirer des enseignements des autres jeux sans reproduire leurs mécaniques à l'identique. Adapter la profondeur de la recherche à l'importance du choix ; ne pas inventer de références ni de résultats de tests.
+
+**Portée de cette mise à jour :** règle documentaire uniquement. Aucune recherche comparative particulière, implémentation Godot ni validation en jeu n'est revendiquée ici.
+
+
+---
+## V7.12 — Orientation validée : comportement crédible des Némésis et limitation des fuites (17 novembre 2026)
+
+### Décision explicitement validée en conception
+- Retenir l'**orientation C** pour le comportement des Némésis : **éviter les fuites répétitives tout en donnant au Némésis un comportement crédible**.
+- Le choix porte sur ce principe de conception, et non sur une règle chiffrée ou une logique détaillée déjà arrêtée.
+
+### Modalités restant à définir (non validées)
+- Conditions exactes autorisant ou empêchant la fuite, réactions aux blessures et au contexte du combat, fréquence, éventuels délais et conséquences.
+- Conditions précises de passage au statut Némésis et de recrutement, notamment pour les cinq boss recrutables seulement en NG+.
+- Critères de test pour vérifier que les comportements sont variés, crédibles et non frustrants.
+
+### Traçabilité et exécution
+- Source de l'arbitrage : formulation explicite de l'utilisateur « Je recommande C, pour éviter les fuites répétitives tout en donnant au Némésis un comportement crédible », puis demande de validation et d'enregistrement.
+- **Validé :** principe d'éviter les fuites répétitives tout en préservant la crédibilité.
+- **Non validé :** interprétation détaillée de l'option C, dont le libellé complet n'est pas disponible dans le contexte consulté.
+- **Non réalisé :** implémentation Godot et tests de gameplay.
+- **Suivi :** 🟡 À CONSOLIDER. Avancement du chantier actuel : À évaluer ; avancement du projet global : À évaluer.
+
+
+---
+## V7.13 — Bestiaire : périmètre et déclinaisons validés (17 novembre 2026)
+
+### Décisions validées en conception
+- Prévoir **40 créatures ou archétypes au total, dont 5 boss** ; les 35 autres sont des créatures ordinaires.
+- Chaque créature partage une **base anatomique et artistique** dont les statistiques, équipements, capacités et l'apparence évoluent légèrement selon les formes.
+- Les cinq statuts ou déclinaisons envisagés sont **normal, élite, mini-boss, Némésis et héros recruté**. Ils ne représentent pas nécessairement cinq modèles entièrement indépendants ni 200 modèles uniques.
+- **Les cinq boss peuvent devenir Némésis** et disposent d'une possibilité de recrutement comme héros **uniquement en NG+**.
+- **La forme de héros recruté demeure cachée pendant la partie normale** : ne pas la dévoiler prématurément au joueur.
+- Les créatures ordinaires sont recrutables durant la campagne normale selon le principe discuté ; leurs conditions précises de recrutement restent à définir.
+
+### Questions ouvertes, sans validation implicite
+- Conditions détaillées de passage en Némésis, de fuite et de recrutement ; exceptions éventuelles entre espèces ; déclinaisons particulières des boss ; modalités de révélation du héros recruté.
+- Équilibrage, production artistique, tests en jeu et validation de la faisabilité des 40 archétypes.
+
+### Traçabilité
+Décisions explicites formulées par l'utilisateur au cours de la conception du bestiaire. **Validation documentaire seulement** ; aucune implémentation Godot ni test en jeu revendiqués. **Statut : 🟡 À CONSOLIDER**. Avancement du chantier actuel : À évaluer ; avancement du projet global : À évaluer.
