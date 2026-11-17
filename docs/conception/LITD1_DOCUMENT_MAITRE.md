@@ -2140,3 +2140,31 @@ Décisions explicites formulées par l'utilisateur au cours de la conception du 
 - **Réalisé :** enregistrement documentaire des seules décisions explicites sur une branche de travail.
 - **Non réalisé :** modification de `main`, fusion, implémentation Godot, tests de gameplay.
 - **Statut :** 🟡 À CONSOLIDER (détails de règles non arbitrés). Avancement du chantier actuel : À évaluer ; avancement du projet global : À évaluer.
+
+
+---
+## V7.15 — Exploits multiples et résurrection exceptionnelle des Némésis (17 novembre 2026)
+
+### Décisions explicitement validées en conception
+- Retenir l'**option D — exploits multiples** pour les déclencheurs de naissance des Némésis : plusieurs **catégories d'exploits marquants** peuvent être prises en compte, plutôt qu'un déclencheur unique. Cette décision précise la règle de **rivalité par exploit** de V7.14 ; elle ne réintroduit pas de rencontres répétées obligatoires avant promotion.
+- Retenir la **possibilité d'une résurrection exceptionnelle** lorsqu'un ennemi ayant accompli un exploit meurt dans le combat. La mort après l'exploit n'exclut donc pas par principe une future existence comme Némésis.
+- La **résurrection** est distincte de la **fuite** : la règle de V7.14 selon laquelle seuls les Némésis peuvent fuir demeure applicable.
+
+### Distinctions et limites de l'arbitrage
+- Le choix de l'option D ne valide **ni une liste exhaustive d'exploits**, ni des seuils, ni une promotion automatique après chaque exploit. Les exemples évoqués dans la proposition (meurtrier, tactique, survie) restent des pistes de conception à préciser.
+- Le choix « Résurrection exceptionnelle » ne valide **ni une résurrection systématique**, ni son taux, ni son origine, ni son moment, ni ses conditions de déclenchement. Il n'établit pas non plus qu'un ennemi ressuscité échappe aux contraintes générales des Némésis.
+- La proposition initiale D évoquait des profils de Némésis différents selon les exploits ; les **différences précises entre profils** restent à concevoir et à valider, sans mécanisme arrêté.
+- Le comportement des Némésis après leur naissance reste régi par l'orientation C de V7.12 (éviter les fuites répétitives et préserver leur crédibilité).
+
+### Questions ouvertes, non validées
+- Quelles catégories d'exploits sont éligibles, comment les mesurer et quels événements sont exclus ?
+- Quel est le moment du passage au statut Némésis, et la promotion est-elle conditionnée à la survie, à une sélection ou à d'autres critères ?
+- Quelles conditions rendent une résurrection **exceptionnelle**, et quelles conséquences narratives ou ludiques entraîne-t-elle ?
+- Comment articuler résurrection, élimination définitive, recrutement, capture, boss et NG+ ?
+- Quels tests de fréquence, de lisibilité et de crédibilité prévoir pour éviter la banalisation des Némésis ?
+
+### Traçabilité et exécution
+- Arbitrage explicite de l'utilisateur : « Choix : Les exploits multiples » ; « Sort de l'ennemi mort après exploit : Résurrection exceptionnelle » ; aucune annotation complémentaire.
+- **Réalisé :** consignation des décisions explicites sur la branche de travail uniquement.
+- **Non réalisé :** fusion dans `main`, implémentation Godot, test en jeu ou validation d'équilibrage.
+- **Statut :** 🟡 À CONSOLIDER. Avancement du chantier actuel : À évaluer ; avancement du projet global : À évaluer.
