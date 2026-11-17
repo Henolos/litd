@@ -2194,3 +2194,25 @@ Décisions explicites formulées par l'utilisateur au cours de la conception du 
 - **Réalisé :** consignation des choix et de l'exemple comme référence d'intention sur une branche de travail.
 - **Non réalisé :** modification de `main`, fusion, scénario définitif, implémentation Godot ou test en jeu.
 - **Statut :** 🟡 À CONSOLIDER. Avancement du chantier actuel : À évaluer ; avancement du projet global : À évaluer.
+
+
+---
+## V7.17 — Narration : satire hybride et primauté des personnages rencontrés (17 novembre 2026)
+
+### Décisions explicitement validées en conception
+- Retenir **la combinaison des trois directions narratives** examinées : **tragédie absurde**, **satire des conventions du RPG** et **satire métanarrative**. Cette combinaison précise la narration hybride déjà validée en V7.16, sans remplacer ses composantes scénarisée, environnementale et émergente.
+- **Intégrer la psychologie aux personnages rencontrés** : leurs personnalités et leur dimension psychologique doivent occuper une place centrale dans l'expérience narrative. Les modalités détaillées de leur écriture restent à définir.
+- Faire des **personnages rencontrés les véritables figures centrales du récit**, plutôt que des héros jouables. Les héros servent avant tout de **vecteurs d'expédition et de rencontre**, et ne sont pas destinés à constituer le centre narratif du jeu.
+- La **motivation narrative principale recherchée** est le **plaisir de découvrir et de retrouver les personnages du monde**, qui doit encourager le joueur à persévérer dans ses expéditions, même s'il peut s'attacher aux héros jouables.
+
+### Contrôle de cohérence et interprétations à ne pas imposer
+- La primauté narrative des personnages rencontrés **n'annule pas** les décisions antérieures sur l'identité, l'unicité, la progression, les classes et l'attachement possible aux héros jouables : distinguer leur **rôle ludique et affectif** de leur **centralité scénaristique**.
+- L'expression utilisateur « ils ne représentent rien dans le jeu » est comprise **dans le contexte de la hiérarchie narrative qu'il décrit**, et non comme une suppression de leurs mécaniques, de leur identité ou des conséquences de leur mort.
+- La satire et l'humour noir restent compatibles avec une psychologie crédible et des sujets sombres ; leur dosage, leurs cibles et les ruptures du quatrième mur ne sont pas détaillés à ce stade.
+- Aucun personnage rencontré, arc, dialogue, mécanisme de relation ou fréquence de rencontre n'est validé par cet arbitrage. **Rester au niveau des grandes lignes.**
+
+### Traçabilité et exécution
+- Choix explicite : « Une combinaison des trois » ; annotation générale : « nous devrons intégrer la psychologie dans les personnages que nous rencontrons, ce seront eux les vrais personnages du jeu, les héros ne sont qu’un moyen de parvenir a ces échanges [...] c’est avant tout le plaisir de rencontrer les personnages du jeu qui doit motiver le joueur a persévérer dans ses expéditions ».
+- **Réalisé :** enregistrement de la direction narrative et de la hiérarchie des personnages sur la branche de travail.
+- **Non réalisé :** modification de `main`, fusion, écriture de scénario définitif, implémentation ou tests Godot.
+- **Statut :** 🟡 À CONSOLIDER. Avancement du chantier actuel : À évaluer ; avancement du projet global : À évaluer.
