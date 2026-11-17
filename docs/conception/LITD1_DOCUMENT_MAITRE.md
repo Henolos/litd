@@ -2117,3 +2117,26 @@ Avant de proposer plusieurs options pour un arbitrage de conception de LITD 1, e
 
 ### Traçabilité
 Décisions explicites formulées par l'utilisateur au cours de la conception du bestiaire. **Validation documentaire seulement** ; aucune implémentation Godot ni test en jeu revendiqués. **Statut : 🟡 À CONSOLIDER**. Avancement du chantier actuel : À évaluer ; avancement du projet global : À évaluer.
+
+
+---
+## V7.14 — Naissance des Némésis : rivalité par exploit (17 novembre 2026)
+
+### Décisions explicitement validées en conception
+- **Option A, rivalité par exploit**, retenue comme principe de naissance d'un Némésis. La transformation est fondée sur un **exploit marquant**, et non sur l'obligation de plusieurs confrontations avec le même ennemi ordinaire.
+- **Seuls les ennemis déjà devenus Némésis peuvent fuir**. Les ennemis ordinaires ne disposent pas de cette possibilité.
+- En conséquence, **la répétition de rencontres avec le même ennemi ordinaire pendant une expédition n'est pas une condition de promotion**. Les confrontations répétées avec un adversaire persistant concernent les Némésis.
+- Cette décision sur la **naissance** (option A) est distincte de l'orientation C déjà validée en V7.12 sur le **comportement après transformation** : éviter les fuites répétitives et préserver la crédibilité du Némésis. Ne pas confondre les deux arbitrages.
+
+### Modalités ouvertes : aucune validation implicite
+- Liste exacte des exploits éligibles (par exemple, tuer un héros ou accomplir un acte remarquable), seuils et éventuelles exclusions.
+- Moment de la promotion : pendant le combat, après sa résolution, ou entre deux expéditions.
+- Sort d'un ennemi ayant accompli un exploit mais tué avant la fin du combat ; nécessité éventuelle de survivre à l'exploit.
+- Conditions, fréquence et conséquences des fuites **après** promotion au rang de Némésis ; interactions avec capture, recrutement, boss et NG+.
+- Conditions de persistance et de nouvelle rencontre des Némésis ; aucune garantie de réapparition ni mécanisme de sauvegarde scénaristique n'est décidé ici.
+
+### Traçabilité et portée
+- Arbitrage utilisateur : « Choix : A — Rivalité par exploit » ; annotation : « Comme les ennemis ne peuvent fuir sauf s’ils deviennent némésis, nous ne rencontrerons pas les memes ennemis plusieurs fois pendant une expédition hormis les némésis » ; confirmation générale : « Comme seul les némésis peuvent fuir, nous n’aurons jamais l’opportunité de rencontrer plusieurs fois un meme ennemis ».
+- **Réalisé :** enregistrement documentaire des seules décisions explicites sur une branche de travail.
+- **Non réalisé :** modification de `main`, fusion, implémentation Godot, tests de gameplay.
+- **Statut :** 🟡 À CONSOLIDER (détails de règles non arbitrés). Avancement du chantier actuel : À évaluer ; avancement du projet global : À évaluer.
