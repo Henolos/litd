@@ -2059,3 +2059,28 @@ Ne pas présenter l’une de ces interprétations comme validée avant clarifica
 - **Validé :** règle de conception confirmée oralement par l'utilisateur le 17 novembre 2026.
 - **Non réalisé :** implémentation Godot, tests automatisés, essais en jeu et équilibrage.
 - **Statut :** 🟡 À CONSOLIDER. **Avancement du chantier actuel : À évaluer. Avancement du projet global : À évaluer.**
+
+
+---
+## V8.0 — Système Némésis : acquisition, progression hybride et promotions (17 novembre 2026)
+
+### Décisions validées en conception
+1. **Déclenchement automatique :** un ennemi qui tue définitivement un héros devient Némésis. Il n'existe ni tirage aléatoire ni quota de Némésis. Les simples victoires, rencontres répétées ou blessures sans mort de héros ne suffisent pas.
+2. **Puissance initiale :** l'accession au statut de Némésis s'accompagne d'un bonus dépendant du rang d'origine de l'ennemi. La nature et l'ampleur de ce bonus ne sont pas encore chiffrées.
+3. **Morts supplémentaires :** chaque héros supplémentaire tué par ce Némésis lui confère un **petit bonus de puissance**, modéré et cumulatif. Le principe du bonus supplémentaire est commun à tous les rangs d'origine ; aucune valeur, formule ni limite n'est arrêtée.
+4. **Progression hybride des grades :** un ennemi peut évoluer selon la chaîne **Ennemi → Némésis → Mini-boss → Boss émergent**. Les morts de héros alimentent sa progression ; des exploits exceptionnels peuvent accélérer une promotion, **uniquement lorsqu'ils sont liés à des morts de héros**, par exemple plusieurs héros tués lors d'un même combat.
+5. **Puissance et promotion distinctes :** les petits gains de puissance n'entraînent pas automatiquement un changement de grade. Les critères de promotion restent à définir.
+6. **Boss principaux et émergents distincts :** les cinq boss principaux prévus pour le jeu restent distincts des boss émergents issus de Némésis ; cette progression n'ajoute pas de nouveaux boss principaux scénarisés.
+7. **Persistance :** l'identité et la mémoire du Némésis peuvent être conservées entre les expéditions dans le même donjon, malgré sa recomposition spatiale.
+
+### Arbitrages explicitement reportés
+- **Aucun seuil numérique pour les promotions**, aucun coefficient, taux, plafond ou formule d'équilibrage : ces chiffres seront décidés plus tard, conformément à la demande explicite.
+- Effets exacts sur les caractéristiques, capacités et apparence, rythme d'évolution, règles de retour et cas limites.
+- Pillage, port ou utilisation de l'équipement d'un héros tué par son Némésis : **hypothèse non validée**, à ne pas présenter comme une décision.
+- Articulation technique avec les ennemis ordinaires, élites, mini-boss et boss déjà présents ; sauvegarde, tests de gameplay et examen juridique avant commercialisation.
+
+### Statut et vérification
+- **Validé en conception :** principes énumérés ci-dessus, sans paramètres chiffrés.
+- **Réalisé :** intégration documentaire sur branche de travail, sans modification des décisions historiques.
+- **Non réalisé :** implémentation Godot, tests en jeu et validation de l'équilibrage.
+- **Chantier : 🟡 À CONSOLIDER.** Avancement du chantier actuel : À évaluer. Avancement du projet global : À évaluer.
