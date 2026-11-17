@@ -2059,3 +2059,40 @@ Ne pas présenter l’une de ces interprétations comme validée avant clarifica
 - **Validé :** règle de conception confirmée oralement par l'utilisateur le 17 novembre 2026.
 - **Non réalisé :** implémentation Godot, tests automatisés, essais en jeu et équilibrage.
 - **Statut :** 🟡 À CONSOLIDER. **Avancement du chantier actuel : À évaluer. Avancement du projet global : À évaluer.**
+
+
+---
+## V7.11 — Némésis : décisions de conception de la séance du 17 novembre 2026 (copie de travail)
+
+**Statut : décisions validées en conception, sans implémentation ni test.** Cette section consolide les décisions orales récentes ; elle ne modifie pas rétroactivement les archives historiques.
+
+### Déclenchement et progression validés
+- Tout ennemi qui **tue définitivement un héros** devient automatiquement un **Némésis**, sans tirage aléatoire ni quota. Blesser un héros, remporter un combat sans tuer de héros ou multiplier les rencontres ne suffit pas.
+- La promotion initiale accorde un bonus de statistiques dépendant du rang d'origine : **important pour un ennemi ordinaire**, **intermédiaire pour un élite**, **faible pour un mini-boss**. Aucun coefficient numérique n'est encore validé. Le bonus initial d'un boss n'est pas défini.
+- Chaque héros supplémentaire tué par un Némésis lui apporte un **petit bonus cumulatif de statistiques**, indépendamment de son rang d'origine. Valeurs, plafonds et équilibrage restent ouverts.
+
+### Fuite et persistance validées
+- **Seul un Némésis peut fuir le combat** selon cette mécanique ennemie.
+- Dès qu'un ennemi tue un héros et devient Némésis, il **peut** quitter le combat en cours, mais sa fuite n'est **pas obligatoire**.
+- Si le Némésis fuit, le combat continue contre les autres ennemis présents ; sa fuite peut offrir un répit aux survivants.
+- Le Némésis conserve son identité et sa progression et peut réapparaître lors d'expéditions ultérieures, même si la géométrie du donjon a changé.
+
+### Évolution hiérarchique : orientation exprimée, mécanisme non arbitré
+- Un Némésis pourrait évoluer en **mini-boss**, puis en **boss émergent** après avoir tué suffisamment de héros.
+- Ne pas confondre ces boss émergents avec les **cinq boss prévus** dans le bestiaire de référence.
+- **Non décidé :** seuils fixes, progression hybride par morts et exploits, ou progression entièrement dynamique. Aucune des options A/B/C proposées n'est encore validée.
+- **Non décidé :** cas d'un Némésis déjà élite, mini-boss ou boss ; nouvelles capacités, changements visuels, équipement, règles de fuite et plafond de puissance.
+
+### Points de contrôle avant implémentation
+- Définir les conditions et limites de fuite (possibilité de l'empêcher, probabilité ou réussite garantie).
+- Définir l'évolution des rangs, les seuils et les exceptions ; éviter la montée en puissance incontrôlable et la multiplication des Némésis.
+- Tester les interactions avec la mort permanente, le Game Over, la retraite, la persistance des donjons et les sauvegardes.
+- Conserver l'examen juridique de la mécanique d'ennemis persistants comme chantier futur avant commercialisation ; aucun audit juridique n'a été réalisé.
+
+### Méthode documentaire adoptée pour les séances
+- En début de séance, récupérer la dernière version GitHub et travailler sur une **branche/copie de travail distincte**.
+- Intégrer les décisions au fil de l'eau en séparant **validé**, **hypothèse** et **à arbitrer** ; prévoir des points de sauvegarde intermédiaires si nécessaire.
+- En fin de séance, relire l'ensemble, récupérer à nouveau l'état GitHub, comparer et réconcilier les divergences **sans écrasement**, puis proposer **une seule pull request** après contrôle.
+- L'adoption de cette méthode est une décision de travail ; elle ne constitue pas une automatisation opérationnelle.
+
+**Suivi :** 🟡 À CONSOLIDER (conception documentée ; paramètres et tests ouverts). **Avancement du chantier actuel : À évaluer. Avancement du projet global : À évaluer.**
