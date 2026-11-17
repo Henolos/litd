@@ -2073,6 +2073,12 @@ Ne pas présenter l’une de ces interprétations comme validée avant clarifica
 6. **Boss principaux et émergents distincts :** les cinq boss principaux prévus pour le jeu restent distincts des boss émergents issus de Némésis ; cette progression n'ajoute pas de nouveaux boss principaux scénarisés.
 7. **Persistance :** l'identité et la mémoire du Némésis peuvent être conservées entre les expéditions dans le même donjon, malgré sa recomposition spatiale.
 
+### Fuite réservée aux Némésis
+- **Un ennemi ordinaire ne peut pas fuir le combat.** La possibilité de quitter volontairement le combat est réservée aux ennemis devenus Némésis.
+- Dès qu'un ennemi tue définitivement un héros et devient Némésis, **il peut choisir de fuir immédiatement**, mais sa fuite n'est **pas automatique**. Il peut également rester et continuer le combat.
+- Si le Némésis fuit, les héros survivants continuent le combat contre les autres adversaires encore présents. Sa mémoire et sa persistance permettent de le retrouver ultérieurement.
+- **À arbitrer :** la fuite peut-elle être empêchée par les héros, ou réussit-elle automatiquement ? Ne pas présumer l'une ou l'autre réponse.
+
 ### Arbitrages explicitement reportés
 - **Aucun seuil numérique pour les promotions**, aucun coefficient, taux, plafond ou formule d'équilibrage : ces chiffres seront décidés plus tard, conformément à la demande explicite.
 - Effets exacts sur les caractéristiques, capacités et apparence, rythme d'évolution, règles de retour et cas limites.
