@@ -2168,3 +2168,29 @@ Décisions explicites formulées par l'utilisateur au cours de la conception du 
 - **Réalisé :** consignation des décisions explicites sur la branche de travail uniquement.
 - **Non réalisé :** fusion dans `main`, implémentation Godot, test en jeu ou validation d'équilibrage.
 - **Statut :** 🟡 À CONSOLIDER. Avancement du chantier actuel : À évaluer ; avancement du projet global : À évaluer.
+
+
+---
+## V7.16 — Direction générale de la narration : hybride, satire et humour noir (17 novembre 2026)
+
+### Décisions explicitement validées en conception
+- **Narration hybride** retenue : associer une trame scénarisée, une narration environnementale et des récits émergents issus des événements de jeu. Le degré de présence de chaque composante n'est pas fixé.
+- **Ton narratif souhaité : sarcastique, ironique et marqué par l'humour noir**, avec des **ruptures du quatrième mur**.
+- **Volonté d'aborder des sujets sensibles et sombres**, avec notamment la possibilité de prendre pour cible ou d'interpeller le **créateur du jeu** et **le joueur**. Les sujets précis, le traitement et les limites de ces interventions ne sont pas arrêtés.
+
+### Exemple narratif fourni par l'utilisateur — référence d'intention, non scénario définitif
+- Tutoriel prenant l'apparence d'une **chasse aux champignons**, comme une quête d'ouverture de RPG classique, mais tournant en **boucherie**.
+- Après le retour des héros survivants, un **maître de guilde** leur explique que les champignons étaient destinés à **son omelette**, se plaint de la quantité manquante et les renvoie se reposer en suggérant qu'ils pourraient **faire un effort la prochaine fois**.
+- Cet exemple illustre le contraste recherché entre **tragédie vécue par les héros**, **banalité absurde de la commande** et **indifférence sarcastique de l'autorité**. Il ne valide ni les dialogues exacts, ni les pertes obligatoires, ni la structure technique du tutoriel.
+
+### Cohérence et tensions créatives à étudier, sans nouvelles règles implicites
+- La satire et les ruptures du quatrième mur doivent être conciliées avec la gravité de la mort, l'attachement aux héros et l'atmosphère dark fantasy. **Aucune fréquence ni limite chiffrée n'est validée**.
+- L'idée d'un tutoriel brutal doit être conciliée avec la compréhension des mécaniques et l'équité du jeu ; **aucune mort imposée ni difficulté précise n'est validée**.
+- L'interpellation du créateur ou du joueur reste une **intention générale** ; sa mise en scène, son rôle dans l'intrigue et les sujets sensibles exacts restent ouverts.
+- Conserver le niveau des **grandes lignes** : ne pas figer à ce stade les scènes, dialogues, déclencheurs, personnages secondaires ou arcs détaillés.
+
+### Traçabilité et exécution
+- Arbitrage explicite : « Choix : Narration hybride » ; annotations générales décrivant le ton sarcastique, ironique, l'humour noir, le quatrième mur, l'exemple du tutoriel aux champignons et les sujets sensibles liés notamment au créateur et au joueur.
+- **Réalisé :** consignation des choix et de l'exemple comme référence d'intention sur une branche de travail.
+- **Non réalisé :** modification de `main`, fusion, scénario définitif, implémentation Godot ou test en jeu.
+- **Statut :** 🟡 À CONSOLIDER. Avancement du chantier actuel : À évaluer ; avancement du projet global : À évaluer.
