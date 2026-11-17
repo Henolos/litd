@@ -2059,3 +2059,23 @@ Avant de proposer plusieurs options pour un arbitrage de conception de LITD 1, e
 **Principe directeur :** s'inspirer des enseignements des autres jeux sans reproduire leurs mécaniques à l'identique. Adapter la profondeur de la recherche à l'importance du choix ; ne pas inventer de références ni de résultats de tests.
 
 **Portée de cette mise à jour :** règle documentaire uniquement. Aucune recherche comparative particulière, implémentation Godot ni validation en jeu n'est revendiquée ici.
+
+
+---
+## V7.11 — Orientation validée : comportement crédible des Némésis et limitation des fuites (17 novembre 2026)
+
+### Décision explicitement validée en conception
+- Retenir l'**orientation C** pour le comportement des Némésis : **éviter les fuites répétitives tout en donnant au Némésis un comportement crédible**.
+- Le choix porte sur ce principe de conception, et non sur une règle chiffrée ou une logique détaillée déjà arrêtée.
+
+### Modalités restant à définir (non validées)
+- Conditions exactes autorisant ou empêchant la fuite, réactions aux blessures et au contexte du combat, fréquence, éventuels délais et conséquences.
+- Conditions précises de passage au statut Némésis et de recrutement, notamment pour les cinq boss recrutables seulement en NG+.
+- Critères de test pour vérifier que les comportements sont variés, crédibles et non frustrants.
+
+### Traçabilité et exécution
+- Source de l'arbitrage : formulation explicite de l'utilisateur « Je recommande C, pour éviter les fuites répétitives tout en donnant au Némésis un comportement crédible », puis demande de validation et d'enregistrement.
+- **Validé :** principe d'éviter les fuites répétitives tout en préservant la crédibilité.
+- **Non validé :** interprétation détaillée de l'option C, dont le libellé complet n'est pas disponible dans le contexte consulté.
+- **Non réalisé :** implémentation Godot et tests de gameplay.
+- **Suivi :** 🟡 À CONSOLIDER. Avancement du chantier actuel : À évaluer ; avancement du projet global : À évaluer.
