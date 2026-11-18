@@ -89,3 +89,27 @@ Auditer les systèmes de quêtes et de sauvegarde de `main` avant tout code ; ap
 7. **Statut des quatre héros :** préserver explicitement le rôle particulier de Mathilde, Marec, Anouk et Aurélien ; la quête doit rester celle des habitants.
 
 **Décision documentaire :** grille appliquée à titre exploratoire, quête non approuvée, aucun code produit. Prochaine priorité : combler les critères 5 et 7, puis auditer le runtime et les sauvegardes avant toute implémentation.
+
+## V0.2 — Corrections narratives proposées (non canoniques)
+
+### Décision autonome de Shen
+Shen ne se contente plus de réagir au joueur. Il a promis de maintenir le four jusqu'au prochain passage d'une caravane. Avant l'échéance, il apprend par une habitante que la coupe menace la stabilité du sol proche du site. **Quelle que soit la présence du joueur, Shen décide de limiter les prélèvements à proximité immédiate du site**, mais refuse d'arrêter totalement le four tant qu'aucune solution de chauffage n'est trouvée. Ce choix produit un coût : trajet plus long, baisse de production et conflit avec les foyers les plus vulnérables.
+
+Le joueur peut modifier les moyens disponibles, les informations connues et les alliances, **pas prendre la décision à sa place**. Si Shen est indisponible, une décision collective de substitution doit être définie avant implémentation ; elle n'est pas simulée ici.
+
+### Révélation préparée, non arbitraire
+- **Indice 1, accessible sans quête :** des fissures récentes apparaissent près de l'ancien site après des prélèvements importants.
+- **Indice 2, enquête facultative :** des archives locales mentionnent des affaissements antérieurs, sans attribuer leur cause à une malédiction.
+- **Indice 3, témoignages divergents :** une habitante attribue les fissures à l'extraction, un ancien rappelle des épisodes semblables avant l'installation du four.
+- **Recontextualisation :** le danger n'est pas nécessairement causé uniquement par Shen ; une fragilité préexistante et les usages collectifs du terrain ont contribué au risque. La culpabilité personnelle ne remplace pas la responsabilité partagée.
+
+**Garde-fou :** ne pas affirmer que l'extraction cause scientifiquement l'affaissement sans définir la géologie fictive et ses règles ; aucun phénomène surnaturel n'est imposé. Les indices doivent rester cohérents avec les états du monde et ne pas apparaître rétroactivement.
+
+### Lisibilité de l'échéance
+Deux avertissements diégétiques minimum avant la transition décisive : changement visible des stocks, puis annonce de la prochaine caravane. Le joueur peut manquer l'événement, mais l'absence d'intervention ne doit pas effacer la quête ou produire un échec caché incompréhensible. Un journal ou des rumeurs permettent de découvrir les conséquences après coup.
+
+### Vérifications requises avant implémentation
+- Identifier les personnages, lieux et matériaux autorisés par le canon actuel ; **Shen, la caravane et le site restent des placeholders**.
+- Vérifier les systèmes existants de progression temporelle, événements, états persistants, dialogues et sauvegarde ; réutiliser l'existant.
+- Établir des scénarios déterministes pour A/B/C et une variante d'indisponibilité du PNJ.
+- Réviser la grille QS-004 après une revue narrative indépendante, sans convertir les notes provisoires en scores validés.
