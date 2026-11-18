@@ -41,6 +41,8 @@
 
 | QS-002 | Cinq arcs de quêtes : scènes et autonomie | Analyse narrative | Baron, Astarion, Shadowheart, Judy, Panam | 🟡 À consolider | [Dossier](QUETES_SECONDAIRES_CINQ_ARCS_SCENES_002.md) |
 
+| QS-003 | Judy et Panam : choix et conséquences | Analyse narrative | Pisces, Pyramid Song, Aldecaldos et autonomie PNJ | 🟡 À consolider | [Dossier](QUETES_SECONDAIRES_JUDY_PANAM_CHOIX_003.md) |
+
 **Convention :** ⚪ À étudier ; 🟠 En cours ; 🟡 À consolider ; 🟢 Étude vérifiée. Une étude vérifiée ne valide pas son intégration au jeu.
 
 **Règle d'insertion :** toute nouvelle recherche obtient un ID stable, un média/domaine, une question, un statut et un lien vers sa fiche lorsqu'elle existe.
