@@ -161,3 +161,14 @@ Trois catégories de découvertes/récompenses peuvent coexister et se combiner,
 - **Non validés à ce stade :** le nom « Pacte des Frontières », sa forme technique, les modalités précises de son effondrement, l'organisation politique des peuples monstrueux et le titre ou la structure de la quête principale. Ces éléments demeurent des propositions exploratoires.
 
 **Portée :** validation de principes narratifs et de contexte uniquement ; aucun document maître de lore réécrit, aucune scène Godot modifiée, aucun test de gameplay réalisé et aucune fusion dans main.
+
+
+## 9. Correction validée : origine de l'éloignement des monstres (18 novembre 2026)
+
+**DÉCISION EXPLICITE DE L'UTILISATEUR :** parmi les trois explications précédemment proposées, **seule la troisième est retenue** : l'éloignement des monstres résultait d'anciens accords entre peuples et continents, motivés par le racisme, les préjugés et le rejet de l'apparence des monstres (« parce que les monstres, c'est moche »). L'absurdité de ce motif fait partie de l'identité grotesque du récit.
+
+- **ÉCARTÉ :** l'idée que des frontières fortifiées ou des dispositifs technomagiques des civilisations anciennes constituaient la cause du maintien à distance des monstres. Ne pas réintroduire ces mécanismes comme explication sans nouvelle validation.
+- L'échec des continents à s'entendre, il y a 200 ans, a rompu cet ordre et permis le retour des monstres dans les régions habitées. Depuis, les civilisations rescapées luttent pour leur survie ; les Guildes sont apparues dans ce contexte.
+- La plupart des monstres ennemis peuvent parler. Leur capacité de parole n'en fait pas automatiquement des alliés, ni des innocents ; il existe des ennemis réellement dangereux. Les humains ne doivent pas non plus être uniformément dépeints comme hostiles.
+- **Non encore déterminés :** les clauses exactes des accords, les signataires, les territoires concernés, le mécanisme précis de leur rupture et la part des diverses causes dans la catastrophe. Ne pas inventer ces détails comme du canon.
+- Conserver les sept civilisations anciennes et leurs héritages ; ne pas réécrire leurs chronologies sans examen du lore maître.
