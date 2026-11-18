@@ -35,6 +35,8 @@
 
 | SCN-003 | Fiches de scènes et liens causaux | Analyse scénaristique | Déclencheur, personnages, conflit, conséquences | 🟡 À consolider | [Dossier](SCENARIOS_FICHES_SCENES_CAUSALES_003.md) |
 
+| SCN-004 | Graphe causal et embranchements | Analyse scénaristique | Liens causaux, branches, rythme, révélations | 🟡 À consolider | [Dossier](SCENARIOS_GRAPHE_CAUSAL_EMBRANCHEMENTS_004.md) |
+
 **Convention :** ⚪ À étudier ; 🟠 En cours ; 🟡 À consolider ; 🟢 Étude vérifiée. Une étude vérifiée ne valide pas son intégration au jeu.
 
 **Règle d'insertion :** toute nouvelle recherche obtient un ID stable, un média/domaine, une question, un statut et un lien vers sa fiche lorsqu'elle existe.
