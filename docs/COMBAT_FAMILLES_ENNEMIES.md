@@ -75,6 +75,12 @@ Exemples : Scarabée funéraire, Éclat vivant, Miroir mort.
 
 Les boss possédant déjà une manœuvre spécifique — par exemple le Général de Silex, la Frontière qui marche, le Consensus Brisé ou la Rupture Commune — **ont priorité** et ne déclenchent pas une seconde manœuvre familiale dans le même tour.
 
+## Fuite et transformations
+
+Règle validée (18 novembre 2026) : ennemis normaux, élites et mini-boss peuvent fuir, notamment lors d'une transformation. Les boss établis ne fuient pas. Exception strictement limitée à la transition : un mini-boss qui devient boss peut fuir pendant cette transformation ; une fois boss établi, il ne peut plus fuir. La possibilité de fuite n'impose pas une fuite automatique ; conditions, déclencheurs et persistance restent à implémenter et tester.
+
+Cette règle de conception ne modifie pas à elle seule le runtime historique. Les mini-boss peuvent être classés `elite` dans les données de famille : ne pas confondre cette catégorie technique avec l'interdiction de fuite réservée aux boss établis.
+
 ## Couverture actuelle
 
 Les 37 ennemis génériques non-boss de `data/enemies.json` sont tous classés exactement une fois entre les cinq familles de base. Les mini-boss et boss utilisent ensuite les catégories `elite` ou `boss`, sauf lorsqu'une mécanique spécifique possède la priorité.
