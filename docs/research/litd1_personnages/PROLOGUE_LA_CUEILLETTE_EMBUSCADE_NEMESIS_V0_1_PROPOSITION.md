@@ -82,3 +82,9 @@ La créature s'éloigne sans décider consciemment d'épargner le héros. Le sur
 - Définir les probabilités ou priorités de ciblage réelles par des tests ; « majorité » est une intention, pas encore une valeur numérique validée.
 
 **État :** décisions narratives et contraintes de combat consignées ; implémentation et tests Godot non réalisés.
+
+## Clarification utilisateur — supériorité de niveau de l'élite (18 novembre 2026)
+
+**Décision validée :** l'élite est d'un niveau tellement supérieur à celui de la compagnie qu'elle **ne peut pas être tuée pendant cette rencontre**. Cette impossibilité doit résulter de l'écart réel de caractéristiques et de puissance, **pas d'une invulnérabilité artificielle ni d'une annulation cachée des dégâts**. Les dégâts infligés restent effectifs ; une perte de membre peut éventuellement se produire si le groupe concentre ses attaques, selon les règles de combat. Le monstre conserve sa priorité de ciblage sur Wei, Mara et Sami et peut blesser, mais non tuer, le protagoniste. Combat 2D continu, sans cinématique intermédiaire ; après les trois décès, évolution en Némésis et fuite.
+
+**Contrôle restant avant implémentation :** vérifier par simulation des cas extrêmes (dégâts maximaux, contrôle, ciblage de membres et compositions possibles) que l'élite reste effectivement impossible à tuer sans immunité dissimulée. L'issue est une décision narrative ; l'équilibrage qui la garantit n'est pas encore testé.
