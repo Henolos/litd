@@ -1,0 +1,41 @@
+# LITD 1 — Feux de camp : conception V0.1
+
+**2026-11-18 — Proposition à valider, non implémentée, non testée.**
+
+## Objectifs
+Créer un système de halte qui associe récupération limitée, cuisine, préparation et relations entre compagnons, sans supprimer la difficulté de l'expédition. La présence d'un feu de camp ne garantit pas la sécurité.
+
+## Boucle proposée
+1. Trouver un emplacement de campement adapté. Le tutoriel du prologue propose un emplacement fixe ; les conditions de campement ultérieures restent à décider.
+2. Installer le camp et consommer les ressources nécessaires (provisions ; combustible si ce coût est retenu).
+3. Choisir des actions : préparer un repas, manger, soigner, se reposer, discuter, examiner l'inventaire.
+4. Appliquer les effets de récupération partielle et les éventuels bonus temporaires. Ne pas remettre automatiquement toute la santé ou toutes les ressources à leur maximum.
+5. Lever le camp et reprendre l'exploration.
+
+## Règles provisoires
+- **Repas :** nécessite des ingrédients ou des rations ; récupération ou bonus selon la recette, valeurs à équilibrer.
+- **Repos :** récupération partielle de santé et/ou ressources, à tester ; aucune récupération gratuite illimitée.
+- **Soins :** utilisation possible de remèdes ou d'aptitudes ; les blessures persistantes ne disparaissent pas automatiquement.
+- **Interactions :** conversations facultatives, contextualisées selon les compagnons, événements et choix ; aucun lien obligatoire avec une jauge de relation.
+- **Sécurité :** distinguer les emplacements sécurisés et les camps improvisés ; risque d'interruption à étudier, pas encore validé.
+- **Fréquence :** limiter les abus de récupération ; méthode exacte à choisir après tests.
+- **Sauvegarde :** ne pas supposer que le camp crée un nouveau système de sauvegarde ; réutiliser et vérifier le système existant avant toute décision.
+
+## Intégration au prologue « La Cueillette »
+Après une période d'exploration et quelques combats adaptés au niveau de la compagnie, Mara propose une halte. Le joueur apprend les actions de base autour du feu et partage un repas avec Wei, Mara et Sami (noms provisoires, non validés). Cette scène sert à mieux connaître les compagnons et à présenter la récupération limitée. Le groupe reprend ensuite la cueillette, récupère le dernier champignon, puis commence le chemin du retour. L'élite attaque **plus tard sur le retour**, tue les trois compagnons, évolue en Némésis/mini-boss et fuit. Une partie des champignons est perdue pendant l'affrontement ; le survivant reçoit seulement la moitié de la prime.
+
+## Contraintes de cohérence
+- Monde cosmopolite ; direction artistique sino-gothico-dark fantasy dominante, sans uniformiser l'origine des personnages.
+- Ne pas modifier les mécaniques de combat, d'afflictions, de sauvegarde ou d'inventaire sans inventaire préalable de l'existant.
+- Les coûts, pourcentages de récupération, recettes, durée de repos, risques d'embuscade et restrictions d'usage sont **à définir**, pas validés.
+- Le camp du prologue ne doit pas déclencher l'embuscade finale ni rendre la mort des compagnons évitable par un simple choix de repos.
+- Les compagnons doivent avoir des échanges naturels, et pas seulement exposer des règles.
+
+## Validation et implémentation futures
+1. **Validation de conception :** arrêter les règles de coût, sécurité, récupération, fréquence, cuisine et blessures.
+2. **Audit Godot en lecture seule :** repérer scènes, systèmes d'inventaire, soins, ressources, sauvegarde et tests existants ; éviter les systèmes parallèles.
+3. **Implémentation minimale :** réutiliser les composants existants, ajouter le camp et ses interactions sans toucher aux références artistiques validées.
+4. **Tests :** coûts réellement déduits, récupération plafonnée, impossibilité d'exploits de repos, état persistant après sauvegarde/chargement, interactions, absence de régression du combat, test en jeu du prologue.
+5. **Validation visuelle et de difficulté :** contrôle humain et playtest ; aucune validation de production avant preuves.
+
+**Statut :** conception documentaire seulement ; aucune implémentation ou exécution de test revendiquée.
