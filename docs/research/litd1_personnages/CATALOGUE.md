@@ -25,6 +25,8 @@
 
 | SYN-003 | Dossier approfondi Conker, LISA et Disco Elysium | Comparatif | Personnages emblématiques, contradictions et sources | 🟡 À consolider | [Dossier](DOSSIER_APPROFONDI_CONKER_LISA_AUTRES.md) |
 
+| SYN-004 | Berri, Von Kriplespac, Buzzo, Rando et compagnons LISA | Étude comparative | Scènes, motivations, limites | 🟡 À consolider | [Dossier](ETUDE_SECONDAIRES_CONKER_LISA_001.md) |
+
 **Convention :** ⚪ À étudier ; 🟠 En cours ; 🟡 À consolider ; 🟢 Étude vérifiée. Une étude vérifiée ne valide pas son intégration au jeu.
 
 **Règle d'insertion :** toute nouvelle recherche obtient un ID stable, un média/domaine, une question, un statut et un lien vers sa fiche lorsqu'elle existe.
