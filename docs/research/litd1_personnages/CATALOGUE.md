@@ -27,6 +27,8 @@
 
 | SYN-004 | Berri, Von Kriplespac, Buzzo, Rando et compagnons LISA | Étude comparative | Scènes, motivations, limites | 🟡 À consolider | [Dossier](ETUDE_SECONDAIRES_CONKER_LISA_001.md) |
 
+| SYN-005 | Scènes Buzzo, Rando, Terry, Olan et Bo | LISA | Dilemmes et dialogues de camp | 🟡 À consolider | [Dossier](LISA_SCENES_BUZZO_RANDO_COMPAGNONS_002.md) |
+
 **Convention :** ⚪ À étudier ; 🟠 En cours ; 🟡 À consolider ; 🟢 Étude vérifiée. Une étude vérifiée ne valide pas son intégration au jeu.
 
 **Règle d'insertion :** toute nouvelle recherche obtient un ID stable, un média/domaine, une question, un statut et un lien vers sa fiche lorsqu'elle existe.
