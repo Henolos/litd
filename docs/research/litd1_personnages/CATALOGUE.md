@@ -31,6 +31,8 @@
 
 | SCN-001 | Scénarios Conker, LISA, Disco Elysium | Analyse scénaristique | Structures, enjeux, révélations, conséquences | 🟡 À consolider | [Dossier](SCENARIOS_COMPARATIFS_CONKER_LISA_DISCO_001.md) |
 
+| SCN-002 | Chronologies et causalité Conker, LISA, Disco Elysium | Analyse scénaristique | Étapes, rythme, PNJ et limites | 🟡 À consolider | [Dossier](SCENARIOS_CHRONOLOGIES_CAUSALITE_002.md) |
+
 **Convention :** ⚪ À étudier ; 🟠 En cours ; 🟡 À consolider ; 🟢 Étude vérifiée. Une étude vérifiée ne valide pas son intégration au jeu.
 
 **Règle d'insertion :** toute nouvelle recherche obtient un ID stable, un média/domaine, une question, un statut et un lien vers sa fiche lorsqu'elle existe.
