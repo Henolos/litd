@@ -87,3 +87,31 @@ D'abord accumuler des pitchs variés ; ensuite sélectionner et affiner les plus
 Les inspirations (Monster Hunter, Solo Leveling, Rick et Morty, Berserk) sont des références de structure ou de tonalité, non des modèles à reproduire. La satire et les personnages doivent rester originaux.
 
 **Statut de ce document :** synthèse sauvegardée des décisions et propositions de la conversation ; n'implique ni validation de tous les pitchs ni intégration au document maître, ni fusion dans main.
+
+
+## 6. Décisions complémentaires validées : fins multiples, secrets et exploration (18 novembre 2026)
+
+**VALIDÉ PAR L'UTILISATEUR :**
+
+- Une quête secondaire peut comporter **plusieurs chutes/fins**, correspondant aux choix du joueur, y compris des fins absurdes, tragiques, heureuses ou ambiguës.
+- Certaines fins ou ramifications peuvent **révéler des tombeaux secrets, des donjons, des manuscrits rares**, des passages, des communautés, des informations sur le monde ou de nouvelles quêtes.
+- **Plusieurs choix peuvent révéler le même lieu**, mais dans des conditions différentes : accès, état du lieu, occupants, dangers, salles disponibles, informations et conséquences sur les habitants.
+- Certains secrets facultatifs peuvent être **manqués pendant toute une partie**. La découverte ne doit pas être garantie ni systématiquement signalée.
+- Les choix affectent non seulement les personnages, mais également **ce qui peut être exploré, appris ou découvert**.
+- Les découvertes rares ne doivent pas récompenser systématiquement les choix les plus cruels ou les catastrophes ; observation, confiance, enquête et négociation peuvent ouvrir des voies différentes.
+- **Orientation de conception proposée et acceptée dans l'échange :** ne pas verrouiller un passage indispensable à l'histoire principale derrière une décision secondaire irréversible ; réserver les pertes définitives surtout aux secrets facultatifs.
+
+### Application à « La grève des morts » : variantes exploratoires (propositions NON VALIDÉES individuellement)
+
+**Contexte spatial proposé :** ville voisine d'un ancien bassin funéraire inondé ; digues protégeant les quartiers ; ancien accès aux sépultures condamné par des travaux. Il reste à justifier précisément la géographie et l'histoire de ces ouvrages.
+
+1. **Libération immédiate :** la rupture d'une digue révèle une entrée de la nécropole. Le lieu est partiellement inondé ; des créatures peuvent s'échapper ; la catastrophe et les pertes humaines ne sont pas présentées comme un simple prix à payer pour obtenir du butin.
+2. **Négociation et libération progressive :** un ouvrier mort-vivant révèle un accès secret ; certaines salles et certains manuscrits peuvent être accessibles sans destruction de la ville.
+3. **Maintien de l'ordre / reprise du travail :** le joueur apprend plus tard l'existence du tombeau ; les travaux peuvent en avoir condamné certaines parties.
+4. **Non-intervention :** l'embauche forcée de nouveaux morts-vivants peut provoquer une deuxième grève ; des galeries souterraines découvertes par les ouvriers peuvent mener à une communauté nouvelle et à d'autres quêtes.
+
+**Secret potentiellement manquable :** un manuscrit rare transmis uniquement si le joueur obtient la confiance d'un mort-vivant particulier. Si cette relation ou cette rencontre disparaît, le manuscrit peut rester inconnu pendant cette partie.
+
+**Chutes absurdes envisageables :** la municipalité accorde une retraite anticipée aux morts-vivants, mais réclame un certificat de vie pour verser la pension. La chute humoristique ne nie ni l'exploitation ni les pertes.
+
+**État :** principes généraux validés ; variations, emplacement précis, secrets, manuscrits, accès, récompenses et fins exactes restent des propositions de conception. Aucune intégration au gameplay, aucun test, aucune fusion dans main.
