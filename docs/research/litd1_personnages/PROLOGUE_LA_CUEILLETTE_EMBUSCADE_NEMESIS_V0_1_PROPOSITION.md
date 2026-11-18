@@ -88,3 +88,10 @@ La créature s'éloigne sans décider consciemment d'épargner le héros. Le sur
 **Décision validée :** l'élite est d'un niveau tellement supérieur à celui de la compagnie qu'elle **ne peut pas être tuée pendant cette rencontre**. Cette impossibilité doit résulter de l'écart réel de caractéristiques et de puissance, **pas d'une invulnérabilité artificielle ni d'une annulation cachée des dégâts**. Les dégâts infligés restent effectifs ; une perte de membre peut éventuellement se produire si le groupe concentre ses attaques, selon les règles de combat. Le monstre conserve sa priorité de ciblage sur Wei, Mara et Sami et peut blesser, mais non tuer, le protagoniste. Combat 2D continu, sans cinématique intermédiaire ; après les trois décès, évolution en Némésis et fuite.
 
 **Contrôle restant avant implémentation :** vérifier par simulation des cas extrêmes (dégâts maximaux, contrôle, ciblage de membres et compositions possibles) que l'élite reste effectivement impossible à tuer sans immunité dissimulée. L'issue est une décision narrative ; l'équilibrage qui la garantit n'est pas encore testé.
+
+
+## Rectification canonique ultérieure (18 novembre 2026)
+
+Règle validée (18 novembre 2026) : ennemis normaux, élites et mini-boss peuvent fuir, notamment lors d'une transformation. Les boss établis ne fuient pas. Exception strictement limitée à la transition : un mini-boss qui devient boss peut fuir pendant cette transformation ; une fois boss établi, il ne peut plus fuir. La possibilité de fuite n'impose pas une fuite automatique ; conditions, déclencheurs et persistance restent à implémenter et tester.
+
+Pour le prologue, l'élite évolue en mini-boss Némésis puis fuit au sein du combat 2D continu. La retraite vers un passage étroit et la désorientation physiologique ne sont pas validées ; les propositions anciennes de ce document ne prévalent pas sur la référence narrative V0.4. Les attaques du prologue sont simples, sans afflictions. Aucun code de fuite ou de transformation n'est validé par cette mise à jour documentaire.
