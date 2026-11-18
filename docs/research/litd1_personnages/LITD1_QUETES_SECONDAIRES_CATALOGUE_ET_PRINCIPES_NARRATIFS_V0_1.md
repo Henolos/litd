@@ -115,3 +115,27 @@ Les inspirations (Monster Hunter, Solo Leveling, Rick et Morty, Berserk) sont de
 **Chutes absurdes envisageables :** la municipalité accorde une retraite anticipée aux morts-vivants, mais réclame un certificat de vie pour verser la pension. La chute humoristique ne nie ni l'exploitation ni les pertes.
 
 **État :** principes généraux validés ; variations, emplacement précis, secrets, manuscrits, accès, récompenses et fins exactes restent des propositions de conception. Aucune intégration au gameplay, aucun test, aucune fusion dans main.
+
+
+## 7. Validation complémentaire : valeur intrinsèque de la curiosité (18 novembre 2026)
+
+**PRINCIPE VALIDÉ PAR L'UTILISATEUR :** la curiosité du joueur doit être récompensée par la richesse du monde, et non uniquement par du butin ou un avantage mécanique.
+
+Trois catégories de découvertes/récompenses peuvent coexister et se combiner, sans obligation :
+- **Matérielles / exploratoires :** trésors, équipements, passages, tombeaux et donjons secrets.
+- **Connaissances :** manuscrits, archives, informations historiques, techniques et indices.
+- **Narratives / émotionnelles :** lettres, témoignages, vérité sur un personnage, retrouvailles tardives, histoires familiales, révélations qui changent le regard sur un événement passé, sans nécessairement modifier les faits.
+
+**Règles validées :**
+1. Une découverte peut être importante sans avantage tangible.
+2. Une révélation peut changer l'interprétation d'une histoire sans changer les événements.
+3. Les conséquences différées restent cohérentes avec les décisions et l'autonomie des personnages.
+4. Le joueur ne doit pas toujours prévoir ce qu'il trouvera en explorant.
+5. Ne pas systématiser les donjons, objets rares, manuscrits ou récompenses matérielles ; préserver la variété et l'intérêt de l'exploration pour elle-même.
+
+**Trois nouveaux pitchs approuvés par l'utilisateur comme pistes de catalogue (leurs détails ne sont pas un scénario final) :**
+- **« Pour qui sonne le glas ? » :** cloche nocturne annonçant des morts ; destruction ou exploitation de la prédiction ; ancien tombeau sous le clocher éventuellement découvert.
+- **« Satisfaction garantie » :** marchand d'objets magiques réalisant les souhaits de manière littérale ; enquêtes sur les clients lésés, catastrophes absurdes ; possibilité de découvrir un manuscrit ou l'atelier du créateur.
+- **« Le dernier des lâches » :** ancien aventurier réputé lâche, médaille à retrouver dans un monastère abandonné ; témoignages contradictoires sur sa fuite ; crypte, compagnons disparus ou archives de Guilde falsifiées.
+
+**État :** principes et acceptation des trois pitchs consignés ; scénarios, embranchements, secrets précis et liens au monde encore à développer. Conception narrative uniquement, sans implémentation.
