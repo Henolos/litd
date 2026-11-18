@@ -61,6 +61,8 @@
 
 ## III. Combat final : dernières décisions utilisateur, prioritaires
 
+**VALIDÉ — Fuite et évolution :** Règle validée (18 novembre 2026) : ennemis normaux, élites et mini-boss peuvent fuir, notamment lors d'une transformation. Les boss établis ne fuient pas. Exception strictement limitée à la transition : un mini-boss qui devient boss peut fuir pendant cette transformation ; une fois boss établi, il ne peut plus fuir. La possibilité de fuite n'impose pas une fuite automatique ; conditions, déclencheurs et persistance restent à implémenter et tester. Dans « La Cueillette », l'élite évolue en mini-boss Némésis et fuit au cours du combat 2D continu ; ce n'est pas une exception à la règle des boss. **VALIDÉ — Attaques simples sans afflictions dans le prologue uniquement.** La cause précise de la fuite reste à définir, sans présumer d'une désorientation physiologique.
+
 **VALIDÉ — Combat continu en 2D au tour par tour.** Il n'y a **aucune cinématique intermédiaire entre l'embuscade et la fin du combat**. Les éventuels effets d'évolution doivent respecter cette continuité.
 
 **VALIDÉ — IA de ciblage.** Le monstre concentre la **majorité de ses attaques sur les trois compagnons** Wei, Mara et Sami. Il peut néanmoins cibler et blesser le protagoniste.
