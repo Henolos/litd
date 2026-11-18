@@ -172,3 +172,17 @@ Trois catégories de découvertes/récompenses peuvent coexister et se combiner,
 - La plupart des monstres ennemis peuvent parler. Leur capacité de parole n'en fait pas automatiquement des alliés, ni des innocents ; il existe des ennemis réellement dangereux. Les humains ne doivent pas non plus être uniformément dépeints comme hostiles.
 - **Non encore déterminés :** les clauses exactes des accords, les signataires, les territoires concernés, le mécanisme précis de leur rupture et la part des diverses causes dans la catastrophe. Ne pas inventer ces détails comme du canon.
 - Conserver les sept civilisations anciennes et leurs héritages ; ne pas réécrire leurs chronologies sans examen du lore maître.
+
+
+## 10. Révélation progressive validée : le motif grotesque de l'exclusion (18 novembre 2026)
+
+**INTENTION NARRATIVE EXPLICITEMENT VALIDÉE PAR L'UTILISATEUR :** cultiver pendant une partie significative du jeu l'énigme des anciens accords et de l'éloignement des monstres. Le joueur doit rencontrer des monstres parlants, lire des manuscrits et des archives, recueillir des témoignages contradictoires et se former sa propre interprétation **avant le retournement** : les monstres étaient exclus principalement parce que les dirigeants humains les trouvaient laids, par préjugé et racisme.
+
+- **Ne pas révéler ce motif au début du jeu**, ni dans les premiers textes accessibles au joueur, ni par un PNJ explicatif omniscient. Protéger la surprise dans les contenus visibles du joueur ; ce document est une référence de conception contenant le spoiler.
+- Faire paraître plausible l'existence de causes historiques plus solennelles, sans inventer de faux faits canoniques qui contrediraient la révélation.
+- Construire des indices réinterprétables après coup (langage administratif euphémisant l'apparence, témoignages partiels, interprétations savantes excessives).
+- Les monstres peuvent connaître ou soupçonner cette vérité ; éviter de les rendre artificiellement muets ou ignorants pour préserver le twist. Justifier les silences par des points de vue, le contexte ou l'absence de confiance, non par une contrainte arbitraire.
+- Distinguer **le motif grotesque de l'exclusion** des mécanismes politiques, militaires et sociaux encore à définir qui ont conduit à la catastrophe il y a 200 ans. Ne pas réduire mécaniquement toutes les causes de la guerre à une seule plaisanterie.
+- Le dévoilement peut provoquer d'abord le rire puis le malaise devant ses conséquences humaines et monstrueuses. Il ne doit pas rendre tous les monstres innocents ni tous les humains coupables.
+
+**Propositions de mise en scène, NON VALIDÉES individuellement :** progression en quatre phases (mystère solennel, témoignages contradictoires, indices administratifs absurdes, procès-verbal original révélant le préjugé), révélation par archive officielle, réplique d'un vieux monstre sur les deux siècles perdus. Le moment exact du twist, ses personnages et son impact sur les choix restent à concevoir.
