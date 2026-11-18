@@ -18,8 +18,8 @@ LITD 1 est un jeu d'aventure sombre sino-gothico-dark fantasy organisé autour d
 5. **Dernier champignon.** Le dernier champignon demandé est récolté. L'objectif de cueillette est accompli. Le groupe se met en route pour rentrer ; l'attaque ne se produit pas au moment exact de la récolte.
 6. **Rencontre sur le chemin du retour.** Un **monstre élite** surgit. Il dépasse les capacités de la compagnie et tue définitivement les trois compagnons. Le protagoniste survit.
 7. **Évolution et fuite.** Après les meurtres, l'élite devient un **Némésis**, évolue jusqu'au statut de **mini-boss**, puis **fuit**. Cette scène introduit le principe que des ennemis ayant évolué peuvent survivre à une rencontre et réapparaître. Les seuils et les règles exactes restent à vérifier dans les décisions du système Némésis avant implémentation.
-8. **Après le combat.** Le héros reste seul avec les corps de ses compagnons et les champignons récoltés. Laisser un temps de silence et une interaction minimale avant le retour.
-9. **Retour à la guilde.** Le maître reproche au survivant le nombre insuffisant de champignons **pour son omelette**, malgré l'objectif de mission rempli. Il ne verse que **la moitié de la prime annoncée**. Puis il remarque qu'il s'est trompé de rang dans l'attribution du contrat. Il ne précise pas quel était le rang visé ni ce que signifiait autrefois le rang S.
+8. **Après le combat.** Le héros reste seul avec les corps de ses compagnons. Une partie des champignons récoltés a été renversée, écrasée ou perdue pendant l'affrontement ; il ne lui reste que les champignons récupérables. Laisser un temps de silence et une interaction minimale avant le retour.
+9. **Retour à la guilde.** Le maître reproche au survivant le nombre insuffisant de champignons **pour son omelette**, alors que la récolte avait été intégralement effectuée avant l'attaque, mais que la quantité rapportée est désormais insuffisante. Il ne verse que **la moitié de la prime annoncée**. Puis il remarque qu'il s'est trompé de rang dans l'attribution du contrat. Il ne précise pas quel était le rang visé ni ce que signifiait autrefois le rang S.
 
 ## Proposition de scène : la demi-prime
 
@@ -55,7 +55,7 @@ LITD 1 est un jeu d'aventure sombre sino-gothico-dark fantasy organisé autour d
 
 ## Points de cohérence à préserver
 
-- **Objectif réussi, prime injustement amputée :** ne pas prétendre que le joueur a raté la collecte ; le maître invoque son besoin personnel de champignons. Si un règlement de guilde justifie plus tard sa décision, cela reste à écrire.
+- **Récolte terminée, livraison partielle :** la compagnie avait récolté la quantité demandée, mais une partie des champignons a été perdue pendant le combat. Le héros ne rapporte donc pas la quantité initialement demandée. Le maître invoque aussi son besoin personnel de champignons pour l'omelette ; la demi-prime accentue l'humour noir. Si un règlement de guilde justifie plus tard sa décision, cela reste à écrire.
 - **Rang S :** il est attribué à la compagnie au début. Son éventuel ancien sens reste une piste narrative, pas une révélation.
 - **Némésis :** le monstre élite tue les compagnons, évolue et fuit. Il ne décide pas nécessairement d'épargner le protagoniste. La fuite n'est pas une défaite du joueur.
 - **Tutoriel :** ne pas précipiter l'embuscade ; laisser une vraie exploration, de vraies rencontres équilibrées et des dialogues pour créer de l'attachement.
