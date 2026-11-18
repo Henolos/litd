@@ -37,24 +37,6 @@ La distinction ci-dessus est volontaire : une preuve historique fusionnée confi
 - `../engineering/working-method.md` — méthode d’ingénierie vivante, validations L0–L4 et Definition of Done.
 - `templates/decision.md`, `templates/research.md`, `templates/incident.md` — formats normalisés.
 
-## Études de psychologie et narration de personnages — corpus de recherche (2026-11-18)
-
-**Statut : `experimental` / `revalidate`. Confiance : `medium` pour la synthèse documentaire, non validée en jeu.** Domaine : psychologie narrative, personnages, conséquences et causalité. Ces études ne constituent ni canon LITD ni preuve de playtest.
-
-Les sept études préexistantes ont été reprises **à contenu inchangé** depuis la branche `design/litd1-nemesis-recrutement-20261117` dans `docs/research/litd1_personnages/`, afin de les rendre accessibles depuis la bibliothèque centrale sans créer de bibliothèque parallèle :
-
-- [Conker, LISA, Disco Elysium : dossier approfondi](../research/litd1_personnages/DOSSIER_APPROFONDI_CONKER_LISA_AUTRES.md) : personnages, contradictions, sources et limites.
-- [LISA : Buzzo, Rando et compagnons](../research/litd1_personnages/LISA_SCENES_BUZZO_RANDO_COMPAGNONS_002.md) : scènes, relations et conséquences.
-- [Scénarios comparatifs 001](../research/litd1_personnages/SCENARIOS_COMPARATIFS_CONKER_LISA_DISCO_001.md) : architectures narratives.
-- [Chronologies et causalité 002](../research/litd1_personnages/SCENARIOS_CHRONOLOGIES_CAUSALITE_002.md) : causalité et personnages secondaires.
-- [Fiches de scènes causales 003](../research/litd1_personnages/SCENARIOS_FICHES_SCENES_CAUSALES_003.md) : grille déclencheur / opposition / conséquence.
-- [Graphe causal et embranchements 004](../research/litd1_personnages/SCENARIOS_GRAPHE_CAUSAL_EMBRANCHEMENTS_004.md) : relations causales, informationnelles et branches provisoires.
-- [Quêtes secondaires BG3 / Astarion et Shadowheart, grille QS-004](../research/litd1_personnages/QUETES_SECONDAIRES_BG3_EMBRANCHEMENTS_GRILLE_004.md) : 12 critères d'autonomie, causalité, émotion, conséquences et testabilité ; source communautaire, non testée directement en jeu.
-
-**Expérience proposée :** [quête pilote à trois trajectoires, V0.1](../research/litd1_personnages/QUETE_PILOTE_TROIS_TRAJECTOIRES_V0_1.md), non implémentée et non canonique. Confrontée à la grille Astarion/Shadowheart QS-004 : évaluation préliminaire et écarts explicités dans la fiche, sans validation en jeu.
-
-**Réévaluer lorsque :** scènes/branches observées directement dans les jeux de référence ; contradictions et versions contrôlées ; grille de comparaison complète ; résultats de tests LITD conservés. Toute promotion en `active` exige une décision séparée et des preuves.
-
 ## À importer / vérifier ensuite — priorité élevée
 
 1. calibrage Vertical Slice 01 : durée cible, volumes de salles, actes, fenêtres d'extraction et seuils de Lumière — ne pas confondre avec ADR-0007 tant que le calibrage récent n'est pas prouvé dans Git ;
