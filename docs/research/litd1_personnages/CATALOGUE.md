@@ -1,0 +1,21 @@
+# Catalogue des recherches — LITD 1
+
+> Ce tableau est un **inventaire de sujets à étudier**, pas la preuve que les analyses ont été réalisées.
+
+| ID | Sujet / référence | Média / domaine | Angle prioritaire | Statut | Fiche |
+|---|---|---|---|---|---|
+| P-001 | Conker — Conker's Bad Fur Day | Jeu vidéo | Absurde, cynisme, tragédie | ⚪ À étudier | À créer |
+| P-002 | Narrateur — The Bard's Tale (2004) | Jeu vidéo | Narrateur sarcastique, satire du RPG | ⚪ À étudier | À créer |
+| P-003 | Narrateur — The Stanley Parable | Jeu vidéo | Métanarration, autorité, joueur | ⚪ À étudier | À créer |
+| P-004 | Brad et compagnons — LISA: The Painful | Jeu vidéo | Traumatisme, attachement, humour noir | ⚪ À étudier | À créer |
+| P-005 | Personnages — Disco Elysium | Jeu vidéo | Ambiguïté morale, contradictions, psychologie | ⚪ À étudier | À créer |
+| P-006 | Narration — There Is No Game: Wrong Dimension | Jeu vidéo | Quatrième mur, mise en cause du jeu | ⚪ À étudier | À créer |
+| M-001 | Personnages marquants du cinéma | Cinéma | À sélectionner | ⚪ À étudier | À créer |
+| M-002 | Personnages marquants du théâtre | Théâtre | À sélectionner | ⚪ À étudier | À créer |
+| M-003 | Personnages marquants des animes | Anime | À sélectionner | ⚪ À étudier | À créer |
+| PSY-001 | Motivation, désirs, besoins et contradictions | Psychologie | Concepts et preuves | ⚪ À étudier | À créer |
+| PSY-002 | Émotions, défense, biais et relations | Psychologie | Concepts et preuves | ⚪ À étudier | À créer |
+
+**Convention :** ⚪ À étudier ; 🟠 En cours ; 🟡 À consolider ; 🟢 Étude vérifiée. Une étude vérifiée ne valide pas son intégration au jeu.
+
+**Règle d'insertion :** toute nouvelle recherche obtient un ID stable, un média/domaine, une question, un statut et un lien vers sa fiche lorsqu'elle existe.
