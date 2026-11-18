@@ -43,9 +43,9 @@ Exemple **illustratif et non figé** :
 
 ## Invariants à préserver
 1. Identifiants stables des personnages et objets ; aucune dépendance à l'ordre des membres.
-2. Santé et ressources bornées entre 0 et leurs maxima ; aucune récupération automatique totale.
+2. Santé et ressources bornées entre 0 et leurs maxima ; aucune récupération automatique totale et aucune action « Dormir ».
 3. Les repas et soins débitent les ressources exactement une fois ; action annulée = aucun débit.
-4. Repos et cuisine ne ressuscitent pas un compagnon mort et ne suppriment pas les blessures persistantes sans règle spécifique.
+4. Repas et soins ne ressuscitent pas un compagnon mort et ne suppriment pas les blessures persistantes sans règle spécifique.
 5. Les bonus temporaires possèdent une durée et un mode d'expiration explicites, à décider.
 6. Un état de campement et ses consommations survivent à un cycle sauvegarde/chargement.
 7. Un feu de camp ne crée pas de sauvegarde autonome parallèle ; il utilise le snapshot du runtime et le `SaveManager` existant.
@@ -54,10 +54,10 @@ Exemple **illustratif et non figé** :
 ## Décisions de conception ouvertes
 - Emplacements prédéfinis ou campements improvisés.
 - Coût et disponibilité du combustible, recettes, ingrédients et rations.
-- Pourcentages de récupération, ressources restaurées, durée du repos.
+- Pourcentages de récupération et ressources restaurées par les repas ou soins ; aucun sommeil.
 - Risque d'interruption, veille de nuit et zones sûres.
 - Soins des afflictions et blessures persistantes.
-- Fréquence des haltes, prévention des exploits de repos.
+- Fréquence des haltes, prévention des exploits de récupération.
 - Dialogues de compagnie et conséquences éventuelles sur les relations.
 - Choix exact du moment de sauvegarde (manuel/automatique) et migration des futurs schémas de jeu.
 
@@ -69,3 +69,6 @@ Exemple **illustratif et non figé** :
 5. Implémenter sur une branche dédiée, tester les invariants, le round-trip de sauvegarde, les limites et les régressions ; playtest dans Godot.
 
 **Statut : 🟡 À CONSOLIDER. Aucun changement de gameplay, aucun test Godot exécuté.**
+
+## Décision utilisateur du 18 novembre 2026
+L'action **« Dormir » est retirée** du système de feu de camp. La halte reste dédiée à la cuisine, aux repas, aux soins, aux provisions et aux conversations. Ne pas réintroduire de récupération par sommeil lors de l'implémentation.
