@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "rule": "Une créature mutilée adapte son comportement au lieu de continuer son script intact. Les boss ne fuient jamais.",
+  "rule": "Une créature mutilée adapte son comportement au lieu de continuer son script intact. Ennemis normaux, élites et mini-boss peuvent fuir, notamment lors d'une transformation. Les boss ne fuient normalement jamais ; exception : un mini-boss qui évolue en boss peut fuir lors de cette transformation.",
   "global": {
     "panic_hp_ratio": 0.25,
     "panic_lost_parts": 2,
