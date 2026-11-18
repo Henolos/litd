@@ -17,3 +17,8 @@ Kim Kitsuragi est un lieutenant et enquêteur, partenaire du protagoniste. Son r
 
 ## Hypothèses pour LITD 1 — non validées
 Un personnage rencontré pourrait conserver ses valeurs et ses engagements même lorsqu'il aide le groupe. Sa réaction à l'absurde pourrait être contenue plutôt qu'exubérante. À confronter à des scènes précises avant toute conclusion.
+
+## Complément : stratégie de révélation
+**Source d'auteur :** https://www.pcgamer.com/why-kim-kitsuragi-is-disco-elysiums-breakout-star/
+L'entretien attribue la force de Kim à une personnalité qui se révèle progressivement dans des circonstances variées. **Interprétation :** la constance du rôle professionnel peut coexister avec des changements de proximité, de confiance ou d'humour. Il faut distinguer **évolution du personnage** et **révélation d'une facette préexistante**.
+**Piste LITD 1 non validée :** faire évoluer la connaissance du joueur sans nécessairement transformer artificiellement le caractère de chaque PNJ.
