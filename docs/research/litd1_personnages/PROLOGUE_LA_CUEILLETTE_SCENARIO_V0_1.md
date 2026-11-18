@@ -71,6 +71,20 @@ LITD 1 est un jeu d'aventure sombre sino-gothico-dark fantasy organisé autour d
 - Premier monstre élite/Némésis : silhouette, comportement, marque reconnaissable, évolution visible et réapparitions potentielles.
 - Protagoniste personnalisable : marge d'expression du joueur sans imposer une biographie unique.
 
+
+## Règle de direction artistique et de monde — cosmopolitisme (validée par l'utilisateur, 2026-11-18)
+
+**La dominante visuelle sino-gothico-dark fantasy ne détermine pas l'origine de tous les habitants.** LITD 1 représente un monde cosmopolite : villes, guildes, compagnies, factions, personnages secondaires et adversaires humanoïdes peuvent rassembler des personnes d'origines géographiques et culturelles diverses, aux apparences, coutumes et traditions variées.
+
+- L'architecture, les silhouettes, les vêtements, les armures et les armes conservent une direction artistique cohérente : base chinoise dominante, autres influences asiatiques et codes gothiques/dark fantasy fusionnés plutôt que juxtaposés.
+- La population n'est **pas uniformément asiatique** ; aucune origine n'est associée par défaut à une classe, une fonction, une moralité ou un tempérament.
+- Les histoires des peuples, voyages, échanges, migrations et conflits doivent donner de la crédibilité à cette diversité, sans imposer de proportions démographiques non décidées.
+- Le protagoniste personnalisable n'est pas assigné à une origine unique.
+- Les trois compagnons du prologue doivent être repensés en cohérence avec cette diversité ; les noms et origines proposés antérieurement ne sont pas validés.
+- Cette règle s'applique à toute création ultérieure de personnages et à la révision des documents de direction artistique, sans modifier rétroactivement des références visuelles déjà validées sans examen.
+
+**Portée : décision de conception validée et consignée ; implémentation, bible du monde et casting définitif non réalisés.**
+
 ## Hors périmètre de cette version
 
 Pas de script Godot, pas de validation du gameplay, pas de dialogue définitif, pas de canon historique figé, pas de nouveau système de quêtes ou de sauvegarde, pas de fusion dans main.
