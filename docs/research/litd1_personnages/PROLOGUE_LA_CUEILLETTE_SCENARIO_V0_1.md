@@ -110,6 +110,39 @@ Mara prépare le repas ; Wei écrit dans son carnet de techniques et Sami rassem
 
 LITD 1 est une dark fantasy cynique, cruelle et absurde où des ambitions humaines sincères se heurtent à un monde indifférent. L'humour noir naît du contraste entre la gravité des événements et les réactions dérisoires des habitants. La Guilde est une institution fonctionnelle, **non intrinsèquement corrompue** ; le maître peut être maladroit, égocentrique ou insensible sans représenter une conspiration. La référence à *Conker's Bad Fur Day* porte sur les contrastes de ton, non sur une imitation de ses scènes, dialogues ou esthétique. Les morts des compagnons demeurent graves et définitives ; le gag de l'omelette ne les annule pas.
 
+## Conclusion détaillée : récupération des carnets et transition (proposition de mise en scène, non encore validée)
+
+### Scène 17 — Ce qu'ils laissent
+
+Après la fuite de la Némésis, le héros reprend le contrôle dans un silence pesant. Wei, Mara et Sami sont morts définitivement. Le joueur peut examiner leurs corps et leurs affaires, mais ne peut pas empêcher rétroactivement ces morts. La récupération des trois carnets est **nécessaire à la continuité du récit** ; les gestes et observations supplémentaires peuvent rester facultatifs. Éviter toute présentation de type « butin » ou « récompense » au moment des décès.
+
+- **Wei — carnet des techniques :** des exercices, des techniques imaginées et des projets inachevés. Inscription proposée : « Un jour, quelqu'un retiendra mon nom. »
+- **Mara — carnet de recettes :** des essais culinaires, corrections et une ébauche de menu pour l'auberge qu'elle rêvait d'ouvrir. Annotation proposée : « Encore trop fade. Recommencer avec des herbes fraîches. »
+- **Sami — carnet de recherches :** observations de la forêt, notes et pages vierges destinées à accueillir des connaissances futures. Inscription proposée : « Ce que nous apprenons ne devrait pas disparaître avec nous. »
+
+Les objets sont récupérés à ce stade, mais **aucun des nouveaux onglets ne s'ouvre encore**. Le héros rassemble les champignons encore utilisables puis rentre seul. L'ordre d'examen des corps et les formulations des inscriptions restent provisoires. Ne pas imposer au protagoniste une réaction émotionnelle ou un serment de vengeance.
+
+### Scène 18 — La demi-prime et les deux révélations
+
+Le maître constate la livraison incomplète et apprend la mort des trois compagnons. Il révèle **pour la première fois** que les champignons étaient destinés à son omelette et ne verse que la moitié de la prime. En reprenant le contrat, il découvre l'erreur de rang et révèle **pour la première fois** que S signifie « Stagiaire », rang le plus bas. Le contrat dangereux n'aurait pas dû être attribué à cette compagnie. Il reconnaît réellement l'erreur et manifeste un instant de la préoccupation, avant de revenir à sa frustration culinaire. Les dialogues figurant plus haut sont la version de travail ; aucune autre scène antérieure ne doit dévoiler ces informations.
+
+### Scène 19 — Trois héritages
+
+Après la conclusion à la Guilde, le héros peut consulter les trois carnets. **Wei** ouvre Techniques, arbres de compétences et accès à la progression ; **Mara** ouvre la cuisine autonome aux feux de camp ; **Sami** ouvre Archives, Bestiaire et Journal de quêtes. Le prologue n'a comporté ni Journal de quêtes ni montée de niveau, et l'XP gagnée y est demeurée invisible mais conservée. Les modalités de restitution de cette XP restent à équilibrer. Ne pas présenter l'ouverture des menus comme une récompense joyeuse pour les décès. Aucune promesse de vengeance n'est imposée au personnage personnalisable.
+
+### Contrôle de continuité narrative (revue documentaire)
+
+1. Attribution initiale du rang S **sans explication** : conforme au déroulement.
+2. Mission de champignons **sans mention de l'omelette** : conforme au déroulement.
+3. Exploration, apprentissage de la carte, combats ordinaires et premier feu de camp **avant la fin de la récolte** : conforme.
+4. Wei écrit dans son carnet ; Mara cuisine ; Sami prend des notes : cohérent avec les héritages.
+5. Récolte entièrement achevée **avant** l'attaque ; pertes de champignons **pendant** l'affrontement : conforme.
+6. Trois compagnons tués ; élite devenue Némésis/mini-boss puis en fuite ; protagoniste survivant : conforme.
+7. Trois carnets récupérés après le combat, mais fonctions ouvertes **après** la scène de Guilde : conforme.
+8. Aucun Journal de quêtes ni montée de niveau durant le prologue ; XP invisible conservée : conforme aux décisions.
+9. Guilde non intrinsèquement corrompue, erreur administrative réelle, cynisme du monde : conforme.
+10. **À vérifier avant validation finale :** cohérence des autres documents de conception, libellés des onglets, chronologie exacte des interactions et agency du joueur, équilibrage de l'XP différée, dialogues définitifs, tests en jeu. Cette revue est documentaire, pas une validation d'implémentation.
+
 ## Points de cohérence à préserver
 
 - **Récolte terminée, livraison partielle :** la compagnie avait récolté la quantité demandée, mais une partie des champignons a été perdue pendant le combat. Le héros ne rapporte donc pas la quantité initialement demandée. Le maître invoque aussi son besoin personnel de champignons pour l'omelette ; la demi-prime accentue l'humour noir. Si un règlement de guilde justifie plus tard sa décision, cela reste à écrire.
