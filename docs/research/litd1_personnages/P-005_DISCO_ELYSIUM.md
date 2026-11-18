@@ -21,3 +21,17 @@
 - Donner aux rencontres une valeur propre, distincte du butin et des objectifs d'expédition.
 - Faire apparaître la psychologie dans les réactions et contradictions plutôt que dans une exposition explicative.
 - À approfondir : dialogues de Kim Kitsuragi, interactions avec les habitants, choix de focalisation et conséquences.
+
+## Approfondissement ciblé : Kim, Cuno, Evrart et Harry
+**Sources :** entretien avec Robert Kurvitz https://www.pcgamer.com/why-kim-kitsuragi-is-disco-elysiums-breakout-star/ ; entretien sur le travail collectif https://www.gameshub.com/news/features/disco-elysium-narrative-writing-process-18597/ ; jeu et présentation éditeur https://store.steampowered.com/app/632470/ .
+
+| Figure | Fonction narrative | Contradiction ou procédé | Limite |
+|---|---|---|---|
+| Kim Kitsuragi | Partenaire et contrepoint de l'enquêteur | Réserve professionnelle et ouverture progressive | Les moments précis doivent être revus |
+| Cuno | Enfant agressif rencontré pendant l'enquête | L'agressivité visible peut cacher d'autres vulnérabilités | Éviter de déduire une psychologie de son langage seul |
+| Evrart Claire | Dirigeant syndical influent | Proximité affichée et rapport de pouvoir | Lecture politique plurielle, scènes à confronter |
+| Harry Du Bois | Enquêteur joué, voix et pensées en conflit | Autodestruction et désir de mener une enquête | Modèle de protagoniste à ne pas confondre avec les PNJ de LITD 1 |
+
+**Méthode :** un personnage peut révéler son histoire par les situations successives plutôt que par une confession exhaustive. L'entretien de Kurvitz est un témoignage d'intention d'auteur, non une preuve expérimentale de l'efficacité de cette méthode.
+
+**Pistes LITD 1 non validées :** prévoir ce qu'un habitant montre au premier contact, ce qu'il cache, ce qui déclenche une révélation et ce qui reste inaccessible. Conserver sa logique indépendamment des choix du joueur.
