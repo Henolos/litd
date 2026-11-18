@@ -17,3 +17,12 @@ Le jeu présente des décisions difficiles, des sacrifices durables, des compagn
 
 ## Hypothèses pour LITD 1 — non validées
 Les personnages rencontrés pourraient présenter un écart entre ce qu'ils disent vouloir et les effets de leurs actes. Ne pas faire du traumatisme une explication universelle de la cruauté. Vérifier les scènes et sources avant de formaliser un modèle psychologique.
+
+## Complément : quatre dimensions de Brad
+**Sources :** https://film-cred.com/game-cred-the-lisa-trilogy/ ; https://www.uwinnipeg.ca/rhetoric/docs/rootedinrhetoric/rooted_in_rhetoric_volume2_2017.pdf
+- **But déclaré :** protéger / retrouver Buddy.
+- **Méthode :** contrôle, affrontements et sacrifices.
+- **Coût relationnel :** Buddy refuse que son autonomie soit effacée par le projet protecteur de Brad.
+- **Évolution :** la poursuite de l'objectif aggrave le conflit entre l'intention et les conséquences.
+**Contre-lecture :** l'univers présente des menaces graves ; la question n'est pas simplement de savoir si Brad avait raison de craindre le danger, mais si cette crainte justifie ses méthodes.
+**Piste LITD 1 non validée :** une motivation compréhensible ne suffit pas à rendre une action moralement acceptable.
