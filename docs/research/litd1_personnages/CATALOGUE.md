@@ -29,6 +29,8 @@
 
 | SYN-005 | Scènes Buzzo, Rando, Terry, Olan et Bo | LISA | Dilemmes et dialogues de camp | 🟡 À consolider | [Dossier](LISA_SCENES_BUZZO_RANDO_COMPAGNONS_002.md) |
 
+| SCN-001 | Scénarios Conker, LISA, Disco Elysium | Analyse scénaristique | Structures, enjeux, révélations, conséquences | 🟡 À consolider | [Dossier](SCENARIOS_COMPARATIFS_CONKER_LISA_DISCO_001.md) |
+
 **Convention :** ⚪ À étudier ; 🟠 En cours ; 🟡 À consolider ; 🟢 Étude vérifiée. Une étude vérifiée ne valide pas son intégration au jeu.
 
 **Règle d'insertion :** toute nouvelle recherche obtient un ID stable, un média/domaine, une question, un statut et un lien vers sa fiche lorsqu'elle existe.
