@@ -39,6 +39,8 @@
 
 | QS-001 | Quêtes secondaires : habitants protagonistes | Analyse narrative | Witcher 3, BG3, Cyberpunk, autonomie PNJ | 🟡 À consolider | [Dossier](QUETES_SECONDAIRES_PNJ_PROTAGONISTES_001.md) |
 
+| QS-002 | Cinq arcs de quêtes : scènes et autonomie | Analyse narrative | Baron, Astarion, Shadowheart, Judy, Panam | 🟡 À consolider | [Dossier](QUETES_SECONDAIRES_CINQ_ARCS_SCENES_002.md) |
+
 **Convention :** ⚪ À étudier ; 🟠 En cours ; 🟡 À consolider ; 🟢 Étude vérifiée. Une étude vérifiée ne valide pas son intégration au jeu.
 
 **Règle d'insertion :** toute nouvelle recherche obtient un ID stable, un média/domaine, une question, un statut et un lien vers sa fiche lorsqu'elle existe.
