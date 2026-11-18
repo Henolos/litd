@@ -139,3 +139,25 @@ Trois catégories de découvertes/récompenses peuvent coexister et se combiner,
 - **« Le dernier des lâches » :** ancien aventurier réputé lâche, médaille à retrouver dans un monastère abandonné ; témoignages contradictoires sur sa fuite ; crypte, compagnons disparus ou archives de Guilde falsifiées.
 
 **État :** principes et acceptation des trois pitchs consignés ; scénarios, embranchements, secrets précis et liens au monde encore à développer. Conception narrative uniquement, sans implémentation.
+
+
+## 8. Règle narrative transversale validée : le ridicule et ses conséquences (18 novembre 2026)
+
+**VALIDÉ PAR L'UTILISATEUR :** « Le ridicule peut être mortel, mais tout ce qui est ridicule n'est pas forcément tragique. »
+
+- LITD 1 conserve une dark fantasy sérieuse, à l'identité visuelle sino-gothico-dark fantasy, tout en intégrant l'absurde, le grotesque et l'humour noir dans la quête principale, les quêtes de Guilde, les histoires du hub-village et les dialogues.
+- Une situation comique peut révéler plus tard des conséquences graves, humaines ou irréversibles ; **ce renversement n'est ni obligatoire ni systématique**.
+- Une situation horrible peut connaître une issue grotesque ; une aventure ridicule peut rester simplement drôle, se conclure heureusement ou demeurer ambiguë.
+- Le rire ne doit pas ridiculiser automatiquement la souffrance des victimes. Éviter les effets mécaniques et prévisibles (« chaque plaisanterie cache un drame »).
+- La satire politique et administrative peut avoir des conséquences tragiques, sans réduire toutes les institutions ni tous leurs représentants à des caricatures incapables.
+- **La plupart des monstres ennemis peuvent parler**, selon une décision explicite de l'utilisateur. Cette capacité autorise dialogue, menace, mensonge, négociation, peur, grotesque et conflits de points de vue ; elle n'implique ni pacifisme ni possibilité systématique d'éviter le combat. Certaines créatures peuvent rester non parlantes.
+
+### Contexte historique retenu en conception (à réconcilier avec les bibles de lore)
+
+- LITD 1 se déroule **200 ans après l'échec des continents à s'entendre**, échec ayant conduit à leur perte. La « Chute » telle que décrite dans l'ancienne bible **n'est plus retenue comme événement fondateur**.
+- Les civilisations rescapées luttent continuellement pour leur survie face aux monstres, revenus dans les régions habitées après la disparition de ce qui les maintenait éloignés.
+- Les Guildes d'aventuriers sont apparues dans ce contexte de survie et de besoins de protection, d'exploration et d'intervention.
+- **Les sept civilisations anciennes et leurs héritages sont conservés**, sous réserve de réconcilier leurs chronologies et leurs rapports au nouveau cadre.
+- **Non validés à ce stade :** le nom « Pacte des Frontières », sa forme technique, les modalités précises de son effondrement, l'organisation politique des peuples monstrueux et le titre ou la structure de la quête principale. Ces éléments demeurent des propositions exploratoires.
+
+**Portée :** validation de principes narratifs et de contexte uniquement ; aucun document maître de lore réécrit, aucune scène Godot modifiée, aucun test de gameplay réalisé et aucune fusion dans main.
