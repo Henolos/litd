@@ -59,3 +59,42 @@
 - Des œuvres distinctes ne permettent pas de déduire une loi scientifique sur l'attachement du joueur.
 - **Priorité suivante :** étudier une scène précisément localisée de chaque autre œuvre, réunir des lectures critiques divergentes et compléter les fiches correspondantes.
 - **Aucune nouvelle règle narrative ou mécanique de LITD 1 n'est validée par cette synthèse.**
+
+## Synthèse comparative 002 — Scènes emblématiques : protection, humiliation et traumatisme institutionnel (18 novembre 2026)
+
+**Statut : 🟡 À consolider.** Recherche secondaire vérifiée par consultation de publications accessibles ; **aucun visionnage direct des films ou épisodes**. Les descriptions de scènes ci-dessous proviennent des auteurs cités et ne sont pas des observations audiovisuelles personnelles.
+
+### Princesse Mononoké — Eboshi, la communauté de Tatara et les personnes marginalisées
+- **Source universitaire :** « Shadowing the Brutality and Cruelty of Nature: On History and Human Nature in Princess Mononoke » (Springer), https://link.springer.com/chapter/10.1007/978-3-031-42235-5_12
+- **Source pédagogique spécialisée :** Association for Asian Studies, « Girl (and Boy) Troubles in Animeland », https://www.asianstudies.org/publications/eaa/archives/girl-and-boy-troubles-in-animeland/
+- **Scènes rapportées :** Eboshi protège des femmes exclues et des personnes malades à Tatara, tout en développant des armes et une activité extractive qui détruit la forêt ; les conflits avec San et les divinités animales illustrent les dommages de son projet.
+- **Confrontation :** lecture 1, dirigeante émancipatrice ; lecture 2, figure de domination industrielle. Les deux lectures sont compatibles si l'on distingue les bénéficiaires et les victimes de ses actions.
+- **Piste non validée LITD 1 :** définir pour un personnage *qui il protège*, *qui supporte le coût de ses choix* et *ce qu'il considère comme légitime*.
+
+### There Will Be Blood — le baptême public de Daniel Plainview
+- **Source philosophique :** Philosophy Now, « There Will Be Blood », https://philosophynow.org/issues/74/There_Will_Be_Blood
+- **Source critique :** Deep Focus Review, « There Will Be Blood », https://www.deepfocusreview.com/definitives/there-will-be-blood/
+- **Scène rapportée :** Plainview se soumet à la cérémonie d'Eli Sunday pour débloquer un terrain nécessaire à l'oléoduc ; Eli l'humilie publiquement, notamment au sujet de son fils.
+- **Confrontation :** lecture instrumentale, Daniel feint la conversion pour gagner l'accès économique ; lecture affective, le sujet de son fils peut aussi toucher une culpabilité réelle. La critique ne tranche pas uniformément.
+- **Piste non validée LITD 1 :** une action peut servir simultanément une stratégie visible et révéler une blessure intime ; éviter d'imposer une explication unique.
+
+### Monster — Kinderheim 511 et la construction de Johan Liebert
+- **Source académique :** « Monsters in our shared world: Aesthetic Action, and the billionaire creators of Historical Action » (2025), https://www.tandfonline.com/doi/full/10.1080/20004214.2025.2559454
+- **Situation étudiée :** la recherche interprète Kinderheim 511 comme une institution qui produit systématiquement du traumatisme et des rapports de pouvoir ; Johan est associé à cette histoire.
+- **Limite cruciale :** cette lecture institutionnelle n'établit ni la causalité exclusive du comportement de Johan, ni un diagnostic clinique, ni l'analyse d'une scène précise de l'anime visionnée directement.
+- **Piste non validée LITD 1 :** étudier comment les institutions et les témoignages contradictoires façonnent la réputation d'un personnage ; distinguer ce que le joueur sait de ce qu'il suppose.
+
+### Comparaison et conclusions provisoires
+| Cas | Tension principale | Information apportée au public | Risque d'interprétation |
+|---|---|---|---|
+| Eboshi | Bienfait local / dommage externe | Conséquences sur plusieurs groupes | « Gentille ou méchante » |
+| Plainview | Calcul stratégique / possible culpabilité | Comportement public sous contrainte | Une motivation unique |
+| Johan | Individu / institution et récit des autres | Réputation, histoire et témoignages | Diagnostic ou déterminisme traumatique |
+
+**Hypothèse transversale, non validée :** un personnage paraît plus autonome lorsqu'il est pris dans plusieurs systèmes de valeurs et relations, qui ne se réduisent pas aux besoins des héros jouables.
+
+### À vérifier ensuite
+- Visionnage et relevé précis des séquences et épisodes ; références de minutage/chapitre.
+- Études de réception et contre-lectures des personnages.
+- Vérification de la portée scientifique des modèles psychologiques mobilisés.
+- Aucun ajout de mécanique, de scénario définitif ni de règle de conception à V7.18 sans arbitrage explicite.
