@@ -16,6 +16,11 @@
 | PSY-001 | Motivation, désirs, besoins et contradictions | Psychologie | Concepts et preuves | 🟡 À consolider | [PSY-001_IDENTIFICATION.md](PSY-001_IDENTIFICATION.md) |
 | PSY-002 | Émotions, défense, biais et relations | Psychologie | Concepts et preuves | ⚪ À étudier | À créer |
 
+| P-007 | Kim Kitsuragi — Disco Elysium | Jeu vidéo | Devoir, retenue, autonomie du PNJ | 🟡 À consolider | [Fiche](P-007_KIM_KITSURAGI.md) |
+| P-008 | Brad Armstrong — LISA: The Painful | Jeu vidéo | Protection, contradictions, conséquences | 🟡 À consolider | [Fiche](P-008_BRAD_ARMSTRONG.md) |
+| P-009 | Roi Panthère — Conker's Bad Fur Day | Jeu vidéo | Pouvoir, instrumentalisation, absurde | 🟡 À consolider | [Fiche](P-009_ROI_PANTHERE.md) |
+| PSY-003 | Similarité et identification narrative | Psychologie | Méta-analyse et confrontation des résultats | 🟡 À consolider | [Fiche](PSY-003_RESSORTS_IDENTIFICATION.md) |
+
 **Convention :** ⚪ À étudier ; 🟠 En cours ; 🟡 À consolider ; 🟢 Étude vérifiée. Une étude vérifiée ne valide pas son intégration au jeu.
 
 **Règle d'insertion :** toute nouvelle recherche obtient un ID stable, un média/domaine, une question, un statut et un lien vers sa fiche lorsqu'elle existe.
