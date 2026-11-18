@@ -100,7 +100,7 @@ Les comportements possibles incluent :
 - adaptation contrôlée des élites ;
 - adaptation de phase des boss.
 
-Une créature ordinaire très affaiblie et ayant perdu plusieurs parties peut tenter de fuir. Les mini-boss et boss ne fuient jamais.
+Les ennemis normaux, les élites et les mini-boss peuvent fuir, notamment lors de leur transformation. Les boss ne fuient normalement jamais. Exception exceptionnelle de progression : un mini-boss qui évolue en boss peut fuir au moment de cette transformation. Cette exception ne donne pas aux boss déjà établis une capacité générale de fuite.
 
 Certaines créatures protègent également une partie encore fonctionnelle. Une partie marquée **PROTÉGÉE** impose actuellement une pénalité de 15 points à la précision anatomique du joueur.
 
