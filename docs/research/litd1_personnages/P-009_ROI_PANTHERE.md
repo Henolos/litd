@@ -17,3 +17,9 @@ Le Roi Panthère cherche à utiliser Conker pour résoudre un problème trivial 
 
 ## Hypothèses pour LITD 1 — non validées
 Le maître de guilde du tutoriel aux champignons pourrait être étudié à travers la disproportion entre ses attentes et le coût humain de sa commande, sans recopier la figure du Roi Panthère. Aucune scène ni motivation détaillée n'est validée.
+
+## Complément : hiérarchie absurde et manipulation
+**Sources :** description commerciale reproduite https://www.mobygames.com/game/3622/conkers-bad-fur-day/ ; résumé communautaire https://conker.fandom.com/wiki/Conker%27s_Bad_Fur_Day
+Le souverain mobilise ses ressources pour un problème domestique insignifiant ; Von Kriplespac, son conseiller, a des intentions propres. **Interprétation :** l'absurdité fonctionne sur deux niveaux, disproportion entre puissance et objectif, puis perte de contrôle de l'autorité sur ses subordonnés.
+**Limite :** scènes et répliques non vérifiées directement.
+**Piste LITD 1 non validée :** écrire les institutions comme des ensembles de personnes aux intérêts contradictoires, pas comme une volonté monolithique.
