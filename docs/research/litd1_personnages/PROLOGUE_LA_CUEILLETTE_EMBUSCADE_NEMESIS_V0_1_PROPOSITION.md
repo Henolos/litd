@@ -59,3 +59,26 @@ La créature s'éloigne sans décider consciemment d'épargner le héros. Le sur
 - La scène est évaluée en playtest : sentiment d'agence, compréhension du danger, lisibilité de la transformation, émotion des pertes.
 
 **À décider avant tout code :** cause exacte de la fuite, possibilité d'interagir avec la retraite, conditions de déclenchement de la rupture, rôle du terrain et effets conservés sur le survivant. Aucun script ou test Godot exécuté.
+
+## Décisions utilisateur complémentaires — combat 2D continu (18 novembre 2026)
+
+**VALIDÉ PAR L'UTILISATEUR, prévaut sur les propositions contradictoires ci-dessus :**
+
+1. **Aucune cinématique entre l'embuscade et la fin du combat.** Toute la rencontre se déroule dans le combat **2D au tour par tour**. Les phases A–D décrites plus haut ne sont que des repères logiques, pas des transitions cinématiques ni des changements de mode de jeu.
+2. **Priorité de ciblage de l'élite :** Wei, Mara et Sami. La majorité de ses attaques sont destinées aux trois compagnons. Le protagoniste peut néanmoins être ciblé et subir des dégâts.
+3. **Protection de scénario :** le protagoniste ne peut pas être tué par l'élite durant cette rencontre du prologue. Le mécanisme technique exact (plancher de PV, prévention des effets létaux différés, etc.) est **à concevoir et tester**, et ne doit pas modifier les combats ordinaires.
+4. **Dégâts réels :** le groupe peut blesser l'élite. Le ciblage des parties du corps peut potentiellement provoquer la perte d'un membre si l'équipe concentre ses attaques, sous réserve des règles effectives du système de membres et de leurs tests.
+5. **Issue conservée :** les trois compagnons meurent, l'élite évolue en Némésis puis fuit. Les dégâts, amputations et afflictions ne doivent pas être effacés arbitrairement ; leur persistance et leurs conséquences sur l'évolution et la fuite sont **à définir**.
+6. **Mutation déstabilisante :** explication provisoire de la fuite acceptée comme direction de conception, **mais sa causalité exacte et son comportement dans le combat 2D restent à valider**. Ne pas imposer une cinématique ou une rupture de combat pour la montrer.
+
+**Corrections des propositions antérieures :** la « retraite vers un passage étroit », l'objectif obligatoire de repli et toute interruption cinématique entre embuscade et fin de combat ne sont **pas des décisions retenues**. Le joueur combat avec les règles 2D existantes. Les éléments antérieurs qui les présentent comme solution principale sont supplantés par cette section.
+
+### Risques techniques ouverts
+
+- Empêcher une mort par dégâts directs, afflictions, dégâts sur la durée, contrecoups ou effets de membres sans rendre le héros invulnérable ni créer de boucle infinie.
+- Définir le comportement si le groupe réduit les PV de l'élite à zéro ou neutralise un membre critique avant la mort des compagnons : ne pas masquer les dégâts, ne pas prétendre à une victoire qui n'existe pas.
+- Vérifier les règles de ciblage, de rangs, de membres amputés, de contrôle et d'afflictions avant d'écrire l'IA du prologue.
+- Montrer l'évolution et la fuite **dans la présentation du combat 2D**, avec les animations/effets compatibles, sans cinématique intermédiaire.
+- Définir les probabilités ou priorités de ciblage réelles par des tests ; « majorité » est une intention, pas encore une valeur numérique validée.
+
+**État :** décisions narratives et contraintes de combat consignées ; implémentation et tests Godot non réalisés.
