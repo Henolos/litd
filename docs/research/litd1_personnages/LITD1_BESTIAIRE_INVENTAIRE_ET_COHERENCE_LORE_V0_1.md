@@ -2,7 +2,7 @@
 
 Date : 19 novembre 2026
 Statut : registre documentaire de conception ; ne vaut ni validation technique ni implémentation.
-Source : 14 planches transmises par l'utilisateur et examinées visuellement dans la conversation. Les fichiers image originaux ne sont pas copiés ni modifiés dans ce commit.
+Source : 15 planches transmises par l'utilisateur et examinées visuellement dans la conversation. Les fichiers image originaux ne sont pas copiés ni modifiés dans ce commit.
 
 ## Règles de conservation
 - Conserver chaque planche originale et sa numérotation telle qu'affichée ; toute correction se fait dans ce registre, sans retouche silencieuse.
@@ -22,7 +22,7 @@ Source : 14 planches transmises par l'utilisateur et examinées visuellement dan
 - Les anciennes mentions de la Chute, du Projet Seuil et de chronologies associées dans les documents historiques doivent être traitées comme des versions à réconcilier, pas comme le canon narratif actuel. Les sept civilisations ne sont pas effacées.
 - Aucun lien automatique entre « démon », « esprit », « Enfers » sur les fiches et une cosmologie métaphysique objectivement établie.
 
-## Inventaire des 14 planches effectivement examinées
+## Inventaire des 15 planches effectivement examinées
 
 | ID documentaire unique | N° imprimé | Créature | Éléments visuels / variantes | Statut artistique attesté |
 |---|---|---|---|---|
@@ -39,6 +39,7 @@ Source : 14 planches transmises par l'utilisateur et examinées visuellement dan
 | LITD-BEST-GOLEM_RUNIQUE | Non indiqué | Golem de pierre runique | Corps de pierre, runes bleues, mousse ; variantes élémentaires proposées | EN ATTENTE DE VALIDATION, mention explicite sur la planche |
 | LITD-BEST-WENDIGO | Non indiqué | Wendigo | Tête de loup cadavérique, corps décharné, griffes, givre | Variante tête de loup explicitement VALIDÉE sur la planche |
 | LITD-BEST-TROLL | Non indiqué | Troll | Géant voûté, peau pierreuse moussue, régénération | « Pistes validées » sur la planche ; portée limitée aux pistes listées |
+| LITD-BEST-VALKYRIE_SPECTRALE | 23 (mention indirecte sur la planche du Golem, non imprimé sur la planche reçue) | Valkyrie spectrale | Guerrière ailée spectrale, armure nordique, lance et bouclier, ailes sombres, aura éthérée | « Pistes validées » sur la planche ; référence désormais reçue et examinée |
 | LITD-BEST-MINOTAURE | 04 | Minotaure | Bovidé armuré, hache, médaillon labyrinthique ; Sauvage, Gardien, Corrompu | Planche reçue |
 
 ## Corrections et anomalies
@@ -50,7 +51,7 @@ Kitsune et Draugr ont tous deux le n°21 sur leurs originaux. Les identifiants L
 Ne pas classer le Golem comme « validé ». La planche précise « en attente de validation ». Ses pistes visuelles et son rôle de gardien artificiel sont documentés, mais ne constituent pas une validation définitive. Aucune retouche ni intégration au jeu.
 
 ### Valkyrie spectrale n°23
-Mentionnée comme « VALIDÉE » dans le pied de page de la planche du Golem. Son image propre n'a pas été fournie dans cette série ; référence à retrouver, non comptée parmi les 14 planches inspectées.
+Mentionnée comme « VALIDÉE » dans le pied de page de la planche du Golem. La planche propre de la Valkyrie spectrale a ensuite été reçue et examinée. Ses « pistes validées » concernent guerrière ailée spectrale, lance et bouclier, armure nordique, ailes spectrales et aura éthérée. Le numéro 23 provient uniquement de la mention sur la planche du Golem : il n'est pas imprimé sur la planche de Valkyrie reçue. La mention « Valhalla » est une intention mythologique sur la planche, non une preuve cosmologique du lore.
 
 ### Rattachement des espèces au lore
 Ne pas faire d'un titre mythologique une origine démontrée (Cerbère « Enfers », Oni « démon », Yuki-onna « esprit », Draugr « revenant »). Définir séparément origine, biologie/état, intelligence, langage, territoire et rapports avec les civilisations. Ne pas attribuer à chaque espèce une personnalité uniforme.
@@ -68,10 +69,11 @@ Ne pas faire d'un titre mythologique une origine démontrée (Cerbère « Enfers
 - Wendigo : tête de loup cadavérique, faim/froid ; ne pas présumer une origine de mort-vivant.
 - Troll : régénération et silhouette moussue, intelligence et société à définir.
 - Minotaure : identité de gardien possible, sans obliger tous les individus à vivre dans des labyrinthes.
+- Valkyrie spectrale : guerrière ailée et apparition à l'équipement nordique ; le statut de défunte et de messagère du Valhalla est une description de la planche, pas une validation de l'existence objective d'un au-delà.
 
 ## Périmètre de validation et suite
-Vérifié : 14 planches vues dans la conversation ; conflit du n°21 constaté ; statut « en attente » du Golem lu ; variante Wendigo validée sur la planche ; mention de la Valkyrie n°23.
+Vérifié : 15 planches vues dans la conversation ; conflit du n°21 constaté ; statut « en attente » du Golem lu ; variante Wendigo validée sur la planche ; réception et examen de la planche Valkyrie spectrale ; mention indirecte du n°23.
 Non vérifié : présence et intégrité des fichiers binaires originaux dans GitHub ; catalogue complet ; autres versions ; gameplay ; équilibre ; cohérence des anciens documents avec le nouveau lore.
-À faire : inventorier les autres planches, identifier la Valkyrie n°23, réconcilier les anciens documents narratifs sans écraser les références, et décider de la numérotation officielle après inventaire.
+À faire : inventorier les autres planches, confirmer le n° officiel de la Valkyrie à partir du catalogue complet, réconcilier les anciens documents narratifs sans écraser les références, et décider de la numérotation officielle après inventaire.
 Avancement du chantier actuel : À évaluer.
 Avancement du projet global : À évaluer.
