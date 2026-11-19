@@ -42,3 +42,16 @@ Archive originale de conversation : `LITD1_Bestiaire_15_planches_originales_2026
 5. Demander validation avant toute suppression, remplacement ou fusion.
 
 Ce document est un **registre de rapprochement**, pas une preuve que les images sont déjà présentes dans le dépôt.
+
+## Inspection complémentaire des branches (19 novembre 2026)
+
+Branches consultées par comparaison avec `main` : `docs/litd1-regles-fuite-transformations-20261118`, `codex/art-reference-library`, `docs/art-library-foundation-20261111`, `feature/veilleurs-art-direction-preproduction-v1`.
+
+- `codex/art-reference-library:data/art_reference_library.json` : bibliothèque d'inspirations artistiques et sources d'œuvres, **pas un manifeste des 15 JPEG du bestiaire**.
+- `feature/veilleurs-art-direction-preproduction-v1:data/veilleurs/archives_bestiary_29_v1.json` : registre narratif de 29 entités (connaissance, combat, historique), **pas un inventaire de planches originales**.
+- `feature/veilleurs-art-direction-preproduction-v1:data/veilleurs/canonical_bestiary_normalization_v2.json` : normalisation de 24 espèces ordinaires et 5 boss, **pas un catalogue d'empreintes des JPEG fournis**.
+- Aucune des comparaisons de branches effectuées n'a démontré une correspondance binaire avec les 15 JPEG. Les fichiers déjà présents dans `main` ou d'autres branches ne sont pas exhaustivement listés par ces comparaisons.
+- L'environnement de travail n'a pas d'accès Git direct (résolution de `github.com` indisponible) ; le connecteur consulté ne propose pas d'énumération complète de l'arbre. Par conséquent, **ne pas annoncer de comparaison SHA-256 des binaires GitHub**.
+- Aucun JPEG n'a été téléversé : la création de blobs GitHub demanderait de transmettre les octets exacts, ce qui n'a pas été réalisé. La sauvegarde des 15 originaux demeure l'archive ZIP de conversation.
+
+**Prochaine opération bloquée :** disposer d'un inventaire exhaustif des arbres GitHub et d'un canal d'import binaire contrôlé, puis comparer les SHA-256 avant de créer les seuls fichiers manquants. Ne pas fusionner dans `main`.
