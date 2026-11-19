@@ -34,3 +34,16 @@
 - **Portée de validation :** visuel artistique uniquement ; pas de validation automatique des capacités, statistiques, variantes jouables, lore ou numéro de fiche. La bannière « CONCEPT V1 — NON VALIDÉ » est un libellé imprimé antérieur à la validation ; ne pas altérer le PNG original.
 - **Archivage binaire GitHub :** non effectué/non vérifié ; seule la documentation est enregistrée dans le dépôt.
 - **Progression artistique :** 8 nouvelles planches validées sur 25 = 32 %. Projet global LITD 1 : À évaluer.
+
+
+## Vodyanoy — Le Maître des Eaux — V1
+
+- **Statut : 🟢 validation artistique explicite** de l'utilisateur le 19 novembre 2026.
+- **Fichier original sauvegardé** : `LITD1_BEST_SLAVE_VODYANOY_MAITRE_DES_EAUX_V1_VALIDEE.png`.
+- **Bibliothèque ChatGPT** : `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_SLAVE_VODYANOY_MAITRE_DES_EAUX_V1_VALIDEE.png`.
+- **Description visuelle** : esprit amphibien massif aux yeux jaune-vert lumineux, peau écailleuse humide, algues et joncs sur la tête et le corps, nageoires branchiales, longue barbe végétale, griffes palmées, coquillages, cloches et talismans, bâton rituel ; marais nocturne et ruines éclairées au loin.
+- **Planche** : illustration principale, quatre vues de rotation, six expressions, détails de l'œil, main, écailles, ouïes, talismans et coquillage, matériaux, palette, silhouettes, variantes exploratoires « Le Gardien des Lacs » et « L'Esprit des Marais ».
+- **Inspiration** : Vodyanoy, esprit des eaux du folklore slave ; interprétation sino-gothico-dark fantasy originale LITD 1.
+- **Portée** : validation artistique uniquement ; les capacités, le lore et les variantes en jeu restent provisoires. La mention graphique « NON VALIDÉ » est antérieure à l'approbation et n'invalide pas celle-ci.
+- **Archivage GitHub binaire** : non vérifié ; le présent registre n'atteste pas la présence du PNG dans GitHub.
+- **Avancement du chantier de 25 nouvelles planches** : 9/25 = 36 %. **Projet global LITD 1 : À évaluer.**
