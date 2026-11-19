@@ -90,3 +90,20 @@ Le registre et les descriptions sont présents dans GitHub, **mais les deux fich
 - **Canon** : approbation de la planche artistique uniquement ; titres, lore, capacités et variantes ne sont pas automatiquement validés comme éléments narratifs ou mécaniques.
 - **Archivage binaire GitHub** : non vérifié ; la description dans le registre ne vaut pas transfert du PNG.
 - **Progression des 25 nouvelles planches** : 4/25 = 16 % de validations artistiques. Projet global LITD 1 : À évaluer.
+
+
+## Anubis — Le Peseur des Âmes — V2 au katana blanc (validation artistique)
+
+- **Validation** : planche V2 explicitement approuvée par l'utilisateur le 19 novembre 2026 (« J'adore, sauvegarde tout »). La V1 avec sceptre/balance tenue en main est remplacée comme référence visuelle par cette V2.
+- **Fichier validé** : `LITD1_BEST_EGY_ANUBIS_PESEUR_DES_AMES_V2_VALIDEE.png`.
+- **Bibliothèque ChatGPT** : `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_EGY_ANUBIS_PESEUR_DES_AMES_V2_VALIDEE.png`.
+- **Format source vérifié** : PNG RGB, 1536 × 1024.
+- **SHA-256 calculé sur le PNG source de la planche validée** : `7b7b26fd93c0a2e884599bec168efe93b70b671c8272e6e8ce556fbeca0456e4`.
+- **Inspiration mythologique** : Anubis, gardien des nécropoles et des rites funéraires, iconographie canidé noir, association à la pesée du cœur et au passage dans l'au-delà. L'interprétation en combattant à katana est une création originale LITD.
+- **Silhouette** : grand humanoïde à tête de chacal noir, oreilles hautes, yeux dorés, armure funéraire noire et dorée à plaques acérées, étoffes et bandelettes blanches et rouges couvertes de marques rituelles, allure souveraine et spectrale.
+- **Arme validée visuellement** : katana à lame **blanche**, longue et légèrement courbe, avec **inscriptions rouges** sur la lame ; garde dorée travaillée, poignée noire et rouge, fourreau rituel, énergie filamenteuse rouge. **Le sceptre de la V1 est supprimé**.
+- **Direction artistique** : sino-gothico-dark fantasy, fusion de formes égyptiennes, chinoises et gothiques ; nécropole monumentale, lune rougeâtre, végétation rouge, lumière dramatique.
+- **Composition de la planche** : illustration principale, quatre vues de rotation, six expressions, silhouettes, études tête/griffes/épaule/tsuba/lame/fourreau, palette et deux variantes exploratoires (« Gardien des Tombeaux », « Fléau des Âmes »).
+- **Portée de la validation** : validation artistique de l'image et du katana ; pas de validation automatique des statistiques, du lore, des capacités, des numéros ou des variantes comme éléments canoniques.
+- **Archivage binaire dans GitHub** : non vérifié ; le présent registre ne vaut pas transfert du PNG.
+- **Progression artistique des 25 nouvelles planches** : 5/25 = 20 %. Avancement global LITD 1 : À évaluer.
