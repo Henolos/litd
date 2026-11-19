@@ -123,3 +123,12 @@ Le registre et les descriptions sont présents dans GitHub, **mais les deux fich
 - **Canon** : validation artistique de la planche, sans validation automatique du lore, des statistiques, des comportements de jeu et des variantes.
 - **Archivage PNG dans GitHub** : non vérifié ; ne pas considérer le transfert binaire comme achevé.
 - **Avancement** : 6 planches validées sur 25 = 24 %. Projet global LITD 1 : À évaluer.
+
+### Rectification explicite — Leshy V2
+
+- **SEULE RÉFÉRENCE ARTISTIQUE VALIDÉE POUR LESHY** : la planche V2 « LESHY — LE SOUVERAIN DES SENTIERS PERDUS », illustrant le gardien forestier à visage humain pétrifié, grandes mains-racines, champignons rouges, sanctuaires éclairés, quatre vues de rotation, six expressions, études de matières et variantes.
+- L'utilisateur a confirmé explicitement à nouveau cette image en la fournissant dans la conversation. La V1 de Leshy n'est **pas** la planche validée.
+- La bannière « CONCEPT V2 — NON VALIDÉ » demeure visible dans le PNG original mais constitue **un ancien libellé graphique dépassé** : la validation explicite ultérieure prévaut. **Ne pas modifier ni régénérer l'original pour corriger la bannière** sans instruction spécifique.
+- Le JPEG renvoyé par l'utilisateur est une représentation visuelle de la même planche (comparaison pixel à pixel compatible avec compression JPEG), **pas un nouveau master** ; conserver le PNG original archivé, SHA-256 `57cdb0e2f8ab2d07bad58c99d49a983e4652f29eb5ce7c2cb2bcf027999f1e9b`.
+- Ne jamais remplacer la référence Leshy par la planche de Baba Yaga, qui reste **V1 non validée**.
+- Le PNG Leshy reste à vérifier dans GitHub ; la validation artistique et l'archivage binaire sont deux statuts distincts.
