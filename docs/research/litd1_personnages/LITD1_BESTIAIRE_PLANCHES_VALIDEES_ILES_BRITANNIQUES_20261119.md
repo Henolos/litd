@@ -51,3 +51,16 @@
 - **Attention :** bandeau « CONCEPT V1 — VALIDÉ » imprimé avant validation, sans incidence sur l'approbation réelle ultérieure ; ne pas retoucher le master.
 - **Archivage binaire GitHub :** non réalisé / non vérifié. Fiche documentaire seulement.
 - **Suivi :** série britannique 4/5 validées ; chantier 14/25 = 56 % ; projet global LITD 1 : À évaluer.
+
+
+## Sluagh V1 — La Horde des Âmes Errantes
+
+- **Statut : VALIDÉE** explicitement par l'utilisateur ; conserver le master V1 intact.
+- **PNG original :** `LITD1_BEST_BRIT_SLUAGH_HORDE_AMES_ERRANTES_V1_VALIDEE.png`.
+- **Bibliothèque ChatGPT :** `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_BRIT_SLUAGH_HORDE_AMES_ERRANTES_V1_VALIDEE.png`.
+- **Origine :** Sluagh du folklore gaélique écossais et irlandais ; adaptation artistique sino-gothico-dark fantasy.
+- **Direction artistique validée :** entité collective et aérienne, fusion de multiples spectres aux visages tourmentés et bras décharnés, draperies et voiles en lambeaux, rubans rouges, talismans, clochettes et lanternes rituelles, atmosphère de ruines nocturnes.
+- **Planche :** illustration principale, quatre vues, six expressions, détails, matériaux, palette, silhouettes et deux variantes exploratoires non validées séparément.
+- **Attention :** la mention « CONCEPT V1 — NON VALIDÉ » imprimée dans le PNG est obsolète depuis la validation ; ne pas retoucher l'original.
+- **Archivage binaire GitHub :** non réalisé / non vérifié ; la fiche documentaire seule ne constitue pas un transfert du PNG.
+- **Suivi :** série îles Britanniques complète, 5/5 ; chantier 15/25 = 60 % ; projet global LITD 1 : À évaluer.
