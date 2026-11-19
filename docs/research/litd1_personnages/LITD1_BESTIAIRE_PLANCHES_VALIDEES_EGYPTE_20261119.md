@@ -75,3 +75,18 @@ Le registre et les descriptions sont présents dans GitHub, **mais les deux fich
 - **Canon** : validation artistique uniquement ; titres, lore, symboles et variantes ne constituent pas automatiquement des validations narratives ou de gameplay.
 - **Archivage GitHub binaire** : non vérifié ; la présence du présent registre ne prouve pas que le PNG est transféré.
 - **Progression des 25 nouvelles planches** : 3 validées / 25 = 12 %. Projet global LITD 1 : À évaluer.
+
+
+## Sobek — Le Seigneur des Eaux Noires — V1 (validation artistique)
+
+- **Statut** : 🟢 planche V1 validée explicitement par l'utilisateur le 19 novembre 2026.
+- **Fichier original validé** : `LITD1_BEST_EGY_SOBEK_SEIGNEUR_EAUX_NOIRES_V1_VALIDEE.png`.
+- **Emplacement bibliothèque ChatGPT vérifié** : `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_EGY_SOBEK_SEIGNEUR_EAUX_NOIRES_V1_VALIDEE.png`.
+- **Format contrôlé** : PNG RGB 1536 × 1024, 3 088 643 octets.
+- **Empreinte SHA-256 calculée sur l'image archivée** : `77b9d86f3c47b264911a21edafa41dc1cbd7771e820b30f1b043ea70e2ae9e50`.
+- **Inspiration mythologique** : Sobek, divinité égyptienne à l'iconographie crocodilienne, associée au Nil, à la puissance et à la protection ; adaptation libre en créature LITD.
+- **Direction artistique** : sino-gothico-dark fantasy ; gigantesque humanoïde crocodilien, museau allongé, mâchoire dentée, écailles gris-noir, longue queue épineuse, griffes, armure cérémonielle d'or patiné et de bronze, étoffes rouges, arme d'hast rituelle, environnement de marais et d'eaux noires.
+- **Composition** : scène principale, quatre vues de rotation, six expressions, détails tête/main/épaule/queue, études de matières, palette, silhouettes et deux variantes exploratoires (« Tourbière rituelle », « Écailles dorées »).
+- **Canon** : approbation de la planche artistique uniquement ; titres, lore, capacités et variantes ne sont pas automatiquement validés comme éléments narratifs ou mécaniques.
+- **Archivage binaire GitHub** : non vérifié ; la description dans le registre ne vaut pas transfert du PNG.
+- **Progression des 25 nouvelles planches** : 4/25 = 16 % de validations artistiques. Projet global LITD 1 : À évaluer.
