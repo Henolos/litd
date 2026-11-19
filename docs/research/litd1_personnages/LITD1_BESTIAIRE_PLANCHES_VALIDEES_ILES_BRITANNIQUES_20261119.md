@@ -38,3 +38,16 @@
 - **Planche :** illustration principale, quatre rotations, six expressions, détails, silhouettes, matériaux, palette et deux variantes exploratoires non validées séparément.
 - **Archivage binaire GitHub :** non réalisé / non vérifié. La fiche descriptive ne prouve pas la présence du PNG dans le dépôt.
 - **Suivi :** série îles Britanniques 3/5 planches validées (Banshee V2, Redcap V2, Black Annis V1) ; chantier 13/25 = 52 % ; avancement global LITD 1 : À évaluer.
+
+
+## Fachan V1 — Le Monoculaire des Highlands
+
+- **Statut : VALIDÉ** explicitement par l'utilisateur ; conserver le PNG V1 sans retouche.
+- **PNG original :** `LITD1_BEST_BRIT_FACHAN_MONOCULAIRE_HIGHLANDS_V1_VALIDEE.png`.
+- **Bibliothèque ChatGPT :** `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_BRIT_FACHAN_MONOCULAIRE_HIGHLANDS_V1_VALIDEE.png`.
+- **Origine :** Fachan du folklore des Highlands écossais ; réinterprétation sino-gothico-dark fantasy.
+- **Caractéristiques :** créature massive, difforme et asymétrique, un seul œil, un seul bras et une seule jambe ; cheveux et barbe sauvages, peau cicatrisée, tatouages, tartan et fourrures usés, amulettes et ruines écossaises.
+- **Planche :** illustration principale, quatre vues de rotation, six expressions, études de détails, silhouettes, matières, palette, deux variantes exploratoires non validées séparément.
+- **Attention :** bandeau « CONCEPT V1 — VALIDÉ » imprimé avant validation, sans incidence sur l'approbation réelle ultérieure ; ne pas retoucher le master.
+- **Archivage binaire GitHub :** non réalisé / non vérifié. Fiche documentaire seulement.
+- **Suivi :** série britannique 4/5 validées ; chantier 14/25 = 56 % ; projet global LITD 1 : À évaluer.
