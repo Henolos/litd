@@ -19,3 +19,18 @@
 ## Suivi
 - 7 nouvelles planches artistiques validées sur 25 : **28 %** du chantier de création.
 - Avancement global LITD 1 : **À évaluer**.
+
+
+## Zmey — Le Dévoreur des Orages — V1
+
+- **Statut : 🟢 VALIDATION ARTISTIQUE EXPLICITE** par l'utilisateur le 19 novembre 2026.
+- **Master validé :** `LITD1_BEST_SLAVE_ZMEY_DEVOREUR_DES_ORAGES_V1_VALIDEE.png`.
+- **Bibliothèque ChatGPT :** `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_SLAVE_ZMEY_DEVOREUR_DES_ORAGES_V1_VALIDEE.png`.
+- **Format vérifié :** PNG RGB, 1536 × 1024, 3 413 053 octets.
+- **SHA-256 du PNG :** `a58654ecf54cad24734415bb9636aa9e182eca18fe6ee6ea50a6d1bb8a03e261`.
+- **Inspiration mythologique :** Zmey Gorynytch, dragon pluricéphale des traditions slaves ; réinterprétation libre LITD.
+- **Direction artistique :** sino-gothico-dark fantasy, dragon colossal à trois têtes, écailles minérales et obsidienne fissurée, ailes rouges déchirées, griffes massives, queue serpentine, ornementation bronze et or, braises internes, ruines et orages.
+- **Planche de référence :** composition bestiaire noir/or, grande illustration cinématographique, quatre vues de rotation, six expressions, études œil/griffe/écaille/aile/queue/ornements, matériaux, palette, silhouettes et deux variantes exploratoires (« Serpent d'obsidienne », « Fléau cramoisi »).
+- **Portée de validation :** visuel artistique uniquement ; pas de validation automatique des capacités, statistiques, variantes jouables, lore ou numéro de fiche. La bannière « CONCEPT V1 — NON VALIDÉ » est un libellé imprimé antérieur à la validation ; ne pas altérer le PNG original.
+- **Archivage binaire GitHub :** non effectué/non vérifié ; seule la documentation est enregistrée dans le dépôt.
+- **Progression artistique :** 8 nouvelles planches validées sur 25 = 32 %. Projet global LITD 1 : À évaluer.
