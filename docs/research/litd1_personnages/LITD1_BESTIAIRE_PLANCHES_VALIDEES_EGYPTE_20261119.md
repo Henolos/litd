@@ -34,3 +34,29 @@ Avancement du projet global : À évaluer.
 - **Seth, chemin actuel** : `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_EGY_SETH_ECORCHEUR_TEMPETES_V2_VALIDEE.png`.
 - **GitHub** : seules les métadonnées documentaires sont enregistrées ; les deux PNG binaires ne sont pas confirmés présents dans le dépôt.
 - **Bilan artistique** : 2/25 planches validées, soit 8 %. Projet global : À évaluer.
+
+## Fiches descriptives artistiques — versions approuvées
+
+### Écorcheur des Tempêtes (Seth) — nouvelle planche au format Hydre
+- Statut : planche approuvée explicitement ; nouvelle mise en page remplaçant la V2 précédente dans la bibliothèque.
+- Référence : figure égyptienne de Seth ; adaptation originale en espèce LITD, non preuve d'existence du dieu.
+- Silhouette : grand humanoïde animalier sombre, tête canidé/séthienne, longues oreilles dressées, queue, mains griffues.
+- Matières : peau sombre, plaques d'armure noir/bronze, détails dorés, étoffes rouges et ornements cérémoniels.
+- Présentation : illustration principale, vues de rotation, expressions, détails de matières, silhouettes et deux variantes exploratoires.
+- Variantes écrites sur la planche : « Briseur des Dunes » et « Prophète du Chaos » ; leur existence canonique et les caractéristiques textuelles restent à confirmer séparément.
+- Source binaire validée : `LITD1_BEST_EGY_SETH_ECORCHEUR_TEMPETES_V2_VALIDEE.png` (contenu remplacé dans la bibliothèque par la nouvelle planche).
+- Empreinte **de la nouvelle image au format Hydre**, calculée sur le fichier source de génération : `abb110f4d97c4c3698e25dc4b42322cc46f9cff6e6aa7492f9e1026b70da7b43`. À vérifier à nouveau sur l'export bibliothèque puis après import GitHub.
+- Empreinte de l'ancienne V2 `cfd7b7e28a5e9c418eae7b65d4a4816014e4d8365fd0eab76782d3b10012b423` : **obsolète pour le fichier remplacé**.
+
+### Sentinelle du Zénith (Horus) — V1
+- Statut : planche approuvée explicitement.
+- Référence : Horus, dieu faucon de la tradition égyptienne ; adaptation en espèce originale et non dieu du canon.
+- Silhouette : humanoïde à tête de faucon, plumage sombre, armure segmentée dorée, épaules et manteau évoquant les ailes, serres.
+- Présentation selon le modèle Hydre : illustration principale, vues de rotation, expressions, études de matières, silhouettes et variantes.
+- Variantes écrites sur la planche : « Gardien des Remparts » et « Éclaireur du Désert » ; statut canonique et données de gameplay non déterminés.
+- Différenciation souhaitée : éviter la confusion avec le Tengu corvidé déjà illustré.
+- Source binaire validée : `LITD1_BEST_EGY_HORUS_SENTINELLE_ZENITH_V1_VALIDEE.png` dans la bibliothèque.
+- Empreinte SHA-256 calculée sur le fichier source de génération : `5e4bdaf9af2fd74f92e3ccc4bc3357bad8e973b26570058632c1ba37e6aeca40`. À revérifier sur le fichier stocké puis après import GitHub.
+
+## Condition de clôture de l'archivage
+Le registre et les descriptions sont présents dans GitHub, **mais les deux fichiers PNG binaires ne le sont pas encore de manière vérifiée**. Ne pas déclarer le chantier achevé avant le transfert, la lecture des PNG depuis la branche GitHub et le contrôle des deux empreintes.
