@@ -107,3 +107,19 @@ Le registre et les descriptions sont présents dans GitHub, **mais les deux fich
 - **Portée de la validation** : validation artistique de l'image et du katana ; pas de validation automatique des statistiques, du lore, des capacités, des numéros ou des variantes comme éléments canoniques.
 - **Archivage binaire dans GitHub** : non vérifié ; le présent registre ne vaut pas transfert du PNG.
 - **Progression artistique des 25 nouvelles planches** : 5/25 = 20 %. Avancement global LITD 1 : À évaluer.
+
+
+## Leshy — Le Souverain des Sentiers Perdus — V2 (mythologie slave)
+
+- **Validation** : V2 approuvée explicitement par l'utilisateur le 19 novembre 2026. La V1 est remplacée comme référence visuelle.
+- **Fichier validé** : `LITD1_BEST_SLAVE_LESHY_SOUVERAIN_SENTIERS_PERDUS_V2_VALIDEE.png`.
+- **Bibliothèque ChatGPT** : `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_SLAVE_LESHY_SOUVERAIN_SENTIERS_PERDUS_V2_VALIDEE.png`.
+- **Format** : PNG 1536 × 1024, 3 156 009 octets.
+- **SHA-256 du PNG sauvegardé** : `57cdb0e2f8ab2d07bad58c99d49a983e4652f29eb5ce7c2cb2bcf027999f1e9b`.
+- **Inspiration** : Leshy, esprit forestier du folklore slave, gardien ambivalent des bois, capable d'égarer les voyageurs, d'imiter des voix et de changer d'apparence ou de taille.
+- **Description artistique** : ancien gardien forestier humanoïde colossal, visage pâle pétrifié, chevelure et lianes grises, membres et mains noueux semblables à des racines, écorce craquelée, mousse, champignons rouges, étoffes funéraires et talismans, clochettes et fragments de sanctuaires orientaux.
+- **Direction artistique** : sino-gothico-dark fantasy ; référence de présentation et d'éclairage : planche originale de l'Hydre. **Éclairer fortement le sujet (visage, mains, torse) tout en conservant un fond sombre**, afin de créer profondeur et lisibilité ; bordures bronze, contraste maîtrisé, panneaux techniques nets.
+- **Contenu de la planche** : illustration principale, quatre vues de rotation, six expressions, détails, matériaux, silhouettes et deux variantes exploratoires (« L'Esprit Brumeux », « Le Seigneur des Racines »).
+- **Canon** : validation artistique de la planche, sans validation automatique du lore, des statistiques, des comportements de jeu et des variantes.
+- **Archivage PNG dans GitHub** : non vérifié ; ne pas considérer le transfert binaire comme achevé.
+- **Avancement** : 6 planches validées sur 25 = 24 %. Projet global LITD 1 : À évaluer.
