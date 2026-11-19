@@ -6,7 +6,7 @@ Ce manifeste répertorie les **cinq PNG originaux récupérés depuis la bibliot
 
 | Créature | Fichier original validé | Taille (octets) | SHA-256 |
 |---|---|---:|---|
-| Seth V2 | `LITD1_BEST_EGY_SETH_ECORCHEUR_TEMPETES_V2_VALIDEE.png` | 3187810 | `abb110f4d97c4c3698e25dc4b42322cc46f9e6aa7492f9e1026b70da7b43` |
+| Seth V2 | `LITD1_BEST_EGY_SETH_ECORCHEUR_TEMPETES_V2_VALIDEE.png` | 3187810 | `abb110f4d97c4c3698e25dc4b42322cc46f9cff6e6aa7492f9e1026b70da7b43` |
 | Horus V1 | `LITD1_BEST_EGY_HORUS_SENTINELLE_ZENITH_V1_VALIDEE.png` | 3281045 | `5e4bdaf9af2fd74f92e3ccc4bc3357bad8e973b26570058632c1ba37e6aeca40` |
 | Isis V2 | `LITD1_BEST_EGY_ISIS_TISSEUSE_DES_AMES_V2_VALIDEE.png` | 2959540 | `3eeb3d573239ec8add99e92fbb7cffc434a77ada6cc4e5c6d2469fc1ed189688` |
 | Sobek V1 | `LITD1_BEST_EGY_SOBEK_SEIGNEUR_EAUX_NOIRES_V1_VALIDEE.png` | 3088643 | `77b9d86f3c47b264911a21edafa41dc1cbd7771e820b30f1b043ea70e2ae9e50` |
