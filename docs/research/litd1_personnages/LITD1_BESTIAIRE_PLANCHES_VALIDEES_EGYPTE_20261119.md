@@ -60,3 +60,18 @@ Avancement du projet global : À évaluer.
 
 ## Condition de clôture de l'archivage
 Le registre et les descriptions sont présents dans GitHub, **mais les deux fichiers PNG binaires ne le sont pas encore de manière vérifiée**. Ne pas déclarer le chantier achevé avant le transfert, la lecture des PNG depuis la branche GitHub et le contrôle des deux empreintes.
+
+
+## Isis — La Tisseuse des Âmes — V2 sans couronne (validation artistique)
+
+- **Statut** : 🟢 planche V2 validée explicitement par l'utilisateur le 19 novembre 2026. La V1 est une proposition antérieure non retenue.
+- **Fichier original validé** : `LITD1_BEST_EGY_ISIS_TISSEUSE_DES_AMES_V2_VALIDEE.png`
+- **Emplacement vérifié dans la bibliothèque ChatGPT** : `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_EGY_ISIS_TISSEUSE_DES_AMES_V2_VALIDEE.png`
+- **Format vérifié** : PNG RGB, 1536 × 1024, 2 959 540 octets.
+- **SHA-256 du PNG conservé** : `3eeb3d573239ec8add99e92fbb7cffc434a77ada6cc4e5c6d2469fc1ed189688`.
+- **Inspiration mythologique** : Isis, déesse égyptienne associée à la protection, la magie, la maternité et la renaissance ; les ailes protectrices et les symboles rituels sont réinterprétés librement.
+- **Direction artistique** : sino-gothico-dark fantasy, silhouette féminine élancée et spectrale, visage dégagé, longue chevelure noire, **aucun chapeau ni couronne**, ailes noires et ivoire, ornements d'or patiné, étoffes blanches et rouges, fils rituels, bandelettes et motifs funéraires, fleurs de lotus.
+- **Composition de la planche** : illustration principale, quatre vues de rotation, six expressions, études anatomiques et de matériaux, silhouettes, palette et deux variantes exploratoires (« Rituel funéraire », « Renaissance »).
+- **Canon** : validation artistique uniquement ; titres, lore, symboles et variantes ne constituent pas automatiquement des validations narratives ou de gameplay.
+- **Archivage GitHub binaire** : non vérifié ; la présence du présent registre ne prouve pas que le PNG est transféré.
+- **Progression des 25 nouvelles planches** : 3 validées / 25 = 12 %. Projet global LITD 1 : À évaluer.
