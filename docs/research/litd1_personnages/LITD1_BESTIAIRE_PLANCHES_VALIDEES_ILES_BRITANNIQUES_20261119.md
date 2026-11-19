@@ -12,3 +12,16 @@
 - **Archivage binaire GitHub : non réalisé/non vérifié.** La présence de cette fiche ne prouve pas l'intégration du PNG dans GitHub.
 - Série îles Britanniques : Banshee, Redcap, Black Annis, Fachan, Sluagh ; 1/5 planches validées.
 - Chantier 25 nouvelles planches : 11/25 = 44 %. Projet global LITD 1 : À évaluer.
+
+
+## Redcap V2 — Le Lutin Sanglant
+
+- **Statut : VALIDÉ** explicitement par l'utilisateur ; V2 remplace la proposition V1 non validée.
+- **Fichier original PNG :** `LITD1_BEST_BRIT_REDCAP_LUTIN_SANGLANT_V2_VALIDEE.png`.
+- **Bibliothèque ChatGPT :** `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_BRIT_REDCAP_LUTIN_SANGLANT_V2_VALIDEE.png`.
+- **Origine :** Redcap du folklore des frontières anglo-écossaises ; adaptation sino-gothico-dark fantasy.
+- **Caractéristiques artistiques validées :** petit humanoïde prédateur, silhouette accroupie et féroce, bonnet pointu brun noirci et cuir usé, rouge sombre discret (non rouge vif), armure de récupération vieillie, griffes, lame ouvragée, ruines et ambiance nocturne. Palette charbon, terre, bronze, sang séché et mousses.
+- **Planche :** illustration principale, quatre vues de rotation, six expressions, détails, silhouettes, textures, palette et deux variantes exploratoires (non validées séparément).
+- **Attention :** l'inscription imprimée « CONCEPT V1 — PROPOSITION » sur le master V2 ne correspond pas à son statut ultérieur ; préserver le fichier original sans le retoucher.
+- **Archivage binaire GitHub :** non réalisé / non vérifié. La fiche documentaire ne vaut pas transfert du PNG.
+- **Suivi :** îles Britanniques 2/5 validées (Banshee V2 et Redcap V2) ; nouvelles planches 12/25 = 48 % ; avancement global LITD 1 : À évaluer.
