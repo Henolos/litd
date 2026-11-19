@@ -2,7 +2,7 @@
 
 Date de contrôle : 2026-11-19.
 
-Ce manifeste archive une planche originale par divinité. Les cinq PNG sont conservés sans recompression ni retouche ; les descriptions artistiques sont celles intégrées aux planches. Selon la validation de l’utilisateur, Anubis est la seule planche modifiée dans ce lot : la V2 comprend un katana rituel à lame blanche gravée d’inscriptions rouges. Les fichiers homonymes retrouvés dans la Bibliothèque sont des copies/rangements et ne représentent pas des générations supplémentaires.
+Ce manifeste archive une planche originale par divinité. Les PNG sont conservés sans recompression ni retouche ; les descriptions artistiques sont intégrées aux planches. Les copies et renommages ne sont pas des générations supplémentaires. Selon la validation de l’utilisateur, Anubis est la seule planche modifiée dans ce lot : la V2 comprend un katana rituel à lame blanche gravée d’inscriptions rouges.
 
 | Sujet | Fichier archivé | Chemin dans le dépôt | Taille (octets) | SHA-256 |
 |---|---|---|---:|---|
@@ -14,6 +14,6 @@ Ce manifeste archive une planche originale par divinité. Les cinq PNG sont cons
 
 ## Contrôles d’intégrité
 
-Les tailles et empreintes SHA-256 des cinq originaux ont été recalculées localement et correspondent aux valeurs ci-dessus. Les objets Git préparés pour cette branche ont aussi des identifiants Git identiques à ceux recalculés depuis les fichiers sources. La relecture des chemins depuis la branche reste le contrôle final après commit.
+Les SHA-256 recalculées sur les cinq sources locales correspondent aux valeurs ci-dessus. Les cinq entrées de l’arbre Git relues depuis la branche ont la même taille et le même identifiant d’objet Git que ceux recalculés sur les fichiers sources.
 
-**État avant commit :** fichiers sources et empreintes vérifiés ; ajout préparé sur la branche `archive/bestiaire-egypte-validations-20261119`. Aucune modification de `main` ni fusion automatique.
+**État :** les cinq planches et ce manifeste sont archivés sur la branche `archive/bestiaire-egypte-validations-20261119`. `main` n’a pas été modifiée et la PR reste en brouillon ; aucune fusion n’a été effectuée.
