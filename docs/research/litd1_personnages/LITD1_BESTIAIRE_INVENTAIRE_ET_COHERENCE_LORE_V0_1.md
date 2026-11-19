@@ -34,24 +34,19 @@ Source : 15 planches transmises par l'utilisateur et examinées visuellement dan
 | LITD-BEST-ONI | 15 | Oni | Peau rouge, cornes, massue ; Montagnes, Sang | V5 reçue ; sélection graphique sur l'image ne prouve pas un clic de confirmation |
 | LITD-BEST-TENGU | 16 | Tengu | Corvidé ailé, sabre, talismans ; Cimes, Corrompu | Planche reçue |
 | LITD-BEST-YUKI_ONNA | 19 | Yuki-onna | Kimono de givre, cheveux sombres ; Forêts, Tempête | Planche reçue |
-| LITD-BEST-KITSUNE | 21 | Kitsune | Renard blanc à plusieurs queues ; Trois Queues, Neuf Queues | Planche reçue ; numéro 21 en conflit |
-| LITD-BEST-DRAUGR | 21 | Draugr | Guerrier mort-vivant nordique, yeux bleus ; Ancestral, Champion | Planche reçue ; numéro 21 en conflit |
-| LITD-BEST-GOLEM_RUNIQUE | Non indiqué | Golem de pierre runique | Corps de pierre, runes bleues, mousse ; variantes élémentaires proposées | EN ATTENTE DE VALIDATION, mention explicite sur la planche |
+| LITD-BEST-KITSUNE | 21 | Kitsune | Renard blanc à plusieurs queues ; Trois Queues, Neuf Queues | JPEG historique n°21 ; référence canonique n°26 validée |
+| LITD-BEST-DRAUGR | 21 | Draugr | Guerrier mort-vivant nordique, yeux bleus ; Ancestral, Champion | Référence canonique n°21 validée |
+| LITD-BEST-GOLEM_RUNIQUE | Non indiqué | Golem de pierre runique | Corps de pierre, runes bleues, mousse ; variantes élémentaires proposées | Référence canonique n°25 validée ; mention historique « en attente » imprimée |
 | LITD-BEST-WENDIGO | Non indiqué | Wendigo | Tête de loup cadavérique, corps décharné, griffes, givre | Variante tête de loup explicitement VALIDÉE sur la planche |
 | LITD-BEST-TROLL | Non indiqué | Troll | Géant voûté, peau pierreuse moussue, régénération | « Pistes validées » sur la planche ; portée limitée aux pistes listées |
-| LITD-BEST-VALKYRIE_SPECTRALE | 23 (mention indirecte sur la planche du Golem, non imprimé sur la planche reçue) | Valkyrie spectrale | Guerrière ailée spectrale, armure nordique, lance et bouclier, ailes sombres, aura éthérée | « Pistes validées » sur la planche ; référence désormais reçue et examinée |
+| LITD-BEST-VALKYRIE_SPECTRALE | Non indiqué | Valkyrie spectrale | Guerrière ailée spectrale, armure nordique, lance et bouclier, ailes sombres, aura éthérée | « Pistes validées » sur le JPEG source ; version harmonisée n°23 approuvée |
 | LITD-BEST-MINOTAURE | 04 | Minotaure | Bovidé armuré, hache, médaillon labyrinthique ; Sauvage, Gardien, Corrompu | Planche reçue |
 
-## Corrections et anomalies
+## Numéros canoniques et validations
 
-### Collision de numérotation n°21
-Kitsune et Draugr ont tous deux le n°21 sur leurs originaux. Les identifiants LITD-BEST-KITSUNE et LITD-BEST-DRAUGR lèvent toute ambiguïté dans le catalogue, sans attribuer arbitrairement un nouveau numéro imprimé. Numérotation officielle définitive : À CONSOLIDER après vérification de la série complète.
-
-### Golem de pierre runique
-Ne pas classer le Golem comme « validé ». La planche précise « en attente de validation ». Ses pistes visuelles et son rôle de gardien artificiel sont documentés, mais ne constituent pas une validation définitive. Aucune retouche ni intégration au jeu.
-
-### Valkyrie spectrale n°23
-Mentionnée comme « VALIDÉE » dans le pied de page de la planche du Golem. La planche propre de la Valkyrie spectrale a ensuite été reçue et examinée. Ses « pistes validées » concernent guerrière ailée spectrale, lance et bouclier, armure nordique, ailes spectrales et aura éthérée. Le numéro 23 provient uniquement de la mention sur la planche du Golem : il n'est pas imprimé sur la planche de Valkyrie reçue. La mention « Valhalla » est une intention mythologique sur la planche, non une preuve cosmologique du lore.
+- **Draugr et Kitsune.** Le Draugr porte le n°21 canonique et la Kitsune le n°26. Le n°21 imprimé sur le JPEG historique de la Kitsune est conservé comme donnée de provenance. Le PNG n°26 est la référence de la bibliothèque. [Décision de numérotation](https://github.com/Henolos/litd/blob/f6e1193abaa25e3cfd42a72c82149582486eaff2/docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md#décision-de-numérotation--kitsune-10-novembre-2026).
+- **Golem de pierre runique.** Le bandeau « en attente de validation » figure sur le JPEG original. Le registre consigne une validation artistique explicite après réception, et le SHA-256 relie ce JPEG à la référence canonique n°25. [Validation du Golem](https://github.com/Henolos/litd/blob/f6e1193abaa25e3cfd42a72c82149582486eaff2/docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md#mise-à-jour-des-décisions-et-nouvelle-pièce--10-novembre-2026) · [Manifeste artistique](../../art/reconciled_bestiary_manifest_20261111.json).
+- **Valkyrie spectrale.** Le n°23 canonique est attesté pour la version harmonisée approuvée. Le JPEG du 19 novembre porte les « pistes validées » et ne comporte aucun numéro imprimé. La mention « Valhalla » reste une référence mythologique de la planche. [Approbation de la Valkyrie harmonisée](https://github.com/Henolos/litd/blob/f6e1193abaa25e3cfd42a72c82149582486eaff2/docs/art/LITD1_BESTIARY_VALIDATION_REGISTRY.md#pièces-reçues-et-versions-harmonisées-approuvées--10-novembre-2026).
 
 ### Rattachement des espèces au lore
 Ne pas faire d'un titre mythologique une origine démontrée (Cerbère « Enfers », Oni « démon », Yuki-onna « esprit », Draugr « revenant »). Définir séparément origine, biologie/état, intelligence, langage, territoire et rapports avec les civilisations. Ne pas attribuer à chaque espèce une personnalité uniforme.
@@ -72,10 +67,10 @@ Ne pas faire d'un titre mythologique une origine démontrée (Cerbère « Enfers
 - Valkyrie spectrale : guerrière ailée et apparition à l'équipement nordique ; le statut de défunte et de messagère du Valhalla est une description de la planche, pas une validation de l'existence objective d'un au-delà.
 
 ## Périmètre de validation et suite
-Vérifié : 15 planches vues dans la conversation ; conflit du n°21 constaté ; statut « en attente » du Golem lu ; variante Wendigo validée sur la planche ; réception et examen de la planche Valkyrie spectrale ; mention indirecte du n°23.
+Vérifié : 15 planches examinées, numéros canoniques et états de validation rapprochés des sources, variante Wendigo à tête de loup validée sur la planche.
 Intégrité binaire vérifiée pour le lot du 19 novembre : les 15 JPEG sont disponibles sur la branche d’archivage. Le [registre de rapprochement](LITD1_BESTIAIRE_RECONCILIATION_PLANCHES_20261119.md) fournit les chemins et empreintes.
 
 Hors périmètre de cette vérification : catalogue exhaustif, autres versions, gameplay, équilibre et réconciliation complète des anciens documents de lore.
-À faire : inventorier les autres planches, confirmer le n° officiel de la Valkyrie à partir du catalogue complet, réconcilier les anciens documents narratifs sans écraser les références, et décider de la numérotation officielle après inventaire.
-Avancement du chantier actuel : À évaluer.
+À faire hors de ce lot : compléter l’inventaire et réconcilier les anciens documents narratifs.
+Avancement du chantier actuel : 100 % pour l’archivage et le rapprochement documentaire du lot du 19 novembre.
 Avancement du projet global : À évaluer.
