@@ -47,3 +47,16 @@
 - **Portée** : validation artistique uniquement ; les capacités, le lore et les variantes en jeu restent provisoires. La mention graphique « NON VALIDÉ » est antérieure à l'approbation et n'invalide pas celle-ci.
 - **Archivage GitHub binaire** : non vérifié ; le présent registre n'atteste pas la présence du PNG dans GitHub.
 - **Avancement du chantier de 25 nouvelles planches** : 9/25 = 36 %. **Projet global LITD 1 : À évaluer.**
+
+
+## Rusalka — La Noyée des Saules — V1
+
+- **Statut** : 🟢 planche artistique V1 validée explicitement par l'utilisateur le 19 novembre 2026.
+- **PNG original validé** : `LITD1_BEST_SLAVE_RUSALKA_NOYEE_DES_SAULES_V1_VALIDEE.png`.
+- **Bibliothèque ChatGPT** : `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_SLAVE_RUSALKA_NOYEE_DES_SAULES_V1_VALIDEE.png`.
+- **Description artistique** : apparition féminine aquatique spectrale, peau pâle irisée, longs cheveux noirs flottants, yeux verts lumineux, doigts effilés, étoffes blanches déchirées à inscriptions rouges, ornements dorés et fleurs aquatiques, marais nocturne et ruines sino-gothiques.
+- **Composition** : illustration principale de la silhouette entière, quatre vues de rotation, six expressions, six études de détails, textures, palette, silhouettes et deux variantes exploratoires (« La Rusalka des Nénuphars », « La Noyée Écarlate »).
+- **Inspiration** : rusalki du folklore slave ; réinterprétation visuelle sino-gothico-dark fantasy de LITD 1.
+- **Portée** : validation artistique seulement ; le lore, les mécaniques, les variantes et la numérotation ne sont pas automatiquement approuvés. L'inscription imprimée « CONCEPT V1 — NON VALIDÉ » est obsolète après validation, mais ne doit pas conduire à altérer le master.
+- **Archivage binaire GitHub** : non vérifié, non déclaré terminé ; seule la documentation est enregistrée dans le dépôt.
+- **Bilan** : cinq créatures slaves validées (Leshy, Baba Yaga, Zmey, Vodyanoy, Rusalka). Total : 10/25 nouvelles planches artistiques validées = 40 %. Projet global LITD 1 : À évaluer.
