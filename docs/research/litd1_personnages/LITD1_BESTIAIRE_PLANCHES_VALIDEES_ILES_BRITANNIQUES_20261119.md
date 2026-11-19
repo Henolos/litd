@@ -25,3 +25,16 @@
 - **Attention :** l'inscription imprimée « CONCEPT V1 — PROPOSITION » sur le master V2 ne correspond pas à son statut ultérieur ; préserver le fichier original sans le retoucher.
 - **Archivage binaire GitHub :** non réalisé / non vérifié. La fiche documentaire ne vaut pas transfert du PNG.
 - **Suivi :** îles Britanniques 2/5 validées (Banshee V2 et Redcap V2) ; nouvelles planches 12/25 = 48 % ; avancement global LITD 1 : À évaluer.
+
+
+## Black Annis V1 — La Sorcière Écorchée
+
+- **Statut : VALIDÉE** explicitement par l'utilisateur ; préserver la V1 sans modification.
+- **PNG original :** `LITD1_BEST_BRIT_BLACK_ANNIS_SORCIERE_ECORCHEE_V1_VALIDEE.png`.
+- **Bibliothèque ChatGPT :** `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_BRIT_BLACK_ANNIS_SORCIERE_ECORCHEE_V1_VALIDEE.png`.
+- **Origine :** Black Annis du folklore du Leicestershire, Angleterre ; réinterprétation sino-gothico-dark fantasy.
+- **Direction artistique validée :** sorcière monstrueuse et prédatrice, silhouette voûtée et bestiale, membres démesurés, griffes longues, peau grisâtre et marquée, chevelure sauvage, lambeaux d'étoffe, ornements osseux, talismans et ruines nocturnes. Traitement organique plutôt que métallique.
+- **Distinction documentaire :** les descriptions folkloriques de peau bleutée et de griffes de fer sont des références d'origine, **pas des modifications à imposer** à la V1 validée.
+- **Planche :** illustration principale, quatre rotations, six expressions, détails, silhouettes, matériaux, palette et deux variantes exploratoires non validées séparément.
+- **Archivage binaire GitHub :** non réalisé / non vérifié. La fiche descriptive ne prouve pas la présence du PNG dans le dépôt.
+- **Suivi :** série îles Britanniques 3/5 planches validées (Banshee V2, Redcap V2, Black Annis V1) ; chantier 13/25 = 52 % ; avancement global LITD 1 : À évaluer.
