@@ -11,3 +11,15 @@
 - **Attention :** le bandeau « CONCEPT V1 — PROPOSITION » imprimé dans le master est antérieur à la validation ; **ne pas modifier l'original** pour le corriger.
 - **Archivage binaire GitHub : NON réalisé / NON vérifié.** La présente fiche ne prouve pas la présence du PNG dans le dépôt.
 - **Suivi :** 16/25 planches validées (64 %) ; projet global LITD 1 : À évaluer.
+
+## Sasabonsam V1 — Le Prédateur des Cimes
+
+- **Statut artistique : VALIDÉ** explicitement par l'utilisateur le 20 novembre 2026 ; préserver le PNG original V1 sans retouche ni substitution.
+- **PNG original :** `LITD1_BEST_AFR_SASABONSAM_PREDATEUR_CIMES_V1_VALIDEE.png`.
+- **Bibliothèque ChatGPT :** `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_AFR_SASABONSAM_PREDATEUR_CIMES_V1_VALIDEE.png` (copie vérifiée dans la bibliothèque).
+- **Inspiration folklorique :** Sasabonsam, créature des traditions akan (Ghana / Côte d'Ivoire), prédateur forestier nocturne associé aux arbres ; les éléments esthétiques détaillés relèvent de l'interprétation LITD 1 et non d'une reconstitution historique.
+- **Direction artistique validée :** silhouette arboricole allongée et inquiétante, pieds crochus, griffes, crocs métalliques, parures de cauris, fibres, perles et textiles rituels, ambiance de forêt nocturne, palette terre, mousse, bronze et rouge ; fusion sino-gothico-dark fantasy.
+- **Composition :** scène centrale en forêt, quatre vues de rotation, six expressions, études des yeux, mains, pieds et parures, matières et palette, silhouettes et deux variantes exploratoires.
+- **Attention :** bandeau « CONCEPT V1 — PROPOSITION » imprimé dans le PNG antérieur à la validation ; conserver l'original inchangé.
+- **Archivage binaire GitHub : NON vérifié.** Cette entrée documentaire ne prouve pas que le PNG soit présent dans GitHub.
+- **Suivi au 20 novembre 2026 :** 18/25 planches validées (72 %), Afrique de l'Ouest 2/5 ; projet global LITD 1 : À évaluer.
