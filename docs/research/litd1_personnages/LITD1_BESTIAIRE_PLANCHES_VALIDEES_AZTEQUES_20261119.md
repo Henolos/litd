@@ -44,3 +44,15 @@
 - **Attention :** le bandeau « CONCEPT V1 — PROPOSITION » dans le PNG précède la validation ; ne pas modifier le master.
 - **Archivage binaire GitHub : NON vérifié.** La description documentaire ne prouve pas la présence du PNG dans GitHub.
 - **Suivi au 20 novembre 2026 :** 24/25 planches validées (96 %), série aztèque 4/5 ; projet global LITD 1 : À évaluer.
+
+## Xólotl V1 — Le Guide des Passages
+
+- **Statut artistique : VALIDÉ** explicitement par l'utilisateur le 20 novembre 2026 ; conserver exactement le PNG original V1, sans retouche ni substitution.
+- **PNG original :** `LITD1_BEST_AZT_XOLOTL_GUIDE_PASSAGES_V1_VALIDEE.png`.
+- **Bibliothèque ChatGPT :** `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_AZT_XOLOTL_GUIDE_PASSAGES_V1_VALIDEE.png` (copie sauvegardée avec succès).
+- **Inspiration :** Xólotl, divinité mexica associée notamment aux transformations, au monde des morts et à la guidance des âmes ; représentation libre LITD 1, non reconstitution historique.
+- **Direction artistique :** gardien canidé surnaturel à robe sombre et marques rouges lumineuses, parures cérémonielles en or, plumes et textiles rouges, masque rituel, double spectral, ruines sous éclipse ; fusion sino-gothico-dark fantasy.
+- **Composition :** illustration principale, quatre vues de rotation, six expressions, détails de l'œil, peintures, amulettes, masque, parures et textiles, matières, palette, silhouettes et deux variantes exploratoires.
+- **Attention :** le bandeau « CONCEPT V1 — PROPOSITION » est antérieur à la validation ; conserver le PNG tel quel.
+- **Archivage binaire GitHub : NON vérifié.** La description documentaire n'atteste pas que le PNG original soit présent dans GitHub.
+- **Suivi au 20 novembre 2026 :** 25/25 planches validées artistiquement (100 %), série aztèque 5/5 ; archivage technique GitHub des PNG à vérifier ; projet global LITD 1 : À évaluer.
