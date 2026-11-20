@@ -47,3 +47,15 @@
 - **Attention :** le bandeau « CONCEPT V1 — PROPOSITION » présent dans l'image est antérieur à la validation ; ne pas modifier l'original.
 - **Archivage binaire GitHub : NON vérifié.** L'entrée documentaire n'atteste pas que le PNG original soit présent dans GitHub.
 - **Suivi au 20 novembre 2026 :** 20/25 planches validées (80 %), Afrique de l'Ouest 4/5 ; projet global LITD 1 : À évaluer.
+
+## Adze V1 — Le Vampire des Cieux
+
+- **Statut artistique : VALIDÉ** explicitement par l'utilisateur le 20 novembre 2026 ; conserver le PNG original V1 sans retouche ni substitution.
+- **PNG original :** `LITD1_BEST_AFR_ADZE_VAMPIRE_CIEUX_V1_VALIDEE.png`.
+- **Bibliothèque ChatGPT :** `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_AFR_ADZE_VAMPIRE_CIEUX_V1_VALIDEE.png` (copie sauvegardée avec succès).
+- **Inspiration folklorique :** Adze, entité vampirique des traditions éwé, notamment associée à la métamorphose en luciole. **Écart assumé dans LITD 1 :** la V1 validée représente une créature humanoïde ailée de type chauve-souris ; ce n'est pas une représentation folklorique littérale.
+- **Direction artistique validée :** silhouette humanoïde sombre, longues ailes membraneuses rouge-noir, yeux lumineux, griffes, crocs, parures de perles, cauris, textiles et amulettes, ambiance nocturne de village forestier ; fusion sino-gothico-dark fantasy.
+- **Composition :** illustration principale, quatre vues de rotation, six expressions, études de l'œil, des crocs, griffes, ailes, amulettes, masques et tatouages, matières, palette, silhouettes et deux variantes exploratoires.
+- **Attention :** le bandeau « CONCEPT V1 — PROPOSITION » imprimé sur la planche précède la validation ; ne pas altérer le master.
+- **Archivage binaire GitHub : NON vérifié.** Le registre documentaire ne prouve pas la présence du PNG dans le dépôt.
+- **Suivi au 20 novembre 2026 :** 21/25 planches validées (84 %), Afrique de l'Ouest 5/5 ; projet global LITD 1 : À évaluer.
