@@ -35,3 +35,15 @@
 - **Attention :** le bandeau « CONCEPT V1 — PROPOSITION » imprimé sur la planche est antérieur à la validation ; préserver l'image originale.
 - **Archivage binaire GitHub : NON vérifié.** L'ajout de la fiche documentaire ne constitue pas la preuve d'un dépôt du PNG dans GitHub.
 - **Suivi au 20 novembre 2026 :** 19/25 planches validées (76 %), Afrique de l'Ouest 3/5 ; projet global LITD 1 : À évaluer.
+
+## Mami Wata V1 — La Dame des Eaux
+
+- **Statut artistique : VALIDÉ** explicitement par l'utilisateur le 20 novembre 2026 ; préserver la planche PNG originale V1 sans retouche ni substitution.
+- **PNG original :** `LITD1_BEST_AFR_MAMI_WATA_DAME_EAUX_V1_VALIDEE.png`.
+- **Bibliothèque ChatGPT :** `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_AFR_MAMI_WATA_DAME_EAUX_V1_VALIDEE.png` (upload réussi et vérifié).
+- **Inspiration :** Mami Wata, figure des traditions spirituelles aquatiques présentes dans plusieurs régions d'Afrique de l'Ouest et au-delà ; la représentation en sirène et ses attributs sont une adaptation fictionnelle LITD 1 et non une reconstitution historique uniforme.
+- **Direction artistique validée :** entité aquatique féminine majestueuse et ambivalente, peau sombre, longue chevelure ornée, queue irisée turquoise, serpent blanc et rouge, parures de cauris, or et perles, textiles rouges, ruines et eaux nocturnes ; fusion sino-gothico-dark fantasy.
+- **Composition :** illustration centrale, quatre vues de rotation, six expressions, études de l'œil, des écailles, de la coiffure, des bijoux, du serpent et des tissus, matériaux, palette, silhouettes et deux variantes exploratoires.
+- **Attention :** le bandeau « CONCEPT V1 — PROPOSITION » présent dans l'image est antérieur à la validation ; ne pas modifier l'original.
+- **Archivage binaire GitHub : NON vérifié.** L'entrée documentaire n'atteste pas que le PNG original soit présent dans GitHub.
+- **Suivi au 20 novembre 2026 :** 20/25 planches validées (80 %), Afrique de l'Ouest 4/5 ; projet global LITD 1 : À évaluer.
