@@ -32,3 +32,15 @@
 - **Attention :** le bandeau « CONCEPT V1 — PROPOSITION » imprimé dans le PNG précède sa validation ; conserver l'original inchangé.
 - **Archivage binaire GitHub : NON vérifié.** La fiche ne prouve pas que le PNG original se trouve dans le dépôt.
 - **Suivi au 20 novembre 2026 :** 23/25 planches validées (92 %), série aztèque 3/5 ; projet global LITD 1 : À évaluer.
+
+## Itzpapálotl V1 — Le Papillon d'Obsidienne
+
+- **Statut artistique : VALIDÉ** explicitement par l'utilisateur le 20 novembre 2026 ; préserver la planche PNG originale V1 sans retouche ni substitution.
+- **PNG original :** `LITD1_BEST_AZT_ITZPAPALOTL_PAPILLON_OBSIDIENNE_V1_VALIDEE.png`.
+- **Bibliothèque ChatGPT :** `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_AZT_ITZPAPALOTL_PAPILLON_OBSIDIENNE_V1_VALIDEE.png` (upload réussi).
+- **Inspiration :** Itzpapálotl, figure des traditions mexicas associée au papillon d'obsidienne et au Tamoanchan ; l'apparence de cette planche relève d'une adaptation fictionnelle LITD 1, non d'une restitution historique.
+- **Direction artistique :** entité féminine surnaturelle, ailes articulées aux lames d'obsidienne, coiffe cérémonielle mexica, plumes rouges, turquoise, or, tissus rituels, ruines sous éclipse ; identité sino-gothico-dark fantasy.
+- **Composition :** illustration principale, quatre vues de rotation, six expressions, détails des yeux, du visage, des ailes, griffes, parures et textiles, études de matières, palette, silhouettes et deux variantes exploratoires.
+- **Attention :** le bandeau « CONCEPT V1 — PROPOSITION » dans le PNG précède la validation ; ne pas modifier le master.
+- **Archivage binaire GitHub : NON vérifié.** La description documentaire ne prouve pas la présence du PNG dans GitHub.
+- **Suivi au 20 novembre 2026 :** 24/25 planches validées (96 %), série aztèque 4/5 ; projet global LITD 1 : À évaluer.
