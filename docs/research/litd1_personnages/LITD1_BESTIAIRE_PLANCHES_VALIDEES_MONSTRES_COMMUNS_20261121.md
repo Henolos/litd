@@ -135,3 +135,16 @@
 - **Attention :** bandeau `CONCEPT V1 — PROPOSITION` imprimé avant validation ; conserver l'image originale inchangée. Les éventuelles nouvelles images d'armure générées après validation ne remplacent pas cet original.
 - **Archivage binaire GitHub : NON VÉRIFIÉ.** La fiche documentaire n'atteste pas la présence du PNG dans GitHub.
 - **Suivi :** monstres communs 10/15 validés (67 % arrondi) ; projet global LITD 1 : À évaluer.
+
+## Feu follet V1 — L'Âme errante
+
+- **Statut : VALIDÉ ARTISTIQUEMENT**, confirmation explicite de l'utilisateur le 21 novembre 2026 ; conserver le PNG original V1 sans retouche ni substitution.
+- **PNG original :** `LITD1_BEST_COMMUN_FEU_FOLLET_AME_ERRANTE_V1_VALIDEE.png`.
+- **Bibliothèque ChatGPT :** `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_COMMUN_FEU_FOLLET_AME_ERRANTE_V1_VALIDEE.png` (upload réussi).
+- **Direction artistique :** esprit de flamme spectrale flottant, sans corps physique, cœur bleu turquoise lumineux, volutes, rubans rouges déchirés, talismans et clochettes rituelles, ambiance de cimetière sous lune rouge ; identité sino-gothico-dark fantasy.
+- **Rôle envisagé :** ennemi commun insaisissable, désorientation, esquive par dispersion, absorption d'énergie et soutien spirituel ; mécaniques de gameplay à valider séparément.
+- **Composition :** illustration centrale, quatre rotations, six attitudes, études du cœur lumineux, des étoffes, talismans, clochette, ornement et flamme ; silhouettes, matériaux, palette ; variantes feu follet errant et feu follet vorace.
+- **Référence de présentation :** Anubis V2.
+- **Attention :** bandeau `CONCEPT V1 — PROPOSITION` imprimé avant validation ; conserver le PNG original.
+- **Archivage binaire GitHub : NON VÉRIFIÉ.** La fiche documentaire ne prouve pas le transfert du PNG dans le dépôt.
+- **Suivi :** monstres communs 11/15 validés (73 % arrondi) ; projet global LITD 1 : À évaluer.
