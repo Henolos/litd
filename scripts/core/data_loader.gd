@@ -4,6 +4,7 @@ var classes: Array = []
 var races: Array = []
 var heroes: Array = []
 var enemies: Array = []
+var bestiary_catalog: Dictionary = {}
 var skills: Array = []
 var equipment: Array = []
 var equipment_rarities: Array = []
@@ -33,6 +34,8 @@ func reload_all() -> void:
     races = load_json("res://data/races.json")
     heroes = load_json("res://data/heroes.json")
     enemies = load_json("res://data/enemies.json")
+    var bestiary_value = load_json("res://data/bestiary_catalog.json")
+    bestiary_catalog = bestiary_value if typeof(bestiary_value) == TYPE_DICTIONARY else {}
     skills = load_json("res://data/skills.json")
     equipment = load_json("res://data/equipment.json")
     var starting_quartet_equipment = load_json("res://data/equipment_starting_quartet.json")
