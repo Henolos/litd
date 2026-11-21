@@ -1,6 +1,6 @@
 # LITD 1 — Manifeste des planches mythologiques validées
 
-Contrôle local : 2026-11-21. Les 19 originaux sont archivés sans retouche ni recompression. Les tailles et SHA-256 ont été recalculées sur les fichiers sources de la bibliothèque avant transfert.
+Contrôle local : 2026-11-21. Les 20 originaux hors lot égyptien sont archivés sans retouche ni recompression. Les tailles et SHA-256 ont été recalculées sur les fichiers sources de la bibliothèque avant transfert.
 
 | Tradition / aire culturelle | Original | Chemin dans le dépôt | Taille (octets) | SHA-256 |
 |---|---|---|---:|---|
@@ -13,6 +13,7 @@ Contrôle local : 2026-11-21. Les 19 originaux sont archivés sans retouche ni r
 | Aztèque / mexica | `LITD1_BEST_AZT_ITZPAPALOTL_PAPILLON_OBSIDIENNE_V1_VALIDEE.png` | `docs/research/litd1_personnages/LITD1_BEST_AZT_ITZPAPALOTL_PAPILLON_OBSIDIENNE_V1_VALIDEE.png` | 3259819 | `5625e722c3d56e918212c16da7b819e4e23f34833709560a62e74d162ae2fb13` |
 | Aztèque / mexica | `LITD1_BEST_AZT_MICTLANTECUHTLI_SEIGNEUR_MICTLAN_V1_VALIDEE.png` | `docs/research/litd1_personnages/LITD1_BEST_AZT_MICTLANTECUHTLI_SEIGNEUR_MICTLAN_V1_VALIDEE.png` | 3063908 | `39cce8c21a55a3f32898f2007a4e57b386fb2a4d4bfc4df9ac68a9a6feec7ddc` |
 | Aztèque / mexica | `LITD1_BEST_AZT_XOLOTL_GUIDE_PASSAGES_V1_VALIDEE.png` | `docs/research/litd1_personnages/LITD1_BEST_AZT_XOLOTL_GUIDE_PASSAGES_V1_VALIDEE.png` | 3047471 | `e3e3f56239b58ebac916207179e509e28254180a21283631f531119ebb859413` |
+| Aztèque / mexica | `LITD1_BEST_AZT_TZITZIMIME_DEVOREUSE_ETOILES_V1_VALIDEE_ORIGINAL.jpeg` | `docs/research/litd1_personnages/LITD1_BEST_AZT_TZITZIMIME_DEVOREUSE_ETOILES_V1_VALIDEE_ORIGINAL.jpeg` | 975382 | `0aea36022568d81eebb9b34f93563b736e136af6d68572019228379adce053a3` |
 | Britannique / celte | `LITD1_BEST_BRIT_BANSHEE_PLEUREUSE_FUNEBRE_V2_VALIDEE.png` | `docs/research/litd1_personnages/LITD1_BEST_BRIT_BANSHEE_PLEUREUSE_FUNEBRE_V2_VALIDEE.png` | 2887174 | `cf706aa7220855c03c4fde5a86b97e162cb0dc3a7015211f9de451f72cf54e02` |
 | Britannique / celte | `LITD1_BEST_BRIT_BLACK_ANNIS_SORCIERE_ECORCHEE_V1_VALIDEE.png` | `docs/research/litd1_personnages/LITD1_BEST_BRIT_BLACK_ANNIS_SORCIERE_ECORCHEE_V1_VALIDEE.png` | 3087858 | `16ce8e9ee4626c5f8c916b1a21c79c9afbc2ee65c6b87dd0758d790fc2add511` |
 | Britannique / celte | `LITD1_BEST_BRIT_FACHAN_MONOCULAIRE_HIGHLANDS_V1_VALIDEE.png` | `docs/research/litd1_personnages/LITD1_BEST_BRIT_FACHAN_MONOCULAIRE_HIGHLANDS_V1_VALIDEE.png` | 2999496 | `74df52ceea0de36bdd169d45a76f081379f8e17e34f6903f86bb3e363afb6cb1` |
@@ -23,6 +24,11 @@ Contrôle local : 2026-11-21. Les 19 originaux sont archivés sans retouche ni r
 | Slave | `LITD1_BEST_SLAVE_RUSALKA_NOYEE_DES_SAULES_V1_VALIDEE.png` | `docs/research/litd1_personnages/LITD1_BEST_SLAVE_RUSALKA_NOYEE_DES_SAULES_V1_VALIDEE.png` | 3163306 | `bc13590fff4791211f88ae651f21e8b0fc5a94dce66a471e6c03d973d06f3340` |
 | Slave | `LITD1_BEST_SLAVE_VODYANOY_MAITRE_DES_EAUX_V1_VALIDEE.png` | `docs/research/litd1_personnages/LITD1_BEST_SLAVE_VODYANOY_MAITRE_DES_EAUX_V1_VALIDEE.png` | 3171056 | `3a41f70c5aa63dec59532700d437591bf8044bca71a73ca2aae482c63c137b6f` |
 | Slave | `LITD1_BEST_SLAVE_ZMEY_DEVOREUR_DES_ORAGES_V1_VALIDEE.png` | `docs/research/litd1_personnages/LITD1_BEST_SLAVE_ZMEY_DEVOREUR_DES_ORAGES_V1_VALIDEE.png` | 3413053 | `a58654ecf54cad24734415bb9636aa9e182eca18fe6ee6ea50a6d1bb8a03e261` |
+
+
+## Validation de Tzitzimime
+
+Le JPEG est conservé exactement tel que fourni, sans retouche ni conversion. Sa taille source est de 975382 octets et sa SHA-256 est `0aea36022568d81eebb9b34f93563b736e136af6d68572019228379adce053a3`. L’image porte encore son cartouche « CONCEPT V1 — NON VALIDÉ » : l’utilisateur a validé cette planche le 2026-11-21 après réception de cette version. Le cartouche décrit son état initial; il est préservé dans le fichier original.
 
 ## Contrôle du périmètre
 
