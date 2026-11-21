@@ -68,5 +68,8 @@ Les 8 références ci-dessous ont un sujet dont le nom correspond clairement à 
 
 - Source : `main` au commit `7354938b` (21 novembre 2026).
 - 39 entrées de `data/enemies.json` et les 39 chemins `assets/enemies/enemy_01.webp` à `enemy_39.webp` présents.
-- 21 références validées de créatures mythologiques / folkloriques dans `docs/research/litd1_personnages`; 21 références documentées dans `docs/art/reconciled_bestiary_manifest_20261111.json`; 15 références communes supplémentaires recensées dans `docs/art/LITD1_BEST_COMMUNS_15_SHA256_20261121.csv`.
+- `docs/art/reconciled_bestiary_manifest_20261111.json` documente 21 planches validées : 9 grecques (Minotaure, Gorgone, Cerbère, Harpie, Cyclope, Chimère, Basilic, Hydre, Sphinx), 7 japonaises (Oni, Karasu-tengu, Jorōgumo, Kappa, Yuki-onna, Nue, Kitsune) et 5 nordiques (Draugr, Troll nordique, Valkyrie spectrale, Loup décharné, Golem de pierre runique).
 - Les contrôles de ce rapport sont documentaires et dimensionnels; aucun import Godot ni affichage visuel en jeu n’a été testé.
+
+- `docs/art/LITD1_BEST_COMMUNS_15_SHA256_20261121.csv` recense 15 planches communes validées supplémentaires, archivées dans `art/library/bestiary/`.
+- `docs/research/litd1_personnages/` contient séparément 25 planches : 5 égyptiennes, 5 aztèques/mexicas, 5 d’Afrique de l’Ouest, 5 britanniques/celtiques et 5 slaves; la planche Tzitzimime y est comprise dans les cinq aztèques/mexicas.
