@@ -18,3 +18,16 @@
 - **Attention :** bandeau `CONCEPT V1 — PROPOSITION` imprimé avant la validation ; préserver l'image originale.
 - **Archivage binaire GitHub : NON VÉRIFIÉ.** Ne pas annoncer l'archivage complet du PNG avant contrôle.
 - **Suivi :** monstres communs 1/15 validé (7 % arrondi) ; projet global LITD 1 : À évaluer.
+
+## Goule affamée V1 — La Dévoreuse des Charniers
+
+- **Statut : VALIDÉ ARTISTIQUEMENT**, confirmation explicite de l'utilisateur le 21 novembre 2026 après examen de l'apparence ; préserver exactement la V1 originale sans retouche ni substitution.
+- **PNG original :** `LITD1_BEST_COMMUN_GOULE_AFFAMEE_DEVOREUSE_CHARNIERS_V1_VALIDEE.png`.
+- **Bibliothèque ChatGPT :** `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_COMMUN_GOULE_AFFAMEE_DEVOREUSE_CHARNIERS_V1_VALIDEE.png` (copie réussie).
+- **Description :** humanoïde mort-vivant très décharné, posture voûtée et nerveuse, membres longs, griffes, dentition déformée, chairs nécrosées, cheveux longs épars, bandelettes et textiles funéraires déchirés ; charniers et ruines nocturnes.
+- **Rôle :** ennemi commun rapide et agressif, adapté aux rencontres fréquentes en groupe.
+- **Composition :** illustration centrale, quatre vues de rotation, six attitudes, études de l'œil, dentition, peau, griffes, bandages et textiles ; palette, matières, silhouettes ; variantes charognard des cryptes et goule des fosses.
+- **Référence de présentation :** Anubis V2 ; direction sino-gothico-dark fantasy.
+- **Attention :** bandeau `CONCEPT V1 — PROPOSITION` imprimé avant validation ; préserver le PNG original.
+- **Archivage binaire GitHub : NON VÉRIFIÉ.** L'enregistrement documentaire ne constitue pas la preuve d'un transfert du PNG dans GitHub.
+- **Suivi :** monstres communs 2/15 validés (13 % arrondi) ; projet global LITD 1 : À évaluer.
