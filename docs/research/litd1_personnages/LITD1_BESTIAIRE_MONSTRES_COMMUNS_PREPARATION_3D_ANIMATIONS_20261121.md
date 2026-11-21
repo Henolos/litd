@@ -42,3 +42,11 @@ Localiser et vérifier les 15 PNG binaires originaux dans le dépôt (tous chemi
 - **GitHub :** 15/15 chemins testés sous `docs/research/litd1_personnages/` renvoient 404 sur la branche documentaire. Recherche globale du dépôt non exhaustive, aucun PNG binaire GitHub vérifié, aucune comparaison SHA-256 GitHub réalisée.
 - **Prototype Mimique :** script Blender de blockout préparé `LITD1_Mimique_V2_prototype_blender.py` (artefact de conversation). Vérification de syntaxe Python effectuée ; **Blender indisponible dans l'environnement**, donc génération `.blend`, rendu et test d'indiscernabilité non exécutés. Le script n'est pas une reconstruction fidèle de la planche artistique et ne doit pas être considéré comme un modèle final.
 - **Prochaine étape :** importer les PNG exacts dans un emplacement validé du dépôt avec un outil compatible binaire, comparer les SHA-256 ; exécuter le script de blockout dans Blender et vérifier visuellement la forme fermée avant intégration au moteur de jeu.
+
+## Script d'intégration binaire préparé et testé (21 novembre 2026)
+
+- Livrable de conversation : `LITD1_integrer_15_png_github.py`, prenant en entrée un clone Git propre, l'archive ZIP des 15 PNG et le manifeste SHA-256.
+- Vérifications locales exécutées : 15/15 correspondances ZIP↔manifeste ; syntaxe Python ; essai complet sur un dépôt Git temporaire avec branche documentaire et commit de 15 PNG ; second passage idempotent (aucun nouveau commit) ; copie de travail propre.
+- **Non exécuté sur le vrai dépôt `Henolos/litd`** : le conteneur n'a pas de connectivité réseau vers GitHub et le connecteur disponible ne permet pas de transmettre directement les 42 Mo de binaires locaux.
+- **Aucun push distant, aucune comparaison distante, aucun changement de `main`.** Le test sur dépôt temporaire ne valide pas le dépôt réel.
+- Étape suivante : exécuter le script sur un clone authentifié de `Henolos/litd` (branche documentaire), pousser la branche puis récupérer les 15 PNG depuis GitHub et comparer leurs SHA-256 au manifeste.
