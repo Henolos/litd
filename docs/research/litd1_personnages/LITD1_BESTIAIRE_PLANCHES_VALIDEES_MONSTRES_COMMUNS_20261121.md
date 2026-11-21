@@ -58,3 +58,16 @@
 - **Attention :** bandeau `CONCEPT V1 — PROPOSITION` imprimé avant validation ; préserver le PNG original.
 - **Archivage binaire GitHub : NON VÉRIFIÉ.** La fiche documentaire ne prouve pas le transfert du PNG dans le dépôt.
 - **Suivi :** monstres communs 4/15 validés (27 % arrondi) ; projet global LITD 1 : À évaluer.
+
+## Kobold des galeries V1 — Le Mineur obstiné
+
+- **Statut : VALIDÉ ARTISTIQUEMENT**, confirmation explicite de l'utilisateur le 21 novembre 2026 ; conserver le PNG original V1 sans retouche ni substitution.
+- **PNG original :** `LITD1_BEST_COMMUN_KOBOLD_GALERIES_MINEUR_OBSTINE_V1_VALIDEE.png`.
+- **Bibliothèque ChatGPT :** `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_COMMUN_KOBOLD_GALERIES_MINEUR_OBSTINE_V1_VALIDEE.png` (copie réussie).
+- **Direction artistique :** petit reptilien bipède à écailles brun-rouge, capuche rituelle rouge, armure récupérée, pioche, lanterne, sacoches, cristaux rouges et parures ; influence sino-gothico-dark fantasy, rôle d'ennemi ordinaire des galeries souterraines.
+- **Rôle envisagé :** exploration et pillage minier, pose de pièges et contrôle de zones souterraines ; mécaniques de gameplay à valider séparément.
+- **Composition :** illustration centrale, quatre vues de rotation, six expressions, études de l'œil, des écailles, des mains, du sac, de la lanterne et du tissu ; silhouettes, matériaux, palette ; variantes mineur équipé et poseur de pièges.
+- **Référence de présentation :** Anubis V2.
+- **Attention :** bandeau `CONCEPT V1 — PROPOSITION` imprimé avant validation ; préserver le PNG original.
+- **Archivage binaire GitHub : NON VÉRIFIÉ.** La fiche documentaire ne prouve pas le transfert du PNG dans le dépôt.
+- **Suivi :** monstres communs 5/15 validés (33 % arrondi) ; projet global LITD 1 : À évaluer.
