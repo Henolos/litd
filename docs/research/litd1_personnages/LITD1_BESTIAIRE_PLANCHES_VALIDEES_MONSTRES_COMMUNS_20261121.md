@@ -188,3 +188,17 @@
 - **Attention :** bandeau `CONCEPT V1 — PROPOSITION` imprimé avant validation ; préserver le PNG original inchangé.
 - **Archivage binaire GitHub : NON VÉRIFIÉ.** L'entrée documentaire ne prouve pas le transfert du PNG dans le dépôt.
 - **Suivi :** monstres communs 14/15 validés (93 % arrondi) ; projet global LITD 1 : À évaluer.
+
+## Mimique V2 — Le Coffre affamé
+
+- **Statut : VALIDÉ ARTISTIQUEMENT**, confirmation explicite de l'utilisateur le 21 novembre 2026. **V2 définitive**, V1 proposition antérieure non retenue. Conserver le PNG V2 original sans retouche ni substitution.
+- **PNG original :** `LITD1_BEST_COMMUN_MIMIQUE_COFFRE_AFFAME_V2_VALIDEE.png`.
+- **Bibliothèque ChatGPT :** `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_COMMUN_MIMIQUE_COFFRE_AFFAME_V2_VALIDEE.png` (upload confirmé).
+- **Règle artistique et de gameplay majeure :** **Mimique fermée et coffre ordinaire strictement indiscernables**, partageant le même modèle 3D, les mêmes textures, dimensions, ferrures, serrure et animations au repos ; aucun indice visuel. Les membres, crocs et organes ne se révèlent qu'au déclenchement de la transformation. L'exécution technique de cette règle reste à réaliser et tester dans le jeu.
+- **Direction artistique :** coffre élégant en bois sombre laqué, ferrures et dragons dorés, serrure ronde, ornements rouges, fusion sino-gothico-dark fantasy. À l'ouverture, gueule aux longues dents, langue organique, **deux bras articulés aux griffes puissantes** et pattes locomotrices dissimulées au repos.
+- **Double usage :** la forme fermée sert de référence de design pour les coffres ordinaires de LITD 1 ; distinguer les variantes de qualité sans créer d'indice permettant de reconnaître une Mimique.
+- **Composition :** illustration centrale transformée, quatre vues du coffre fermé, séquence de transformation en cinq étapes, six attitudes, études dents/langue/bras/griffes/articulations/serrure, silhouettes, textures et palette ; variantes de finition coffre ancien et coffre précieux.
+- **Référence de présentation :** Anubis V2.
+- **Attention :** bandeau `CONCEPT V1 — PROPOSITION` imprimé sur la planche avant validation ; ne pas modifier le PNG validé pour corriger ce bandeau.
+- **Archivage binaire GitHub : NON VÉRIFIÉ.** L'inscription documentaire ne démontre pas le transfert du PNG dans le dépôt.
+- **Bilan artistique de la série des monstres communs : 15/15 VALIDÉS (100 %).** Modélisation, animations, gameplay et intégration non validés. **Avancement du projet global LITD 1 : À évaluer.**
