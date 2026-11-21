@@ -174,3 +174,17 @@
 - **Attention :** bandeau `CONCEPT V1 — PROPOSITION` imprimé avant validation ; conserver le PNG original inchangé.
 - **Archivage binaire GitHub : NON VÉRIFIÉ.** L'entrée documentaire ne prouve pas le transfert du PNG dans le dépôt.
 - **Suivi :** monstres communs 13/15 validés (87 % arrondi) ; projet global LITD 1 : À évaluer.
+
+## Diablotin V1 — Le Farceur maléfique
+
+- **Statut : VALIDÉ ARTISTIQUEMENT** explicitement le 21 novembre 2026 ; conserver la V1 originale exactement telle qu'affichée, sans retouche ni substitution.
+- **PNG original :** `LITD1_BEST_COMMUN_DIABLOTIN_FARCEUR_MALEFIQUE_V1_VALIDEE.png`.
+- **Bibliothèque ChatGPT :** `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_COMMUN_DIABLOTIN_FARCEUR_MALEFIQUE_V1_VALIDEE.png` (upload confirmé).
+- **Direction artistique :** petit démon espiègle aux cornes, oreilles pointues démesurées, yeux rouges, griffes, crocs, peau pâle marquée de rouge, étoffes rituelles usées, talismans et grelots ; esthétique sino-gothico-dark fantasy.
+- **Particularité expressément acceptée :** **aucune aile clairement visible** sur la V1 ; ne pas en ajouter à la planche validée.
+- **Rôle envisagé :** ennemi commun rusé et rapide, harcèlement, illusions, diversion et malus ; mécaniques de gameplay à valider séparément.
+- **Composition :** illustration centrale, quatre vues de rotation, six attitudes, études de corne, œil, peau, talisman, grelot et gourde ; silhouettes, matériaux, palette ; variantes diablotin espiègle et diablotin corrompu.
+- **Référence de présentation :** Anubis V2.
+- **Attention :** bandeau `CONCEPT V1 — PROPOSITION` imprimé avant validation ; préserver le PNG original inchangé.
+- **Archivage binaire GitHub : NON VÉRIFIÉ.** L'entrée documentaire ne prouve pas le transfert du PNG dans le dépôt.
+- **Suivi :** monstres communs 14/15 validés (93 % arrondi) ; projet global LITD 1 : À évaluer.
