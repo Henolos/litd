@@ -148,3 +148,16 @@
 - **Attention :** bandeau `CONCEPT V1 — PROPOSITION` imprimé avant validation ; conserver le PNG original.
 - **Archivage binaire GitHub : NON VÉRIFIÉ.** La fiche documentaire ne prouve pas le transfert du PNG dans le dépôt.
 - **Suivi :** monstres communs 11/15 validés (73 % arrondi) ; projet global LITD 1 : À évaluer.
+
+## Plante carnivore V1 — La Gueule des marais
+
+- **Statut : VALIDÉ ARTISTIQUEMENT** explicitement le 21 novembre 2026 ; conserver exactement la V1 originale, sans retouche ni substitution.
+- **PNG original :** `LITD1_BEST_COMMUN_PLANTE_CARNIVORE_GUEULE_MARAIS_V1_VALIDEE.png`.
+- **Bibliothèque ChatGPT :** `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_COMMUN_PLANTE_CARNIVORE_GUEULE_MARAIS_V1_VALIDEE.png` (upload confirmé).
+- **Direction artistique :** plante prédatrice de marais, énorme gueule aux dents acérées, pétales rouge-pourpre, lianes de saisie, feuilles déchirées, bourgeons toxiques, spores, talismans et gravures rituelles ; esthétique sino-gothico-dark fantasy.
+- **Rôle envisagé :** piège, contrôle de zone, entrave, sécrétions et spores affaiblissantes ; mécaniques de gameplay à valider séparément.
+- **Composition :** illustration centrale, quatre vues de rotation, six attitudes, détails de la dentition, des sécrétions, feuilles, talismans, bourgeons et épines ; palette, matériaux, silhouettes ; variantes plante des marais et plante toxique.
+- **Référence de présentation :** Anubis V2.
+- **Attention :** bandeau `CONCEPT V1 — PROPOSITION` imprimé avant validation ; conserver le PNG original inchangé.
+- **Archivage binaire GitHub : NON VÉRIFIÉ.** L'entrée documentaire ne prouve pas le transfert du PNG dans le dépôt.
+- **Suivi :** monstres communs 12/15 validés (80 %) ; projet global LITD 1 : À évaluer.
