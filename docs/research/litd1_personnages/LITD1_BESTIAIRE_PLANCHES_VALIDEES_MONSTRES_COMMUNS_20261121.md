@@ -161,3 +161,16 @@
 - **Attention :** bandeau `CONCEPT V1 — PROPOSITION` imprimé avant validation ; conserver le PNG original inchangé.
 - **Archivage binaire GitHub : NON VÉRIFIÉ.** L'entrée documentaire ne prouve pas le transfert du PNG dans le dépôt.
 - **Suivi :** monstres communs 12/15 validés (80 %) ; projet global LITD 1 : À évaluer.
+
+## Noyé errant V1 — Le Revenant des eaux
+
+- **Statut : VALIDÉ ARTISTIQUEMENT** explicitement le 21 novembre 2026 ; conserver exactement la V1 originale, sans retouche ni substitution.
+- **PNG original :** `LITD1_BEST_COMMUN_NOYE_ERRANT_REVENANT_EAUX_V1_VALIDEE.png`.
+- **Bibliothèque ChatGPT :** `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_COMMUN_NOYE_ERRANT_REVENANT_EAUX_V1_VALIDEE.png` (upload confirmé).
+- **Direction artistique :** mort-vivant aquatique décomposé, peau livide et gorgée d'eau, longs cheveux détrempés, vêtements funéraires en lambeaux d'inspiration chinoise, algues, coquillages, talismans et clochette ; esthétique sino-gothico-dark fantasy.
+- **Rôle envisagé :** ennemi commun de marais et zones inondées, surgissement de l'eau, saisie, ralentissement et altérations aquatiques ; mécaniques de gameplay à valider séparément.
+- **Composition :** illustration centrale, quatre vues de rotation, six attitudes, détails peau, coquillages, tissu, talisman, cloche et algues ; silhouettes, matériaux, palette ; variantes noyé marécageux et noyé spectral.
+- **Référence de présentation :** Anubis V2.
+- **Attention :** bandeau `CONCEPT V1 — PROPOSITION` imprimé avant validation ; conserver le PNG original inchangé.
+- **Archivage binaire GitHub : NON VÉRIFIÉ.** L'entrée documentaire ne prouve pas le transfert du PNG dans le dépôt.
+- **Suivi :** monstres communs 13/15 validés (87 % arrondi) ; projet global LITD 1 : À évaluer.
