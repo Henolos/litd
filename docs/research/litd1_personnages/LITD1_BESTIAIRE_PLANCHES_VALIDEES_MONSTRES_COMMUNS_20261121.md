@@ -122,3 +122,16 @@
 - **Attention :** bandeau `CONCEPT V1 — PROPOSITION` imprimé avant validation ; préserver le PNG original.
 - **Archivage binaire GitHub : NON VÉRIFIÉ.** La fiche documentaire ne prouve pas le transfert du PNG dans le dépôt.
 - **Suivi :** monstres communs 9/15 validés (60 %) ; projet global LITD 1 : À évaluer.
+
+## Armure hantée V1 — Le Vestige animé
+
+- **Statut : VALIDÉ ARTISTIQUEMENT**, confirmation explicite de l'utilisateur le 21 novembre 2026 ; préserver exactement la planche V1 présentée avant validation, sans retouche ni substitution.
+- **PNG original :** `LITD1_BEST_COMMUN_ARMURE_HANTEE_VESTIGE_ANIME_V1_VALIDEE.png`.
+- **Bibliothèque ChatGPT :** `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_COMMUN_ARMURE_HANTEE_VESTIGE_ANIME_V1_VALIDEE.png` (upload réussi de l'original V1).
+- **Exigence essentielle validée :** armure fantomatique CREUSE, animée par une énergie spectrale cyan, **sans squelette ni corps humain visible** ; pièces d'armure et tissus flottants, métal noir et or, casque à ornements, gravures funéraires, talismans et étoffes rouges ; esthétique sino-gothico-dark fantasy.
+- **Composition :** illustration centrale, quatre vues de rotation, six attitudes, études du casque, de l'épaulière, du plastron, du talisman, des tissus et de l'énergie spectrale ; silhouettes, matériaux, palette ; variantes armure de garde et armure de commandant.
+- **Rôle envisagé :** combattant robuste et contrôle de zone ; gameplay à valider séparément.
+- **Référence de présentation :** Anubis V2.
+- **Attention :** bandeau `CONCEPT V1 — PROPOSITION` imprimé avant validation ; conserver l'image originale inchangée. Les éventuelles nouvelles images d'armure générées après validation ne remplacent pas cet original.
+- **Archivage binaire GitHub : NON VÉRIFIÉ.** La fiche documentaire n'atteste pas la présence du PNG dans GitHub.
+- **Suivi :** monstres communs 10/15 validés (67 % arrondi) ; projet global LITD 1 : À évaluer.
