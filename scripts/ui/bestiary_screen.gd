@@ -10,7 +10,6 @@ const MUTED := Color("#a79e90")
 var catalog: Dictionary = {}
 var rows: Array[Dictionary] = []
 var displayed_rows: Array[Dictionary] = []
-var image_cache: Dictionary = {}
 var filter_box: OptionButton
 var search_box: LineEdit
 var item_list: ItemList
@@ -204,24 +203,37 @@ func _show_row(index: int) -> void:
 	zoom_button.disabled = portrait.texture == null
 	title_label.text = str(row.get("name", "Sans nom"))
 	if row.get("kind") == "runtime":
-		var ref_status := "Référence canonique associée par nom; contrôle visuel à faire." if row.get("reference_id") else "Référence artistique canonique non associée."
-		status_label.text = "Monstre runtime #%02d · image actuelle à contrôler · emplacement d’affichage 3:4" % int(row.get("enemy_id", 0))
-		reference_label.text = "%s\n%s" % [ref_status, str(row.get("reference_id", "Aucune référence associée"))]
+		var ref_status: String
+		if row.get("reference_status") == "name_match_visual_review_pending":
+			ref_status = "Référence validée associée par nom; contrôle visuel du portrait à faire."
+		elif row.get("reference_status") == "archived_reference_linked":
+			ref_status = "Planche validée reliée à une entrée runtime; profil de combat provisoire."
+		else:
+			ref_status = "Référence artistique canonique non associée."
+		status_label.text = "Monstre runtime #%02d · image dans le cadre 3:4" % int(row.get("enemy_id", 0))
+		reference_label.text = "%s\nRéférence : %s\nCombat : %s" % [ref_status, str(row.get("reference_id", "Aucune référence associée")), str(row.get("combat_profile_status", "existing_runtime_profile"))]
 	else:
-		status_label.text = "%s · %s · planche validée · affichée dans un cadre 3:4 (source entière conservée)" % [str(row.get("group", "Archive")), str(row.get("culture", ""))]
+		status_label.text = "%s · %s · planche validée · affichée dans un cadre 3:4 (source entière conservée)" % [_group_label(str(row.get("group", "Archive"))), str(row.get("culture", ""))]
 		reference_label.text = "Source : %s" % path
 
+func _group_label(group_id: String) -> String:
+	match group_id:
+		"folklore_greek_japanese_nordic": return "Folklore grec, japonais et nordique"
+		"common_creatures": return "Monstres communs"
+		"world_mythologies": return "Mythologies du monde"
+		_: return group_id
+
 func _load_image(path: String) -> Texture2D:
-	if image_cache.has(path):
-		return image_cache[path]
-	if path.is_empty() or not ResourceLoader.exists(path):
+	var local_path := path.replace("res://", "")
+	if path.is_empty() or not FileAccess.file_exists(path):
 		push_warning("Image de bestiaire inaccessible: " + path)
 		return null
-	var resource := load(path)
-	if resource is Texture2D:
-		image_cache[path] = resource
-		return resource
-	return null
+	var image := Image.new()
+	var error := image.load(local_path)
+	if error != OK:
+		push_warning("Image de bestiaire illisible: " + path)
+		return null
+	return ImageTexture.create_from_image(image)
 
 func _open_large_image() -> void:
 	var selected := item_list.get_selected_items()
