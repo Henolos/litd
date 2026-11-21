@@ -31,3 +31,17 @@
 - **Attention :** bandeau `CONCEPT V1 — PROPOSITION` imprimé avant validation ; préserver le PNG original.
 - **Archivage binaire GitHub : NON VÉRIFIÉ.** L'enregistrement documentaire ne constitue pas la preuve d'un transfert du PNG dans GitHub.
 - **Suivi :** monstres communs 2/15 validés (13 % arrondi) ; projet global LITD 1 : À évaluer.
+
+## Leprechaun V1 — Le Voleur facétieux
+
+- **Statut : VALIDÉ ARTISTIQUEMENT**, confirmation explicite de l'utilisateur le 21 novembre 2026 ; conserver la planche PNG originale V1 sans retouche ni substitution.
+- **PNG original :** `LITD1_BEST_COMMUN_LEPRECHAUN_VOLEUR_FACETIEUX_V1_VALIDEE.png`.
+- **Bibliothèque ChatGPT :** `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_COMMUN_LEPRECHAUN_VOLEUR_FACETIEUX_V1_VALIDEE.png` (copie réussie).
+- **Inspiration folklorique :** leprechaun du folklore irlandais ; les détails du costume, des artefacts et des pouvoirs sont une adaptation fictionnelle LITD 1.
+- **Direction artistique :** petit humanoïde roux et barbu, chapeau haut-de-forme vert à plumes rouges, vêtements verts et rouges brodés, nombreuses babioles et talismans, pièce d'or, sac et canne ; esthétique sino-gothico-dark fantasy, sans statut de boss.
+- **Rôle envisagé :** ennemi commun agile et rusé, illusions, pièges et vol d'objets ; mécaniques de gameplay à valider séparément.
+- **Composition :** illustration centrale, quatre vues de rotation, six expressions, études de l'œil, oreille, main, médaillon, gourde et tissu ; silhouettes, matériaux, palette ; variantes escroc des ruines et trappeur illusionniste.
+- **Référence de présentation :** Anubis V2.
+- **Attention :** bandeau `CONCEPT V1 — PROPOSITION` imprimé avant validation ; préserver le PNG original.
+- **Archivage binaire GitHub : NON VÉRIFIÉ.** La fiche documentaire ne prouve pas le transfert du PNG dans le dépôt.
+- **Suivi :** monstres communs 3/15 validés (20 %) ; projet global LITD 1 : À évaluer.
