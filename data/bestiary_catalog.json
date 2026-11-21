@@ -5,7 +5,8 @@
   "display_contract": {
     "portrait_slot_ratio": "3:4",
     "fit_mode": "contain",
-    "preserve_source_art": true
+    "preserve_source_art": true,
+    "source_images_must_not_be_cropped_or_recompressed": true
   },
   "runtime_entries": [
     {
@@ -13,17 +14,18 @@
       "name": "Goule affamée",
       "enemy_id": 1,
       "boss": false,
-      "source_image": "res://assets/enemies/enemy_01.webp",
+      "source_image": "res://art/library/bestiary/ghoul/reference.png",
       "image_dimensions": [
-        480,
-        760
+        1536,
+        1024
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "488e266e454c215282f37c22886f4b23199227a699645ae60ab3b906caf64d9c",
+      "image_status": "validated_reference_linked_by_name_pending_visual_review",
       "reference_id": "plate_ghoul",
       "reference_status": "name_match_visual_review_pending",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "4998569a531263591b01c86568eb714d3c63e311b6c63a0c9bcdd1a7319f7173"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_02",
@@ -36,11 +38,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "c949fa25b5b59ed2f18be317c39500a3e4dc410497b38aa142fafb0d6433439b",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "c949fa25b5b59ed2f18be317c39500a3e4dc410497b38aa142fafb0d6433439b"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_03",
@@ -53,11 +56,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "a38bf0090759f9e5c67a80eb812af0afd696b8fa717f0b6d6bd6754e7b337832",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "a38bf0090759f9e5c67a80eb812af0afd696b8fa717f0b6d6bd6754e7b337832"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_04",
@@ -70,11 +74,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "184dd3faf40a54730aef6ab18fe28cf5c73d387a1324a10e9461e1e3c9328154",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "184dd3faf40a54730aef6ab18fe28cf5c73d387a1324a10e9461e1e3c9328154"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_05",
@@ -87,130 +92,138 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "ff09cc951bdac2966a9e72ae8dd5ad60b66a5349662446c16f9013dc383c514a",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "ff09cc951bdac2966a9e72ae8dd5ad60b66a5349662446c16f9013dc383c514a"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_06",
       "name": "Gorgone",
       "enemy_id": 6,
       "boss": false,
-      "source_image": "res://assets/enemies/enemy_06.webp",
+      "source_image": "res://art/library/bestiary/gorgon/reference.jpeg",
       "image_dimensions": [
-        480,
-        760
+        1536,
+        1024
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "825f35da6bc80f06caa683803d557a653028d139ef102205dcd836556fc0ea82",
+      "image_status": "validated_reference_linked_by_name_pending_visual_review",
       "reference_id": "plate_gorgon",
       "reference_status": "name_match_visual_review_pending",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "84d4e17ee8175429e38f0e01681b79c910547069280a1ec87c9f4fcb3d90e1ae"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_07",
       "name": "Minotaure",
       "enemy_id": 7,
       "boss": false,
-      "source_image": "res://assets/enemies/enemy_07.webp",
+      "source_image": "res://art/library/bestiary/minotaur/reference.jpeg",
       "image_dimensions": [
-        480,
-        760
+        1536,
+        1024
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "4b91c4dd1eed8c04e084f5df89976228bb02a3240686069136e771ec601d0283",
+      "image_status": "validated_reference_linked_by_name_pending_visual_review",
       "reference_id": "plate_minotaur",
       "reference_status": "name_match_visual_review_pending",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "f1de27375a74aacd6f72772500f70baf1fa62e5eae1cdfb9778c5974f0ccc099"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_08",
       "name": "Oni",
       "enemy_id": 8,
       "boss": false,
-      "source_image": "res://assets/enemies/enemy_08.webp",
+      "source_image": "res://art/library/bestiary/oni/reference.jpeg",
       "image_dimensions": [
-        480,
-        760
+        1536,
+        1024
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "9920292ec992c278320feb629ddae83b96193f1d78f5e3d1c4223727599b26be",
+      "image_status": "validated_reference_linked_by_name_pending_visual_review",
       "reference_id": "plate_oni",
       "reference_status": "name_match_visual_review_pending",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "5f52d5710fd93f502a80fb4a6be460dbc128836574a5ca8b2cd07c0a2fb442b7"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_09",
       "name": "Tengu",
       "enemy_id": 9,
       "boss": false,
-      "source_image": "res://assets/enemies/enemy_09.webp",
+      "source_image": "res://art/library/bestiary/karasu_tengu/reference.jpeg",
       "image_dimensions": [
-        480,
-        760
+        1536,
+        1024
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "5fd6c2f5e0cece136bf107f258ce21c67b1fd2d1e0cfa89af421f16749d2903b",
+      "image_status": "validated_reference_linked_by_name_pending_visual_review",
       "reference_id": "plate_karasu_tengu",
       "reference_status": "name_match_visual_review_pending",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "cdf7071549cc7339737f353d6b4f735ab7f1d6ed7cf9efede0a4c3ba1e0e9346"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_10",
       "name": "Jorōgumo",
       "enemy_id": 10,
       "boss": false,
-      "source_image": "res://assets/enemies/enemy_10.webp",
+      "source_image": "res://art/library/bestiary/jorogumo/reference.jpg",
       "image_dimensions": [
-        480,
-        760
+        1536,
+        1024
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "d222d618fe9ac3de1089ffef28978bb170bde654dfb58e00eb6bd3d33c25c1cc",
+      "image_status": "validated_reference_linked_by_name_pending_visual_review",
       "reference_id": "plate_jorogumo",
       "reference_status": "name_match_visual_review_pending",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "8dcca770ad52a0c76bd678a14098335293d2af80afb565d63e4341e1fbf12198"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_11",
       "name": "Yuki-Onna",
       "enemy_id": 11,
       "boss": false,
-      "source_image": "res://assets/enemies/enemy_11.webp",
+      "source_image": "res://art/library/bestiary/yuki_onna/reference.jpeg",
       "image_dimensions": [
-        480,
-        760
+        1536,
+        1024
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "9f20397e1b57e76ef4a73a739babb1f1546cac6b6e8b15ed1f8d52c0b0c295fa",
+      "image_status": "validated_reference_linked_by_name_pending_visual_review",
       "reference_id": "plate_yuki_onna",
       "reference_status": "name_match_visual_review_pending",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "63daa592631107d1e782cdd442657ecc09993f822d1208494f1b32fb835b2804"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_12",
       "name": "Anubis",
       "enemy_id": 12,
       "boss": false,
-      "source_image": "res://assets/enemies/enemy_12.webp",
+      "source_image": "res://docs/research/litd1_personnages/LITD1_BEST_EGY_ANUBIS_PESEUR_DES_AMES_V2_VALIDEE.png",
       "image_dimensions": [
-        480,
-        760
+        1536,
+        1024
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "7b7b26fd93c0a2e884599bec168efe93b70b671c8272e6e8ce556fbeca0456e4",
+      "image_status": "validated_reference_linked_by_name_pending_visual_review",
       "reference_id": "plate_egy_anubis",
       "reference_status": "name_match_visual_review_pending",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "32b3dd9e395f5d2f6ac18d6c4ed5f88b53c7658d1c1c53d4a055e09bb4305272"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_13",
@@ -223,11 +236,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "a8365aa3feb67fd5b59e8667c7aafbae38680b5693036f0e67719fc991bac159",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "a8365aa3feb67fd5b59e8667c7aafbae38680b5693036f0e67719fc991bac159"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_14",
@@ -240,11 +254,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "c6017ad1c2801e11e46b6daba4ae5274ccc33c336aa234e4e0338ecadb3e1af0",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "c6017ad1c2801e11e46b6daba4ae5274ccc33c336aa234e4e0338ecadb3e1af0"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_15",
@@ -257,11 +272,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "9bfe6ab05471361c6636978b44c463c815f71bc95bf1ffd9b200f5191a9cf07b",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "9bfe6ab05471361c6636978b44c463c815f71bc95bf1ffd9b200f5191a9cf07b"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_16",
@@ -274,11 +290,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "18b1faf5d953c9140a4342a949f2e28531bfded935ba3782cf105d36b159769a",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "18b1faf5d953c9140a4342a949f2e28531bfded935ba3782cf105d36b159769a"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_17",
@@ -291,11 +308,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "278d86f7535796bf3d1e94a74b403acd6734f2d2b4c029f4b183e5431e87898c",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "278d86f7535796bf3d1e94a74b403acd6734f2d2b4c029f4b183e5431e87898c"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_18",
@@ -308,11 +326,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "ac8f736afe46bfe4a4912b4910890bc811bf0ff629ff19de850bc84b5b5b2bd9",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "ac8f736afe46bfe4a4912b4910890bc811bf0ff629ff19de850bc84b5b5b2bd9"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_19",
@@ -325,11 +344,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "0df0ce9cd7c6d8e4ce82277fd8f21f1c0a92e25bbd6d8a8ad3c41b0e6d26923a",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "0df0ce9cd7c6d8e4ce82277fd8f21f1c0a92e25bbd6d8a8ad3c41b0e6d26923a"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_20",
@@ -342,11 +362,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "7b6ab26a75c307872c4d3e6a4e668a6bb8d79fa6f2cb0446d3080a1f50afea08",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "7b6ab26a75c307872c4d3e6a4e668a6bb8d79fa6f2cb0446d3080a1f50afea08"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_21",
@@ -359,11 +380,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "c1116d099a15ad3de3e98119df978e586f51b96db0447842a392f877a792b85a",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "c1116d099a15ad3de3e98119df978e586f51b96db0447842a392f877a792b85a"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_22",
@@ -376,11 +398,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "b82aa80a4d90984738c8c8bfee54ba3b1f58d5ccc30aa742df23f2e7161c7df8",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "b82aa80a4d90984738c8c8bfee54ba3b1f58d5ccc30aa742df23f2e7161c7df8"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_23",
@@ -393,11 +416,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "fc0c6a4b5d19e1a95a768e92645de73b28da18ffefef4a9f48399b78f3a22940",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "fc0c6a4b5d19e1a95a768e92645de73b28da18ffefef4a9f48399b78f3a22940"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_24",
@@ -410,11 +434,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "44d40e7841d9453c7bddd004a2d4c61981f05d1ed4517d93362e68b2b70997e6",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "44d40e7841d9453c7bddd004a2d4c61981f05d1ed4517d93362e68b2b70997e6"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_25",
@@ -427,11 +452,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "093da5cbd39d4c9e9c983fb79ec1b3da0357d406ca6128c7d386163fbc1b5adf",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "093da5cbd39d4c9e9c983fb79ec1b3da0357d406ca6128c7d386163fbc1b5adf"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_26",
@@ -444,11 +470,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "a415b3bc29da579c91b043676ac2f33e4c470cb3a675baafbb03c4cffd3eb7f5",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "a415b3bc29da579c91b043676ac2f33e4c470cb3a675baafbb03c4cffd3eb7f5"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_27",
@@ -461,11 +488,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "a530c1fa0c115696837f0a6fa47face6fdb2b3bf19d003cc68c9bf52cdb940c4",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "a530c1fa0c115696837f0a6fa47face6fdb2b3bf19d003cc68c9bf52cdb940c4"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_28",
@@ -478,11 +506,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "3d1a175802363699f3e8473065ba18f6608078a1a6ea418cc6d701a9d823d5c9",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "3d1a175802363699f3e8473065ba18f6608078a1a6ea418cc6d701a9d823d5c9"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_29",
@@ -495,11 +524,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "0a169f1908f600a13d54594ddd5eaae05117b29128c0595a0d1c979a2594af38",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "0a169f1908f600a13d54594ddd5eaae05117b29128c0595a0d1c979a2594af38"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_30",
@@ -512,11 +542,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "c03e1c4ce997c6e94a7665b91d3af2bfe2634c085ae6336c44722dcd7b35f3dc",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "c03e1c4ce997c6e94a7665b91d3af2bfe2634c085ae6336c44722dcd7b35f3dc"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_31",
@@ -529,11 +560,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "0de4fb5ffdced2657f3d0c55217fbd71599b85c55ab431b60461d6869d4f3855",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "0de4fb5ffdced2657f3d0c55217fbd71599b85c55ab431b60461d6869d4f3855"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_32",
@@ -546,11 +578,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "cabcf408848944d6a3957bcad039b659d36a088780a23004270336e6a2076bfd",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "cabcf408848944d6a3957bcad039b659d36a088780a23004270336e6a2076bfd"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_33",
@@ -563,11 +596,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "bebc4dbcdd81b6a639019403c854c67285c31ad3da7fc2a230317eaf8e01a481",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "bebc4dbcdd81b6a639019403c854c67285c31ad3da7fc2a230317eaf8e01a481"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_34",
@@ -580,11 +614,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "bbd432e9d3cf5ff8e24bbbdad1edab4be55e87a00acbac4cf8e9553741bb5fb1",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "bbd432e9d3cf5ff8e24bbbdad1edab4be55e87a00acbac4cf8e9553741bb5fb1"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_35",
@@ -597,11 +632,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "1aadc275d3947cab4a75105717e06fe41146ae6ca1d067cb0f1934e216538208",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "1aadc275d3947cab4a75105717e06fe41146ae6ca1d067cb0f1934e216538208"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_36",
@@ -614,11 +650,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "de0099af8b3f4e74d306c4743a61008ab1e52f1e41e8de7cb1896cee91137c5f",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "de0099af8b3f4e74d306c4743a61008ab1e52f1e41e8de7cb1896cee91137c5f"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_37",
@@ -631,11 +668,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "72467cd306e8b9a91e159197bcb826f03fa0ab6791c930104d2eb408f651bdc1",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "72467cd306e8b9a91e159197bcb826f03fa0ab6791c930104d2eb408f651bdc1"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_38",
@@ -648,11 +686,12 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "a89b9ff0b04b0679fa3b8e364c74e34635c4c0082149e3e076abbe2bbfc741c7",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "a89b9ff0b04b0679fa3b8e364c74e34635c4c0082149e3e076abbe2bbfc741c7"
+      "combat_profile_status": "existing_runtime_profile"
     },
     {
       "entry_id": "enemy_39",
@@ -665,11 +704,966 @@
         760
       ],
       "display_slot_ratio": "3:4",
-      "image_status": "legacy_image_unverified",
+      "image_sha256": "a1777300d87c9f502c559e9fa3aadb9e842bf93fc562441da4684e2cc9d3f8b9",
+      "image_status": "legacy_runtime_image_pending_identity_review",
       "reference_id": null,
-      "reference_status": "no_canonical_reference_match",
+      "reference_status": "no_archived_reference",
       "gameplay_source": "data/enemies.json",
-      "source_sha256": "a1777300d87c9f502c559e9fa3aadb9e842bf93fc562441da4684e2cc9d3f8b9"
+      "combat_profile_status": "existing_runtime_profile"
+    },
+    {
+      "entry_id": "enemy_40",
+      "name": "Cerbère",
+      "enemy_id": 40,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/cerberus/reference.jpeg",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "f10371084abdc7125824c322a559e8ba560bd468b46ed42edbc5a72851eaf8f6",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_cerberus",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_41",
+      "name": "Harpie",
+      "enemy_id": 41,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/harpy/reference.jpeg",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "6f22b47843636b63457408c3b92a5b5b6feb7e609f1bd176cac1a3461913df04",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_harpy",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_42",
+      "name": "Cyclope V3",
+      "enemy_id": 42,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/cyclops/reference.jpeg",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "831a4008db014a815c65f19c06fcf227f56340d362d30209bad7d1a0f27610fe",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_cyclops",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_43",
+      "name": "Chimère",
+      "enemy_id": 43,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/chimera/reference.jpeg",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "f86f6c59525ae93e42afd9d75d84cb7da6eba6451da356252e5827b49e47cd06",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_chimera",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_44",
+      "name": "Basilic",
+      "enemy_id": 44,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/basilisk/reference.jpeg",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "b9ce75d1a597385868195cc99455dac6f63dbbcc84c55809996e8cc5972c221e",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_basilisk",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_45",
+      "name": "Hydre",
+      "enemy_id": 45,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/hydra/reference.jpeg",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "23d7e90aca6058a4394135d2eda92ac5d53e0cb3522244e3a583d2185dcc12f6",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_hydra",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_46",
+      "name": "Sphinx",
+      "enemy_id": 46,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/sphinx/reference.jpeg",
+      "image_dimensions": [
+        1535,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "9698a55919281af52d42d3fa1e0b718a64e9b66501ef1d9150d1900fabb7098a",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_sphinx",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_47",
+      "name": "Kappa",
+      "enemy_id": 47,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/kappa/reference.jpeg",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "80e742dbdafa813f63b0003e1226c02042eaeeddb7af8216349b83041ef82148",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_kappa",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_48",
+      "name": "Nue",
+      "enemy_id": 48,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/nue/reference.jpeg",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "580956a656f2e41538fe7db7f565cd1e76a1a8b07f21388c332479d519c60818",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_nue",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_49",
+      "name": "Draugr",
+      "enemy_id": 49,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/draugr/reference.jpeg",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "fb0acb6a915ec134ee32d583993bf3a97181bf9a4f68baa1aee798a191f0a949",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_draugr",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_50",
+      "name": "Troll nordique",
+      "enemy_id": 50,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/nordic_troll/reference.jpeg",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "8ce2c11e61f917bce5fb62af2fd2bf762383f60329c3f6ae854ff959c781ad9c",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_nordic_troll",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_51",
+      "name": "Valkyrie spectrale",
+      "enemy_id": 51,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/spectral_valkyrie/reference.jpg",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "30a1f79497759885753ae0de383d0fb1c5086bf1646653131531defaa81aaa37",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_spectral_valkyrie",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_52",
+      "name": "Loup décharné",
+      "enemy_id": 52,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/emaciated_wolf/reference.jpeg",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "e24caea7562a701cf61099416f62c62c8f4edb5d1f17df552bffd03e01e1110c",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_emaciated_wolf",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_53",
+      "name": "Golem de pierre runique",
+      "enemy_id": 53,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/runic_stone_golem/reference.jpeg",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "1cec2ce9c55ef7abf20fef8ed83ecaf186957c143fd8fd111a8e3930f331d675",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_runic_stone_golem",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_54",
+      "name": "Kitsune",
+      "enemy_id": 54,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/kitsune/reference.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "64e5abdb0b1e84f6c0c8646bd9f8b380b831bb46b9e310f4ef9b2f6bedb2015b",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_kitsune",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_55",
+      "name": "Araignée des cryptes",
+      "enemy_id": 55,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/crypt-spider/reference.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "25add546c30e5695f978ed2656c541e4cf728f8b9b6e220505c97f97bb61ff32",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_crypt-spider",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_56",
+      "name": "Armure hantée",
+      "enemy_id": 56,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/haunted-armor/reference.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "6eec3df0f494dc6f275ab95a1b61643c04b130d14371370f69fb237441f7bda9",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_haunted-armor",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_57",
+      "name": "Diablotin",
+      "enemy_id": 57,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/imp/reference.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "e3736f808bb93206d783ff1f83430746c2e90d897c50c3415accd4df336973cb",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_imp",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_58",
+      "name": "Épouvantail possédé",
+      "enemy_id": 58,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/possessed-scarecrow/reference.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "dd268e811b5478f13a42c64d8f45cd1dc03da88b69424ffe903002dcd2224b92",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_possessed-scarecrow",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_59",
+      "name": "Feu follet",
+      "enemy_id": 59,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/will-o-wisp/reference.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "4cb97db41ac52fe437b138785808a15be4127b60ef9b6ca1a64d177c375929f8",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_will-o-wisp",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_60",
+      "name": "Gobelin",
+      "enemy_id": 60,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/goblin/reference.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "586a8b18db766736294ae198596224fce1b558529ff8a7b4921be208b4d6709f",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_goblin",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_61",
+      "name": "Kobold",
+      "enemy_id": 61,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/kobold/reference.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "15cc367ebfa6431f4049a702ffcfe09a8fb3afde204d92549d1504e8fba00db4",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_kobold",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_62",
+      "name": "Leprechaun",
+      "enemy_id": 62,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/leprechaun/reference.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "0275e4ab10e15722194104acd57fadef98b608beb06f05dd3cc9a9963bb8b431",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_leprechaun",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_63",
+      "name": "Loup corrompu",
+      "enemy_id": 63,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/corrupted-wolf/reference.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "a5be45a61b3a40f848f30c543ebfe24626aa408605a07e4d3e061b7a48ddf4e4",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_corrupted-wolf",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_64",
+      "name": "Mimique",
+      "enemy_id": 64,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/mimic/reference.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "ff4c4d8aa0b33906a034aef5dbaf83e197705d83fa3cd8e6aa704b09bc9f5d2a",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_mimic",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_65",
+      "name": "Noyé errant revenant des eaux",
+      "enemy_id": 65,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/drowned-revenant/reference.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "c9b550272c7b6f0e39a83169ab2b476dea8d050a9b822cfc3051cbd743d8fdb0",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_drowned-revenant",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_66",
+      "name": "Plante carnivore du marais",
+      "enemy_id": 66,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/marsh-carnivorous-plant/reference.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "f16f4ea053dc46cd0f4399885f385382f494638cf641d6eb4ef27ea9ef9cf92c",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_marsh-carnivorous-plant",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_67",
+      "name": "Rat pestilentiel",
+      "enemy_id": 67,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/pestilent-rat/reference.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "9010733b48851b1ba86cfdc3a1d493c47ebde11498fb73234c326586b390aea1",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_pestilent-rat",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_68",
+      "name": "Squelette errant",
+      "enemy_id": 68,
+      "boss": false,
+      "source_image": "res://art/library/bestiary/wandering-skeleton/reference.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "d289f017c5dd4d706effbb17c16c5cebb2e02f5a062325114852f458cc3fa839",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_wandering-skeleton",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_69",
+      "name": "Adze",
+      "enemy_id": 69,
+      "boss": false,
+      "source_image": "res://docs/research/litd1_personnages/LITD1_BEST_AFR_ADZE_VAMPIRE_CIEUX_V1_VALIDEE.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "bed43751e8a2745d9c0231be31e307cfda3b1d19003ecd6cbeec3ea0d4240f88",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_afr_adze",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_70",
+      "name": "Aziza",
+      "enemy_id": 70,
+      "boss": false,
+      "source_image": "res://docs/research/litd1_personnages/LITD1_BEST_AFR_AZIZA_ESPRIT_FORET_V1_VALIDEE.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "4e646ad4ac21e00a463e93ae6b254808a935dffe0d288366f0ed5fb16f9948d2",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_afr_aziza",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_71",
+      "name": "Mami Wata",
+      "enemy_id": 71,
+      "boss": false,
+      "source_image": "res://docs/research/litd1_personnages/LITD1_BEST_AFR_MAMI_WATA_DAME_EAUX_V1_VALIDEE.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "2bdd5718f6f0c4da32ba542e208c27cf2d52208f0504725d9f9787ef01ad0540",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_afr_mami_wata",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_72",
+      "name": "Ninki Nanka",
+      "enemy_id": 72,
+      "boss": false,
+      "source_image": "res://docs/research/litd1_personnages/LITD1_BEST_AFR_NINKI_NANKA_SERPENT_MARAIS_V1_VALIDEE.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "feb034f6b5e7dfe05b0c3ee63847f3af93dd8b47f20b34774e4f741d55408c6c",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_afr_ninki_nanka",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_73",
+      "name": "Sasabonsam",
+      "enemy_id": 73,
+      "boss": false,
+      "source_image": "res://docs/research/litd1_personnages/LITD1_BEST_AFR_SASABONSAM_PREDATEUR_CIMES_V1_VALIDEE.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "385562324076f364e6ce43f8b553dd6b050e5369d8805d9a5713f9544da15c0d",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_afr_sasabonsam",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_74",
+      "name": "Cipactli",
+      "enemy_id": 74,
+      "boss": false,
+      "source_image": "res://docs/research/litd1_personnages/LITD1_BEST_AZT_CIPACTLI_CROCODILE_PRIMORDIAL_V1_VALIDEE.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "85d3cadeb78090ea4db80f57f4d4003458a3435f582e4be0a2b20c74a8ab9980",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_azt_cipactli",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_75",
+      "name": "Itzpapalotl",
+      "enemy_id": 75,
+      "boss": false,
+      "source_image": "res://docs/research/litd1_personnages/LITD1_BEST_AZT_ITZPAPALOTL_PAPILLON_OBSIDIENNE_V1_VALIDEE.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "5625e722c3d56e918212c16da7b819e4e23f34833709560a62e74d162ae2fb13",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_azt_itzpapalotl",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_76",
+      "name": "Mictlantecuhtli",
+      "enemy_id": 76,
+      "boss": false,
+      "source_image": "res://docs/research/litd1_personnages/LITD1_BEST_AZT_MICTLANTECUHTLI_SEIGNEUR_MICTLAN_V1_VALIDEE.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "39cce8c21a55a3f32898f2007a4e57b386fb2a4d4bfc4df9ac68a9a6feec7ddc",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_azt_mictlantecuhtli",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_77",
+      "name": "Tzitzimime",
+      "enemy_id": 77,
+      "boss": false,
+      "source_image": "res://docs/research/litd1_personnages/LITD1_BEST_AZT_TZITZIMIME_DEVOREUSE_ETOILES_V1_VALIDEE_ORIGINAL.jpeg",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "0aea36022568d81eebb9b34f93563b736e136af6d68572019228379adce053a3",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_azt_tzitzimime",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_78",
+      "name": "Xólotl",
+      "enemy_id": 78,
+      "boss": false,
+      "source_image": "res://docs/research/litd1_personnages/LITD1_BEST_AZT_XOLOTL_GUIDE_PASSAGES_V1_VALIDEE.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "e3e3f56239b58ebac916207179e509e28254180a21283631f531119ebb859413",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_azt_xólotl",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_79",
+      "name": "Banshee",
+      "enemy_id": 79,
+      "boss": false,
+      "source_image": "res://docs/research/litd1_personnages/LITD1_BEST_BRIT_BANSHEE_PLEUREUSE_FUNEBRE_V2_VALIDEE.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "cf706aa7220855c03c4fde5a86b97e162cb0dc3a7015211f9de451f72cf54e02",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_brit_banshee",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_80",
+      "name": "Black Annis",
+      "enemy_id": 80,
+      "boss": false,
+      "source_image": "res://docs/research/litd1_personnages/LITD1_BEST_BRIT_BLACK_ANNIS_SORCIERE_ECORCHEE_V1_VALIDEE.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "16ce8e9ee4626c5f8c916b1a21c79c9afbc2ee65c6b87dd0758d790fc2add511",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_brit_black_annis",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_81",
+      "name": "Fachan",
+      "enemy_id": 81,
+      "boss": false,
+      "source_image": "res://docs/research/litd1_personnages/LITD1_BEST_BRIT_FACHAN_MONOCULAIRE_HIGHLANDS_V1_VALIDEE.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "74df52ceea0de36bdd169d45a76f081379f8e17e34f6903f86bb3e363afb6cb1",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_brit_fachan",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_82",
+      "name": "Redcap",
+      "enemy_id": 82,
+      "boss": false,
+      "source_image": "res://docs/research/litd1_personnages/LITD1_BEST_BRIT_REDCAP_LUTIN_SANGLANT_V2_VALIDEE.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "cad2fdb6d0b37825023a591ee67e7b0beda40b4adecdb5e59c10709ec1646be3",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_brit_redcap",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_83",
+      "name": "Sluagh",
+      "enemy_id": 83,
+      "boss": false,
+      "source_image": "res://docs/research/litd1_personnages/LITD1_BEST_BRIT_SLUAGH_HORDE_AMES_ERRANTES_V1_VALIDEE.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "98bdeb8b43aa901fc2615cfce1571cb8113c3623c4b8070879b4b3ec1ec2d6b4",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_brit_sluagh",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_84",
+      "name": "Horus",
+      "enemy_id": 84,
+      "boss": false,
+      "source_image": "res://docs/research/litd1_personnages/LITD1_BEST_EGY_HORUS_SENTINELLE_ZENITH_V1_VALIDEE.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "5e4bdaf9af2fd74f92e3ccc4bc3357bad8e973b26570058632c1ba37e6aeca40",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_egy_horus",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_85",
+      "name": "Isis",
+      "enemy_id": 85,
+      "boss": false,
+      "source_image": "res://docs/research/litd1_personnages/LITD1_BEST_EGY_ISIS_TISSEUSE_DES_AMES_V2_VALIDEE.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "3eeb3d573239ec8add99e92fbb7cffc434a77ada6cc4e5c6d2469fc1ed189688",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_egy_isis",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_86",
+      "name": "Seth",
+      "enemy_id": 86,
+      "boss": false,
+      "source_image": "res://docs/research/litd1_personnages/LITD1_BEST_EGY_SETH_ECORCHEUR_TEMPETES_V2_VALIDEE.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "abb110f4d97c4c3698e25dc4b42322cc46f9cff6e6aa7492f9e1026b70da7b43",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_egy_seth",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_87",
+      "name": "Sobek",
+      "enemy_id": 87,
+      "boss": false,
+      "source_image": "res://docs/research/litd1_personnages/LITD1_BEST_EGY_SOBEK_SEIGNEUR_EAUX_NOIRES_V1_VALIDEE.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "77b9d86f3c47b264911a21edafa41dc1cbd7771e820b30f1b043ea70e2ae9e50",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_egy_sobek",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_88",
+      "name": "Baba Yaga",
+      "enemy_id": 88,
+      "boss": false,
+      "source_image": "res://docs/research/litd1_personnages/LITD1_BEST_SLAVE_BABA_YAGA_MERE_DES_SEUILS_V3_VALIDEE.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "38ca4508b7bd0c0f56497dd58e25209a21ca171a658f0871a40e5281ad7bae69",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_slave_baba_yaga",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_89",
+      "name": "Leshy",
+      "enemy_id": 89,
+      "boss": false,
+      "source_image": "res://docs/research/litd1_personnages/LITD1_BEST_SLAVE_LESHY_SOUVERAIN_SENTIERS_PERDUS_V2_VALIDEE.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "57cdb0e2f8ab2d07bad58c99d49a983e4652f29eb5ce7c2cb2bcf027999f1e9b",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_slave_leshy",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_90",
+      "name": "Rusalka",
+      "enemy_id": 90,
+      "boss": false,
+      "source_image": "res://docs/research/litd1_personnages/LITD1_BEST_SLAVE_RUSALKA_NOYEE_DES_SAULES_V1_VALIDEE.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "bc13590fff4791211f88ae651f21e8b0fc5a94dce66a471e6c03d973d06f3340",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_slave_rusalka",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_91",
+      "name": "Vodyanoy",
+      "enemy_id": 91,
+      "boss": false,
+      "source_image": "res://docs/research/litd1_personnages/LITD1_BEST_SLAVE_VODYANOY_MAITRE_DES_EAUX_V1_VALIDEE.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "3a41f70c5aa63dec59532700d437591bf8044bca71a73ca2aae482c63c137b6f",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_slave_vodyanoy",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
+    },
+    {
+      "entry_id": "enemy_92",
+      "name": "Zmey",
+      "enemy_id": 92,
+      "boss": false,
+      "source_image": "res://docs/research/litd1_personnages/LITD1_BEST_SLAVE_ZMEY_DEVOREUR_DES_ORAGES_V1_VALIDEE.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "display_slot_ratio": "3:4",
+      "image_sha256": "a58654ecf54cad24734415bb9636aa9e182eca18fe6ee6ea50a6d1bb8a03e261",
+      "image_status": "validated_archived_reference",
+      "reference_id": "plate_slave_zmey",
+      "reference_status": "archived_reference_linked",
+      "gameplay_source": "data/enemies.json",
+      "combat_profile_status": "provisional_shared_baseline"
     }
   ],
   "archived_references": [
@@ -682,7 +1676,9 @@
       "source_path": "res://art/library/bestiary/minotaur/reference.jpeg",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/reconciled_bestiary_manifest_20261111.json",
-      "source_sha256": "4b91c4dd1eed8c04e084f5df89976228bb02a3240686069136e771ec601d0283"
+      "source_sha256": "4b91c4dd1eed8c04e084f5df89976228bb02a3240686069136e771ec601d0283",
+      "runtime_enemy_id": 7,
+      "runtime_link_status": "matched_existing_by_name"
     },
     {
       "reference_id": "plate_gorgon",
@@ -693,7 +1689,9 @@
       "source_path": "res://art/library/bestiary/gorgon/reference.jpeg",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/reconciled_bestiary_manifest_20261111.json",
-      "source_sha256": "825f35da6bc80f06caa683803d557a653028d139ef102205dcd836556fc0ea82"
+      "source_sha256": "825f35da6bc80f06caa683803d557a653028d139ef102205dcd836556fc0ea82",
+      "runtime_enemy_id": 6,
+      "runtime_link_status": "matched_existing_by_name"
     },
     {
       "reference_id": "plate_cerberus",
@@ -704,7 +1702,9 @@
       "source_path": "res://art/library/bestiary/cerberus/reference.jpeg",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/reconciled_bestiary_manifest_20261111.json",
-      "source_sha256": "f10371084abdc7125824c322a559e8ba560bd468b46ed42edbc5a72851eaf8f6"
+      "source_sha256": "f10371084abdc7125824c322a559e8ba560bd468b46ed42edbc5a72851eaf8f6",
+      "runtime_enemy_id": 40,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_harpy",
@@ -715,7 +1715,9 @@
       "source_path": "res://art/library/bestiary/harpy/reference.jpeg",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/reconciled_bestiary_manifest_20261111.json",
-      "source_sha256": "6f22b47843636b63457408c3b92a5b5b6feb7e609f1bd176cac1a3461913df04"
+      "source_sha256": "6f22b47843636b63457408c3b92a5b5b6feb7e609f1bd176cac1a3461913df04",
+      "runtime_enemy_id": 41,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_cyclops",
@@ -726,7 +1728,9 @@
       "source_path": "res://art/library/bestiary/cyclops/reference.jpeg",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/reconciled_bestiary_manifest_20261111.json",
-      "source_sha256": "831a4008db014a815c65f19c06fcf227f56340d362d30209bad7d1a0f27610fe"
+      "source_sha256": "831a4008db014a815c65f19c06fcf227f56340d362d30209bad7d1a0f27610fe",
+      "runtime_enemy_id": 42,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_chimera",
@@ -737,7 +1741,9 @@
       "source_path": "res://art/library/bestiary/chimera/reference.jpeg",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/reconciled_bestiary_manifest_20261111.json",
-      "source_sha256": "f86f6c59525ae93e42afd9d75d84cb7da6eba6451da356252e5827b49e47cd06"
+      "source_sha256": "f86f6c59525ae93e42afd9d75d84cb7da6eba6451da356252e5827b49e47cd06",
+      "runtime_enemy_id": 43,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_basilisk",
@@ -748,7 +1754,9 @@
       "source_path": "res://art/library/bestiary/basilisk/reference.jpeg",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/reconciled_bestiary_manifest_20261111.json",
-      "source_sha256": "b9ce75d1a597385868195cc99455dac6f63dbbcc84c55809996e8cc5972c221e"
+      "source_sha256": "b9ce75d1a597385868195cc99455dac6f63dbbcc84c55809996e8cc5972c221e",
+      "runtime_enemy_id": 44,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_hydra",
@@ -759,7 +1767,9 @@
       "source_path": "res://art/library/bestiary/hydra/reference.jpeg",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/reconciled_bestiary_manifest_20261111.json",
-      "source_sha256": "23d7e90aca6058a4394135d2eda92ac5d53e0cb3522244e3a583d2185dcc12f6"
+      "source_sha256": "23d7e90aca6058a4394135d2eda92ac5d53e0cb3522244e3a583d2185dcc12f6",
+      "runtime_enemy_id": 45,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_sphinx",
@@ -770,7 +1780,9 @@
       "source_path": "res://art/library/bestiary/sphinx/reference.jpeg",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/reconciled_bestiary_manifest_20261111.json",
-      "source_sha256": "9698a55919281af52d42d3fa1e0b718a64e9b66501ef1d9150d1900fabb7098a"
+      "source_sha256": "9698a55919281af52d42d3fa1e0b718a64e9b66501ef1d9150d1900fabb7098a",
+      "runtime_enemy_id": 46,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_oni",
@@ -781,7 +1793,9 @@
       "source_path": "res://art/library/bestiary/oni/reference.jpeg",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/reconciled_bestiary_manifest_20261111.json",
-      "source_sha256": "9920292ec992c278320feb629ddae83b96193f1d78f5e3d1c4223727599b26be"
+      "source_sha256": "9920292ec992c278320feb629ddae83b96193f1d78f5e3d1c4223727599b26be",
+      "runtime_enemy_id": 8,
+      "runtime_link_status": "matched_existing_by_name"
     },
     {
       "reference_id": "plate_karasu_tengu",
@@ -792,7 +1806,9 @@
       "source_path": "res://art/library/bestiary/karasu_tengu/reference.jpeg",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/reconciled_bestiary_manifest_20261111.json",
-      "source_sha256": "5fd6c2f5e0cece136bf107f258ce21c67b1fd2d1e0cfa89af421f16749d2903b"
+      "source_sha256": "5fd6c2f5e0cece136bf107f258ce21c67b1fd2d1e0cfa89af421f16749d2903b",
+      "runtime_enemy_id": 9,
+      "runtime_link_status": "matched_existing_by_name"
     },
     {
       "reference_id": "plate_jorogumo",
@@ -803,7 +1819,9 @@
       "source_path": "res://art/library/bestiary/jorogumo/reference.jpg",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/reconciled_bestiary_manifest_20261111.json",
-      "source_sha256": "d222d618fe9ac3de1089ffef28978bb170bde654dfb58e00eb6bd3d33c25c1cc"
+      "source_sha256": "d222d618fe9ac3de1089ffef28978bb170bde654dfb58e00eb6bd3d33c25c1cc",
+      "runtime_enemy_id": 10,
+      "runtime_link_status": "matched_existing_by_name"
     },
     {
       "reference_id": "plate_kappa",
@@ -814,7 +1832,9 @@
       "source_path": "res://art/library/bestiary/kappa/reference.jpeg",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/reconciled_bestiary_manifest_20261111.json",
-      "source_sha256": "80e742dbdafa813f63b0003e1226c02042eaeeddb7af8216349b83041ef82148"
+      "source_sha256": "80e742dbdafa813f63b0003e1226c02042eaeeddb7af8216349b83041ef82148",
+      "runtime_enemy_id": 47,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_yuki_onna",
@@ -825,7 +1845,9 @@
       "source_path": "res://art/library/bestiary/yuki_onna/reference.jpeg",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/reconciled_bestiary_manifest_20261111.json",
-      "source_sha256": "9f20397e1b57e76ef4a73a739babb1f1546cac6b6e8b15ed1f8d52c0b0c295fa"
+      "source_sha256": "9f20397e1b57e76ef4a73a739babb1f1546cac6b6e8b15ed1f8d52c0b0c295fa",
+      "runtime_enemy_id": 11,
+      "runtime_link_status": "matched_existing_by_name"
     },
     {
       "reference_id": "plate_nue",
@@ -836,7 +1858,9 @@
       "source_path": "res://art/library/bestiary/nue/reference.jpeg",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/reconciled_bestiary_manifest_20261111.json",
-      "source_sha256": "580956a656f2e41538fe7db7f565cd1e76a1a8b07f21388c332479d519c60818"
+      "source_sha256": "580956a656f2e41538fe7db7f565cd1e76a1a8b07f21388c332479d519c60818",
+      "runtime_enemy_id": 48,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_draugr",
@@ -847,7 +1871,9 @@
       "source_path": "res://art/library/bestiary/draugr/reference.jpeg",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/reconciled_bestiary_manifest_20261111.json",
-      "source_sha256": "fb0acb6a915ec134ee32d583993bf3a97181bf9a4f68baa1aee798a191f0a949"
+      "source_sha256": "fb0acb6a915ec134ee32d583993bf3a97181bf9a4f68baa1aee798a191f0a949",
+      "runtime_enemy_id": 49,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_nordic_troll",
@@ -858,7 +1884,9 @@
       "source_path": "res://art/library/bestiary/nordic_troll/reference.jpeg",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/reconciled_bestiary_manifest_20261111.json",
-      "source_sha256": "8ce2c11e61f917bce5fb62af2fd2bf762383f60329c3f6ae854ff959c781ad9c"
+      "source_sha256": "8ce2c11e61f917bce5fb62af2fd2bf762383f60329c3f6ae854ff959c781ad9c",
+      "runtime_enemy_id": 50,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_spectral_valkyrie",
@@ -869,7 +1897,9 @@
       "source_path": "res://art/library/bestiary/spectral_valkyrie/reference.jpg",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/reconciled_bestiary_manifest_20261111.json",
-      "source_sha256": "30a1f79497759885753ae0de383d0fb1c5086bf1646653131531defaa81aaa37"
+      "source_sha256": "30a1f79497759885753ae0de383d0fb1c5086bf1646653131531defaa81aaa37",
+      "runtime_enemy_id": 51,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_emaciated_wolf",
@@ -880,7 +1910,9 @@
       "source_path": "res://art/library/bestiary/emaciated_wolf/reference.jpeg",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/reconciled_bestiary_manifest_20261111.json",
-      "source_sha256": "e24caea7562a701cf61099416f62c62c8f4edb5d1f17df552bffd03e01e1110c"
+      "source_sha256": "e24caea7562a701cf61099416f62c62c8f4edb5d1f17df552bffd03e01e1110c",
+      "runtime_enemy_id": 52,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_runic_stone_golem",
@@ -891,7 +1923,9 @@
       "source_path": "res://art/library/bestiary/runic_stone_golem/reference.jpeg",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/reconciled_bestiary_manifest_20261111.json",
-      "source_sha256": "1cec2ce9c55ef7abf20fef8ed83ecaf186957c143fd8fd111a8e3930f331d675"
+      "source_sha256": "1cec2ce9c55ef7abf20fef8ed83ecaf186957c143fd8fd111a8e3930f331d675",
+      "runtime_enemy_id": 53,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_kitsune",
@@ -902,172 +1936,204 @@
       "source_path": "res://art/library/bestiary/kitsune/reference.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/reconciled_bestiary_manifest_20261111.json",
-      "source_sha256": "64e5abdb0b1e84f6c0c8646bd9f8b380b831bb46b9e310f4ef9b2f6bedb2015b"
+      "source_sha256": "64e5abdb0b1e84f6c0c8646bd9f8b380b831bb46b9e310f4ef9b2f6bedb2015b",
+      "runtime_enemy_id": 54,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_crypt-spider",
-      "name": "Araignee Cryptes Tisseuse Tombeaux",
+      "name": "Araignée des cryptes",
       "subject_id": "crypt-spider",
       "group": "common_creatures",
       "culture": null,
       "source_path": "res://art/library/bestiary/crypt-spider/reference.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/LITD1_BEST_COMMUNS_15_SHA256_20261121.csv",
-      "source_sha256": "25add546c30e5695f978ed2656c541e4cf728f8b9b6e220505c97f97bb61ff32"
+      "source_sha256": "25add546c30e5695f978ed2656c541e4cf728f8b9b6e220505c97f97bb61ff32",
+      "runtime_enemy_id": 55,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_haunted-armor",
-      "name": "Armure Hantee Vestige Anime",
+      "name": "Armure hantée",
       "subject_id": "haunted-armor",
       "group": "common_creatures",
       "culture": null,
       "source_path": "res://art/library/bestiary/haunted-armor/reference.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/LITD1_BEST_COMMUNS_15_SHA256_20261121.csv",
-      "source_sha256": "6eec3df0f494dc6f275ab95a1b61643c04b130d14371370f69fb237441f7bda9"
+      "source_sha256": "6eec3df0f494dc6f275ab95a1b61643c04b130d14371370f69fb237441f7bda9",
+      "runtime_enemy_id": 56,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_imp",
-      "name": "Diablotin Farceur Malefique",
+      "name": "Diablotin",
       "subject_id": "imp",
       "group": "common_creatures",
       "culture": null,
       "source_path": "res://art/library/bestiary/imp/reference.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/LITD1_BEST_COMMUNS_15_SHA256_20261121.csv",
-      "source_sha256": "e3736f808bb93206d783ff1f83430746c2e90d897c50c3415accd4df336973cb"
+      "source_sha256": "e3736f808bb93206d783ff1f83430746c2e90d897c50c3415accd4df336973cb",
+      "runtime_enemy_id": 57,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_possessed-scarecrow",
-      "name": "Epouvantail Possede Gardien Recoltes",
+      "name": "Épouvantail possédé",
       "subject_id": "possessed-scarecrow",
       "group": "common_creatures",
       "culture": null,
       "source_path": "res://art/library/bestiary/possessed-scarecrow/reference.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/LITD1_BEST_COMMUNS_15_SHA256_20261121.csv",
-      "source_sha256": "dd268e811b5478f13a42c64d8f45cd1dc03da88b69424ffe903002dcd2224b92"
+      "source_sha256": "dd268e811b5478f13a42c64d8f45cd1dc03da88b69424ffe903002dcd2224b92",
+      "runtime_enemy_id": 58,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_will-o-wisp",
-      "name": "Feu Follet Ame Errante",
+      "name": "Feu follet",
       "subject_id": "will-o-wisp",
       "group": "common_creatures",
       "culture": null,
       "source_path": "res://art/library/bestiary/will-o-wisp/reference.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/LITD1_BEST_COMMUNS_15_SHA256_20261121.csv",
-      "source_sha256": "4cb97db41ac52fe437b138785808a15be4127b60ef9b6ca1a64d177c375929f8"
+      "source_sha256": "4cb97db41ac52fe437b138785808a15be4127b60ef9b6ca1a64d177c375929f8",
+      "runtime_enemy_id": 59,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_goblin",
-      "name": "Gobelin Pillard Chasseur Aubaines",
+      "name": "Gobelin",
       "subject_id": "goblin",
       "group": "common_creatures",
       "culture": null,
       "source_path": "res://art/library/bestiary/goblin/reference.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/LITD1_BEST_COMMUNS_15_SHA256_20261121.csv",
-      "source_sha256": "586a8b18db766736294ae198596224fce1b558529ff8a7b4921be208b4d6709f"
+      "source_sha256": "586a8b18db766736294ae198596224fce1b558529ff8a7b4921be208b4d6709f",
+      "runtime_enemy_id": 60,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_ghoul",
-      "name": "Goule Affamee Devoreuse Charniers",
+      "name": "Goule affamée",
       "subject_id": "ghoul",
       "group": "common_creatures",
       "culture": null,
       "source_path": "res://art/library/bestiary/ghoul/reference.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/LITD1_BEST_COMMUNS_15_SHA256_20261121.csv",
-      "source_sha256": "488e266e454c215282f37c22886f4b23199227a699645ae60ab3b906caf64d9c"
+      "source_sha256": "488e266e454c215282f37c22886f4b23199227a699645ae60ab3b906caf64d9c",
+      "runtime_enemy_id": 1,
+      "runtime_link_status": "matched_existing_by_name"
     },
     {
       "reference_id": "plate_kobold",
-      "name": "Kobold Galeries Mineur Obstine",
+      "name": "Kobold",
       "subject_id": "kobold",
       "group": "common_creatures",
       "culture": null,
       "source_path": "res://art/library/bestiary/kobold/reference.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/LITD1_BEST_COMMUNS_15_SHA256_20261121.csv",
-      "source_sha256": "15cc367ebfa6431f4049a702ffcfe09a8fb3afde204d92549d1504e8fba00db4"
+      "source_sha256": "15cc367ebfa6431f4049a702ffcfe09a8fb3afde204d92549d1504e8fba00db4",
+      "runtime_enemy_id": 61,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_leprechaun",
-      "name": "Leprechaun Voleur Facetieux",
+      "name": "Leprechaun",
       "subject_id": "leprechaun",
       "group": "common_creatures",
       "culture": null,
       "source_path": "res://art/library/bestiary/leprechaun/reference.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/LITD1_BEST_COMMUNS_15_SHA256_20261121.csv",
-      "source_sha256": "0275e4ab10e15722194104acd57fadef98b608beb06f05dd3cc9a9963bb8b431"
+      "source_sha256": "0275e4ab10e15722194104acd57fadef98b608beb06f05dd3cc9a9963bb8b431",
+      "runtime_enemy_id": 62,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_corrupted-wolf",
-      "name": "Loup Corrompu Traqueur Souillure",
+      "name": "Loup corrompu",
       "subject_id": "corrupted-wolf",
       "group": "common_creatures",
       "culture": null,
       "source_path": "res://art/library/bestiary/corrupted-wolf/reference.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/LITD1_BEST_COMMUNS_15_SHA256_20261121.csv",
-      "source_sha256": "a5be45a61b3a40f848f30c543ebfe24626aa408605a07e4d3e061b7a48ddf4e4"
+      "source_sha256": "a5be45a61b3a40f848f30c543ebfe24626aa408605a07e4d3e061b7a48ddf4e4",
+      "runtime_enemy_id": 63,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_mimic",
-      "name": "Mimique Coffre Affame",
+      "name": "Mimique",
       "subject_id": "mimic",
       "group": "common_creatures",
       "culture": null,
       "source_path": "res://art/library/bestiary/mimic/reference.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/LITD1_BEST_COMMUNS_15_SHA256_20261121.csv",
-      "source_sha256": "ff4c4d8aa0b33906a034aef5dbaf83e197705d83fa3cd8e6aa704b09bc9f5d2a"
+      "source_sha256": "ff4c4d8aa0b33906a034aef5dbaf83e197705d83fa3cd8e6aa704b09bc9f5d2a",
+      "runtime_enemy_id": 64,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_drowned-revenant",
-      "name": "Noye Errant Revenant Eaux",
+      "name": "Noyé errant revenant des eaux",
       "subject_id": "drowned-revenant",
       "group": "common_creatures",
       "culture": null,
       "source_path": "res://art/library/bestiary/drowned-revenant/reference.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/LITD1_BEST_COMMUNS_15_SHA256_20261121.csv",
-      "source_sha256": "c9b550272c7b6f0e39a83169ab2b476dea8d050a9b822cfc3051cbd743d8fdb0"
+      "source_sha256": "c9b550272c7b6f0e39a83169ab2b476dea8d050a9b822cfc3051cbd743d8fdb0",
+      "runtime_enemy_id": 65,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_marsh-carnivorous-plant",
-      "name": "Plante Carnivore Gueule Marais",
+      "name": "Plante carnivore du marais",
       "subject_id": "marsh-carnivorous-plant",
       "group": "common_creatures",
       "culture": null,
       "source_path": "res://art/library/bestiary/marsh-carnivorous-plant/reference.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/LITD1_BEST_COMMUNS_15_SHA256_20261121.csv",
-      "source_sha256": "f16f4ea053dc46cd0f4399885f385382f494638cf641d6eb4ef27ea9ef9cf92c"
+      "source_sha256": "f16f4ea053dc46cd0f4399885f385382f494638cf641d6eb4ef27ea9ef9cf92c",
+      "runtime_enemy_id": 66,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_pestilent-rat",
-      "name": "Rat Pestilentiel Rongeur Fosses",
+      "name": "Rat pestilentiel",
       "subject_id": "pestilent-rat",
       "group": "common_creatures",
       "culture": null,
       "source_path": "res://art/library/bestiary/pestilent-rat/reference.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/LITD1_BEST_COMMUNS_15_SHA256_20261121.csv",
-      "source_sha256": "9010733b48851b1ba86cfdc3a1d493c47ebde11498fb73234c326586b390aea1"
+      "source_sha256": "9010733b48851b1ba86cfdc3a1d493c47ebde11498fb73234c326586b390aea1",
+      "runtime_enemy_id": 67,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_wandering-skeleton",
-      "name": "Squelette Errant Soldat Oublie",
+      "name": "Squelette errant",
       "subject_id": "wandering-skeleton",
       "group": "common_creatures",
       "culture": null,
       "source_path": "res://art/library/bestiary/wandering-skeleton/reference.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/art/LITD1_BEST_COMMUNS_15_SHA256_20261121.csv",
-      "source_sha256": "d289f017c5dd4d706effbb17c16c5cebb2e02f5a062325114852f458cc3fa839"
+      "source_sha256": "d289f017c5dd4d706effbb17c16c5cebb2e02f5a062325114852f458cc3fa839",
+      "runtime_enemy_id": 68,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_afr_adze",
@@ -1078,7 +2144,9 @@
       "source_path": "res://docs/research/litd1_personnages/LITD1_BEST_AFR_ADZE_VAMPIRE_CIEUX_V1_VALIDEE.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/research/litd1_personnages/LITD1_BESTIAIRE_MYTHOLOGIES_MANIFESTE_SHA256_20261121.md",
-      "source_sha256": "bed43751e8a2745d9c0231be31e307cfda3b1d19003ecd6cbeec3ea0d4240f88"
+      "source_sha256": "bed43751e8a2745d9c0231be31e307cfda3b1d19003ecd6cbeec3ea0d4240f88",
+      "runtime_enemy_id": 69,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_afr_aziza",
@@ -1089,7 +2157,9 @@
       "source_path": "res://docs/research/litd1_personnages/LITD1_BEST_AFR_AZIZA_ESPRIT_FORET_V1_VALIDEE.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/research/litd1_personnages/LITD1_BESTIAIRE_MYTHOLOGIES_MANIFESTE_SHA256_20261121.md",
-      "source_sha256": "4e646ad4ac21e00a463e93ae6b254808a935dffe0d288366f0ed5fb16f9948d2"
+      "source_sha256": "4e646ad4ac21e00a463e93ae6b254808a935dffe0d288366f0ed5fb16f9948d2",
+      "runtime_enemy_id": 70,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_afr_mami_wata",
@@ -1100,7 +2170,9 @@
       "source_path": "res://docs/research/litd1_personnages/LITD1_BEST_AFR_MAMI_WATA_DAME_EAUX_V1_VALIDEE.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/research/litd1_personnages/LITD1_BESTIAIRE_MYTHOLOGIES_MANIFESTE_SHA256_20261121.md",
-      "source_sha256": "2bdd5718f6f0c4da32ba542e208c27cf2d52208f0504725d9f9787ef01ad0540"
+      "source_sha256": "2bdd5718f6f0c4da32ba542e208c27cf2d52208f0504725d9f9787ef01ad0540",
+      "runtime_enemy_id": 71,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_afr_ninki_nanka",
@@ -1111,7 +2183,9 @@
       "source_path": "res://docs/research/litd1_personnages/LITD1_BEST_AFR_NINKI_NANKA_SERPENT_MARAIS_V1_VALIDEE.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/research/litd1_personnages/LITD1_BESTIAIRE_MYTHOLOGIES_MANIFESTE_SHA256_20261121.md",
-      "source_sha256": "feb034f6b5e7dfe05b0c3ee63847f3af93dd8b47f20b34774e4f741d55408c6c"
+      "source_sha256": "feb034f6b5e7dfe05b0c3ee63847f3af93dd8b47f20b34774e4f741d55408c6c",
+      "runtime_enemy_id": 72,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_afr_sasabonsam",
@@ -1122,7 +2196,9 @@
       "source_path": "res://docs/research/litd1_personnages/LITD1_BEST_AFR_SASABONSAM_PREDATEUR_CIMES_V1_VALIDEE.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/research/litd1_personnages/LITD1_BESTIAIRE_MYTHOLOGIES_MANIFESTE_SHA256_20261121.md",
-      "source_sha256": "385562324076f364e6ce43f8b553dd6b050e5369d8805d9a5713f9544da15c0d"
+      "source_sha256": "385562324076f364e6ce43f8b553dd6b050e5369d8805d9a5713f9544da15c0d",
+      "runtime_enemy_id": 73,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_azt_cipactli",
@@ -1133,7 +2209,9 @@
       "source_path": "res://docs/research/litd1_personnages/LITD1_BEST_AZT_CIPACTLI_CROCODILE_PRIMORDIAL_V1_VALIDEE.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/research/litd1_personnages/LITD1_BESTIAIRE_MYTHOLOGIES_MANIFESTE_SHA256_20261121.md",
-      "source_sha256": "85d3cadeb78090ea4db80f57f4d4003458a3435f582e4be0a2b20c74a8ab9980"
+      "source_sha256": "85d3cadeb78090ea4db80f57f4d4003458a3435f582e4be0a2b20c74a8ab9980",
+      "runtime_enemy_id": 74,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_azt_itzpapalotl",
@@ -1144,7 +2222,9 @@
       "source_path": "res://docs/research/litd1_personnages/LITD1_BEST_AZT_ITZPAPALOTL_PAPILLON_OBSIDIENNE_V1_VALIDEE.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/research/litd1_personnages/LITD1_BESTIAIRE_MYTHOLOGIES_MANIFESTE_SHA256_20261121.md",
-      "source_sha256": "5625e722c3d56e918212c16da7b819e4e23f34833709560a62e74d162ae2fb13"
+      "source_sha256": "5625e722c3d56e918212c16da7b819e4e23f34833709560a62e74d162ae2fb13",
+      "runtime_enemy_id": 75,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_azt_mictlantecuhtli",
@@ -1155,7 +2235,9 @@
       "source_path": "res://docs/research/litd1_personnages/LITD1_BEST_AZT_MICTLANTECUHTLI_SEIGNEUR_MICTLAN_V1_VALIDEE.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/research/litd1_personnages/LITD1_BESTIAIRE_MYTHOLOGIES_MANIFESTE_SHA256_20261121.md",
-      "source_sha256": "39cce8c21a55a3f32898f2007a4e57b386fb2a4d4bfc4df9ac68a9a6feec7ddc"
+      "source_sha256": "39cce8c21a55a3f32898f2007a4e57b386fb2a4d4bfc4df9ac68a9a6feec7ddc",
+      "runtime_enemy_id": 76,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_azt_tzitzimime",
@@ -1166,7 +2248,9 @@
       "source_path": "res://docs/research/litd1_personnages/LITD1_BEST_AZT_TZITZIMIME_DEVOREUSE_ETOILES_V1_VALIDEE_ORIGINAL.jpeg",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/research/litd1_personnages/LITD1_BESTIAIRE_MYTHOLOGIES_MANIFESTE_SHA256_20261121.md",
-      "source_sha256": "0aea36022568d81eebb9b34f93563b736e136af6d68572019228379adce053a3"
+      "source_sha256": "0aea36022568d81eebb9b34f93563b736e136af6d68572019228379adce053a3",
+      "runtime_enemy_id": 77,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_azt_xólotl",
@@ -1177,7 +2261,9 @@
       "source_path": "res://docs/research/litd1_personnages/LITD1_BEST_AZT_XOLOTL_GUIDE_PASSAGES_V1_VALIDEE.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/research/litd1_personnages/LITD1_BESTIAIRE_MYTHOLOGIES_MANIFESTE_SHA256_20261121.md",
-      "source_sha256": "e3e3f56239b58ebac916207179e509e28254180a21283631f531119ebb859413"
+      "source_sha256": "e3e3f56239b58ebac916207179e509e28254180a21283631f531119ebb859413",
+      "runtime_enemy_id": 78,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_brit_banshee",
@@ -1188,7 +2274,9 @@
       "source_path": "res://docs/research/litd1_personnages/LITD1_BEST_BRIT_BANSHEE_PLEUREUSE_FUNEBRE_V2_VALIDEE.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/research/litd1_personnages/LITD1_BESTIAIRE_MYTHOLOGIES_MANIFESTE_SHA256_20261121.md",
-      "source_sha256": "cf706aa7220855c03c4fde5a86b97e162cb0dc3a7015211f9de451f72cf54e02"
+      "source_sha256": "cf706aa7220855c03c4fde5a86b97e162cb0dc3a7015211f9de451f72cf54e02",
+      "runtime_enemy_id": 79,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_brit_black_annis",
@@ -1199,7 +2287,9 @@
       "source_path": "res://docs/research/litd1_personnages/LITD1_BEST_BRIT_BLACK_ANNIS_SORCIERE_ECORCHEE_V1_VALIDEE.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/research/litd1_personnages/LITD1_BESTIAIRE_MYTHOLOGIES_MANIFESTE_SHA256_20261121.md",
-      "source_sha256": "16ce8e9ee4626c5f8c916b1a21c79c9afbc2ee65c6b87dd0758d790fc2add511"
+      "source_sha256": "16ce8e9ee4626c5f8c916b1a21c79c9afbc2ee65c6b87dd0758d790fc2add511",
+      "runtime_enemy_id": 80,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_brit_fachan",
@@ -1210,7 +2300,9 @@
       "source_path": "res://docs/research/litd1_personnages/LITD1_BEST_BRIT_FACHAN_MONOCULAIRE_HIGHLANDS_V1_VALIDEE.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/research/litd1_personnages/LITD1_BESTIAIRE_MYTHOLOGIES_MANIFESTE_SHA256_20261121.md",
-      "source_sha256": "74df52ceea0de36bdd169d45a76f081379f8e17e34f6903f86bb3e363afb6cb1"
+      "source_sha256": "74df52ceea0de36bdd169d45a76f081379f8e17e34f6903f86bb3e363afb6cb1",
+      "runtime_enemy_id": 81,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_brit_redcap",
@@ -1221,7 +2313,9 @@
       "source_path": "res://docs/research/litd1_personnages/LITD1_BEST_BRIT_REDCAP_LUTIN_SANGLANT_V2_VALIDEE.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/research/litd1_personnages/LITD1_BESTIAIRE_MYTHOLOGIES_MANIFESTE_SHA256_20261121.md",
-      "source_sha256": "cad2fdb6d0b37825023a591ee67e7b0beda40b4adecdb5e59c10709ec1646be3"
+      "source_sha256": "cad2fdb6d0b37825023a591ee67e7b0beda40b4adecdb5e59c10709ec1646be3",
+      "runtime_enemy_id": 82,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_brit_sluagh",
@@ -1232,7 +2326,9 @@
       "source_path": "res://docs/research/litd1_personnages/LITD1_BEST_BRIT_SLUAGH_HORDE_AMES_ERRANTES_V1_VALIDEE.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/research/litd1_personnages/LITD1_BESTIAIRE_MYTHOLOGIES_MANIFESTE_SHA256_20261121.md",
-      "source_sha256": "98bdeb8b43aa901fc2615cfce1571cb8113c3623c4b8070879b4b3ec1ec2d6b4"
+      "source_sha256": "98bdeb8b43aa901fc2615cfce1571cb8113c3623c4b8070879b4b3ec1ec2d6b4",
+      "runtime_enemy_id": 83,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_egy_anubis",
@@ -1243,7 +2339,9 @@
       "source_path": "res://docs/research/litd1_personnages/LITD1_BEST_EGY_ANUBIS_PESEUR_DES_AMES_V2_VALIDEE.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/research/litd1_personnages/LITD1_BESTIAIRE_MYTHOLOGIES_MANIFESTE_SHA256_20261121.md",
-      "source_sha256": "7b7b26fd93c0a2e884599bec168efe93b70b671c8272e6e8ce556fbeca0456e4"
+      "source_sha256": "7b7b26fd93c0a2e884599bec168efe93b70b671c8272e6e8ce556fbeca0456e4",
+      "runtime_enemy_id": 12,
+      "runtime_link_status": "matched_existing_by_name"
     },
     {
       "reference_id": "plate_egy_horus",
@@ -1254,7 +2352,9 @@
       "source_path": "res://docs/research/litd1_personnages/LITD1_BEST_EGY_HORUS_SENTINELLE_ZENITH_V1_VALIDEE.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/research/litd1_personnages/LITD1_BESTIAIRE_MYTHOLOGIES_MANIFESTE_SHA256_20261121.md",
-      "source_sha256": "5e4bdaf9af2fd74f92e3ccc4bc3357bad8e973b26570058632c1ba37e6aeca40"
+      "source_sha256": "5e4bdaf9af2fd74f92e3ccc4bc3357bad8e973b26570058632c1ba37e6aeca40",
+      "runtime_enemy_id": 84,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_egy_isis",
@@ -1265,7 +2365,9 @@
       "source_path": "res://docs/research/litd1_personnages/LITD1_BEST_EGY_ISIS_TISSEUSE_DES_AMES_V2_VALIDEE.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/research/litd1_personnages/LITD1_BESTIAIRE_MYTHOLOGIES_MANIFESTE_SHA256_20261121.md",
-      "source_sha256": "3eeb3d573239ec8add99e92fbb7cffc434a77ada6cc4e5c6d2469fc1ed189688"
+      "source_sha256": "3eeb3d573239ec8add99e92fbb7cffc434a77ada6cc4e5c6d2469fc1ed189688",
+      "runtime_enemy_id": 85,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_egy_seth",
@@ -1276,7 +2378,9 @@
       "source_path": "res://docs/research/litd1_personnages/LITD1_BEST_EGY_SETH_ECORCHEUR_TEMPETES_V2_VALIDEE.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/research/litd1_personnages/LITD1_BESTIAIRE_MYTHOLOGIES_MANIFESTE_SHA256_20261121.md",
-      "source_sha256": "abb110f4d97c4c3698e25dc4b42322cc46f9cff6e6aa7492f9e1026b70da7b43"
+      "source_sha256": "abb110f4d97c4c3698e25dc4b42322cc46f9cff6e6aa7492f9e1026b70da7b43",
+      "runtime_enemy_id": 86,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_egy_sobek",
@@ -1287,7 +2391,9 @@
       "source_path": "res://docs/research/litd1_personnages/LITD1_BEST_EGY_SOBEK_SEIGNEUR_EAUX_NOIRES_V1_VALIDEE.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/research/litd1_personnages/LITD1_BESTIAIRE_MYTHOLOGIES_MANIFESTE_SHA256_20261121.md",
-      "source_sha256": "77b9d86f3c47b264911a21edafa41dc1cbd7771e820b30f1b043ea70e2ae9e50"
+      "source_sha256": "77b9d86f3c47b264911a21edafa41dc1cbd7771e820b30f1b043ea70e2ae9e50",
+      "runtime_enemy_id": 87,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_slave_baba_yaga",
@@ -1298,7 +2404,9 @@
       "source_path": "res://docs/research/litd1_personnages/LITD1_BEST_SLAVE_BABA_YAGA_MERE_DES_SEUILS_V3_VALIDEE.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/research/litd1_personnages/LITD1_BESTIAIRE_MYTHOLOGIES_MANIFESTE_SHA256_20261121.md",
-      "source_sha256": "38ca4508b7bd0c0f56497dd58e25209a21ca171a658f0871a40e5281ad7bae69"
+      "source_sha256": "38ca4508b7bd0c0f56497dd58e25209a21ca171a658f0871a40e5281ad7bae69",
+      "runtime_enemy_id": 88,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_slave_leshy",
@@ -1309,7 +2417,9 @@
       "source_path": "res://docs/research/litd1_personnages/LITD1_BEST_SLAVE_LESHY_SOUVERAIN_SENTIERS_PERDUS_V2_VALIDEE.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/research/litd1_personnages/LITD1_BESTIAIRE_MYTHOLOGIES_MANIFESTE_SHA256_20261121.md",
-      "source_sha256": "57cdb0e2f8ab2d07bad58c99d49a983e4652f29eb5ce7c2cb2bcf027999f1e9b"
+      "source_sha256": "57cdb0e2f8ab2d07bad58c99d49a983e4652f29eb5ce7c2cb2bcf027999f1e9b",
+      "runtime_enemy_id": 89,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_slave_rusalka",
@@ -1320,7 +2430,9 @@
       "source_path": "res://docs/research/litd1_personnages/LITD1_BEST_SLAVE_RUSALKA_NOYEE_DES_SAULES_V1_VALIDEE.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/research/litd1_personnages/LITD1_BESTIAIRE_MYTHOLOGIES_MANIFESTE_SHA256_20261121.md",
-      "source_sha256": "bc13590fff4791211f88ae651f21e8b0fc5a94dce66a471e6c03d973d06f3340"
+      "source_sha256": "bc13590fff4791211f88ae651f21e8b0fc5a94dce66a471e6c03d973d06f3340",
+      "runtime_enemy_id": 90,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_slave_vodyanoy",
@@ -1331,7 +2443,9 @@
       "source_path": "res://docs/research/litd1_personnages/LITD1_BEST_SLAVE_VODYANOY_MAITRE_DES_EAUX_V1_VALIDEE.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/research/litd1_personnages/LITD1_BESTIAIRE_MYTHOLOGIES_MANIFESTE_SHA256_20261121.md",
-      "source_sha256": "3a41f70c5aa63dec59532700d437591bf8044bca71a73ca2aae482c63c137b6f"
+      "source_sha256": "3a41f70c5aa63dec59532700d437591bf8044bca71a73ca2aae482c63c137b6f",
+      "runtime_enemy_id": 91,
+      "runtime_link_status": "runtime_entry_added"
     },
     {
       "reference_id": "plate_slave_zmey",
@@ -1342,7 +2456,9 @@
       "source_path": "res://docs/research/litd1_personnages/LITD1_BEST_SLAVE_ZMEY_DEVOREUR_DES_ORAGES_V1_VALIDEE.png",
       "approval_status": "validated_by_owner",
       "source_manifest": "docs/research/litd1_personnages/LITD1_BESTIAIRE_MYTHOLOGIES_MANIFESTE_SHA256_20261121.md",
-      "source_sha256": "a58654ecf54cad24734415bb9636aa9e182eca18fe6ee6ea50a6d1bb8a03e261"
+      "source_sha256": "a58654ecf54cad24734415bb9636aa9e182eca18fe6ee6ea50a6d1bb8a03e261",
+      "runtime_enemy_id": 92,
+      "runtime_link_status": "runtime_entry_added"
     }
   ]
 }
