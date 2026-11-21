@@ -83,3 +83,16 @@
 - **Attention :** bandeau `CONCEPT V1 — PROPOSITION` éventuellement présent sur l'image générée ne modifie pas le statut explicite V2 validée ; conserver le PNG inchangé.
 - **Archivage binaire GitHub : NON VÉRIFIÉ.** L'entrée documentaire n'atteste pas le transfert du PNG.
 - **Suivi :** monstres communs 6/15 validés (40 %) ; projet global LITD 1 : À évaluer.
+
+## Rat pestilentiel V1 — Le Rongeur des fosses
+
+- **Statut : VALIDÉ ARTISTIQUEMENT**, confirmation explicite de l'utilisateur le 21 novembre 2026 ; conserver le PNG original V1 sans retouche ni substitution.
+- **PNG original :** `LITD1_BEST_COMMUN_RAT_PESTILENTIEL_RONGEUR_FOSSES_V1_VALIDEE.png`.
+- **Bibliothèque ChatGPT :** `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_COMMUN_RAT_PESTILENTIEL_RONGEUR_FOSSES_V1_VALIDEE.png` (copie réussie).
+- **Direction artistique :** gros rat des égouts à pelage sale et clairsemé, peau lésée, yeux fiévreux, crocs, longue queue annelée, excroissances fongiques rouges, talismans et clochettes de récupération, ruines humides ; adaptation sino-gothico-dark fantasy.
+- **Rôle envisagé :** ennemi commun en meute, nuisances et propagation de maladies ; mécaniques à valider séparément.
+- **Composition :** illustration centrale, quatre rotations, six expressions, études œil, oreille, patte, champignons, talisman et tissu ; silhouettes, matériaux, palette ; variantes rat égaré et rat sporulent.
+- **Référence de présentation :** Anubis V2.
+- **Attention :** bandeau `CONCEPT V1 — PROPOSITION` imprimé avant validation ; préserver le PNG original.
+- **Archivage binaire GitHub : NON VÉRIFIÉ.** La fiche documentaire ne prouve pas le transfert du PNG dans le dépôt.
+- **Suivi :** monstres communs 7/15 validés (47 % arrondi) ; projet global LITD 1 : À évaluer.
