@@ -71,3 +71,15 @@
 - **Attention :** bandeau `CONCEPT V1 — PROPOSITION` imprimé avant validation ; préserver le PNG original.
 - **Archivage binaire GitHub : NON VÉRIFIÉ.** La fiche documentaire ne prouve pas le transfert du PNG dans le dépôt.
 - **Suivi :** monstres communs 5/15 validés (33 % arrondi) ; projet global LITD 1 : À évaluer.
+
+## Épouvantail possédé V2 — Le Gardien des récoltes
+
+- **Statut : VALIDÉ ARTISTIQUEMENT** explicitement le 21 novembre 2026. **V2 sans croix / traverse dans le dos**, version définitive ; V1 est une proposition antérieure non retenue.
+- **PNG original validé :** `LITD1_BEST_COMMUN_EPOUVANTAIL_POSSEDE_GARDIEN_RECOLTES_V2_VALIDEE.png`.
+- **Bibliothèque ChatGPT :** `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_COMMUN_EPOUVANTAIL_POSSEDE_GARDIEN_RECOLTES_V2_VALIDEE.png` (upload confirmé).
+- **Description :** épouvantail animé de paille, bois et étoffes rituelles déchirées ; chapeau de paille, yeux rouges lumineux, mains griffues, talismans, cordes et clochettes. Silhouette autonome, sans structure en croix derrière le dos, y compris dans les rotations et variantes.
+- **Composition :** scène centrale en champ abandonné, quatre rotations, six expressions, détails et matières, palette, silhouettes, variantes gardien ritualisé et épouvantail corrompu ; référence de présentation Anubis V2, identité sino-gothico-dark fantasy.
+- **Rôle envisagé :** ennemi commun de champs maudits, embuscades, entrave et peur ; mécaniques de gameplay à valider séparément.
+- **Attention :** bandeau `CONCEPT V1 — PROPOSITION` éventuellement présent sur l'image générée ne modifie pas le statut explicite V2 validée ; conserver le PNG inchangé.
+- **Archivage binaire GitHub : NON VÉRIFIÉ.** L'entrée documentaire n'atteste pas le transfert du PNG.
+- **Suivi :** monstres communs 6/15 validés (40 %) ; projet global LITD 1 : À évaluer.
