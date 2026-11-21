@@ -45,3 +45,16 @@
 - **Attention :** bandeau `CONCEPT V1 — PROPOSITION` imprimé avant validation ; préserver le PNG original.
 - **Archivage binaire GitHub : NON VÉRIFIÉ.** La fiche documentaire ne prouve pas le transfert du PNG dans le dépôt.
 - **Suivi :** monstres communs 3/15 validés (20 %) ; projet global LITD 1 : À évaluer.
+
+## Gobelin pillard V1 — Le Chasseur d'aubaines
+
+- **Statut : VALIDÉ ARTISTIQUEMENT**, confirmation explicite de l'utilisateur le 21 novembre 2026 ; conserver le PNG original V1 sans retouche ni substitution.
+- **PNG original :** `LITD1_BEST_COMMUN_GOBELIN_PILLARD_CHASSEUR_AUBAINES_V1_VALIDEE.png`.
+- **Bibliothèque ChatGPT :** `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_COMMUN_GOBELIN_PILLARD_CHASSEUR_AUBAINES_V1_VALIDEE.png` (copie réussie).
+- **Direction artistique :** petit humanoïde gobelin à peau vert olive, grandes oreilles, crocs et expression rusée ; capuche rouge usée, armure de récupération, sacoches et amulettes, lame dentelée, équipement hétéroclite, influences sino-gothico-dark fantasy.
+- **Rôle envisagé :** ennemi commun agile et opportuniste, pillage, embuscades et harcèlement ; mécaniques de combat à confirmer séparément.
+- **Composition :** illustration centrale, quatre vues de rotation, six expressions, études de l'œil, oreille, main, amulette, gourde et tissu ; silhouettes, matériaux, palette ; variantes pillard des ruines et embusqueur archer.
+- **Référence de présentation :** Anubis V2.
+- **Attention :** bandeau `CONCEPT V1 — PROPOSITION` imprimé avant validation ; préserver le PNG original.
+- **Archivage binaire GitHub : NON VÉRIFIÉ.** La fiche documentaire ne prouve pas le transfert du PNG dans le dépôt.
+- **Suivi :** monstres communs 4/15 validés (27 % arrondi) ; projet global LITD 1 : À évaluer.
