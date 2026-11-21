@@ -34,3 +34,11 @@
 
 ## Prochaine étape prioritaire
 Localiser et vérifier les 15 PNG binaires originaux dans le dépôt (tous chemins/branches pertinents), puis produire une table de correspondance fichier ↔ source ↔ SHA-256. Ensuite seulement ouvrir un prototype technique isolé pour la Mimique V2 et les coffres ordinaires.
+
+## Mise à jour du contrôle des originaux — 21 novembre 2026
+
+- **15/15 fichiers PNG originaux** retrouvés dans la bibliothèque ChatGPT, matérialisés localement et vérifiés par signature PNG ; **15 empreintes SHA-256 calculées** et inventoriées dans `LITD1_15_MONSTRES_COMMUNS_SHA256.csv` (livré comme artefact de conversation, pas encore ajouté au dépôt).
+- Archive de livraison des 15 PNG exacts : `LITD1_15_planches_communes_validees_originaux.zip` (artefact de conversation ; non encore importé dans GitHub).
+- **GitHub :** 15/15 chemins testés sous `docs/research/litd1_personnages/` renvoient 404 sur la branche documentaire. Recherche globale du dépôt non exhaustive, aucun PNG binaire GitHub vérifié, aucune comparaison SHA-256 GitHub réalisée.
+- **Prototype Mimique :** script Blender de blockout préparé `LITD1_Mimique_V2_prototype_blender.py` (artefact de conversation). Vérification de syntaxe Python effectuée ; **Blender indisponible dans l'environnement**, donc génération `.blend`, rendu et test d'indiscernabilité non exécutés. Le script n'est pas une reconstruction fidèle de la planche artistique et ne doit pas être considéré comme un modèle final.
+- **Prochaine étape :** importer les PNG exacts dans un emplacement validé du dépôt avec un outil compatible binaire, comparer les SHA-256 ; exécuter le script de blockout dans Blender et vérifier visuellement la forme fermée avant intégration au moteur de jeu.
