@@ -109,3 +109,16 @@
 - **Attention :** le bandeau `CONCEPT V1 — PROPOSITION` sur l'image est antérieur à la validation ; conserver le master inchangé.
 - **Archivage binaire GitHub : NON VÉRIFIÉ.** La fiche documentaire n'atteste pas la présence du PNG original dans le dépôt.
 - **Suivi :** monstres communs 8/15 validés (53 % arrondi) ; projet global LITD 1 : À évaluer.
+
+## Araignée des cryptes V1 — La Tisseuse des tombeaux
+
+- **Statut : VALIDÉ ARTISTIQUEMENT**, confirmation explicite de l'utilisateur le 21 novembre 2026 ; conserver le PNG original V1 sans retouche ni substitution.
+- **PNG original :** `LITD1_BEST_COMMUN_ARAIGNEE_CRYPTES_TISSEUSE_TOMBEAUX_V1_VALIDEE.png`.
+- **Bibliothèque ChatGPT :** `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_COMMUN_ARAIGNEE_CRYPTES_TISSEUSE_TOMBEAUX_V1_VALIDEE.png` (copie réussie).
+- **Direction artistique :** araignée funéraire de taille moyenne à huit pattes articulées, yeux rouges multiples, crocs/chélicères développés, carapace sombre avec sceaux rituels, ornementations de métal et talismans, toiles épaisses ; esthétique sino-gothico-dark fantasy.
+- **Rôle envisagé :** ennemi commun d'embuscade, tissage de toiles, contrôle de zone et venin ; mécaniques de gameplay à valider séparément.
+- **Composition :** illustration centrale, quatre rotations, six attitudes, études de l'œil, des chélicères, de la carapace, de la soie, du talisman et de l'ornement ; matériaux, palette, silhouettes ; variantes araignée des cavernes et araignée toxique.
+- **Référence de présentation :** Anubis V2.
+- **Attention :** bandeau `CONCEPT V1 — PROPOSITION` imprimé avant validation ; préserver le PNG original.
+- **Archivage binaire GitHub : NON VÉRIFIÉ.** La fiche documentaire ne prouve pas le transfert du PNG dans le dépôt.
+- **Suivi :** monstres communs 9/15 validés (60 %) ; projet global LITD 1 : À évaluer.
