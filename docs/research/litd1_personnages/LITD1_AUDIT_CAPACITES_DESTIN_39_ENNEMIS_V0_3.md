@@ -66,3 +66,19 @@ Pour chaque ennemi, retrouver sa fiche de lore, ses actions de combat, sa factio
 Inspecter les définitions de capacités et le lore de chaque ennemi, puis soumettre seulement les correspondances étayées à validation. Éviter toute modification de `data/enemies.json` tant que les règles ne sont pas approuvées.
 
 **Suivi :** chantier audit des capacités de destin, 🟡 À CONSOLIDER. Avancement de l'inventaire du JSON : 100 % (39/39) ; avancement de la validation des capacités : 0 % sur ces 39 entrées dans les sources examinées, ce qui ne préjuge pas des décisions conservées ailleurs. Avancement du chantier actuel : À évaluer. Avancement du projet global LITD 1 : À évaluer.
+
+## Rectificatif prioritaire — divergence avec le bestiaire artistique validé (21 novembre 2026)
+
+**Attention : les 39 noms ci-dessus proviennent uniquement du prototype `data/enemies.json` et ne constituent PAS la liste canonique des créatures artistiquement validées.** L'intitulé « audit des 39 ennemis » doit être compris comme un inventaire du prototype, et non comme une validation du bestiaire. Aucune correspondance automatique ne doit être déduite d'un nom proche.
+
+Sources supplémentaires consultées sur la branche `docs/litd1-regles-fuite-transformations-20261118` : `LITD1_BESTIAIRE_INVENTAIRE_ET_COHERENCE_LORE_V0_1.md`, `LITD1_BESTIAIRE_RECONCILIATION_PLANCHES_20261119.md`, `LITD1_BESTIAIRE_PLANCHES_VALIDEES_EGYPTE_20261119.md`, `LITD1_BESTIAIRE_PLANCHES_VALIDEES_SLAVES_20261119.md` et `LITD1_BESTIAIRE_PLANCHES_VALIDEES_MONSTRES_COMMUNS_20261121.md`.
+
+Exemples de divergences constatées :
+- `Écorcheur` (prototype ID 5) **n'est pas une preuve d'identité** avec `Écorcheur des Tempêtes` (créature LITD inspirée de Seth, planche approuvée).
+- `Anubis` (prototype ID 12) ne reflète pas à lui seul la référence artistique `Anubis — Le Peseur des Âmes V2` ; correspondance de fiche technique à confirmer.
+- `Goule affamée` (ID 1) possède une planche `Goule affamée — La Dévoreuse des Charniers V1` explicitement approuvée artistiquement, mais cela ne valide pas les statistiques ou pouvoirs du JSON.
+- `Baba Yaga — La Mère des Seuils`, `Zmey — Le Dévoreur des Orages`, `Vodyanoy — Le Maître des Eaux`, `Rusalka — La Noyée des Saules` figurent dans le registre slave mais pas parmi les 39 noms du JSON.
+- `Cerbère`, `Hydre`, `Kitsune`, `Draugr`, `Wendigo`, `Valkyrie spectrale` figurent dans l'inventaire des planches examinées, mais pas dans ces 39 entrées. **Planche reçue n'équivaut pas toujours à validation artistique explicite** : respecter les statuts précis du registre.
+- `Golem de pierre runique` est expressément **en attente de validation** dans le registre des 15 planches, ne pas le compter parmi les planches validées.
+
+**Mesure conservatoire :** ne pas renommer `data/enemies.json` ni attribuer de capacités à ces 39 entrées avant une table de correspondance à trois colonnes (ID prototype, ID stable de planche, statut exact et preuve), y compris les absences de correspondance. La présente V0.3 n'est pas une source de vérité canonique.
