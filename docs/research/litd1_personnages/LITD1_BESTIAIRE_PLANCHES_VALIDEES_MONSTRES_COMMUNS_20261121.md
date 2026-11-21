@@ -96,3 +96,16 @@
 - **Attention :** bandeau `CONCEPT V1 — PROPOSITION` imprimé avant validation ; préserver le PNG original.
 - **Archivage binaire GitHub : NON VÉRIFIÉ.** La fiche documentaire ne prouve pas le transfert du PNG dans le dépôt.
 - **Suivi :** monstres communs 7/15 validés (47 % arrondi) ; projet global LITD 1 : À évaluer.
+
+## Loup corrompu V1 — Le Traqueur de la souillure
+
+- **Statut : VALIDÉ ARTISTIQUEMENT** explicitement le 21 novembre 2026 ; conserver le PNG original V1 sans retouche ni substitution.
+- **PNG original :** `LITD1_BEST_COMMUN_LOUP_CORROMPU_TRAQUEUR_SOUILLURE_V1_VALIDEE.png`.
+- **Bibliothèque ChatGPT :** `/LITD 1/Bestiaire/Planches validées/LITD1_BEST_COMMUN_LOUP_CORROMPU_TRAQUEUR_SOUILLURE_V1_VALIDEE.png` (upload confirmé).
+- **Direction artistique :** grand loup à fourrure grise hirsute et altérée, yeux rouges, griffes et crocs, excroissances osseuses, lésions et champignons rouges, talismans et clochettes ; fusion sino-gothico-dark fantasy.
+- **Rôle envisagé :** prédateur commun de meute, harcèlement, maladie et corruption ; mécaniques de gameplay non encore validées.
+- **Composition :** illustration centrale, quatre rotations, six expressions, détails œil, fourrure, os, patte, champignons, talismans et peau ; palette, matériaux, silhouettes ; variantes loup malsain et loup aberrant.
+- **Référence de présentation :** Anubis V2.
+- **Attention :** le bandeau `CONCEPT V1 — PROPOSITION` sur l'image est antérieur à la validation ; conserver le master inchangé.
+- **Archivage binaire GitHub : NON VÉRIFIÉ.** La fiche documentaire n'atteste pas la présence du PNG original dans le dépôt.
+- **Suivi :** monstres communs 8/15 validés (53 % arrondi) ; projet global LITD 1 : À évaluer.
