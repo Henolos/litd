@@ -47,6 +47,21 @@ def test_deleted_gameplay_cannot_return(foundation):
     assert 'retired_runtime_returned:scripts/ui/main.gd' in validate(foundation)
 
 
+def test_new_prototype_is_explicit_and_cannot_reinstate_retired_path(foundation):
+    path = foundation/'scripts/prototype/combat_a.gd'
+    path.parent.mkdir()
+    path.write_text('extends Control\n')
+    assert any(x.startswith('technical_script_scope:') for x in validate(foundation))
+    (foundation/'docs/reconstruction/COMBAT_A_PROTOTYPE_MANIFEST.json').write_text(json.dumps({
+        'scripts': ['scripts/prototype/combat_a.gd'], 'scenes': [],
+    }))
+    assert validate(foundation) == []
+    (foundation/'docs/reconstruction/COMBAT_A_PROTOTYPE_MANIFEST.json').write_text(json.dumps({
+        'scripts': ['scripts/prototype/combat_a.gd', 'scripts/ui/main.gd'], 'scenes': [],
+    }))
+    assert 'prototype_scope_invalid:scripts/ui/main.gd' in validate(foundation)
+
+
 def test_game_bootstrap_cannot_return(foundation):
     with (foundation/'project.godot').open('a') as handle:
         handle.write('\nrun/main_scene="res://scenes/Main.tscn"\n')
