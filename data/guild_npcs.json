@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "description": "Registre des PNJ de Guilde. Les chemins artistiques non vérifiés restent null et ne doivent pas être chargés par Godot.",
+  "characters": [
+    {
+      "id": "kelia_anzora",
+      "name": "Kélia Anzora",
+      "role": "pending_source_verification",
+      "art_path": null,
+      "art_verified": false,
+      "implementation_status": "blocked_missing_verified_asset"
+    },
+    {
+      "id": "lian_yue",
+      "name": "Lian Yue",
+      "role": "recruitment",
+      "art_path": null,
+      "art_verified": false,
+      "implementation_status": "blocked_missing_verified_asset"
+    },
+    {
+      "id": "soleyman",
+      "name": "Soleyman",
+      "role": "merchant",
+      "former_name": "Rashid al-Khârim",
+      "art_path": null,
+      "art_verified": false,
+      "implementation_status": "blocked_missing_verified_asset"
+    }
+  ]
+}
