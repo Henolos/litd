@@ -5,6 +5,8 @@ const EXPECTED := {
     "kelia_anzora": Vector2i(768, 1024),
     "lian_yue": Vector2i(768, 1024),
     "soleyman": Vector2i(768, 1024),
+    "maitresse_armes": Vector2i(768, 1024),
+    "wei_shan": Vector2i(768, 1024),
 }
 var failures := 0
 

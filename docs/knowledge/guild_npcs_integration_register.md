@@ -1,6 +1,6 @@
 # LITD 1 — Registre de préparation des personnages de la Guilde
 
-Statut : six fichiers transférés et contrôlés dans la branche ouverte de la PR #631 ; import/chargement Godot validé. PR non fusionnée et scènes de Guilde non raccordées au runtime.
+Statut : dix fichiers répartis sur cinq personnages dans la branche PR #631. Les six premiers chargent sous Godot 4.7.2 ; les quatre ajoutés le 22 novembre sont transférés avec leurs SHA-256 contrôlés, import Godot et revue visuelle des portraits encore à faire. PR non fusionnée, scènes non raccordées.
 Référence : décisions de validation du 22 novembre 2026. Ne pas remplacer les originaux artistiques par des images recréées.
 
 | Identifiant stable proposé | Nom validé | Rôle | Validation artistique | Fichiers contrôlés dans la branche PR | Import/chargement Godot |
@@ -8,6 +8,8 @@ Référence : décisions de validation du 22 novembre 2026. Ne pas remplacer les
 | kelia_anzora | Kélia Anzora | À reprendre de la fiche validée | Oui, selon validation utilisateur | Planche + portrait 3:4, SHA-256 conformes | Importés et chargés ; scènes non raccordées |
 | lian_yue | Lian Yue | Responsable du recrutement | Oui, selon validation utilisateur | Planche + portrait 3:4, SHA-256 conformes | Importés et chargés ; scènes non raccordées |
 | soleyman | Soleyman | Marchand de la Guilde | Oui, selon validation utilisateur | Planche + portrait 3:4, SHA-256 conformes | Importés et chargés ; scènes non raccordées |
+| maitresse_armes | Shen Yulan | Maîtresse d’armes | Planche validée ; recadrage du portrait à confirmer | Planche + portrait 3:4, SHA-256 conformes | Import Godot et revue du recadrage en attente |
+| wei_shan | Wei Shan | Archiviste | Planche validée ; recadrage du portrait à confirmer | Planche + portrait 3:4, SHA-256 conformes | Import Godot et revue du recadrage en attente |
 
 ## Contraintes impératives
 
@@ -22,9 +24,9 @@ Référence : décisions de validation du 22 novembre 2026. Ne pas remplacer les
 
 ## Étapes restant à exécuter
 
-1. Ressources (3 planches et 3 portraits) transférées dans la branche PR #631 ; les six empreintes GitHub ont été comparées aux originales et correspondent.
-2. Les six ressources ont été importées et chargées dans Godot 4.7.2 ; test du catalogue runtime ajouté.
-3. La PR reste ouverte et non fusionnée, selon la consigne.
-4. Reste à raccorder les personnages aux scènes de Guilde et à valider leur affichage en jeu après décision de fusion.
+1. Les quatre nouvelles ressources (deux planches et deux portraits) ont été ajoutées à leurs dossiers ; leurs empreintes de l’archive sont contrôlées.
+2. Faire importer et charger les nouveaux portraits dans Godot 4.7.2 ; le test du catalogue couvre désormais les cinq PNJ.
+3. Confirmer visuellement les deux recadrages de portraits.
+4. Raccorder les personnages aux scènes de Guilde et valider leur affichage en jeu après décision de fusion.
 
-Ce registre n'est **pas** une preuve que les fichiers images sont sauvegardés dans GitHub.
+Les quatre nouveaux fichiers sont présents dans la branche PR #631 ; cette PR reste ouverte et non fusionnée.

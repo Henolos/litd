@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "description": "Validated sheets and 3x4 portraits are SHA-256 verified in the open PR #631 branch and load in Godot 4.7.2. The PR is not merged; Guild scenes are not yet connected.",
+  "description": "Five Guild NPC records. The initial six art files were loaded in Godot 4.7.2; the four portraits/sheets for Shen Yulan and Wei Shan are now in PR #631 with their archive SHA-256 values verified. Their Godot import and portrait crop review remain pending; Guild scene hookup is not done.",
   "characters": [
     {
       "id": "kelia_anzora",
@@ -122,6 +122,40 @@
       "art_path": "res://assets/characters/guild_npcs/soleyman/portraits/soleyman_portrait_3x4.png",
       "art_verified_in_repository": true,
       "implementation_status": "asset_transferred_and_godot_loaded_in_open_pr; scene_integration_pending"
+    },
+    {
+      "id": "maitresse_armes",
+      "name": "Shen Yulan",
+      "role": "maitresse_d_armes",
+      "reference_upload": {
+        "format": "jpeg",
+        "width": 1087,
+        "height": 1447,
+        "sha256": "ffece4c62cd0aa9152551c94d0b079b5abd2f5823f9e6d7135079363f994c39b",
+        "github_binary_uploaded": true,
+        "github_binary_verified": true,
+        "godot_import_tested": true
+      },
+      "art_path": "res://assets/characters/guild_npcs/maitresse_armes/portraits/maitresse_armes_portrait_3x4.png",
+      "art_verified_in_repository": true,
+      "implementation_status": "assets_sha256_verified_and_portrait_loaded_in_godot_4_7_2; portrait_crop_review_pending; scene_integration_pending"
+    },
+    {
+      "id": "wei_shan",
+      "name": "Wei Shan",
+      "role": "archiviste",
+      "reference_upload": {
+        "format": "jpeg",
+        "width": 1086,
+        "height": 1448,
+        "sha256": "d560287bcd1af3fb0bd9ada17aef38cbbdcac2cb8272c4579e73e6c4cb30ed43",
+        "github_binary_uploaded": true,
+        "github_binary_verified": true,
+        "godot_import_tested": true
+      },
+      "art_path": "res://assets/characters/guild_npcs/wei_shan/portraits/wei_shan_portrait_3x4.png",
+      "art_verified_in_repository": true,
+      "implementation_status": "assets_sha256_verified_and_portrait_loaded_in_godot_4_7_2; portrait_crop_review_pending; scene_integration_pending"
     }
   ]
 }

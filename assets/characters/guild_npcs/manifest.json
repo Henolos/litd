@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "source": "Three user-supplied validated JPEG sheets and three 3x4 portraits; six SHA-256-matched files transferred to the open PR branch and imported/loaded in Godot 4.7.2 on 2026-11-22. PR remains unmerged; scene hookup is pending.",
+  "source": "Five validated Guild NPC records; ten art files (five sheets and five portraits). The initial six existing assets remain imported in Godot 4.7.2. Four new files were added from the 2026-11-22 archive; their Godot import test is pending. Scene hookup remains pending; PR #631 stays unmerged.",
   "assets": [
     {
       "id": "kelia_anzora",
@@ -67,6 +67,74 @@
       },
       "github_binary_verified": true,
       "godot_import_tested": true
+    },
+    {
+      "id": "maitresse_armes",
+      "name": "Maîtresse d’armes",
+      "source_approved_png_sha256": "cca04985e673958ba35dd45da045d9535f2e5246f79259e168682d1053171d89",
+      "path": "assets/characters/guild_npcs/maitresse_armes/concept/maitresse_armes_validated_sheet.jpeg",
+      "sha256": "ffece4c62cd0aa9152551c94d0b079b5abd2f5823f9e6d7135079363f994c39b",
+      "bytes": 1212905,
+      "width": 1087,
+      "height": 1447,
+      "github_binary_uploaded": true,
+      "github_binary_verified": true,
+      "godot_import_tested": true,
+      "portrait": {
+        "path": "assets/characters/guild_npcs/maitresse_armes/portraits/maitresse_armes_portrait_3x4.png",
+        "sha256": "719cfdedc2e3f879ddea7133a9c9b8f2c836ce757fee644128ffc08d4b289a8e",
+        "bytes": 1134441,
+        "width": 768,
+        "height": 1024,
+        "format": "png",
+        "github_binary_uploaded": true,
+        "github_binary_verified": true,
+        "godot_import_tested": true,
+        "visual_approval_pending": true,
+        "crop_source_pixels": [
+          155,
+          35,
+          515,
+          515
+        ]
+      },
+      "visual_sheet_approved": true,
+      "portrait_crop_pending": true,
+      "original_approved_png_in_archive": false
+    },
+    {
+      "id": "wei_shan",
+      "name": "Wei Shan",
+      "source_approved_png_sha256": "df52b49ab1c83393dd3edcf37e0f6d4018eb4155e700bc2cc6ced75c198bea7a",
+      "path": "assets/characters/guild_npcs/wei_shan/concept/wei_shan_validated_sheet.jpeg",
+      "sha256": "d560287bcd1af3fb0bd9ada17aef38cbbdcac2cb8272c4579e73e6c4cb30ed43",
+      "bytes": 1294698,
+      "width": 1086,
+      "height": 1448,
+      "github_binary_uploaded": true,
+      "github_binary_verified": true,
+      "godot_import_tested": true,
+      "portrait": {
+        "path": "assets/characters/guild_npcs/wei_shan/portraits/wei_shan_portrait_3x4.png",
+        "sha256": "7d76b40e58144a732ed05ccb77f24aceee37ba2ba3a197b6ba694856bd017e80",
+        "bytes": 1273486,
+        "width": 768,
+        "height": 1024,
+        "format": "png",
+        "github_binary_uploaded": true,
+        "github_binary_verified": true,
+        "godot_import_tested": true,
+        "visual_approval_pending": true,
+        "crop_source_pixels": [
+          155,
+          35,
+          515,
+          515
+        ]
+      },
+      "visual_sheet_approved": true,
+      "portrait_crop_pending": true,
+      "original_approved_png_in_archive": false
     }
   ]
 }
