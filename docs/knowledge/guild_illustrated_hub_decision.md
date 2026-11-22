@@ -20,7 +20,11 @@ Statut : **VALIDÉ pour le mode de navigation et la conservation de la planche a
 | Entraînement | Maîtresse d'armes (nom non fixé) | apprentissage, techniques, évaluation |
 | Archives | Wei Shan | codex, bestiaire, histoire, documents |
 | Bureau du maître | Maître de la Guilde | dialogues et événements spécifiques |
+| Taverne de la Guilde | Tavernier ou tavernière à créer | rencontres, rumeurs, événements, compagnons et missions informelles (services détaillés à définir) |
+| Infirmerie de la Guilde | Médecin à créer | soins, récupération, séquelles et éventuelles quêtes médicales (mécaniques à définir) |
 | Espaces complémentaires | aucun responsable fixé | repos/préparation, logistique, cour intérieure |
+
+La taverne et l'infirmerie font désormais partie du périmètre du hub principal, décision ajoutée à la demande de l'utilisateur. Leur position architecturale, leurs personnages responsables et leurs mécaniques précises restent à concevoir. La planche architecturale précédemment validée est conservée comme référence : son extension doit faire l'objet d'une planche complémentaire ou d'une nouvelle validation, sans altérer l'original.
 
 Les trois niveaux sont une **organisation architecturale illustrée**, pas trois scènes 3D obligatoires. Les lieux accessibles et leur placement exact sur la carte interactive restent à définir.
 
@@ -32,7 +36,8 @@ Les trois niveaux sont une **organisation architecturale illustrée**, pas trois
 5. Raccourcis vers compagnie, équipement, journal et départ en expédition, sous réserve de cohérence avec l'interface existante.
 
 ## Prologue : exigences narratives
-- Présenter et caractériser les trois compagnons avant « La cueillette ».
+- Présenter et caractériser les trois compagnons avant « La cueillette », notamment via des rencontres possibles à la taverne.
+- Prévoir un rôle narratif possible pour le médecin après le retour du prologue, sans imposer de mécanique de blessures non validée.
 - Lian Yue accueille la compagnie ; Kélia enregistre le rang S ; Soleyman prépare les équipements ; la maîtresse d'armes peut introduire l'entraînement ; Wei Shan peut introduire les archives/codex.
 - **Ne pas révéler** avant le retour de « La cueillette » que S signifie « Stagiaire », ni la raison de l'omelette.
 - Après la perte des trois compagnons, adapter dialogues, portraits contextuels et présence dans les illustrations pour marquer leur absence.
