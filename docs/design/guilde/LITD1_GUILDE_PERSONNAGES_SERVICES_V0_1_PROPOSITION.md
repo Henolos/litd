@@ -49,3 +49,26 @@ Chantier : organisation de la Guilde. Statut : 🟣 EN ATTENTE de validation des
 
 ## Correction utilisateur — 22 novembre 2026
 **Décision validée : pas d'intendant. Le rôle de commerce et d'approvisionnement est assuré par un marchand.** Son affiliation précise à la Guilde et sa personnalité restent à définir.
+
+## Orientation de représentation — préférence utilisateur, 22 novembre 2026
+**Préférence exprimée :** répartition équitable des femmes et diversité des couleurs de peau dans la Guilde et, plus largement, cohérence avec le cosmopolitisme de LITD 1. Ne pas réduire les personnages à leur apparence ; développer histoires, cultures, motivations et compétences propres.
+
+### Distribution proposée pour les six figures principales (non validée individuellement)
+| Rôle | Genre proposé | Apparence proposée | Personnalité / usage |
+|---|---|---|---|
+| Maître de la Guilde | Homme | Petit homme de 80 ans, cheveux ébouriffés, regard malicieux (déjà validé) | Ancien rang S historique, enfantin et un peu fou, toujours respecté |
+| Responsable administrative | Femme | Femme noire, environ 50 ans, cheveux tressés relevés | Rigoureuse, imperturbable ; attribution correcte du rang S |
+| Responsable du recrutement | Femme | Femme est-asiatique, environ 35 ans | Chaleureuse, perspicace ; accompagne la reconstruction de la compagnie |
+| Marchand | Homme | Homme à la peau brune, environ 45 ans | Négociateur charismatique ; affiliation à la Guilde indécise |
+| Maître d'armes | Femme | Femme à la peau mate, environ 60 ans, cheveux grisonnants | Exigeante, expérimentée ; éventuel passé commun avec le maître à définir |
+| Archiviste | Homme | Homme à la peau claire, environ 30 ans | Érudit discret, spécialiste des archives et du bestiaire |
+
+**Équilibre de cette proposition : 3 femmes / 3 hommes.** La répartition exacte, les âges, origines et apparences des cinq personnages secondaires attendent validation ; le maître conserve ses caractéristiques validées. Aucun nom ni portrait officiel créé.
+
+### Priorité de conception proposée : responsable administrative
+- Garantit le respect du règlement, l'attribution correcte des rangs et la traçabilité des contrats.
+- Peut contredire le maître sans que son rôle se limite à corriger ses erreurs.
+- Dans « La Cueillette », **elle ne se trompe pas** : le maître interprète seul l'ancien sens du rang S lorsqu'il attribue la quête.
+- Sa tenue suivrait l'identité sino-gothico-dark fantasy ; détails artistiques à valider.
+
+**Statut :** orientation de diversité retenue comme préférence ; distribution et fiches détaillées non validées, aucune implémentation.
