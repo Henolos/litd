@@ -26,3 +26,9 @@
 
 ## Suivi
 Chantier : responsable administrative de la Guilde. Statut : 🟡 À CONSOLIDER (validation artistique obtenue ; archivage binaire et intégration non vérifiés). Avancement du chantier actuel : À évaluer. Avancement du projet global LITD 1 : À évaluer.
+
+## Archivage de l'original validé
+- Bibliothèque : `/LITD 1/Personnages/Guilde/LITD1_KELIA_ANZORA_PLANCHE_CONCEPTUELLE_V1_VALIDEE.png` (upload confirmé).
+- SHA-256 du fichier source : `a6127080eee1338c06b30f660634b90d8ffeb2d81f1fefabeb2a16abcd00cc97`.
+- Transfert binaire vers le dépôt GitHub : **non effectué**.
+- Import Godot et contrôle en jeu : **non effectués**.
