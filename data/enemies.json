@@ -9,7 +9,10 @@
     ],
     "fear": 3,
     "boss": false,
-    "art": "enemy_01.webp"
+    "art": "enemy_01.webp",
+    "reference_id": "plate_ghoul",
+    "art_path": "res://art/library/bestiary/ghoul/reference.png",
+    "art_status": "validated_reference_linked_by_name_pending_visual_review"
   },
   {
     "id": 2,
@@ -21,7 +24,9 @@
     ],
     "fear": 4,
     "boss": false,
-    "art": "enemy_02.webp"
+    "art": "enemy_02.webp",
+    "art_path": "res://assets/enemies/enemy_02.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 3,
@@ -33,7 +38,9 @@
     ],
     "fear": 5,
     "boss": false,
-    "art": "enemy_03.webp"
+    "art": "enemy_03.webp",
+    "art_path": "res://assets/enemies/enemy_03.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 4,
@@ -45,7 +52,9 @@
     ],
     "fear": 6,
     "boss": false,
-    "art": "enemy_04.webp"
+    "art": "enemy_04.webp",
+    "art_path": "res://assets/enemies/enemy_04.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 5,
@@ -57,7 +66,9 @@
     ],
     "fear": 2,
     "boss": false,
-    "art": "enemy_05.webp"
+    "art": "enemy_05.webp",
+    "art_path": "res://assets/enemies/enemy_05.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 6,
@@ -69,7 +80,10 @@
     ],
     "fear": 3,
     "boss": false,
-    "art": "enemy_06.webp"
+    "art": "enemy_06.webp",
+    "reference_id": "plate_gorgon",
+    "art_path": "res://art/library/bestiary/gorgon/reference.jpeg",
+    "art_status": "validated_reference_linked_by_name_pending_visual_review"
   },
   {
     "id": 7,
@@ -81,7 +95,10 @@
     ],
     "fear": 4,
     "boss": false,
-    "art": "enemy_07.webp"
+    "art": "enemy_07.webp",
+    "reference_id": "plate_minotaur",
+    "art_path": "res://art/library/bestiary/minotaur/reference.jpeg",
+    "art_status": "validated_reference_linked_by_name_pending_visual_review"
   },
   {
     "id": 8,
@@ -93,7 +110,10 @@
     ],
     "fear": 5,
     "boss": false,
-    "art": "enemy_08.webp"
+    "art": "enemy_08.webp",
+    "reference_id": "plate_oni",
+    "art_path": "res://art/library/bestiary/oni/reference.jpeg",
+    "art_status": "validated_reference_linked_by_name_pending_visual_review"
   },
   {
     "id": 9,
@@ -105,7 +125,10 @@
     ],
     "fear": 6,
     "boss": false,
-    "art": "enemy_09.webp"
+    "art": "enemy_09.webp",
+    "reference_id": "plate_karasu_tengu",
+    "art_path": "res://art/library/bestiary/karasu_tengu/reference.jpeg",
+    "art_status": "validated_reference_linked_by_name_pending_visual_review"
   },
   {
     "id": 10,
@@ -117,7 +140,10 @@
     ],
     "fear": 2,
     "boss": false,
-    "art": "enemy_10.webp"
+    "art": "enemy_10.webp",
+    "reference_id": "plate_jorogumo",
+    "art_path": "res://art/library/bestiary/jorogumo/reference.jpg",
+    "art_status": "validated_reference_linked_by_name_pending_visual_review"
   },
   {
     "id": 11,
@@ -129,7 +155,10 @@
     ],
     "fear": 3,
     "boss": false,
-    "art": "enemy_11.webp"
+    "art": "enemy_11.webp",
+    "reference_id": "plate_yuki_onna",
+    "art_path": "res://art/library/bestiary/yuki_onna/reference.jpeg",
+    "art_status": "validated_reference_linked_by_name_pending_visual_review"
   },
   {
     "id": 12,
@@ -141,7 +170,10 @@
     ],
     "fear": 4,
     "boss": false,
-    "art": "enemy_12.webp"
+    "art": "enemy_12.webp",
+    "reference_id": "plate_egy_anubis",
+    "art_path": "res://docs/research/litd1_personnages/LITD1_BEST_EGY_ANUBIS_PESEUR_DES_AMES_V2_VALIDEE.png",
+    "art_status": "validated_reference_linked_by_name_pending_visual_review"
   },
   {
     "id": 13,
@@ -153,7 +185,9 @@
     ],
     "fear": 5,
     "boss": false,
-    "art": "enemy_13.webp"
+    "art": "enemy_13.webp",
+    "art_path": "res://assets/enemies/enemy_13.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 14,
@@ -165,7 +199,9 @@
     ],
     "fear": 6,
     "boss": false,
-    "art": "enemy_14.webp"
+    "art": "enemy_14.webp",
+    "art_path": "res://assets/enemies/enemy_14.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 15,
@@ -177,7 +213,9 @@
     ],
     "fear": 2,
     "boss": false,
-    "art": "enemy_15.webp"
+    "art": "enemy_15.webp",
+    "art_path": "res://assets/enemies/enemy_15.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 16,
@@ -189,7 +227,9 @@
     ],
     "fear": 3,
     "boss": false,
-    "art": "enemy_16.webp"
+    "art": "enemy_16.webp",
+    "art_path": "res://assets/enemies/enemy_16.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 17,
@@ -201,7 +241,9 @@
     ],
     "fear": 4,
     "boss": false,
-    "art": "enemy_17.webp"
+    "art": "enemy_17.webp",
+    "art_path": "res://assets/enemies/enemy_17.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 18,
@@ -213,7 +255,9 @@
     ],
     "fear": 5,
     "boss": false,
-    "art": "enemy_18.webp"
+    "art": "enemy_18.webp",
+    "art_path": "res://assets/enemies/enemy_18.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 19,
@@ -225,7 +269,9 @@
     ],
     "fear": 6,
     "boss": false,
-    "art": "enemy_19.webp"
+    "art": "enemy_19.webp",
+    "art_path": "res://assets/enemies/enemy_19.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 20,
@@ -237,7 +283,9 @@
     ],
     "fear": 2,
     "boss": false,
-    "art": "enemy_20.webp"
+    "art": "enemy_20.webp",
+    "art_path": "res://assets/enemies/enemy_20.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 21,
@@ -249,7 +297,9 @@
     ],
     "fear": 3,
     "boss": false,
-    "art": "enemy_21.webp"
+    "art": "enemy_21.webp",
+    "art_path": "res://assets/enemies/enemy_21.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 22,
@@ -261,7 +311,9 @@
     ],
     "fear": 4,
     "boss": false,
-    "art": "enemy_22.webp"
+    "art": "enemy_22.webp",
+    "art_path": "res://assets/enemies/enemy_22.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 23,
@@ -273,7 +325,9 @@
     ],
     "fear": 5,
     "boss": false,
-    "art": "enemy_23.webp"
+    "art": "enemy_23.webp",
+    "art_path": "res://assets/enemies/enemy_23.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 24,
@@ -285,7 +339,9 @@
     ],
     "fear": 6,
     "boss": false,
-    "art": "enemy_24.webp"
+    "art": "enemy_24.webp",
+    "art_path": "res://assets/enemies/enemy_24.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 25,
@@ -297,7 +353,9 @@
     ],
     "fear": 2,
     "boss": false,
-    "art": "enemy_25.webp"
+    "art": "enemy_25.webp",
+    "art_path": "res://assets/enemies/enemy_25.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 26,
@@ -309,7 +367,9 @@
     ],
     "fear": 3,
     "boss": false,
-    "art": "enemy_26.webp"
+    "art": "enemy_26.webp",
+    "art_path": "res://assets/enemies/enemy_26.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 27,
@@ -321,7 +381,9 @@
     ],
     "fear": 4,
     "boss": false,
-    "art": "enemy_27.webp"
+    "art": "enemy_27.webp",
+    "art_path": "res://assets/enemies/enemy_27.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 28,
@@ -333,7 +395,9 @@
     ],
     "fear": 5,
     "boss": false,
-    "art": "enemy_28.webp"
+    "art": "enemy_28.webp",
+    "art_path": "res://assets/enemies/enemy_28.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 29,
@@ -345,7 +409,9 @@
     ],
     "fear": 6,
     "boss": false,
-    "art": "enemy_29.webp"
+    "art": "enemy_29.webp",
+    "art_path": "res://assets/enemies/enemy_29.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 30,
@@ -357,7 +423,9 @@
     ],
     "fear": 2,
     "boss": false,
-    "art": "enemy_30.webp"
+    "art": "enemy_30.webp",
+    "art_path": "res://assets/enemies/enemy_30.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 31,
@@ -369,7 +437,9 @@
     ],
     "fear": 3,
     "boss": false,
-    "art": "enemy_31.webp"
+    "art": "enemy_31.webp",
+    "art_path": "res://assets/enemies/enemy_31.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 32,
@@ -381,7 +451,9 @@
     ],
     "fear": 4,
     "boss": false,
-    "art": "enemy_32.webp"
+    "art": "enemy_32.webp",
+    "art_path": "res://assets/enemies/enemy_32.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 33,
@@ -393,7 +465,9 @@
     ],
     "fear": 5,
     "boss": false,
-    "art": "enemy_33.webp"
+    "art": "enemy_33.webp",
+    "art_path": "res://assets/enemies/enemy_33.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 34,
@@ -405,7 +479,9 @@
     ],
     "fear": 6,
     "boss": false,
-    "art": "enemy_34.webp"
+    "art": "enemy_34.webp",
+    "art_path": "res://assets/enemies/enemy_34.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 35,
@@ -417,7 +493,9 @@
     ],
     "fear": 2,
     "boss": false,
-    "art": "enemy_35.webp"
+    "art": "enemy_35.webp",
+    "art_path": "res://assets/enemies/enemy_35.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 36,
@@ -429,7 +507,9 @@
     ],
     "fear": 3,
     "boss": false,
-    "art": "enemy_36.webp"
+    "art": "enemy_36.webp",
+    "art_path": "res://assets/enemies/enemy_36.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 37,
@@ -441,7 +521,9 @@
     ],
     "fear": 4,
     "boss": false,
-    "art": "enemy_37.webp"
+    "art": "enemy_37.webp",
+    "art_path": "res://assets/enemies/enemy_37.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 38,
@@ -453,7 +535,9 @@
     ],
     "fear": 5,
     "boss": true,
-    "art": "enemy_38.webp"
+    "art": "enemy_38.webp",
+    "art_path": "res://assets/enemies/enemy_38.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
   },
   {
     "id": 39,
@@ -465,6 +549,909 @@
     ],
     "fear": 6,
     "boss": true,
-    "art": "enemy_39.webp"
+    "art": "enemy_39.webp",
+    "art_path": "res://assets/enemies/enemy_39.webp",
+    "art_status": "legacy_runtime_image_pending_identity_review"
+  },
+  {
+    "id": 40,
+    "name": "Cerbère",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.jpeg",
+    "art_path": "res://art/library/bestiary/cerberus/reference.jpeg",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_cerberus",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 41,
+    "name": "Harpie",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.jpeg",
+    "art_path": "res://art/library/bestiary/harpy/reference.jpeg",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_harpy",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 42,
+    "name": "Cyclope V3",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.jpeg",
+    "art_path": "res://art/library/bestiary/cyclops/reference.jpeg",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_cyclops",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 43,
+    "name": "Chimère",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.jpeg",
+    "art_path": "res://art/library/bestiary/chimera/reference.jpeg",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_chimera",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 44,
+    "name": "Basilic",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.jpeg",
+    "art_path": "res://art/library/bestiary/basilisk/reference.jpeg",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_basilisk",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 45,
+    "name": "Hydre",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.jpeg",
+    "art_path": "res://art/library/bestiary/hydra/reference.jpeg",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_hydra",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 46,
+    "name": "Sphinx",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.jpeg",
+    "art_path": "res://art/library/bestiary/sphinx/reference.jpeg",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_sphinx",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 47,
+    "name": "Kappa",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.jpeg",
+    "art_path": "res://art/library/bestiary/kappa/reference.jpeg",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_kappa",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 48,
+    "name": "Nue",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.jpeg",
+    "art_path": "res://art/library/bestiary/nue/reference.jpeg",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_nue",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 49,
+    "name": "Draugr",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.jpeg",
+    "art_path": "res://art/library/bestiary/draugr/reference.jpeg",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_draugr",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 50,
+    "name": "Troll nordique",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.jpeg",
+    "art_path": "res://art/library/bestiary/nordic_troll/reference.jpeg",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_nordic_troll",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 51,
+    "name": "Valkyrie spectrale",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.jpg",
+    "art_path": "res://art/library/bestiary/spectral_valkyrie/reference.jpg",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_spectral_valkyrie",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 52,
+    "name": "Loup décharné",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.jpeg",
+    "art_path": "res://art/library/bestiary/emaciated_wolf/reference.jpeg",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_emaciated_wolf",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 53,
+    "name": "Golem de pierre runique",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.jpeg",
+    "art_path": "res://art/library/bestiary/runic_stone_golem/reference.jpeg",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_runic_stone_golem",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 54,
+    "name": "Kitsune",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.png",
+    "art_path": "res://art/library/bestiary/kitsune/reference.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_kitsune",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 55,
+    "name": "Araignée des cryptes",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.png",
+    "art_path": "res://art/library/bestiary/crypt-spider/reference.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_crypt-spider",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 56,
+    "name": "Armure hantée",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.png",
+    "art_path": "res://art/library/bestiary/haunted-armor/reference.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_haunted-armor",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 57,
+    "name": "Diablotin",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.png",
+    "art_path": "res://art/library/bestiary/imp/reference.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_imp",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 58,
+    "name": "Épouvantail possédé",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.png",
+    "art_path": "res://art/library/bestiary/possessed-scarecrow/reference.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_possessed-scarecrow",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 59,
+    "name": "Feu follet",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.png",
+    "art_path": "res://art/library/bestiary/will-o-wisp/reference.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_will-o-wisp",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 60,
+    "name": "Gobelin",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.png",
+    "art_path": "res://art/library/bestiary/goblin/reference.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_goblin",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 61,
+    "name": "Kobold",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.png",
+    "art_path": "res://art/library/bestiary/kobold/reference.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_kobold",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 62,
+    "name": "Leprechaun",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.png",
+    "art_path": "res://art/library/bestiary/leprechaun/reference.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_leprechaun",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 63,
+    "name": "Loup corrompu",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.png",
+    "art_path": "res://art/library/bestiary/corrupted-wolf/reference.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_corrupted-wolf",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 64,
+    "name": "Mimique",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.png",
+    "art_path": "res://art/library/bestiary/mimic/reference.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_mimic",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 65,
+    "name": "Noyé errant revenant des eaux",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.png",
+    "art_path": "res://art/library/bestiary/drowned-revenant/reference.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_drowned-revenant",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 66,
+    "name": "Plante carnivore du marais",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.png",
+    "art_path": "res://art/library/bestiary/marsh-carnivorous-plant/reference.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_marsh-carnivorous-plant",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 67,
+    "name": "Rat pestilentiel",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.png",
+    "art_path": "res://art/library/bestiary/pestilent-rat/reference.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_pestilent-rat",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 68,
+    "name": "Squelette errant",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "reference.png",
+    "art_path": "res://art/library/bestiary/wandering-skeleton/reference.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_wandering-skeleton",
+    "culture": null,
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 69,
+    "name": "Adze",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "LITD1_BEST_AFR_ADZE_VAMPIRE_CIEUX_V1_VALIDEE.png",
+    "art_path": "res://docs/research/litd1_personnages/LITD1_BEST_AFR_ADZE_VAMPIRE_CIEUX_V1_VALIDEE.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_afr_adze",
+    "culture": "Afrique de l’Ouest",
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 70,
+    "name": "Aziza",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "LITD1_BEST_AFR_AZIZA_ESPRIT_FORET_V1_VALIDEE.png",
+    "art_path": "res://docs/research/litd1_personnages/LITD1_BEST_AFR_AZIZA_ESPRIT_FORET_V1_VALIDEE.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_afr_aziza",
+    "culture": "Afrique de l’Ouest",
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 71,
+    "name": "Mami Wata",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "LITD1_BEST_AFR_MAMI_WATA_DAME_EAUX_V1_VALIDEE.png",
+    "art_path": "res://docs/research/litd1_personnages/LITD1_BEST_AFR_MAMI_WATA_DAME_EAUX_V1_VALIDEE.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_afr_mami_wata",
+    "culture": "Afrique de l’Ouest",
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 72,
+    "name": "Ninki Nanka",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "LITD1_BEST_AFR_NINKI_NANKA_SERPENT_MARAIS_V1_VALIDEE.png",
+    "art_path": "res://docs/research/litd1_personnages/LITD1_BEST_AFR_NINKI_NANKA_SERPENT_MARAIS_V1_VALIDEE.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_afr_ninki_nanka",
+    "culture": "Afrique de l’Ouest",
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 73,
+    "name": "Sasabonsam",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "LITD1_BEST_AFR_SASABONSAM_PREDATEUR_CIMES_V1_VALIDEE.png",
+    "art_path": "res://docs/research/litd1_personnages/LITD1_BEST_AFR_SASABONSAM_PREDATEUR_CIMES_V1_VALIDEE.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_afr_sasabonsam",
+    "culture": "Afrique de l’Ouest",
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 74,
+    "name": "Cipactli",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "LITD1_BEST_AZT_CIPACTLI_CROCODILE_PRIMORDIAL_V1_VALIDEE.png",
+    "art_path": "res://docs/research/litd1_personnages/LITD1_BEST_AZT_CIPACTLI_CROCODILE_PRIMORDIAL_V1_VALIDEE.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_azt_cipactli",
+    "culture": "Aztèque/mexica",
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 75,
+    "name": "Itzpapalotl",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "LITD1_BEST_AZT_ITZPAPALOTL_PAPILLON_OBSIDIENNE_V1_VALIDEE.png",
+    "art_path": "res://docs/research/litd1_personnages/LITD1_BEST_AZT_ITZPAPALOTL_PAPILLON_OBSIDIENNE_V1_VALIDEE.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_azt_itzpapalotl",
+    "culture": "Aztèque/mexica",
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 76,
+    "name": "Mictlantecuhtli",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "LITD1_BEST_AZT_MICTLANTECUHTLI_SEIGNEUR_MICTLAN_V1_VALIDEE.png",
+    "art_path": "res://docs/research/litd1_personnages/LITD1_BEST_AZT_MICTLANTECUHTLI_SEIGNEUR_MICTLAN_V1_VALIDEE.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_azt_mictlantecuhtli",
+    "culture": "Aztèque/mexica",
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 77,
+    "name": "Tzitzimime",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "LITD1_BEST_AZT_TZITZIMIME_DEVOREUSE_ETOILES_V1_VALIDEE_ORIGINAL.jpeg",
+    "art_path": "res://docs/research/litd1_personnages/LITD1_BEST_AZT_TZITZIMIME_DEVOREUSE_ETOILES_V1_VALIDEE_ORIGINAL.jpeg",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_azt_tzitzimime",
+    "culture": "Aztèque/mexica",
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 78,
+    "name": "Xólotl",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "LITD1_BEST_AZT_XOLOTL_GUIDE_PASSAGES_V1_VALIDEE.png",
+    "art_path": "res://docs/research/litd1_personnages/LITD1_BEST_AZT_XOLOTL_GUIDE_PASSAGES_V1_VALIDEE.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_azt_xólotl",
+    "culture": "Aztèque/mexica",
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 79,
+    "name": "Banshee",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "LITD1_BEST_BRIT_BANSHEE_PLEUREUSE_FUNEBRE_V2_VALIDEE.png",
+    "art_path": "res://docs/research/litd1_personnages/LITD1_BEST_BRIT_BANSHEE_PLEUREUSE_FUNEBRE_V2_VALIDEE.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_brit_banshee",
+    "culture": "Britannique/celte",
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 80,
+    "name": "Black Annis",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "LITD1_BEST_BRIT_BLACK_ANNIS_SORCIERE_ECORCHEE_V1_VALIDEE.png",
+    "art_path": "res://docs/research/litd1_personnages/LITD1_BEST_BRIT_BLACK_ANNIS_SORCIERE_ECORCHEE_V1_VALIDEE.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_brit_black_annis",
+    "culture": "Britannique/celte",
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 81,
+    "name": "Fachan",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "LITD1_BEST_BRIT_FACHAN_MONOCULAIRE_HIGHLANDS_V1_VALIDEE.png",
+    "art_path": "res://docs/research/litd1_personnages/LITD1_BEST_BRIT_FACHAN_MONOCULAIRE_HIGHLANDS_V1_VALIDEE.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_brit_fachan",
+    "culture": "Britannique/celte",
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 82,
+    "name": "Redcap",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "LITD1_BEST_BRIT_REDCAP_LUTIN_SANGLANT_V2_VALIDEE.png",
+    "art_path": "res://docs/research/litd1_personnages/LITD1_BEST_BRIT_REDCAP_LUTIN_SANGLANT_V2_VALIDEE.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_brit_redcap",
+    "culture": "Britannique/celte",
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 83,
+    "name": "Sluagh",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "LITD1_BEST_BRIT_SLUAGH_HORDE_AMES_ERRANTES_V1_VALIDEE.png",
+    "art_path": "res://docs/research/litd1_personnages/LITD1_BEST_BRIT_SLUAGH_HORDE_AMES_ERRANTES_V1_VALIDEE.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_brit_sluagh",
+    "culture": "Britannique/celte",
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 84,
+    "name": "Horus",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "LITD1_BEST_EGY_HORUS_SENTINELLE_ZENITH_V1_VALIDEE.png",
+    "art_path": "res://docs/research/litd1_personnages/LITD1_BEST_EGY_HORUS_SENTINELLE_ZENITH_V1_VALIDEE.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_egy_horus",
+    "culture": "Égypte",
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 85,
+    "name": "Isis",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "LITD1_BEST_EGY_ISIS_TISSEUSE_DES_AMES_V2_VALIDEE.png",
+    "art_path": "res://docs/research/litd1_personnages/LITD1_BEST_EGY_ISIS_TISSEUSE_DES_AMES_V2_VALIDEE.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_egy_isis",
+    "culture": "Égypte",
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 86,
+    "name": "Seth",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "LITD1_BEST_EGY_SETH_ECORCHEUR_TEMPETES_V2_VALIDEE.png",
+    "art_path": "res://docs/research/litd1_personnages/LITD1_BEST_EGY_SETH_ECORCHEUR_TEMPETES_V2_VALIDEE.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_egy_seth",
+    "culture": "Égypte",
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 87,
+    "name": "Sobek",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "LITD1_BEST_EGY_SOBEK_SEIGNEUR_EAUX_NOIRES_V1_VALIDEE.png",
+    "art_path": "res://docs/research/litd1_personnages/LITD1_BEST_EGY_SOBEK_SEIGNEUR_EAUX_NOIRES_V1_VALIDEE.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_egy_sobek",
+    "culture": "Égypte",
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 88,
+    "name": "Baba Yaga",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "LITD1_BEST_SLAVE_BABA_YAGA_MERE_DES_SEUILS_V3_VALIDEE.png",
+    "art_path": "res://docs/research/litd1_personnages/LITD1_BEST_SLAVE_BABA_YAGA_MERE_DES_SEUILS_V3_VALIDEE.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_slave_baba_yaga",
+    "culture": "Slave",
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 89,
+    "name": "Leshy",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "LITD1_BEST_SLAVE_LESHY_SOUVERAIN_SENTIERS_PERDUS_V2_VALIDEE.png",
+    "art_path": "res://docs/research/litd1_personnages/LITD1_BEST_SLAVE_LESHY_SOUVERAIN_SENTIERS_PERDUS_V2_VALIDEE.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_slave_leshy",
+    "culture": "Slave",
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 90,
+    "name": "Rusalka",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "LITD1_BEST_SLAVE_RUSALKA_NOYEE_DES_SAULES_V1_VALIDEE.png",
+    "art_path": "res://docs/research/litd1_personnages/LITD1_BEST_SLAVE_RUSALKA_NOYEE_DES_SAULES_V1_VALIDEE.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_slave_rusalka",
+    "culture": "Slave",
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 91,
+    "name": "Vodyanoy",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "LITD1_BEST_SLAVE_VODYANOY_MAITRE_DES_EAUX_V1_VALIDEE.png",
+    "art_path": "res://docs/research/litd1_personnages/LITD1_BEST_SLAVE_VODYANOY_MAITRE_DES_EAUX_V1_VALIDEE.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_slave_vodyanoy",
+    "culture": "Slave",
+    "combat_profile_status": "provisional_shared_baseline"
+  },
+  {
+    "id": 92,
+    "name": "Zmey",
+    "hp": 50,
+    "damage": [
+      5,
+      10
+    ],
+    "fear": 3,
+    "boss": false,
+    "art": "LITD1_BEST_SLAVE_ZMEY_DEVOREUR_DES_ORAGES_V1_VALIDEE.png",
+    "art_path": "res://docs/research/litd1_personnages/LITD1_BEST_SLAVE_ZMEY_DEVOREUR_DES_ORAGES_V1_VALIDEE.png",
+    "art_status": "validated_archived_reference",
+    "reference_id": "plate_slave_zmey",
+    "culture": "Slave",
+    "combat_profile_status": "provisional_shared_baseline"
   }
 ]

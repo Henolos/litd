@@ -2,10 +2,10 @@
   "version": 1,
   "generator": "tools/blender/run_full_pipeline.py",
   "summary": {
-    "total_jobs": 101,
+    "total_jobs": 154,
     "materials": 1,
     "environments": 16,
-    "characters": 52,
+    "characters": 105,
     "props": 32
   },
   "stages": [
@@ -328,6 +328,63 @@
     },
     {
       "stage": "characters",
+      "job_id": "character_mathilde",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "mathilde",
+        "--output",
+        "builds/characters/hero/mathilde/mathilde.blend",
+        "--export-glb",
+        "builds/characters/hero/mathilde/mathilde.glb"
+      ],
+      "outputs": [
+        "builds/characters/hero/mathilde/mathilde.blend",
+        "builds/characters/hero/mathilde/mathilde.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_marec",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "marec",
+        "--output",
+        "builds/characters/hero/marec/marec.blend",
+        "--export-glb",
+        "builds/characters/hero/marec/marec.glb"
+      ],
+      "outputs": [
+        "builds/characters/hero/marec/marec.blend",
+        "builds/characters/hero/marec/marec.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_anouk",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "anouk",
+        "--output",
+        "builds/characters/hero/anouk/anouk.blend",
+        "--export-glb",
+        "builds/characters/hero/anouk/anouk.glb"
+      ],
+      "outputs": [
+        "builds/characters/hero/anouk/anouk.blend",
+        "builds/characters/hero/anouk/anouk.glb"
+      ]
+    },
+    {
+      "stage": "characters",
       "job_id": "character_aurelien",
       "depends_on": [
         "material_library"
@@ -343,63 +400,6 @@
       "outputs": [
         "builds/characters/hero/aurelien/aurelien.blend",
         "builds/characters/hero/aurelien/aurelien.glb"
-      ]
-    },
-    {
-      "stage": "characters",
-      "job_id": "character_malvor",
-      "depends_on": [
-        "material_library"
-      ],
-      "command": [
-        "tools/blender/build_character_scene.py",
-        "malvor",
-        "--output",
-        "builds/characters/hero/malvor/malvor.blend",
-        "--export-glb",
-        "builds/characters/hero/malvor/malvor.glb"
-      ],
-      "outputs": [
-        "builds/characters/hero/malvor/malvor.blend",
-        "builds/characters/hero/malvor/malvor.glb"
-      ]
-    },
-    {
-      "stage": "characters",
-      "job_id": "character_lysandra",
-      "depends_on": [
-        "material_library"
-      ],
-      "command": [
-        "tools/blender/build_character_scene.py",
-        "lysandra",
-        "--output",
-        "builds/characters/hero/lysandra/lysandra.blend",
-        "--export-glb",
-        "builds/characters/hero/lysandra/lysandra.glb"
-      ],
-      "outputs": [
-        "builds/characters/hero/lysandra/lysandra.blend",
-        "builds/characters/hero/lysandra/lysandra.glb"
-      ]
-    },
-    {
-      "stage": "characters",
-      "job_id": "character_darius",
-      "depends_on": [
-        "material_library"
-      ],
-      "command": [
-        "tools/blender/build_character_scene.py",
-        "darius",
-        "--output",
-        "builds/characters/hero/darius/darius.blend",
-        "--export-glb",
-        "builds/characters/hero/darius/darius.glb"
-      ],
-      "outputs": [
-        "builds/characters/hero/darius/darius.blend",
-        "builds/characters/hero/darius/darius.glb"
       ]
     },
     {
@@ -1141,6 +1141,1013 @@
       "outputs": [
         "builds/characters/boss/enemy_39_mere_des_souffrances/enemy_39_mere_des_souffrances.blend",
         "builds/characters/boss/enemy_39_mere_des_souffrances/enemy_39_mere_des_souffrances.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_40_cerbere",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_40_cerbere",
+        "--output",
+        "builds/characters/enemy/enemy_40_cerbere/enemy_40_cerbere.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_40_cerbere/enemy_40_cerbere.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_40_cerbere/enemy_40_cerbere.blend",
+        "builds/characters/enemy/enemy_40_cerbere/enemy_40_cerbere.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_41_harpie",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_41_harpie",
+        "--output",
+        "builds/characters/enemy/enemy_41_harpie/enemy_41_harpie.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_41_harpie/enemy_41_harpie.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_41_harpie/enemy_41_harpie.blend",
+        "builds/characters/enemy/enemy_41_harpie/enemy_41_harpie.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_42_cyclope_v3",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_42_cyclope_v3",
+        "--output",
+        "builds/characters/enemy/enemy_42_cyclope_v3/enemy_42_cyclope_v3.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_42_cyclope_v3/enemy_42_cyclope_v3.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_42_cyclope_v3/enemy_42_cyclope_v3.blend",
+        "builds/characters/enemy/enemy_42_cyclope_v3/enemy_42_cyclope_v3.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_43_chimere",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_43_chimere",
+        "--output",
+        "builds/characters/enemy/enemy_43_chimere/enemy_43_chimere.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_43_chimere/enemy_43_chimere.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_43_chimere/enemy_43_chimere.blend",
+        "builds/characters/enemy/enemy_43_chimere/enemy_43_chimere.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_44_basilic",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_44_basilic",
+        "--output",
+        "builds/characters/enemy/enemy_44_basilic/enemy_44_basilic.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_44_basilic/enemy_44_basilic.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_44_basilic/enemy_44_basilic.blend",
+        "builds/characters/enemy/enemy_44_basilic/enemy_44_basilic.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_45_hydre",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_45_hydre",
+        "--output",
+        "builds/characters/enemy/enemy_45_hydre/enemy_45_hydre.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_45_hydre/enemy_45_hydre.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_45_hydre/enemy_45_hydre.blend",
+        "builds/characters/enemy/enemy_45_hydre/enemy_45_hydre.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_46_sphinx",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_46_sphinx",
+        "--output",
+        "builds/characters/enemy/enemy_46_sphinx/enemy_46_sphinx.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_46_sphinx/enemy_46_sphinx.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_46_sphinx/enemy_46_sphinx.blend",
+        "builds/characters/enemy/enemy_46_sphinx/enemy_46_sphinx.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_47_kappa",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_47_kappa",
+        "--output",
+        "builds/characters/enemy/enemy_47_kappa/enemy_47_kappa.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_47_kappa/enemy_47_kappa.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_47_kappa/enemy_47_kappa.blend",
+        "builds/characters/enemy/enemy_47_kappa/enemy_47_kappa.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_48_nue",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_48_nue",
+        "--output",
+        "builds/characters/enemy/enemy_48_nue/enemy_48_nue.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_48_nue/enemy_48_nue.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_48_nue/enemy_48_nue.blend",
+        "builds/characters/enemy/enemy_48_nue/enemy_48_nue.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_49_draugr",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_49_draugr",
+        "--output",
+        "builds/characters/enemy/enemy_49_draugr/enemy_49_draugr.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_49_draugr/enemy_49_draugr.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_49_draugr/enemy_49_draugr.blend",
+        "builds/characters/enemy/enemy_49_draugr/enemy_49_draugr.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_50_troll_nordique",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_50_troll_nordique",
+        "--output",
+        "builds/characters/enemy/enemy_50_troll_nordique/enemy_50_troll_nordique.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_50_troll_nordique/enemy_50_troll_nordique.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_50_troll_nordique/enemy_50_troll_nordique.blend",
+        "builds/characters/enemy/enemy_50_troll_nordique/enemy_50_troll_nordique.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_51_valkyrie_spectrale",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_51_valkyrie_spectrale",
+        "--output",
+        "builds/characters/enemy/enemy_51_valkyrie_spectrale/enemy_51_valkyrie_spectrale.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_51_valkyrie_spectrale/enemy_51_valkyrie_spectrale.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_51_valkyrie_spectrale/enemy_51_valkyrie_spectrale.blend",
+        "builds/characters/enemy/enemy_51_valkyrie_spectrale/enemy_51_valkyrie_spectrale.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_52_loup_decharne",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_52_loup_decharne",
+        "--output",
+        "builds/characters/enemy/enemy_52_loup_decharne/enemy_52_loup_decharne.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_52_loup_decharne/enemy_52_loup_decharne.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_52_loup_decharne/enemy_52_loup_decharne.blend",
+        "builds/characters/enemy/enemy_52_loup_decharne/enemy_52_loup_decharne.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_53_golem_de_pierre_runique",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_53_golem_de_pierre_runique",
+        "--output",
+        "builds/characters/enemy/enemy_53_golem_de_pierre_runique/enemy_53_golem_de_pierre_runique.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_53_golem_de_pierre_runique/enemy_53_golem_de_pierre_runique.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_53_golem_de_pierre_runique/enemy_53_golem_de_pierre_runique.blend",
+        "builds/characters/enemy/enemy_53_golem_de_pierre_runique/enemy_53_golem_de_pierre_runique.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_54_kitsune",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_54_kitsune",
+        "--output",
+        "builds/characters/enemy/enemy_54_kitsune/enemy_54_kitsune.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_54_kitsune/enemy_54_kitsune.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_54_kitsune/enemy_54_kitsune.blend",
+        "builds/characters/enemy/enemy_54_kitsune/enemy_54_kitsune.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_55_araignee_des_cryptes",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_55_araignee_des_cryptes",
+        "--output",
+        "builds/characters/enemy/enemy_55_araignee_des_cryptes/enemy_55_araignee_des_cryptes.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_55_araignee_des_cryptes/enemy_55_araignee_des_cryptes.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_55_araignee_des_cryptes/enemy_55_araignee_des_cryptes.blend",
+        "builds/characters/enemy/enemy_55_araignee_des_cryptes/enemy_55_araignee_des_cryptes.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_56_armure_hantee",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_56_armure_hantee",
+        "--output",
+        "builds/characters/enemy/enemy_56_armure_hantee/enemy_56_armure_hantee.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_56_armure_hantee/enemy_56_armure_hantee.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_56_armure_hantee/enemy_56_armure_hantee.blend",
+        "builds/characters/enemy/enemy_56_armure_hantee/enemy_56_armure_hantee.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_57_diablotin",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_57_diablotin",
+        "--output",
+        "builds/characters/enemy/enemy_57_diablotin/enemy_57_diablotin.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_57_diablotin/enemy_57_diablotin.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_57_diablotin/enemy_57_diablotin.blend",
+        "builds/characters/enemy/enemy_57_diablotin/enemy_57_diablotin.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_58_epouvantail_possede",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_58_epouvantail_possede",
+        "--output",
+        "builds/characters/enemy/enemy_58_epouvantail_possede/enemy_58_epouvantail_possede.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_58_epouvantail_possede/enemy_58_epouvantail_possede.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_58_epouvantail_possede/enemy_58_epouvantail_possede.blend",
+        "builds/characters/enemy/enemy_58_epouvantail_possede/enemy_58_epouvantail_possede.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_59_feu_follet",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_59_feu_follet",
+        "--output",
+        "builds/characters/enemy/enemy_59_feu_follet/enemy_59_feu_follet.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_59_feu_follet/enemy_59_feu_follet.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_59_feu_follet/enemy_59_feu_follet.blend",
+        "builds/characters/enemy/enemy_59_feu_follet/enemy_59_feu_follet.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_60_gobelin",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_60_gobelin",
+        "--output",
+        "builds/characters/enemy/enemy_60_gobelin/enemy_60_gobelin.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_60_gobelin/enemy_60_gobelin.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_60_gobelin/enemy_60_gobelin.blend",
+        "builds/characters/enemy/enemy_60_gobelin/enemy_60_gobelin.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_61_kobold",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_61_kobold",
+        "--output",
+        "builds/characters/enemy/enemy_61_kobold/enemy_61_kobold.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_61_kobold/enemy_61_kobold.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_61_kobold/enemy_61_kobold.blend",
+        "builds/characters/enemy/enemy_61_kobold/enemy_61_kobold.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_62_leprechaun",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_62_leprechaun",
+        "--output",
+        "builds/characters/enemy/enemy_62_leprechaun/enemy_62_leprechaun.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_62_leprechaun/enemy_62_leprechaun.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_62_leprechaun/enemy_62_leprechaun.blend",
+        "builds/characters/enemy/enemy_62_leprechaun/enemy_62_leprechaun.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_63_loup_corrompu",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_63_loup_corrompu",
+        "--output",
+        "builds/characters/enemy/enemy_63_loup_corrompu/enemy_63_loup_corrompu.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_63_loup_corrompu/enemy_63_loup_corrompu.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_63_loup_corrompu/enemy_63_loup_corrompu.blend",
+        "builds/characters/enemy/enemy_63_loup_corrompu/enemy_63_loup_corrompu.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_64_mimique",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_64_mimique",
+        "--output",
+        "builds/characters/enemy/enemy_64_mimique/enemy_64_mimique.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_64_mimique/enemy_64_mimique.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_64_mimique/enemy_64_mimique.blend",
+        "builds/characters/enemy/enemy_64_mimique/enemy_64_mimique.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_65_noye_errant_revenant_des_eaux",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_65_noye_errant_revenant_des_eaux",
+        "--output",
+        "builds/characters/enemy/enemy_65_noye_errant_revenant_des_eaux/enemy_65_noye_errant_revenant_des_eaux.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_65_noye_errant_revenant_des_eaux/enemy_65_noye_errant_revenant_des_eaux.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_65_noye_errant_revenant_des_eaux/enemy_65_noye_errant_revenant_des_eaux.blend",
+        "builds/characters/enemy/enemy_65_noye_errant_revenant_des_eaux/enemy_65_noye_errant_revenant_des_eaux.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_66_plante_carnivore_du_marais",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_66_plante_carnivore_du_marais",
+        "--output",
+        "builds/characters/enemy/enemy_66_plante_carnivore_du_marais/enemy_66_plante_carnivore_du_marais.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_66_plante_carnivore_du_marais/enemy_66_plante_carnivore_du_marais.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_66_plante_carnivore_du_marais/enemy_66_plante_carnivore_du_marais.blend",
+        "builds/characters/enemy/enemy_66_plante_carnivore_du_marais/enemy_66_plante_carnivore_du_marais.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_67_rat_pestilentiel",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_67_rat_pestilentiel",
+        "--output",
+        "builds/characters/enemy/enemy_67_rat_pestilentiel/enemy_67_rat_pestilentiel.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_67_rat_pestilentiel/enemy_67_rat_pestilentiel.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_67_rat_pestilentiel/enemy_67_rat_pestilentiel.blend",
+        "builds/characters/enemy/enemy_67_rat_pestilentiel/enemy_67_rat_pestilentiel.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_68_squelette_errant",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_68_squelette_errant",
+        "--output",
+        "builds/characters/enemy/enemy_68_squelette_errant/enemy_68_squelette_errant.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_68_squelette_errant/enemy_68_squelette_errant.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_68_squelette_errant/enemy_68_squelette_errant.blend",
+        "builds/characters/enemy/enemy_68_squelette_errant/enemy_68_squelette_errant.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_69_adze",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_69_adze",
+        "--output",
+        "builds/characters/enemy/enemy_69_adze/enemy_69_adze.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_69_adze/enemy_69_adze.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_69_adze/enemy_69_adze.blend",
+        "builds/characters/enemy/enemy_69_adze/enemy_69_adze.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_70_aziza",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_70_aziza",
+        "--output",
+        "builds/characters/enemy/enemy_70_aziza/enemy_70_aziza.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_70_aziza/enemy_70_aziza.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_70_aziza/enemy_70_aziza.blend",
+        "builds/characters/enemy/enemy_70_aziza/enemy_70_aziza.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_71_mami_wata",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_71_mami_wata",
+        "--output",
+        "builds/characters/enemy/enemy_71_mami_wata/enemy_71_mami_wata.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_71_mami_wata/enemy_71_mami_wata.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_71_mami_wata/enemy_71_mami_wata.blend",
+        "builds/characters/enemy/enemy_71_mami_wata/enemy_71_mami_wata.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_72_ninki_nanka",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_72_ninki_nanka",
+        "--output",
+        "builds/characters/enemy/enemy_72_ninki_nanka/enemy_72_ninki_nanka.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_72_ninki_nanka/enemy_72_ninki_nanka.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_72_ninki_nanka/enemy_72_ninki_nanka.blend",
+        "builds/characters/enemy/enemy_72_ninki_nanka/enemy_72_ninki_nanka.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_73_sasabonsam",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_73_sasabonsam",
+        "--output",
+        "builds/characters/enemy/enemy_73_sasabonsam/enemy_73_sasabonsam.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_73_sasabonsam/enemy_73_sasabonsam.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_73_sasabonsam/enemy_73_sasabonsam.blend",
+        "builds/characters/enemy/enemy_73_sasabonsam/enemy_73_sasabonsam.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_74_cipactli",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_74_cipactli",
+        "--output",
+        "builds/characters/enemy/enemy_74_cipactli/enemy_74_cipactli.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_74_cipactli/enemy_74_cipactli.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_74_cipactli/enemy_74_cipactli.blend",
+        "builds/characters/enemy/enemy_74_cipactli/enemy_74_cipactli.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_75_itzpapalotl",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_75_itzpapalotl",
+        "--output",
+        "builds/characters/enemy/enemy_75_itzpapalotl/enemy_75_itzpapalotl.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_75_itzpapalotl/enemy_75_itzpapalotl.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_75_itzpapalotl/enemy_75_itzpapalotl.blend",
+        "builds/characters/enemy/enemy_75_itzpapalotl/enemy_75_itzpapalotl.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_76_mictlantecuhtli",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_76_mictlantecuhtli",
+        "--output",
+        "builds/characters/enemy/enemy_76_mictlantecuhtli/enemy_76_mictlantecuhtli.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_76_mictlantecuhtli/enemy_76_mictlantecuhtli.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_76_mictlantecuhtli/enemy_76_mictlantecuhtli.blend",
+        "builds/characters/enemy/enemy_76_mictlantecuhtli/enemy_76_mictlantecuhtli.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_77_tzitzimime",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_77_tzitzimime",
+        "--output",
+        "builds/characters/enemy/enemy_77_tzitzimime/enemy_77_tzitzimime.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_77_tzitzimime/enemy_77_tzitzimime.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_77_tzitzimime/enemy_77_tzitzimime.blend",
+        "builds/characters/enemy/enemy_77_tzitzimime/enemy_77_tzitzimime.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_78_xolotl",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_78_xolotl",
+        "--output",
+        "builds/characters/enemy/enemy_78_xolotl/enemy_78_xolotl.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_78_xolotl/enemy_78_xolotl.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_78_xolotl/enemy_78_xolotl.blend",
+        "builds/characters/enemy/enemy_78_xolotl/enemy_78_xolotl.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_79_banshee",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_79_banshee",
+        "--output",
+        "builds/characters/enemy/enemy_79_banshee/enemy_79_banshee.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_79_banshee/enemy_79_banshee.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_79_banshee/enemy_79_banshee.blend",
+        "builds/characters/enemy/enemy_79_banshee/enemy_79_banshee.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_80_black_annis",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_80_black_annis",
+        "--output",
+        "builds/characters/enemy/enemy_80_black_annis/enemy_80_black_annis.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_80_black_annis/enemy_80_black_annis.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_80_black_annis/enemy_80_black_annis.blend",
+        "builds/characters/enemy/enemy_80_black_annis/enemy_80_black_annis.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_81_fachan",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_81_fachan",
+        "--output",
+        "builds/characters/enemy/enemy_81_fachan/enemy_81_fachan.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_81_fachan/enemy_81_fachan.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_81_fachan/enemy_81_fachan.blend",
+        "builds/characters/enemy/enemy_81_fachan/enemy_81_fachan.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_82_redcap",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_82_redcap",
+        "--output",
+        "builds/characters/enemy/enemy_82_redcap/enemy_82_redcap.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_82_redcap/enemy_82_redcap.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_82_redcap/enemy_82_redcap.blend",
+        "builds/characters/enemy/enemy_82_redcap/enemy_82_redcap.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_83_sluagh",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_83_sluagh",
+        "--output",
+        "builds/characters/enemy/enemy_83_sluagh/enemy_83_sluagh.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_83_sluagh/enemy_83_sluagh.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_83_sluagh/enemy_83_sluagh.blend",
+        "builds/characters/enemy/enemy_83_sluagh/enemy_83_sluagh.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_84_horus",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_84_horus",
+        "--output",
+        "builds/characters/enemy/enemy_84_horus/enemy_84_horus.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_84_horus/enemy_84_horus.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_84_horus/enemy_84_horus.blend",
+        "builds/characters/enemy/enemy_84_horus/enemy_84_horus.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_85_isis",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_85_isis",
+        "--output",
+        "builds/characters/enemy/enemy_85_isis/enemy_85_isis.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_85_isis/enemy_85_isis.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_85_isis/enemy_85_isis.blend",
+        "builds/characters/enemy/enemy_85_isis/enemy_85_isis.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_86_seth",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_86_seth",
+        "--output",
+        "builds/characters/enemy/enemy_86_seth/enemy_86_seth.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_86_seth/enemy_86_seth.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_86_seth/enemy_86_seth.blend",
+        "builds/characters/enemy/enemy_86_seth/enemy_86_seth.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_87_sobek",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_87_sobek",
+        "--output",
+        "builds/characters/enemy/enemy_87_sobek/enemy_87_sobek.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_87_sobek/enemy_87_sobek.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_87_sobek/enemy_87_sobek.blend",
+        "builds/characters/enemy/enemy_87_sobek/enemy_87_sobek.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_88_baba_yaga",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_88_baba_yaga",
+        "--output",
+        "builds/characters/enemy/enemy_88_baba_yaga/enemy_88_baba_yaga.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_88_baba_yaga/enemy_88_baba_yaga.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_88_baba_yaga/enemy_88_baba_yaga.blend",
+        "builds/characters/enemy/enemy_88_baba_yaga/enemy_88_baba_yaga.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_89_leshy",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_89_leshy",
+        "--output",
+        "builds/characters/enemy/enemy_89_leshy/enemy_89_leshy.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_89_leshy/enemy_89_leshy.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_89_leshy/enemy_89_leshy.blend",
+        "builds/characters/enemy/enemy_89_leshy/enemy_89_leshy.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_90_rusalka",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_90_rusalka",
+        "--output",
+        "builds/characters/enemy/enemy_90_rusalka/enemy_90_rusalka.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_90_rusalka/enemy_90_rusalka.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_90_rusalka/enemy_90_rusalka.blend",
+        "builds/characters/enemy/enemy_90_rusalka/enemy_90_rusalka.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_91_vodyanoy",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_91_vodyanoy",
+        "--output",
+        "builds/characters/enemy/enemy_91_vodyanoy/enemy_91_vodyanoy.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_91_vodyanoy/enemy_91_vodyanoy.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_91_vodyanoy/enemy_91_vodyanoy.blend",
+        "builds/characters/enemy/enemy_91_vodyanoy/enemy_91_vodyanoy.glb"
+      ]
+    },
+    {
+      "stage": "characters",
+      "job_id": "character_enemy_92_zmey",
+      "depends_on": [
+        "material_library"
+      ],
+      "command": [
+        "tools/blender/build_character_scene.py",
+        "enemy_92_zmey",
+        "--output",
+        "builds/characters/enemy/enemy_92_zmey/enemy_92_zmey.blend",
+        "--export-glb",
+        "builds/characters/enemy/enemy_92_zmey/enemy_92_zmey.glb"
+      ],
+      "outputs": [
+        "builds/characters/enemy/enemy_92_zmey/enemy_92_zmey.blend",
+        "builds/characters/enemy/enemy_92_zmey/enemy_92_zmey.glb"
       ]
     },
     {

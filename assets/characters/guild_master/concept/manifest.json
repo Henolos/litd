@@ -1,0 +1,8 @@
+{
+  "project": "LITD 1",
+  "asset": "assets/characters/guild_master/concept/LITD1_MAITRE_GUILDE_PLANCHE_CONCEPTUELLE_V1_VALIDEE.png",
+  "sha256": "a30e173c237aa7ffa655bb0bb8b7132673209f366a99cba549267f47f6962d75",
+  "bytes": 2787245,
+  "status": "Planche validée ; import Godot et intégration gameplay non testés",
+  "instructions": "Extraire à la racine du dépôt contenant project.godot. Comparer le SHA-256 avant usage."
+}

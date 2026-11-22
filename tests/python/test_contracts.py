@@ -33,7 +33,9 @@ def test_hero_stats(hero):
 def test_enemy_contract(enemy):
     assert enemy['hp'] > 0
     assert len(enemy['damage']) == 2 and 0 <= enemy['damage'][0] <= enemy['damage'][1]
-    assert (ROOT/'assets/enemies'/enemy['art']).is_file()
+    art_path = enemy.get('art_path', '').removeprefix('res://')
+    assert art_path
+    assert (ROOT/art_path).is_file()
 
 @pytest.mark.assets
 @pytest.mark.parametrize('clazz', load_json(ROOT/'data/classes.json'))

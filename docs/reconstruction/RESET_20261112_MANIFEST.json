@@ -1247,7 +1247,7 @@
     },
     {
       "path": "data/blender/character_jobs.json",
-      "sha256": "d13de4a708f52d38e1ef59abab31082082dcdb256c0590de4e8a1dcef5b6d3c0"
+      "sha256": "7e1538b762c9cccc57860a2de8118a12f00df1c5c5d14dfbc4e98605de22c3c4"
     },
     {
       "path": "data/blender/dismemberment_contract.json",
@@ -1255,7 +1255,7 @@
     },
     {
       "path": "data/blender/full_pipeline_manifest.json",
-      "sha256": "65c38ec47abfec30ff5ef767c520697ea7c75aded87ff8604c17dafe329283d2"
+      "sha256": "316cf3df6cc4f1d86776380a0887dd4346fc5062860bc8ac77483820e84cbe11"
     },
     {
       "path": "data/blender/future_visual_cast_contracts.json",
@@ -1263,7 +1263,7 @@
     },
     {
       "path": "data/blender/godot_import_registry.json",
-      "sha256": "1eb5b1b729d1f89979d1a4dc1b733353caca9aafeb94122e39736b738bcb07bb"
+      "sha256": "6f611a2532b2aa9b37521de887087b0dc00d684d7e22e12cea2391a34c8f31d3"
     },
     {
       "path": "data/blender/master_models_v51/01_humanoid_standard.json",
@@ -1399,7 +1399,7 @@
     },
     {
       "path": "data/blender/visual_review_queue.json",
-      "sha256": "e1de4ae460ba33f6597690615ff71d7b0c2087d4c4c381f036b755fef0a49a24"
+      "sha256": "293f2695456f2fb1200f8f46eaed6a541fa19c8706f817395a55aecce7a7729b"
     },
     {
       "path": "data/blender/visual_vertical_slice_jobs.json",
@@ -1599,11 +1599,11 @@
     },
     {
       "path": "data/enemies.json",
-      "sha256": "7a90d932e588ef9e6175a2f74ccf0fdde4146fbad521c6d4135ad0fc977dea71"
+      "sha256": "9155497c4e84eb9046a35a2e94fcc0e38b3c58ecfc96e4d3e3ef5947dc0a963f"
     },
     {
       "path": "data/enemy_body_profiles.json",
-      "sha256": "6f87d5997c4ca880012b017e18e5fbd2c0d5de4097946387097c4a4a3fd3205a"
+      "sha256": "8cc84493bcd8dbaf71a0d63efb6fc93f215698918e47608de36ea5701568f9cc"
     },
     {
       "path": "data/enemy_combat_profiles.json",
@@ -1919,7 +1919,7 @@
     },
     {
       "path": "data/movement_registry.json",
-      "sha256": "0800dbf84a055312b5f77b26ba97784997f60f6f97f812fe29499d82addaa2b6"
+      "sha256": "0bfe9f05df4b3e4673c55e63489cadbf9d44c28e922338ecf420e73d7460ac43"
     },
     {
       "path": "data/music_library.json",
@@ -4762,6 +4762,8 @@
     "scripts/core/save_manager.gd",
     "scripts/core/sfx_library.gd",
     "scripts/core/sfx_runtime.gd",
+    "scripts/ui/bestiary_screen.gd",
+    "scripts/ui/game_hub.gd",
     "scripts/visual/canonical_art_registry.gd",
     "scripts/visual/validated_glb_loader.gd",
     "scripts/world/dungeon_event_director.gd",

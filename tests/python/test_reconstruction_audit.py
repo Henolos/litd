@@ -53,5 +53,14 @@ def test_game_bootstrap_cannot_return(foundation):
     assert 'retired_game_bootstrap_returned' in validate(foundation)
 
 
+def test_approved_hub_is_a_valid_game_bootstrap(foundation):
+    scene = foundation/'scenes/hub/game_hub.tscn'
+    scene.parent.mkdir(parents=True)
+    scene.write_text('[gd_scene format=3]\n')
+    with (foundation/'project.godot').open('a') as handle:
+        handle.write('\nrun/main_scene="res://scenes/hub/game_hub.tscn"\n')
+    assert validate(foundation) == []
+
+
 def test_real_repository_matches_reset_manifest():
     assert validate() == []

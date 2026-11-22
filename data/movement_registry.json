@@ -13696,6 +13696,5041 @@
       "gameplay_authority": "Godot",
       "root_motion": false,
       "notes": ""
+    },
+    {
+      "id": "enemy_40.idle",
+      "category": "enemy",
+      "owner": "enemy_40",
+      "trigger": "enemy_40:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Cerbère"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_40.move",
+      "category": "enemy",
+      "owner": "enemy_40",
+      "trigger": "enemy_40:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Cerbère"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_40.attack",
+      "category": "enemy",
+      "owner": "enemy_40",
+      "trigger": "enemy_40:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Cerbère"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_40.hit",
+      "category": "enemy",
+      "owner": "enemy_40",
+      "trigger": "enemy_40:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Cerbère"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_40.death",
+      "category": "enemy",
+      "owner": "enemy_40",
+      "trigger": "enemy_40:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Cerbère"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_41.idle",
+      "category": "enemy",
+      "owner": "enemy_41",
+      "trigger": "enemy_41:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Harpie"
+      ],
+      "rig": "LITD_AVIAN_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_41.move",
+      "category": "enemy",
+      "owner": "enemy_41",
+      "trigger": "enemy_41:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Harpie"
+      ],
+      "rig": "LITD_AVIAN_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_41.attack",
+      "category": "enemy",
+      "owner": "enemy_41",
+      "trigger": "enemy_41:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Harpie"
+      ],
+      "rig": "LITD_AVIAN_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_41.hit",
+      "category": "enemy",
+      "owner": "enemy_41",
+      "trigger": "enemy_41:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Harpie"
+      ],
+      "rig": "LITD_AVIAN_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_41.death",
+      "category": "enemy",
+      "owner": "enemy_41",
+      "trigger": "enemy_41:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Harpie"
+      ],
+      "rig": "LITD_AVIAN_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_42.idle",
+      "category": "enemy",
+      "owner": "enemy_42",
+      "trigger": "enemy_42:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Cyclope V3"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_42.move",
+      "category": "enemy",
+      "owner": "enemy_42",
+      "trigger": "enemy_42:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Cyclope V3"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_42.attack",
+      "category": "enemy",
+      "owner": "enemy_42",
+      "trigger": "enemy_42:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Cyclope V3"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_42.hit",
+      "category": "enemy",
+      "owner": "enemy_42",
+      "trigger": "enemy_42:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Cyclope V3"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_42.death",
+      "category": "enemy",
+      "owner": "enemy_42",
+      "trigger": "enemy_42:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Cyclope V3"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_43.idle",
+      "category": "enemy",
+      "owner": "enemy_43",
+      "trigger": "enemy_43:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Chimère"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_43.move",
+      "category": "enemy",
+      "owner": "enemy_43",
+      "trigger": "enemy_43:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Chimère"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_43.attack",
+      "category": "enemy",
+      "owner": "enemy_43",
+      "trigger": "enemy_43:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Chimère"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_43.hit",
+      "category": "enemy",
+      "owner": "enemy_43",
+      "trigger": "enemy_43:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Chimère"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_43.death",
+      "category": "enemy",
+      "owner": "enemy_43",
+      "trigger": "enemy_43:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Chimère"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_44.idle",
+      "category": "enemy",
+      "owner": "enemy_44",
+      "trigger": "enemy_44:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Basilic"
+      ],
+      "rig": "LITD_SERPENT_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_44.move",
+      "category": "enemy",
+      "owner": "enemy_44",
+      "trigger": "enemy_44:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Basilic"
+      ],
+      "rig": "LITD_SERPENT_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_44.attack",
+      "category": "enemy",
+      "owner": "enemy_44",
+      "trigger": "enemy_44:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Basilic"
+      ],
+      "rig": "LITD_SERPENT_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_44.hit",
+      "category": "enemy",
+      "owner": "enemy_44",
+      "trigger": "enemy_44:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Basilic"
+      ],
+      "rig": "LITD_SERPENT_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_44.death",
+      "category": "enemy",
+      "owner": "enemy_44",
+      "trigger": "enemy_44:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Basilic"
+      ],
+      "rig": "LITD_SERPENT_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_45.idle",
+      "category": "enemy",
+      "owner": "enemy_45",
+      "trigger": "enemy_45:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Hydre"
+      ],
+      "rig": "LITD_SERPENT_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_45.move",
+      "category": "enemy",
+      "owner": "enemy_45",
+      "trigger": "enemy_45:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Hydre"
+      ],
+      "rig": "LITD_SERPENT_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_45.attack",
+      "category": "enemy",
+      "owner": "enemy_45",
+      "trigger": "enemy_45:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Hydre"
+      ],
+      "rig": "LITD_SERPENT_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_45.hit",
+      "category": "enemy",
+      "owner": "enemy_45",
+      "trigger": "enemy_45:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Hydre"
+      ],
+      "rig": "LITD_SERPENT_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_45.death",
+      "category": "enemy",
+      "owner": "enemy_45",
+      "trigger": "enemy_45:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Hydre"
+      ],
+      "rig": "LITD_SERPENT_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_46.idle",
+      "category": "enemy",
+      "owner": "enemy_46",
+      "trigger": "enemy_46:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Sphinx"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_46.move",
+      "category": "enemy",
+      "owner": "enemy_46",
+      "trigger": "enemy_46:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Sphinx"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_46.attack",
+      "category": "enemy",
+      "owner": "enemy_46",
+      "trigger": "enemy_46:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Sphinx"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_46.hit",
+      "category": "enemy",
+      "owner": "enemy_46",
+      "trigger": "enemy_46:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Sphinx"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_46.death",
+      "category": "enemy",
+      "owner": "enemy_46",
+      "trigger": "enemy_46:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Sphinx"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_47.idle",
+      "category": "enemy",
+      "owner": "enemy_47",
+      "trigger": "enemy_47:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Kappa"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_47.move",
+      "category": "enemy",
+      "owner": "enemy_47",
+      "trigger": "enemy_47:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Kappa"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_47.attack",
+      "category": "enemy",
+      "owner": "enemy_47",
+      "trigger": "enemy_47:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Kappa"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_47.hit",
+      "category": "enemy",
+      "owner": "enemy_47",
+      "trigger": "enemy_47:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Kappa"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_47.death",
+      "category": "enemy",
+      "owner": "enemy_47",
+      "trigger": "enemy_47:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Kappa"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_48.idle",
+      "category": "enemy",
+      "owner": "enemy_48",
+      "trigger": "enemy_48:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Nue"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_48.move",
+      "category": "enemy",
+      "owner": "enemy_48",
+      "trigger": "enemy_48:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Nue"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_48.attack",
+      "category": "enemy",
+      "owner": "enemy_48",
+      "trigger": "enemy_48:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Nue"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_48.hit",
+      "category": "enemy",
+      "owner": "enemy_48",
+      "trigger": "enemy_48:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Nue"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_48.death",
+      "category": "enemy",
+      "owner": "enemy_48",
+      "trigger": "enemy_48:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Nue"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_49.idle",
+      "category": "enemy",
+      "owner": "enemy_49",
+      "trigger": "enemy_49:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Draugr"
+      ],
+      "rig": "LITD_GHOUL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_49.move",
+      "category": "enemy",
+      "owner": "enemy_49",
+      "trigger": "enemy_49:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Draugr"
+      ],
+      "rig": "LITD_GHOUL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_49.attack",
+      "category": "enemy",
+      "owner": "enemy_49",
+      "trigger": "enemy_49:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Draugr"
+      ],
+      "rig": "LITD_GHOUL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_49.hit",
+      "category": "enemy",
+      "owner": "enemy_49",
+      "trigger": "enemy_49:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Draugr"
+      ],
+      "rig": "LITD_GHOUL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_49.death",
+      "category": "enemy",
+      "owner": "enemy_49",
+      "trigger": "enemy_49:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Draugr"
+      ],
+      "rig": "LITD_GHOUL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_50.idle",
+      "category": "enemy",
+      "owner": "enemy_50",
+      "trigger": "enemy_50:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Troll nordique"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_50.move",
+      "category": "enemy",
+      "owner": "enemy_50",
+      "trigger": "enemy_50:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Troll nordique"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_50.attack",
+      "category": "enemy",
+      "owner": "enemy_50",
+      "trigger": "enemy_50:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Troll nordique"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_50.hit",
+      "category": "enemy",
+      "owner": "enemy_50",
+      "trigger": "enemy_50:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Troll nordique"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_50.death",
+      "category": "enemy",
+      "owner": "enemy_50",
+      "trigger": "enemy_50:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Troll nordique"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_51.idle",
+      "category": "enemy",
+      "owner": "enemy_51",
+      "trigger": "enemy_51:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Valkyrie spectrale"
+      ],
+      "rig": "LITD_AVIAN_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_51.move",
+      "category": "enemy",
+      "owner": "enemy_51",
+      "trigger": "enemy_51:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Valkyrie spectrale"
+      ],
+      "rig": "LITD_AVIAN_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_51.attack",
+      "category": "enemy",
+      "owner": "enemy_51",
+      "trigger": "enemy_51:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Valkyrie spectrale"
+      ],
+      "rig": "LITD_AVIAN_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_51.hit",
+      "category": "enemy",
+      "owner": "enemy_51",
+      "trigger": "enemy_51:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Valkyrie spectrale"
+      ],
+      "rig": "LITD_AVIAN_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_51.death",
+      "category": "enemy",
+      "owner": "enemy_51",
+      "trigger": "enemy_51:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Valkyrie spectrale"
+      ],
+      "rig": "LITD_AVIAN_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_52.idle",
+      "category": "enemy",
+      "owner": "enemy_52",
+      "trigger": "enemy_52:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Loup décharné"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_52.move",
+      "category": "enemy",
+      "owner": "enemy_52",
+      "trigger": "enemy_52:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Loup décharné"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_52.attack",
+      "category": "enemy",
+      "owner": "enemy_52",
+      "trigger": "enemy_52:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Loup décharné"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_52.hit",
+      "category": "enemy",
+      "owner": "enemy_52",
+      "trigger": "enemy_52:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Loup décharné"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_52.death",
+      "category": "enemy",
+      "owner": "enemy_52",
+      "trigger": "enemy_52:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Loup décharné"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_53.idle",
+      "category": "enemy",
+      "owner": "enemy_53",
+      "trigger": "enemy_53:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Golem de pierre runique"
+      ],
+      "rig": "LITD_COLOSSUS_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_53.move",
+      "category": "enemy",
+      "owner": "enemy_53",
+      "trigger": "enemy_53:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Golem de pierre runique"
+      ],
+      "rig": "LITD_COLOSSUS_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_53.attack",
+      "category": "enemy",
+      "owner": "enemy_53",
+      "trigger": "enemy_53:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Golem de pierre runique"
+      ],
+      "rig": "LITD_COLOSSUS_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_53.hit",
+      "category": "enemy",
+      "owner": "enemy_53",
+      "trigger": "enemy_53:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Golem de pierre runique"
+      ],
+      "rig": "LITD_COLOSSUS_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_53.death",
+      "category": "enemy",
+      "owner": "enemy_53",
+      "trigger": "enemy_53:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Golem de pierre runique"
+      ],
+      "rig": "LITD_COLOSSUS_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_54.idle",
+      "category": "enemy",
+      "owner": "enemy_54",
+      "trigger": "enemy_54:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Kitsune"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_54.move",
+      "category": "enemy",
+      "owner": "enemy_54",
+      "trigger": "enemy_54:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Kitsune"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_54.attack",
+      "category": "enemy",
+      "owner": "enemy_54",
+      "trigger": "enemy_54:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Kitsune"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_54.hit",
+      "category": "enemy",
+      "owner": "enemy_54",
+      "trigger": "enemy_54:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Kitsune"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_54.death",
+      "category": "enemy",
+      "owner": "enemy_54",
+      "trigger": "enemy_54:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Kitsune"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_55.idle",
+      "category": "enemy",
+      "owner": "enemy_55",
+      "trigger": "enemy_55:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Araignée des cryptes"
+      ],
+      "rig": "LITD_ARACHNID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_55.move",
+      "category": "enemy",
+      "owner": "enemy_55",
+      "trigger": "enemy_55:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Araignée des cryptes"
+      ],
+      "rig": "LITD_ARACHNID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_55.attack",
+      "category": "enemy",
+      "owner": "enemy_55",
+      "trigger": "enemy_55:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Araignée des cryptes"
+      ],
+      "rig": "LITD_ARACHNID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_55.hit",
+      "category": "enemy",
+      "owner": "enemy_55",
+      "trigger": "enemy_55:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Araignée des cryptes"
+      ],
+      "rig": "LITD_ARACHNID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_55.death",
+      "category": "enemy",
+      "owner": "enemy_55",
+      "trigger": "enemy_55:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Araignée des cryptes"
+      ],
+      "rig": "LITD_ARACHNID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_56.idle",
+      "category": "enemy",
+      "owner": "enemy_56",
+      "trigger": "enemy_56:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Armure hantée"
+      ],
+      "rig": "LITD_HUMANOID_HEAVY",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_56.move",
+      "category": "enemy",
+      "owner": "enemy_56",
+      "trigger": "enemy_56:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Armure hantée"
+      ],
+      "rig": "LITD_HUMANOID_HEAVY",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_56.attack",
+      "category": "enemy",
+      "owner": "enemy_56",
+      "trigger": "enemy_56:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Armure hantée"
+      ],
+      "rig": "LITD_HUMANOID_HEAVY",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_56.hit",
+      "category": "enemy",
+      "owner": "enemy_56",
+      "trigger": "enemy_56:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Armure hantée"
+      ],
+      "rig": "LITD_HUMANOID_HEAVY",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_56.death",
+      "category": "enemy",
+      "owner": "enemy_56",
+      "trigger": "enemy_56:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Armure hantée"
+      ],
+      "rig": "LITD_HUMANOID_HEAVY",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_57.idle",
+      "category": "enemy",
+      "owner": "enemy_57",
+      "trigger": "enemy_57:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Diablotin"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_57.move",
+      "category": "enemy",
+      "owner": "enemy_57",
+      "trigger": "enemy_57:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Diablotin"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_57.attack",
+      "category": "enemy",
+      "owner": "enemy_57",
+      "trigger": "enemy_57:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Diablotin"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_57.hit",
+      "category": "enemy",
+      "owner": "enemy_57",
+      "trigger": "enemy_57:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Diablotin"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_57.death",
+      "category": "enemy",
+      "owner": "enemy_57",
+      "trigger": "enemy_57:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Diablotin"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_58.idle",
+      "category": "enemy",
+      "owner": "enemy_58",
+      "trigger": "enemy_58:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Épouvantail possédé"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_58.move",
+      "category": "enemy",
+      "owner": "enemy_58",
+      "trigger": "enemy_58:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Épouvantail possédé"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_58.attack",
+      "category": "enemy",
+      "owner": "enemy_58",
+      "trigger": "enemy_58:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Épouvantail possédé"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_58.hit",
+      "category": "enemy",
+      "owner": "enemy_58",
+      "trigger": "enemy_58:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Épouvantail possédé"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_58.death",
+      "category": "enemy",
+      "owner": "enemy_58",
+      "trigger": "enemy_58:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Épouvantail possédé"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_59.idle",
+      "category": "enemy",
+      "owner": "enemy_59",
+      "trigger": "enemy_59:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Feu follet"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_59.move",
+      "category": "enemy",
+      "owner": "enemy_59",
+      "trigger": "enemy_59:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Feu follet"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_59.attack",
+      "category": "enemy",
+      "owner": "enemy_59",
+      "trigger": "enemy_59:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Feu follet"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_59.hit",
+      "category": "enemy",
+      "owner": "enemy_59",
+      "trigger": "enemy_59:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Feu follet"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_59.death",
+      "category": "enemy",
+      "owner": "enemy_59",
+      "trigger": "enemy_59:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Feu follet"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_60.idle",
+      "category": "enemy",
+      "owner": "enemy_60",
+      "trigger": "enemy_60:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Gobelin"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_60.move",
+      "category": "enemy",
+      "owner": "enemy_60",
+      "trigger": "enemy_60:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Gobelin"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_60.attack",
+      "category": "enemy",
+      "owner": "enemy_60",
+      "trigger": "enemy_60:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Gobelin"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_60.hit",
+      "category": "enemy",
+      "owner": "enemy_60",
+      "trigger": "enemy_60:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Gobelin"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_60.death",
+      "category": "enemy",
+      "owner": "enemy_60",
+      "trigger": "enemy_60:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Gobelin"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_61.idle",
+      "category": "enemy",
+      "owner": "enemy_61",
+      "trigger": "enemy_61:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Kobold"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_61.move",
+      "category": "enemy",
+      "owner": "enemy_61",
+      "trigger": "enemy_61:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Kobold"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_61.attack",
+      "category": "enemy",
+      "owner": "enemy_61",
+      "trigger": "enemy_61:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Kobold"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_61.hit",
+      "category": "enemy",
+      "owner": "enemy_61",
+      "trigger": "enemy_61:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Kobold"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_61.death",
+      "category": "enemy",
+      "owner": "enemy_61",
+      "trigger": "enemy_61:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Kobold"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_62.idle",
+      "category": "enemy",
+      "owner": "enemy_62",
+      "trigger": "enemy_62:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Leprechaun"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_62.move",
+      "category": "enemy",
+      "owner": "enemy_62",
+      "trigger": "enemy_62:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Leprechaun"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_62.attack",
+      "category": "enemy",
+      "owner": "enemy_62",
+      "trigger": "enemy_62:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Leprechaun"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_62.hit",
+      "category": "enemy",
+      "owner": "enemy_62",
+      "trigger": "enemy_62:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Leprechaun"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_62.death",
+      "category": "enemy",
+      "owner": "enemy_62",
+      "trigger": "enemy_62:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Leprechaun"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_63.idle",
+      "category": "enemy",
+      "owner": "enemy_63",
+      "trigger": "enemy_63:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Loup corrompu"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_63.move",
+      "category": "enemy",
+      "owner": "enemy_63",
+      "trigger": "enemy_63:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Loup corrompu"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_63.attack",
+      "category": "enemy",
+      "owner": "enemy_63",
+      "trigger": "enemy_63:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Loup corrompu"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_63.hit",
+      "category": "enemy",
+      "owner": "enemy_63",
+      "trigger": "enemy_63:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Loup corrompu"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_63.death",
+      "category": "enemy",
+      "owner": "enemy_63",
+      "trigger": "enemy_63:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Loup corrompu"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_64.idle",
+      "category": "enemy",
+      "owner": "enemy_64",
+      "trigger": "enemy_64:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Mimique"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_64.move",
+      "category": "enemy",
+      "owner": "enemy_64",
+      "trigger": "enemy_64:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Mimique"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_64.attack",
+      "category": "enemy",
+      "owner": "enemy_64",
+      "trigger": "enemy_64:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Mimique"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_64.hit",
+      "category": "enemy",
+      "owner": "enemy_64",
+      "trigger": "enemy_64:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Mimique"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_64.death",
+      "category": "enemy",
+      "owner": "enemy_64",
+      "trigger": "enemy_64:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Mimique"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_65.idle",
+      "category": "enemy",
+      "owner": "enemy_65",
+      "trigger": "enemy_65:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Noyé errant revenant des eaux"
+      ],
+      "rig": "LITD_GHOUL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_65.move",
+      "category": "enemy",
+      "owner": "enemy_65",
+      "trigger": "enemy_65:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Noyé errant revenant des eaux"
+      ],
+      "rig": "LITD_GHOUL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_65.attack",
+      "category": "enemy",
+      "owner": "enemy_65",
+      "trigger": "enemy_65:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Noyé errant revenant des eaux"
+      ],
+      "rig": "LITD_GHOUL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_65.hit",
+      "category": "enemy",
+      "owner": "enemy_65",
+      "trigger": "enemy_65:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Noyé errant revenant des eaux"
+      ],
+      "rig": "LITD_GHOUL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_65.death",
+      "category": "enemy",
+      "owner": "enemy_65",
+      "trigger": "enemy_65:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Noyé errant revenant des eaux"
+      ],
+      "rig": "LITD_GHOUL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_66.idle",
+      "category": "enemy",
+      "owner": "enemy_66",
+      "trigger": "enemy_66:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Plante carnivore du marais"
+      ],
+      "rig": "LITD_COLOSSUS_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_66.move",
+      "category": "enemy",
+      "owner": "enemy_66",
+      "trigger": "enemy_66:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Plante carnivore du marais"
+      ],
+      "rig": "LITD_COLOSSUS_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_66.attack",
+      "category": "enemy",
+      "owner": "enemy_66",
+      "trigger": "enemy_66:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Plante carnivore du marais"
+      ],
+      "rig": "LITD_COLOSSUS_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_66.hit",
+      "category": "enemy",
+      "owner": "enemy_66",
+      "trigger": "enemy_66:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Plante carnivore du marais"
+      ],
+      "rig": "LITD_COLOSSUS_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_66.death",
+      "category": "enemy",
+      "owner": "enemy_66",
+      "trigger": "enemy_66:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Plante carnivore du marais"
+      ],
+      "rig": "LITD_COLOSSUS_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_67.idle",
+      "category": "enemy",
+      "owner": "enemy_67",
+      "trigger": "enemy_67:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Rat pestilentiel"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_67.move",
+      "category": "enemy",
+      "owner": "enemy_67",
+      "trigger": "enemy_67:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Rat pestilentiel"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_67.attack",
+      "category": "enemy",
+      "owner": "enemy_67",
+      "trigger": "enemy_67:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Rat pestilentiel"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_67.hit",
+      "category": "enemy",
+      "owner": "enemy_67",
+      "trigger": "enemy_67:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Rat pestilentiel"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_67.death",
+      "category": "enemy",
+      "owner": "enemy_67",
+      "trigger": "enemy_67:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Rat pestilentiel"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_68.idle",
+      "category": "enemy",
+      "owner": "enemy_68",
+      "trigger": "enemy_68:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Squelette errant"
+      ],
+      "rig": "LITD_GHOUL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_68.move",
+      "category": "enemy",
+      "owner": "enemy_68",
+      "trigger": "enemy_68:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Squelette errant"
+      ],
+      "rig": "LITD_GHOUL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_68.attack",
+      "category": "enemy",
+      "owner": "enemy_68",
+      "trigger": "enemy_68:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Squelette errant"
+      ],
+      "rig": "LITD_GHOUL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_68.hit",
+      "category": "enemy",
+      "owner": "enemy_68",
+      "trigger": "enemy_68:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Squelette errant"
+      ],
+      "rig": "LITD_GHOUL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_68.death",
+      "category": "enemy",
+      "owner": "enemy_68",
+      "trigger": "enemy_68:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Squelette errant"
+      ],
+      "rig": "LITD_GHOUL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_69.idle",
+      "category": "enemy",
+      "owner": "enemy_69",
+      "trigger": "enemy_69:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Adze"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_69.move",
+      "category": "enemy",
+      "owner": "enemy_69",
+      "trigger": "enemy_69:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Adze"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_69.attack",
+      "category": "enemy",
+      "owner": "enemy_69",
+      "trigger": "enemy_69:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Adze"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_69.hit",
+      "category": "enemy",
+      "owner": "enemy_69",
+      "trigger": "enemy_69:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Adze"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_69.death",
+      "category": "enemy",
+      "owner": "enemy_69",
+      "trigger": "enemy_69:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Adze"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_70.idle",
+      "category": "enemy",
+      "owner": "enemy_70",
+      "trigger": "enemy_70:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Aziza"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_70.move",
+      "category": "enemy",
+      "owner": "enemy_70",
+      "trigger": "enemy_70:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Aziza"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_70.attack",
+      "category": "enemy",
+      "owner": "enemy_70",
+      "trigger": "enemy_70:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Aziza"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_70.hit",
+      "category": "enemy",
+      "owner": "enemy_70",
+      "trigger": "enemy_70:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Aziza"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_70.death",
+      "category": "enemy",
+      "owner": "enemy_70",
+      "trigger": "enemy_70:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Aziza"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_71.idle",
+      "category": "enemy",
+      "owner": "enemy_71",
+      "trigger": "enemy_71:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Mami Wata"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_71.move",
+      "category": "enemy",
+      "owner": "enemy_71",
+      "trigger": "enemy_71:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Mami Wata"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_71.attack",
+      "category": "enemy",
+      "owner": "enemy_71",
+      "trigger": "enemy_71:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Mami Wata"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_71.hit",
+      "category": "enemy",
+      "owner": "enemy_71",
+      "trigger": "enemy_71:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Mami Wata"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_71.death",
+      "category": "enemy",
+      "owner": "enemy_71",
+      "trigger": "enemy_71:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Mami Wata"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_72.idle",
+      "category": "enemy",
+      "owner": "enemy_72",
+      "trigger": "enemy_72:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Ninki Nanka"
+      ],
+      "rig": "LITD_SERPENT_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_72.move",
+      "category": "enemy",
+      "owner": "enemy_72",
+      "trigger": "enemy_72:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Ninki Nanka"
+      ],
+      "rig": "LITD_SERPENT_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_72.attack",
+      "category": "enemy",
+      "owner": "enemy_72",
+      "trigger": "enemy_72:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Ninki Nanka"
+      ],
+      "rig": "LITD_SERPENT_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_72.hit",
+      "category": "enemy",
+      "owner": "enemy_72",
+      "trigger": "enemy_72:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Ninki Nanka"
+      ],
+      "rig": "LITD_SERPENT_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_72.death",
+      "category": "enemy",
+      "owner": "enemy_72",
+      "trigger": "enemy_72:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Ninki Nanka"
+      ],
+      "rig": "LITD_SERPENT_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_73.idle",
+      "category": "enemy",
+      "owner": "enemy_73",
+      "trigger": "enemy_73:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Sasabonsam"
+      ],
+      "rig": "LITD_AVIAN_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_73.move",
+      "category": "enemy",
+      "owner": "enemy_73",
+      "trigger": "enemy_73:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Sasabonsam"
+      ],
+      "rig": "LITD_AVIAN_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_73.attack",
+      "category": "enemy",
+      "owner": "enemy_73",
+      "trigger": "enemy_73:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Sasabonsam"
+      ],
+      "rig": "LITD_AVIAN_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_73.hit",
+      "category": "enemy",
+      "owner": "enemy_73",
+      "trigger": "enemy_73:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Sasabonsam"
+      ],
+      "rig": "LITD_AVIAN_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_73.death",
+      "category": "enemy",
+      "owner": "enemy_73",
+      "trigger": "enemy_73:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Sasabonsam"
+      ],
+      "rig": "LITD_AVIAN_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_74.idle",
+      "category": "enemy",
+      "owner": "enemy_74",
+      "trigger": "enemy_74:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Cipactli"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_74.move",
+      "category": "enemy",
+      "owner": "enemy_74",
+      "trigger": "enemy_74:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Cipactli"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_74.attack",
+      "category": "enemy",
+      "owner": "enemy_74",
+      "trigger": "enemy_74:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Cipactli"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_74.hit",
+      "category": "enemy",
+      "owner": "enemy_74",
+      "trigger": "enemy_74:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Cipactli"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_74.death",
+      "category": "enemy",
+      "owner": "enemy_74",
+      "trigger": "enemy_74:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Cipactli"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_75.idle",
+      "category": "enemy",
+      "owner": "enemy_75",
+      "trigger": "enemy_75:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Itzpapalotl"
+      ],
+      "rig": "LITD_AVIAN_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_75.move",
+      "category": "enemy",
+      "owner": "enemy_75",
+      "trigger": "enemy_75:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Itzpapalotl"
+      ],
+      "rig": "LITD_AVIAN_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_75.attack",
+      "category": "enemy",
+      "owner": "enemy_75",
+      "trigger": "enemy_75:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Itzpapalotl"
+      ],
+      "rig": "LITD_AVIAN_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_75.hit",
+      "category": "enemy",
+      "owner": "enemy_75",
+      "trigger": "enemy_75:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Itzpapalotl"
+      ],
+      "rig": "LITD_AVIAN_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_75.death",
+      "category": "enemy",
+      "owner": "enemy_75",
+      "trigger": "enemy_75:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Itzpapalotl"
+      ],
+      "rig": "LITD_AVIAN_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_76.idle",
+      "category": "enemy",
+      "owner": "enemy_76",
+      "trigger": "enemy_76:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Mictlantecuhtli"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_76.move",
+      "category": "enemy",
+      "owner": "enemy_76",
+      "trigger": "enemy_76:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Mictlantecuhtli"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_76.attack",
+      "category": "enemy",
+      "owner": "enemy_76",
+      "trigger": "enemy_76:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Mictlantecuhtli"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_76.hit",
+      "category": "enemy",
+      "owner": "enemy_76",
+      "trigger": "enemy_76:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Mictlantecuhtli"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_76.death",
+      "category": "enemy",
+      "owner": "enemy_76",
+      "trigger": "enemy_76:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Mictlantecuhtli"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_77.idle",
+      "category": "enemy",
+      "owner": "enemy_77",
+      "trigger": "enemy_77:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Tzitzimime"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_77.move",
+      "category": "enemy",
+      "owner": "enemy_77",
+      "trigger": "enemy_77:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Tzitzimime"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_77.attack",
+      "category": "enemy",
+      "owner": "enemy_77",
+      "trigger": "enemy_77:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Tzitzimime"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_77.hit",
+      "category": "enemy",
+      "owner": "enemy_77",
+      "trigger": "enemy_77:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Tzitzimime"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_77.death",
+      "category": "enemy",
+      "owner": "enemy_77",
+      "trigger": "enemy_77:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Tzitzimime"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_78.idle",
+      "category": "enemy",
+      "owner": "enemy_78",
+      "trigger": "enemy_78:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Xólotl"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_78.move",
+      "category": "enemy",
+      "owner": "enemy_78",
+      "trigger": "enemy_78:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Xólotl"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_78.attack",
+      "category": "enemy",
+      "owner": "enemy_78",
+      "trigger": "enemy_78:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Xólotl"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_78.hit",
+      "category": "enemy",
+      "owner": "enemy_78",
+      "trigger": "enemy_78:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Xólotl"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_78.death",
+      "category": "enemy",
+      "owner": "enemy_78",
+      "trigger": "enemy_78:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Xólotl"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_79.idle",
+      "category": "enemy",
+      "owner": "enemy_79",
+      "trigger": "enemy_79:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Banshee"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_79.move",
+      "category": "enemy",
+      "owner": "enemy_79",
+      "trigger": "enemy_79:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Banshee"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_79.attack",
+      "category": "enemy",
+      "owner": "enemy_79",
+      "trigger": "enemy_79:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Banshee"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_79.hit",
+      "category": "enemy",
+      "owner": "enemy_79",
+      "trigger": "enemy_79:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Banshee"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_79.death",
+      "category": "enemy",
+      "owner": "enemy_79",
+      "trigger": "enemy_79:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Banshee"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_80.idle",
+      "category": "enemy",
+      "owner": "enemy_80",
+      "trigger": "enemy_80:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Black Annis"
+      ],
+      "rig": "LITD_GHOUL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_80.move",
+      "category": "enemy",
+      "owner": "enemy_80",
+      "trigger": "enemy_80:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Black Annis"
+      ],
+      "rig": "LITD_GHOUL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_80.attack",
+      "category": "enemy",
+      "owner": "enemy_80",
+      "trigger": "enemy_80:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Black Annis"
+      ],
+      "rig": "LITD_GHOUL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_80.hit",
+      "category": "enemy",
+      "owner": "enemy_80",
+      "trigger": "enemy_80:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Black Annis"
+      ],
+      "rig": "LITD_GHOUL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_80.death",
+      "category": "enemy",
+      "owner": "enemy_80",
+      "trigger": "enemy_80:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Black Annis"
+      ],
+      "rig": "LITD_GHOUL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_81.idle",
+      "category": "enemy",
+      "owner": "enemy_81",
+      "trigger": "enemy_81:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Fachan"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_81.move",
+      "category": "enemy",
+      "owner": "enemy_81",
+      "trigger": "enemy_81:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Fachan"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_81.attack",
+      "category": "enemy",
+      "owner": "enemy_81",
+      "trigger": "enemy_81:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Fachan"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_81.hit",
+      "category": "enemy",
+      "owner": "enemy_81",
+      "trigger": "enemy_81:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Fachan"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_81.death",
+      "category": "enemy",
+      "owner": "enemy_81",
+      "trigger": "enemy_81:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Fachan"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_82.idle",
+      "category": "enemy",
+      "owner": "enemy_82",
+      "trigger": "enemy_82:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Redcap"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_82.move",
+      "category": "enemy",
+      "owner": "enemy_82",
+      "trigger": "enemy_82:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Redcap"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_82.attack",
+      "category": "enemy",
+      "owner": "enemy_82",
+      "trigger": "enemy_82:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Redcap"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_82.hit",
+      "category": "enemy",
+      "owner": "enemy_82",
+      "trigger": "enemy_82:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Redcap"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_82.death",
+      "category": "enemy",
+      "owner": "enemy_82",
+      "trigger": "enemy_82:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Redcap"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_83.idle",
+      "category": "enemy",
+      "owner": "enemy_83",
+      "trigger": "enemy_83:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Sluagh"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_83.move",
+      "category": "enemy",
+      "owner": "enemy_83",
+      "trigger": "enemy_83:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Sluagh"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_83.attack",
+      "category": "enemy",
+      "owner": "enemy_83",
+      "trigger": "enemy_83:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Sluagh"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_83.hit",
+      "category": "enemy",
+      "owner": "enemy_83",
+      "trigger": "enemy_83:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Sluagh"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_83.death",
+      "category": "enemy",
+      "owner": "enemy_83",
+      "trigger": "enemy_83:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Sluagh"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_84.idle",
+      "category": "enemy",
+      "owner": "enemy_84",
+      "trigger": "enemy_84:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Horus"
+      ],
+      "rig": "LITD_AVIAN_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_84.move",
+      "category": "enemy",
+      "owner": "enemy_84",
+      "trigger": "enemy_84:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Horus"
+      ],
+      "rig": "LITD_AVIAN_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_84.attack",
+      "category": "enemy",
+      "owner": "enemy_84",
+      "trigger": "enemy_84:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Horus"
+      ],
+      "rig": "LITD_AVIAN_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_84.hit",
+      "category": "enemy",
+      "owner": "enemy_84",
+      "trigger": "enemy_84:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Horus"
+      ],
+      "rig": "LITD_AVIAN_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_84.death",
+      "category": "enemy",
+      "owner": "enemy_84",
+      "trigger": "enemy_84:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Horus"
+      ],
+      "rig": "LITD_AVIAN_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_85.idle",
+      "category": "enemy",
+      "owner": "enemy_85",
+      "trigger": "enemy_85:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Isis"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_85.move",
+      "category": "enemy",
+      "owner": "enemy_85",
+      "trigger": "enemy_85:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Isis"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_85.attack",
+      "category": "enemy",
+      "owner": "enemy_85",
+      "trigger": "enemy_85:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Isis"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_85.hit",
+      "category": "enemy",
+      "owner": "enemy_85",
+      "trigger": "enemy_85:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Isis"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_85.death",
+      "category": "enemy",
+      "owner": "enemy_85",
+      "trigger": "enemy_85:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Isis"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_86.idle",
+      "category": "enemy",
+      "owner": "enemy_86",
+      "trigger": "enemy_86:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Seth"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_86.move",
+      "category": "enemy",
+      "owner": "enemy_86",
+      "trigger": "enemy_86:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Seth"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_86.attack",
+      "category": "enemy",
+      "owner": "enemy_86",
+      "trigger": "enemy_86:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Seth"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_86.hit",
+      "category": "enemy",
+      "owner": "enemy_86",
+      "trigger": "enemy_86:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Seth"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_86.death",
+      "category": "enemy",
+      "owner": "enemy_86",
+      "trigger": "enemy_86:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Seth"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_87.idle",
+      "category": "enemy",
+      "owner": "enemy_87",
+      "trigger": "enemy_87:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Sobek"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_87.move",
+      "category": "enemy",
+      "owner": "enemy_87",
+      "trigger": "enemy_87:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Sobek"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_87.attack",
+      "category": "enemy",
+      "owner": "enemy_87",
+      "trigger": "enemy_87:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Sobek"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_87.hit",
+      "category": "enemy",
+      "owner": "enemy_87",
+      "trigger": "enemy_87:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Sobek"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_87.death",
+      "category": "enemy",
+      "owner": "enemy_87",
+      "trigger": "enemy_87:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Sobek"
+      ],
+      "rig": "LITD_QUADRUPED_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_88.idle",
+      "category": "enemy",
+      "owner": "enemy_88",
+      "trigger": "enemy_88:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Baba Yaga"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_88.move",
+      "category": "enemy",
+      "owner": "enemy_88",
+      "trigger": "enemy_88:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Baba Yaga"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_88.attack",
+      "category": "enemy",
+      "owner": "enemy_88",
+      "trigger": "enemy_88:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Baba Yaga"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_88.hit",
+      "category": "enemy",
+      "owner": "enemy_88",
+      "trigger": "enemy_88:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Baba Yaga"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_88.death",
+      "category": "enemy",
+      "owner": "enemy_88",
+      "trigger": "enemy_88:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Baba Yaga"
+      ],
+      "rig": "LITD_HUMANOID_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_89.idle",
+      "category": "enemy",
+      "owner": "enemy_89",
+      "trigger": "enemy_89:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Leshy"
+      ],
+      "rig": "LITD_COLOSSUS_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_89.move",
+      "category": "enemy",
+      "owner": "enemy_89",
+      "trigger": "enemy_89:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Leshy"
+      ],
+      "rig": "LITD_COLOSSUS_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_89.attack",
+      "category": "enemy",
+      "owner": "enemy_89",
+      "trigger": "enemy_89:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Leshy"
+      ],
+      "rig": "LITD_COLOSSUS_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_89.hit",
+      "category": "enemy",
+      "owner": "enemy_89",
+      "trigger": "enemy_89:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Leshy"
+      ],
+      "rig": "LITD_COLOSSUS_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_89.death",
+      "category": "enemy",
+      "owner": "enemy_89",
+      "trigger": "enemy_89:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Leshy"
+      ],
+      "rig": "LITD_COLOSSUS_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_90.idle",
+      "category": "enemy",
+      "owner": "enemy_90",
+      "trigger": "enemy_90:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Rusalka"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_90.move",
+      "category": "enemy",
+      "owner": "enemy_90",
+      "trigger": "enemy_90:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Rusalka"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_90.attack",
+      "category": "enemy",
+      "owner": "enemy_90",
+      "trigger": "enemy_90:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Rusalka"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_90.hit",
+      "category": "enemy",
+      "owner": "enemy_90",
+      "trigger": "enemy_90:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Rusalka"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_90.death",
+      "category": "enemy",
+      "owner": "enemy_90",
+      "trigger": "enemy_90:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Rusalka"
+      ],
+      "rig": "LITD_SPECTRAL_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_91.idle",
+      "category": "enemy",
+      "owner": "enemy_91",
+      "trigger": "enemy_91:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Vodyanoy"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_91.move",
+      "category": "enemy",
+      "owner": "enemy_91",
+      "trigger": "enemy_91:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Vodyanoy"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_91.attack",
+      "category": "enemy",
+      "owner": "enemy_91",
+      "trigger": "enemy_91:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Vodyanoy"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_91.hit",
+      "category": "enemy",
+      "owner": "enemy_91",
+      "trigger": "enemy_91:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Vodyanoy"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_91.death",
+      "category": "enemy",
+      "owner": "enemy_91",
+      "trigger": "enemy_91:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Vodyanoy"
+      ],
+      "rig": "LITD_BRUTE_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_92.idle",
+      "category": "enemy",
+      "owner": "enemy_92",
+      "trigger": "enemy_92:idle",
+      "motion_family": "enemy_idle",
+      "markers": [
+        "settle"
+      ],
+      "variants": [
+        "Zmey"
+      ],
+      "rig": "LITD_SERPENT_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_92.move",
+      "category": "enemy",
+      "owner": "enemy_92",
+      "trigger": "enemy_92:move",
+      "motion_family": "enemy_locomotion",
+      "markers": [
+        "contact_l",
+        "contact_r"
+      ],
+      "variants": [
+        "Zmey"
+      ],
+      "rig": "LITD_SERPENT_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_92.attack",
+      "category": "enemy",
+      "owner": "enemy_92",
+      "trigger": "enemy_92:attack",
+      "motion_family": "enemy_signature_attack",
+      "markers": [
+        "telegraph",
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Zmey"
+      ],
+      "rig": "LITD_SERPENT_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_92.hit",
+      "category": "enemy",
+      "owner": "enemy_92",
+      "trigger": "enemy_92:hit",
+      "motion_family": "enemy_hit",
+      "markers": [
+        "impact",
+        "ready"
+      ],
+      "variants": [
+        "Zmey"
+      ],
+      "rig": "LITD_SERPENT_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
+    },
+    {
+      "id": "enemy_92.death",
+      "category": "enemy",
+      "owner": "enemy_92",
+      "trigger": "enemy_92:death",
+      "motion_family": "enemy_death",
+      "markers": [
+        "fatal_hit",
+        "ground_contact"
+      ],
+      "variants": [
+        "Zmey"
+      ],
+      "rig": "LITD_SERPENT_STANDARD",
+      "status": "planned_blender",
+      "gameplay_authority": "Godot",
+      "root_motion": false,
+      "notes": "Mouvement préparé à partir du profil morphologique provisoire; animation à produire et valider."
     }
   ]
 }

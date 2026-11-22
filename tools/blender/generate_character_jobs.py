@@ -66,8 +66,10 @@ def build_jobs(root: Path = ROOT) -> list[dict]:
     for enemy in enemies:
         identifier = f"enemy_{int(enemy['id']):02d}_{slug(enemy['name'])}"
         category = "boss" if enemy.get("boss", False) else "enemy"
+        reference_art = str(enemy.get("art_path", f"assets/enemies/{enemy['art']}"))
+        reference_art = reference_art.removeprefix("res://")
         jobs.append(_job(identifier, enemy["name"], category, "hostile_humanoid",
-                         f"assets/enemies/{enemy['art']}", enemy["hp"], boss=enemy.get("boss", False)))
+                         reference_art, enemy["hp"], boss=enemy.get("boss", False)))
     for pool_name in ("normal_pool", "secret_pool"):
         for enemy in minibosses[pool_name]:
             jobs.append(_job(enemy["id"], enemy["name"], "miniboss", enemy["archetype"],

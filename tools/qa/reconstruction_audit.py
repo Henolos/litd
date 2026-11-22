@@ -33,7 +33,13 @@ def validate(root: Path = ROOT, group: str = 'all') -> list[str]:
     if production != allowed:
         errors.append('technical_script_scope:' + repr(sorted(production ^ allowed)))
     project = (root / 'project.godot').read_text()
-    if 'run/main_scene=' in project or 'GameState=' in project or 'VeilleursRuntime=' in project:
+    main_scene = re.search(r'^run/main_scene="([^"]+)"$', project, re.MULTILINE)
+    approved_main_scene = 'res://scenes/hub/game_hub.tscn'
+    if main_scene and main_scene.group(1) != approved_main_scene:
+        errors.append('retired_game_bootstrap_returned')
+    if main_scene and not (root / main_scene.group(1)[6:]).is_file():
+        errors.append('missing_game_bootstrap_scene')
+    if 'GameState=' in project or 'VeilleursRuntime=' in project:
         errors.append('retired_game_bootstrap_returned')
     for section in ['SaveManager=', 'GameSettings=']:
         if section not in project:

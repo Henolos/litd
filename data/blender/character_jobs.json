@@ -204,7 +204,7 @@
       "name": "Goule affamée",
       "category": "enemy",
       "archetype": "hostile_humanoid",
-      "reference_art": "assets/enemies/enemy_01.webp",
+      "reference_art": "art/library/bestiary/ghoul/reference.png",
       "height_m": 1.67,
       "body_scale": 0.94,
       "rig_profile": "humanoid_biped_v1",
@@ -449,7 +449,7 @@
       "name": "Gorgone",
       "category": "enemy",
       "archetype": "hostile_humanoid",
-      "reference_art": "assets/enemies/enemy_06.webp",
+      "reference_art": "art/library/bestiary/gorgon/reference.jpeg",
       "height_m": 1.78,
       "body_scale": 1.0,
       "rig_profile": "humanoid_biped_v1",
@@ -498,7 +498,7 @@
       "name": "Minotaure",
       "category": "enemy",
       "archetype": "hostile_humanoid",
-      "reference_art": "assets/enemies/enemy_07.webp",
+      "reference_art": "art/library/bestiary/minotaur/reference.jpeg",
       "height_m": 1.64,
       "body_scale": 0.92,
       "rig_profile": "humanoid_biped_v1",
@@ -547,7 +547,7 @@
       "name": "Oni",
       "category": "enemy",
       "archetype": "hostile_humanoid",
-      "reference_art": "assets/enemies/enemy_08.webp",
+      "reference_art": "art/library/bestiary/oni/reference.jpeg",
       "height_m": 1.67,
       "body_scale": 0.94,
       "rig_profile": "humanoid_biped_v1",
@@ -596,7 +596,7 @@
       "name": "Tengu",
       "category": "enemy",
       "archetype": "hostile_humanoid",
-      "reference_art": "assets/enemies/enemy_09.webp",
+      "reference_art": "art/library/bestiary/karasu_tengu/reference.jpeg",
       "height_m": 1.69,
       "body_scale": 0.95,
       "rig_profile": "humanoid_biped_v1",
@@ -645,7 +645,7 @@
       "name": "Jorōgumo",
       "category": "enemy",
       "archetype": "hostile_humanoid",
-      "reference_art": "assets/enemies/enemy_10.webp",
+      "reference_art": "art/library/bestiary/jorogumo/reference.jpg",
       "height_m": 1.71,
       "body_scale": 0.96,
       "rig_profile": "humanoid_biped_v1",
@@ -694,7 +694,7 @@
       "name": "Yuki-Onna",
       "category": "enemy",
       "archetype": "hostile_humanoid",
-      "reference_art": "assets/enemies/enemy_11.webp",
+      "reference_art": "art/library/bestiary/yuki_onna/reference.jpeg",
       "height_m": 1.73,
       "body_scale": 0.97,
       "rig_profile": "humanoid_biped_v1",
@@ -743,7 +743,7 @@
       "name": "Anubis",
       "category": "enemy",
       "archetype": "hostile_humanoid",
-      "reference_art": "assets/enemies/enemy_12.webp",
+      "reference_art": "docs/research/litd1_personnages/LITD1_BEST_EGY_ANUBIS_PESEUR_DES_AMES_V2_VALIDEE.png",
       "height_m": 1.74,
       "body_scale": 0.98,
       "rig_profile": "humanoid_biped_v1",
@@ -2108,6 +2108,2603 @@
         "M_metal"
       ],
       "output": "builds/characters/boss/enemy_39_mere_des_souffrances"
+    },
+    {
+      "job_id": "character_enemy_40_cerbere",
+      "character_id": "enemy_40_cerbere",
+      "name": "Cerbère",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/cerberus/reference.jpeg",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_40_cerbere"
+    },
+    {
+      "job_id": "character_enemy_41_harpie",
+      "character_id": "enemy_41_harpie",
+      "name": "Harpie",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/harpy/reference.jpeg",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_41_harpie"
+    },
+    {
+      "job_id": "character_enemy_42_cyclope_v3",
+      "character_id": "enemy_42_cyclope_v3",
+      "name": "Cyclope V3",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/cyclops/reference.jpeg",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_42_cyclope_v3"
+    },
+    {
+      "job_id": "character_enemy_43_chimere",
+      "character_id": "enemy_43_chimere",
+      "name": "Chimère",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/chimera/reference.jpeg",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_43_chimere"
+    },
+    {
+      "job_id": "character_enemy_44_basilic",
+      "character_id": "enemy_44_basilic",
+      "name": "Basilic",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/basilisk/reference.jpeg",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_44_basilic"
+    },
+    {
+      "job_id": "character_enemy_45_hydre",
+      "character_id": "enemy_45_hydre",
+      "name": "Hydre",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/hydra/reference.jpeg",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_45_hydre"
+    },
+    {
+      "job_id": "character_enemy_46_sphinx",
+      "character_id": "enemy_46_sphinx",
+      "name": "Sphinx",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/sphinx/reference.jpeg",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_46_sphinx"
+    },
+    {
+      "job_id": "character_enemy_47_kappa",
+      "character_id": "enemy_47_kappa",
+      "name": "Kappa",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/kappa/reference.jpeg",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_47_kappa"
+    },
+    {
+      "job_id": "character_enemy_48_nue",
+      "character_id": "enemy_48_nue",
+      "name": "Nue",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/nue/reference.jpeg",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_48_nue"
+    },
+    {
+      "job_id": "character_enemy_49_draugr",
+      "character_id": "enemy_49_draugr",
+      "name": "Draugr",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/draugr/reference.jpeg",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_49_draugr"
+    },
+    {
+      "job_id": "character_enemy_50_troll_nordique",
+      "character_id": "enemy_50_troll_nordique",
+      "name": "Troll nordique",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/nordic_troll/reference.jpeg",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_50_troll_nordique"
+    },
+    {
+      "job_id": "character_enemy_51_valkyrie_spectrale",
+      "character_id": "enemy_51_valkyrie_spectrale",
+      "name": "Valkyrie spectrale",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/spectral_valkyrie/reference.jpg",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_51_valkyrie_spectrale"
+    },
+    {
+      "job_id": "character_enemy_52_loup_decharne",
+      "character_id": "enemy_52_loup_decharne",
+      "name": "Loup décharné",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/emaciated_wolf/reference.jpeg",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_52_loup_decharne"
+    },
+    {
+      "job_id": "character_enemy_53_golem_de_pierre_runique",
+      "character_id": "enemy_53_golem_de_pierre_runique",
+      "name": "Golem de pierre runique",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/runic_stone_golem/reference.jpeg",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_53_golem_de_pierre_runique"
+    },
+    {
+      "job_id": "character_enemy_54_kitsune",
+      "character_id": "enemy_54_kitsune",
+      "name": "Kitsune",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/kitsune/reference.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_54_kitsune"
+    },
+    {
+      "job_id": "character_enemy_55_araignee_des_cryptes",
+      "character_id": "enemy_55_araignee_des_cryptes",
+      "name": "Araignée des cryptes",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/crypt-spider/reference.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_55_araignee_des_cryptes"
+    },
+    {
+      "job_id": "character_enemy_56_armure_hantee",
+      "character_id": "enemy_56_armure_hantee",
+      "name": "Armure hantée",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/haunted-armor/reference.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_56_armure_hantee"
+    },
+    {
+      "job_id": "character_enemy_57_diablotin",
+      "character_id": "enemy_57_diablotin",
+      "name": "Diablotin",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/imp/reference.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_57_diablotin"
+    },
+    {
+      "job_id": "character_enemy_58_epouvantail_possede",
+      "character_id": "enemy_58_epouvantail_possede",
+      "name": "Épouvantail possédé",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/possessed-scarecrow/reference.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_58_epouvantail_possede"
+    },
+    {
+      "job_id": "character_enemy_59_feu_follet",
+      "character_id": "enemy_59_feu_follet",
+      "name": "Feu follet",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/will-o-wisp/reference.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_59_feu_follet"
+    },
+    {
+      "job_id": "character_enemy_60_gobelin",
+      "character_id": "enemy_60_gobelin",
+      "name": "Gobelin",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/goblin/reference.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_60_gobelin"
+    },
+    {
+      "job_id": "character_enemy_61_kobold",
+      "character_id": "enemy_61_kobold",
+      "name": "Kobold",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/kobold/reference.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_61_kobold"
+    },
+    {
+      "job_id": "character_enemy_62_leprechaun",
+      "character_id": "enemy_62_leprechaun",
+      "name": "Leprechaun",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/leprechaun/reference.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_62_leprechaun"
+    },
+    {
+      "job_id": "character_enemy_63_loup_corrompu",
+      "character_id": "enemy_63_loup_corrompu",
+      "name": "Loup corrompu",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/corrupted-wolf/reference.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_63_loup_corrompu"
+    },
+    {
+      "job_id": "character_enemy_64_mimique",
+      "character_id": "enemy_64_mimique",
+      "name": "Mimique",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/mimic/reference.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_64_mimique"
+    },
+    {
+      "job_id": "character_enemy_65_noye_errant_revenant_des_eaux",
+      "character_id": "enemy_65_noye_errant_revenant_des_eaux",
+      "name": "Noyé errant revenant des eaux",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/drowned-revenant/reference.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_65_noye_errant_revenant_des_eaux"
+    },
+    {
+      "job_id": "character_enemy_66_plante_carnivore_du_marais",
+      "character_id": "enemy_66_plante_carnivore_du_marais",
+      "name": "Plante carnivore du marais",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/marsh-carnivorous-plant/reference.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_66_plante_carnivore_du_marais"
+    },
+    {
+      "job_id": "character_enemy_67_rat_pestilentiel",
+      "character_id": "enemy_67_rat_pestilentiel",
+      "name": "Rat pestilentiel",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/pestilent-rat/reference.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_67_rat_pestilentiel"
+    },
+    {
+      "job_id": "character_enemy_68_squelette_errant",
+      "character_id": "enemy_68_squelette_errant",
+      "name": "Squelette errant",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "art/library/bestiary/wandering-skeleton/reference.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_68_squelette_errant"
+    },
+    {
+      "job_id": "character_enemy_69_adze",
+      "character_id": "enemy_69_adze",
+      "name": "Adze",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "docs/research/litd1_personnages/LITD1_BEST_AFR_ADZE_VAMPIRE_CIEUX_V1_VALIDEE.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_69_adze"
+    },
+    {
+      "job_id": "character_enemy_70_aziza",
+      "character_id": "enemy_70_aziza",
+      "name": "Aziza",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "docs/research/litd1_personnages/LITD1_BEST_AFR_AZIZA_ESPRIT_FORET_V1_VALIDEE.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_70_aziza"
+    },
+    {
+      "job_id": "character_enemy_71_mami_wata",
+      "character_id": "enemy_71_mami_wata",
+      "name": "Mami Wata",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "docs/research/litd1_personnages/LITD1_BEST_AFR_MAMI_WATA_DAME_EAUX_V1_VALIDEE.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_71_mami_wata"
+    },
+    {
+      "job_id": "character_enemy_72_ninki_nanka",
+      "character_id": "enemy_72_ninki_nanka",
+      "name": "Ninki Nanka",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "docs/research/litd1_personnages/LITD1_BEST_AFR_NINKI_NANKA_SERPENT_MARAIS_V1_VALIDEE.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_72_ninki_nanka"
+    },
+    {
+      "job_id": "character_enemy_73_sasabonsam",
+      "character_id": "enemy_73_sasabonsam",
+      "name": "Sasabonsam",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "docs/research/litd1_personnages/LITD1_BEST_AFR_SASABONSAM_PREDATEUR_CIMES_V1_VALIDEE.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_73_sasabonsam"
+    },
+    {
+      "job_id": "character_enemy_74_cipactli",
+      "character_id": "enemy_74_cipactli",
+      "name": "Cipactli",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "docs/research/litd1_personnages/LITD1_BEST_AZT_CIPACTLI_CROCODILE_PRIMORDIAL_V1_VALIDEE.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_74_cipactli"
+    },
+    {
+      "job_id": "character_enemy_75_itzpapalotl",
+      "character_id": "enemy_75_itzpapalotl",
+      "name": "Itzpapalotl",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "docs/research/litd1_personnages/LITD1_BEST_AZT_ITZPAPALOTL_PAPILLON_OBSIDIENNE_V1_VALIDEE.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_75_itzpapalotl"
+    },
+    {
+      "job_id": "character_enemy_76_mictlantecuhtli",
+      "character_id": "enemy_76_mictlantecuhtli",
+      "name": "Mictlantecuhtli",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "docs/research/litd1_personnages/LITD1_BEST_AZT_MICTLANTECUHTLI_SEIGNEUR_MICTLAN_V1_VALIDEE.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_76_mictlantecuhtli"
+    },
+    {
+      "job_id": "character_enemy_77_tzitzimime",
+      "character_id": "enemy_77_tzitzimime",
+      "name": "Tzitzimime",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "docs/research/litd1_personnages/LITD1_BEST_AZT_TZITZIMIME_DEVOREUSE_ETOILES_V1_VALIDEE_ORIGINAL.jpeg",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_77_tzitzimime"
+    },
+    {
+      "job_id": "character_enemy_78_xolotl",
+      "character_id": "enemy_78_xolotl",
+      "name": "Xólotl",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "docs/research/litd1_personnages/LITD1_BEST_AZT_XOLOTL_GUIDE_PASSAGES_V1_VALIDEE.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_78_xolotl"
+    },
+    {
+      "job_id": "character_enemy_79_banshee",
+      "character_id": "enemy_79_banshee",
+      "name": "Banshee",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "docs/research/litd1_personnages/LITD1_BEST_BRIT_BANSHEE_PLEUREUSE_FUNEBRE_V2_VALIDEE.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_79_banshee"
+    },
+    {
+      "job_id": "character_enemy_80_black_annis",
+      "character_id": "enemy_80_black_annis",
+      "name": "Black Annis",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "docs/research/litd1_personnages/LITD1_BEST_BRIT_BLACK_ANNIS_SORCIERE_ECORCHEE_V1_VALIDEE.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_80_black_annis"
+    },
+    {
+      "job_id": "character_enemy_81_fachan",
+      "character_id": "enemy_81_fachan",
+      "name": "Fachan",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "docs/research/litd1_personnages/LITD1_BEST_BRIT_FACHAN_MONOCULAIRE_HIGHLANDS_V1_VALIDEE.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_81_fachan"
+    },
+    {
+      "job_id": "character_enemy_82_redcap",
+      "character_id": "enemy_82_redcap",
+      "name": "Redcap",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "docs/research/litd1_personnages/LITD1_BEST_BRIT_REDCAP_LUTIN_SANGLANT_V2_VALIDEE.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_82_redcap"
+    },
+    {
+      "job_id": "character_enemy_83_sluagh",
+      "character_id": "enemy_83_sluagh",
+      "name": "Sluagh",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "docs/research/litd1_personnages/LITD1_BEST_BRIT_SLUAGH_HORDE_AMES_ERRANTES_V1_VALIDEE.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_83_sluagh"
+    },
+    {
+      "job_id": "character_enemy_84_horus",
+      "character_id": "enemy_84_horus",
+      "name": "Horus",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "docs/research/litd1_personnages/LITD1_BEST_EGY_HORUS_SENTINELLE_ZENITH_V1_VALIDEE.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_84_horus"
+    },
+    {
+      "job_id": "character_enemy_85_isis",
+      "character_id": "enemy_85_isis",
+      "name": "Isis",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "docs/research/litd1_personnages/LITD1_BEST_EGY_ISIS_TISSEUSE_DES_AMES_V2_VALIDEE.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_85_isis"
+    },
+    {
+      "job_id": "character_enemy_86_seth",
+      "character_id": "enemy_86_seth",
+      "name": "Seth",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "docs/research/litd1_personnages/LITD1_BEST_EGY_SETH_ECORCHEUR_TEMPETES_V2_VALIDEE.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_86_seth"
+    },
+    {
+      "job_id": "character_enemy_87_sobek",
+      "character_id": "enemy_87_sobek",
+      "name": "Sobek",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "docs/research/litd1_personnages/LITD1_BEST_EGY_SOBEK_SEIGNEUR_EAUX_NOIRES_V1_VALIDEE.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_87_sobek"
+    },
+    {
+      "job_id": "character_enemy_88_baba_yaga",
+      "character_id": "enemy_88_baba_yaga",
+      "name": "Baba Yaga",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "docs/research/litd1_personnages/LITD1_BEST_SLAVE_BABA_YAGA_MERE_DES_SEUILS_V3_VALIDEE.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_88_baba_yaga"
+    },
+    {
+      "job_id": "character_enemy_89_leshy",
+      "character_id": "enemy_89_leshy",
+      "name": "Leshy",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "docs/research/litd1_personnages/LITD1_BEST_SLAVE_LESHY_SOUVERAIN_SENTIERS_PERDUS_V2_VALIDEE.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_89_leshy"
+    },
+    {
+      "job_id": "character_enemy_90_rusalka",
+      "character_id": "enemy_90_rusalka",
+      "name": "Rusalka",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "docs/research/litd1_personnages/LITD1_BEST_SLAVE_RUSALKA_NOYEE_DES_SAULES_V1_VALIDEE.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_90_rusalka"
+    },
+    {
+      "job_id": "character_enemy_91_vodyanoy",
+      "character_id": "enemy_91_vodyanoy",
+      "name": "Vodyanoy",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "docs/research/litd1_personnages/LITD1_BEST_SLAVE_VODYANOY_MAITRE_DES_EAUX_V1_VALIDEE.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_91_vodyanoy"
+    },
+    {
+      "job_id": "character_enemy_92_zmey",
+      "character_id": "enemy_92_zmey",
+      "name": "Zmey",
+      "category": "enemy",
+      "archetype": "hostile_humanoid",
+      "reference_art": "docs/research/litd1_personnages/LITD1_BEST_SLAVE_ZMEY_DEVOREUR_DES_ORAGES_V1_VALIDEE.png",
+      "height_m": 1.71,
+      "body_scale": 0.96,
+      "rig_profile": "humanoid_biped_v1",
+      "recruitable": false,
+      "boss": false,
+      "collections": [
+        "BODY",
+        "ARMATURE",
+        "EQUIPMENT",
+        "COLLISION",
+        "SOCKETS",
+        "LIGHTING",
+        "CAMERA"
+      ],
+      "equipment_sockets": [
+        "weapon_r",
+        "weapon_l",
+        "head",
+        "back",
+        "fx_root"
+      ],
+      "animation_set": [
+        "idle",
+        "walk",
+        "run",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "lod_levels": [
+        0,
+        1,
+        2
+      ],
+      "collision": "capsule",
+      "material_slots": [
+        "M_skin",
+        "M_cloth",
+        "M_metal"
+      ],
+      "output": "builds/characters/enemy/enemy_92_zmey"
     },
     {
       "job_id": "character_cure_dechu",

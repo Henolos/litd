@@ -11,8 +11,8 @@ SPEC.loader.exec_module(MODULE)
 def test_every_enemy_has_a_unique_body_signature():
     data, enemies = MODULE.load()
     assert MODULE.audit(data, enemies) == []
-    assert len(data["profiles"]) == 39
-    assert len({x["signature_key"] for x in data["profiles"]}) == 39
+    assert len(data["profiles"]) == 92
+    assert len({x["signature_key"] for x in data["profiles"]}) == 92
 
 def test_posture_diversity_is_structural_not_random_noise():
     data, _ = MODULE.load()

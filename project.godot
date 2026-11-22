@@ -1,8 +1,10 @@
 [application]
 config/name="Light in the Dark"
 config/features=PackedStringArray("4.7")
+run/main_scene="res://scenes/hub/game_hub.tscn"
 
 [autoload]
+DataLoader="*res://scripts/core/data_loader.gd"
 GameSettings="*res://scripts/core/game_settings.gd"
 SaveManager="*res://scripts/core/save_manager.gd"
 MusicLibrary="*res://scripts/core/music_library.gd"
