@@ -70,6 +70,29 @@
         "dialogues",
         "evenements"
       ]
+    },
+    {
+      "id": "tavern",
+      "label": "Taverne de la Guilde",
+      "npc_id": null,
+      "npc_status": "to_create",
+      "services": [
+        "rencontres",
+        "rumeurs",
+        "evenements"
+      ],
+      "details_pending_validation": true
+    },
+    {
+      "id": "infirmary",
+      "label": "Infirmerie de la Guilde",
+      "npc_id": null,
+      "npc_status": "to_create",
+      "services": [
+        "soins",
+        "recuperation"
+      ],
+      "details_pending_validation": true
     }
   ],
   "implementation_verified": false
