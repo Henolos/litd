@@ -2,6 +2,10 @@ extends Control
 # Prototype isolé : aucun effet de soin, de quête ou d'affinité n'est simulé.
 const NPC_PATH := "res://data/guild_new_npcs.json"
 const RESEARCH_PATH := "res://data/guild_bestiary_research.json"
+const PORTRAIT_PATHS := {
+	"guild_tavern_keeper": "res://assets/characters/guild_npcs/tavernier_planche_validee.png",
+	"guild_physician": "res://assets/characters/guild_npcs/medecin_planche_validee.png"
+}
 const HUB_PATH := "res://scenes/hub/game_hub.tscn"
 const BESTIARY_PATH := "res://scenes/bestiary/bestiary_screen.tscn"
 
@@ -9,12 +13,19 @@ var characters: Array = []
 var selection: OptionButton
 var dialogue_label: Label
 var details_label: Label
+var portrait: TextureRect
+var asset_label: Label
+var research_label: Label
 
 func _ready() -> void:
 	var data := _load_dictionary(NPC_PATH)
 	characters = data.get("characters", [])
 	_build_ui()
-	_show_character(0)
+	if not characters.is_empty():
+		selection.select(0)
+		_show_character(0)
+	else:
+		details_label.text = "Aucun personnage disponible."
 
 func _load_dictionary(path: String) -> Dictionary:
 	if not FileAccess.file_exists(path):
@@ -50,9 +61,20 @@ func _build_ui() -> void:
 		selection.add_item(str(npc.get("display_name", "Personnage")))
 	selection.item_selected.connect(_show_character)
 	content.add_child(selection)
+	portrait = TextureRect.new()
+	portrait.custom_minimum_size = Vector2(240, 160)
+	portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	content.add_child(portrait)
+	asset_label = Label.new()
+	asset_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	content.add_child(asset_label)
 	details_label = Label.new()
 	details_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	content.add_child(details_label)
+	research_label = Label.new()
+	research_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	content.add_child(research_label)
 	dialogue_label = Label.new()
 	dialogue_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	content.add_child(dialogue_label)
@@ -76,7 +98,32 @@ func _show_character(index: int) -> void:
 	line_index = 0
 	var npc: Dictionary = characters[index]
 	details_label.text = "%s\n%s\nServices prévus : %s" % [str(npc.get("role", "")), ", ".join(PackedStringArray(npc.get("traits", []))), ", ".join(PackedStringArray(npc.get("services", [])))]
+	_update_portrait(npc)
+	_update_research(npc)
 	_update_dialogue()
+
+func _update_portrait(npc: Dictionary) -> void:
+	var path := str(PORTRAIT_PATHS.get(str(npc.get("id", "")), ""))
+	portrait.texture = null
+	if path.is_empty() or not FileAccess.file_exists(path):
+		asset_label.text = "Planche validée non importée : image absente du dépôt."
+		return
+	var image := Image.new()
+	if image.load(ProjectSettings.globalize_path(path)) != OK:
+		asset_label.text = "Image présente mais illisible : vérifier le fichier PNG."
+		return
+	portrait.texture = ImageTexture.create_from_image(image)
+	asset_label.text = "Planche de référence (affichage intégral, sans recadrage)."
+
+func _update_research(npc: Dictionary) -> void:
+	if str(npc.get("id", "")) != "guild_physician":
+		research_label.text = "Affinité et quêtes spéciales : prévues, non encore actives."
+		return
+	var research := _load_dictionary(RESEARCH_PATH)
+	if research.is_empty():
+		research_label.text = "Recherche anatomique : données indisponibles."
+		return
+	research_label.text = "Recherche anatomique : prévue pour le bestiaire commun. Aucune faiblesse débloquée dans ce prototype."
 
 func _next_dialogue() -> void:
 	if selection.selected < 0 or selection.selected >= characters.size():
@@ -88,6 +135,8 @@ func _next_dialogue() -> void:
 	_update_dialogue()
 
 func _update_dialogue() -> void:
+	if selection.selected < 0 or selection.selected >= characters.size():
+		return
 	var npc: Dictionary = characters[selection.selected]
 	var lines: Array = npc.get("dialogues", [])
 	if lines.is_empty():
