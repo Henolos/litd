@@ -1,6 +1,6 @@
 # LITD 1 — Lian Yue, responsable du recrutement — V0.1
 
-**Statut : PROPOSITION NON VALIDÉE.** Le nom, l'apparence, la personnalité, la planche conceptuelle et les arcs narratifs sont soumis à validation utilisateur.
+**Statut : VALIDÉ PAR L'UTILISATEUR le 22 novembre 2026.** Nom, apparence, personnalité et première planche conceptuelle approuvés ; les hypothèses narratives signalées ci-dessous ne sont pas validées.
 
 ## Invariants de LITD 1
 - La compagnie initiale comprend le héros et trois compagnons ; le Némésis tue les trois compagnons à la fin de « La Cueillette ».
@@ -9,7 +9,7 @@
 - Direction artistique : sino-gothico-dark fantasy.
 
 ## Personnage proposé
-- **Nom provisoire : Lian Yue**.
+- **Nom validé : Lian Yue**.
 - Femme d'environ 35 ans, originaire des Cités de l'Est, inspirations chinoises, coréennes et d'Asie du Sud-Est.
 - Silhouette d'environ 1,64 m, cheveux noirs relevés avec ornements dorés et pompons rouges ; tenue noire, rouge et or avec motifs de dragons.
 - Caractère : chaleureuse, taquine, perspicace, très observatrice ; ferme quand la sécurité des aventuriers est en jeu.
@@ -29,8 +29,8 @@
 ## Planche artistique
 - Une première planche conceptuelle 3:4 a été générée dans la conversation le 22 novembre 2026.
 - Elle présente portraits expressifs, vues face/profil/dos, détails de costume et palette chromatique.
-- **Non validée** ; ne pas l'utiliser comme ressource canonique avant approbation.
+- **Validée comme référence artistique canonique** ; conserver l'original sans le remplacer par des dérivés.
 - Aucun transfert binaire GitHub, import Godot ou test en jeu réalisé.
 
 ## Suivi
-Chantier : responsable du recrutement. Statut : 🟣 EN ATTENTE de validation. Avancement du chantier actuel : À évaluer. Avancement du projet global LITD 1 : À évaluer.
+Chantier : responsable du recrutement. Statut : 🟡 À CONSOLIDER (conception validée ; transfert binaire GitHub et intégration Godot non vérifiés). Avancement du chantier actuel : À évaluer. Avancement du projet global LITD 1 : À évaluer.
