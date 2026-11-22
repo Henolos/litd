@@ -81,7 +81,8 @@
         "rumeurs",
         "evenements"
       ],
-      "details_pending_validation": true
+      "details_pending_validation": true,
+      "npc_name_status": "unvalidated"
     },
     {
       "id": "infirmary",
@@ -92,8 +93,17 @@
         "soins",
         "recuperation"
       ],
-      "details_pending_validation": true
+      "details_pending_validation": true,
+      "npc_name_status": "unvalidated"
     }
   ],
-  "implementation_verified": false
+  "implementation_verified": false,
+  "world_hub": {
+    "type": "illustrated_interactive_village",
+    "status": "validated_navigation_concept",
+    "guild_is_subhub": true,
+    "village_buildings_status": "to_define",
+    "village_character_roster_status": "to_define",
+    "artwork_status": "concept_pending_visual_validation"
+  }
 }
