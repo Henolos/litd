@@ -16,7 +16,7 @@
 | Maître de la Guilde | Dirige et attribue certaines missions | Excentrique, autoritaire, oublieux de la réforme S | Quêtes majeures, dialogues, révélations tardives |
 | Responsable administratif | Classements, contrats, primes, promotions | Rigoureux, méticuleux | Registre de rang, suivi des missions, réclamations |
 | Responsable du recrutement | Candidats et composition des compagnies | Pragmatique, observateur | Recrutement, réserve, présentation des profils |
-| Intendant | Équipement, stocks, ressources | Économe, négociateur | Préparation des expéditions, équipement |
+| Marchand | Vente et achat d'équipement et de ressources | Personnalité à définir | Commerce, approvisionnement et équipement |
 | Maître d'armes | Formation et maîtrise tactique | Exigeant, expérimenté | Tutoriels, entraînement, compétences |
 | Archiviste | Bestiaire, cartes, rapports, histoire | Discret, érudit | Journal d'exploration, renseignements, archives |
 
@@ -26,7 +26,7 @@
 - Tableau des missions : consultation des contrats et conditions, dont les intitulés anodins ne garantissent jamais une faible difficulté.
 - Recrutement : ouverture après le prologue, pour reformer une compagnie ; modalités et fréquence des candidats à valider.
 - Gestion de compagnie : formation d'une expédition de quatre combattants, composition et préparation.
-- Intendance : équipement de base et approvisionnements.
+- Marchand : achat et vente d'équipement de base et de ressources ; statut indépendant ou affilié à la Guilde à définir.
 - Formation : tutoriels, entraînements initiaux et apprentissage des systèmes.
 - Archives : carte et premières entrées du bestiaire, enrichies par les découvertes.
 - Feu de camp en expédition : soins, artisanat léger et gestion des ressources ; **pas d'option dormir**.
@@ -46,3 +46,6 @@
 
 ## Suivi
 Chantier : organisation de la Guilde. Statut : 🟣 EN ATTENTE de validation des propositions. Avancement du chantier actuel : À évaluer. Avancement du projet global : À évaluer. Document de conception uniquement ; aucun test de jeu.
+
+## Correction utilisateur — 22 novembre 2026
+**Décision validée : pas d'intendant. Le rôle de commerce et d'approvisionnement est assuré par un marchand.** Son affiliation précise à la Guilde et sa personnalité restent à définir.
