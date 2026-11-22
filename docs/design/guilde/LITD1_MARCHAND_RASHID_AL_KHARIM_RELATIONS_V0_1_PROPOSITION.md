@@ -1,6 +1,6 @@
-# LITD 1 — Marchand Rashid al-Khârim et progression relationnelle V0.1
+# LITD 1 — Marchand Soleyman et progression relationnelle V0.1
 
-**Statut : mixte.** Principe de deux progressions distinctes validé par instruction utilisateur du 22 novembre 2026. Personnage, nom, visuel, détails des récompenses et règles chiffrées proposés, **non validés**.
+**Statut : mixte.** Principe de deux progressions distinctes validé ; **nom du marchand Soleyman validé par l'utilisateur**. Apparence, personnalité, planche et détails des récompenses restent à valider.
 
 ## Décision utilisateur : deux voies de progression
 1. **Amélioration du marchand / de son commerce** : investissements et quêtes de développement ouvrent de nouveaux stocks, équipements, services et possibilités commerciales.
@@ -19,7 +19,7 @@
 Les seuils, niveaux, récompenses exactes, conditions de perte de confiance et équilibre gameplay restent à concevoir. Les relations doivent progresser principalement selon les actes et conséquences du joueur, pas seulement des cadeaux.
 
 ## Marchand — proposition de personnage
-- Nom provisoire : **Rashid al-Khârim**.
+- Nom validé : **Soleyman**.
 - Homme à la peau brune, environ 45 ans, silhouette grande, tresses ou locks, barbe courte, bijoux et vêtements noirs, rouge profond et or vieilli.
 - Marchand, fournisseur et négociateur spécialisé dans les objets rares ; identité sino-gothico-dark fantasy avec influences cosmopolites.
 - Caractère : charismatique, chaleureux, observateur, opportuniste, loyal envers ceux qui gagnent sa confiance.
@@ -38,3 +38,8 @@ Chantier : marchand et relations de la Guilde. Statut : 🟡 À CONSOLIDER (règ
 - Leur personnalité, leur identité de combat et leurs interactions doivent être développées en cohérence avec leur histoire ; détails et embranchements restent à concevoir.
 - Leur puissance n'a pas à être supérieure à celle des recrues ordinaires.
 - **Non encore validé :** nombre de héros particuliers, conditions exactes de recrutement, embranchements et conclusions de leurs quêtes.
+
+## Correction de nom
+- Le marchand est nommé **Soleyman** sur décision explicite de l'utilisateur.
+- Le nom « Rashid al-Khârim » de la première planche est **abandonné** ; son inscription sur l'image doit être corrigée avant validation artistique finale.
+- Cette décision concerne **le marchand**, et non le premier héros particulier de Lian.
