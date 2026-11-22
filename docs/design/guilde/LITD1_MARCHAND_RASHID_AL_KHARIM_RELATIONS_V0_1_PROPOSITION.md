@@ -31,3 +31,10 @@ Une première planche conceptuelle 3:4 a été générée dans la conversation l
 
 ## Suivi
 Chantier : marchand et relations de la Guilde. Statut : 🟡 À CONSOLIDER (règle de conception validée, personnage proposé). Avancement du chantier actuel : À évaluer. Avancement du projet global LITD 1 : À évaluer.
+
+## Décision validée — Recrues particulières de Lian (22 novembre 2026)
+- Les **recrues particulières** débloquées par la relation personnelle avec Lian sont des **héros à part entière**, chacun avec **une histoire propre** et **des quêtes personnelles qui lui sont propres**.
+- Ne pas les réduire à des combattants rares, à des variantes statistiques ou à des récompenses commerciales.
+- Leur personnalité, leur identité de combat et leurs interactions doivent être développées en cohérence avec leur histoire ; détails et embranchements restent à concevoir.
+- Leur puissance n'a pas à être supérieure à celle des recrues ordinaires.
+- **Non encore validé :** nombre de héros particuliers, conditions exactes de recrutement, embranchements et conclusions de leurs quêtes.
