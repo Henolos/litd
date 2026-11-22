@@ -56,6 +56,10 @@ func _build_interface() -> void:
 	heading.add_theme_color_override("font_color", GOLD)
 	heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(heading)
+	var hub_button := Button.new()
+	hub_button.text = "Retour au hub"
+	hub_button.pressed.connect(_return_to_hub)
+	header.add_child(hub_button)
 	var count := Label.new()
 	count.text = "%d monstres · %d planches" % [catalog.get("runtime_entries", []).size(), catalog.get("archived_references", []).size()]
 	count.add_theme_color_override("font_color", MUTED)
@@ -257,3 +261,6 @@ func _open_large_image() -> void:
 	popup.add_child(view)
 	add_child(popup)
 	popup.popup()
+
+func _return_to_hub() -> void:
+	get_tree().change_scene_to_file("res://scenes/hub/game_hub.tscn")
