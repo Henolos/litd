@@ -1,6 +1,6 @@
 # LITD 1 — Responsable administrative : Kélia Anzora (nom provisoire) V0.1
 
-**Statut : PROPOSITION NON VALIDÉE.** Première planche conceptuelle générée, soumise à validation utilisateur.
+**Statut : VALIDÉ PAR L’UTILISATEUR le 22 novembre 2026.** Nom, apparence, personnalité et première planche conceptuelle approuvés. Les pistes de secrets restent non validées.
 
 ## Cadre narratif validé
 - La Guilde attribue correctement le rang S = Stagiaire à la compagnie.
@@ -10,7 +10,7 @@
 - Orientation de distribution cosmopolite et équilibrée entre femmes et hommes demandée par l'utilisateur.
 
 ## Proposition de personnage
-- Nom proposé : **Kélia Anzora** (non validé).
+- Nom validé : **Kélia Anzora**.
 - Femme noire d'environ 50 ans, cheveux tressés relevés, lunettes fines, tenue cérémonielle sino-gothico-dark fantasy noire, rouge profond et or vieilli.
 - Fonction : classement des aventuriers, contrats, primes, promotions, règlement, archives administratives.
 - Caractère : rigoureuse, méthodique, intelligente, autorité calme, humour sec, sens politique, attention réelle aux débutants.
@@ -20,9 +20,9 @@
 
 ## Planche artistique
 - Une planche conceptuelle 3:4 a été créée dans la conversation le 22 novembre 2026, avec portrait, expressions, vues de silhouette et détails de costume.
-- **Non validée par l'utilisateur** ; ne pas l'intégrer aux assets canoniques du jeu.
+- **Validée par l'utilisateur** ; conserver la planche originale et l'enregistrer comme référence artistique canonique. L'intégration binaire dans GitHub et l'utilisation par Godot restent à vérifier.
 - La planche comporte des hypothèses narratives et un nom qui ne doivent pas être pris pour des décisions validées.
 - Aucun modèle 3D, portrait HUD ou import Godot réalisé.
 
 ## Suivi
-Chantier : responsable administrative de la Guilde. Statut : 🟣 EN ATTENTE de validation. Avancement du chantier actuel : À évaluer. Avancement du projet global LITD 1 : À évaluer.
+Chantier : responsable administrative de la Guilde. Statut : 🟡 À CONSOLIDER (validation artistique obtenue ; archivage binaire et intégration non vérifiés). Avancement du chantier actuel : À évaluer. Avancement du projet global LITD 1 : À évaluer.
