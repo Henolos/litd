@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "description": "Five Guild NPC records. The initial six art files were loaded in Godot 4.7.2; the four portraits/sheets for Shen Yulan and Wei Shan are now in PR #631 with their archive SHA-256 values verified. Their Godot import and portrait crop review remain pending; Guild scene hookup is not done.",
+  "description": "Seven Guild NPC records. Han Lu and Dr Mei Ling concept sheets are SHA-256 verified in this branch; dedicated portraits and Guild scene hookup remain pending.",
   "characters": [
     {
       "id": "kelia_anzora",
@@ -156,6 +156,55 @@
       "art_path": "res://assets/characters/guild_npcs/wei_shan/portraits/wei_shan_portrait_3x4.png",
       "art_verified_in_repository": true,
       "implementation_status": "assets_sha256_verified_and_portrait_loaded_in_godot_4_7_2; portrait_crop_review_pending; scene_integration_pending"
+    },
+    {
+      "id": "han_lu",
+      "name": "Han Lu",
+      "role": "tavernier",
+      "responsibilities": [
+        "taverne",
+        "accueil des aventuriers",
+        "récits de quêtes"
+      ],
+      "personality": [
+        "ancien aventurier",
+        "marqué par des cicatrices",
+        "conteur d’anecdotes de quêtes"
+      ],
+      "systems_planned": [
+        "quêtes spéciales",
+        "déblocables spécifiques selon l’affinité"
+      ],
+      "concept_art_path": "res://assets/characters/guild_npcs/tavernier_planche_validee.png",
+      "art_path": null,
+      "art_verified_in_repository": true,
+      "portrait_status": "pending_dedicated_portrait_crop",
+      "implementation_status": "validated_concept_sheet_registered; portrait_and_scene_integration_pending"
+    },
+    {
+      "id": "dr_mei_ling",
+      "name": "Dr Mei Ling",
+      "role": "medecin",
+      "responsibilities": [
+        "soins des aventuriers",
+        "anatomie",
+        "dissection",
+        "amélioration du bestiaire"
+      ],
+      "personality": [
+        "médecin hors pair",
+        "passionnée par la dissection et l’anatomie",
+        "humour noir : recommande volontiers l’amputation pour une simple coupure"
+      ],
+      "systems_planned": [
+        "missions spéciales",
+        "déblocages de connaissances sur les faiblesses des ennemis"
+      ],
+      "concept_art_path": "res://assets/characters/guild_npcs/medecin_planche_validee.png",
+      "art_path": null,
+      "art_verified_in_repository": true,
+      "portrait_status": "pending_dedicated_portrait_crop",
+      "implementation_status": "validated_concept_sheet_registered; portrait_and_scene_integration_pending"
     }
   ]
 }

@@ -38,3 +38,16 @@ static func load_portrait(character_id: String) -> Texture2D:
 	if resource is Texture2D:
 		return resource
 	return null
+
+static func load_concept_art(character_id: String) -> Texture2D:
+	var entry := get_character(character_id)
+	var path: Variant = entry.get("concept_art_path", null)
+	if typeof(path) != TYPE_STRING or path.is_empty():
+		return null
+	if not ResourceLoader.exists(path):
+		push_warning("Guild NPC concept art unavailable: " + path)
+		return null
+	var resource: Resource = load(path)
+	if resource is Texture2D:
+		return resource
+	return null

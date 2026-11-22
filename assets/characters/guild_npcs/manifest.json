@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "source": "Five validated Guild NPC records; ten art files (five sheets and five portraits). The initial six existing assets remain imported in Godot 4.7.2. Four new files were added from the 2026-11-22 archive; their Godot import test is pending. Scene hookup remains pending; PR #631 stays unmerged.",
+  "source": "Seven validated Guild NPC records. Existing portrait assets are unchanged. Two validated concept sheets for Han Lu and Dr Mei Ling were added from the 2026-11-22 archive; concept-sheet import is tested, portrait crops and Guild scene hookup remain pending.",
   "assets": [
     {
       "id": "kelia_anzora",
@@ -135,6 +135,34 @@
       "visual_sheet_approved": true,
       "portrait_crop_pending": true,
       "original_approved_png_in_archive": false
+    },
+    {
+      "id": "han_lu",
+      "name": "Han Lu",
+      "path": "assets/characters/guild_npcs/tavernier_planche_validee.png",
+      "sha256": "ba24389db7072a5795cedf6ac508b724272c163ff4855ab8a0016bd617a55cad",
+      "bytes": 3119445,
+      "width": 1536,
+      "height": 1024,
+      "format": "png",
+      "github_binary_uploaded": true,
+      "github_binary_verified": true,
+      "godot_import_tested": false,
+      "portrait_crop_pending": true
+    },
+    {
+      "id": "dr_mei_ling",
+      "name": "Dr Mei Ling",
+      "path": "assets/characters/guild_npcs/medecin_planche_validee.png",
+      "sha256": "a6446f4bdfb468d66101782885d5c3c2f3d0286781d0328a69f883a33a782e35",
+      "bytes": 2943072,
+      "width": 1536,
+      "height": 1024,
+      "format": "png",
+      "github_binary_uploaded": true,
+      "github_binary_verified": true,
+      "godot_import_tested": false,
+      "portrait_crop_pending": true
     }
   ]
 }
