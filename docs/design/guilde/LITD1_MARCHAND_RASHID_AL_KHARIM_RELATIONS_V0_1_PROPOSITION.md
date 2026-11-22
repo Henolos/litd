@@ -43,3 +43,9 @@ Chantier : marchand et relations de la Guilde. Statut : 🟡 À CONSOLIDER (règ
 - Le marchand est nommé **Soleyman** sur décision explicite de l'utilisateur.
 - Le nom « Rashid al-Khârim » de la première planche est **abandonné** ; une planche corrigée portant « Soleyman » a été créée.
 - Cette décision concerne **le marchand**, et non le premier héros particulier de Lian.
+
+## Archivage de la planche corrigée et validée
+- PNG original corrigé, titre « Soleyman », sauvegardé dans la bibliothèque : `/LITD 1/Personnages/Guilde/LITD1_SOLEYMAN_PLANCHE_CONCEPTUELLE_V1_VALIDEE.png` (upload confirmé).
+- Identifiant bibliothèque : `libfile_d7b7d796212c81918214362c6d54465f`.
+- **Non réalisé :** transfert du binaire PNG dans GitHub, import Godot, validation visuelle en jeu.
+- La planche contient des « secrets / pistes narratives » et exemples de récompenses non validés individuellement malgré sa validation artistique.
