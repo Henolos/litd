@@ -2,7 +2,7 @@
   "version": 1,
   "generator": "tools/blender/generate_godot_import_registry.py",
   "godot_version": "4.3",
-  "asset_count": 100,
+  "asset_count": 153,
   "assets": [
     {
       "job_id": "ashlands_01_faubourg_ruins",
@@ -133,34 +133,34 @@
       "preserve_placeholder_collision": true
     },
     {
+      "job_id": "character_mathilde",
+      "category": "characters",
+      "source_glb": "builds/characters/hero/mathilde/mathilde.glb",
+      "godot_path": "res://assets/3d/characters/hero/mathilde/mathilde.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_marec",
+      "category": "characters",
+      "source_glb": "builds/characters/hero/marec/marec.glb",
+      "godot_path": "res://assets/3d/characters/hero/marec/marec.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_anouk",
+      "category": "characters",
+      "source_glb": "builds/characters/hero/anouk/anouk.glb",
+      "godot_path": "res://assets/3d/characters/hero/anouk/anouk.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
       "job_id": "character_aurelien",
       "category": "characters",
       "source_glb": "builds/characters/hero/aurelien/aurelien.glb",
       "godot_path": "res://assets/3d/characters/hero/aurelien/aurelien.glb",
-      "approval": "pending",
-      "preserve_placeholder_collision": true
-    },
-    {
-      "job_id": "character_malvor",
-      "category": "characters",
-      "source_glb": "builds/characters/hero/malvor/malvor.glb",
-      "godot_path": "res://assets/3d/characters/hero/malvor/malvor.glb",
-      "approval": "pending",
-      "preserve_placeholder_collision": true
-    },
-    {
-      "job_id": "character_lysandra",
-      "category": "characters",
-      "source_glb": "builds/characters/hero/lysandra/lysandra.glb",
-      "godot_path": "res://assets/3d/characters/hero/lysandra/lysandra.glb",
-      "approval": "pending",
-      "preserve_placeholder_collision": true
-    },
-    {
-      "job_id": "character_darius",
-      "category": "characters",
-      "source_glb": "builds/characters/hero/darius/darius.glb",
-      "godot_path": "res://assets/3d/characters/hero/darius/darius.glb",
       "approval": "pending",
       "preserve_placeholder_collision": true
     },
@@ -473,6 +473,430 @@
       "category": "characters",
       "source_glb": "builds/characters/boss/enemy_39_mere_des_souffrances/enemy_39_mere_des_souffrances.glb",
       "godot_path": "res://assets/3d/characters/boss/enemy_39_mere_des_souffrances/enemy_39_mere_des_souffrances.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_40_cerbere",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_40_cerbere/enemy_40_cerbere.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_40_cerbere/enemy_40_cerbere.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_41_harpie",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_41_harpie/enemy_41_harpie.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_41_harpie/enemy_41_harpie.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_42_cyclope_v3",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_42_cyclope_v3/enemy_42_cyclope_v3.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_42_cyclope_v3/enemy_42_cyclope_v3.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_43_chimere",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_43_chimere/enemy_43_chimere.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_43_chimere/enemy_43_chimere.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_44_basilic",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_44_basilic/enemy_44_basilic.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_44_basilic/enemy_44_basilic.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_45_hydre",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_45_hydre/enemy_45_hydre.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_45_hydre/enemy_45_hydre.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_46_sphinx",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_46_sphinx/enemy_46_sphinx.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_46_sphinx/enemy_46_sphinx.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_47_kappa",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_47_kappa/enemy_47_kappa.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_47_kappa/enemy_47_kappa.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_48_nue",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_48_nue/enemy_48_nue.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_48_nue/enemy_48_nue.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_49_draugr",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_49_draugr/enemy_49_draugr.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_49_draugr/enemy_49_draugr.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_50_troll_nordique",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_50_troll_nordique/enemy_50_troll_nordique.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_50_troll_nordique/enemy_50_troll_nordique.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_51_valkyrie_spectrale",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_51_valkyrie_spectrale/enemy_51_valkyrie_spectrale.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_51_valkyrie_spectrale/enemy_51_valkyrie_spectrale.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_52_loup_decharne",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_52_loup_decharne/enemy_52_loup_decharne.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_52_loup_decharne/enemy_52_loup_decharne.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_53_golem_de_pierre_runique",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_53_golem_de_pierre_runique/enemy_53_golem_de_pierre_runique.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_53_golem_de_pierre_runique/enemy_53_golem_de_pierre_runique.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_54_kitsune",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_54_kitsune/enemy_54_kitsune.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_54_kitsune/enemy_54_kitsune.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_55_araignee_des_cryptes",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_55_araignee_des_cryptes/enemy_55_araignee_des_cryptes.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_55_araignee_des_cryptes/enemy_55_araignee_des_cryptes.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_56_armure_hantee",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_56_armure_hantee/enemy_56_armure_hantee.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_56_armure_hantee/enemy_56_armure_hantee.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_57_diablotin",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_57_diablotin/enemy_57_diablotin.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_57_diablotin/enemy_57_diablotin.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_58_epouvantail_possede",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_58_epouvantail_possede/enemy_58_epouvantail_possede.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_58_epouvantail_possede/enemy_58_epouvantail_possede.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_59_feu_follet",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_59_feu_follet/enemy_59_feu_follet.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_59_feu_follet/enemy_59_feu_follet.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_60_gobelin",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_60_gobelin/enemy_60_gobelin.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_60_gobelin/enemy_60_gobelin.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_61_kobold",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_61_kobold/enemy_61_kobold.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_61_kobold/enemy_61_kobold.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_62_leprechaun",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_62_leprechaun/enemy_62_leprechaun.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_62_leprechaun/enemy_62_leprechaun.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_63_loup_corrompu",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_63_loup_corrompu/enemy_63_loup_corrompu.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_63_loup_corrompu/enemy_63_loup_corrompu.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_64_mimique",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_64_mimique/enemy_64_mimique.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_64_mimique/enemy_64_mimique.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_65_noye_errant_revenant_des_eaux",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_65_noye_errant_revenant_des_eaux/enemy_65_noye_errant_revenant_des_eaux.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_65_noye_errant_revenant_des_eaux/enemy_65_noye_errant_revenant_des_eaux.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_66_plante_carnivore_du_marais",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_66_plante_carnivore_du_marais/enemy_66_plante_carnivore_du_marais.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_66_plante_carnivore_du_marais/enemy_66_plante_carnivore_du_marais.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_67_rat_pestilentiel",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_67_rat_pestilentiel/enemy_67_rat_pestilentiel.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_67_rat_pestilentiel/enemy_67_rat_pestilentiel.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_68_squelette_errant",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_68_squelette_errant/enemy_68_squelette_errant.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_68_squelette_errant/enemy_68_squelette_errant.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_69_adze",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_69_adze/enemy_69_adze.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_69_adze/enemy_69_adze.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_70_aziza",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_70_aziza/enemy_70_aziza.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_70_aziza/enemy_70_aziza.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_71_mami_wata",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_71_mami_wata/enemy_71_mami_wata.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_71_mami_wata/enemy_71_mami_wata.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_72_ninki_nanka",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_72_ninki_nanka/enemy_72_ninki_nanka.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_72_ninki_nanka/enemy_72_ninki_nanka.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_73_sasabonsam",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_73_sasabonsam/enemy_73_sasabonsam.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_73_sasabonsam/enemy_73_sasabonsam.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_74_cipactli",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_74_cipactli/enemy_74_cipactli.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_74_cipactli/enemy_74_cipactli.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_75_itzpapalotl",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_75_itzpapalotl/enemy_75_itzpapalotl.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_75_itzpapalotl/enemy_75_itzpapalotl.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_76_mictlantecuhtli",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_76_mictlantecuhtli/enemy_76_mictlantecuhtli.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_76_mictlantecuhtli/enemy_76_mictlantecuhtli.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_77_tzitzimime",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_77_tzitzimime/enemy_77_tzitzimime.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_77_tzitzimime/enemy_77_tzitzimime.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_78_xolotl",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_78_xolotl/enemy_78_xolotl.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_78_xolotl/enemy_78_xolotl.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_79_banshee",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_79_banshee/enemy_79_banshee.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_79_banshee/enemy_79_banshee.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_80_black_annis",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_80_black_annis/enemy_80_black_annis.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_80_black_annis/enemy_80_black_annis.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_81_fachan",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_81_fachan/enemy_81_fachan.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_81_fachan/enemy_81_fachan.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_82_redcap",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_82_redcap/enemy_82_redcap.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_82_redcap/enemy_82_redcap.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_83_sluagh",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_83_sluagh/enemy_83_sluagh.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_83_sluagh/enemy_83_sluagh.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_84_horus",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_84_horus/enemy_84_horus.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_84_horus/enemy_84_horus.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_85_isis",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_85_isis/enemy_85_isis.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_85_isis/enemy_85_isis.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_86_seth",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_86_seth/enemy_86_seth.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_86_seth/enemy_86_seth.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_87_sobek",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_87_sobek/enemy_87_sobek.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_87_sobek/enemy_87_sobek.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_88_baba_yaga",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_88_baba_yaga/enemy_88_baba_yaga.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_88_baba_yaga/enemy_88_baba_yaga.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_89_leshy",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_89_leshy/enemy_89_leshy.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_89_leshy/enemy_89_leshy.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_90_rusalka",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_90_rusalka/enemy_90_rusalka.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_90_rusalka/enemy_90_rusalka.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_91_vodyanoy",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_91_vodyanoy/enemy_91_vodyanoy.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_91_vodyanoy/enemy_91_vodyanoy.glb",
+      "approval": "pending",
+      "preserve_placeholder_collision": true
+    },
+    {
+      "job_id": "character_enemy_92_zmey",
+      "category": "characters",
+      "source_glb": "builds/characters/enemy/enemy_92_zmey/enemy_92_zmey.glb",
+      "godot_path": "res://assets/3d/characters/enemy/enemy_92_zmey/enemy_92_zmey.glb",
       "approval": "pending",
       "preserve_placeholder_collision": true
     },

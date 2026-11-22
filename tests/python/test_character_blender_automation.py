@@ -11,11 +11,11 @@ class CharacterBlenderAutomationTests(unittest.TestCase):
         cls.jobs = build_jobs()
 
     def test_catalog_covers_every_character_source(self):
-        self.assertEqual(len(self.jobs), 52)
-        self.assertEqual(len({job["job_id"] for job in self.jobs}), 52)
+        self.assertEqual(len(self.jobs), 105)
+        self.assertEqual(len({job["job_id"] for job in self.jobs}), 105)
         counts = {category: sum(job["category"] == category for job in self.jobs)
                   for category in ("hero", "enemy", "miniboss", "boss")}
-        self.assertEqual(counts, {"hero": 4, "enemy": 37, "miniboss": 9, "boss": 2})
+        self.assertEqual(counts, {"hero": 4, "enemy": 90, "miniboss": 9, "boss": 2})
 
     def test_every_job_has_complete_production_contract(self):
         required = {"BODY", "ARMATURE", "EQUIPMENT", "COLLISION", "SOCKETS", "LIGHTING", "CAMERA"}

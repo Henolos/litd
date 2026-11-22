@@ -1,7 +1,7 @@
 {
   "version": 1,
   "generator": "tools/blender/generate_visual_review_queue.py",
-  "review_count": 100,
+  "review_count": 153,
   "reviews": [
     {
       "job_id": "ashlands_01_faubourg_ruins",
@@ -484,6 +484,108 @@
       "status": "pending"
     },
     {
+      "job_id": "character_mathilde",
+      "category": "characters",
+      "blend_path": "builds/characters/hero/mathilde/mathilde.blend",
+      "glb_path": "builds/characters/hero/mathilde/mathilde.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_mathilde"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_marec",
+      "category": "characters",
+      "blend_path": "builds/characters/hero/marec/marec.blend",
+      "glb_path": "builds/characters/hero/marec/marec.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_marec"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_anouk",
+      "category": "characters",
+      "blend_path": "builds/characters/hero/anouk/anouk.blend",
+      "glb_path": "builds/characters/hero/anouk/anouk.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_anouk"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
       "job_id": "character_aurelien",
       "category": "characters",
       "blend_path": "builds/characters/hero/aurelien/aurelien.blend",
@@ -506,108 +608,6 @@
           512
         ],
         "output_dir": "reports/visual_reviews/character_aurelien"
-      },
-      "gates": [
-        "silhouette",
-        "scale",
-        "cel_shading_readability",
-        "rig_deformation",
-        "equipment_sockets",
-        "animation_clarity"
-      ],
-      "status": "pending"
-    },
-    {
-      "job_id": "character_malvor",
-      "category": "characters",
-      "blend_path": "builds/characters/hero/malvor/malvor.blend",
-      "glb_path": "builds/characters/hero/malvor/malvor.glb",
-      "preview": {
-        "type": "turntable",
-        "angles_degrees": [
-          0,
-          45,
-          90,
-          135,
-          180,
-          225,
-          270,
-          315
-        ],
-        "elevation_degrees": 15,
-        "resolution": [
-          512,
-          512
-        ],
-        "output_dir": "reports/visual_reviews/character_malvor"
-      },
-      "gates": [
-        "silhouette",
-        "scale",
-        "cel_shading_readability",
-        "rig_deformation",
-        "equipment_sockets",
-        "animation_clarity"
-      ],
-      "status": "pending"
-    },
-    {
-      "job_id": "character_lysandra",
-      "category": "characters",
-      "blend_path": "builds/characters/hero/lysandra/lysandra.blend",
-      "glb_path": "builds/characters/hero/lysandra/lysandra.glb",
-      "preview": {
-        "type": "turntable",
-        "angles_degrees": [
-          0,
-          45,
-          90,
-          135,
-          180,
-          225,
-          270,
-          315
-        ],
-        "elevation_degrees": 15,
-        "resolution": [
-          512,
-          512
-        ],
-        "output_dir": "reports/visual_reviews/character_lysandra"
-      },
-      "gates": [
-        "silhouette",
-        "scale",
-        "cel_shading_readability",
-        "rig_deformation",
-        "equipment_sockets",
-        "animation_clarity"
-      ],
-      "status": "pending"
-    },
-    {
-      "job_id": "character_darius",
-      "category": "characters",
-      "blend_path": "builds/characters/hero/darius/darius.blend",
-      "glb_path": "builds/characters/hero/darius/darius.glb",
-      "preview": {
-        "type": "turntable",
-        "angles_degrees": [
-          0,
-          45,
-          90,
-          135,
-          180,
-          225,
-          270,
-          315
-        ],
-        "elevation_degrees": 15,
-        "resolution": [
-          512,
-          512
-        ],
-        "output_dir": "reports/visual_reviews/character_darius"
       },
       "gates": [
         "silhouette",
@@ -1934,6 +1934,1808 @@
           512
         ],
         "output_dir": "reports/visual_reviews/character_enemy_39_mere_des_souffrances"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_40_cerbere",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_40_cerbere/enemy_40_cerbere.blend",
+      "glb_path": "builds/characters/enemy/enemy_40_cerbere/enemy_40_cerbere.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_40_cerbere"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_41_harpie",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_41_harpie/enemy_41_harpie.blend",
+      "glb_path": "builds/characters/enemy/enemy_41_harpie/enemy_41_harpie.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_41_harpie"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_42_cyclope_v3",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_42_cyclope_v3/enemy_42_cyclope_v3.blend",
+      "glb_path": "builds/characters/enemy/enemy_42_cyclope_v3/enemy_42_cyclope_v3.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_42_cyclope_v3"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_43_chimere",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_43_chimere/enemy_43_chimere.blend",
+      "glb_path": "builds/characters/enemy/enemy_43_chimere/enemy_43_chimere.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_43_chimere"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_44_basilic",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_44_basilic/enemy_44_basilic.blend",
+      "glb_path": "builds/characters/enemy/enemy_44_basilic/enemy_44_basilic.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_44_basilic"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_45_hydre",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_45_hydre/enemy_45_hydre.blend",
+      "glb_path": "builds/characters/enemy/enemy_45_hydre/enemy_45_hydre.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_45_hydre"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_46_sphinx",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_46_sphinx/enemy_46_sphinx.blend",
+      "glb_path": "builds/characters/enemy/enemy_46_sphinx/enemy_46_sphinx.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_46_sphinx"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_47_kappa",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_47_kappa/enemy_47_kappa.blend",
+      "glb_path": "builds/characters/enemy/enemy_47_kappa/enemy_47_kappa.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_47_kappa"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_48_nue",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_48_nue/enemy_48_nue.blend",
+      "glb_path": "builds/characters/enemy/enemy_48_nue/enemy_48_nue.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_48_nue"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_49_draugr",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_49_draugr/enemy_49_draugr.blend",
+      "glb_path": "builds/characters/enemy/enemy_49_draugr/enemy_49_draugr.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_49_draugr"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_50_troll_nordique",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_50_troll_nordique/enemy_50_troll_nordique.blend",
+      "glb_path": "builds/characters/enemy/enemy_50_troll_nordique/enemy_50_troll_nordique.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_50_troll_nordique"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_51_valkyrie_spectrale",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_51_valkyrie_spectrale/enemy_51_valkyrie_spectrale.blend",
+      "glb_path": "builds/characters/enemy/enemy_51_valkyrie_spectrale/enemy_51_valkyrie_spectrale.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_51_valkyrie_spectrale"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_52_loup_decharne",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_52_loup_decharne/enemy_52_loup_decharne.blend",
+      "glb_path": "builds/characters/enemy/enemy_52_loup_decharne/enemy_52_loup_decharne.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_52_loup_decharne"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_53_golem_de_pierre_runique",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_53_golem_de_pierre_runique/enemy_53_golem_de_pierre_runique.blend",
+      "glb_path": "builds/characters/enemy/enemy_53_golem_de_pierre_runique/enemy_53_golem_de_pierre_runique.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_53_golem_de_pierre_runique"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_54_kitsune",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_54_kitsune/enemy_54_kitsune.blend",
+      "glb_path": "builds/characters/enemy/enemy_54_kitsune/enemy_54_kitsune.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_54_kitsune"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_55_araignee_des_cryptes",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_55_araignee_des_cryptes/enemy_55_araignee_des_cryptes.blend",
+      "glb_path": "builds/characters/enemy/enemy_55_araignee_des_cryptes/enemy_55_araignee_des_cryptes.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_55_araignee_des_cryptes"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_56_armure_hantee",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_56_armure_hantee/enemy_56_armure_hantee.blend",
+      "glb_path": "builds/characters/enemy/enemy_56_armure_hantee/enemy_56_armure_hantee.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_56_armure_hantee"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_57_diablotin",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_57_diablotin/enemy_57_diablotin.blend",
+      "glb_path": "builds/characters/enemy/enemy_57_diablotin/enemy_57_diablotin.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_57_diablotin"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_58_epouvantail_possede",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_58_epouvantail_possede/enemy_58_epouvantail_possede.blend",
+      "glb_path": "builds/characters/enemy/enemy_58_epouvantail_possede/enemy_58_epouvantail_possede.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_58_epouvantail_possede"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_59_feu_follet",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_59_feu_follet/enemy_59_feu_follet.blend",
+      "glb_path": "builds/characters/enemy/enemy_59_feu_follet/enemy_59_feu_follet.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_59_feu_follet"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_60_gobelin",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_60_gobelin/enemy_60_gobelin.blend",
+      "glb_path": "builds/characters/enemy/enemy_60_gobelin/enemy_60_gobelin.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_60_gobelin"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_61_kobold",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_61_kobold/enemy_61_kobold.blend",
+      "glb_path": "builds/characters/enemy/enemy_61_kobold/enemy_61_kobold.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_61_kobold"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_62_leprechaun",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_62_leprechaun/enemy_62_leprechaun.blend",
+      "glb_path": "builds/characters/enemy/enemy_62_leprechaun/enemy_62_leprechaun.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_62_leprechaun"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_63_loup_corrompu",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_63_loup_corrompu/enemy_63_loup_corrompu.blend",
+      "glb_path": "builds/characters/enemy/enemy_63_loup_corrompu/enemy_63_loup_corrompu.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_63_loup_corrompu"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_64_mimique",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_64_mimique/enemy_64_mimique.blend",
+      "glb_path": "builds/characters/enemy/enemy_64_mimique/enemy_64_mimique.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_64_mimique"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_65_noye_errant_revenant_des_eaux",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_65_noye_errant_revenant_des_eaux/enemy_65_noye_errant_revenant_des_eaux.blend",
+      "glb_path": "builds/characters/enemy/enemy_65_noye_errant_revenant_des_eaux/enemy_65_noye_errant_revenant_des_eaux.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_65_noye_errant_revenant_des_eaux"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_66_plante_carnivore_du_marais",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_66_plante_carnivore_du_marais/enemy_66_plante_carnivore_du_marais.blend",
+      "glb_path": "builds/characters/enemy/enemy_66_plante_carnivore_du_marais/enemy_66_plante_carnivore_du_marais.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_66_plante_carnivore_du_marais"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_67_rat_pestilentiel",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_67_rat_pestilentiel/enemy_67_rat_pestilentiel.blend",
+      "glb_path": "builds/characters/enemy/enemy_67_rat_pestilentiel/enemy_67_rat_pestilentiel.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_67_rat_pestilentiel"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_68_squelette_errant",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_68_squelette_errant/enemy_68_squelette_errant.blend",
+      "glb_path": "builds/characters/enemy/enemy_68_squelette_errant/enemy_68_squelette_errant.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_68_squelette_errant"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_69_adze",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_69_adze/enemy_69_adze.blend",
+      "glb_path": "builds/characters/enemy/enemy_69_adze/enemy_69_adze.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_69_adze"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_70_aziza",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_70_aziza/enemy_70_aziza.blend",
+      "glb_path": "builds/characters/enemy/enemy_70_aziza/enemy_70_aziza.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_70_aziza"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_71_mami_wata",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_71_mami_wata/enemy_71_mami_wata.blend",
+      "glb_path": "builds/characters/enemy/enemy_71_mami_wata/enemy_71_mami_wata.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_71_mami_wata"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_72_ninki_nanka",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_72_ninki_nanka/enemy_72_ninki_nanka.blend",
+      "glb_path": "builds/characters/enemy/enemy_72_ninki_nanka/enemy_72_ninki_nanka.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_72_ninki_nanka"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_73_sasabonsam",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_73_sasabonsam/enemy_73_sasabonsam.blend",
+      "glb_path": "builds/characters/enemy/enemy_73_sasabonsam/enemy_73_sasabonsam.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_73_sasabonsam"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_74_cipactli",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_74_cipactli/enemy_74_cipactli.blend",
+      "glb_path": "builds/characters/enemy/enemy_74_cipactli/enemy_74_cipactli.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_74_cipactli"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_75_itzpapalotl",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_75_itzpapalotl/enemy_75_itzpapalotl.blend",
+      "glb_path": "builds/characters/enemy/enemy_75_itzpapalotl/enemy_75_itzpapalotl.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_75_itzpapalotl"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_76_mictlantecuhtli",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_76_mictlantecuhtli/enemy_76_mictlantecuhtli.blend",
+      "glb_path": "builds/characters/enemy/enemy_76_mictlantecuhtli/enemy_76_mictlantecuhtli.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_76_mictlantecuhtli"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_77_tzitzimime",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_77_tzitzimime/enemy_77_tzitzimime.blend",
+      "glb_path": "builds/characters/enemy/enemy_77_tzitzimime/enemy_77_tzitzimime.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_77_tzitzimime"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_78_xolotl",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_78_xolotl/enemy_78_xolotl.blend",
+      "glb_path": "builds/characters/enemy/enemy_78_xolotl/enemy_78_xolotl.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_78_xolotl"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_79_banshee",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_79_banshee/enemy_79_banshee.blend",
+      "glb_path": "builds/characters/enemy/enemy_79_banshee/enemy_79_banshee.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_79_banshee"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_80_black_annis",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_80_black_annis/enemy_80_black_annis.blend",
+      "glb_path": "builds/characters/enemy/enemy_80_black_annis/enemy_80_black_annis.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_80_black_annis"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_81_fachan",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_81_fachan/enemy_81_fachan.blend",
+      "glb_path": "builds/characters/enemy/enemy_81_fachan/enemy_81_fachan.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_81_fachan"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_82_redcap",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_82_redcap/enemy_82_redcap.blend",
+      "glb_path": "builds/characters/enemy/enemy_82_redcap/enemy_82_redcap.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_82_redcap"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_83_sluagh",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_83_sluagh/enemy_83_sluagh.blend",
+      "glb_path": "builds/characters/enemy/enemy_83_sluagh/enemy_83_sluagh.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_83_sluagh"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_84_horus",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_84_horus/enemy_84_horus.blend",
+      "glb_path": "builds/characters/enemy/enemy_84_horus/enemy_84_horus.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_84_horus"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_85_isis",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_85_isis/enemy_85_isis.blend",
+      "glb_path": "builds/characters/enemy/enemy_85_isis/enemy_85_isis.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_85_isis"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_86_seth",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_86_seth/enemy_86_seth.blend",
+      "glb_path": "builds/characters/enemy/enemy_86_seth/enemy_86_seth.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_86_seth"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_87_sobek",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_87_sobek/enemy_87_sobek.blend",
+      "glb_path": "builds/characters/enemy/enemy_87_sobek/enemy_87_sobek.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_87_sobek"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_88_baba_yaga",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_88_baba_yaga/enemy_88_baba_yaga.blend",
+      "glb_path": "builds/characters/enemy/enemy_88_baba_yaga/enemy_88_baba_yaga.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_88_baba_yaga"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_89_leshy",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_89_leshy/enemy_89_leshy.blend",
+      "glb_path": "builds/characters/enemy/enemy_89_leshy/enemy_89_leshy.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_89_leshy"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_90_rusalka",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_90_rusalka/enemy_90_rusalka.blend",
+      "glb_path": "builds/characters/enemy/enemy_90_rusalka/enemy_90_rusalka.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_90_rusalka"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_91_vodyanoy",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_91_vodyanoy/enemy_91_vodyanoy.blend",
+      "glb_path": "builds/characters/enemy/enemy_91_vodyanoy/enemy_91_vodyanoy.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_91_vodyanoy"
+      },
+      "gates": [
+        "silhouette",
+        "scale",
+        "cel_shading_readability",
+        "rig_deformation",
+        "equipment_sockets",
+        "animation_clarity"
+      ],
+      "status": "pending"
+    },
+    {
+      "job_id": "character_enemy_92_zmey",
+      "category": "characters",
+      "blend_path": "builds/characters/enemy/enemy_92_zmey/enemy_92_zmey.blend",
+      "glb_path": "builds/characters/enemy/enemy_92_zmey/enemy_92_zmey.glb",
+      "preview": {
+        "type": "turntable",
+        "angles_degrees": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ],
+        "elevation_degrees": 15,
+        "resolution": [
+          512,
+          512
+        ],
+        "output_dir": "reports/visual_reviews/character_enemy_92_zmey"
       },
       "gates": [
         "silhouette",
