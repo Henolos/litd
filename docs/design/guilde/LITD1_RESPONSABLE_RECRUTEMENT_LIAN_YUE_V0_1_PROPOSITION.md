@@ -34,3 +34,8 @@
 
 ## Suivi
 Chantier : responsable du recrutement. Statut : 🟡 À CONSOLIDER (conception validée ; transfert binaire GitHub et intégration Godot non vérifiés). Avancement du chantier actuel : À évaluer. Avancement du projet global LITD 1 : À évaluer.
+
+## Archivage de la planche validée
+- Original PNG sauvegardé dans la bibliothèque : `/LITD 1/Personnages/Guilde/LITD1_LIAN_YUE_PLANCHE_CONCEPTUELLE_V1_VALIDEE.png` (upload confirmé).
+- Référence bibliothèque : `libfile_e5cefcfc61048191a488dca8a96c1451`.
+- Binaire dans GitHub : **non transféré** ; import Godot : **non testé**.
