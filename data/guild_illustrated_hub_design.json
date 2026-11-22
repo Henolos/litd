@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "status": "design_proposal_not_runtime",
+  "navigation_mode": "illustrated_interactive_map",
+  "art_direction": "sino-gothico-dark fantasy",
+  "preserve_approved_architectural_board": true,
+  "locations": [
+    {
+      "id": "hall",
+      "label": "Hall de la Guilde",
+      "npc_id": null,
+      "services": [
+        "annonces",
+        "tableau_quetes",
+        "depart_expedition"
+      ]
+    },
+    {
+      "id": "administration",
+      "label": "Administration",
+      "npc_id": "kelia_anzora",
+      "services": [
+        "contrats",
+        "rangs",
+        "primes"
+      ]
+    },
+    {
+      "id": "recruitment",
+      "label": "Recrutement",
+      "npc_id": "lian_yue",
+      "services": [
+        "recrutement",
+        "compagnie"
+      ]
+    },
+    {
+      "id": "commerce",
+      "label": "Commerce",
+      "npc_id": "soleyman",
+      "services": [
+        "boutique",
+        "equipement"
+      ]
+    },
+    {
+      "id": "training",
+      "label": "Salle d'entraînement",
+      "npc_id": "maitresse_armes",
+      "services": [
+        "entrainement",
+        "techniques"
+      ]
+    },
+    {
+      "id": "archives",
+      "label": "Archives",
+      "npc_id": "wei_shan",
+      "services": [
+        "codex",
+        "bestiary",
+        "recherche"
+      ]
+    },
+    {
+      "id": "guild_master",
+      "label": "Bureau du maître",
+      "npc_id": "guild_master",
+      "services": [
+        "dialogues",
+        "evenements"
+      ]
+    }
+  ],
+  "implementation_verified": false
+}
