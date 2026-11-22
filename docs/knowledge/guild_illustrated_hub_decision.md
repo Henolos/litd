@@ -60,3 +60,13 @@ Les trois niveaux sont une **organisation architecturale illustrée**, pas trois
 
 ## Limites de validation
 Ce document enregistre une décision de conception. Il ne prouve ni la présence des binaires de la planche architecturale dans GitHub, ni l'existence d'un hub illustré jouable, ni le succès de tests Godot.
+
+## Extension validée : le village comme hub principal (2026-11-22)
+- **Village illustré interactif = hub principal du jeu** ; **Guilde illustrée = sous-hub central du village**.
+- Deux planches distinctes : (1) vue interactive du village et de ses bâtiments/habitants ; (2) planche de la Guilde précédemment validée, conservée telle quelle et complétée pour taverne et infirmerie.
+- Les autres bâtiments et personnages du village devront proposer dialogues, interactions et éventuellement quêtes ; **liste précise des bâtiments et services non validée**.
+- Parcours cible : village → bâtiment → scène illustrée/dialogue/service → retour village ; Guilde → salle → interaction → retour Guilde/village.
+- Les personnages de taverne et de médecine sont à créer. **Noms, âges, origines, apparences et histoire non validés** ; toute représentation générée reste un concept exploratoire, même si une planche affiche des noms.
+- La maîtresse d'armes conserve un **nom non fixé** ; ne pas entériner les noms visibles sur des concepts générés.
+- La planche architecturale originale validée ne doit pas être remplacée par un concept généré ultérieurement.
+- Les deux planches devront faire l'objet de validations visuelles séparées avant intégration.
