@@ -1,7 +1,7 @@
 [application]
 config/name="Light in the Dark"
 config/features=PackedStringArray("4.7")
-run/main_scene="res://scenes/bestiary/bestiary_screen.tscn"
+run/main_scene="res://scenes/hub/game_hub.tscn"
 
 [autoload]
 DataLoader="*res://scripts/core/data_loader.gd"
