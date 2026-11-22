@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "source": "Three user-supplied validated JPEG sheets received 2026-11-22",
   "assets": [
     {
@@ -8,7 +8,17 @@
       "sha256": "d10b8ab87474aab5a91d5bb6cfed0925223566497f0ac78ce0ef4698491d0837",
       "bytes": 777450,
       "width": 1086,
-      "height": 1448
+      "height": 1448,
+      "github_binary_uploaded": false,
+      "portrait": {
+        "path": "assets/characters/guild_npcs/kelia_anzora/portraits/kelia_anzora_portrait_3x4.png",
+        "sha256": "d421c3f4f7df31379ab40ddfd36043830ba60dcb9e0272b63d4ff98ecb87094e",
+        "width": 768,
+        "height": 1024,
+        "format": "png",
+        "github_binary_uploaded": false,
+        "visual_approval_pending": true
+      }
     },
     {
       "id": "lian_yue",
@@ -16,7 +26,17 @@
       "sha256": "70b4fb23ad9a4bf310c24d47ac693cf69e8bc031111122f943396196e6951f17",
       "bytes": 770987,
       "width": 1086,
-      "height": 1448
+      "height": 1448,
+      "github_binary_uploaded": false,
+      "portrait": {
+        "path": "assets/characters/guild_npcs/lian_yue/portraits/lian_yue_portrait_3x4.png",
+        "sha256": "b6e5cd1242111b745be4422d9083fcd0ef8f4fb85436a10e2f83c7a5921cf7ad",
+        "width": 768,
+        "height": 1024,
+        "format": "png",
+        "github_binary_uploaded": false,
+        "visual_approval_pending": true
+      }
     },
     {
       "id": "soleyman",
@@ -24,7 +44,17 @@
       "sha256": "3dbb50244035699e6dc79360a31d76ea67e7f1601c8130c005a7ed2cc6afcc92",
       "bytes": 904863,
       "width": 1086,
-      "height": 1448
+      "height": 1448,
+      "github_binary_uploaded": false,
+      "portrait": {
+        "path": "assets/characters/guild_npcs/soleyman/portraits/soleyman_portrait_3x4.png",
+        "sha256": "753225e7a13630fb8cfc7176a5978234d16ee50344337c0e070a1d7f00032efa",
+        "width": 768,
+        "height": 1024,
+        "format": "png",
+        "github_binary_uploaded": false,
+        "visual_approval_pending": true
+      }
     }
   ]
 }
