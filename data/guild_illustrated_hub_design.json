@@ -74,27 +74,31 @@
     {
       "id": "tavern",
       "label": "Taverne de la Guilde",
-      "npc_id": null,
-      "npc_status": "to_create",
+      "npc_id": "guild_tavern_keeper",
+      "npc_status": "prototype_registered",
       "services": [
         "rencontres",
         "rumeurs",
-        "evenements"
+        "anecdotes",
+        "affinite",
+        "quetes_personnelles"
       ],
       "details_pending_validation": true,
-      "npc_name_status": "unvalidated"
+      "npc_name_status": "provisional"
     },
     {
       "id": "infirmary",
       "label": "Infirmerie de la Guilde",
-      "npc_id": null,
-      "npc_status": "to_create",
+      "npc_id": "guild_physician",
+      "npc_status": "prototype_registered",
       "services": [
         "soins",
-        "recuperation"
+        "recuperation",
+        "recherche_anatomique",
+        "quetes_personnelles"
       ],
       "details_pending_validation": true,
-      "npc_name_status": "unvalidated"
+      "npc_name_status": "provisional"
     }
   ],
   "implementation_verified": false,
@@ -105,5 +109,6 @@
     "village_buildings_status": "to_define",
     "village_character_roster_status": "to_define",
     "artwork_status": "concept_pending_visual_validation"
-  }
+  },
+  "prototype_scene": "res://scenes/hub/guild_new_npcs_screen.tscn"
 }
