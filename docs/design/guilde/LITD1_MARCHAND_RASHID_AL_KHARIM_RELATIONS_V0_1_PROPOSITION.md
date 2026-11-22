@@ -1,6 +1,6 @@
 # LITD 1 — Marchand Soleyman et progression relationnelle V0.1
 
-**Statut : mixte.** Principe de deux progressions distinctes validé ; **nom du marchand Soleyman validé par l'utilisateur**. Apparence, personnalité, planche et détails des récompenses restent à valider.
+**Statut : mixte.** Nom **Soleyman**, apparence, personnalité et planche artistique **validés par l'utilisateur** le 22 novembre 2026 ; principe de progression distincte commerce/relation validé. Détails des récompenses et pistes de secrets restent à valider.
 
 ## Décision utilisateur : deux voies de progression
 1. **Amélioration du marchand / de son commerce** : investissements et quêtes de développement ouvrent de nouveaux stocks, équipements, services et possibilités commerciales.
@@ -27,10 +27,10 @@ Les seuils, niveaux, récompenses exactes, conditions de perte de confiance et �
 - Réseau clandestin et liens éventuels avec les origines de la Guilde : **pistes non validées**, ne pas en faire des faits.
 
 ## Planche artistique
-Une première planche conceptuelle 3:4 a été générée dans la conversation le 22 novembre 2026. **Non validée par l'utilisateur**, non déposée comme original canonique, non intégrée dans Godot.
+Première planche conceptuelle 3:4 validée par l'utilisateur le 22 novembre 2026. Une version corrigée portant le nom **Soleyman** a été générée après validation. Cette version corrigée est la référence artistique canonique, sous réserve de son archivage ; non intégrée dans Godot.
 
 ## Suivi
-Chantier : marchand et relations de la Guilde. Statut : 🟡 À CONSOLIDER (règle de conception validée, personnage proposé). Avancement du chantier actuel : À évaluer. Avancement du projet global LITD 1 : À évaluer.
+Chantier : marchand et relations de la Guilde. Statut : 🟡 À CONSOLIDER (règle de conception et personnage validés ; intégration technique non vérifiée). Avancement du chantier actuel : À évaluer. Avancement du projet global LITD 1 : À évaluer.
 
 ## Décision validée — Recrues particulières de Lian (22 novembre 2026)
 - Les **recrues particulières** débloquées par la relation personnelle avec Lian sont des **héros à part entière**, chacun avec **une histoire propre** et **des quêtes personnelles qui lui sont propres**.
@@ -41,5 +41,5 @@ Chantier : marchand et relations de la Guilde. Statut : 🟡 À CONSOLIDER (règ
 
 ## Correction de nom
 - Le marchand est nommé **Soleyman** sur décision explicite de l'utilisateur.
-- Le nom « Rashid al-Khârim » de la première planche est **abandonné** ; son inscription sur l'image doit être corrigée avant validation artistique finale.
+- Le nom « Rashid al-Khârim » de la première planche est **abandonné** ; une planche corrigée portant « Soleyman » a été créée.
 - Cette décision concerne **le marchand**, et non le premier héros particulier de Lian.
