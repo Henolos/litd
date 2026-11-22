@@ -1,13 +1,13 @@
 # LITD 1 — Registre de préparation des personnages de la Guilde
 
-Statut : préparation documentaire, **non intégrés au runtime Godot**.
+Statut : six fichiers transférés et contrôlés dans la branche ouverte de la PR #631 ; import/chargement Godot validé. PR non fusionnée et scènes de Guilde non raccordées au runtime.
 Référence : décisions de validation du 22 novembre 2026. Ne pas remplacer les originaux artistiques par des images recréées.
 
-| Identifiant stable proposé | Nom validé | Rôle | Validation artistique | PNG original contrôlé dans le dépôt | Intégration Godot |
+| Identifiant stable proposé | Nom validé | Rôle | Validation artistique | Fichiers contrôlés dans la branche PR | Import/chargement Godot |
 |---|---|---|---|---|---|
-| kelia_anzora | Kélia Anzora | À reprendre de la fiche validée | Oui, selon validation utilisateur | Non vérifié | Non effectuée |
-| lian_yue | Lian Yue | Responsable du recrutement | Oui, selon validation utilisateur | Non vérifié | Non effectuée |
-| soleyman | Soleyman | Marchand de la Guilde | Oui, selon validation utilisateur | Non vérifié | Non effectuée |
+| kelia_anzora | Kélia Anzora | À reprendre de la fiche validée | Oui, selon validation utilisateur | Planche + portrait 3:4, SHA-256 conformes | Importés et chargés ; scènes non raccordées |
+| lian_yue | Lian Yue | Responsable du recrutement | Oui, selon validation utilisateur | Planche + portrait 3:4, SHA-256 conformes | Importés et chargés ; scènes non raccordées |
+| soleyman | Soleyman | Marchand de la Guilde | Oui, selon validation utilisateur | Planche + portrait 3:4, SHA-256 conformes | Importés et chargés ; scènes non raccordées |
 
 ## Contraintes impératives
 
@@ -22,10 +22,9 @@ Référence : décisions de validation du 22 novembre 2026. Ne pas remplacer les
 
 ## Étapes restant à exécuter
 
-1. Localiser les trois PNG originaux validés et leurs fiches complètes ; transférer les binaires manquants.
-2. Calculer les empreintes SHA-256 et vérifier les images réellement présentes dans GitHub.
-3. Créer les fiches de données au format du projet, sans doublonner les systèmes existants.
-4. Associer les ressources aux scènes de Guilde et vérifier les références.
-5. Lancer l'import Godot et les tests de chargement, puis documenter les résultats.
+1. Ressources (3 planches et 3 portraits) transférées dans la branche PR #631 ; les six empreintes GitHub ont été comparées aux originales et correspondent.
+2. Les six ressources ont été importées et chargées dans Godot 4.7.2 ; test du catalogue runtime ajouté.
+3. La PR reste ouverte et non fusionnée, selon la consigne.
+4. Reste à raccorder les personnages aux scènes de Guilde et à valider leur affichage en jeu après décision de fusion.
 
 Ce registre n'est **pas** une preuve que les fichiers images sont sauvegardés dans GitHub.

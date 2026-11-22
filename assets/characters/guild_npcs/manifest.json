@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "source": "Three user-supplied validated JPEG sheets received 2026-11-22",
+  "source": "Three user-supplied validated JPEG sheets and three 3x4 portraits; six SHA-256-matched files transferred to the open PR branch and imported/loaded in Godot 4.7.2 on 2026-11-22. PR remains unmerged; scene hookup is pending.",
   "assets": [
     {
       "id": "kelia_anzora",
@@ -9,16 +9,20 @@
       "bytes": 777450,
       "width": 1086,
       "height": 1448,
-      "github_binary_uploaded": false,
+      "github_binary_uploaded": true,
       "portrait": {
         "path": "assets/characters/guild_npcs/kelia_anzora/portraits/kelia_anzora_portrait_3x4.png",
         "sha256": "d421c3f4f7df31379ab40ddfd36043830ba60dcb9e0272b63d4ff98ecb87094e",
         "width": 768,
         "height": 1024,
         "format": "png",
-        "github_binary_uploaded": false,
-        "visual_approval_pending": true
-      }
+        "github_binary_uploaded": true,
+        "visual_approval_pending": true,
+        "github_binary_verified": true,
+        "godot_import_tested": true
+      },
+      "github_binary_verified": true,
+      "godot_import_tested": true
     },
     {
       "id": "lian_yue",
@@ -27,16 +31,20 @@
       "bytes": 770987,
       "width": 1086,
       "height": 1448,
-      "github_binary_uploaded": false,
+      "github_binary_uploaded": true,
       "portrait": {
         "path": "assets/characters/guild_npcs/lian_yue/portraits/lian_yue_portrait_3x4.png",
         "sha256": "b6e5cd1242111b745be4422d9083fcd0ef8f4fb85436a10e2f83c7a5921cf7ad",
         "width": 768,
         "height": 1024,
         "format": "png",
-        "github_binary_uploaded": false,
-        "visual_approval_pending": true
-      }
+        "github_binary_uploaded": true,
+        "visual_approval_pending": true,
+        "github_binary_verified": true,
+        "godot_import_tested": true
+      },
+      "github_binary_verified": true,
+      "godot_import_tested": true
     },
     {
       "id": "soleyman",
@@ -45,16 +53,20 @@
       "bytes": 904863,
       "width": 1086,
       "height": 1448,
-      "github_binary_uploaded": false,
+      "github_binary_uploaded": true,
       "portrait": {
         "path": "assets/characters/guild_npcs/soleyman/portraits/soleyman_portrait_3x4.png",
         "sha256": "753225e7a13630fb8cfc7176a5978234d16ee50344337c0e070a1d7f00032efa",
         "width": 768,
         "height": 1024,
         "format": "png",
-        "github_binary_uploaded": false,
-        "visual_approval_pending": true
-      }
+        "github_binary_uploaded": true,
+        "visual_approval_pending": true,
+        "github_binary_verified": true,
+        "godot_import_tested": true
+      },
+      "github_binary_verified": true,
+      "godot_import_tested": true
     }
   ]
 }

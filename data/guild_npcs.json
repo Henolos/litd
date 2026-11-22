@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "description": "Références documentaires validées à partir des trois planches fournies. Aucun asset Godot ni test d'import confirmé.",
+  "description": "Validated sheets and 3x4 portraits are SHA-256 verified in the open PR #631 branch and load in Godot 4.7.2. The PR is not merged; Guild scenes are not yet connected.",
   "characters": [
     {
       "id": "kelia_anzora",
@@ -33,11 +33,13 @@
         "width": 1086,
         "height": 1448,
         "sha256": "d10b8ab87474aab5a91d5bb6cfed0925223566497f0ac78ce0ef4698491d0837",
-        "github_binary_uploaded": false
+        "github_binary_uploaded": true,
+        "github_binary_verified": true,
+        "godot_import_tested": true
       },
-      "art_path": null,
-      "art_verified_in_repository": false,
-      "implementation_status": "awaiting_binary_upload_and_godot_test"
+      "art_path": "res://assets/characters/guild_npcs/kelia_anzora/portraits/kelia_anzora_portrait_3x4.png",
+      "art_verified_in_repository": true,
+      "implementation_status": "asset_transferred_and_godot_loaded_in_open_pr; scene_integration_pending"
     },
     {
       "id": "lian_yue",
@@ -67,11 +69,13 @@
         "width": 1086,
         "height": 1448,
         "sha256": "70b4fb23ad9a4bf310c24d47ac693cf69e8bc031111122f943396196e6951f17",
-        "github_binary_uploaded": false
+        "github_binary_uploaded": true,
+        "github_binary_verified": true,
+        "godot_import_tested": true
       },
-      "art_path": null,
-      "art_verified_in_repository": false,
-      "implementation_status": "awaiting_binary_upload_and_godot_test"
+      "art_path": "res://assets/characters/guild_npcs/lian_yue/portraits/lian_yue_portrait_3x4.png",
+      "art_verified_in_repository": true,
+      "implementation_status": "asset_transferred_and_godot_loaded_in_open_pr; scene_integration_pending"
     },
     {
       "id": "soleyman",
@@ -111,11 +115,13 @@
         "width": 1086,
         "height": 1448,
         "sha256": "3dbb50244035699e6dc79360a31d76ea67e7f1601c8130c005a7ed2cc6afcc92",
-        "github_binary_uploaded": false
+        "github_binary_uploaded": true,
+        "github_binary_verified": true,
+        "godot_import_tested": true
       },
-      "art_path": null,
-      "art_verified_in_repository": false,
-      "implementation_status": "awaiting_binary_upload_and_godot_test"
+      "art_path": "res://assets/characters/guild_npcs/soleyman/portraits/soleyman_portrait_3x4.png",
+      "art_verified_in_repository": true,
+      "implementation_status": "asset_transferred_and_godot_loaded_in_open_pr; scene_integration_pending"
     }
   ]
 }
