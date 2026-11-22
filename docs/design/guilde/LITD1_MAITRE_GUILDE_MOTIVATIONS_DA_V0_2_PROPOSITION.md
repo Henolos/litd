@@ -3,6 +3,7 @@
 **Statut : PROPOSITION NON VALIDÉE.** Suite de la fiche V0.1. Aucune apparence officielle ni secret narratif n'est arrêté.
 
 ## Invariants validés
+- **Le maître de la Guilde est lui-même un ancien aventurier de rang S, au sens historique du rang suprême.** Ce passé prestigieux explique en partie le respect qu'il inspire. Son ancien rang S ne doit pas être confondu avec le rang S actuel (« Stagiaire »).
 - La Guilde attribue correctement S = Stagiaire, désormais rang le plus bas ; S était autrefois le rang suprême.
 - Le maître attribue personnellement « La Cueillette » et a sincèrement oublié la réforme : il croit envoyer une compagnie d'élite.
 - Il n'a pas sciemment envoyé les quatre débutants à la mort ; sa responsabilité dans l'erreur demeure.
@@ -44,3 +45,6 @@ Chantier : motivations et DA du maître de la Guilde. Statut : 🟣 EN ATTENTE d
 
 ## Correction de direction artistique validée par l'utilisateur — 22 novembre 2026
 Le maître est **un petit homme de 80 ans, aux cheveux ébouriffés et au regard malicieux**, au **comportement enfantin, un peu fou, mais toujours respecté**. Tous les autres traits précédemment proposés (autorité, excentricité, intelligence, orgueil, attachement aux traditions, mystère, responsabilité non intentionnelle dans la quête) sont conservés. Cette décision remplace les anciennes suggestions de silhouette imposante, d'âge apparent 55–65 ans et de cheveux attachés. La planche officielle 3:4 reste à créer et à valider.
+
+## Complément validé — ancien rang du maître
+Le maître de la Guilde **était personnellement de rang S à l'époque où S était le plus haut rang**. Il est donc un ancien aventurier d'élite. Cela renforce le contraste entre ses compétences passées, son comportement enfantin actuel et son oubli sincère de la réforme. Le contenu de son secret personnel reste indéterminé : son ancien rang ne révèle pas ce secret.
