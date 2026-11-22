@@ -70,3 +70,11 @@ Ce document enregistre une décision de conception. Il ne prouve ni la présence
 - La maîtresse d'armes conserve un **nom non fixé** ; ne pas entériner les noms visibles sur des concepts générés.
 - La planche architecturale originale validée ne doit pas être remplacée par un concept généré ultérieurement.
 - Les deux planches devront faire l'objet de validations visuelles séparées avant intégration.
+
+## Tavernier : ancien aventurier, cicatrices et affinité (validé le 2026-11-22)
+- Le tavernier est un **ancien aventurier**. Son apparence doit comporter des **cicatrices visibles**, traces cohérentes de ses expéditions.
+- Il raconte des **anecdotes de quêtes vécues**, de tonalités diverses ; certaines peuvent nourrir la connaissance du monde et annoncer des pistes narratives.
+- Comme les autres PNJ importants, il dispose de **quêtes spéciales propres** et de **déblocages spécifiques conditionnés par l'affinité** avec le joueur.
+- Les noms (dont « Han Lu »), âge, rang antérieur, compagnie d'origine, cicatrices exactes, secrets, récompenses et seuils d'affinité **ne sont pas encore validés**.
+- Proposition non validée : échelonner anecdotes, confidences, missions et récompenses selon la confiance ; ne pas bloquer arbitrairement l'histoire principale derrière l'affinité.
+- La planche graphique du tavernier doit être mise à jour pour montrer ce passé d'aventurier, sans altérer les autres personnages ni considérer une image de concept comme une ressource Godot intégrée.
