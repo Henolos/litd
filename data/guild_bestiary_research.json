@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "status": "design_only_no_gameplay_unlocks",
+  "catalog": "res://data/bestiary_catalog.json",
+  "enemy_identity_field": "enemy_id",
+  "sources": {
+    "wei_shan": [
+      "lore",
+      "origine",
+      "habitat",
+      "comportement"
+    ],
+    "guild_physician": [
+      "anatomie",
+      "faiblesses",
+      "resistances"
+    ]
+  },
+  "unlock_event_proposal": "medical_research_completed",
+  "rule": "Ne pas modifier les statistiques de combat sans validation ; une recherche ajoute des connaissances au bestiaire existant.",
+  "entries": []
+}
