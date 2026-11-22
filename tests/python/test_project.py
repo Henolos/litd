@@ -9,7 +9,7 @@ class ProjectTests(unittest.TestCase):
     def test_no_retired_main_scene(self): self.assertFalse((ROOT/'scenes/Main.tscn').exists())
     def test_class_count(self): self.assertGreaterEqual(len(data('classes.json')),10)
     def test_race_count(self): self.assertGreaterEqual(len(data('races.json')),4)
-    def test_enemy_count(self): self.assertEqual(len(data('enemies.json')),39)
+    def test_enemy_count(self): self.assertEqual(len(data('enemies.json')),92)
     def test_hero_count(self): self.assertGreaterEqual(len(data('heroes.json')),4)
     def test_skill_count(self): self.assertGreaterEqual(len(data('skills.json')),4)
     def test_unique_classes(self):
@@ -36,7 +36,10 @@ class ProjectTests(unittest.TestCase):
         ids={x['id'] for x in data('races.json')}
         for x in data('heroes.json'): self.assertIn(x['race_id'],ids)
     def test_enemy_images(self):
-        for x in data('enemies.json'): self.assertTrue((ROOT/'assets/enemies'/x['art']).is_file())
+        for x in data('enemies.json'):
+            path=x.get('art_path','').removeprefix('res://')
+            self.assertTrue(path, f"Enemy {x['id']} has no runtime art_path")
+            self.assertTrue((ROOT/path).is_file(), f"Missing runtime image for enemy {x['id']}: {path}")
     def test_class_images(self):
         for x in data('classes.json'): self.assertTrue((ROOT/'assets/heroes'/x['art']).is_file())
     def test_backgrounds(self): self.assertGreaterEqual(len(list((ROOT/'assets/backgrounds').glob('*'))),5)
