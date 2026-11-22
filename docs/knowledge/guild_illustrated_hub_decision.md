@@ -78,3 +78,11 @@ Ce document enregistre une décision de conception. Il ne prouve ni la présence
 - Les noms (dont « Han Lu »), âge, rang antérieur, compagnie d'origine, cicatrices exactes, secrets, récompenses et seuils d'affinité **ne sont pas encore validés**.
 - Proposition non validée : échelonner anecdotes, confidences, missions et récompenses selon la confiance ; ne pas bloquer arbitrairement l'histoire principale derrière l'affinité.
 - La planche graphique du tavernier doit être mise à jour pour montrer ce passé d'aventurier, sans altérer les autres personnages ni considérer une image de concept comme une ressource Godot intégrée.
+
+## Médecin de la Guilde — nouvelle validation utilisateur (2026-11-22)
+- **Planche artistique de la médecin validée** (portrait, silhouettes et direction visuelle). Le nom affiché « Dr Mei Ling » figurait sur la planche validée ; conserver cette désignation comme référence de travail, sans inférer que tous les chiffres, biographies et mécaniques de la planche ont été approuvés.
+- **Personnalité validée :** médecin hors pair, passionnée par la dissection et l'anatomie, avec une propension comiquement excessive à vouloir amputer même pour une coupure bénigne.
+- **Rôle de gameplay souhaité et validé dans son principe :** ses missions peuvent améliorer le bestiaire, notamment en débloquant la connaissance des faiblesses des ennemis en récompense.
+- **Propositions à valider :** types d'échantillons, niveaux de recherche, progression d'affinité, catégories précises de faiblesses/résistances, effets en combat, récompenses exactes et partage des données entre Wei Shan et la médecin.
+- **Garde-fou de cohérence proposé :** les amputations disproportionnées relèvent surtout de l'humour noir et de la caractérisation, tandis que les actes médicaux effectifs restent fiables, sauf décision narrative explicite ultérieure.
+- **État d'exécution :** spécification textuelle uniquement ; aucune modification des systèmes de bestiaire, aucun test Godot, aucun binaire graphique importé par cette mise à jour.
