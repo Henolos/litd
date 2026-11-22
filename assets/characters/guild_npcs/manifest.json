@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "source": "Three user-supplied validated JPEG sheets received 2026-11-22",
+  "assets": [
+    {
+      "id": "kelia_anzora",
+      "path": "assets/characters/guild_npcs/kelia_anzora/concept/kelia_anzora_validated_sheet.jpeg",
+      "sha256": "d10b8ab87474aab5a91d5bb6cfed0925223566497f0ac78ce0ef4698491d0837",
+      "bytes": 777450,
+      "width": 1086,
+      "height": 1448
+    },
+    {
+      "id": "lian_yue",
+      "path": "assets/characters/guild_npcs/lian_yue/concept/lian_yue_validated_sheet.jpeg",
+      "sha256": "70b4fb23ad9a4bf310c24d47ac693cf69e8bc031111122f943396196e6951f17",
+      "bytes": 770987,
+      "width": 1086,
+      "height": 1448
+    },
+    {
+      "id": "soleyman",
+      "path": "assets/characters/guild_npcs/soleyman/concept/soleyman_validated_sheet.jpeg",
+      "sha256": "3dbb50244035699e6dc79360a31d76ea67e7f1601c8130c005a7ed2cc6afcc92",
+      "bytes": 904863,
+      "width": 1086,
+      "height": 1448
+    }
+  ]
+}
