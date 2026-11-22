@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "status": "proposed_dialogue_not_final_narrative",
+  "scope": "guild_prologue",
+  "entry_node": "kelia_registration",
+  "nodes": [
+    {
+      "id": "kelia_registration",
+      "speaker_id": "kelia_anzora",
+      "speaker": "Kélia Anzora",
+      "context": "Enregistrement administratif de la compagnie avant la première quête",
+      "text": "Quatre aventuriers, une compagnie. Je vais inscrire votre groupe au registre. Vérifiez vos noms avant de signer.",
+      "choices": [
+        {
+          "id": "review_register",
+          "label": "Examiner le registre",
+          "next": "kelia_rank"
+        },
+        {
+          "id": "ask_rules",
+          "label": "Demander comment fonctionnent les rangs",
+          "next": "kelia_rules"
+        }
+      ]
+    },
+    {
+      "id": "kelia_rules",
+      "speaker_id": "kelia_anzora",
+      "speaker": "Kélia Anzora",
+      "text": "Les rangs déterminent les affectations. Lisez chaque contrat avant de l'accepter.",
+      "choices": [
+        {
+          "id": "continue_registration",
+          "label": "Revenir à l'inscription",
+          "next": "kelia_rank"
+        }
+      ]
+    },
+    {
+      "id": "kelia_rank",
+      "speaker_id": "kelia_anzora",
+      "speaker": "Kélia Anzora",
+      "text": "Votre compagnie est enregistrée. Rang S. Conservez ce document, il vous sera demandé pour les contrats.",
+      "effects_proposed": [
+        {
+          "type": "set_flag",
+          "key": "guild_company_registered",
+          "value": true
+        },
+        {
+          "type": "set_flag",
+          "key": "guild_rank_s_recorded",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "finish_registration",
+          "label": "Prendre le registre et terminer",
+          "next": null
+        }
+      ]
+    }
+  ],
+  "constraints": [
+    "Ne pas révéler avant la fin de La cueillette la confusion sur le rang S (Stagiaire).",
+    "Ne pas révéler l'omelette ni le véritable motif de la collecte avant la fin.",
+    "Les effets sont proposés et ne sont pas reliés à un gestionnaire d'état existant.",
+    "Ne pas modifier data/dialogues.json ni data/quests.json avant validation de leur schéma et des scènes du prologue."
+  ]
+}
