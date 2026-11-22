@@ -24,3 +24,16 @@
 
 ## Suivi
 Chantier : rattachement de la planche du maître. Statut : 🟡 À CONSOLIDER. Avancement du chantier actuel : À évaluer. Avancement du projet global : À évaluer.
+
+## Contrôle local du fichier original — 22 novembre 2026
+- Format observé : PNG RVB, 1086 × 1448 pixels (3:4).
+- Taille observée : **2 787 245 octets**.
+- SHA-256 calculé sur le fichier PNG original local : `a30e173c237aa7ffa655bb0bb8b7132673209f366a99cba549267f47f6962d75`.
+- Source locale vérifiée : `/mnt/data/a_detailed_character_design_sheet_concept_board.png`.
+- **Aucune empreinte du binaire distant GitHub n'a été calculée : transfert binaire non exécuté.**
+
+## Préparation Godot (non intégrée)
+- Emplacement candidat du fichier source : `assets/characters/guild_master/concept/LITD1_MAITRE_GUILDE_PLANCHE_CONCEPTUELLE_V1_VALIDEE.png`.
+- Après dépôt binaire et vérification d'intégrité, contrôler la racine réelle du projet Godot avant d'employer un chemin `res://`.
+- Cette planche multi-vues n'est **pas** un portrait de HUD prêt à l'emploi ; dériver un portrait distinct, sans écraser l'original.
+- Ne pas déclarer l'asset utilisé par le jeu sans contrôle d'import Godot et de référence dans une scène ou ressource.
