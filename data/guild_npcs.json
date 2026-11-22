@@ -1,31 +1,121 @@
 {
   "schema_version": 1,
-  "description": "Registre des PNJ de Guilde. Les chemins artistiques non vérifiés restent null et ne doivent pas être chargés par Godot.",
+  "description": "Références documentaires validées à partir des trois planches fournies. Aucun asset Godot ni test d'import confirmé.",
   "characters": [
     {
       "id": "kelia_anzora",
       "name": "Kélia Anzora",
-      "role": "pending_source_verification",
+      "role": "guild_administration",
+      "apparent_age": 50,
+      "origin": "Cités du Sud, influences africaines et asiatiques",
+      "prologue_role": "Enregistre la compagnie au rang S (Stagiaire)",
+      "responsibilities": [
+        "rangs",
+        "contrats",
+        "primes",
+        "archives",
+        "réglementation"
+      ],
+      "personality": [
+        "rigoureuse",
+        "méthodique",
+        "organisée",
+        "perspicace",
+        "autoritaire sans tyrannie"
+      ],
+      "narrative_leads": [
+        "connaît une partie du passé du maître de la Guilde",
+        "surveille des dossiers sensibles",
+        "lien éventuel avec le secret d'origine de la Guilde"
+      ],
+      "reference_upload": {
+        "format": "jpeg",
+        "width": 1086,
+        "height": 1448,
+        "sha256": "d10b8ab87474aab5a91d5bb6cfed0925223566497f0ac78ce0ef4698491d0837",
+        "github_binary_uploaded": false
+      },
       "art_path": null,
-      "art_verified": false,
-      "implementation_status": "blocked_missing_verified_asset"
+      "art_verified_in_repository": false,
+      "implementation_status": "awaiting_binary_upload_and_godot_test"
     },
     {
       "id": "lian_yue",
       "name": "Lian Yue",
       "role": "recruitment",
+      "apparent_age": 35,
+      "origin": "Cités de l'Est, influences chinoises, coréennes et d'Asie du Sud-Est",
+      "prologue_role": "Accueille la compagnie, évalue ses compétences et facilite son intégration",
+      "responsibilities": [
+        "recrutement",
+        "constitution des compagnies",
+        "accompagnement"
+      ],
+      "personality": [
+        "chaleureuse",
+        "perspicace",
+        "observatrice",
+        "sociable",
+        "sérieuse sur la sécurité"
+      ],
+      "narrative_leads": [
+        "sait davantage qu'elle ne dit sur des disparitions",
+        "contacts discrets hors Guilde"
+      ],
+      "reference_upload": {
+        "format": "jpeg",
+        "width": 1086,
+        "height": 1448,
+        "sha256": "70b4fb23ad9a4bf310c24d47ac693cf69e8bc031111122f943396196e6951f17",
+        "github_binary_uploaded": false
+      },
       "art_path": null,
-      "art_verified": false,
-      "implementation_status": "blocked_missing_verified_asset"
+      "art_verified_in_repository": false,
+      "implementation_status": "awaiting_binary_upload_and_godot_test"
     },
     {
       "id": "soleyman",
       "name": "Soleyman",
       "role": "merchant",
       "former_name": "Rashid al-Khârim",
+      "apparent_age": 45,
+      "origin": "Confins du Sud, influences d'Afrique, du Moyen-Orient et des routes d'Asie",
+      "prologue_role": "Équipe la compagnie et propose les premiers équipements et opportunités discrètes",
+      "responsibilities": [
+        "marchand",
+        "fournisseur",
+        "antiquaire",
+        "négoce spécialisé"
+      ],
+      "personality": [
+        "charismatique",
+        "chaleureux",
+        "fin négociateur",
+        "curieux",
+        "fidèle envers les personnes de confiance"
+      ],
+      "systems_planned": [
+        "confiance",
+        "affinité",
+        "alliance",
+        "amélioration du commerce",
+        "quêtes exceptionnelles"
+      ],
+      "narrative_leads": [
+        "contacts dans des factions variées",
+        "connaissances de lieux fermés",
+        "possible objet ou indice lié à l'origine de la Guilde"
+      ],
+      "reference_upload": {
+        "format": "jpeg",
+        "width": 1086,
+        "height": 1448,
+        "sha256": "3dbb50244035699e6dc79360a31d76ea67e7f1601c8130c005a7ed2cc6afcc92",
+        "github_binary_uploaded": false
+      },
       "art_path": null,
-      "art_verified": false,
-      "implementation_status": "blocked_missing_verified_asset"
+      "art_verified_in_repository": false,
+      "implementation_status": "awaiting_binary_upload_and_godot_test"
     }
   ]
 }
