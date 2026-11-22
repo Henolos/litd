@@ -24,3 +24,10 @@ Branche : feature/guild-illustrated-hub-design-20261122 (PR #633).
 3. Ajouter les portraits validés en lecture seule et vérifier leur cadrage sans recadrer les originaux.
 4. Inspecter les systèmes réels de sauvegarde, quête et bestiaire, puis brancher des déblocages persistants après validation de leur schéma.
 5. Revoir et fusionner la PR après tests, sans fusion automatique.
+
+## Reprise du 2026-11-22
+- Vérification directe GitHub : les deux PNG attendus renvoient 404 sur la branche de la PR.
+- Vérification locale du ZIP : les deux fichiers PNG existent et leurs tailles et SHA-256 correspondent au manifeste (tavernier 3 119 445 octets ; médecin 2 943 072 octets).
+- Le prototype UI affiche désormais la planche complète lorsqu'elle existe et un message explicite lorsqu'elle manque. L'écran distingue les recherches anatomiques prévues des fonctionnalités opérationnelles.
+- Importateur vérifié par conception ajouté : `python tools/import_guild_tavernier_medecin.py /chemin/vers/LITD1_guilde_tavernier_medecin_assets_a_integrer.zip`. Il refuse les empreintes incorrectes et les conflits de fichiers existants. **Son exécution dans un clone du dépôt n'a pas été testée ici.**
+- Aucun test Godot exécuté. Ne pas fusionner sans validation d'ouverture de scène, rendu des images, navigation et sauvegarde.
