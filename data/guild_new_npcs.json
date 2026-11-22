@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "implementation_status": "prototype",
+  "characters": [
+    {
+      "id": "guild_tavern_keeper",
+      "display_name": "Han Lu",
+      "name_status": "provisional",
+      "location_id": "tavern",
+      "role": "Ancien aventurier et tavernier",
+      "traits": [
+        "Cicatrices d'expéditions",
+        "Anecdotes de quêtes",
+        "Quêtes spéciales",
+        "Déblocages par affinité"
+      ],
+      "visual_asset_status": "validated_concept_binary_pending_import",
+      "dialogues": [
+        {
+          "speaker": "Han Lu",
+          "text": "J'ai connu des routes qui changeaient de place pendant la nuit. Celle-ci m'a laissé une cicatrice."
+        },
+        {
+          "speaker": "Han Lu",
+          "text": "Reviens avec une histoire digne de ce nom, et je te raconterai la mienne."
+        }
+      ],
+      "services": [
+        "anecdotes",
+        "affinite",
+        "quetes_personnelles"
+      ]
+    },
+    {
+      "id": "guild_physician",
+      "display_name": "Dr Mei Ling",
+      "name_status": "provisional",
+      "location_id": "infirmary",
+      "role": "Médecin de la Guilde et anatomiste",
+      "traits": [
+        "Médecin hors pair",
+        "Passionnée de dissection et d'anatomie",
+        "Humour noir sur les amputations",
+        "Recherche des faiblesses des créatures"
+      ],
+      "visual_asset_status": "validated_concept_binary_pending_import",
+      "dialogues": [
+        {
+          "speaker": "Dr Mei Ling",
+          "text": "Une simple coupure ? Fascinant. Je vais préparer les instruments... Non, je plaisante. Probablement."
+        },
+        {
+          "speaker": "Dr Mei Ling",
+          "text": "Apportez-moi des observations fiables. Nous découvrirons peut-être ce qui rend ces créatures vulnérables."
+        }
+      ],
+      "services": [
+        "soins",
+        "recherche_anatomique",
+        "quetes_personnelles"
+      ]
+    }
+  ],
+  "shared_bestiary": {
+    "canonical_catalog": "res://data/bestiary_catalog.json",
+    "archive_researcher": "wei_shan",
+    "anatomy_researcher": "guild_physician",
+    "rule": "Une seule fiche par créature. Wei Shan apporte le contexte documentaire ; Mei Ling peut débloquer les faiblesses via des missions.",
+    "unlocks_status": "not_implemented"
+  }
+}
