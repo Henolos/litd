@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "source": "Seven validated Guild NPC records. Existing portrait assets are unchanged. Two validated concept sheets for Han Lu and Dr Mei Ling were added from the 2026-11-22 archive; concept-sheet import is tested, portrait crops and Guild scene hookup remain pending.",
+  "source": "Seven validated Guild NPC records. Existing portrait assets are unchanged. Two validated concept sheets for Han Lu and Dr Mei Ling were added from the 2026-11-22 archive; their Godot 4.7.2 import and headless loading tests passed. Dedicated portraits and Guild scene hookup remain pending.",
   "assets": [
     {
       "id": "kelia_anzora",
@@ -147,7 +147,7 @@
       "format": "png",
       "github_binary_uploaded": true,
       "github_binary_verified": true,
-      "godot_import_tested": false,
+      "godot_import_tested": true,
       "portrait_crop_pending": true
     },
     {
@@ -161,7 +161,7 @@
       "format": "png",
       "github_binary_uploaded": true,
       "github_binary_verified": true,
-      "godot_import_tested": false,
+      "godot_import_tested": true,
       "portrait_crop_pending": true
     }
   ]
