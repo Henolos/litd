@@ -2231,3 +2231,15 @@ Les déplacements sur la carte à embranchements utilisent un **modèle hybride*
 
 **Traçabilité :** validation explicite de l'option B concernant la visibilité et la découverte de la carte. Mise à jour documentaire uniquement ; aucun développement Godot ni test en jeu.
 **Statut : 🟡 À CONSOLIDER. Avancement du chantier actuel : À évaluer. Avancement du projet global : À évaluer.**
+
+
+---
+## V7.19 — Justification du brouillard intégral : génération procédurale (23 novembre 2026)
+
+L'utilisateur précise que le choix du brouillard de guerre intégral (V7.18) est également motivé par le caractère procédural de la carte à chaque visite. Cette précision rejoint la règle antérieure de configuration stable pendant une même expédition et renouvelée à l'expédition suivante.
+- Nouvelle expédition : nouvelle configuration procédurale de la carte, à découvrir progressivement.
+- Retour sur un nœud pendant la même expédition : conserver la configuration et les découvertes de cette expédition ; appliquer V7.16 et V7.17.
+- Préserver l'identité des régions, les événements uniques résolus et les conséquences persistantes malgré le renouvellement de la disposition.
+- L'interprétation de « chaque visite » comme nouvelle expédition, plutôt que chaque passage sur un nœud, découle des règles antérieures ; les modalités exactes de génération et de conservation des connaissances restent à définir.
+
+**Exécution :** précision documentaire, sans implémentation ni test Godot.
