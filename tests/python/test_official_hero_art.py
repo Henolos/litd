@@ -39,4 +39,4 @@ def test_art_catalogue_preserves_former_roster_designs_without_starting_status()
 
 def test_dynamic_art_slot_points_to_official_catalogue():
     registry = json.loads((ROOT / "data/canonical_art_v41.json").read_text(encoding="utf-8"))
-    assert registry["asset_slots"]["portrait.active_hero"]["primary_path"] == "res://art/library/heroes/{entity_id}/reference.jpg"
+    assert registry["asset_slots"]["portrait.active_hero"]["primary_path"] == "res://assets/characters/heroes/{entity_id}/portraits/{entity_id}_portrait.png"
