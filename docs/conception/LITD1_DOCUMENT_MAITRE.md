@@ -2884,3 +2884,24 @@ Les quatre arbitrages de consolidation sont approuvés (V7.40,43,45,49). Les hui
 12. Plafonds, durées, coefficients et conséquences définitives après simulations et tests.
 
 Conséquences possibles, non systématiques ni obligatoirement cumulées : rupture d'entrave, consommation de l'équipement utilisé, agressivité accrue, réaction défensive immédiate, perte d'occasion favorable, tentative de fuite réservée aux Némésis selon V7.41. Réactions par famille et simulation numérique indicatives. Préserver V7.46–V7.48 et V8.3. Validation documentaire uniquement.
+
+
+---
+## V7.52 — Apprentissage hybride, expérimental et documentaire des méthodes de capture (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, apprentissage hybride, expérimental et documentaire des méthodes de capture, cinq niveaux de connaissance et douze règles complémentaires explicitement approuvés.** Sources complémentaires : observation, combats, expérimentation, ouvrages, dialogues, recherches à la Guilde. Niveaux par méthode et espèce : inconnu, suspecté, identifié, confirmé, documenté. Une incompatibilité confirmée constitue une information, non un sixième niveau.
+
+1. Apprentissage hybride par plusieurs sources.
+2. Conserver les connaissances dans le bestiaire collectif.
+3. Distinguer connaissance théorique et maîtrise individuelle.
+4. Découverte par expérimentation possible.
+5. Apprentissage par réussites et échecs significatifs.
+6. Distinguer les cinq niveaux de connaissance.
+7. Confirmation par recoupement des sources.
+8. Informations partielles ou erronées si narrativement justifiées.
+9. Valoriser recherches et compétences des PNJ de la Guilde.
+10. Préserver connaissances collectives après morts et Game Over.
+11. Empêcher acquisition illimitée par répétition identique sans nouvelle information.
+12. Afficher probabilité réelle sans révéler automatiquement les caractéristiques secrètes.
+
+La connaissance ne remplace pas les capacités d'exécution. Attributions précises des PNJ, seuils, coûts et conditions de déblocage restent proposés ou ouverts. Préserver V7.46–V7.48, V7.51 et V8.1–V8.3. Validation documentaire uniquement.
