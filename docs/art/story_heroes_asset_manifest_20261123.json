@@ -5,16 +5,43 @@
   },
   "heroes": {
     "anouk": {
-      "sheet": {"path": "art/library/heroes/anouk/reference.jpg", "sha256": "134aa4d0a452a90249a8cea15e8b2ee6f3d15eabccf66d2a7ebeb04adda76907", "status": "reused_existing_exact_match"},
-      "portrait": {"path": "art/library/heroes/anouk/story_unlock/portrait_provisoire.png", "sha256": "e18471dc0e81a42bda2b05d8c96e1c8ebc38c6a2eff11f2e7bc7404831a0f6fd", "status": "imported_provisional_requires_visual_approval"}
+      "sheet": {
+        "path": "art/library/heroes/anouk/reference.jpg",
+        "sha256": "134aa4d0a452a90249a8cea15e8b2ee6f3d15eabccf66d2a7ebeb04adda76907",
+        "status": "reused_existing_exact_match"
+      },
+      "portrait": {
+        "path": "art/library/heroes/anouk/story_unlock/portrait_provisoire.png",
+        "sha256": "e18471dc0e81a42bda2b05d8c96e1c8ebc38c6a2eff11f2e7bc7404831a0f6fd",
+        "status": "provisional_not_approved_for_combat",
+        "visual_review_note": "Portrait recadré provisoire ; fragment de lettrage visible près du bord gauche. Validation utilisateur requise."
+      }
     },
     "marec": {
-      "sheet": {"path": "art/library/heroes/marec/reference.jpg", "sha256": "e809e9b407c7a7c08ec40b4a2d4e323e04571391ea874bd2e007308516030cf9", "status": "reused_existing_exact_match"},
-      "portrait": {"path": "art/library/heroes/marec/story_unlock/portrait_provisoire.png", "sha256": "3cadcfef1285ee283c81f5f635570b39080df7b6cd605e1ea451538160062c54", "status": "imported_provisional_requires_visual_approval"}
+      "sheet": {
+        "path": "art/library/heroes/marec/reference.jpg",
+        "sha256": "e809e9b407c7a7c08ec40b4a2d4e323e04571391ea874bd2e007308516030cf9",
+        "status": "reused_existing_exact_match"
+      },
+      "portrait": {
+        "path": "art/library/heroes/marec/story_unlock/portrait_provisoire.png",
+        "sha256": "3cadcfef1285ee283c81f5f635570b39080df7b6cd605e1ea451538160062c54",
+        "status": "provisional_not_approved_for_combat",
+        "visual_review_note": "Portrait recadré provisoire ; aucun fragment de lettrage évident sur le bord dans le contrôle visuel effectué. Validation utilisateur requise."
+      }
     },
     "mathilde": {
-      "sheet": {"path": "art/library/heroes/mathilde/story_unlock/planche_originale.jpeg", "sha256": "d112c20603bc93fdc9673aff87e0cd293802ec5b4d9ef1ace1e062ee9ac56ec9", "status": "imported_additional_reference_existing_canonical_unchanged"},
-      "portrait": {"path": "art/library/heroes/mathilde/story_unlock/portrait_provisoire.png", "sha256": "68a43c9876a8f83f017574003905aee6bcbce36eb93efa16b4af53dbd9bc7751", "status": "imported_provisional_requires_visual_approval"}
+      "sheet": {
+        "path": "art/library/heroes/mathilde/story_unlock/planche_originale.jpeg",
+        "sha256": "d112c20603bc93fdc9673aff87e0cd293802ec5b4d9ef1ace1e062ee9ac56ec9",
+        "status": "imported_additional_reference_existing_canonical_unchanged"
+      },
+      "portrait": {
+        "path": "art/library/heroes/mathilde/story_unlock/portrait_provisoire.png",
+        "sha256": "68a43c9876a8f83f017574003905aee6bcbce36eb93efa16b4af53dbd9bc7751",
+        "status": "provisional_not_approved_for_combat",
+        "visual_review_note": "Portrait recadré provisoire ; fragment de lettrage visible près du coin supérieur gauche. Validation utilisateur requise."
+      }
     }
   }
 }

@@ -2,7 +2,11 @@
   "schema_version": 1,
   "status": "design_and_assets_prepared_runtime_not_implemented",
   "recruitment_type": "main_story_progression",
-  "order": ["anouk", "marec", "mathilde"],
+  "order": [
+    "anouk",
+    "marec",
+    "mathilde"
+  ],
   "heroes": [
     {
       "id": "anouk",
@@ -12,7 +16,8 @@
       "art": "art/library/heroes/anouk/reference.jpg",
       "art_sha256": "134aa4d0a452a90249a8cea15e8b2ee6f3d15eabccf66d2a7ebeb04adda76907",
       "portrait": "art/library/heroes/anouk/story_unlock/portrait_provisoire.png",
-      "portrait_status": "provisional_not_for_combat"
+      "portrait_status": "provisional_not_for_combat",
+      "canonical_story_beat_ref": "universe/lore/legendary_seven_formation.json#/recruitments/formation.anouk_rank_2"
     },
     {
       "id": "marec",
@@ -22,7 +27,8 @@
       "art": "art/library/heroes/marec/reference.jpg",
       "art_sha256": "e809e9b407c7a7c08ec40b4a2d4e323e04571391ea874bd2e007308516030cf9",
       "portrait": "art/library/heroes/marec/story_unlock/portrait_provisoire.png",
-      "portrait_status": "provisional_not_for_combat"
+      "portrait_status": "provisional_not_for_combat",
+      "canonical_story_beat_ref": "universe/lore/legendary_seven_formation.json#/recruitments/formation.marec_rank_3"
     },
     {
       "id": "mathilde",
@@ -32,7 +38,8 @@
       "art": "art/library/heroes/mathilde/story_unlock/planche_originale.jpeg",
       "art_sha256": "d112c20603bc93fdc9673aff87e0cd293802ec5b4d9ef1ace1e062ee9ac56ec9",
       "portrait": "art/library/heroes/mathilde/story_unlock/portrait_provisoire.png",
-      "portrait_status": "provisional_not_for_combat"
+      "portrait_status": "provisional_not_for_combat",
+      "canonical_story_beat_ref": "universe/lore/legendary_seven_formation.json#/recruitments/formation.mathilde_rank_4"
     }
   ],
   "rules": {
@@ -49,5 +56,9 @@
     "status": "original_sheets_reused_or_imported; provisional_portraits_imported"
   },
   "runtime_status": "not_implemented",
-  "notes": "Reuse canonical Anouk and Marec plates already in art/library. Preserve the differing Mathilde archive plate as an additional design reference; do not overwrite the canonical plate."
+  "notes": "Reuse canonical Anouk and Marec plates already in art/library. Preserve the differing Mathilde archive plate as an additional design reference; do not overwrite the canonical plate.",
+  "story_progression": {
+    "canonical_formation_order_ref": "universe/lore/legendary_seven_formation.json#formation_order",
+    "runtime_gate_ids": "to_define_from_campaign_missions"
+  }
 }
