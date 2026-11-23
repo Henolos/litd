@@ -2808,3 +2808,24 @@ Familles indicatives non encore validées individuellement : immobilisation phys
 12. Coûts, durées, résistances et probabilités à déterminer lors des arbitrages et tests.
 
 Les combinaisons illustratives ne sont pas des recettes définitives par espèce. Préserver V7.46 et V8.3. Validation documentaire uniquement.
+
+
+---
+## V7.48 — Moteur commun de calcul des probabilités de capture (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, moteur commun de calcul des probabilités de capture avec coefficients contextuels, affichage de la probabilité réelle et douze règles complémentaires explicitement approuvées.**
+
+1. Moteur commun avec coefficients contextuels.
+2. Conserver les cinq facteurs : PV, états de combat, nature de l'ennemi, équipement de capture, moral et volonté.
+3. Adapter leur importance à chaque famille de méthodes.
+4. Prendre en compte les caractéristiques individuelles.
+5. Vérifier l'éligibilité avant calcul probabiliste.
+6. Afficher la probabilité réelle avant confirmation.
+7. Actualiser la probabilité à chaque changement pertinent.
+8. Distinguer capture impossible et difficile.
+9. Réussite garantie possible si conditions spécifiques justifiées.
+10. Ne pas révéler automatiquement les caractéristiques secrètes par les coefficients détaillés.
+11. Enregistrer durablement les résultats résolus, sans nouveau tirage au rechargement.
+12. Formules, coefficients, plafonds et seuils définitifs après simulations et tests de combat.
+
+Simulation et maquette HUD indicatives, aucun coefficient, coût ou seuil numérique validé. Préserver V7.46–V7.47 et V8.3. Validation documentaire uniquement.
