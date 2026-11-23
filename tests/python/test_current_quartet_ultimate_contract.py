@@ -11,11 +11,11 @@ def _load_contract() -> dict:
         return json.load(handle)
 
 
-def test_current_quartet_ultimate_contract_shape() -> None:
+def test_former_roster_ultimate_design_contract_shape() -> None:
     data = _load_contract()
 
-    assert data["schema_version"] == 1
-    assert data["status"] == "CURRENT_QUARTET_AUTHORED_IDENTITY_LOCK"
+    assert data["schema_version"] == 2
+    assert data["status"] == "FORMER_STARTING_ROSTER_HERO_DESIGN_REFERENCE"
     assert data["charge_progression"] == {"16": 1, "32": 2, "48": 3}
 
     heroes = data["heroes"]
@@ -44,7 +44,7 @@ def test_current_quartet_ultimate_contract_shape() -> None:
         )
 
 
-def test_current_quartet_ultimate_names_are_unique() -> None:
+def test_former_roster_ultimate_names_are_unique() -> None:
     data = _load_contract()
     names = [
         ultimate["name"]

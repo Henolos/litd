@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail CI when runtime-facing LITD data drifts from the canonical starting quartet.
+"""Fail CI when hero source data reintroduces an unapproved starting roster.
 
 This gate is intentionally dependency-free so it can run before any game export.
 """
@@ -12,13 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 HEROES_FILE = ROOT / "data" / "heroes.json"
-
-EXPECTED_QUARTET = [
-    (1, "mathilde", "Mathilde"),
-    (2, "marec", "Marec"),
-    (3, "anouk", "Anouk"),
-    (4, "aurelien", "Aurélien"),
-]
+ROSTER_FILE = ROOT / "data" / "veilleurs" / "canonical_roster.json"
 
 # Former starting-quartet identities. They may remain in historical documentation,
 # but must not be referenced by runtime-facing game data or scripts.
@@ -66,43 +60,31 @@ def load_heroes() -> list[dict]:
     return payload
 
 
-def validate_quartet(heroes: list[dict]) -> None:
-    canonical = [
-        hero
-        for hero in heroes
+def validate_heroes(heroes: list[dict]) -> None:
+    designated_starters = [
+        hero for hero in heroes
         if isinstance(hero, dict)
-        and hero.get("canon_status") == "canonical_starting_hero"
+        and (hero.get("canon_status") == "canonical_starting_hero" or "starting_quartet_order" in hero)
     ]
-    if len(canonical) != 4:
-        fail(
-            "expected exactly 4 canonical_starting_hero entries, "
-            f"found {len(canonical)}"
-        )
-
-    try:
-        canonical.sort(key=lambda hero: int(hero["starting_quartet_order"]))
-    except (KeyError, TypeError, ValueError) as exc:
-        fail(f"invalid starting_quartet_order in canonical heroes: {exc}")
-
-    actual = [
-        (
-            int(hero.get("starting_quartet_order")),
-            str(hero.get("canonical_id", hero.get("id", ""))).lower(),
-            str(hero.get("name", "")),
-        )
-        for hero in canonical
-    ]
-
-    if actual != EXPECTED_QUARTET:
-        fail(
-            "starting quartet drifted from canon. "
-            f"expected={EXPECTED_QUARTET!r} actual={actual!r}"
-        )
-
+    if designated_starters:
+        fail("data/heroes.json still designates a starting quartet; the current roster is unassigned")
     ids = [str(hero.get("id", "")).lower() for hero in heroes if isinstance(hero, dict)]
     duplicate_ids = sorted({hero_id for hero_id in ids if hero_id and ids.count(hero_id) > 1})
     if duplicate_ids:
         fail(f"duplicate hero ids in data/heroes.json: {duplicate_ids}")
+
+
+def validate_unassigned_roster() -> None:
+    try:
+        roster = json.loads(ROSTER_FILE.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        fail(f"cannot read canonical roster decision: {exc}")
+    if (
+        roster.get("status") != "starting_roster_unassigned"
+        or roster.get("rules", {}).get("starting_quartet_assigned") is not False
+        or roster.get("heroes") != []
+    ):
+        fail("the retired starting quartet must remain unassigned until a new roster is explicitly approved")
 
 
 def iter_runtime_text_files():
@@ -139,11 +121,11 @@ def reject_legacy_runtime_references() -> None:
 
 def main() -> None:
     heroes = load_heroes()
-    validate_quartet(heroes)
+    validate_heroes(heroes)
+    validate_unassigned_roster()
     reject_legacy_runtime_references()
     print(
-        "CANON_FRESHNESS_OK: starting quartet is Mathilde, Marec, Anouk, Aurélien "
-        "and no legacy quartet references were found in runtime-facing text files."
+        "CANON_FRESHNESS_OK: no starting roster is designated and no legacy quartet references were found in runtime-facing text files."
     )
 
 

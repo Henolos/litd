@@ -7,7 +7,7 @@
 - Niveau de recherche : R0 (import d'un contrat déjà testé dans le dépôt)
 
 ## Qui ?
-Le quatuor canonique et tout système qui affiche ou résout les positions de combat.
+Les personnages affectés à une formation de combat, quelle que soit leur composition.
 
 ## Quoi ?
 Le système utilise les rangs R1 à R4. L'ordre visuel canonique garde R1 au contact des ennemis et affiche les rangs de gauche à droite sous la forme `R4 R3 R2 R1`.
@@ -44,7 +44,7 @@ R1 reste le rang de contact ennemi et l'affichage de référence reste R4→R1. 
 - stabilité du départage déterministe.
 
 ## Relations Knowledge Graph
-- depends_on: ADR-0002-quatuor-canonique-les-veilleurs
+- applies_to: tactical formation mechanics independently of starting roster membership
 - influences: ciblage, HUD, compétences, IA, déplacement, inspection
 - validated_by: `tests/test_combat_formation_contract.py`
 - contradicts: toute convention ancienne plaçant visuellement R1 à gauche ou éloigné des ennemis

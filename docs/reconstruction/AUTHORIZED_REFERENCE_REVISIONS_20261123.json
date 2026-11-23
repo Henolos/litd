@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "scope": "Exact evidence-backed replacements; original reset hashes remain immutable.",
+  "revisions": [
+    {
+      "path": "data/heroes.json",
+      "original_sha256": "652046ae35070b39cc7dadcf6663411317b3bbf7483468aadeb487f918d4efb7",
+      "authorized_sha256": "89a154bbf529ba200a1760f705a729704a597d7d96232e6f5a9b79e17b1fdb6d",
+      "evidence_ref": "docs/knowledge/decisions/ADR-0009-roster-de-depart-a-definir.md",
+      "reason": "The approved 2026-11-23 roster decision removes the former quartet designation; this exact document or data update records that decision while retaining the original reset hash for audit."
+    },
+    {
+      "path": "data/veilleurs/canonical_roster.json",
+      "original_sha256": "641f1052757bb8ddc283964a2c2f138c4bd0b6838b4aca2bcdc05da71d2c1d30",
+      "authorized_sha256": "804949978ad8957c3310a62241065fe6db856773783a04f7bfa63ba706d2d2fa",
+      "evidence_ref": "docs/knowledge/decisions/ADR-0009-roster-de-depart-a-definir.md",
+      "reason": "The approved 2026-11-23 roster decision removes the former quartet designation; this exact document or data update records that decision while retaining the original reset hash for audit."
+    },
+    {
+      "path": "data/veilleurs/current_quartet_ultimate_sheets.json",
+      "original_sha256": "7256765e70d57f5ffcd1a71a0a6892e7c35edb73dc64d4b0ad06c724a25db407",
+      "authorized_sha256": "aa0d1fd5f1bcbe766845e8e0ae3fa4038bbe1ba430a5c4218d73ffb7eab5e06e",
+      "evidence_ref": "docs/knowledge/decisions/ADR-0009-roster-de-depart-a-definir.md",
+      "reason": "The approved 2026-11-23 roster decision removes the former quartet designation; this exact document or data update records that decision while retaining the original reset hash for audit."
+    },
+    {
+      "path": "data/veilleurs/developer_selftest_contract.json",
+      "original_sha256": "9328e5ce47364cd7d64e906afc222fe8dfcc14dcfe58e716ebb482722ce01051",
+      "authorized_sha256": "1a39e5f92246dba17e086f7debb892403aa0b979bcfd0586a9be03c8ef9a8ab8",
+      "evidence_ref": "docs/knowledge/decisions/ADR-0009-roster-de-depart-a-definir.md",
+      "reason": "The approved 2026-11-23 roster decision removes the former quartet designation; this exact document or data update records that decision while retaining the original reset hash for audit."
+    },
+    {
+      "path": "data/veilleurs/pre_pc_gate.json",
+      "original_sha256": "d54870a43e86f878fc9858847796766ef1a181dc45b92f7499bc56e003f18ce9",
+      "authorized_sha256": "0dd8700ec85049d6c7d8ef767ea35d0311dc9b48812fadf93f306ab041de9601",
+      "evidence_ref": "docs/knowledge/decisions/ADR-0009-roster-de-depart-a-definir.md",
+      "reason": "The approved 2026-11-23 roster decision removes the former quartet designation; this exact document or data update records that decision while retaining the original reset hash for audit."
+    },
+    {
+      "path": "data/veilleurs/preplay_hardening_contract.json",
+      "original_sha256": "9366c22e6a2ebdb3d886172f3d53cf5a66855c5a469ab706a67a992e41ec2449",
+      "authorized_sha256": "c1636a516cf5304065436e60cb70f1a1aaf2bc604440c03946f1a95e3dc32fdf",
+      "evidence_ref": "docs/knowledge/decisions/ADR-0009-roster-de-depart-a-definir.md",
+      "reason": "The approved 2026-11-23 roster decision removes the former quartet designation; this exact document or data update records that decision while retaining the original reset hash for audit."
+    },
+    {
+      "path": "data/veilleurs/v06/watchers.json",
+      "original_sha256": "077fc78f60ebbdb55fdb5b181abedfc09e9eb3cce9660eead29c33ba0ac49db1",
+      "authorized_sha256": "3fcc7478f0e1fe6e4320cbda6f130cf3b437c000376a0d83e87dcd322b34586f",
+      "evidence_ref": "docs/knowledge/decisions/ADR-0009-roster-de-depart-a-definir.md",
+      "reason": "The approved 2026-11-23 roster decision removes the former quartet designation; this exact document or data update records that decision while retaining the original reset hash for audit."
+    },
+    {
+      "path": "docs/STARTING_QUARTET_RESET.md",
+      "original_sha256": "a4a1ce5a15d7c45a07afd036d541cbb26eabc88c390d0308fa767907dea3021d",
+      "authorized_sha256": "23f1ef49d0c4d679e37f1738fc7d4125284a8521770f7dafee310448611a27e7",
+      "evidence_ref": "docs/knowledge/decisions/ADR-0009-roster-de-depart-a-definir.md",
+      "reason": "The approved 2026-11-23 roster decision removes the former quartet designation; this exact document or data update records that decision while retaining the original reset hash for audit."
+    },
+    {
+      "path": "docs/VEILLEURS_CANONICAL_ROSTER.md",
+      "original_sha256": "ec8e2a2e1a55550339b36ccc2f9091e08872daebbcf6533d13b10d184c46efb9",
+      "authorized_sha256": "4a9d3c793f63cca36944abcd2c6152f3ebf63ae671b4f2a4f32920a7a6326cce",
+      "evidence_ref": "docs/knowledge/decisions/ADR-0009-roster-de-depart-a-definir.md",
+      "reason": "The approved 2026-11-23 roster decision removes the former quartet designation; this exact document or data update records that decision while retaining the original reset hash for audit."
+    },
+    {
+      "path": "docs/art/ART_LIBRARY_FOUNDATION.md",
+      "original_sha256": "2cf2e5bd0693bb4215354ec95c4c346d2f75a8cf92a58cfe8941ba0e70d038c6",
+      "authorized_sha256": "5e14435c561faa528a31c481633d78e81d03ab097d140c20b1b8e41ab59201c6",
+      "evidence_ref": "docs/knowledge/decisions/ADR-0009-roster-de-depart-a-definir.md",
+      "reason": "The approved 2026-11-23 roster decision removes the former quartet designation; this exact document or data update records that decision while retaining the original reset hash for audit."
+    },
+    {
+      "path": "docs/art/HERO_RUNTIME_DEPENDENCIES_20261111.md",
+      "original_sha256": "82da2a298912b1ce94ec076971020c2d8218b4237e352cf86b5e71b2560adfd9",
+      "authorized_sha256": "99bf4517adc14fe01126cf387bfb38491b0679bf3bdb9bd8ff2d5ee6365077ca",
+      "evidence_ref": "docs/knowledge/decisions/ADR-0009-roster-de-depart-a-definir.md",
+      "reason": "The approved 2026-11-23 roster decision removes the former quartet designation; this exact document or data update records that decision while retaining the original reset hash for audit."
+    },
+    {
+      "path": "docs/governance/TRIEUR_V2.md",
+      "original_sha256": "6462580cafa760d8b6729cd304d09ef0b658d832e722c952983a6c88a2c4662e",
+      "authorized_sha256": "27984cfd157c369404b6ada1867b49fda49073515205f60f3a2d9728c4d3aceb",
+      "evidence_ref": "docs/knowledge/decisions/ADR-0009-roster-de-depart-a-definir.md",
+      "reason": "The approved 2026-11-23 roster decision removes the former quartet designation; this exact document or data update records that decision while retaining the original reset hash for audit."
+    },
+    {
+      "path": "docs/knowledge/CATALOG.md",
+      "original_sha256": "9df4f059e5d6889c13b3a01e81274cf7d847010d0735b4862a86dc3131724a99",
+      "authorized_sha256": "73fc1784312fb2b89ad5f4d108874fd7a8ac962d15b7156429dbc16121490e0e",
+      "evidence_ref": "docs/knowledge/decisions/ADR-0009-roster-de-depart-a-definir.md",
+      "reason": "The approved 2026-11-23 roster decision removes the former quartet designation; this exact document or data update records that decision while retaining the original reset hash for audit."
+    },
+    {
+      "path": "docs/knowledge/decisions/ADR-0002-quatuor-canonique-les-veilleurs.md",
+      "original_sha256": "86d6a54fe2efe0de5eeef03069f3e182007e559808f92bd57a706790ad8dbc21",
+      "authorized_sha256": "d59601b2a63e854b9fe751f310ccbccfa1b4dc512a84c858b33642e6b0a67dcd",
+      "evidence_ref": "docs/knowledge/decisions/ADR-0009-roster-de-depart-a-definir.md",
+      "reason": "The approved 2026-11-23 roster decision removes the former quartet designation; this exact document or data update records that decision while retaining the original reset hash for audit."
+    },
+    {
+      "path": "docs/knowledge/decisions/ADR-0005-competences-veilleurs-3x15.md",
+      "original_sha256": "ff2a823ec37e0fb7e214ee06611e86a91d3ca71684f5eea31c183f2ad269d971",
+      "authorized_sha256": "9aed6222ce5ae5fc49644e07156d490889418e5a24aa0ae675b22b8e3fbf5edd",
+      "evidence_ref": "docs/knowledge/decisions/ADR-0009-roster-de-depart-a-definir.md",
+      "reason": "The approved 2026-11-23 roster decision removes the former quartet designation; this exact document or data update records that decision while retaining the original reset hash for audit."
+    },
+    {
+      "path": "docs/knowledge/decisions/ADR-0006-rangs-et-formation-combat.md",
+      "original_sha256": "16a9dfd148c9d5d0012da3e13406c4076ebc056640da13a009689e2e9a79fe4b",
+      "authorized_sha256": "663522290995b94828b467f58e5e13aa1aa1f752704417f0a648a3ba016a0d3a",
+      "evidence_ref": "docs/knowledge/decisions/ADR-0009-roster-de-depart-a-definir.md",
+      "reason": "The approved 2026-11-23 roster decision removes the former quartet designation; this exact document or data update records that decision while retaining the original reset hash for audit."
+    },
+    {
+      "path": "docs/knowledge/guardian-rules.yml",
+      "original_sha256": "f5304b03fc752cc68fd49552d7427d00f25af96a56f51b288c703803f921ea5e",
+      "authorized_sha256": "dd10e8f012205f6a398e4224266485c45f7270f625636516d50f7bb96e3bf12f",
+      "evidence_ref": "docs/knowledge/decisions/ADR-0009-roster-de-depart-a-definir.md",
+      "reason": "The approved 2026-11-23 roster decision removes the former quartet designation; this exact document or data update records that decision while retaining the original reset hash for audit."
+    },
+    {
+      "path": "docs/veilleurs/PRE_PC_LOCK.md",
+      "original_sha256": "2033e64994eb19947de947312411b9eae55aff249d22272d3086852c18fe0c4d",
+      "authorized_sha256": "c6b4586abad62a556574becf1acd3942e84fa2b33fbd7caa6ce932f12881c961",
+      "evidence_ref": "docs/knowledge/decisions/ADR-0009-roster-de-depart-a-definir.md",
+      "reason": "The approved 2026-11-23 roster decision removes the former quartet designation; this exact document or data update records that decision while retaining the original reset hash for audit."
+    },
+    {
+      "path": "docs/veilleurs/REPOSITORY_INTEGRITY_AUDIT.md",
+      "original_sha256": "b92dda75bb3555190e55368213be65f801647e4565d23c0b33102e1dca10ee8b",
+      "authorized_sha256": "0b76f5592013d6efa72ca501fc8207ecb7d14e774b709bd91d34fd9ca538da88",
+      "evidence_ref": "docs/knowledge/decisions/ADR-0009-roster-de-depart-a-definir.md",
+      "reason": "The approved 2026-11-23 roster decision removes the former quartet designation; this exact document or data update records that decision while retaining the original reset hash for audit."
+    }
+  ]
+}

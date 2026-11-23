@@ -9,6 +9,68 @@ import re
 
 ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = 'docs/reconstruction/RESET_20261112_MANIFEST.json'
+AUTHORIZED_REVISIONS = 'docs/reconstruction/AUTHORIZED_REFERENCE_REVISIONS_20261123.json'
+HEX_SHA256 = re.compile(r'^[0-9a-f]{64}$')
+
+
+def _authorized_reference_hashes(root: Path, references: list[dict]) -> tuple[dict[str, str], list[str]]:
+    """Load exact, evidence-backed replacements without changing reset hashes."""
+    path = root / AUTHORIZED_REVISIONS
+    if not path.is_file():
+        return {}, []
+    errors: list[str] = []
+    try:
+        ledger = json.loads(path.read_text(encoding='utf-8'))
+    except (OSError, json.JSONDecodeError):
+        return {}, ['invalid_authorized_reference_ledger']
+    if not isinstance(ledger, dict) or ledger.get('schema_version') != 1:
+        return {}, ['invalid_authorized_reference_ledger']
+    entries = ledger.get('revisions')
+    if not isinstance(entries, list):
+        return {}, ['invalid_authorized_reference_ledger']
+
+    frozen = {item['path']: item['sha256'] for item in references}
+    if len(frozen) != len(references):
+        errors.append('duplicate_preservation_manifest_path')
+    authorized: dict[str, str] = {}
+    seen_paths: set[str] = set()
+    for index, entry in enumerate(entries):
+        label = f'authorized_revision_{index}'
+        if not isinstance(entry, dict):
+            errors.append(f'{label}_invalid')
+            continue
+        ref = entry.get('path')
+        old_hash = entry.get('original_sha256')
+        new_hash = entry.get('authorized_sha256')
+        evidence = entry.get('evidence_ref')
+        reason = entry.get('reason')
+        if not isinstance(ref, str) or ref not in frozen:
+            errors.append(f'{label}_unknown_path')
+            continue
+        if ref in seen_paths:
+            errors.append(f'{label}_duplicate_path')
+            continue
+        seen_paths.add(ref)
+        if old_hash != frozen[ref] or not isinstance(new_hash, str) or not HEX_SHA256.fullmatch(new_hash) or new_hash == old_hash:
+            errors.append(f'{label}_hash_mismatch')
+            continue
+        evidence_path = Path(evidence) if isinstance(evidence, str) else Path('/')
+        evidence_file = root / evidence_path
+        if (
+            not isinstance(evidence, str)
+            or not evidence.strip()
+            or evidence_path.is_absolute()
+            or '..' in evidence_path.parts
+            or not evidence_file.resolve().is_relative_to(root.resolve())
+            or not evidence_file.is_file()
+        ):
+            errors.append(f'{label}_evidence_missing')
+            continue
+        if not isinstance(reason, str) or len(reason.strip()) < 40:
+            errors.append(f'{label}_reason_missing')
+            continue
+        authorized[ref] = new_hash
+    return authorized, errors
 
 
 def validate(root: Path = ROOT, group: str = 'all') -> list[str]:
@@ -17,9 +79,12 @@ def validate(root: Path = ROOT, group: str = 'all') -> list[str]:
     references = manifest['preserved_reference_files']
     if not references:
         errors.append('empty_preservation_manifest')
+    authorized_hashes, ledger_errors = _authorized_reference_hashes(root, references)
+    errors.extend(ledger_errors)
     for item in references:
         path = root / item['path']
-        if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != item['sha256']:
+        actual_hash = hashlib.sha256(path.read_bytes()).hexdigest() if path.is_file() else None
+        if actual_hash not in {item['sha256'], authorized_hashes.get(item['path'])}:
             errors.append('reference_changed:' + item['path'])
     if group == 'lore':
         if not any('remanence' in item['path'].lower() for item in references):

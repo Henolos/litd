@@ -15,7 +15,8 @@ def test_developer_selftest_contract_is_focus_locked() -> None:
     data = json.loads(CONTRACT.read_text(encoding="utf-8"))
     assert data["mode"] == "developer_selftest"
     assert data["target_duration_minutes"] == [30, 45]
-    assert data["canonical_watchers"] == ["Mathilde", "Marec", "Anouk", "Aurélien"]
+    assert data["canonical_roster_status"] == "unassigned_pending_new_selection"
+    assert data["canonical_watchers"] == []
     assert [row["id"] for row in data["steps"]] == [
         "sanctuary_preparation",
         "short_exploration",

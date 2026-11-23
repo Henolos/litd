@@ -1,6 +1,6 @@
 # ADR-0002 — Quatuor canonique de départ de LITD : Les Veilleurs
 
-- Statut : active
+- Statut : superseded
 - Confiance : very_high
 - Domaine : canon / personnages / combat
 - Date : 2026-09-10
@@ -74,3 +74,4 @@ Uniquement si le design du quatuor de départ est volontairement modifié.
 - validated_by: PR #246, PR #250, PR #259
 - tested_by: tests de roster/cinématique/équipement + runtime player smoke
 - measured_by: CI et smoke joueur
+- superseded_by: ADR-0009-roster-de-depart-a-definir

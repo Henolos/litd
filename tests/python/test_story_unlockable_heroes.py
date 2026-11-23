@@ -37,10 +37,13 @@ class StoryUnlockableHeroesTests(unittest.TestCase):
             self.assertEqual(canon_by_id[beat_id]["joining_hero"], "hero." + hero["id"])
             self.assertTrue((ROOT / entry["sheet"]["path"]).is_file())
             self.assertTrue((ROOT / entry["portrait"]["path"]).is_file())
+            source_portrait = entry["source_portrait_archive"]
+            self.assertTrue((ROOT / source_portrait["path"]).is_file())
+            self.assertEqual(hashlib.sha256((ROOT / source_portrait["path"]).read_bytes()).hexdigest(), source_portrait["sha256"])
             for asset in (entry["sheet"], entry["portrait"]):
                 digest = hashlib.sha256((ROOT / asset["path"]).read_bytes()).hexdigest()
                 self.assertEqual(digest, asset["sha256"], asset["path"])
-            self.assertEqual(entry["portrait"]["status"], "provisional_not_approved_for_combat")
+            self.assertIn(entry["portrait"]["status"], {"pixel_crop_candidate_from_original_plate_not_runtime", "archive_portrait_retained_candidate_not_runtime"})
 
 
 if __name__ == "__main__":

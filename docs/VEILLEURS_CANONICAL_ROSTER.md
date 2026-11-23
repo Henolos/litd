@@ -1,12 +1,9 @@
-# LITD : Les Veilleurs — quatuor canonique
+# LITD : Les Veilleurs — roster de départ à définir
 
-Le quatuor de départ actif est exclusivement :
+Depuis la correction utilisateur du 23 novembre 2026, Mathilde, Marec, Anouk et Aurélien ne sont plus considérés comme membres du quatuor de départ. La nouvelle composition n'a pas encore été définie ; aucun nom de remplacement n'est présumé.
 
-- Mathilde (`mathilde`)
-- Marec (`marec`)
-- Anouk (`anouk`)
-- Aurélien (`aurelien`)
+Le statut courant est `starting_roster_unassigned` dans `data/veilleurs/canonical_roster.json`. Les entrées de `data/heroes.json` restent des données de personnages et de tests, sans ordre de départ.
 
-Les anciennes identités de prototype ne doivent pas être utilisées par le runtime, les données actives, les tests actifs, les contrats de production ou les ressources de gameplay. Les archives sous `data/veilleurs/legacy/` peuvent conserver l'historique et ne constituent pas une source active.
+Les anciens contrats et garde-fous qui exigeaient ces quatre identifiants ont été retirés. Les données tactiques V0.6 et leurs loadouts restent des fixtures de combat historiques ; elles ne définissent pas le nouveau groupe de départ.
 
-Toute nouvelle donnée de Veilleur doit référencer les identifiants canoniques ci-dessus.
+Le choix d'un nouveau groupe devra être enregistré explicitement avant de réactiver un verrou canonique ou un test de roster exact.

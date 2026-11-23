@@ -10,8 +10,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = ROOT / "docs/art/validated_heroes_manifest_20261111.json"
+WEAPON_MASTER_MANIFEST = ROOT / "docs/art/weapon_master_heroes_manifest_20261123.json"
 EXPECTED_HEROES = {"mathilde", "marec", "anouk", "aurelien", "effrie", "lya"}
-PLAYABLE_QUARTET = {"mathilde", "marec", "anouk", "aurelien"}
 
 
 class ValidatedHeroArtLibraryTests(unittest.TestCase):
@@ -47,7 +47,16 @@ class ValidatedHeroArtLibraryTests(unittest.TestCase):
                 self.assertTrue(data.endswith(b"\xff\xd9"), f"Truncated JPEG: {path}")
 
     def test_no_unregistered_hero_originals(self):
+        # Keep the November 11 approval manifest immutable as a record of its
+        # six sheets, while also recognizing explicitly registered new hero
+        # originals from the weapon-master import.
+        weapon_master = json.loads(WEAPON_MASTER_MANIFEST.read_text(encoding="utf-8"))
         expected = {a["target_path"] for a in self.assets}
+        expected.update(
+            asset["target_path"]
+            for asset in weapon_master["assets"]
+            if asset["target_path"].endswith("/reference.jpg")
+        )
         actual = {p.relative_to(ROOT).as_posix()
                   for p in (ROOT / "art/library/heroes").glob("*/reference.jpg")}
         self.assertEqual(actual, expected)

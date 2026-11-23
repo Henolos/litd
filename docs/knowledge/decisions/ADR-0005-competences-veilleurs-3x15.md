@@ -7,7 +7,7 @@
 - Niveau de recherche : R0 (import de canon déjà implémenté et auditable dans le dépôt)
 
 ## Qui ?
-Les quatre Veilleurs canoniques : Mathilde, Marec, Anouk et Aurélien.
+Les arbres de compétences conçus pour Mathilde, Marec, Anouk et Aurélien, en tant que personnages. Cette ADR ne définit pas le quatuor de départ.
 
 ## Quoi ?
 Chaque Veilleur dispose de trois arbres de compétences, contenant chacun quinze compétences structurées. Les données sont séparées par héros dans `data/veilleurs/skills/`.
@@ -34,7 +34,7 @@ La PR #247 documente également l'audit courant du quatuor à 3×15, soit 45 com
 Le système global LITD contient encore des créatures dont les arbres n'ont pas tous quinze compétences. ADR-0001 impose donc de ne pas généraliser cet invariant des quatre Veilleurs à toutes les créatures tant que leur implémentation de référence n'est pas complète.
 
 ## Décision
-Pour les quatre Veilleurs canoniques, 3×15 est un invariant actif. Toute modification qui réduit le nombre d'arbres ou de compétences doit être traitée comme une régression sauf décision canonique explicite qui supersède cette ADR.
+Pour ces quatre personnages, 3×15 est un invariant de leurs fiches de progression. Toute modification qui réduit le nombre d'arbres ou de compétences doit être traitée comme une régression sauf décision explicite qui supersède cette ADR.
 
 ## Tests et métriques
 - nombre d'arbres par Veilleur = 3 ;
@@ -44,7 +44,7 @@ Pour les quatre Veilleurs canoniques, 3×15 est un invariant actif. Toute modifi
 - validation des contrats source/resolver.
 
 ## Relations Knowledge Graph
-- depends_on: ADR-0002-quatuor-canonique-les-veilleurs
+- applies_to: character skill progression independently of starting roster membership
 - influences: progression, combat, UI des arbres, équilibrage, resolver
 - validated_by: données `data/veilleurs/skills/*.json`
 - risk_for: régressions de progression, UI incomplète, données orphelines

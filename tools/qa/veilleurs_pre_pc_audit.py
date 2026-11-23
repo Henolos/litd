@@ -115,7 +115,13 @@ def main() -> int:
         roster = re.findall(r'"([^"]+)"', roster_match.group(1))
     checks["canonical_roster"] = roster == contract["canonical_watchers"]
     if not checks["canonical_roster"]:
-        fail(errors, f"Roster canonique runtime différent: {roster}")
+        fail(errors, f"Roster de départ déclaré différent du contrat non attribué: {roster}")
+    checks["canonical_roster_unassigned"] = (
+        contract.get("canonical_roster_status") == "unassigned_pending_new_selection"
+        and roster == []
+    )
+    if not checks["canonical_roster_unassigned"]:
+        fail(errors, "Le pré-PC ne reflète pas l'absence de composition de départ validée.")
 
     allowed_stale_files = set(contract.get("allowed_stale_reference_files", []))
     stale_hits: dict[str, list[str]] = {}
