@@ -1,0 +1,15 @@
+{
+  "anouk": {
+    "sheet_sha256": "134aa4d0a452a90249a8cea15e8b2ee6f3d15eabccf66d2a7ebeb04adda76907",
+    "portrait_sha256": "e18471dc0e81a42bda2b05d8c96e1c8ebc38c6a2eff11f2e7bc7404831a0f6fd"
+  },
+  "marec": {
+    "sheet_sha256": "e809e9b407c7a7c08ec40b4a2d4e323e04571391ea874bd2e007308516030cf9",
+    "portrait_sha256": "3cadcfef1285ee283c81f5f635570b39080df7b6cd605e1ea451538160062c54"
+  },
+  "mathilde": {
+    "sheet_sha256": "d112c20603bc93fdc9673aff87e0cd293802ec5b4d9ef1ace1e062ee9ac56ec9",
+    "portrait_sha256": "68a43c9876a8f83f017574003905aee6bcbce36eb93efa16b4af53dbd9bc7751"
+  },
+  "notes": "Hashes of uploaded JPEGs and locally derived provisional PNG portraits. Binary assets still require Git import."
+}
