@@ -26,7 +26,7 @@ Archive exacte : `LITD_HEROS_6_PLANCHES_WORK (15).zip` (4 061 056 octets). Les s
 | Éffrie | art/library/heroes/effrie/reference.jpg | 620653 |
 | Lya | art/library/heroes/lya/reference.jpg | 744724 |
 
-Les empreintes complètes, dimensions et statuts binaires sont dans `validated_heroes_manifest_20261111.json`. La validation artistique du propriétaire est acquise. Éffrie et Lya restent des références artistiques ; `data/heroes.json` conserve exactement Mathilde, Marec, Anouk et Aurélien.
+Les empreintes complètes, dimensions et statuts binaires sont dans `validated_heroes_manifest_20261111.json`. La validation artistique du propriétaire est acquise. Èffrie et Lya restent des références artistiques. Les quatre entrées de `data/heroes.json` conservent des données de personnage, mais ne définissent plus le roster de départ ; celui-ci reste à attribuer.
 
 ## Dépendances auditées et migration
 

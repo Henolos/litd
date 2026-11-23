@@ -36,12 +36,12 @@
   },
   "entries": [
     {
-      "id": "litd-starting-quartet",
+      "id": "litd-hero-catalog",
       "path": "data/heroes.json",
       "status": "canonical",
-      "canonical_key": "litd.starting_quartet",
+      "canonical_key": "litd.hero_catalog",
       "canon_version": 1,
-      "description": "Canonical runtime source for the validated starting quartet: Mathilde, Marec, Anouk and Aurélien."
+      "description": "Runtime hero character catalog; current starting roster is unassigned and must be defined by an explicit design decision."
     },
     {
       "id": "litd-file-sorter-manifest",

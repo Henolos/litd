@@ -4,7 +4,8 @@
   "game": "LITD : Les Veilleurs",
   "purpose": "Valider la boucle coeur avant les cinq playtests naïfs, sans promouvoir aucun gate humain.",
   "target_duration_minutes": [30, 45],
-  "canonical_watchers": ["Mathilde", "Marec", "Anouk", "Aurélien"],
+  "canonical_roster_status": "unassigned_pending_new_selection",
+  "canonical_watchers": [],
   "steps": [
     {
       "id": "sanctuary_preparation",

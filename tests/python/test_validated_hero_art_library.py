@@ -11,7 +11,6 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = ROOT / "docs/art/validated_heroes_manifest_20261111.json"
 EXPECTED_HEROES = {"mathilde", "marec", "anouk", "aurelien", "effrie", "lya"}
-PLAYABLE_QUARTET = {"mathilde", "marec", "anouk", "aurelien"}
 
 
 class ValidatedHeroArtLibraryTests(unittest.TestCase):

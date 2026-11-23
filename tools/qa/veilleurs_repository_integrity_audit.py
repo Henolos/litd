@@ -18,14 +18,14 @@ PRE_PC = ROOT / "data/veilleurs/pre_pc_gate.json"
 PIPELINE = ROOT / "tools/godot/veilleurs_pipeline_config.json"
 SELF = Path(__file__).resolve()
 
-CANON_ENTITY_IDS = [
+FIXTURE_ENTITY_IDS = [
     "ENT_WATCHER_marec",
     "ENT_WATCHER_mathilde",
     "ENT_WATCHER_aurelien",
     "ENT_WATCHER_anouk",
 ]
-CANON_RUNTIME_IDS = ["Marec", "Mathilde", "Aurélien", "Anouk"]
-CANON_NAMES = ["Marec", "Mathilde", "Aurélien", "Anouk"]
+FIXTURE_RUNTIME_IDS = ["Marec", "Mathilde", "Aurélien", "Anouk"]
+FIXTURE_NAMES = ["Marec", "Mathilde", "Aurélien", "Anouk"]
 CI_GODOT = "4.7.2"
 PROJECT_GODOT = "4.7"
 WORKFLOWS = [
@@ -133,29 +133,38 @@ def main() -> int:
     if empty:
         errors.append("Fichiers actifs vides: " + ", ".join(empty))
 
-    # 3. Canon exact des quatre Veilleurs.
+    # 3. Roster de départ laissé non attribué ; l'ancien groupe reste une fixture de combat.
+    canonical_roster = load_json(ROOT / "data/veilleurs/canonical_roster.json")
+    checks["starting_roster_unassigned"] = (
+        canonical_roster.get("status") == "starting_roster_unassigned"
+        and canonical_roster.get("rules", {}).get("starting_quartet_assigned") is False
+        and canonical_roster.get("heroes") == []
+    )
+    add_error(errors, checks["starting_roster_unassigned"], "Le roster de départ doit rester non attribué jusqu'à validation d'une nouvelle composition")
+
     watchers = load_json(ROOT / "data/veilleurs/v06/watchers.json")
     rows = watchers.get("watchers", [])
     entity_ids = [row.get("entity_id") for row in rows]
     runtime_ids = [row.get("runtime_id") for row in rows]
     names = [row.get("name_fr") for row in rows]
-    checks["canonical_watchers"] = (
-        watchers.get("count") == 4
-        and entity_ids == CANON_ENTITY_IDS
-        and runtime_ids == CANON_RUNTIME_IDS
-        and names == CANON_NAMES
+    checks["combat_fixture_watchers"] = (
+        watchers.get("roster_role") == "historical_combat_fixture_not_current_starting_roster"
+        and watchers.get("count") == 4
+        and entity_ids == FIXTURE_ENTITY_IDS
+        and runtime_ids == FIXTURE_RUNTIME_IDS
+        and names == FIXTURE_NAMES
     )
-    add_error(errors, checks["canonical_watchers"], f"Quatuor canonique divergent: {entity_ids} / {runtime_ids} / {names}")
+    add_error(errors, checks["combat_fixture_watchers"], f"Fixture de combat divergente: {entity_ids} / {runtime_ids} / {names}")
 
-    positions = [tuple(row.get("starter_position", [])) for row in rows]
+    positions = [tuple(row.get("fixture_position", [])) for row in rows]
     checks["starter_positions"] = len(set(positions)) == 4 and all(
         len(pos) == 2 and 0 <= pos[0] < 6 and 0 <= pos[1] < 5 for pos in positions
     )
-    add_error(errors, checks["starter_positions"], f"Positions initiales incohérentes: {positions}")
+    add_error(errors, checks["starter_positions"], f"Positions de fixture incohérentes: {positions}")
 
     loadouts = load_json(ROOT / "data/veilleurs/v06/starter_loadouts_watchers.json")
-    checks["starter_loadout_roster"] = list(loadouts.keys()) == CANON_ENTITY_IDS
-    add_error(errors, checks["starter_loadout_roster"], f"Loadouts initiaux divergents: {list(loadouts.keys())}")
+    checks["combat_fixture_loadout_roster"] = list(loadouts.keys()) == FIXTURE_ENTITY_IDS
+    add_error(errors, checks["combat_fixture_loadout_roster"], f"Loadouts de fixture divergents: {list(loadouts.keys())}")
 
     # 4. 12 arbres / 180 compétences et cohérence entre proxy, fichiers et contrat source.
     tree_catalog = load_json(ROOT / "data/veilleurs/v06/watcher_tree_catalog.json")
@@ -163,14 +172,14 @@ def main() -> int:
     catalog_rows = tree_catalog.get("watchers", [])
     checks["tree_catalog_counts"] = tree_catalog.get("tree_count") == 12 and tree_catalog.get("skill_count") == 180
     add_error(errors, checks["tree_catalog_counts"], "Le catalogue n'annonce pas exactement 12 arbres / 180 compétences")
-    checks["tree_catalog_roster"] = [row.get("entity_id") for row in catalog_rows] == CANON_ENTITY_IDS
-    add_error(errors, checks["tree_catalog_roster"], "Le catalogue d'arbres ne suit pas le quatuor canonique")
-    checks["source_contract_roster"] = list(source_contract.get("watchers", {}).keys()) == CANON_RUNTIME_IDS
-    add_error(errors, checks["source_contract_roster"], "Le contrat source des compétences ne suit pas les runtime IDs canoniques")
+    checks["tree_catalog_fixture_roster"] = [row.get("entity_id") for row in catalog_rows] == FIXTURE_ENTITY_IDS
+    add_error(errors, checks["tree_catalog_fixture_roster"], "Le catalogue d'arbres ne suit pas les identifiants de la fixture de combat")
+    checks["source_contract_fixture_roster"] = list(source_contract.get("watchers", {}).keys()) == FIXTURE_RUNTIME_IDS
+    add_error(errors, checks["source_contract_fixture_roster"], "Le contrat source des compétences ne suit pas les identifiants de la fixture")
 
     skill_ids_global: list[str] = []
     skill_layout_ok = True
-    for row, runtime_id, expected_name in zip(catalog_rows, CANON_RUNTIME_IDS, CANON_NAMES):
+    for row, runtime_id, expected_name in zip(catalog_rows, FIXTURE_RUNTIME_IDS, FIXTURE_NAMES):
         source = str(row.get("source", ""))
         path = ROOT / source.removeprefix("res://")
         if not path.is_file():

@@ -7,12 +7,7 @@ HEROES_PATH = ROOT / "data" / "heroes.json"
 ROSTER_PATH = ROOT / "data" / "veilleurs" / "canonical_roster.json"
 GAME_STATE_PATH = ROOT / "scripts" / "core" / "game_state.gd"
 
-EXPECTED = [
-    ("mathilde", "Mathilde", "duelist"),
-    ("marec", "Marec", "breaker"),
-    ("anouk", "Anouk", "mystic"),
-    ("aurelien", "Aurélien", "surgeon"),
-]
+FORMER_STARTERS = {"mathilde", "marec", "anouk", "aurelien"}
 STALE_NAMES = {
     "Sahen Varo", "Mira Sen", "Narem Osh", "Ysra Nahal",
     "Malvor", "Lysandra", "Darius",
@@ -24,24 +19,22 @@ def _load_json(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def test_starting_quartet_is_assigned_to_four_legendary_heroes():
+def test_starting_quartet_is_unassigned_until_new_roster_is_defined():
     roster = _load_json(ROSTER_PATH)
-    assert roster["status"] == "canonical_player_facing_roster"
-    assert roster["rules"]["starting_quartet_assigned"] is True
+    assert roster["status"] == "starting_roster_unassigned"
+    assert roster["rules"]["starting_quartet_assigned"] is False
     assert roster["rules"]["canonical_names_are_player_facing"] is True
     assert roster["rules"]["gameplay_identity_is_defined_only_by_current_roster"] is True
-    assert [(h["id"], h["name"], h["class_id"]) for h in roster["heroes"]] == EXPECTED
-    assert [h["order"] for h in roster["heroes"]] == [1, 2, 3, 4]
-    assert all(h["legendary_hero"] is True for h in roster["heroes"])
-    assert roster["design_status"] == "existing_legendary_hero_designs_reused"
+    assert roster["heroes"] == []
+    assert roster["design_status"] == "awaiting_user_defined_starting_roster"
 
 
-def test_runtime_heroes_match_canonical_roster_and_order():
+def test_former_starters_remain_catalogued_without_starting_status():
     heroes = _load_json(HEROES_PATH)
-    assert [(h["id"], h["name"], h["class_id"]) for h in heroes] == EXPECTED
-    assert [h["starting_quartet_order"] for h in heroes] == [1, 2, 3, 4]
+    assert {h["id"] for h in heroes} == FORMER_STARTERS
+    assert all(h["canon_status"] == "canonical_hero_not_in_starting_roster" for h in heroes)
+    assert all("starting_quartet_order" not in h for h in heroes)
     assert all(h["canonical_id"] == h["id"] for h in heroes)
-    assert all(h["canon_status"] == "canonical_starting_hero" for h in heroes)
     assert all(h["legendary_hero"] is True for h in heroes)
     assert all(h["race_id"] == "human" for h in heroes)
 

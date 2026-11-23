@@ -8,7 +8,7 @@ Un registre canonique unique pour les planches, personnages secondaires, équipe
 ## Validation artistique du propriétaire
 Toute planche artistique transmise par le propriétaire du projet est considérée comme validée et devient la référence officielle du personnage concerné. Une planche plus récente fournie par le propriétaire remplace la référence artistique antérieure. Les anciennes versions ne doivent plus être présentées comme officielles. Cette validation artistique est acquise indépendamment des contrôles d'intégrité, d'archivage et d'intégration technique, qui restent obligatoires.
 
-Les références officielles actuelles sont Mathilde, Marec, Anouk, Aurélien, Éffrie et Lya, selon le manifeste `validated_heroes_manifest_20261111.json`. Éffrie et Lya restent des entrées artistiques : aucune activation dans le quatuor jouable sans décision spécifique du propriétaire.
+Les références officielles existantes sont Mathilde, Marec, Anouk, Aurélien, Èffrie et Lya, selon le manifeste `validated_heroes_manifest_20261111.json`. La présence dans ce catalogue ne détermine pas le roster de départ, désormais non attribué. Toute activation ou sélection de départ suit une décision de roster explicite.
 
 ## Règles
 1. Une ressource reçoit un identifiant immuable indépendant de son numéro de planche imprimé, de son nom et de son chemin.

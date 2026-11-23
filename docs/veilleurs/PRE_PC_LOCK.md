@@ -30,7 +30,7 @@ Le gate pré-PC contrôle notamment :
 - sauvegarde/reprise et Rémanence selon les gates associés ;
 - séparation des validations automatiques et matérielles.
 
-Les données v0.6 actives (`data/veilleurs/v06/watchers.json`) et le verrou pré-PC définissent le quatuor canonique utilisé pour cette verticale. Les anciens ponts de compatibilité autorisés restent confinés aux fichiers explicitement listés dans `allowed_stale_reference_files` jusqu’à leur migration dédiée.
+Les données v0.6 (`data/veilleurs/v06/watchers.json`) restent un fixture de combat historique. Depuis la décision ADR-0009, elles et le verrou pré-PC ne définissent plus le roster canonique de départ, qui reste non attribué. Les anciens ponts de compatibilité autorisés restent confinés aux fichiers explicitement listés dans `allowed_stale_reference_files` jusqu’à leur migration dédiée.
 
 ## Pipeline
 

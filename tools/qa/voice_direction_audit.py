@@ -44,8 +44,13 @@ def run(root: Path = ROOT) -> dict:
     check("Contrat : aucun réentraînement prétendu", contract.get("rules", {}).get("direction_is_project_calibration_not_model_weight_training") is True)
 
     profile_ids = set(profiles.get("profiles", {}))
-    check("Roster : exactement quatre héros canoniques", len(heroes) == 4, str(sorted(heroes)))
-    check("Profils : quatre héros canoniques", heroes <= profile_ids, str(sorted(heroes - profile_ids)))
+    roster_unassigned = (
+        roster.get("status") == "starting_roster_unassigned"
+        and roster.get("rules", {}).get("starting_quartet_assigned") is False
+        and not heroes
+    )
+    check("Roster : aucune composition de départ attribuée", roster_unassigned, str(sorted(heroes)))
+    check("Profils : personnages du roster référencés", heroes <= profile_ids, str(sorted(heroes - profile_ids)))
     check("Profils : narration prévue", "narration" in profile_ids)
     check("Profils : calibration marquée provisoire", all("calibration_status" in profiles["profiles"][hero] for hero in heroes if hero in profiles.get("profiles", {})))
 

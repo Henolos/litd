@@ -10,7 +10,7 @@ Le principe central est qu'aucune heuristique de classement ne peut, à elle seu
 
 ## Registre vivant
 
-`governance/trieur_policy.json` est désormais un registre réel, et non plus vide. La première source gouvernée est `data/heroes.json`, enregistrée sous la clé canonique `litd.starting_quartet` pour Mathilde, Marec, Anouk et Aurélien.
+`governance/trieur_policy.json` est désormais un registre réel, et non plus vide. `data/heroes.json` est enregistré comme catalogue de personnages sous la clé `litd.hero_catalog`. Depuis l'ADR-0007, ce fichier ne définit plus le quatuor de départ, qui reste à attribuer.
 
 Chaque entrée possède au minimum :
 
