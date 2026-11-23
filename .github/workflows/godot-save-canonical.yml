@@ -5,6 +5,7 @@ on:
     paths:
       - 'scripts/core/save_manager.gd'
       - 'tests/godot/test_save_canonical_headless.gd'
+      - 'tests/godot/test_save_transaction_preview_headless.gd'
       - '.github/workflows/godot-save-canonical.yml'
   workflow_dispatch:
 
@@ -28,3 +29,4 @@ jobs:
           export XDG_DATA_HOME="$sandbox"
           bash tools/ci/run_godot_checked.sh --log "$sandbox/import.log" -- godot --headless --path . --import --quit
           bash tools/ci/run_godot_checked.sh --log "$sandbox/canonical.log" --expect SAVE_CANONICAL_CONTRACT_PASS -- godot --headless --path . --script res://tests/godot/test_save_canonical_headless.gd
+          bash tools/ci/run_godot_checked.sh --log "$sandbox/transaction.log" --expect SAVE_TRANSACTION_PREVIEW_PASS -- godot --headless --path . --script res://tests/godot/test_save_transaction_preview_headless.gd
