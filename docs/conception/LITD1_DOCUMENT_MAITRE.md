@@ -2998,3 +2998,26 @@ Tentatives déterministes bornées, chacune avec graine dérivée et rapport ; s
 
 ### Plan de tests proposé
 Fixtures minimales : objectif isolé, clé derrière sa propre porte, clé consommée trop tôt, ordre narratif contourné par secret, sortie bloquée, boucle légitime, objectif non exigible, doublon unique, conséquence persistante violée, transformation invalidante, secours invalide, budget dépassé. Tests génératifs sur nombreuses graines et profils, reproductibilité à versions égales, isolation des flux, permutation des catalogues, statistiques guet-apens 35/65 sur population admissible, restauration exacte et régression Linux/Windows. Les seuils, budgets et tailles restent à calibrer ; aucun test nouveau exécuté. Prochaine étape : auditer compatibilité des composants purs et périmètre autorisé du reset, définir schéma et fixtures exécutables avant prototype isolé. Aucun code, art ni fusion modifiés.
+
+
+---
+## V7.58 — Transport contextualisé et surveillance simplifiée des créatures capturées (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, transport contextualisé et surveillance simplifiée des créatures capturées, avec quatorze règles complémentaires explicitement approuvées.**
+
+1. Distinguer capture réussie, sécurisation, transport, extraction et recrutement.
+2. Interdire transfert automatique à la Guilde.
+3. Adapter moyens de transport à la nature et aux dimensions des créatures.
+4. Capacité de contention limitée, distincte de l'inventaire ordinaire.
+5. Captifs non comptabilisés parmi les quatre combattants actifs.
+6. Poursuite de l'expédition possible après capture.
+7. Retour immédiat au refuge selon conditions déjà validées.
+8. Risques contextuels d'évasion, blessure ou perte des captifs.
+9. Informer le joueur de l'état des contentions et risques connus.
+10. Libération ou abandon volontaire possible, avec conséquences persistantes.
+11. Préserver identité, blessures et particularités individuelles des créatures transportées.
+12. Prendre en compte les captifs lors d'une défaite ou Game Over, sans transfert automatique ni duplication.
+13. Remise des spécimens à la médecin pour ses missions de recherche.
+14. Capacités, coûts, contraintes de surveillance et probabilités d'incidents à déterminer après simulations et tests.
+
+L'évasion d'un captif est une rupture de contention distincte de la fuite volontaire en combat réservée aux Némésis. Moyens de transport, états et chiffres de la maquette indicatifs. Respecter retour conditionnel au refuge, V7.46–V7.56 et V8.1–V8.3, sauvegarde transactionnelle. Validation documentaire uniquement.
