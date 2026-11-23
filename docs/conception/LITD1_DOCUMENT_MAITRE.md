@@ -2959,3 +2959,24 @@ Le domaine produit un résultat métier complet et déterminé à partir d'une r
 Migration 0.31 sur copie avec champs inconnus et échec injecté ; rejet version inconnue ; autosave et journal d'une autre campagne ; slot supprimé sans résurrection par secours ; chemins normalisés ; transaction dupliquée avant/après checkpoint ; conflit même ID contenu différent ; interruption avant et après renommage, après confirmation avant publication, pendant snapshot/manifeste ; dossier absent versus inaccessible ; suffixe après checkpoint non nul ; trou de révision ; reprise sans nouveau tirage ; Linux et Windows. Préserver les preuves et originaux. Aucun de ces nouveaux scénarios n'a été exécuté ici.
 
 **Décision de séquencement :** la spécification pure du générateur et du validateur peut avancer indépendamment ; raccordement runtime bloqué tant que les critères de #638 ne sont pas démontrés. Phase contrat : réconciliation documentaire réalisée, validation technique en attente. Aucun code ni fusion.
+
+
+---
+## V7.56 — Maîtrise commune et spécialisations complémentaires de capture (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, maîtrise commune et spécialisations complémentaires de capture, douze règles complémentaires et réutilisation du système de maîtrise existant explicitement approuvées.**
+
+1. Héros compatibles capables d'utiliser des méthodes élémentaires de capture.
+2. Prévoir une classe spécialisée dans la capture.
+3. Certaines autres classes peuvent posséder des compétences complémentaires de capture.
+4. Créatures recrutables pouvant disposer d'aptitudes naturelles favorables à la capture.
+5. Aucun spécialiste indispensable à l'ensemble des captures.
+6. Limiter et plafonner les bonus individuels de probabilité.
+7. Privilégier avantages tactiques plutôt que seuls bonus statistiques.
+8. Réutiliser la maîtrise fondamentale et avancée existante.
+9. Reconnaître les contributions directes et indirectes significatives à une capture.
+10. Respecter limites d'emplacements et règles de spécialisation avant et après NG+.
+11. Préserver maîtrise des survivants et réservistes, sans transmettre celle des morts aux successeurs.
+12. Compétences, bonus, coûts en PA et conditions particulières à déterminer après conception détaillée des classes et tests d'équilibrage.
+
+Pas de jauge d'expérience parallèle ni d'emplacement supplémentaire. Les missions de la médecin enrichissent les connaissances collectives, sans remplacer la maîtrise pratique. Respecter V8.1–V8.3, notamment les contributions réelles, causalité et absence de crédit posthume. Profils et techniques illustratifs non validés individuellement. Validation documentaire uniquement.
