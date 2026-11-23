@@ -86,3 +86,6 @@ Ce document enregistre une décision de conception. Il ne prouve ni la présence
 - **Propositions à valider :** types d'échantillons, niveaux de recherche, progression d'affinité, catégories précises de faiblesses/résistances, effets en combat, récompenses exactes et partage des données entre Wei Shan et la médecin.
 - **Garde-fou de cohérence proposé :** les amputations disproportionnées relèvent surtout de l'humour noir et de la caractérisation, tandis que les actes médicaux effectifs restent fiables, sauf décision narrative explicite ultérieure.
 - **État d'exécution :** spécification textuelle uniquement ; aucune modification des systèmes de bestiaire, aucun test Godot, aucun binaire graphique importé par cette mise à jour.
+
+## Correction validée — placement de la création de personnage (2026-11-23)
+La **cinématique d'ouverture précède** la création du héros ou de l'héroïne. Le créateur de personnage intervient **pendant l'inscription officielle comme aventurier à la Guilde**, avant la formation de la compagnie et la quête « La cueillette ». L'inscription peut servir de cadre narratif à l'interface ; l'intervention précise de Kélia reste une proposition. Préserver les révélations tardives sur le rang S et l'omelette.
