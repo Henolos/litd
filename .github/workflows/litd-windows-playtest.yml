@@ -27,6 +27,17 @@ jobs:
           export XDG_DATA_HOME="$sandbox"
           mkdir -p build/windows
           bash tools/ci/run_godot_checked.sh --log "$sandbox/import.log" -- godot --headless --path . --import --quit
+          # The CI image may keep templates outside the isolated XDG_DATA_HOME.
+          # Locate an existing matching template rather than downloading an unverified binary.
+          template_dir="$sandbox/godot/export_templates/4.7.2.stable"
+          mkdir -p "$template_dir"
+          candidate=$(find /root /opt /usr/local -type f -name windows_debug_x86_64.exe -path '*/4.7.2.stable/*' -print -quit 2>/dev/null || true)
+          if [ -z "$candidate" ]; then
+            echo "MISSING_GODOT_4_7_2_WINDOWS_EXPORT_TEMPLATES"
+            exit 1
+          fi
+          cp "$(dirname "$candidate")"/windows_debug_x86_64.exe "$template_dir/"
+          cp "$(dirname "$candidate")"/windows_release_x86_64.exe "$template_dir/"
           bash tools/ci/run_godot_checked.sh --log "$sandbox/export.log" -- godot --headless --path . --export-debug "Windows Desktop" build/windows/LightInTheDark.exe
           test -s build/windows/LightInTheDark.exe
           test -s build/windows/LightInTheDark.pck
