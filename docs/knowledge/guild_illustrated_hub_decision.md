@@ -1,13 +1,14 @@
 # LITD 1 — Guilde : hub illustré interactif (décision validée)
 
-Date de validation utilisateur : 2026-11-22
-Statut : **VALIDÉ pour le mode de navigation et la conservation de la planche architecturale** ; agencement interactif, interfaces et comportements détaillés : **propositions à tester**.
+Date de validation utilisateur : 2026-11-22 ; décision d'exploration actualisée le 2026-11-23.
+Statut : **VALIDÉ pour le mode de navigation du hub, la carte à nœuds d'expédition et la conservation de la planche architecturale** ; agencement interactif, interfaces et comportements détaillés : **propositions à tester**.
 
 ## Décision ferme
 - La Guilde utilise un **hub illustré interactif**, inspiré de la navigation par lieux de Darkest Dungeon, et **non un hub 3D librement explorable**.
 - **Conserver sans modification la planche architecturale déjà validée** : bâtiment sino-gothico-dark fantasy, trois niveaux conceptuels, espaces fonctionnels, ambiance noire/bordeaux/or.
 - La vue générale du bâtiment sert de carte illustrée interactive. La sélection d'une zone ouvre une scène illustrée, le portrait du PNJ, les dialogues et les services associés.
-- Cette décision ne remplace **pas** l'exploration 3D isométrique prévue hors de la Guilde ni les combats 2D.
+- Le 23 novembre 2026, l'utilisateur a tranché la contradiction : **la carte à nœuds remplace entièrement l'exploration 3D**. Aucun espace 3D explorable n'est conservé hors de la Guilde.
+- Les expéditions utilisent une grande carte à embranchements et nœuds ; le joueur peut revenir sur les nœuds déjà visités. Les combats restent tactiques, en 2D et au tour par tour. Les règles de génération des nœuds restent à spécifier.
 - Les planches et portraits des six personnages restent leurs références officielles. Ne pas régénérer les personnages existants.
 
 ## Zones et responsables
@@ -26,13 +27,13 @@ Statut : **VALIDÉ pour le mode de navigation et la conservation de la planche a
 
 La taverne et l'infirmerie font désormais partie du périmètre du hub principal, décision ajoutée à la demande de l'utilisateur. Leur position architecturale, leurs personnages responsables et leurs mécaniques précises restent à concevoir. La planche architecturale précédemment validée est conservée comme référence : son extension doit faire l'objet d'une planche complémentaire ou d'une nouvelle validation, sans altérer l'original.
 
-Les trois niveaux sont une **organisation architecturale illustrée**, pas trois scènes 3D obligatoires. Les lieux accessibles et leur placement exact sur la carte interactive restent à définir.
+Les trois niveaux sont une **organisation architecturale illustrée**, pas trois scènes 3D obligatoires. Les lieux accessibles et leur placement exact sur la carte interactive restent à définir. La carte d'expédition est une interface de progression distincte de cette carte illustrée du hub.
 
 ## Parcours minimal (proposition)
 1. Arrivée à la vue générale de la Guilde avec lieux sélectionnables et indications de disponibilité.
 2. Sélection d'un lieu : transition courte vers son illustration dédiée.
 3. Affichage du PNJ, du dialogue contextuel et des services autorisés par la progression.
-4. Retour direct à la carte de la Guilde, sans déplacement 3D.
+4. Retour direct à la carte illustrée de la Guilde, sans déplacement libre dans un espace 3D.
 5. Raccourcis vers compagnie, équipement, journal et départ en expédition, sous réserve de cohérence avec l'interface existante.
 
 ## Prologue : exigences narratives
@@ -52,11 +53,12 @@ Les trois niveaux sont une **organisation architecturale illustrée**, pas trois
 
 ## Plan d'exécution
 1. Auditer les scènes, scripts, systèmes UI, dialogues et sauvegarde déjà présents.
-2. Dessiner la carte interactive sur la planche architecturale validée ; identifier les zones et leurs états.
-3. Prototyper un **parcours vertical minimal** : carte → Kélia → dialogue → retour carte.
-4. Ajouter les autres lieux, puis les interactions et la progression narrative.
-5. Tester dans Godot : résolution, clics, manette, accès, états de quête, sauvegarde, performances.
-6. Faire valider visuellement les écrans et fusionner seulement après contrôles.
+2. Dessiner la carte interactive de la Guilde sur la planche architecturale validée ; identifier les zones et leurs états.
+3. Concevoir séparément la carte d'expédition à nœuds ; permettre de choisir un embranchement et de revenir aux nœuds déjà visités. La génération procédurale ou déterministe et les règles de progression ne sont pas encore décidées.
+4. Prototyper un **parcours vertical minimal** : hub de Guilde → carte à nœuds → rencontre/combat → retour au hub.
+5. Ajouter les autres lieux, puis les interactions et la progression narrative.
+6. Tester dans Godot : résolution, clics, manette, accès, états de quête, sauvegarde, performances.
+7. Faire valider visuellement les écrans et fusionner seulement après contrôles.
 
 ## Limites de validation
 Ce document enregistre une décision de conception. Il ne prouve ni la présence des binaires de la planche architecturale dans GitHub, ni l'existence d'un hub illustré jouable, ni le succès de tests Godot.
@@ -89,3 +91,8 @@ Ce document enregistre une décision de conception. Il ne prouve ni la présence
 
 ## Correction validée — placement de la création de personnage (2026-11-23)
 La **cinématique d'ouverture précède** la création du héros ou de l'héroïne. Le créateur de personnage intervient **pendant l'inscription officielle comme aventurier à la Guilde**, avant la formation de la compagnie et la quête « La cueillette ». L'inscription peut servir de cadre narratif à l'interface ; l'intervention précise de Kélia reste une proposition. Préserver les révélations tardives sur le rang S et l'omelette.
+
+## Décisions validées — bestiaire et reprise après Game Over (2026-11-23)
+- **Bestiaire :** chaque protagoniste possède son bestiaire persistant entre ses tentatives ; les compagnons ont une maîtrise individuelle. Les missions de la médecin contribuent à l'étude et à la progression des connaissances associées à ce protagoniste. Le partage automatique entre protagonistes est exclu. Le modèle de données et le runtime restent à concevoir.
+- **Game Over :** la défaite simultanée des quatre combattants termine la tentative. Le joueur reprend avec le même protagoniste à la Guilde après le prologue, joué une seule fois pour ce protagoniste. Le protagoniste conserve son niveau, ses compétences, ses points de passifs et son bestiaire. Les compagnons morts dans l'équipe vaincue restent morts ; les survivants conservent leur progression. Les recrues renouvelables de la Guilde permettent de reformer l'équipe.
+- Ces règles décrivent des décisions de conception validées, pas des fonctions déjà implémentées dans cette PR. La persistance du coffre, la perte des biens emportés, la réinitialisation des quêtes et du monde et la disponibilité des héros narratifs sont régies par l'avenant de décisions et restent à intégrer au document maître après arbitrage complet.
