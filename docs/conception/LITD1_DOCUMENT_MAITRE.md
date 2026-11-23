@@ -2625,3 +2625,11 @@ Cette décision résout le point ouvert sur la persistance après succession. Pi
 10. La disparition d'une dépouille n'implique pas nécessairement la destruction de tous ses équipements.
 
 Délais, probabilités et utilisation des équipements pillés par les Némésis restent à arbitrer. Exemples de lieux indicatifs uniquement. Préserver la mort définitive et les invariants de sauvegarde V8.3. Validation documentaire uniquement, aucun développement ni test en jeu.
+
+
+---
+## V7.36 — Persistance narrative hybride à plusieurs niveaux (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et six règles complémentaires, explicitement choisies par l'utilisateur.** Séparer la mémoire persistante du monde de la topologie temporaire des cartes. 1. Identifiants durables des lieux, personnages et événements importants. 2. Conservation des décisions, destructions, décès et conséquences importantes. 3. Régénération conditionnée par l'état du monde. 4. Aucune duplication des récompenses uniques déjà obtenues par régénération. 5. Objectifs narratifs accessibles lorsque leurs conditions sont réunies, sans annuler les échecs légitimes. 6. Cohérence géographique : aucun déplacement arbitraire de lieu unique vers une région ou un biome incompatible. Respecter les règles antérieures de succession, Némésis, récupération, renouvellement et stabilité intra-expédition. Les modalités techniques restent à concevoir et tester.
+
+**Traçabilité :** validation explicite de l'option C concernant la persistance narrative avec les six règles complémentaires. Mise à jour documentaire uniquement ; aucun développement ni test en jeu. **Statut : 🟡 À CONSOLIDER. Avancement des arbitrages détaillés : 7/8 (87,5 %, estimation non pondérée). Avancement du projet global : À évaluer.**
