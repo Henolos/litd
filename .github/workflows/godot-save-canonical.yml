@@ -27,6 +27,7 @@ jobs:
           sandbox=$(mktemp -d)
           trap 'rm -rf "$sandbox"' EXIT
           export XDG_DATA_HOME="$sandbox"
+          export LITD_SAVE_TEST_SANDBOX="$sandbox"
           bash tools/ci/run_godot_checked.sh --log "$sandbox/import.log" -- godot --headless --path . --import --quit
           bash tools/ci/run_godot_checked.sh --log "$sandbox/canonical.log" --expect SAVE_CANONICAL_CONTRACT_PASS -- godot --headless --path . --script res://tests/godot/test_save_canonical_headless.gd
           bash tools/ci/run_godot_checked.sh --log "$sandbox/transaction.log" --expect SAVE_TRANSACTION_PREVIEW_PASS -- godot --headless --path . --script res://tests/godot/test_save_transaction_preview_headless.gd
