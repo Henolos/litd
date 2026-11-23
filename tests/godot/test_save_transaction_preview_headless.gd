@@ -52,13 +52,45 @@ func _run() -> void:
     altered["transaction_id"] = ""
     _check(manager.preview_committed_transaction(before, altered, []).is_empty(), "Missing transaction identity must be rejected")
     var sandbox := OS.get_environment("LITD_SAVE_TEST_SANDBOX")
-    if sandbox.is_empty() or sandbox != OS.get_environment("XDG_DATA_HOME") or not OS.get_user_data_dir().begins_with(sandbox + "/"):
+    var normalized_sandbox := sandbox.replace("\\", "/").trim_suffix("/")
+    var normalized_user_data := OS.get_user_data_dir().replace("\\", "/")
+    if sandbox.is_empty() or sandbox != OS.get_environment("XDG_DATA_HOME") or not normalized_user_data.begins_with(normalized_sandbox + "/"):
         _check(false, "Journal tests require isolated user data root")
         quit(1)
         return
     var journal_dir := "user://litd_transaction_lab/ci_fixture"
     _check(manager.journal_append_preview(journal_dir, before, record, []), "Journal must write a verified revision")
     _check(not manager.journal_append_preview(journal_dir, before, record, []), "Journal must not overwrite an existing revision")
+    # Interrupt every append and recovery boundary in the preview journal.
+    var write_stages := ["before_open", "after_open", "during_store", "after_store", "after_flush", "before_rename", "after_rename"]
+    for stage: String in write_stages:
+        var stage_dir := "user://litd_transaction_lab/write_" + stage
+        _check(DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(stage_dir)) == OK, "Create write-stage fixture: " + stage)
+        _check(not manager.journal_append_preview(stage_dir, before, record, [], stage), "Injected write interruption must stop at " + stage)
+        var stage_recovery: Dictionary = manager.journal_recover_preview(stage_dir, "campaign-1", 3, before)
+        if stage == "after_rename":
+            _check(stage_recovery.get("revision") == 4 and stage_recovery.get("persistent_state") == after, "Post-rename interruption must recover committed record")
+            var repeat_recovery: Dictionary = manager.journal_recover_preview(stage_dir, "campaign-1", 3, before)
+            _check(repeat_recovery == stage_recovery, "Repeated recovery must be deterministic after " + stage)
+        else:
+            _check(stage_recovery.get("revision") == 3 and stage_recovery.get("persistent_state") == before, "Pre-commit interruption must preserve base state at " + stage)
+        var stage_files := DirAccess.get_files_at(stage_dir)
+        for stage_file: String in stage_files:
+            _check(DirAccess.remove_absolute(ProjectSettings.globalize_path(stage_dir.path_join(stage_file))) == OK, "Remove write-stage artifact: " + stage_file)
+        _check(DirAccess.remove_absolute(ProjectSettings.globalize_path(stage_dir)) == OK, "Remove write-stage fixture: " + stage)
+    # A committed entry must fail closed at each recovery boundary, then recover
+    # identically when the interrupted read is retried from its original base.
+    var recovery_stage_dir := "user://litd_transaction_lab/recovery_stages"
+    _check(DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(recovery_stage_dir)) == OK, "Create recovery-stage fixture")
+    _check(manager.journal_append_preview(recovery_stage_dir, before, record, []), "Create recovery-stage committed entry")
+    var recovery_stages := ["after_read", "after_checksum", "after_decode", "before_apply", "after_apply"]
+    for recovery_stage: String in recovery_stages:
+        _check(manager.journal_recover_preview(recovery_stage_dir, "campaign-1", 3, before, recovery_stage).is_empty(), "Injected recovery interruption must fail closed at " + recovery_stage)
+        var retried: Dictionary = manager.journal_recover_preview(recovery_stage_dir, "campaign-1", 3, before)
+        _check(retried.get("revision") == 4 and retried.get("persistent_state") == after and retried.get("applied_transaction_ids") == ["action-42"], "Recovery retry must produce the same committed result after " + recovery_stage)
+    for recovery_file: String in DirAccess.get_files_at(recovery_stage_dir):
+        _check(DirAccess.remove_absolute(ProjectSettings.globalize_path(recovery_stage_dir.path_join(recovery_file))) == OK, "Remove recovery-stage artifact")
+    _check(DirAccess.remove_absolute(ProjectSettings.globalize_path(recovery_stage_dir)) == OK, "Remove recovery-stage fixture")
     # Simulate process stops during journal write and during recovery. A pending
     # temp file is never a committed revision; a truncated committed file fails closed.
     var interrupted_dir := "user://litd_transaction_lab/interrupted"
