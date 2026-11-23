@@ -1,0 +1,293 @@
+[
+  {
+    "id": "valid_loop",
+    "expected": true,
+    "graph": {
+      "schema_version": 0,
+      "map_id": "qa-map",
+      "expedition_id": "qa-exp",
+      "region_id": "qa-region",
+      "entry_id": "a",
+      "nodes": [
+        {
+          "id": "a",
+          "exit": true
+        },
+        {
+          "id": "b",
+          "grants": [
+            "key"
+          ]
+        },
+        {
+          "id": "c"
+        }
+      ],
+      "edges": [
+        {
+          "from": "a",
+          "to": "b"
+        },
+        {
+          "from": "b",
+          "to": "a"
+        },
+        {
+          "from": "b",
+          "to": "c",
+          "requires": [
+            "key"
+          ]
+        },
+        {
+          "from": "c",
+          "to": "a"
+        }
+      ],
+      "objectives": [
+        "c"
+      ]
+    }
+  },
+  {
+    "id": "key_behind_door",
+    "expected": false,
+    "graph": {
+      "schema_version": 0,
+      "map_id": "qa-map",
+      "expedition_id": "qa-exp",
+      "region_id": "qa-region",
+      "entry_id": "a",
+      "nodes": [
+        {
+          "id": "a",
+          "exit": true
+        },
+        {
+          "id": "b",
+          "grants": []
+        },
+        {
+          "id": "c",
+          "grants": [
+            "key"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "a",
+          "to": "b"
+        },
+        {
+          "from": "b",
+          "to": "a"
+        },
+        {
+          "from": "b",
+          "to": "c",
+          "requires": [
+            "key"
+          ]
+        },
+        {
+          "from": "c",
+          "to": "a"
+        }
+      ],
+      "objectives": [
+        "c"
+      ]
+    }
+  },
+  {
+    "id": "isolated_objective",
+    "expected": false,
+    "graph": {
+      "schema_version": 0,
+      "map_id": "qa-map",
+      "expedition_id": "qa-exp",
+      "region_id": "qa-region",
+      "entry_id": "a",
+      "nodes": [
+        {
+          "id": "a",
+          "exit": true
+        },
+        {
+          "id": "b",
+          "grants": [
+            "key"
+          ]
+        },
+        {
+          "id": "c"
+        }
+      ],
+      "edges": [
+        {
+          "from": "a",
+          "to": "b"
+        },
+        {
+          "from": "b",
+          "to": "a"
+        },
+        {
+          "from": "c",
+          "to": "a"
+        }
+      ],
+      "objectives": [
+        "c"
+      ]
+    }
+  },
+  {
+    "id": "duplicate_node",
+    "expected": false,
+    "graph": {
+      "schema_version": 0,
+      "map_id": "qa-map",
+      "expedition_id": "qa-exp",
+      "region_id": "qa-region",
+      "entry_id": "a",
+      "nodes": [
+        {
+          "id": "a",
+          "exit": true
+        },
+        {
+          "id": "b",
+          "grants": [
+            "key"
+          ]
+        },
+        {
+          "id": "c"
+        },
+        {
+          "id": "a"
+        }
+      ],
+      "edges": [
+        {
+          "from": "a",
+          "to": "b"
+        },
+        {
+          "from": "b",
+          "to": "a"
+        },
+        {
+          "from": "b",
+          "to": "c",
+          "requires": [
+            "key"
+          ]
+        },
+        {
+          "from": "c",
+          "to": "a"
+        }
+      ],
+      "objectives": [
+        "c"
+      ]
+    }
+  },
+  {
+    "id": "no_mandatory_objective",
+    "expected": true,
+    "graph": {
+      "schema_version": 0,
+      "map_id": "qa-map",
+      "expedition_id": "qa-exp",
+      "region_id": "qa-region",
+      "entry_id": "a",
+      "nodes": [
+        {
+          "id": "a",
+          "exit": true
+        },
+        {
+          "id": "b",
+          "grants": [
+            "key"
+          ]
+        },
+        {
+          "id": "c"
+        }
+      ],
+      "edges": [
+        {
+          "from": "a",
+          "to": "b"
+        },
+        {
+          "from": "b",
+          "to": "a"
+        },
+        {
+          "from": "b",
+          "to": "c",
+          "requires": [
+            "key"
+          ]
+        },
+        {
+          "from": "c",
+          "to": "a"
+        }
+      ],
+      "objectives": []
+    }
+  },
+  {
+    "id": "no_exit_after_objective",
+    "expected": false,
+    "graph": {
+      "schema_version": 0,
+      "map_id": "qa-map",
+      "expedition_id": "qa-exp",
+      "region_id": "qa-region",
+      "entry_id": "a",
+      "nodes": [
+        {
+          "id": "a",
+          "exit": true
+        },
+        {
+          "id": "b",
+          "grants": [
+            "key"
+          ]
+        },
+        {
+          "id": "c"
+        }
+      ],
+      "edges": [
+        {
+          "from": "a",
+          "to": "b"
+        },
+        {
+          "from": "b",
+          "to": "a"
+        },
+        {
+          "from": "b",
+          "to": "c",
+          "requires": [
+            "key"
+          ]
+        }
+      ],
+      "objectives": [
+        "c"
+      ]
+    }
+  }
+]
