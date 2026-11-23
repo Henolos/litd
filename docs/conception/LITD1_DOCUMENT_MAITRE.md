@@ -2652,3 +2652,11 @@ Délais, probabilités et utilisation des équipements pillés par les Némésis
 10. Persistance des équipements pillés après Game Over.
 
 Aucun inventaire complexe ni simulation économique complète imposés à chaque créature ordinaire. Exemples de créatures non constitutifs d'une validation du bestiaire. Préserver V7.34–V7.35 et les invariants transactionnels V8.3. Validation documentaire uniquement, aucun développement ni test en jeu.
+
+
+---
+## V7.38 — Double contrôle de validité des cartes et mécanisme de secours (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et dix règles complémentaires, explicitement choisies par l'utilisateur.** Génération sous contraintes puis validation indépendante avant utilisation des cartes régionales et internes des donjons. Contrôles obligatoires : 1. Accessibilité des objectifs obligatoires lorsque leurs prérequis sont réunis ; 2. absence de zones obligatoires accidentellement isolées ; 3. dépendances clés, portes, énigmes et quêtes ; 4. retour et sortie conformément aux restrictions narratives autorisées ; 5. cohérence écologique, territoriale et artistique ; 6. absence de duplication des personnages, objets et événements uniques ; 7. respect intégral des conséquences persistantes ; 8. limites de taille, densité et difficulté ; 9. sauvegarde de la configuration validée et vérification de restitution après interruption ; 10. tentatives limitées, secours compatible lui-même validé ou arrêt sécurisé sans perte de progression. Aucun contournement des contraintes narratives. Prévoir tests automatisés de nombreuses graines, dépendances circulaires, itinéraires conditionnels, régénération après décès/retraite/Game Over, interruptions et reprise, traçabilité des graines et anomalies, puis tests humains d'équilibrage. Ces tests sont planifiés, non exécutés.
+
+**Traçabilité :** validation explicite de l'option C concernant le contrôle de validité des cartes avec les dix règles complémentaires. Huit axes de conception détaillée arbitrés sur huit ; audit transversal et paramètres techniques encore ouverts. Mise à jour documentaire uniquement ; aucun développement ni test en jeu. **Statut : 🟡 À CONSOLIDER avant clôture. Avancement des arbitrages : 8/8 ; avancement du chantier complet et du projet global : À évaluer.**
