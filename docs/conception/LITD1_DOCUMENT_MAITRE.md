@@ -2927,3 +2927,13 @@ Départ : enregistrer carte validée et état de groupe ensemble avant publicati
 Identités uniques et références valides ; position accessible selon contexte ; graphe et objectifs valides ; aucune duplication de récompense/capture ni résurrection interdite ; continuité des révisions et empreintes ; conservation de la carte exacte malgré changement de version du générateur ; conservation des résistances actives ; reprise après interruption à chaque frontière durable ; isolation des campagnes/slots et migration sur copie ; tests Windows et Linux. Ne pas confondre réussite du laboratoire avec durabilité réelle ni intégration gameplay. Paramètres d'équilibrage et règles non arbitrées restent ouverts.
 
 **Traçabilité :** audit et contrat documentaire candidat uniquement. Prochaine étape : réconcilier projection métier, migrations, identité de campagne/slot et protocole de confirmation avec #638 avant raccordement ; spécifier interfaces du générateur et du validateur indépendants sans dépendance au journal expérimental. Aucun code, original artistique, test runtime ni fusion modifié par cette section.
+
+
+---
+## V7.54 — Missions de recherche de la médecin et apprentissage de la capture (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : intégration explicite des missions de recherche de la médecin comme source d'apprentissage des méthodes de capture et d'enrichissement du bestiaire collectif, avec exemples de missions et répartition des responsabilités approuvés.** Complète V7.52 et le rôle validé dans docs/knowledge/guild_illustrated_hub_decision.md (PR #633).
+
+Exemples approuvés : rapporter des échantillons biologiques (résistances alchimiques), un organe particulier (faiblesses anatomiques), une créature vivante (méthodes de neutralisation), un cadavre (physiologie et anatomie), observer une réaction en combat (résistances et comportements), étudier plusieurs individus (particularités intra-espèce).
+
+Responsabilités : médecin — recherche expérimentale, anatomie, physiologie, faiblesses et méthodes de capture ; Wei Shan — conservation, documentation, recherches historiques et mythologiques ; maîtresse d'armes — apprentissage pratique des techniques. Les récompenses de connaissance alimentent le bestiaire collectif et persistent après succession selon V8.1, qui prévaut sur les anciennes règles de bestiaire propre au protagoniste et de reprise avec le même protagoniste figurant dans la PR #633. Les exemples ne fixent pas les quêtes individuelles, coûts, modalités de transport ni récompenses chiffrées. Validation documentaire uniquement.
