@@ -1,6 +1,7 @@
 extends Control
 
 const BESTIARY_SCENE := "res://scenes/bestiary/bestiary_screen.tscn"
+const NODE_MAP_LOOP_SCENE := "res://scenes/prototype/litd1_node_map_loop.tscn"
 const BACKGROUND := Color("#111116")
 const PANEL := Color("#1c1b1f")
 const GOLD := Color("#d3b675")
@@ -54,6 +55,12 @@ func _build_interface() -> void:
 	start_button.custom_minimum_size.y = 54
 	content.add_child(start_button)
 
+	var prototype_button := Button.new()
+	prototype_button.text = "Tester le parcours à nœuds (prototype)"
+	prototype_button.custom_minimum_size.y = 50
+	prototype_button.pressed.connect(_open_node_map_loop)
+	content.add_child(prototype_button)
+
 	var bestiary_button := Button.new()
 	bestiary_button.text = _bestiary_button_text()
 	bestiary_button.custom_minimum_size.y = 54
@@ -61,7 +68,7 @@ func _build_interface() -> void:
 	content.add_child(bestiary_button)
 
 	var explanation := Label.new()
-	explanation.text = "Le catalogue est accessible. L’aventure jouable et ses scènes restent à créer."
+	explanation.text = "La campagne reste à construire. Un parcours de test à nœuds est disponible en prototype."
 	explanation.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	explanation.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	explanation.add_theme_color_override("font_color", MUTED)
@@ -81,6 +88,9 @@ func _bestiary_button_text() -> String:
 
 func _open_bestiary() -> void:
 	get_tree().change_scene_to_file(BESTIARY_SCENE)
+
+func _open_node_map_loop() -> void:
+	get_tree().change_scene_to_file(NODE_MAP_LOOP_SCENE)
 
 func _panel_style() -> StyleBoxFlat:
 	var style := StyleBoxFlat.new()
