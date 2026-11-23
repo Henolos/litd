@@ -3141,3 +3141,9 @@ Blessure directe et saignement causé par l'attaque sur combattant effectivement
 Barèmes de recrutement et comptage des expéditions ; capacités de détention/contention ; effets de confiance/loyauté ; initiative, réactions et priorités ; grandes recrues et invocations ; coûts et coefficients de capture, résistances, collisions et interruptions ; catalogue des classes, techniques et équipements ; UI ; audit de réutilisation du moteur existant ; tests automatisés, interruption/reprise, équilibrage humain et Windows. Aucun de ces tests exécuté lors de cette consolidation. Plan de tests candidat : incompatibilité anatomique, capture garantie après extraction et délai persistant, perte de captif avant retour, boss hors NG+, multirang sans double impact, retrait et resserrement, combo indispensable interrompu ou complémentaire perdu, interception avec membre absent, afflictions et prothèses, PA et crédits non dupliqués, reprise à chaque frontière durable. Pas de code ni fusion modifiés.
 
 Avancement des arbitrages de principe : 10/10 (100 % de ce périmètre documentaire). Chantier technique non évalué ; projet global à évaluer. Prochaine étape proposée : arbitrages résiduels bloquants et audit du moteur de combat avant contrat technique et prototype isolé.
+
+
+---
+## V7.65 — Ouverture des arbitrages résiduels du combat (23 novembre 2026)
+
+Suite demandée par l'utilisateur après consolidation V7.64. Priorité : initiative et ordre de résolution des tours, puis grandes créatures recrutées, invocations, délais de recrutement et priorités des réactions. Préserver V4.2–4.4, V7.62–64 et V8.3. Les principes consolidés restent validés ; aucun nouveau modèle d'initiative n'est encore approuvé. Comparer les modèles avant arbitrage explicite. Aucun code ni test modifié.
