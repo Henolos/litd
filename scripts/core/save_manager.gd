@@ -343,7 +343,7 @@ func preview_committed_transaction(current_state: Dictionary, record: Dictionary
 # Experimental isolated journal. Never called by save_game/load_game.
 # Append-only revision files; a failed or interrupted write must not be accepted.
 # FileAccess.flush + readback does not establish power-loss durability.
-func journal_append_preview(journal_dir: String, current_state: Dictionary, record: Dictionary, applied_ids: Array) -> bool:
+func journal_append_preview(journal_dir: String, current_state: Dictionary, record: Dictionary, applied_ids: Array, interrupt_at: String = "") -> bool:
     if not journal_dir.begins_with("user://litd_transaction_lab/"):
         return false
     var preview := preview_committed_transaction(current_state, record, applied_ids)
@@ -372,22 +372,39 @@ func journal_append_preview(journal_dir: String, current_state: Dictionary, reco
     var temp := path + ".pending"
     if FileAccess.file_exists(temp):
         return false
+    if interrupt_at == "before_open":
+        return false
     var file := FileAccess.open(temp, FileAccess.WRITE)
     if file == null:
         return false
+    if interrupt_at == "after_open":
+        file.close()
+        return false
+    if interrupt_at == "during_store":
+        file.store_string(encoded.left(maxi(1, encoded.length() / 2)))
+        file.flush()
+        file.close()
+        return false
     file.store_string(encoded)
+    if interrupt_at == "after_store":
+        file.close()
+        return false
     file.flush()
     var write_error := file.get_error()
     file.close()
     if write_error != OK or FileAccess.get_file_as_string(temp) != encoded:
         return false
+    if interrupt_at == "after_flush" or interrupt_at == "before_rename":
+        return false
     if DirAccess.rename_absolute(ProjectSettings.globalize_path(temp), ProjectSettings.globalize_path(path)) != OK:
+        return false
+    if interrupt_at == "after_rename":
         return false
     return FileAccess.get_file_as_string(path) == encoded
 
 # Recover a consecutive, validated prefix; never accept a malformed entry.
 # A missing revision is an error, not a reason to skip forward.
-func journal_recover_preview(journal_dir: String, campaign_id: String, base_revision: int, base_state: Dictionary) -> Dictionary:
+func journal_recover_preview(journal_dir: String, campaign_id: String, base_revision: int, base_state: Dictionary, interrupt_at: String = "") -> Dictionary:
     if not journal_dir.begins_with("user://litd_transaction_lab/"):
         return {}
     var state := base_state.duplicate(true)
@@ -409,25 +426,35 @@ func journal_recover_preview(journal_dir: String, campaign_id: String, base_revi
         if parser.parse(FileAccess.get_file_as_string(path)) != OK or not (parser.data is Dictionary):
             return {}
         var envelope: Dictionary = parser.data
+        if interrupt_at == "after_read":
+            return {}
         var payload_base64: Variant = envelope.get("payload_base64")
         if typeof(payload_base64) != TYPE_STRING:
             return {}
         var binary := Marshalls.base64_to_raw(payload_base64)
         if binary.is_empty() or envelope.get("sha256") != String(payload_base64).sha256_text():
             return {}
+        if interrupt_at == "after_checksum":
+            return {}
         var decoded: Variant = bytes_to_var(binary)
         if not (decoded is Dictionary):
             return {}
         var entry: Dictionary = decoded
+        if interrupt_at == "after_decode":
+            return {}
         if entry.get("journal_schema_version") != 1 or not (entry.get("record") is Dictionary):
             return {}
         var record: Dictionary = entry["record"]
         if record.get("campaign_id") != campaign_id or record.get("transaction_id") != entry.get("transaction_id"):
+            return {}
+        if interrupt_at == "before_apply":
             return {}
         var preview := preview_committed_transaction(state, record, ids)
         if preview.is_empty() or preview.get("revision") != revision + 1:
             return {}
         state = preview["persistent_state"]
         ids = preview["applied_transaction_ids"]
+        if interrupt_at == "after_apply":
+            return {}
         revision += 1
     return {"revision": revision, "persistent_state": state, "applied_transaction_ids": ids}
