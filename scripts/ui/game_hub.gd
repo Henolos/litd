@@ -60,6 +60,12 @@ func _build_interface() -> void:
 	bestiary_button.pressed.connect(_open_bestiary)
 	content.add_child(bestiary_button)
 
+	var qa_button := Button.new()
+	qa_button.text = "Laboratoire visuel · héros et Guilde"
+	qa_button.custom_minimum_size.y = 54
+	qa_button.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/tests/playtest_gallery.tscn"))
+	content.add_child(qa_button)
+
 	var explanation := Label.new()
 	explanation.text = "Le catalogue est accessible. L’aventure jouable et ses scènes restent à créer."
 	explanation.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
