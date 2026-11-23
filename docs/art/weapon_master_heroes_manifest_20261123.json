@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "source_archive": "LITD1_TRANSFERT_WORK_5_HEROS_2026-11-23.zip",
+  "source_archive_sha256": "67cb88db1fdb8e84fea25b50dd4c56770f14844a604f669f61f7b6c7f07e5e8a",
+  "status": "design_assets_prepared; import_into_github_pending",
+  "notes": [
+    "The archive originals are never retouched.",
+    "Exact matches for Effrie and Aurélien reuse the existing canonical art files; no duplicate binaries are added.",
+    "Lya's archive sheet differs from the existing validated runtime reference. Both are preserved: the archive sheet is an additional design sheet, not a replacement.",
+    "This manifest groups five unlockable candidates and does not change the six-entry 2026-11-11 general hero-art manifest."
+  ],
+  "assets": [
+    {
+      "hero_id": "ysra_nahal",
+      "display_name": "Ysra Nahal",
+      "source_archive_member": "assets_valides/ysra_nahal_planche_validee.jpeg",
+      "target_path": "art/library/heroes/ysra_nahal/reference.jpg",
+      "sha256": "04df47e83e02121dc2b3dca1a0e8e20b4a137fd72f158b7de795c301df7e935c",
+      "bytes": 740937,
+      "width": 1122,
+      "height": 1402,
+      "action": "new_original_import",
+      "local_sha256_verified": true,
+      "github_binary_verified": false,
+      "godot_import_tested": true
+    },
+    {
+      "hero_id": "effrie",
+      "display_name": "Èffrie",
+      "source_archive_member": "assets_valides/effrie_planche_validee.jpeg",
+      "target_path": "art/library/heroes/effrie/reference.jpg",
+      "sha256": "50f0237610cce571cf2ad34f593022cf1ee4e3724805fb331f546169c7f7a9da",
+      "bytes": 620653,
+      "width": 1149,
+      "height": 1369,
+      "action": "reuse_existing_exact_sha256",
+      "existing_manifest": "docs/art/validated_heroes_manifest_20261111.json#LITD-HERO-005",
+      "local_sha256_verified": true,
+      "github_binary_verified": false,
+      "godot_import_tested": false
+    },
+    {
+      "hero_id": "lya",
+      "display_name": "Lya",
+      "source_archive_member": "assets_valides/lya_planche_validee.jpeg",
+      "target_path": "art/library/heroes/lya/concepts/lya_weapon_master_sheet_20261123.jpeg",
+      "sha256": "a696103ba9a48352433829d7175d75a5473d7829a448be7ad0b261a027ccbbb6",
+      "bytes": 766251,
+      "width": 1536,
+      "height": 1024,
+      "action": "new_supplemental_design_sheet",
+      "existing_runtime_reference": {
+        "path": "art/library/heroes/lya/reference.jpg",
+        "sha256": "b4705bd27991495ed38cbdce7f59203f901c2a8e18c90f3fe0a9fa70e1664272",
+        "bytes": 744724,
+        "preserved_without_modification": true
+      },
+      "local_sha256_verified": true,
+      "github_binary_verified": false,
+      "godot_import_tested": true
+    },
+    {
+      "hero_id": "zeje",
+      "display_name": "Zéjé le Désaccordé",
+      "source_archive_member": "assets_valides/zeje_planche_validee.jpeg",
+      "target_path": "art/library/heroes/zeje/reference.jpg",
+      "sha256": "13b50fb8a452c5dba5763648775ea9cf99664428e9c2fa8eacf19ea1864317a2",
+      "bytes": 707306,
+      "width": 1536,
+      "height": 1024,
+      "action": "new_original_import",
+      "rejected_variant_included": false,
+      "local_sha256_verified": true,
+      "github_binary_verified": false,
+      "godot_import_tested": true
+    },
+    {
+      "hero_id": "aurelien",
+      "display_name": "Aurélien",
+      "source_archive_member": "assets_valides/aurelien_planche_validee.jpeg",
+      "target_path": "art/library/heroes/aurelien/reference.jpg",
+      "sha256": "0d9fff31df8ad2e662b886edb63b47e01d158570e779b3f634d6cc39a66e4670",
+      "bytes": 538071,
+      "width": 1122,
+      "height": 1402,
+      "action": "reuse_existing_exact_sha256",
+      "existing_manifest": "docs/art/validated_heroes_manifest_20261111.json#LITD-HERO-001",
+      "roster_conflict": "data/heroes.json already identifies Aurélien as a canonical starting hero; this record references that hero and does not create another hero entry.",
+      "local_sha256_verified": true,
+      "github_binary_verified": false,
+      "godot_import_tested": false
+    }
+  ]
+}
