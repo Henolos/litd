@@ -59,6 +59,34 @@ func _run() -> void:
     var journal_dir := "user://litd_transaction_lab/ci_fixture"
     _check(manager.journal_append_preview(journal_dir, before, record, []), "Journal must write a verified revision")
     _check(not manager.journal_append_preview(journal_dir, before, record, []), "Journal must not overwrite an existing revision")
+    # Simulate process stops during journal write and during recovery. A pending
+    # temp file is never a committed revision; a truncated committed file fails closed.
+    var interrupted_dir := "user://litd_transaction_lab/interrupted"
+    _check(DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(interrupted_dir)) == OK, "Create interruption fixture")
+    var interrupted_pending := interrupted_dir.path_join("revision_0000000004.json.pending")
+    var pending_file := FileAccess.open(interrupted_pending, FileAccess.WRITE)
+    if pending_file != null:
+        pending_file.store_string("{\\"payload_base64\\":\\"partial")
+        pending_file.close()
+    var before_recovery: Dictionary = manager.journal_recover_preview(interrupted_dir, "campaign-1", 3, before)
+    _check(before_recovery.get("revision") == 3 and before_recovery.get("persistent_state") == before, "Interrupted write must recover only the last committed base")
+    _check(DirAccess.remove_absolute(ProjectSettings.globalize_path(interrupted_pending)) == OK, "Remove interrupted pending file")
+    _check(manager.journal_append_preview(interrupted_dir, before, record, []), "Retry after interrupted write must commit")
+    var interrupted_path := interrupted_dir.path_join("revision_0000000004.json")
+    var committed_text := FileAccess.get_file_as_string(interrupted_path)
+    var damaged_file := FileAccess.open(interrupted_path, FileAccess.WRITE)
+    if damaged_file != null:
+        damaged_file.store_string(committed_text.left(maxi(1, committed_text.length() / 2)))
+        damaged_file.close()
+    _check(manager.journal_recover_preview(interrupted_dir, "campaign-1", 3, before).is_empty(), "Interrupted recovery read must fail closed on truncated committed record")
+    var repair_file := FileAccess.open(interrupted_path, FileAccess.WRITE)
+    if repair_file != null:
+        repair_file.store_string(committed_text)
+        repair_file.close()
+    var resumed: Dictionary = manager.journal_recover_preview(interrupted_dir, "campaign-1", 3, before)
+    _check(resumed.get("revision") == 4 and resumed.get("persistent_state") == after, "Recovery retry must resume from the intact committed record")
+    _check(DirAccess.remove_absolute(ProjectSettings.globalize_path(interrupted_path)) == OK, "Clean interrupted journal record")
+    _check(DirAccess.remove_absolute(ProjectSettings.globalize_path(interrupted_dir)) == OK, "Clean interruption fixture")
     var recovered: Dictionary = manager.journal_recover_preview(journal_dir, "campaign-1", 3, before)
     _check(recovered.get("revision") == 4, "Recovery must advance to committed revision")
     _check(recovered.get("persistent_state") == after, "Recovery must restore resolved state")
