@@ -2507,3 +2507,11 @@ Source : LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md, bibliothèque util
 **VALIDÉ EN CONCEPTION : option C, explicitement choisie par l'utilisateur.** Bibliothèques régionales de lieux, rencontres et événements conçus manuellement, assemblés procéduralement à chaque nouvelle expédition sous contraintes narratives et régionales. Respecter l'identité artistique et les biomes, l'accessibilité des objectifs obligatoires lorsque leurs prérequis sont remplis, les itinéraires alternatifs et accès secrets, la cohérence des rencontres, la persistance des conséquences et événements uniques, l'absence de blocage involontaire et la stabilité de la configuration pendant l'expédition, sauvegarde et reprise comprises. Conserver les décisions V7.15–V7.23 et la génération hybride des donjons déjà documentée. Dimensions, densité, répartition des nœuds, algorithmes et valeurs restent à spécifier.
 
 **Traçabilité :** validation explicite de l'option C concernant la génération procédurale des cartes régionales. Mise à jour documentaire uniquement ; aucun développement ni test en jeu. **Statut : 🟡 À CONSOLIDER. Avancement du chantier détaillé et du projet global : À évaluer.**
+
+
+---
+## V7.25 — Taille et densité variables des cartes régionales (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, explicitement choisie par l'utilisateur.** Chaque région possède ses propres fourchettes de taille et de densité ; la génération hybride fait varier ces caractéristiques à chaque nouvelle expédition dans les limites régionales. Respecter l'identité des biomes, la stabilité pendant une même expédition, les contraintes narratives et la persistance des conséquences. Les valeurs numériques, distributions et exemples spécifiques aux biomes restent à arbitrer et tester.
+
+**Traçabilité :** validation explicite de l'option C concernant la taille et la densité des cartes régionales. Mise à jour documentaire uniquement ; aucun développement ni test en jeu. **Statut : 🟡 À CONSOLIDER. Avancement des arbitrages détaillés : 2/8 (25 %, estimation non pondérée). Avancement du projet global : À évaluer.**
