@@ -2515,3 +2515,11 @@ Source : LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md, bibliothèque util
 **VALIDÉ EN CONCEPTION : option C, explicitement choisie par l'utilisateur.** Chaque région possède ses propres fourchettes de taille et de densité ; la génération hybride fait varier ces caractéristiques à chaque nouvelle expédition dans les limites régionales. Respecter l'identité des biomes, la stabilité pendant une même expédition, les contraintes narratives et la persistance des conséquences. Les valeurs numériques, distributions et exemples spécifiques aux biomes restent à arbitrer et tester.
 
 **Traçabilité :** validation explicite de l'option C concernant la taille et la densité des cartes régionales. Mise à jour documentaire uniquement ; aucun développement ni test en jeu. **Statut : 🟡 À CONSOLIDER. Avancement des arbitrages détaillés : 2/8 (25 %, estimation non pondérée). Avancement du projet global : À évaluer.**
+
+
+---
+## V7.26 — Organisation hybride structurée des embranchements (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, explicitement choisie par l'utilisateur.** Réseau hybride structuré associant axes principaux, branches secondaires, boucles, impasses et passages secrets. Les axes principaux relient grandes zones et objectifs importants ; les branches secondaires favorisent exploration, ressources et quêtes annexes ; les boucles offrent des itinéraires alternatifs ; les impasses accueillent des lieux isolés ; les passages secrets donnent accès à des lieux cachés ou raccourcis. Répartition adaptable aux régions et donjons, sans imposer un boss à chaque expédition. Maintenir brouillard intégral, retour en arrière, sécurisation dynamique, stabilité intra-expédition et contraintes narratives. Les proportions, conditions d'accès et paramètres restent à définir.
+
+**Traçabilité :** validation explicite de l'option C concernant l'organisation des embranchements et des chemins. Mise à jour documentaire uniquement ; aucun développement ni test en jeu. **Statut : 🟡 À CONSOLIDER. Avancement des arbitrages détaillés : 3/8 (37,5 %, estimation non pondérée). Avancement du projet global : À évaluer.**
