@@ -21,8 +21,9 @@ Branche : feature/guild-illustrated-hub-design-20261122 (PR #633).
 ## Validation à faire
 1. Vérifier le rendu intégral des deux planches dans l’écran Godot, sans recadrage des originaux.
 2. Inspecter les systèmes réels de sauvegarde, quête et bestiaire, puis raccorder des déblocages persistants après validation de leur schéma.
-3. Revoir les documents de navigation selon la carte à nœuds et valider la boucle jouable.
-4. Revoir et fusionner la PR après tests, sans fusion automatique.
+3. Suivre la boucle isolée en PR #637 : CI distante, revue visuelle et limites consignées avant tout raccordement au runtime de campagne.
+4. Raccorder ensuite les PNJ et leurs services à des systèmes validés.
+5. Revoir et fusionner les PR après tests, sans fusion automatique.
 
 ## Reprise du 2026-11-22
 - État antérieur de la branche : les deux PNG étaient absents.
