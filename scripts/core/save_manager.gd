@@ -339,3 +339,86 @@ func preview_committed_transaction(current_state: Dictionary, record: Dictionary
         "persistent_state": next_state.duplicate(true),
         "applied_transaction_ids": ids
     }
+
+# Experimental isolated journal. Never called by save_game/load_game.
+# Append-only revision files; a failed or interrupted write must not be accepted.
+# FileAccess.flush + readback does not establish power-loss durability.
+func journal_append_preview(journal_dir: String, current_state: Dictionary, record: Dictionary, applied_ids: Array) -> bool:
+    if not journal_dir.begins_with("user://litd_transaction_lab/"):
+        return false
+    var preview := preview_committed_transaction(current_state, record, applied_ids)
+    if preview.is_empty():
+        return false
+    var revision: int = preview["revision"]
+    var path := journal_dir.path_join("revision_%010d.json" % revision)
+    if FileAccess.file_exists(path):
+        return false
+    if DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(journal_dir)) != OK:
+        return false
+    var entry := {
+        "journal_schema_version": 1,
+        "record": record.duplicate(true),
+        "transaction_id": preview["applied_transaction_ids"].back()
+    }
+    if not _supported(entry):
+        return false
+    var body := JSON.stringify(entry, "", true, true)
+    var encoded := JSON.stringify({"body": body, "sha256": body.sha256_text()})
+    var temp := path + ".pending"
+    if FileAccess.file_exists(temp):
+        return false
+    var file := FileAccess.open(temp, FileAccess.WRITE)
+    if file == null:
+        return false
+    file.store_string(encoded)
+    file.flush()
+    var write_error := file.get_error()
+    file.close()
+    if write_error != OK or FileAccess.get_file_as_string(temp) != encoded:
+        return false
+    if DirAccess.rename_absolute(ProjectSettings.globalize_path(temp), ProjectSettings.globalize_path(path)) != OK:
+        return false
+    return FileAccess.get_file_as_string(path) == encoded
+
+# Recover a consecutive, validated prefix; never accept a malformed entry.
+# A missing revision is an error, not a reason to skip forward.
+func journal_recover_preview(journal_dir: String, campaign_id: String, base_revision: int, base_state: Dictionary) -> Dictionary:
+    if not journal_dir.begins_with("user://litd_transaction_lab/"):
+        return {}
+    var state := base_state.duplicate(true)
+    var revision := base_revision
+    var ids: Array = []
+    var directory := DirAccess.open(journal_dir)
+    if directory == null:
+        return {"revision": revision, "persistent_state": state, "applied_transaction_ids": ids}
+    var files := directory.get_files()
+    var expected_count := 0
+    for name in files:
+        if name.begins_with("revision_") and name.ends_with(".json"):
+            expected_count += 1
+    for index in range(expected_count):
+        var path := journal_dir.path_join("revision_%010d.json" % (revision + 1))
+        if not FileAccess.file_exists(path):
+            return {}
+        var parser := JSON.new()
+        if parser.parse(FileAccess.get_file_as_string(path)) != OK or not (parser.data is Dictionary):
+            return {}
+        var envelope: Dictionary = parser.data
+        var body: Variant = envelope.get("body")
+        if typeof(body) != TYPE_STRING or envelope.get("sha256") != String(body).sha256_text():
+            return {}
+        if parser.parse(body) != OK or not (parser.data is Dictionary):
+            return {}
+        var entry: Dictionary = parser.data
+        if entry.get("journal_schema_version") != 1 or not (entry.get("record") is Dictionary):
+            return {}
+        var record: Dictionary = entry["record"]
+        if record.get("campaign_id") != campaign_id or record.get("transaction_id") != entry.get("transaction_id"):
+            return {}
+        var preview := preview_committed_transaction(state, record, ids)
+        if preview.is_empty() or preview.get("revision") != revision + 1:
+            return {}
+        state = preview["persistent_state"]
+        ids = preview["applied_transaction_ids"]
+        revision += 1
+    return {"revision": revision, "persistent_state": state, "applied_transaction_ids": ids}
