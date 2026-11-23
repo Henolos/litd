@@ -14,7 +14,9 @@
     "relationship_meter": "reuse_existing_event_driven_relationship_model; do_not_create_a_separate_trust_meter",
     "runtime_status": "blocked_no_litd1_npc_affinity_or_hero_recruitment_runtime_found",
     "existing_relationship_reference": "data/hero_relationships.json",
-    "existing_hero_memory_rules": "data/narrative/legendary_seven_relationship_memory_contexts.json"
+    "existing_hero_memory_rules": "data/narrative/legendary_seven_relationship_memory_contexts.json",
+    "sequence_policy": "fixed_progressive_order",
+    "affinity_thresholds_status": "not_defined"
   },
   "recruitment_progression": {
     "level_at_recruitment": "protagonist_current_level",
@@ -36,32 +38,37 @@
       "hero_id": "ysra_nahal",
       "display_name": "Ysra Nahal",
       "design_sheet": "docs/characters/unlockable_heroes/ysra_nahal.md",
-      "art_manifest_path": "docs/art/weapon_master_heroes_manifest_20261123.json"
-    },
-    {
-      "hero_id": "effrie",
-      "display_name": "Èffrie",
-      "design_sheet": "docs/characters/unlockable_heroes/effrie.md",
-      "art_manifest_path": "docs/art/weapon_master_heroes_manifest_20261123.json"
+      "art_manifest_path": "docs/art/weapon_master_heroes_manifest_20261123.json",
+      "unlock_order": 1
     },
     {
       "hero_id": "lya",
       "display_name": "Lya",
       "design_sheet": "docs/characters/unlockable_heroes/lya.md",
-      "art_manifest_path": "docs/art/weapon_master_heroes_manifest_20261123.json"
+      "art_manifest_path": "docs/art/weapon_master_heroes_manifest_20261123.json",
+      "unlock_order": 2
     },
     {
       "hero_id": "zeje",
       "display_name": "Zéjé le Désaccordé",
       "design_sheet": "docs/characters/unlockable_heroes/zeje.md",
-      "art_manifest_path": "docs/art/weapon_master_heroes_manifest_20261123.json"
+      "art_manifest_path": "docs/art/weapon_master_heroes_manifest_20261123.json",
+      "unlock_order": 3
+    },
+    {
+      "hero_id": "effrie",
+      "display_name": "Èffrie",
+      "design_sheet": "docs/characters/unlockable_heroes/effrie.md",
+      "art_manifest_path": "docs/art/weapon_master_heroes_manifest_20261123.json",
+      "unlock_order": 4
     },
     {
       "hero_id": "aurelien",
       "display_name": "Aurélien",
       "design_sheet": "docs/characters/unlockable_heroes/aurelien.md",
       "art_manifest_path": "docs/art/weapon_master_heroes_manifest_20261123.json",
-      "roster_note": "Reuse the existing canonical hero identity; do not create a duplicate hero record. The user confirmed Aurélien is not part of the current starting quartet."
+      "roster_note": "Reuse the existing canonical hero identity; do not create a duplicate hero record. The user confirmed Aurélien is not part of the current starting quartet.",
+      "unlock_order": 5
     }
   ]
 }
