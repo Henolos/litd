@@ -2204,3 +2204,17 @@ Les déplacements sur la carte à embranchements utilisent un **modèle hybride*
 **Traçabilité :** validation explicite de l'utilisateur : « Pour LITD 1, je valide l'option C pour le fonctionnement des déplacements sur la carte à embranchements. »
 
 **Exécution :** décision enregistrée, sans modification Godot ni test en jeu. **Statut : 🟡 À CONSOLIDER. Avancement du chantier actuel : À évaluer. Avancement du projet global : À évaluer.**
+
+
+---
+## V7.17 — Revisite des nœuds : événements hybrides et persistants (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, explicitement choisie par l'utilisateur.**
+- Les événements uniques résolus restent résolus.
+- Les rencontres ordinaires peuvent se renouveler selon les règles antérieures de renouvellement entre missions ; un simple aller-retour ne constitue pas un déclencheur automatique de réapparition des ennemis ou de remplissage des coffres.
+- Les événements persistants peuvent modifier durablement le nœud ou ses connexions, conformément au monde évolutif et au modèle hybride de déplacement V7.16.
+- Préserver la distinction entre mission et expédition, la stabilité de configuration pendant une expédition et les conséquences uniques persistantes.
+- Restent ouverts : classification détaillée des événements, visibilité des changements, conditions exactes de renouvellement, exceptions scénarisées et coûts de retour. Aucun nouvel arbitrage implicite.
+
+**Traçabilité :** validation explicite de l'utilisateur de l'option C concernant les événements lors du retour sur les nœuds déjà visités. Mise à jour documentaire uniquement ; aucun changement Godot ni test en jeu.
+**Statut : 🟡 À CONSOLIDER. Avancement du chantier actuel : À évaluer. Avancement du projet global : À évaluer.**
