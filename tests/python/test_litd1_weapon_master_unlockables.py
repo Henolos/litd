@@ -53,12 +53,13 @@ class WeaponMasterUnlockablesTest(unittest.TestCase):
         self.assertEqual(config["recruitment_progression"]["evolutionary_skill_choices_at_recruitment"], [])
         self.assertEqual(config["recruitment_progression"]["skill_points"]["status"], "not_verified_in_active_litd1_code")
 
-    def test_aurelien_is_referenced_once_and_conflict_is_explicit(self):
+    def test_aurelien_reuses_one_identity_without_starting_quartet_block(self):
         heroes = load_json(ROOT / "data/heroes.json")
         self.assertEqual(sum(hero["id"] == "aurelien" for hero in heroes), 1)
         recruitment = load_json(RECRUITMENT)
         aurelien = next(hero for hero in recruitment["heroes"] if hero["hero_id"] == "aurelien")
-        self.assertEqual(aurelien["roster_conflict"]["status"], "requires_design_reconciliation_before_runtime_unlock")
+        self.assertNotIn("roster_conflict", aurelien)
+        self.assertIn("not part of the current starting quartet", aurelien["roster_note"])
 
     def test_only_one_zeje_variant_is_registered(self):
         manifest = load_json(MANIFEST)

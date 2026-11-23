@@ -18,9 +18,9 @@
 - En conséquence, `data/recruitment/weapon_master_hero_unlocks.json` prépare les identifiants, la source d’accès et les règles de réinitialisation sans inventer de seuil d’affinité, sans créer une jauge de confiance séparée et sans prétendre qu’un déclenchement runtime existe.
 - **Points de compétences :** aucune implémentation active LITD 1 n’a permis de vérifier la formule de calcul. L’attribution à l’enrôlement reste donc une référence dynamique à la future règle canonique, non une valeur calculée ou testée.
 
-## Réconciliation nécessaire : Aurélien
+## Roster de départ : correction utilisateur
 
-La même identité `aurelien` figure dans `data/heroes.json` comme héros canonique du quatuor de départ, tandis que l’addendum V8.1_WORK le liste parmi les héros à débloquer par affinité avec la maîtresse d’armes. Le registre conserve une seule identité et bloque le déclenchement runtime de son recrutement jusqu’à résolution de cette contradiction. Aucun second Aurélien n’est ajouté.
+L’utilisateur a précisé le 23 novembre 2026 qu’Aurélien, Anouk, Marec et Mathilde ne font plus partie du quatuor de départ. Le blocage de recrutement qui avait été ajouté pour Aurélien sur la base de l’ancienne classification est retiré. Son identifiant canonique est réutilisé sans créer de doublon. Les métadonnées historiques de `data/heroes.json` et leurs garde-fous de canon restent à réaligner dans un chantier dédié ; elles ne sont pas une condition au recrutement décrit ici. Cette PR ne devine pas la composition qui remplace l’ancien quatuor.
 
 ## Références artistiques et doublons
 

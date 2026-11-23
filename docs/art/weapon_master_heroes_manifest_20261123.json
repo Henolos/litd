@@ -85,7 +85,7 @@
       "height": 1402,
       "action": "reuse_existing_exact_sha256",
       "existing_manifest": "docs/art/validated_heroes_manifest_20261111.json#LITD-HERO-001",
-      "roster_conflict": "data/heroes.json already identifies Aurélien as a canonical starting hero; this record references that hero and does not create another hero entry.",
+      "roster_note": "Reuse the existing canonical hero identity; the user confirmed Aurélien is not part of the current starting quartet.",
       "local_sha256_verified": true,
       "github_binary_verified": false,
       "godot_import_tested": false
