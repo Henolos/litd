@@ -47,3 +47,31 @@ Les clés supplémentaires sont actuellement préservées par le snapshot opaque
 - Tests d'interruption et essais Windows réels sur copies.
 
 **Décision de sécurité :** ne pas raccorder `canonical_body` et `canonical_sha256` à `save_game` ou `load_game` avant satisfaction de ces critères.
+
+## Audit des producteurs et consommateurs du runtime courant (23 novembre 2026)
+
+**Périmètre inspecté :** arborescence Git `scripts/**/*.gd` de la branche de la PR #639 (20 scripts de production, hors `scripts/tests`), fichiers `scripts/core/save_manager.gd`, `scripts/core/data_loader.gd`, `scripts/ui/game_hub.gd`, `scripts/world/dungeon_run_seed.gd`, `scripts/world/dungeon_event_director.gd`, `scripts/ui/bestiary_screen.gd`, `data/heroes.json`, `tests/godot/test_save_roundtrip_headless.gd`, ADR-0007 et ADR-0009. Ce relevé **ne remplace pas une recherche de toutes les références dynamiques ou non GDScript**.
+
+| Domaine | Producteur confirmé dans les sources inspectées | Consommateur confirmé | Statut du schéma |
+| --- | --- | --- | --- |
+| Stockage de snapshot | `SaveManager.set_snapshot(payload)` accepte un dictionnaire opaque ; `_build_payload` ajoute `version` et `metadata` | `SaveManager.get_snapshot()`, `load_game()` et `_apply_payload()` | **API de stockage vérifiée**, aucun contrat métier |
+| Héros | `scripts/core/data_loader.gd` lit `res://data/heroes.json` comme données de catalogue, non comme sauvegarde | `DataLoader.heroes` est alimenté ; consommation de cette donnée dans une sauvegarde **non démontrée** | Catalogue statique ≠ état vivant de héros |
+| Combat, décès définitifs, succession | Aucun producteur de mutations persistantes confirmé dans les scripts inspectés | Aucun consommateur de journal durable confirmé | **Non démontré**, ne pas déclarer implémenté |
+| Expédition | `scripts/world/dungeon_run_seed.gd` lit `campaign_seed` depuis un dictionnaire d'exécution/configuration | Génération d'une graine de donjon ; raccordement à `SaveManager` non démontré | Contrat de reprise d'expédition **à établir** |
+| Progression collective / Guilde | `SaveManager._migrate` initialise `campaign_memory`, `progression_scope` et autres champs, sans définir leurs structures | `SaveManager` conserve ces valeurs opaques | **Valeurs par défaut uniquement**, pas de validation métier |
+| Données de tests | `tests/godot/test_save_roundtrip_headless.gd` produit une fixture `gold`, `party`, `equipment`, `future_module` | Le même test relit les valeurs après `save_game` et `load_game` | **Fixture synthétique**, ne pas promouvoir en schéma canonique |
+
+### Contradictions et limites documentées
+
+- L'ADR-0007 décrit une boucle roguelike et une sérialisation historique via `ExpeditionManager` (PR #70), mais porte le statut **revalidate**. L'arborescence de production inspectée ne contient pas `scripts/core/expedition_manager.gd`. **Preuve historique ≠ producteur courant vérifié.**
+- L'ADR-0009 précise que Mathilde, Marec, Anouk et Aurélien ne constituent plus le quatuor de départ et qu'aucun nouveau quatuor n'est défini. `data/heroes.json` ne doit donc pas être utilisé pour inventer un état initial canonique.
+- Le test de roundtrip démontre la conservation d'un dictionnaire arbitraire et des clés inconnues. Il ne démontre ni la mort permanente ni la succession transactionnelle.
+- L'absence d'un producteur confirmé dans cet audit n'est **pas** une preuve générale de son inexistence : des ressources historiques, scripts retirés, branches, tests ou intégrations externes peuvent exister.
+
+### Contrat vérifiable : ce qui est établi et ce qui reste bloqué
+
+**Établi et testable maintenant :** format enveloppe `version=0.31`, `metadata`, snapshot opaque, conservation de clés inconnues, fonctions `canonical_body(campaign_id, revision, persistent_state)` et `canonical_sha256` non raccordées, refus des types non JSON et des champs transitoires racine listés.
+
+**Non établi :** identité persistante des héros et de la campagne, provenance des révisions, état de mort permanente, événements confirmés, succession `pending`, économie idempotente, captures, RNG, schéma de combat, règles de reprise. Aucun champ ne peut être déclaré obligatoire en production sans producteur et consommateur prouvés.
+
+**Porte de sortie :** reconstruire ou identifier un producteur runtime actuel pour chaque domaine, collecter des exemples de snapshot réels sur copies, définir invariants et versions, puis tester migrations, journaux et interruptions. En attendant, ne pas bloquer ni transformer les sauvegardes 0.31 existantes.
