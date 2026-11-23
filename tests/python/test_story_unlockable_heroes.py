@@ -21,7 +21,13 @@ class StoryUnlockableHeroesTests(unittest.TestCase):
         self.assertEqual(contract["rules"]["skill_tree_choices_at_recruitment"], [])
         self.assertEqual(contract["rules"]["evolutionary_skill_choices_at_recruitment"], [])
         self.assertEqual(contract["runtime_status"], "not_implemented")
-        self.assertEqual(contract["story_progression"]["runtime_gate_ids"], "to_define_from_campaign_missions")
+        self.assertEqual([gate["hero_id"] for gate in contract["story_progression"]["gates"]], contract["order"])
+        self.assertEqual([gate["canonical_event_id"] for gate in contract["story_progression"]["gates"]], ["formation.anouk_rank_2", "formation.marec_rank_3", "formation.mathilde_rank_4"])
+        self.assertEqual(contract["story_progression"]["gates"][1]["prerequisite_unlocked_hero_ids"], ["anouk"])
+        self.assertEqual(contract["story_progression"]["gates"][2]["prerequisite_unlocked_hero_ids"], ["anouk", "marec"])
+        self.assertEqual(contract["story_progression"]["runtime_adapter"], "not_implemented_campaign_event_adapter_needed")
+        self.assertEqual(contract["persistence"]["unlocked_hero_flags"], "permanent_across_game_over")
+        self.assertEqual(contract["persistence"]["hero_death"], "permanent_for_the_individual_hero")
         self.assertEqual([canon["formation_order"].index("hero." + hero_id) for hero_id in contract["order"]], [1, 2, 3])
         for hero in heroes:
             entry = manifest["heroes"][hero["id"]]

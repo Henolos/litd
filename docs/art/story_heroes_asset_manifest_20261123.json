@@ -14,7 +14,7 @@
         "path": "art/library/heroes/anouk/story_unlock/portrait_provisoire.png",
         "sha256": "e18471dc0e81a42bda2b05d8c96e1c8ebc38c6a2eff11f2e7bc7404831a0f6fd",
         "status": "provisional_not_approved_for_combat",
-        "visual_review_note": "Portrait recadré provisoire ; fragment de lettrage visible près du bord gauche. Validation utilisateur requise."
+        "visual_review_note": "Portrait recadré provisoire ; lettrage résiduel visible près du bord gauche. Ne pas utiliser en combat sans reprise du recadrage et validation."
       }
     },
     "marec": {
@@ -27,7 +27,7 @@
         "path": "art/library/heroes/marec/story_unlock/portrait_provisoire.png",
         "sha256": "3cadcfef1285ee283c81f5f635570b39080df7b6cd605e1ea451538160062c54",
         "status": "provisional_not_approved_for_combat",
-        "visual_review_note": "Portrait recadré provisoire ; aucun fragment de lettrage évident sur le bord dans le contrôle visuel effectué. Validation utilisateur requise."
+        "visual_review_note": "Portrait recadré provisoire ; aucun lettrage évident au bord dans le contrôle visuel. Validation encore requise avant usage en combat."
       }
     },
     "mathilde": {
@@ -40,7 +40,7 @@
         "path": "art/library/heroes/mathilde/story_unlock/portrait_provisoire.png",
         "sha256": "68a43c9876a8f83f017574003905aee6bcbce36eb93efa16b4af53dbd9bc7751",
         "status": "provisional_not_approved_for_combat",
-        "visual_review_note": "Portrait recadré provisoire ; fragment de lettrage visible près du coin supérieur gauche. Validation utilisateur requise."
+        "visual_review_note": "Portrait recadré provisoire ; fragments de lettrage visibles en haut à gauche. Ne pas utiliser en combat sans reprise du recadrage et validation."
       }
     }
   }
