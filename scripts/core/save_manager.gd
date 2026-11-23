@@ -301,3 +301,41 @@ func _supported(value: Variant) -> bool:
             return true
         _:
             return false
+
+# Transaction preview only: pure validation on copies, with no disk writes.
+# This is NOT a durable write-ahead journal or a runtime commit operation.
+func preview_committed_transaction(current_state: Dictionary, record: Dictionary, applied_ids: Array) -> Dictionary:
+    var campaign_id: Variant = record.get("campaign_id")
+    var transaction_id: Variant = record.get("transaction_id")
+    var base_revision: Variant = record.get("base_revision")
+    var result_revision: Variant = record.get("result_revision")
+    var current_revision: Variant = record.get("current_revision")
+    var next_state: Variant = record.get("result_state")
+    var before_hash: Variant = record.get("pre_state_sha256")
+    var after_hash: Variant = record.get("post_state_sha256")
+    if typeof(campaign_id) != TYPE_STRING or String(campaign_id).is_empty():
+        return {}
+    if typeof(transaction_id) != TYPE_STRING or String(transaction_id).is_empty():
+        return {}
+    if typeof(base_revision) != TYPE_INT or typeof(result_revision) != TYPE_INT or typeof(current_revision) != TYPE_INT:
+        return {}
+    if base_revision < 0 or result_revision != base_revision + 1 or current_revision != base_revision:
+        return {}
+    if applied_ids.has(transaction_id):
+        return {}
+    if typeof(next_state) != TYPE_DICTIONARY or typeof(before_hash) != TYPE_STRING or typeof(after_hash) != TYPE_STRING:
+        return {}
+    if before_hash != canonical_sha256(campaign_id, base_revision, current_state):
+        return {}
+    if after_hash != canonical_sha256(campaign_id, result_revision, next_state):
+        return {}
+    if String(before_hash).length() != 64 or String(after_hash).length() != 64:
+        return {}
+    var ids := applied_ids.duplicate()
+    ids.append(transaction_id)
+    return {
+        "campaign_id": campaign_id,
+        "revision": result_revision,
+        "persistent_state": next_state.duplicate(true),
+        "applied_transaction_ids": ids
+    }
