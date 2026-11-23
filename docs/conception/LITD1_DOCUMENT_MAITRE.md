@@ -2737,3 +2737,24 @@ Préserver V8.1–V8.3, notamment les conditions de maîtrise exigeant des contr
 **VALIDÉ EN CONCEPTION : option C et dix règles complémentaires explicitement approuvées.** 1. Conservation de la configuration initiale pendant l'expédition. 2. Toute transformation a une cause identifiable dans le monde. 3. Ouverture, fermeture, restauration ou destruction possibles de passages. 4. Transformation locale ou apparition d'un lieu si le contexte le justifie. 5. Distinction entre transformations temporaires et permanentes. 6. Conservation des découvertes antérieures même obsolètes. 7. Révélation des changements selon les règles de reconnaissance et renseignements. 8. Validation automatique après chaque transformation. 9. Sauvegarde des transformations et conséquences. 10. Aucune recomposition aléatoire globale pendant une même expédition. Les architectures impossibles restent soumises aux contrôles de validité et de sauvegarde. Concilier V7.17, V7.19, V7.36 et V7.38 ; exemples environnementaux indicatifs, non validés individuellement.
 
 **Traçabilité :** validation explicite de l'option C concernant la stabilité et l'évolution contextuelle des cartes avec les dix règles complémentaires. Consolidation : 2/4 arbitrages validés. Mise à jour documentaire uniquement, aucun test runtime. Statut : 🟡 À CONSOLIDER. Avancement global : À évaluer.
+
+
+---
+## V7.44 — Progression cumulative maîtrisée et promotions évolutives des Némésis (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, progression cumulative maîtrisée et promotions évolutives des Némésis, avec les douze règles complémentaires explicitement approuvées.** Gains statistiques marginaux décroissants et bornés ; promotions qualitatives distinctes. Les rangs d'origine mini-boss et boss sont conservés ; les cinq boss principaux restent distincts des boss émergents.
+
+1. Chaque mort définitive de héros attribuable au Némésis contribue à sa progression.
+2. Gains statistiques décroissants et bornés.
+3. Promotions distinctes des bonus cumulatifs.
+4. Exploits exceptionnels impliquant plusieurs morts de héros pouvant accélérer une promotion.
+5. Aucun bonus de progression pour simple fuite, blessure infligée ou survie au combat.
+6. Promotions pouvant débloquer des capacités compatibles.
+7. Faiblesses anatomiques et tactiques toujours exploitables.
+8. Bonus d'équipement distincts des bonus de progression.
+9. Aucun affaiblissement artificiel après Game Over.
+10. Aucune guérison intégrale automatique lors d'une promotion.
+11. Aucun retour d'un Némésis définitivement mort uniquement pour maintenir la difficulté.
+12. Seuils, plafonds et bonus définitifs après simulations et tests de combat.
+
+Évolutions qualitatives possibles : apparence, techniques, résistances, comportement, territoire, alliés, réputation et récompenses, selon compatibilité ; exemples et courbes numériques indicatifs, non validés comme barèmes. Préserver V7.12, V7.34–V7.42 et invariants V8.3. Les sept axes du chantier mort, succession et Némésis sont arbitrés au niveau des principes ; spécifications, implémentation, équilibrage et tests restent ouverts. Validation documentaire uniquement.
