@@ -31,3 +31,36 @@ jobs:
           bash tools/ci/run_godot_checked.sh --log "$sandbox/import.log" -- godot --headless --path . --import --quit
           bash tools/ci/run_godot_checked.sh --log "$sandbox/canonical.log" --expect SAVE_CANONICAL_CONTRACT_PASS -- godot --headless --path . --script res://tests/godot/test_save_canonical_headless.gd
           bash tools/ci/run_godot_checked.sh --log "$sandbox/transaction.log" --expect SAVE_TRANSACTION_PREVIEW_PASS -- godot --headless --path . --script res://tests/godot/test_save_transaction_preview_headless.gd
+  windows-save-recovery:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Install pinned Godot console build
+        shell: pwsh
+        run: |
+          $release = Invoke-RestMethod -Uri "https://api.github.com/repos/godotengine/godot/releases/tags/4.7.2-stable"
+          $asset = $release.assets | Where-Object { $_.name -eq "Godot_v4.7.2-stable_win64_console.exe.zip" } | Select-Object -First 1
+          if (-not $asset) { throw "Official Godot 4.7.2 Windows console asset not found." }
+          $zip = Join-Path $env:RUNNER_TEMP "godot-win64.zip"
+          Invoke-WebRequest -Uri $asset.browser_download_url -OutFile $zip
+          $install = Join-Path $env:RUNNER_TEMP "godot"
+          Expand-Archive -Path $zip -DestinationPath $install -Force
+          $exe = Get-ChildItem -Path $install -Filter "*console.exe" -Recurse | Select-Object -First 1
+          if (-not $exe) { throw "Godot console executable was not extracted." }
+          "GODOT_EXE=$($exe.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Import and exercise recovery using an isolated Windows profile
+        shell: pwsh
+        run: |
+          $sandbox = Join-Path $env:RUNNER_TEMP ("litd-save-sandbox-" + $env:GITHUB_RUN_ID)
+          New-Item -ItemType Directory -Path $sandbox -Force | Out-Null
+          $env:APPDATA = $sandbox
+          $env:LOCALAPPDATA = $sandbox
+          $env:XDG_DATA_HOME = $sandbox
+          $env:LITD_SAVE_TEST_SANDBOX = $sandbox
+          & $env:GODOT_EXE --headless --path . --import --quit
+          if ($LASTEXITCODE -ne 0) { throw "Godot Windows import failed: $LASTEXITCODE" }
+          & $env:GODOT_EXE --headless --path . --script res://tests/godot/test_save_canonical_headless.gd
+          if ($LASTEXITCODE -ne 0) { throw "Windows canonical save test failed: $LASTEXITCODE" }
+          & $env:GODOT_EXE --headless --path . --script res://tests/godot/test_save_transaction_preview_headless.gd
+          if ($LASTEXITCODE -ne 0) { throw "Windows interrupted-write/recovery matrix failed: $LASTEXITCODE" }
