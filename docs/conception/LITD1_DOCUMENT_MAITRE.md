@@ -2937,3 +2937,25 @@ Identités uniques et références valides ; position accessible selon contexte 
 Exemples approuvés : rapporter des échantillons biologiques (résistances alchimiques), un organe particulier (faiblesses anatomiques), une créature vivante (méthodes de neutralisation), un cadavre (physiologie et anatomie), observer une réaction en combat (résistances et comportements), étudier plusieurs individus (particularités intra-espèce).
 
 Responsabilités : médecin — recherche expérimentale, anatomie, physiologie, faiblesses et méthodes de capture ; Wei Shan — conservation, documentation, recherches historiques et mythologiques ; maîtresse d'armes — apprentissage pratique des techniques. Les récompenses de connaissance alimentent le bestiaire collectif et persistent après succession selon V8.1, qui prévaut sur les anciennes règles de bestiaire propre au protagoniste et de reprise avec le même protagoniste figurant dans la PR #633. Les exemples ne fixent pas les quêtes individuelles, coûts, modalités de transport ni récompenses chiffrées. Validation documentaire uniquement.
+
+
+---
+## V7.55 — Réconciliation du contrat d'exploration avec issue #638 (23 novembre 2026)
+
+**Audit statique et exigences techniques candidates ; aucune validation runtime.** Références : V7.53, issue #638, PR #639 ouverte, scripts/core/save_manager.gd sur feat/issue-638-canonical-save-state. Aucun changement de gameplay.
+
+| Domaine | Constat vérifié | Exigence avant raccordement |
+| --- | --- | --- |
+| Migration | _migrate refuse les versions autres que 0.31 et complète des clés historiques ; aucune chaîne interversions | Migrations explicites versionnées sur copies, conservation des champs inconnus, validation avant publication, original intact si échec ; ne pas inventer des événements historiques absents |
+| Isolation | Trois slots et autosave global ; journal laboratoire par chemin fourni ; recovery compare campaign_id mais preview ne reçoit pas d'identité attendue indépendante | Lier campagne, slot et journal par manifeste vérifié ; autosave rattachée à la campagne ; rejeter identité divergente et chemins hors espace autorisé après normalisation ; séparer QA et jeu ; aucune récupération croisée |
+| Identités | transaction_id non vide et contrôle de doublons dans applied_ids ; recovery initialise ids à vide | Registre durable des identités et attributions, historique ou index des transactions déjà intégrées au snapshot ; identifiants de monde distincts des instances d'expédition ; contrôle de références et unicité ; ne pas réutiliser identités après clôture |
+| Confirmation | append retourne false après renommage simulé alors que fichier final existe ; flush et relecture ne prouvent pas durabilité électrique | Distinguer non confirmé, confirmé et résultat incertain ; en cas d'incertitude interroger le journal par identité avant tout nouvel essai ; ne jamais relancer RNG ni effets ; publier état seulement après confirmation vérifiée |
+| Reprise | recovery compte tous fichiers revision_*.json et part de base_revision+1 ; dossier inaccessible traité comme état de base | Définir manifeste/checkpoint et suffixe de journal, distinguer absence attendue et erreur d'accès, prouver continuité jusqu'à dernière révision confirmée, refuser trous et conflits ; gérer pending sans écraser preuve |
+
+### Contrat d'interface indépendant du stockage
+Le domaine produit un résultat métier complet et déterminé à partir d'une révision attendue, avec identités stables et invariants. Le SaveManager commun reste seul responsable de l'encodage, du journal, de la confirmation et de la récupération. Le prototype result_state et le futur format mutations restent des détails internes ; aucune dépendance directe aux fonctions *_preview. Identité de campagne et révision attendues proviennent de la session autorisée, non du seul enregistrement reçu. Aucun accès direct aux fichiers par le générateur. Les opérations incertaines bloquent les nouvelles mutations jusqu'à réconciliation. SHA-256 contrôle l'intégrité, pas l'authenticité ni la durabilité physique.
+
+### Matrice d'acceptation à réaliser dans #638
+Migration 0.31 sur copie avec champs inconnus et échec injecté ; rejet version inconnue ; autosave et journal d'une autre campagne ; slot supprimé sans résurrection par secours ; chemins normalisés ; transaction dupliquée avant/après checkpoint ; conflit même ID contenu différent ; interruption avant et après renommage, après confirmation avant publication, pendant snapshot/manifeste ; dossier absent versus inaccessible ; suffixe après checkpoint non nul ; trou de révision ; reprise sans nouveau tirage ; Linux et Windows. Préserver les preuves et originaux. Aucun de ces nouveaux scénarios n'a été exécuté ici.
+
+**Décision de séquencement :** la spécification pure du générateur et du validateur peut avancer indépendamment ; raccordement runtime bloqué tant que les critères de #638 ne sont pas démontrés. Phase contrat : réconciliation documentaire réalisée, validation technique en attente. Aucun code ni fusion.
