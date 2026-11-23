@@ -2310,3 +2310,192 @@ Ces éléments proviennent des validations utilisateur retrouvées dans l'histor
 
 **Traçabilité :** validation explicite de l'option C concernant les transitions et interactions sur la carte. Les huit axes structurels sont arbitrés ; cela ne clôt pas la conception détaillée ni le développement. Prochaine priorité : génération procédurale et découverte, avec garanties de connectivité, stabilité pendant l'expédition et persistance des conséquences.
 **Exécution :** mise à jour documentaire uniquement ; aucun changement Godot ni test en jeu. **Statut : 🟡 À CONSOLIDER. Avancement des arbitrages structurels : 8/8 ; avancement de la conception détaillée et du projet global : À évaluer.**
+
+
+---
+## Consolidation V8.3 — registre intégral des 40 arbitrages
+
+Source : LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md, bibliothèque utilisateur, version 1. Reprise des sections de décisions V8.3, V8.2 et V8.1, sans réimporter leur annexe historique V8.0. Les 40 décisions ci-dessous prévalent sur les avenants partiels précédents concernant la succession, la maîtrise et la sauvegarde ; notamment l'arbitrage 4 remplace le 3 et résout la contradiction avec PR #633. Les décisions de carte V7.15–V7.20 et les autres décisions ultérieures compatibles restent applicables. La persistance spécifique des Némésis après succession reste à préciser si non explicitement tranchée. Les mentions historiques de points ouverts dans V8.1/V8.2 sont supplantées par les arbitrages ultérieurs de V8.3. Aucun test runtime réalisé par cette consolidation.
+
+# LITD 1 — Document maître V8.3 — clôture des 40 arbitrages
+
+**Date : 23 novembre 2026.** **Statut : conception validée, non implémentée et non testée.** La V8.2 et son socle historique V8.1 sont conservés intégralement après cette section. Les règles récentes prévalent seulement sur les contradictions expressément tranchées. **Clôture : série des arbitrages n° 1 à 40 close en conception ; chantier d'implémentation non clos.**
+
+## Registre des décisions complémentaires
+
+| N° | Décision | Statut |
+|---|---|---|
+| 37 | Vérification des invariants métier et empreinte SHA-256 canonique de l'état persistant reconstruit. | 🟢 Validé en conception |
+| 38 | Migrations versionnées et sécurisées ; original préservé ; conversion sur copie ; validation avant publication. | 🟢 Validé en conception |
+| 39 | Mode de récupération sécurisé et guidé ; aucune reconstruction inventée ni modification des originaux ; restauration uniquement d'états démontrablement cohérents. | 🟢 Validé en conception |
+| 40 | Validation progressive : tests automatisés, interruptions simulées, migrations et essais réels sur Windows avant validation technique. | 🟢 Validé en conception |
+
+## Règles techniques consolidées des arbitrages 30 à 40
+
+1. **Unité atomique :** une action entièrement résolue avec toutes ses conséquences interdépendantes (dégâts multi-cibles, morts, captures, effets, ressources et crédits). Une succession peut constituer une transaction séparée si un état durable `succession_pending` garantit son achèvement exactement une fois.
+2. **Journal durable :** une transaction irréversible confirmée doit inclure son identité de campagne, son ordre, sa révision de départ, ses préconditions, les modifications d'état nécessaires à une reprise complète, les événements permanents, l'état aléatoire nécessaire, les identifiants de crédits et une preuve d'intégrité. Ne jamais appliquer un marqueur de mort isolé à un état incompatible.
+3. **Validation :** préparer, écrire, synchroniser durablement les données et la preuve de confirmation, puis publier l'instantané et le manifeste. La méthode exacte de synchronisation des fichiers et répertoires doit être adaptée à Windows et au système de fichiers. Une écriture non durable ne peut être garantie après coupure.
+4. **Reconstruction :** partir du dernier instantané vérifiable, rejouer dans l'ordre uniquement les modifications d'état confirmées, sans resimuler les actions ; vérifier préconditions, unicité des transactions et continuité des révisions ; refuser les divergences.
+5. **Invariants :** aucun héros unique dupliqué, aucune résurrection interdite, succession unique, pas de crédit personnel posthume, pas de double attribution, causalité et durée des effets conservées, ressources et équipement non dupliqués, acquis collectifs et quêtes persistants, ordre des transactions strict.
+6. **Empreinte canonique :** représentation stable et documentée de l'état persistant (ordre des clés et collections, encodage, nombres, null, champs facultatifs, versions) ; exclure les données purement transitoires. Comparer SHA-256 attendu et calculé **en plus** des invariants. Une empreinte ne protège pas contre la modification volontaire du fichier et de son empreinte.
+7. **Migrations :** versions distinctes du schéma de sauvegarde, des données de jeu et des règles ; chaîne explicite de migrations testées ; conversion non destructive sur copie ; conservation de l'original ; contrôle des invariants et empreintes avant publication ; version future inconnue non écrasée.
+8. **Récupération guidée :** inspecter manifestes, instantanés et journaux ; ne proposer que des révisions entièrement vérifiables ; conserver les originaux ; ne jamais reconstruire artificiellement une mort, une succession ou un inventaire manquant ; si aucune reprise cohérente n'existe, bloquer la reprise de cette campagne avec diagnostic clair.
+9. **Limites :** pas de garantie absolue contre la perte de données non synchronisées, panne matérielle, corruption de tous les supports ou copie manuelle d'anciennes sauvegardes hors ligne. Les garanties ne sont pas prouvées avant tests réels.
+
+## Plan du chantier d'implémentation (proposé, non exécuté)
+
+| Phase | Travaux | Preuve exigée |
+|---|---|---|
+| P0 — Audit | Examiner `Henolos/litd`, branche `main`, PR ouvertes, architecture de sauvegarde, scènes/scripts et environnement Windows ; ne pas créer de système parallèle | Inventaire des fichiers et écarts sourcé par commits |
+| P1 — Contrat | Définir schémas de transaction, invariants, canonicalisation, versionnement et scénarios de référence | Spécifications revues + jeux de données de test |
+| P2 — Prototype | Implémenter journal, instantanés, confirmation durable, restauration idempotente et secours sur branche isolée | Tests unitaires et d'intégration reproductibles |
+| P3 — Résilience | Injecter des interruptions à chaque frontière ; corruptions, doublons, pertes de manifeste, attaques multi-cibles et succession | Matrice de tests automatisés, résultats et logs |
+| P4 — Migration | Tester sauvegardes anciennes, futures et migrations interrompues ; garantir la conservation des originaux | Corpus de sauvegardes et rapports comparatifs |
+| P5 — Windows | Produire un build identifiable ; vérifier fermeture forcée, reprise, sauvegardes sur disque réel et interface de récupération | Captures/logs, build et observations d'essai réels |
+| P6 — Validation | Réconcilier les anomalies, contrôler les non-régressions, documenter limites et décider l'intégration | Rapport de validation, PR revue, décision explicite |
+
+**Critères de passage :** zéro duplication/résurrection non autorisée ; aucune transaction partielle reconnue ; reprise identique à l'état persistant attendu ; corruption détectée sans modification des originaux ; migrations réversibles par préservation des sources ; essais Windows documentés. Aucun taux de réussite ni pourcentage de progression ne peut être annoncé sans résultats mesurés.
+
+**État réel au 23/11/2026 :** décisions n° 1 à 40 closes en conception ; intégration documentaire réalisée dans cette V8.3 ; aucune implémentation ni campagne de tests attestée dans cette opération. **Avancement du chantier d'implémentation : À évaluer. Avancement du projet global : À évaluer.**
+
+---
+
+# Archive intégrale : V8.2 et socle V8.1
+
+# LITD 1 — Document maître de conception V8.2 — consolidation des arbitrages 11 à 36
+
+**Date : 23 novembre 2026**  
+**Statut : décisions validées en conception ; intégration documentaire uniquement. Aucune implémentation ni validation en jeu attestée.**  
+**Socle : V8.1 conservée intégralement ci-dessous.** Cette section nouvelle prévaut sur les passages historiques incompatibles pour les points expressément arbitrés. Les paramètres présentés comme indicatifs restent à équilibrer.
+
+## Registre complémentaire des arbitrages validés
+
+| N° | Décision validée en conception |
+|---|---|
+| 11 | Successeur : points de compétence correspondant au niveau hérité ; emplacements passifs personnels à regagner par maîtrise et défi. |
+| 12 | Successeur : attributs de base de sa classe et points liés au niveau hérité à répartir dans les contraintes de classe. |
+| 13 | Successeur : traits personnels initiaux compatibles, développement personnel sans héritage des traits du défunt. |
+| 14 | Deux emplacements passifs de progression personnelle obtenus par accomplissements de classe/rôle, non par niveau numérique seul. |
+| 15 | Deux jalons de maîtrise, fondamental et avancé ; contribution réelle en expédition obligatoire, entraînement de refuge complémentaire. |
+| 16 | Objectifs de maîtrise mesurables et spécifiques à la classe/spécialisation, comptage automatique des contributions réelles. |
+| 17 | Fondamental : 3 situations distinctes sur ≥2 expéditions et ≥2 catégories ; avancé : 6 situations supplémentaires sur ≥3 expéditions et ≥3 catégories, avec danger significatif ; pas de réutilisation. |
+| 18 | Bonus d’entraînement évolutifs avec bâtiments, plafonnés ; ne remplacent pas diversité des expéditions et catégories. |
+| 19 | Crédits et déblocages reconnus immédiatement en jeu, conservés après retraite/échec si le héros survit ; mort efface sa progression personnelle jouable. |
+| 20 | Capture non létale réussie = victoire pour défi personnel si contribution active et héros vivant à résolution ; pas de coup final requis. |
+| 21 | Progression par situations tactiques résolues, non par nombre brut d’actions. |
+| 22 | Crédit individuel si contribution significative et vérifiable ; plusieurs héros peuvent être crédités pour une même situation. |
+| 23 | Seuils hybrides selon rôle : 15 % des PV max de la cible indicatif pour soin/protection/dégâts OU conséquence tactique significative démontrable ; contrôle/capture par résultat effectif. |
+| 24 | Pas de plafond arbitraire par combat ; seules menaces réellement distinctes comptent ; anti-farming. |
+| 25 | Nouvelle menace reconnue par signature ou changement significatif du contexte tactique ; identifiant seul insuffisant. |
+| 26 | Seuils de changement contextuel indicatifs (30 % PV alliés, 25 % dégâts potentiels entrants, 50 % ressource pertinente perdue) OU événement déterminant objectivable. |
+| 27 | Traçabilité causale directe/indirecte/différée ; au plus un crédit par héros et situation ; sans plafond par combat. |
+| 28 | Effets suivis durant leur activité et conséquences directement attribuables, sans limite arbitraire de tours ; corrélation seule insuffisante. |
+| 29 | Aucun nouveau crédit personnel après mort définitive ; effets persistants possibles selon règles ; faits antérieurs archivables, non hérités. |
+| 30 | Sauvegardes automatiques sécurisées en expédition ; attribution idempotente des crédits et états cohérents. |
+| 31 | Reprise du combat au dernier état sécurisé à frontière cohérente ; événements déjà validés préservés. |
+| 32 | Sauvegarde active + secours technique protégé ; registre cohérent des conséquences permanentes. |
+| 33 | Registre transactionnel associé aux instantanés par révisions et validations cohérentes. |
+| 34 | Journal durable prioritaire des morts définitives et transitions de succession, récupération transactionnelle cohérente. |
+| 35 | Journal des conséquences permanentes et des données de résolution nécessaires à une reprise cohérente et déterministe. |
+| 36 | Reconstruction par réapplication ordonnée des modifications d’état validées, sans resimulation des actions déjà résolues. |
+
+## Spécification consolidée : maîtrise, succession et sauvegarde
+
+### Succession et maîtrise individuelle
+- Après l'anéantissement des quatre combattants, la succession narrative et la persistance du monde suivent les arbitrages 4 à 10 de V8.1.
+- Le successeur reçoit le niveau numérique et les points de compétence correspondants, avec attributs et traits personnels propres à sa classe. Les emplacements passifs personnels doivent être regagnés ; les acquis collectifs restent acquis.
+- La maîtrise se fonde sur des situations tactiques **résolues**, des contributions causales significatives, la diversité des expéditions et des objectifs, et des jalons distincts. Les seuils de 15 %, 30 %, 25 % et 50 % restent des **repères indicatifs**, pas des paramètres équilibrés par playtest.
+- Une situation peut créditer plusieurs héros distincts, mais jamais plusieurs fois le même héros pour la même situation et le même jalon. Les contributions différées sont suivies sans limite arbitraire de tours, sous réserve d'une causalité démontrable.
+- Une mort définitive interdit les nouveaux crédits personnels ; un effet déjà créé peut se poursuivre si les règles le permettent. Les accomplissements passés peuvent rester archivés sans être transmis au successeur.
+
+### Architecture de sauvegarde validée
+- Une sauvegarde active, un secours technique protégé et un registre transactionnel des conséquences permanentes sont associés par identifiants de campagne, transactions et révisions.
+- Les conséquences irréversibles (morts définitives, transitions de succession) nécessitent une journalisation durable prioritaire, avant de permettre la poursuite des actions qui en dépendent.
+- Les transactions enregistrent les modifications d'état et les données de résolution indispensables pour reconstruire un état cohérent, y compris lorsque les conséquences sont différées ou aléatoires.
+- La reconstruction réapplique **dans l'ordre** les modifications d'état confirmées ; elle ne recalcule pas les attaques ni les tirages déjà résolus. La réapplication doit être idempotente.
+- La confirmation d'une transaction doit désigner un ensemble cohérent ; une écriture incomplète ne peut pas être présentée comme validée. Une coupure antérieure à toute écriture durable peut faire perdre l'événement encore uniquement en mémoire vive.
+- Une sauvegarde de secours n'autorise pas un retour arrière libre annulant des conséquences irréversibles confirmées. Si une reconstruction cohérente ne peut pas être prouvée, le jeu doit refuser la restauration plutôt qu'inventer des données.
+
+### Invariants de reconstruction proposés, non encore arbitrés séparément
+1. Identité unique des héros et absence de résurrection d'un héros définitivement mort.
+2. Successeur unique par transition de succession confirmée.
+3. Crédits de maîtrise attribués une seule fois par héros, situation et jalon ; pas de crédits posthumes.
+4. Conservation de la causalité, des auteurs et des durées des effets différés.
+5. Cohérence des inventaires, ressources, formations, captures, blessures et équipements.
+6. Persistance des connaissances collectives, quêtes générales, bâtiments et conséquences narratives.
+7. Application des seules transactions confirmées, dans l'ordre, une seule fois.
+
+### Points encore ouverts, à ne pas considérer comme validés
+- Arbitrage 37 : validation par invariants et empreinte canonique de l'état persistant (option B recommandée, non validée à ce stade).
+- Arbitrages 38 à 40 : sérialisation/versionnement, migrations/récupération, et critères de recette/gel du périmètre (ordre de travail proposé, non validé).
+- Granularité précise des checkpoints ordinaires, détails des transactions, garanties de synchronisation propres aux plateformes et comportement UX en cas de corruption.
+- Les autres questions de gameplay et de production signalées dans V8.1 restent ouvertes lorsqu'elles ne sont pas explicitement résolues par les arbitrages 11 à 36.
+
+### Statut d'exécution
+- **Réalisé :** consolidation documentaire des arbitrages 11 à 36 sur socle V8.1.
+- **Non réalisé :** audit du code de sauvegarde dans GitHub, implémentation, exécution des tests, vérification des performances, validation sur build jouable.
+- **Avancement du chantier actuel : À évaluer. Avancement du projet global : À évaluer.**
+
+---
+
+# Socle V8.1 conservé intégralement (archive et références antérieures)
+
+# LITD 1 — Document maître V8.1 : arbitrages de succession et persistance
+
+**Statut : validé en conception, non implémenté ni testé.** Cette section est prioritaire sur les passages historiques contradictoires de la V8.0, conservée intégralement en annexe. Aucun point non tranché ne doit être considéré comme validé.
+
+## Registre des décisions
+
+| N° | Décision | Statut |
+|---|---|---|
+| 1 | Exploration par grande carte à nœuds ramifiés, retours et chemins cachés ; remplace la 3D isométrique. Combats 2D conservés. | Validé |
+| 2 | Bestiaire persistant et maîtrise individuelle des compagnons ; précisé par le n° 5. | Validé |
+| 3 | Même protagoniste survivant après Game Over. | **Remplacé par n° 4** |
+| 4 | Après anéantissement des quatre combattants, nouveau protagoniste et nouvelle compagnie. Monde, narration, quêtes principales et secondaires générales conservent leur progression. Épreuves de Guilde avant reprise des missions. | Validé |
+| 5 | Bestiaire transmis par les archives consultables de la Guilde ; maîtrise individuelle du successeur à reconstruire. | Validé |
+| 6 | Réservistes survivants, progression intacte et disponibilité immédiate selon leur état normal. | Validé |
+| 7 | Nouveau protagoniste au niveau numérique du précédent ; classe, identité, maîtrise et choix personnels nouveaux. Points de compétence à répartir. | Validé |
+| 8 | Réputation et acquis relationnels permanents conservés ; liens personnels du successeur à construire ; souvenirs et relations des survivants préservés. | Validé |
+| 9 | Quêtes personnelles d'un héros unique mort définitivement interrompues ou inaccessibles ; quêtes déjà terminées et acquis conservés. | Validé |
+| 10 | Quêtes principales et quêtes personnelles/secondaires propres aux héros uniques sans dépendances de progression réciproques. | Validé |
+
+## Règles actives après Game Over
+
+1. **Mort définitive.** L'anéantissement des quatre combattants actifs entraîne la mort du protagoniste et des trois compagnons engagés, même si des réservistes survivent. Aucun héros unique mort ne revient ni ne peut être recruté de nouveau.
+2. **Succession narrative.** Un nouveau protagoniste prend la relève, sans remise à zéro du monde, des choix, des conséquences, ni de l'état des quêtes principales et secondaires générales. Les épreuves spécifiques de la Guilde constituent une condition temporaire d'autorisation de reprise, **pas** une réinitialisation des quêtes. Le maître de la Guilde peut relever une ressemblance avec un héros disparu ; sa signification n'est pas fixée.
+3. **Niveau du successeur.** Le niveau numérique du précédent protagoniste est transmis, pas sa classe, son identité, sa maîtrise pratique ni ses choix de spécialisation. Les points de compétence du nouveau personnage sont à répartir selon sa classe. Le calcul exact des points, des attributs, des traits et des emplacements passifs reste à arbitrer.
+4. **Réservistes.** Les héros demeurés à la Guilde survivent et restent immédiatement disponibles, sous réserve des restrictions ordinaires liées à leur état. Ils conservent leurs niveaux, compétences, traits, équipements, blessures, souvenirs, affinités et maîtrise individuelle. Les héros morts ne sont pas replacés en réserve.
+5. **Bestiaire.** Toutes les découvertes acquises restent accessibles dans les archives de la Guilde. Le successeur développe sa maîtrise propre ; les survivants gardent la leur.
+6. **Hub et biens.** Bâtiments et améliorations du hub, coffre et biens/or qui y ont été déposés persistent, conformément aux règles V8.0. L'équipement porté par les combattants anéantis n'est pas transféré magiquement au coffre ; la récupération éventuelle dans le monde obéira aux règles des corps et du butin encore à préciser.
+7. **Réputation et relations.** Réputation de la compagnie et conséquences collectives conservées. Les PNJ et compagnons se souviennent de leurs liens avec le héros mort, mais le nouveau protagoniste ne reçoit pas automatiquement ses affinités personnelles. Les survivants gardent leurs relations. Les déblocages permanents issus des relations (lieux, services, accès, récompenses déjà obtenues) restent acquis, sans faire revenir un personnage mort.
+8. **Héros uniques.** Un héros unique vivant, déjà recruté et présent à la Guilde reste recruté et disponible. Un héros unique mort ne peut être recruté une seconde fois. Les héros uniques ne sont jamais dupliqués par le renouvellement du tableau de recrutement.
+
+## Indépendance des quêtes et exception des héros uniques
+
+- **Quêtes principales :** elles ne dépendent jamais de l'accomplissement d'une quête personnelle d'un héros unique. Aucun objet, personnage, accès ou événement exclusivement fourni par une telle quête ne peut bloquer la progression principale.
+- **Quêtes personnelles/secondaires propres aux héros uniques :** elles ne dépendent pas réciproquement de la progression de la quête principale. Elles peuvent refléter le contexte du monde sans dépendance bloquante.
+- **Si le héros unique meurt :** ses quêtes personnelles non commencées deviennent définitivement inaccessibles, celles en cours sont définitivement interrompues, celles achevées restent achevées. Les conséquences et déblocages permanents déjà obtenus restent acquis ; les récompenses jamais obtenues ne sont pas attribuées rétroactivement.
+- **Quêtes secondaires générales :** leur état persiste après succession. Le sort de ces quêtes si un PNJ non héroïque indispensable meurt demeure une question ouverte.
+
+## Contradictions historiques explicitement résolues
+
+- La survie du même protagoniste après Game Over est **obsolète** : le nouveau protagoniste succède au défunt.
+- Le bestiaire exclusivement personnel sans transmission est **obsolète** : archives persistantes de la Guilde, maîtrise individuelle non héritée.
+- Toute remise à zéro des quêtes principales ou secondaires générales après Game Over est **obsolète**.
+- La poursuite des quêtes personnelles d'un héros unique mort est **interdite**.
+- Les dépendances de progression entre quêtes principales et quêtes personnelles des héros uniques sont **interdites**.
+- L'exploration 3D isométrique comme système actif est **remplacée** par la carte à nœuds.
+
+## Points ouverts et contrôles nécessaires
+
+- Calcul exact des points de compétence, attributs, traits et passifs du successeur au niveau hérité.
+- Contenu et conditions des épreuves de succession ; distinction entre accès temporairement verrouillé et progression des quêtes conservée.
+- Règles de récupération des équipements et corps, notamment après Game Over.
+- Réactions relationnelles détaillées, exceptions liées à la présence physique d'un héros mort, et destin des héros uniques jamais recrutés.
+- Vérification des scénarios : aucune dépendance bloquante entre trame principale et quêtes personnelles des héros uniques.
+- Équilibrage en prototype : successeur de niveau hérité, vétérans conservés, difficulté des épreuves.
+- Le NG+ après victoire reste distinct de la succession après défaite.
+
+**État d'exécution :** consolidation documentaire uniquement. Aucune implémentation, aucun test en jeu, aucune modification GitHub réalisés par cette mise à jour.
+
+---
