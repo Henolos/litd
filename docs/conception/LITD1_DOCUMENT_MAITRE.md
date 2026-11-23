@@ -2606,3 +2606,22 @@ Préserver les contraintes de génération, de stabilité intra-expédition, de 
 8. Aucun anéantissement de compagnie ne doit rendre définitivement impossible la poursuite du jeu.
 
 Cette décision résout le point ouvert sur la persistance après succession. Pillage, déplacements interrégionaux, conditions de fuite et équilibrage restent à arbitrer ; examen juridique avant commercialisation non réalisé. Validation documentaire uniquement, aucun test runtime.
+
+
+---
+## V7.35 — Évolution contextuelle des corps et équipements (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, évolution contextuelle sous contraintes des corps et équipements, avec les dix règles complémentaires explicitement approuvées.** Le devenir des dépouilles dépend du lieu, des créatures présentes, de l'environnement et des événements depuis la mort : conservation, pillage, disparition ou réanimation hostile selon le contexte.
+
+1. Le devenir des corps persiste après Game Over.
+2. Aucun transfert automatique des équipements au coffre de la Guilde.
+3. La recomposition procédurale ne supprime pas arbitrairement les dépouilles.
+4. Les ennemis peuvent piller selon leur nature et leur comportement.
+5. La réanimation nécessite un contexte compatible avec l'univers.
+6. Un héros réanimé hostile reste définitivement mort comme héros recrutable.
+7. Aucune duplication d'équipement par récupération.
+8. Les objets légendaires uniques conservent leur caractère indestructible déjà validé.
+9. Les simples allers-retours ne modifient pas artificiellement le devenir d'un corps.
+10. La disparition d'une dépouille n'implique pas nécessairement la destruction de tous ses équipements.
+
+Délais, probabilités et utilisation des équipements pillés par les Némésis restent à arbitrer. Exemples de lieux indicatifs uniquement. Préserver la mort définitive et les invariants de sauvegarde V8.3. Validation documentaire uniquement, aucun développement ni test en jeu.
