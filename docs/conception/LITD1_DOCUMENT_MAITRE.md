@@ -2254,3 +2254,23 @@ Les modalités de génération, dimensions, nombre de nœuds, coûts de déplace
 
 **Traçabilité :** validation explicite de l'option C concernant la structure des cartes régionales et des donjons. Mise à jour documentaire uniquement, sans modification Godot ni test en jeu.
 **Statut : 🟡 À CONSOLIDER. Avancement de conception : 5 arbitrages sur 8 (62,5 %, estimation par axes non pondérés). Avancement du projet global : À évaluer.**
+
+
+---
+## Avenant — Succession et progression du protagoniste : réconciliation partielle (23 novembre 2026)
+
+### Arbitrages utilisateur retrouvés (heures françaises)
+- 13 h 02 : option B, Game Over suivi d'une succession par un nouveau protagoniste ; monde, quêtes principales et secondaires et conséquences conservés ; épreuves de la Guilde obligatoires avant reprise des expéditions.
+- 13 h 03 : bestiaire du prédécesseur transmis par les archives de la Guilde, maîtrise individuelle à reconstruire ; compagnons survivants conservés et immédiatement disponibles.
+- 13 h 08–10 : déblocages relationnels conservés ; quêtes personnelles des héros uniques morts définitivement inaccessibles ; aucune dépendance bloquante des quêtes principales et secondaires à ces quêtes personnelles.
+- 13 h 19 : arbitrage 11, option B : niveau et points de compétence hérités ; emplacements passifs personnels à reconstruire. Ne pas assimiler les points de compétence hérités à la conservation automatique de toutes les compétences, caractéristiques ou traits.
+
+### Réconciliation et limites
+- La règle de succession ci-dessus est explicitement validée pour le Game Over. La PR #633 (docs/knowledge/guild_illustrated_hub_decision.md) contient aussi une règle de reprise avec le même protagoniste ; son ordre exact de validation et son éventuel périmètre distinct ne sont pas établis. Ne pas implémenter deux mécanismes concurrents ni considérer cette contradiction comme résolue sans preuve complémentaire.
+- Le village illustré interactif est le hub principal, la Guilde illustrée son sous-hub central ; conserver la planche architecturale validée. Source : PR #633, extension validée du 22 novembre.
+- Les règles historiques du coffre et des biens emportés restent traçables ; leur articulation exacte avec la succession reste à vérifier dans les arbitrages récents.
+- La PR #620 contient les règles Némésis V8.0 : déclenchement automatique après mort définitive d'un héros, bonus initial selon rang, petits bonus cumulatifs par mort supplémentaire, promotions distinctes liées aux morts de héros, fuite volontaire réservée aux Némésis et non automatique. Les cinq boss principaux restent distincts des boss émergents. Aucun seuil chiffré fixé. La persistance entre expéditions est documentée ; la persistance après Game Over ou succession n'est pas explicitement confirmée par les sources retrouvées. Ne pas l'inférer de la seule persistance du monde. Réconcilier les détails de fuite avec V7.12 avant implémentation.
+- Sources de travail : arbitrages utilisateur du 23 novembre retrouvés dans l'historique conversationnel ; PR #633 et #620 ; sections historiques du présent document. Les arbitrages ultérieurs sur caractéristiques, traits et autres modalités restent à retrouver.
+
+### Exécution et suivi
+Consolidation documentaire partielle, sans modification du runtime ni fusion. Les décisions historiques sont conservées. Statut : 🟡 À CONSOLIDER. Avancement du chantier actuel : À évaluer ; avancement du projet global : À évaluer.
