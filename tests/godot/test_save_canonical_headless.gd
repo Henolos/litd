@@ -1,6 +1,5 @@
 extends SceneTree
 
-const Canonical = preload("res://scripts/core/canonical_save_state.gd")
 var failures := 0
 
 func _initialize() -> void:
@@ -12,6 +11,7 @@ func _check(ok: bool, description: String) -> void:
         push_error(description)
 
 func _run() -> void:
+    var Canonical := root.get_node("SaveManager")
     var first := {"party": [{"id": "hero", "hp": 17}], "guild": {"rank": 2, "funds": 30}}
     var reordered := {"guild": {"funds": 30, "rank": 2}, "party": [{"hp": 17, "id": "hero"}]}
     var body := Canonical.canonical_body("campaign-1", 4, first)
