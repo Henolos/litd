@@ -3147,3 +3147,28 @@ Avancement des arbitrages de principe : 10/10 (100 % de ce périmètre documenta
 ## V7.65 — Ouverture des arbitrages résiduels du combat (23 novembre 2026)
 
 Suite demandée par l'utilisateur après consolidation V7.64. Priorité : initiative et ordre de résolution des tours, puis grandes créatures recrutées, invocations, délais de recrutement et priorités des réactions. Préserver V4.2–4.4, V7.62–64 et V8.3. Les principes consolidés restent validés ; aucun nouveau modèle d'initiative n'est encore approuvé. Comparer les modèles avant arbitrage explicite. Aucun code ni test modifié.
+
+
+---
+## V7.66 — Initiative hybride et évolutive (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, règles de départage, affichage de l'ordre d'action et seize règles complémentaires explicitement approuvés.**
+
+1. Distinguer tour individuel et round collectif.
+2. Un PA par combattant et par round, utilisable pendant son tour.
+3. Calculer initiative au début de chaque round.
+4. Prendre en compte caractéristiques, équipements, blessures et états réels.
+5. Composante aléatoire limitée.
+6. Ordre normalement stable pendant le round.
+7. Certaines compétences modifient explicitement les tours restants.
+8. Aucune création de PA par modification d'initiative.
+9. Pas de report automatique des PA inutilisés au round suivant.
+10. Supprimer tours restants des morts, capturés ou effectivement retirés.
+11. Départage indépendant du camp : vitesse effective hors aléatoire, priorité spécifique éventuelle, puis tirage enregistré.
+12. Afficher ordre d'action et modifications.
+13. Léger bonus collectif après guet-apens déjoué, premier round uniquement.
+14. Attaque préventive comptabilisée dans le PA du premier round, sans double action.
+15. Sauvegarder ordre, PA, résultats aléatoires et tours résolus.
+16. Coefficients, seuils et exceptions après simulations et tests.
+
+Respecter V4.2–4.4, V7.62–64 et V8.3. Frise compacte proposée, maquette et valeurs numériques indicatives. Aucun code ni test modifié. Prochain arbitrage : grandes créatures recrutées.
