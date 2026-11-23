@@ -3021,3 +3021,30 @@ Fixtures minimales : objectif isolé, clé derrière sa propre porte, clé conso
 14. Capacités, coûts, contraintes de surveillance et probabilités d'incidents à déterminer après simulations et tests.
 
 L'évasion d'un captif est une rupture de contention distincte de la fuite volontaire en combat réservée aux Némésis. Moyens de transport, états et chiffres de la maquette indicatifs. Respecter retour conditionnel au refuge, V7.46–V7.56 et V8.1–V8.3, sauvegarde transactionnelle. Validation documentaire uniquement.
+
+
+---
+## V7.59 — Système commun et parcours de recrutement contextuels (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, système commun avec parcours de recrutement contextuels, sept familles, cinq états relationnels et seize règles complémentaires explicitement approuvés.**
+
+Familles : apprivoisement, persuasion, allégeance, pacte, purification, liaison spirituelle, réactivation. États relationnels lorsque compatibles : hostile, méfiant, réceptif, coopératif, loyal. Loyauté maximale non nécessaire au recrutement ; constructions artificielles pouvant relever de conditions fonctionnelles plutôt que relationnelles.
+
+1. Distinction stricte capture et recrutement.
+2. Moteur commun avec conditions contextuelles.
+3. Retenir les sept familles.
+4. Plusieurs méthodes compatibles possibles par créature.
+5. Recrutement narratif sans capture préalable possible.
+6. Installations adaptées de détention et prise en charge, capacité limitée et évolutive.
+7. Intégrer soins, recherches et contributions des PNJ.
+8. Cinq états relationnels lorsque la nature le justifie.
+9. Capture ne garantit pas recrutement.
+10. Refus, libération, remise à la recherche ou maintien en détention selon circonstances.
+11. Conserver identité, histoire et particularités individuelles.
+12. Cinq boss principaux recrutables uniquement en NG+.
+13. Préserver conséquences persistantes, empêcher duplications et résurrections artificielles.
+14. Empêcher augmentation illimitée de confiance par interactions identiques répétées.
+15. Intégrer les créatures recrutées aux réserves de combattants sous réserve des capacités disponibles.
+16. Coûts, durées, seuils, capacités et effets de loyauté après simulations et tests.
+
+Installations illustratives : ménagerie, quartier de détention, laboratoire, chambre de confinement, sanctuaire, atelier ; organisation architecturale non arrêtée, aucune modification des planches validées. Missions médicales complémentaires indicatives, préserver V7.54, V7.56, V7.58 et V8.1–V8.3. Validation documentaire uniquement.
