@@ -51,6 +51,33 @@ func _run() -> void:
     altered = record.duplicate(true)
     altered["transaction_id"] = ""
     _check(manager.preview_committed_transaction(before, altered, []).is_empty(), "Missing transaction identity must be rejected")
+    var sandbox := OS.get_environment("LITD_SAVE_TEST_SANDBOX")
+    if sandbox.is_empty() or sandbox != OS.get_environment("XDG_DATA_HOME") or not OS.get_user_data_dir().begins_with(sandbox + "/"):
+        _check(false, "Journal tests require isolated user data root")
+        quit(1)
+        return
+    var journal_dir := "user://litd_transaction_lab/ci_fixture"
+    _check(manager.journal_append_preview(journal_dir, before, record, []), "Journal must write a verified revision")
+    _check(not manager.journal_append_preview(journal_dir, before, record, []), "Journal must not overwrite an existing revision")
+    var recovered: Dictionary = manager.journal_recover_preview(journal_dir, "campaign-1", 3, before)
+    _check(recovered.get("revision") == 4, "Recovery must advance to committed revision")
+    _check(recovered.get("persistent_state") == after, "Recovery must restore resolved state")
+    _check(recovered.get("applied_transaction_ids") == ["action-42"], "Recovery must retain transaction IDs")
+    _check(manager.journal_recover_preview(journal_dir, "campaign-wrong", 3, before).is_empty(), "Wrong campaign must be rejected")
+    var journal_path := journal_dir.path_join("revision_0000000004.json")
+    var original_text := FileAccess.get_file_as_string(journal_path)
+    var corrupted := FileAccess.open(journal_path, FileAccess.WRITE)
+    if corrupted != null:
+        corrupted.store_string(original_text + "corruption")
+        corrupted.close()
+    _check(manager.journal_recover_preview(journal_dir, "campaign-1", 3, before).is_empty(), "Corrupt journal must be rejected")
+    var restored_file := FileAccess.open(journal_path, FileAccess.WRITE)
+    if restored_file != null:
+        restored_file.store_string(original_text)
+        restored_file.close()
+    _check(manager.journal_recover_preview(journal_dir, "campaign-1", 3, before).get("revision") == 4, "Restored journal must recover")
+    _check(DirAccess.remove_absolute(ProjectSettings.globalize_path(journal_path)) == OK, "Test journal cleanup")
+    _check(DirAccess.remove_absolute(ProjectSettings.globalize_path(journal_dir)) == OK, "Test directory cleanup")
     if failures == 0:
         print("SAVE_TRANSACTION_PREVIEW_PASS")
     quit(1 if failures else 0)
