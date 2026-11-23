@@ -2243,3 +2243,14 @@ L'utilisateur précise que le choix du brouillard de guerre intégral (V7.18) es
 - L'interprétation de « chaque visite » comme nouvelle expédition, plutôt que chaque passage sur un nœud, découle des règles antérieures ; les modalités exactes de génération et de conservation des connaissances restent à définir.
 
 **Exécution :** précision documentaire, sans implémentation ni test Godot.
+
+
+---
+## V7.20 — Architecture régionale et cartes internes des donjons (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, explicitement choisie par l'utilisateur.** Une grande carte régionale subdivisée en zones donne accès à des donjons disposant chacun de leur propre carte à embranchements. Les cartes régionales et internes sont procédurales, avec brouillard intégral, retour en arrière et stabilité de configuration pendant une même expédition, conformément à V7.15–V7.19. Une expédition reste limitée à une région ; changer de région nécessite un retour au refuge. Les conséquences persistantes et règles de renouvellement restent applicables. Aucun déplacement libre en 3D.
+
+Les modalités de génération, dimensions, nombre de nœuds, coûts de déplacement, sécurisation, transitions et conditions de sortie des donjons restent à arbitrer. Les pièges, salles secrètes, énigmes et boss évoqués sont des possibilités de contenu, sans validation implicite de leurs modalités.
+
+**Traçabilité :** validation explicite de l'option C concernant la structure des cartes régionales et des donjons. Mise à jour documentaire uniquement, sans modification Godot ni test en jeu.
+**Statut : 🟡 À CONSOLIDER. Avancement de conception : 5 arbitrages sur 8 (62,5 %, estimation par axes non pondérés). Avancement du projet global : À évaluer.**
