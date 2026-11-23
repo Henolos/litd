@@ -6,15 +6,15 @@
       "target_path": "assets/characters/guild_npcs/tavernier_planche_validee.png",
       "sha256": "ba24389db7072a5795cedf6ac508b724272c163ff4855ab8a0016bd617a55cad",
       "bytes": 3119445,
-      "git_import_verified": false
+      "git_import_verified": true
     },
     {
       "id": "guild_physician",
       "target_path": "assets/characters/guild_npcs/medecin_planche_validee.png",
       "sha256": "a6446f4bdfb468d66101782885d5c3c2f3d0286781d0328a69f883a33a782e35",
       "bytes": 2943072,
-      "git_import_verified": false
+      "git_import_verified": true
     }
   ],
-  "note": "Les images validées sont dans le ZIP local ; le connecteur utilisé n'a pas transféré les binaires. Comparer les SHA-256 après transfert."
+  "note": "Les deux binaires sont présents dans le dépôt après synchronisation avec main ; leurs SHA-256 correspondent au manifeste de livraison et ont été recalculés localement le 23 novembre 2026."
 }
