@@ -55,8 +55,8 @@ Les trois niveaux sont une **organisation architecturale illustrée**, pas trois
 1. Auditer les scènes, scripts, systèmes UI, dialogues et sauvegarde déjà présents.
 2. Dessiner la carte interactive de la Guilde sur la planche architecturale validée ; identifier les zones et leurs états.
 3. Concevoir séparément la carte d'expédition à nœuds ; permettre de choisir un embranchement et de revenir aux nœuds déjà visités. La génération procédurale ou déterministe et les règles de progression ne sont pas encore décidées.
-4. Prototyper un **parcours vertical minimal** : hub de Guilde → carte à nœuds → rencontre/combat → retour au hub.
-5. Ajouter les autres lieux, puis les interactions et la progression narrative.
+4. Construire le parcours vertical minimal : hub → carte à nœuds → rencontre/combat → retour au hub. Un prototype isolé est ouvert en PR #637 ; sa CI et sa revue visuelle restent à terminer.
+5. Ajouter les autres lieux, puis les interactions et la progression narrative, en raccordant les systèmes seulement après validation de leurs contrats.
 6. Tester dans Godot : résolution, clics, manette, accès, états de quête, sauvegarde, performances.
 7. Faire valider visuellement les écrans et fusionner seulement après contrôles.
 
@@ -96,3 +96,7 @@ La **cinématique d'ouverture précède** la création du héros ou de l'héroï
 - **Bestiaire :** chaque protagoniste possède son bestiaire persistant entre ses tentatives ; les compagnons ont une maîtrise individuelle. Les missions de la médecin contribuent à l'étude et à la progression des connaissances associées à ce protagoniste. Le partage automatique entre protagonistes est exclu. Le modèle de données et le runtime restent à concevoir.
 - **Game Over :** la défaite simultanée des quatre combattants termine la tentative. Le joueur reprend avec le même protagoniste à la Guilde après le prologue, joué une seule fois pour ce protagoniste. Le protagoniste conserve son niveau, ses compétences, ses points de passifs et son bestiaire. Les compagnons morts dans l'équipe vaincue restent morts ; les survivants conservent leur progression. Les recrues renouvelables de la Guilde permettent de reformer l'équipe.
 - Ces règles décrivent des décisions de conception validées, pas des fonctions déjà implémentées dans cette PR. La persistance du coffre, la perte des biens emportés, la réinitialisation des quêtes et du monde et la disponibilité des héros narratifs sont régies par l'avenant de décisions et restent à intégrer au document maître après arbitrage complet.
+
+
+## Prototype de boucle à nœuds — état au 2026-11-23
+La PR #637 fournit un parcours expérimental de démonstration depuis le hub de test vers une carte fixe, une rencontre 2D au tour par tour et un retour à la Guilde. Son test Godot headless passe localement ; la CI de la PR et une revue visuelle restent en attente. La route, les acteurs et les chiffres sont des fixtures. Le prototype ne raccorde ni le recrutement, ni la sauvegarde de campagne, ni la génération de cartes, ni le Game Over validé.
