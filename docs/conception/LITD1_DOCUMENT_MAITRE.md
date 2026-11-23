@@ -2283,3 +2283,12 @@ Consolidation documentaire partielle, sans modification du runtime ni fusion. Le
 
 **Traçabilité :** validation explicite de l'option C concernant les coûts de déplacement. Mise à jour documentaire uniquement ; aucun changement Godot ni test en jeu.
 **Statut : 🟡 À CONSOLIDER. Avancement de conception : 6 axes sur 8 (75 %, estimation non pondérée). Avancement du projet global : À évaluer.**
+
+
+### Complément de récupération — arbitrages 12 à 16 (23 novembre 2026)
+- 12, B (13 h 20) : base de classe et points de caractéristiques correspondant au niveau, librement répartis.
+- 13, B (13 h 20) : traits initiaux personnalisables ; traits évolutifs acquis en jeu.
+- 14, B (13 h 21) : principe des accomplissements personnels.
+- 15, A (13 h 22) : deux paliers de maîtrise.
+- 16, B (13 h 23) : objectifs mesurables adaptés à la classe et à la spécialisation.
+Ces éléments proviennent des validations utilisateur retrouvées dans l'historique ; les formulations détaillées des options 14–16 restent à récupérer avant spécification technique. Arbitrages 17–40 non intégralement retrouvés. La contradiction reprise/succession reste ouverte. Aucun changement runtime ni test en jeu.
