@@ -3060,3 +3060,28 @@ Installations illustratives : ménagerie, quartier de détention, laboratoire, c
 ## V7.61 — Prototype de contrat graphe v0 : fixtures et preuve initiale (23 novembre 2026)
 
 Incident INVALID_ARGUMENT : création du schéma réussie, relecture échouée à cause du champ branch non autorisé dans fetch_file ; correction par ref seul. Trois fichiers présents dans docs/conception/exploration : graph_v0.schema.json (blob 07060cea12bf9f9d29f960da7ff8a7a803537d1d), graph_v0.fixtures.json (d7795db4d81c52e60d6190fa1dd41f591c88a5a3), test_graph_v0_fixtures.py (4a5ee1e819628631fb0a98e29b7b80c2a3ec6d72). Relecture exacte des deux nouveaux fichiers ; empreintes Git des copies locales exécutées identiques aux blobs distants. Python unittest local : 1 test, 6 sous-cas réussis (boucle, clé derrière porte, objectif isolé, doublon, aucun objectif obligatoire, absence de sortie après objectif). Aucun test Godot ni CI lancé ici. Le dernier cas suppose explicitement une extraction interdite hors des sorties désignées ; ne pas généraliser à V7.49. Oracle existentiel minimal, non validateur de production : ne prouve pas absence de pièges sur tous chemins, ne valide pas le JSON Schema, ne traite pas toutes les contraintes narratives, persistance, clés multiples ou budget distinct d'un rejet. Prochaine étape : étendre fixtures et contrat aux sorties contextuelles, consommation, contournement narratif, état persistant, budget indéterminé ; puis prototype Godot isolé après audit de réutilisation. Les cinq scripts world conservés au reset sont des références techniques, pas une autorisation de réactiver les scènes physiques. Aucun original, main ni fusion modifié. Avancement global à évaluer ; chantier moteur 12,5 % (estimation conservée, phases techniques non entièrement validées).
+
+
+---
+## V7.62 — Mobilité tactique encadrée et contextuelle (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, resserrement automatique, créatures ennemies multirangs et seize règles complémentaires explicitement approuvés.**
+
+1. Conserver quatre rangs R1 à R4.
+2. Déplacement volontaire ordinaire limité à permutation adjacente.
+3. Permutation coûtant un PA.
+4. Déplacements particuliers par compétences.
+5. Mobilité adaptée aux blessures anatomiques et états de combat.
+6. Déplacements forcés des alliés et ennemis possibles.
+7. Prendre en compte masse, anatomie et résistances.
+8. Collisions uniquement lorsque le contexte le justifie.
+9. Resserrement automatique après retrait effectif d'un combattant.
+10. Préserver ordre relatif des combattants restants.
+11. Resserrement sans PA.
+12. Ennemis pouvant occuper plusieurs rangs.
+13. Empêcher chevauchements invalides et dégâts multiples involontaires sur une même créature multirang.
+14. Afficher déplacements possibles et conséquences connues avant confirmation.
+15. Préserver formation et déplacements résolus lors des sauvegardes.
+16. Résistances, dégâts de collision et exceptions à définir après simulations et tests.
+
+Immobilisation ou inconscience ne vaut pas automatiquement retrait. Une créature multirang reste une seule unité. Traitement des grandes créatures recrutées à arbitrer séparément ; aucune déclinaison artistique imposée. Respecter économie d'un PA par combattant et par tour et sauvegarde transactionnelle V8.3. Validation documentaire uniquement.
