@@ -3048,3 +3048,9 @@ Familles : apprivoisement, persuasion, allégeance, pacte, purification, liaison
 16. Coûts, durées, seuils, capacités et effets de loyauté après simulations et tests.
 
 Installations illustratives : ménagerie, quartier de détention, laboratoire, chambre de confinement, sanctuaire, atelier ; organisation architecturale non arrêtée, aucune modification des planches validées. Missions médicales complémentaires indicatives, préserver V7.54, V7.56, V7.58 et V8.1–V8.3. Validation documentaire uniquement.
+
+
+---
+## V7.60 — Correction : garantie de recrutement après capture (23 novembre 2026)
+
+**Décision utilisateur explicite : la capture garantit le recrutement ; le niveau de loyauté et de confiance détermine le délai avant intégration au groupe, exprimé en nombre d'expéditions.** Cette correction remplace les clauses contraires de V7.46 et V7.59 (notamment règle 9 et refus définitif de recrutement après capture). Conserver la distinction capture, extraction, détention et recrutement ainsi que les restrictions d'éligibilité, notamment les cinq boss principaux recrutables uniquement en NG+. La garantie concerne le recrutement futur d'un captif éligible ramené vivant ou dans un état compatible, et ne supprime pas les risques de transport ni les décisions volontaires de libération ou remise à la recherche. Les recrutements narratifs sans capture restent possibles. Barème d'expéditions, événements comptabilisés, évolution de confiance et loyauté et modalités de disponibilité à préciser ; aucune valeur numérique validée. Validation documentaire uniquement.
