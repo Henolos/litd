@@ -367,7 +367,7 @@ func journal_append_preview(journal_dir: String, current_state: Dictionary, reco
     var binary := var_to_bytes(entry)
     var encoded := JSON.stringify({
         "payload_base64": Marshalls.raw_to_base64(binary),
-        "sha256": binary.sha256_text()
+        "sha256": Marshalls.raw_to_base64(binary).sha256_text()
     })
     var temp := path + ".pending"
     if FileAccess.file_exists(temp):
