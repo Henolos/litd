@@ -1,28 +1,28 @@
 {
   "schema_version": 1,
-  "status": "design_and_asset_import_pending",
+  "status": "design_and_assets_prepared_runtime_not_implemented",
   "recruitment_type": "main_story_progression",
-  "order": [
-    "anouk",
-    "marec",
-    "mathilde"
-  ],
+  "order": ["anouk", "marec", "mathilde"],
   "heroes": [
     {
       "id": "anouk",
       "order": 1,
       "name": "Anouk",
       "existing_character": true,
-      "art": "art/library/heroes/anouk/story_unlock/planche_originale.jpeg",
-      "portrait": "art/library/heroes/anouk/story_unlock/portrait_provisoire.png"
+      "art": "art/library/heroes/anouk/reference.jpg",
+      "art_sha256": "134aa4d0a452a90249a8cea15e8b2ee6f3d15eabccf66d2a7ebeb04adda76907",
+      "portrait": "art/library/heroes/anouk/story_unlock/portrait_provisoire.png",
+      "portrait_status": "provisional_not_for_combat"
     },
     {
       "id": "marec",
       "order": 2,
       "name": "Marec",
       "existing_character": true,
-      "art": "art/library/heroes/marec/story_unlock/planche_originale.jpeg",
-      "portrait": "art/library/heroes/marec/story_unlock/portrait_provisoire.png"
+      "art": "art/library/heroes/marec/reference.jpg",
+      "art_sha256": "e809e9b407c7a7c08ec40b4a2d4e323e04571391ea874bd2e007308516030cf9",
+      "portrait": "art/library/heroes/marec/story_unlock/portrait_provisoire.png",
+      "portrait_status": "provisional_not_for_combat"
     },
     {
       "id": "mathilde",
@@ -30,17 +30,24 @@
       "name": "Mathilde",
       "existing_character": true,
       "art": "art/library/heroes/mathilde/story_unlock/planche_originale.jpeg",
-      "portrait": "art/library/heroes/mathilde/story_unlock/portrait_provisoire.png"
+      "art_sha256": "d112c20603bc93fdc9673aff87e0cd293802ec5b4d9ef1ace1e062ee9ac56ec9",
+      "portrait": "art/library/heroes/mathilde/story_unlock/portrait_provisoire.png",
+      "portrait_status": "provisional_not_for_combat"
     }
   ],
   "rules": {
     "not_starting_quartet": true,
     "story_gate_ids": "to_define",
-    "equal_level_to_protagonist": "not_yet_validated_for_story_heroes",
-    "reset_skill_trees": "not_yet_validated_for_story_heroes",
+    "level_at_recruitment": "protagonist_current_level",
+    "skill_tree_choices_at_recruitment": [],
+    "evolutionary_skill_choices_at_recruitment": [],
     "no_duplicate_hero_ids": true
   },
-  "asset_status": "binary_not_uploaded_to_git",
+  "assets": {
+    "source_archive": "LITD1_3_HEROS_HISTOIRE_PLANCHES_PORTRAITS(1).zip",
+    "archive_sha256": "13a67ac74f6176abc3a75270cceab155b4a8f6e4e3c7e5ee5539812953aacbea",
+    "status": "original_sheets_reused_or_imported; provisional_portraits_imported"
+  },
   "runtime_status": "not_implemented",
-  "notes": "Respect PR #635 and do not reinstate prior starting quartet."
+  "notes": "Reuse canonical Anouk and Marec plates already in art/library. Preserve the differing Mathilde archive plate as an additional design reference; do not overwrite the canonical plate."
 }
