@@ -2633,3 +2633,22 @@ Délais, probabilités et utilisation des équipements pillés par les Némésis
 **VALIDÉ EN CONCEPTION : option C et six règles complémentaires, explicitement choisies par l'utilisateur.** Séparer la mémoire persistante du monde de la topologie temporaire des cartes. 1. Identifiants durables des lieux, personnages et événements importants. 2. Conservation des décisions, destructions, décès et conséquences importantes. 3. Régénération conditionnée par l'état du monde. 4. Aucune duplication des récompenses uniques déjà obtenues par régénération. 5. Objectifs narratifs accessibles lorsque leurs conditions sont réunies, sans annuler les échecs légitimes. 6. Cohérence géographique : aucun déplacement arbitraire de lieu unique vers une région ou un biome incompatible. Respecter les règles antérieures de succession, Némésis, récupération, renouvellement et stabilité intra-expédition. Les modalités techniques restent à concevoir et tester.
 
 **Traçabilité :** validation explicite de l'option C concernant la persistance narrative avec les six règles complémentaires. Mise à jour documentaire uniquement ; aucun développement ni test en jeu. **Statut : 🟡 À CONSOLIDER. Avancement des arbitrages détaillés : 7/8 (87,5 %, estimation non pondérée). Avancement du projet global : À évaluer.**
+
+
+---
+## V7.37 — Utilisation des équipements pillés selon la compatibilité
+
+**VALIDÉ EN CONCEPTION : option C, utilisation des équipements pillés selon la compatibilité, et dix règles complémentaires explicitement approuvées.** Tous les ennemis peuvent potentiellement utiliser les objets pillés selon leur anatomie, capacités, intelligence et comportement ; les Némésis peuvent aussi conserver des trophées.
+
+1. Respect de la compatibilité anatomique.
+2. Respect des compétences nécessaires à l'utilisation.
+3. Application des propriétés réellement utilisables.
+4. Conservation possible sans utilisation.
+5. Trophées issus des victimes possibles pour les Némésis.
+6. Conservation de l'identifiant unique et de l'historique de chaque objet persistant.
+7. Aucune duplication lors des transferts.
+8. Représentation visuelle des équipements importants lorsque techniquement possible.
+9. Distinction entre bonus de progression du Némésis et bonus d'équipement.
+10. Persistance des équipements pillés après Game Over.
+
+Aucun inventaire complexe ni simulation économique complète imposés à chaque créature ordinaire. Exemples de créatures non constitutifs d'une validation du bestiaire. Préserver V7.34–V7.35 et les invariants transactionnels V8.3. Validation documentaire uniquement, aucun développement ni test en jeu.
