@@ -1,0 +1,24 @@
+{
+  "kind": "LITD_TARGET_REVISION_PROPOSAL",
+  "decision": "PROPOSE_TARGET_REVISION",
+  "target_ids": [
+    "canon-starting-quartet"
+  ],
+  "old_values": {
+    "id": "canon-starting-quartet",
+    "description": "Le quatuor de départ canonique est Mathilde, Marec, Anouk et Aurélien.",
+    "rationale": "Évite la réintroduction involontaire d'anciens héros de départ.",
+    "validation": "pending_reference_data"
+  },
+  "new_values": {
+    "id": "canon-starting-roster",
+    "description": "Aucune composition de départ n'est canonique tant qu'un nouveau roster n'a pas été défini explicitement.",
+    "rationale": "Évite de réactiver par erreur l'ancien quatuor ou d'inventer ses remplaçants.",
+    "validation": "automated_unassigned_roster_guard"
+  },
+  "rationale": "L'utilisateur a retiré Aurélien, Anouk, Marec et Mathilde du quatuor de départ et a demandé de supprimer cette règle. Le nouveau groupe de départ reste non défini ; aucune composition de remplacement ne doit être supposée.",
+  "evidence_refs": [
+    "docs/knowledge/decisions/ADR-0009-roster-de-depart-a-definir.md"
+  ],
+  "core_write_allowed": false
+}
