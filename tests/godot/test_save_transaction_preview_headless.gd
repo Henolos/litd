@@ -66,7 +66,7 @@ func _run() -> void:
     var interrupted_pending := interrupted_dir.path_join("revision_0000000004.json.pending")
     var pending_file := FileAccess.open(interrupted_pending, FileAccess.WRITE)
     if pending_file != null:
-        pending_file.store_string("{\\"payload_base64\\":\\"partial")
+        pending_file.store_string("partial")
         pending_file.close()
     var before_recovery: Dictionary = manager.journal_recover_preview(interrupted_dir, "campaign-1", 3, before)
     _check(before_recovery.get("revision") == 3 and before_recovery.get("persistent_state") == before, "Interrupted write must recover only the last committed base")
