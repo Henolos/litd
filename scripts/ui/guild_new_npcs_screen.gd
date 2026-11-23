@@ -83,7 +83,7 @@ func _build_ui() -> void:
 	next_line.pressed.connect(_next_dialogue)
 	content.add_child(next_line)
 	var bestiary_button := Button.new()
-	bestiary_button.text = "Consulter le bestiaire commun"
+	bestiary_button.text = "Consulter le catalogue des créatures"
 	bestiary_button.pressed.connect(func(): get_tree().change_scene_to_file(BESTIARY_PATH))
 	content.add_child(bestiary_button)
 	var back_button := Button.new()
@@ -123,7 +123,7 @@ func _update_research(npc: Dictionary) -> void:
 	if research.is_empty():
 		research_label.text = "Recherche anatomique : données indisponibles."
 		return
-	research_label.text = "Recherche anatomique : prévue pour le bestiaire commun. Aucune faiblesse débloquée dans ce prototype."
+	research_label.text = "Recherche prévue pour le bestiaire du protagoniste ; maîtrise des compagnons individuelle. Rien n'est encore raccordé au runtime."
 
 func _next_dialogue() -> void:
 	if selection.selected < 0 or selection.selected >= characters.size():
