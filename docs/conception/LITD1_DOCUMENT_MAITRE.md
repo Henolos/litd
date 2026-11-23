@@ -2218,3 +2218,16 @@ Les déplacements sur la carte à embranchements utilisent un **modèle hybride*
 
 **Traçabilité :** validation explicite de l'utilisateur de l'option C concernant les événements lors du retour sur les nœuds déjà visités. Mise à jour documentaire uniquement ; aucun changement Godot ni test en jeu.
 **Statut : 🟡 À CONSOLIDER. Avancement du chantier actuel : À évaluer. Avancement du projet global : À évaluer.**
+
+
+---
+## V7.18 — Visibilité de la carte : brouillard de guerre intégral (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option B, explicitement choisie par l'utilisateur.**
+- La carte repose sur un brouillard de guerre intégral : découverte progressive des lieux et des chemins, sans révélation complète des itinéraires au départ.
+- Cette décision prévaut sur les propositions de carte révélée (A) et de découverte hybride (C), non retenues.
+- Maintenir la navigation exclusivement sur carte (V7.15), les déplacements hybrides (V7.16), le retour en arrière et les événements hybrides persistants (V7.17).
+- Restent à arbitrer : rayon et conditions de découverte, informations disponibles avant un déplacement, reconnaissance, conservation des connaissances entre expéditions, actualisation des renseignements et révélation des secrets. Ne pas assimiler brouillard intégral à effacement automatique des découvertes.
+
+**Traçabilité :** validation explicite de l'option B concernant la visibilité et la découverte de la carte. Mise à jour documentaire uniquement ; aucun développement Godot ni test en jeu.
+**Statut : 🟡 À CONSOLIDER. Avancement du chantier actuel : À évaluer. Avancement du projet global : À évaluer.**
