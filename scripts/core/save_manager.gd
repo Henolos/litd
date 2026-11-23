@@ -413,9 +413,9 @@ func journal_recover_preview(journal_dir: String, campaign_id: String, base_revi
         if typeof(payload_base64) != TYPE_STRING:
             return {}
         var binary := Marshalls.base64_to_raw(payload_base64)
-        if binary.is_empty() or envelope.get("sha256") != binary.sha256_text():
+        if binary.is_empty() or envelope.get("sha256") != String(payload_base64).sha256_text():
             return {}
-        var decoded: Variant = bytes_to_var(binary, false)
+        var decoded: Variant = bytes_to_var(binary)
         if not (decoded is Dictionary):
             return {}
         var entry: Dictionary = decoded
