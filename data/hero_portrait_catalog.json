@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "status": "hero_art_registered_runtime_path_unchanged",
+  "description": "Dedicated portrait and design-sheet assets for all eight LITD 1 heroes. This catalog records asset identity and paths without changing the protected canonical art registry or claiming a UI runtime hookup.",
+  "heroes": [
+    {
+      "id": "ysra_nahal",
+      "name": "Ysra Nahal",
+      "design_sheet": "art/library/heroes/ysra_nahal/reference.jpg",
+      "portrait": "assets/characters/heroes/ysra_nahal/portraits/ysra_nahal_portrait.png"
+    },
+    {
+      "id": "effrie",
+      "name": "Èffrie",
+      "design_sheet": "art/library/heroes/effrie/reference.jpg",
+      "portrait": "assets/characters/heroes/effrie/portraits/effrie_portrait.png"
+    },
+    {
+      "id": "lya",
+      "name": "Lya",
+      "design_sheet": "art/library/heroes/lya/reference.jpg",
+      "portrait": "assets/characters/heroes/lya/portraits/lya_portrait.png"
+    },
+    {
+      "id": "zeje",
+      "name": "Zéjé",
+      "design_sheet": "art/library/heroes/zeje/reference.jpg",
+      "portrait": "assets/characters/heroes/zeje/portraits/zeje_portrait.png"
+    },
+    {
+      "id": "aurelien",
+      "name": "Aurélien",
+      "design_sheet": "art/library/heroes/aurelien/reference.jpg",
+      "portrait": "assets/characters/heroes/aurelien/portraits/aurelien_portrait.png"
+    },
+    {
+      "id": "anouk",
+      "name": "Anouk",
+      "design_sheet": "art/library/heroes/anouk/reference.jpg",
+      "portrait": "assets/characters/heroes/anouk/portraits/anouk_portrait.png"
+    },
+    {
+      "id": "marec",
+      "name": "Marec",
+      "design_sheet": "art/library/heroes/marec/reference.jpg",
+      "portrait": "assets/characters/heroes/marec/portraits/marec_portrait.png"
+    },
+    {
+      "id": "mathilde",
+      "name": "Mathilde",
+      "design_sheet": "art/library/heroes/mathilde/reference.jpg",
+      "portrait": "assets/characters/heroes/mathilde/portraits/mathilde_portrait.png"
+    }
+  ]
+}
