@@ -40,13 +40,16 @@ jobs:
         shell: pwsh
         run: |
           $release = Invoke-RestMethod -Uri "https://api.github.com/repos/godotengine/godot/releases/tags/4.7.2-stable"
-          $asset = $release.assets | Where-Object { $_.name -eq "Godot_v4.7.2-stable_win64_console.exe.zip" } | Select-Object -First 1
+          $asset = $release.assets | Where-Object { $_.name -eq "Godot_v4.7.2-stable_win64.exe.zip" } | Select-Object -First 1
           if (-not $asset) { throw "Official Godot 4.7.2 Windows console asset not found." }
           $zip = Join-Path $env:RUNNER_TEMP "godot-win64.zip"
           Invoke-WebRequest -Uri $asset.browser_download_url -OutFile $zip
+          $expected = "731980f9608d61333e5baf54a2ef17210acc7a538446c0cb9969f002aca1e953"
+          $actual = (Get-FileHash -Path $zip -Algorithm SHA256).Hash.ToLowerInvariant()
+          if ($actual -ne $expected) { throw "Godot archive SHA-256 mismatch: $actual" }
           $install = Join-Path $env:RUNNER_TEMP "godot"
           Expand-Archive -Path $zip -DestinationPath $install -Force
-          $exe = Get-ChildItem -Path $install -Filter "*console.exe" -Recurse | Select-Object -First 1
+          $exe = Get-ChildItem -Path $install -Filter "*.exe" -Recurse | Select-Object -First 1
           if (-not $exe) { throw "Godot console executable was not extracted." }
           "GODOT_EXE=$($exe.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
       - name: Import and exercise recovery using an isolated Windows profile
