@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "status": "design_and_asset_import_pending",
+  "recruitment_type": "main_story_progression",
+  "order": [
+    "anouk",
+    "marec",
+    "mathilde"
+  ],
+  "heroes": [
+    {
+      "id": "anouk",
+      "order": 1,
+      "name": "Anouk",
+      "existing_character": true,
+      "art": "art/library/heroes/anouk/story_unlock/planche_originale.jpeg",
+      "portrait": "art/library/heroes/anouk/story_unlock/portrait_provisoire.png"
+    },
+    {
+      "id": "marec",
+      "order": 2,
+      "name": "Marec",
+      "existing_character": true,
+      "art": "art/library/heroes/marec/story_unlock/planche_originale.jpeg",
+      "portrait": "art/library/heroes/marec/story_unlock/portrait_provisoire.png"
+    },
+    {
+      "id": "mathilde",
+      "order": 3,
+      "name": "Mathilde",
+      "existing_character": true,
+      "art": "art/library/heroes/mathilde/story_unlock/planche_originale.jpeg",
+      "portrait": "art/library/heroes/mathilde/story_unlock/portrait_provisoire.png"
+    }
+  ],
+  "rules": {
+    "not_starting_quartet": true,
+    "story_gate_ids": "to_define",
+    "equal_level_to_protagonist": "not_yet_validated_for_story_heroes",
+    "reset_skill_trees": "not_yet_validated_for_story_heroes",
+    "no_duplicate_hero_ids": true
+  },
+  "asset_status": "binary_not_uploaded_to_git",
+  "runtime_status": "not_implemented",
+  "notes": "Respect PR #635 and do not reinstate prior starting quartet."
+}
