@@ -2660,3 +2660,22 @@ Aucun inventaire complexe ni simulation économique complète imposés à chaque
 **VALIDÉ EN CONCEPTION : option C et dix règles complémentaires, explicitement choisies par l'utilisateur.** Génération sous contraintes puis validation indépendante avant utilisation des cartes régionales et internes des donjons. Contrôles obligatoires : 1. Accessibilité des objectifs obligatoires lorsque leurs prérequis sont réunis ; 2. absence de zones obligatoires accidentellement isolées ; 3. dépendances clés, portes, énigmes et quêtes ; 4. retour et sortie conformément aux restrictions narratives autorisées ; 5. cohérence écologique, territoriale et artistique ; 6. absence de duplication des personnages, objets et événements uniques ; 7. respect intégral des conséquences persistantes ; 8. limites de taille, densité et difficulté ; 9. sauvegarde de la configuration validée et vérification de restitution après interruption ; 10. tentatives limitées, secours compatible lui-même validé ou arrêt sécurisé sans perte de progression. Aucun contournement des contraintes narratives. Prévoir tests automatisés de nombreuses graines, dépendances circulaires, itinéraires conditionnels, régénération après décès/retraite/Game Over, interruptions et reprise, traçabilité des graines et anomalies, puis tests humains d'équilibrage. Ces tests sont planifiés, non exécutés.
 
 **Traçabilité :** validation explicite de l'option C concernant le contrôle de validité des cartes avec les dix règles complémentaires. Huit axes de conception détaillée arbitrés sur huit ; audit transversal et paramètres techniques encore ouverts. Mise à jour documentaire uniquement ; aucun développement ni test en jeu. **Statut : 🟡 À CONSOLIDER avant clôture. Avancement des arbitrages : 8/8 ; avancement du chantier complet et du projet global : À évaluer.**
+
+
+---
+## V7.39 — Mobilité territoriale contextuelle des Némésis (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, mobilité territoriale contextuelle des Némésis, dix règles complémentaires et simulation événementielle explicitement approuvées.** Les déplacements dépendent de la nature, des capacités, du comportement et des événements du monde. Comportements possibles : sédentaire, territorial, migrateur, conquérant, fugitif, chasseur, combinables selon la créature.
+
+1. Territoire d'origine enregistré pour chaque Némésis.
+2. Déplacements compatibles avec capacités physiques et habitats.
+3. Sédentarité complète possible.
+4. Migration justifiée écologiquement, comportementalement ou narrativement.
+5. Aucun déplacement arbitraire dû uniquement à la régénération des cartes.
+6. Recherche par renseignements, témoignages et traces.
+7. Équipements transportés suivant leur détenteur.
+8. Identité, souvenirs, grade et puissance conservés.
+9. Aucune présence simultanée dans plusieurs lieux.
+10. Aucun Némésis lié à un objectif obligatoire définitivement inaccessible du fait d'une migration.
+
+Simulation événementielle des déplacements plutôt que simulation permanente de toutes les créatures. Exemples de biomes et itinéraires indicatifs. Préserver la stabilité intra-expédition, la persistance et les invariants de sauvegarde. Paramètres, déclencheurs et tests restent à définir. Validation documentaire uniquement, aucun développement ni test en jeu.
