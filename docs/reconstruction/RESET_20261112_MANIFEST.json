@@ -4757,6 +4757,7 @@
   "technical_scripts": [
     "scripts/core/data_loader.gd",
     "scripts/core/game_settings.gd",
+    "scripts/core/guild_npc_catalog.gd",
     "scripts/core/music_library.gd",
     "scripts/core/prototype_audio_bank.gd",
     "scripts/core/save_manager.gd",

@@ -1,0 +1,168 @@
+{
+  "schema_version": 2,
+  "source": "Seven validated Guild NPC records. Existing portrait assets are unchanged. Two validated concept sheets for Han Lu and Dr Mei Ling were added from the 2026-11-22 archive; their Godot 4.7.2 import and headless loading tests passed. Dedicated portraits and Guild scene hookup remain pending.",
+  "assets": [
+    {
+      "id": "kelia_anzora",
+      "path": "assets/characters/guild_npcs/kelia_anzora/concept/kelia_anzora_validated_sheet.jpeg",
+      "sha256": "d10b8ab87474aab5a91d5bb6cfed0925223566497f0ac78ce0ef4698491d0837",
+      "bytes": 777450,
+      "width": 1086,
+      "height": 1448,
+      "github_binary_uploaded": true,
+      "portrait": {
+        "path": "assets/characters/guild_npcs/kelia_anzora/portraits/kelia_anzora_portrait_3x4.png",
+        "sha256": "d421c3f4f7df31379ab40ddfd36043830ba60dcb9e0272b63d4ff98ecb87094e",
+        "width": 768,
+        "height": 1024,
+        "format": "png",
+        "github_binary_uploaded": true,
+        "visual_approval_pending": true,
+        "github_binary_verified": true,
+        "godot_import_tested": true
+      },
+      "github_binary_verified": true,
+      "godot_import_tested": true
+    },
+    {
+      "id": "lian_yue",
+      "path": "assets/characters/guild_npcs/lian_yue/concept/lian_yue_validated_sheet.jpeg",
+      "sha256": "70b4fb23ad9a4bf310c24d47ac693cf69e8bc031111122f943396196e6951f17",
+      "bytes": 770987,
+      "width": 1086,
+      "height": 1448,
+      "github_binary_uploaded": true,
+      "portrait": {
+        "path": "assets/characters/guild_npcs/lian_yue/portraits/lian_yue_portrait_3x4.png",
+        "sha256": "b6e5cd1242111b745be4422d9083fcd0ef8f4fb85436a10e2f83c7a5921cf7ad",
+        "width": 768,
+        "height": 1024,
+        "format": "png",
+        "github_binary_uploaded": true,
+        "visual_approval_pending": true,
+        "github_binary_verified": true,
+        "godot_import_tested": true
+      },
+      "github_binary_verified": true,
+      "godot_import_tested": true
+    },
+    {
+      "id": "soleyman",
+      "path": "assets/characters/guild_npcs/soleyman/concept/soleyman_validated_sheet.jpeg",
+      "sha256": "3dbb50244035699e6dc79360a31d76ea67e7f1601c8130c005a7ed2cc6afcc92",
+      "bytes": 904863,
+      "width": 1086,
+      "height": 1448,
+      "github_binary_uploaded": true,
+      "portrait": {
+        "path": "assets/characters/guild_npcs/soleyman/portraits/soleyman_portrait_3x4.png",
+        "sha256": "753225e7a13630fb8cfc7176a5978234d16ee50344337c0e070a1d7f00032efa",
+        "width": 768,
+        "height": 1024,
+        "format": "png",
+        "github_binary_uploaded": true,
+        "visual_approval_pending": true,
+        "github_binary_verified": true,
+        "godot_import_tested": true
+      },
+      "github_binary_verified": true,
+      "godot_import_tested": true
+    },
+    {
+      "id": "maitresse_armes",
+      "name": "Maîtresse d’armes",
+      "source_approved_png_sha256": "cca04985e673958ba35dd45da045d9535f2e5246f79259e168682d1053171d89",
+      "path": "assets/characters/guild_npcs/maitresse_armes/concept/maitresse_armes_validated_sheet.jpeg",
+      "sha256": "ffece4c62cd0aa9152551c94d0b079b5abd2f5823f9e6d7135079363f994c39b",
+      "bytes": 1212905,
+      "width": 1087,
+      "height": 1447,
+      "github_binary_uploaded": true,
+      "github_binary_verified": true,
+      "godot_import_tested": true,
+      "portrait": {
+        "path": "assets/characters/guild_npcs/maitresse_armes/portraits/maitresse_armes_portrait_3x4.png",
+        "sha256": "719cfdedc2e3f879ddea7133a9c9b8f2c836ce757fee644128ffc08d4b289a8e",
+        "bytes": 1134441,
+        "width": 768,
+        "height": 1024,
+        "format": "png",
+        "github_binary_uploaded": true,
+        "github_binary_verified": true,
+        "godot_import_tested": true,
+        "visual_approval_pending": true,
+        "crop_source_pixels": [
+          155,
+          35,
+          515,
+          515
+        ]
+      },
+      "visual_sheet_approved": true,
+      "portrait_crop_pending": true,
+      "original_approved_png_in_archive": false
+    },
+    {
+      "id": "wei_shan",
+      "name": "Wei Shan",
+      "source_approved_png_sha256": "df52b49ab1c83393dd3edcf37e0f6d4018eb4155e700bc2cc6ced75c198bea7a",
+      "path": "assets/characters/guild_npcs/wei_shan/concept/wei_shan_validated_sheet.jpeg",
+      "sha256": "d560287bcd1af3fb0bd9ada17aef38cbbdcac2cb8272c4579e73e6c4cb30ed43",
+      "bytes": 1294698,
+      "width": 1086,
+      "height": 1448,
+      "github_binary_uploaded": true,
+      "github_binary_verified": true,
+      "godot_import_tested": true,
+      "portrait": {
+        "path": "assets/characters/guild_npcs/wei_shan/portraits/wei_shan_portrait_3x4.png",
+        "sha256": "7d76b40e58144a732ed05ccb77f24aceee37ba2ba3a197b6ba694856bd017e80",
+        "bytes": 1273486,
+        "width": 768,
+        "height": 1024,
+        "format": "png",
+        "github_binary_uploaded": true,
+        "github_binary_verified": true,
+        "godot_import_tested": true,
+        "visual_approval_pending": true,
+        "crop_source_pixels": [
+          155,
+          35,
+          515,
+          515
+        ]
+      },
+      "visual_sheet_approved": true,
+      "portrait_crop_pending": true,
+      "original_approved_png_in_archive": false
+    },
+    {
+      "id": "han_lu",
+      "name": "Han Lu",
+      "path": "assets/characters/guild_npcs/tavernier_planche_validee.png",
+      "sha256": "ba24389db7072a5795cedf6ac508b724272c163ff4855ab8a0016bd617a55cad",
+      "bytes": 3119445,
+      "width": 1536,
+      "height": 1024,
+      "format": "png",
+      "github_binary_uploaded": true,
+      "github_binary_verified": true,
+      "godot_import_tested": true,
+      "portrait_crop_pending": true
+    },
+    {
+      "id": "dr_mei_ling",
+      "name": "Dr Mei Ling",
+      "path": "assets/characters/guild_npcs/medecin_planche_validee.png",
+      "sha256": "a6446f4bdfb468d66101782885d5c3c2f3d0286781d0328a69f883a33a782e35",
+      "bytes": 2943072,
+      "width": 1536,
+      "height": 1024,
+      "format": "png",
+      "github_binary_uploaded": true,
+      "github_binary_verified": true,
+      "godot_import_tested": true,
+      "portrait_crop_pending": true
+    }
+  ]
+}
