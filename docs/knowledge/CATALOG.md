@@ -7,7 +7,8 @@ Ce catalogue est un point d'entrée humain vers la bibliothèque. Il ne remplace
 | ID | Sujet | Statut | Confiance | Preuves principales |
 |---|---|---|---|---|
 | ADR-0001 | Guardian progressif | active/accepté | high | Knowledge System + validator |
-| ADR-0002 | Quatuor de départ Mathilde / Marec / Anouk / Aurélien | active | very_high | PR #246, #250, #259 |
+| ADR-0002 | Quatuor de départ Mathilde / Marec / Anouk / Aurélien | superseded | very_high | PR #246, #250, #259; superseded by ADR-0009 |
+| ADR-0009 | Ancien quatuor retiré ; nouveau roster à définir | active | explicit user decision | 2026-11-23 |
 | ADR-0003 | Doctrine UX/UI Monde → HUD → Contexte/Décision → Inspection | active | high | PR #255, Bible UX/UI |
 | ADR-0004 | CI Godot par domaines + filet monolithique | active | very_high | PR #253, #257, #242 |
 | ADR-0005 | Compétences des Veilleurs : 3 arbres × 15 | active | high | données `data/veilleurs/skills/*.json` |

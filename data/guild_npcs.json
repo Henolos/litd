@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "description": "Seven Guild NPC records. Han Lu and Dr Mei Ling concept sheets are SHA-256 verified in this branch; dedicated portraits and Guild scene hookup remain pending.",
+  "characters": [
+    {
+      "id": "kelia_anzora",
+      "name": "Kélia Anzora",
+      "role": "guild_administration",
+      "apparent_age": 50,
+      "origin": "Cités du Sud, influences africaines et asiatiques",
+      "prologue_role": "Enregistre la compagnie au rang S (Stagiaire)",
+      "responsibilities": [
+        "rangs",
+        "contrats",
+        "primes",
+        "archives",
+        "réglementation"
+      ],
+      "personality": [
+        "rigoureuse",
+        "méthodique",
+        "organisée",
+        "perspicace",
+        "autoritaire sans tyrannie"
+      ],
+      "narrative_leads": [
+        "connaît une partie du passé du maître de la Guilde",
+        "surveille des dossiers sensibles",
+        "lien éventuel avec le secret d'origine de la Guilde"
+      ],
+      "reference_upload": {
+        "format": "jpeg",
+        "width": 1086,
+        "height": 1448,
+        "sha256": "d10b8ab87474aab5a91d5bb6cfed0925223566497f0ac78ce0ef4698491d0837",
+        "github_binary_uploaded": true,
+        "github_binary_verified": true,
+        "godot_import_tested": true
+      },
+      "art_path": "res://assets/characters/guild_npcs/kelia_anzora/portraits/kelia_anzora_portrait_3x4.png",
+      "art_verified_in_repository": true,
+      "implementation_status": "asset_transferred_and_godot_loaded_in_open_pr; scene_integration_pending"
+    },
+    {
+      "id": "lian_yue",
+      "name": "Lian Yue",
+      "role": "recruitment",
+      "apparent_age": 35,
+      "origin": "Cités de l'Est, influences chinoises, coréennes et d'Asie du Sud-Est",
+      "prologue_role": "Accueille la compagnie, évalue ses compétences et facilite son intégration",
+      "responsibilities": [
+        "recrutement",
+        "constitution des compagnies",
+        "accompagnement"
+      ],
+      "personality": [
+        "chaleureuse",
+        "perspicace",
+        "observatrice",
+        "sociable",
+        "sérieuse sur la sécurité"
+      ],
+      "narrative_leads": [
+        "sait davantage qu'elle ne dit sur des disparitions",
+        "contacts discrets hors Guilde"
+      ],
+      "reference_upload": {
+        "format": "jpeg",
+        "width": 1086,
+        "height": 1448,
+        "sha256": "70b4fb23ad9a4bf310c24d47ac693cf69e8bc031111122f943396196e6951f17",
+        "github_binary_uploaded": true,
+        "github_binary_verified": true,
+        "godot_import_tested": true
+      },
+      "art_path": "res://assets/characters/guild_npcs/lian_yue/portraits/lian_yue_portrait_3x4.png",
+      "art_verified_in_repository": true,
+      "implementation_status": "asset_transferred_and_godot_loaded_in_open_pr; scene_integration_pending"
+    },
+    {
+      "id": "soleyman",
+      "name": "Soleyman",
+      "role": "merchant",
+      "former_name": "Rashid al-Khârim",
+      "apparent_age": 45,
+      "origin": "Confins du Sud, influences d'Afrique, du Moyen-Orient et des routes d'Asie",
+      "prologue_role": "Équipe la compagnie et propose les premiers équipements et opportunités discrètes",
+      "responsibilities": [
+        "marchand",
+        "fournisseur",
+        "antiquaire",
+        "négoce spécialisé"
+      ],
+      "personality": [
+        "charismatique",
+        "chaleureux",
+        "fin négociateur",
+        "curieux",
+        "fidèle envers les personnes de confiance"
+      ],
+      "systems_planned": [
+        "confiance",
+        "affinité",
+        "alliance",
+        "amélioration du commerce",
+        "quêtes exceptionnelles"
+      ],
+      "narrative_leads": [
+        "contacts dans des factions variées",
+        "connaissances de lieux fermés",
+        "possible objet ou indice lié à l'origine de la Guilde"
+      ],
+      "reference_upload": {
+        "format": "jpeg",
+        "width": 1086,
+        "height": 1448,
+        "sha256": "3dbb50244035699e6dc79360a31d76ea67e7f1601c8130c005a7ed2cc6afcc92",
+        "github_binary_uploaded": true,
+        "github_binary_verified": true,
+        "godot_import_tested": true
+      },
+      "art_path": "res://assets/characters/guild_npcs/soleyman/portraits/soleyman_portrait_3x4.png",
+      "art_verified_in_repository": true,
+      "implementation_status": "asset_transferred_and_godot_loaded_in_open_pr; scene_integration_pending"
+    },
+    {
+      "id": "maitresse_armes",
+      "name": "Shen Yulan",
+      "role": "maitresse_d_armes",
+      "reference_upload": {
+        "format": "jpeg",
+        "width": 1087,
+        "height": 1447,
+        "sha256": "ffece4c62cd0aa9152551c94d0b079b5abd2f5823f9e6d7135079363f994c39b",
+        "github_binary_uploaded": true,
+        "github_binary_verified": true,
+        "godot_import_tested": true
+      },
+      "art_path": "res://assets/characters/guild_npcs/maitresse_armes/portraits/maitresse_armes_portrait_3x4.png",
+      "art_verified_in_repository": true,
+      "implementation_status": "assets_sha256_verified_and_portrait_loaded_in_godot_4_7_2; portrait_crop_review_pending; scene_integration_pending"
+    },
+    {
+      "id": "wei_shan",
+      "name": "Wei Shan",
+      "role": "archiviste",
+      "reference_upload": {
+        "format": "jpeg",
+        "width": 1086,
+        "height": 1448,
+        "sha256": "d560287bcd1af3fb0bd9ada17aef38cbbdcac2cb8272c4579e73e6c4cb30ed43",
+        "github_binary_uploaded": true,
+        "github_binary_verified": true,
+        "godot_import_tested": true
+      },
+      "art_path": "res://assets/characters/guild_npcs/wei_shan/portraits/wei_shan_portrait_3x4.png",
+      "art_verified_in_repository": true,
+      "implementation_status": "assets_sha256_verified_and_portrait_loaded_in_godot_4_7_2; portrait_crop_review_pending; scene_integration_pending"
+    },
+    {
+      "id": "han_lu",
+      "name": "Han Lu",
+      "role": "tavernier",
+      "responsibilities": [
+        "taverne",
+        "accueil des aventuriers",
+        "récits de quêtes"
+      ],
+      "personality": [
+        "ancien aventurier",
+        "marqué par des cicatrices",
+        "conteur d’anecdotes de quêtes"
+      ],
+      "systems_planned": [
+        "quêtes spéciales",
+        "déblocables spécifiques selon l’affinité"
+      ],
+      "concept_art_path": "res://assets/characters/guild_npcs/tavernier_planche_validee.png",
+      "art_path": null,
+      "art_verified_in_repository": true,
+      "portrait_status": "pending_dedicated_portrait_crop",
+      "implementation_status": "validated_concept_sheet_registered; portrait_and_scene_integration_pending"
+    },
+    {
+      "id": "dr_mei_ling",
+      "name": "Dr Mei Ling",
+      "role": "medecin",
+      "responsibilities": [
+        "soins des aventuriers",
+        "anatomie",
+        "dissection",
+        "amélioration du bestiaire"
+      ],
+      "personality": [
+        "médecin hors pair",
+        "passionnée par la dissection et l’anatomie",
+        "humour noir : recommande volontiers l’amputation pour une simple coupure"
+      ],
+      "systems_planned": [
+        "missions spéciales",
+        "déblocages de connaissances sur les faiblesses des ennemis"
+      ],
+      "concept_art_path": "res://assets/characters/guild_npcs/medecin_planche_validee.png",
+      "art_path": null,
+      "art_verified_in_repository": true,
+      "portrait_status": "pending_dedicated_portrait_crop",
+      "implementation_status": "validated_concept_sheet_registered; portrait_and_scene_integration_pending"
+    }
+  ]
+}

@@ -4,13 +4,13 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-QUARTET = {"mathilde", "marec", "anouk", "aurelien"}
+FORMER_STARTERS = {"mathilde", "marec", "anouk", "aurelien"}
 
 
 def test_official_catalogue_matches_original_bytes():
     manifest = json.loads((ROOT / "docs/art/validated_heroes_manifest_20261111.json").read_text(encoding="utf-8"))
     assets = manifest["assets"]
-    assert {a["hero"] for a in assets} == QUARTET | {"effrie", "lya"}
+    assert {a["hero"] for a in assets} == FORMER_STARTERS | {"effrie", "lya"}
     assert len(assets) == len({a["id"] for a in assets}) == len({a["sha256"] for a in assets}) == 6
     for asset in assets:
         assert asset["target_path"] == f"art/library/heroes/{asset['hero']}/reference.jpg"
@@ -20,16 +20,18 @@ def test_official_catalogue_matches_original_bytes():
         assert hashlib.sha256(raw).hexdigest() == asset["sha256"]
 
 
-def test_art_catalogue_does_not_expand_playable_quartet_or_replace_generic_class_art():
+def test_art_catalogue_preserves_former_roster_designs_without_starting_status():
     heroes = json.loads((ROOT / "data/heroes.json").read_text(encoding="utf-8"))
-    assert {h["id"] for h in heroes} == QUARTET
+    assert {h["id"] for h in heroes} == FORMER_STARTERS
     assert len(heroes) == 4
+    assert all(h["canon_status"] == "canonical_hero_not_in_starting_roster" for h in heroes)
+    assert all("starting_quartet_order" not in h for h in heroes)
     classes = json.loads((ROOT / "data/classes.json").read_text(encoding="utf-8"))
     for clazz in classes:
         assert (ROOT / "assets/heroes" / clazz["art"]).is_file()
     jobs = json.loads((ROOT / "data/blender/character_jobs.json").read_text(encoding="utf-8"))
     hero_jobs = [j for j in jobs["jobs"] if j["category"] == "hero"]
-    assert {j["character_id"] for j in hero_jobs} == QUARTET
+    assert {j["character_id"] for j in hero_jobs} == FORMER_STARTERS
     for job in hero_jobs:
         assert job["reference_art"] == f"art/library/heroes/{job['character_id']}/reference.jpg"
         assert (ROOT / job["reference_art"]).is_file()

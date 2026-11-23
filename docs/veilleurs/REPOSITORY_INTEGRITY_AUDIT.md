@@ -5,7 +5,7 @@
 Le gate vérifie notamment :
 
 - parsing de tous les JSON sous `data/veilleurs/` ;
-- quatuor canonique exact et loadouts de départ ;
+- statut non attribué du roster canonique et cohérence interne des fixtures de combat/loadouts historiques ;
 - 12 arbres / 180 compétences uniques et cohérence avec le contrat source ;
 - 24 ennemis ordinaires uniques ;
 - six donjons de production ;

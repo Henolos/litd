@@ -1,11 +1,11 @@
 {
-  "schema_version": 1,
-  "status": "CURRENT_QUARTET_AUTHORED_IDENTITY_LOCK",
+  "schema_version": 2,
+  "status": "FORMER_STARTING_ROSTER_HERO_DESIGN_REFERENCE",
   "scope": "LITD: Les Veilleurs",
   "decision_date": "2026-09-09",
   "notes": [
-    "This file is the active binding for the current starting quartet: Mathilde, Marec, Anouk and Aurélien.",
-    "It supersedes older roster bindings for player-facing Les Veilleurs content.",
+    "These authored ultimate identities belong to Mathilde, Marec, Anouk and Aurélien as individual hero design references; they do not assign them to the starting roster.",
+    "The starting roster was unassigned by the user decision of 2026-11-23; no replacement heroes are inferred here.",
     "Ultimate identity and charge progression are locked here; numerical resolver effects remain implementation data and must not be inferred from older legendary-hero sheets.",
     "Each chosen tree owns one signature ultimate. Charges: level 16 = 1 per dungeon, level 32 = 2, level 48 = 3."
   ],
