@@ -14,8 +14,8 @@ func _run() -> void:
     var Canonical := root.get_node("SaveManager")
     var first := {"party": [{"id": "hero", "hp": 17}], "guild": {"rank": 2, "funds": 30}}
     var reordered := {"guild": {"funds": 30, "rank": 2}, "party": [{"hp": 17, "id": "hero"}]}
-    var body := Canonical.canonical_body("campaign-1", 4, first)
-    var hash_value := Canonical.canonical_sha256("campaign-1", 4, first)
+    var body: String = Canonical.canonical_body("campaign-1", 4, first)
+    var hash_value: String = Canonical.canonical_sha256("campaign-1", 4, first)
     _check(not body.is_empty(), "Canonical body must exist")
     _check(body == Canonical.canonical_body("campaign-1", 4, reordered), "Dictionary insertion order must not affect canonical encoding")
     _check(hash_value.length() == 64, "SHA-256 must be 64 hexadecimal characters")
