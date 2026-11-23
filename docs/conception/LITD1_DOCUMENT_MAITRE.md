@@ -2706,3 +2706,26 @@ Simulation événementielle des déplacements plutôt que simulation permanente 
 10. Résultat enregistré dans la sauvegarde persistante, sans nouveau tirage au rechargement.
 
 Préserver V7.12 et la fuite volontaire réservée aux Némésis. Coûts en points d'action, délais, seuils et mécanismes précis de limitation à déterminer lors des essais. Validation documentaire uniquement, aucun développement ni test en jeu.
+
+
+---
+## V7.42 — Épreuves de succession hybrides évolutives de la Guilde (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, épreuves de succession hybrides évolutives, quatre étapes et douze règles complémentaires explicitement approuvées.** Combiner épreuves communes, propres à la classe et adaptées à la progression de campagne.
+
+Étapes : (1) enregistrement administratif auprès de Kélia Anzora, reconnaissance du statut et accès aux archives des prédécesseurs ; (2) évaluation individuelle par la maîtresse d'armes selon la classe ; (3) mise en situation tactique collective ; (4) autorisation officielle du maître de la Guilde et réouverture des expéditions.
+
+1. Obligatoires après chaque succession.
+2. Contenu variable selon classe et progression de campagne.
+3. Durée relativement courte.
+4. Échecs d'entraînement sans mort définitive.
+5. Équipements d'entraînement éventuellement fournis par la Guilde.
+6. Réservistes autorisés aux épreuves collectives.
+7. Aucune réinitialisation des quêtes.
+8. Maîtrise personnelle avancée impossible à obtenir uniquement par ces épreuves.
+9. Aucun échec ne bloque définitivement la campagne.
+10. Aucun farming de ressources, équipements ou crédits de maîtrise.
+11. Dialogues pouvant tenir compte des compagnies disparues.
+12. Aucune révélation prématurée des secrets du protagoniste ou du maître.
+
+Préserver V8.1–V8.3, notamment les conditions de maîtrise exigeant des contributions réelles en expédition. Exemples de spécialisations indicatifs, aucune nouvelle classe validée. Validation documentaire uniquement, aucun développement ni test en jeu.
