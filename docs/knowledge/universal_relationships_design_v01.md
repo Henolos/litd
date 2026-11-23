@@ -45,3 +45,10 @@ Décision de conception enregistrée ; moteur Godot non implémenté et non test
 
 ### Contrôle qualité des fiches
 Vérifier pour chaque personnage : voix reconnaissable, au moins une contradiction crédible, motivation indépendante du joueur, cohérence avec l'univers, scène d'introduction marquante, évolution possible, réactions aux événements majeurs, absence de dépendance exclusive au butin.
+
+## Principe directeur confirmé pour le document maître (2026-11-23)
+**« Le personnage est la récompense principale de la relation. Le butin n'est qu'un complément. »**
+Ce principe s'applique à la construction du passé, de la personnalité et de l'évolution de chaque personnage important. L'intérêt de progresser en affinité doit reposer principalement sur l'attachement, les découvertes narratives et les conséquences humaines, et non sur l'optimisation de récompenses.
+
+## Chantier suivant : création du protagoniste
+Décision antérieure à préserver : le joueur crée son héros ou son héroïne au début du prologue, avant la cinématique et l'intégration à la compagnie de quatre. Périmètre précis du créateur (apparence, identité, origine, classe, voix, pronoms, options de personnalisation) à concevoir et valider. Aucune implémentation n'est revendiquée.
