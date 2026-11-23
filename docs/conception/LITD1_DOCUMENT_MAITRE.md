@@ -2687,3 +2687,22 @@ Simulation événementielle des déplacements plutôt que simulation permanente 
 **VALIDÉ EN CONCEPTION : option C et huit règles complémentaires explicitement approuvées.** 1. Une nouvelle mission déclenche le renouvellement des rencontres ordinaires. 2. Les chemins sécurisés ne sont pas systématiquement repeuplés. 3. Toute nouvelle menace doit être cohérente avec le contexte local. 4. Aucun renouvellement automatique par simples allers-retours. 5. Préserver les conséquences des destructions de repaires et éliminations uniques. 6. Les coffres renouvelables suivent les règles entre missions déjà validées. 7. Les ressources récoltables suivent leur propre délai de régénération mesuré dans le temps du jeu. 8. Némésis, objets uniques et événements persistants ne sont jamais réinitialisés par le renouvellement ordinaire. Concilier V5.0–V5.1 et V7.22 sans modifier la topologie de base intra-expédition ni effacer les conséquences persistantes. Paramètres et tests restent à définir.
 
 **Traçabilité :** validation explicite de l'option C concernant le renouvellement des ennemis et la sécurisation des chemins avec les huit règles complémentaires. Consolidation : 1/4 arbitrages validés. Mise à jour documentaire uniquement ; aucun test runtime. Statut : 🟡 À CONSOLIDER. Avancement global : À évaluer.
+
+
+---
+## V7.41 — Fuite contextuelle, tactique et interruptible des Némésis (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, fuite contextuelle, tactique et interruptible des Némésis, avec les dix règles complémentaires explicitement approuvées.** La décision combine état physique, tempérament, circonstances du combat et possibilités réelles de retraite. Le joueur dispose d'une fenêtre de réaction tactique.
+
+1. Aucune fuite automatique après la mort d'un héros.
+2. Aucun seuil de santé universel.
+3. Intention de fuite identifiable avant exécution.
+4. Interruption possible par actions compatibles.
+5. Prise en compte des blessures anatomiques et capacités de déplacement.
+6. Aucune disparition artificielle pour protéger le Némésis d'une défaite.
+7. Limitation des tentatives répétitives.
+8. Conservation des blessures, équipements et souvenirs après fuite, sous réserve de leur évolution ultérieure.
+9. Recherche du fugitif via reconnaissance et renseignements déjà validés.
+10. Résultat enregistré dans la sauvegarde persistante, sans nouveau tirage au rechargement.
+
+Préserver V7.12 et la fuite volontaire réservée aux Némésis. Coûts en points d'action, délais, seuils et mécanismes précis de limitation à déterminer lors des essais. Validation documentaire uniquement, aucun développement ni test en jeu.
