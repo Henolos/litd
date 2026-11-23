@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "status": "design_proposal_not_runtime",
+  "system_id": "universal_relationships",
+  "scope": [
+    "hero_to_npc",
+    "npc_to_hero",
+    "companion_to_companion",
+    "narratively_relevant_npc_pairs"
+  ],
+  "dimensions": {
+    "affinity": {
+      "min": 0,
+      "max": 100,
+      "meaning": "attachement et appréciation"
+    },
+    "trust": {
+      "min": 0,
+      "max": 100,
+      "meaning": "fiabilité et disposition à se confier"
+    },
+    "story": {
+      "type": "completed_event_ids",
+      "meaning": "progression narrative indépendante des scores"
+    }
+  },
+  "rank_count_provisional": 5,
+  "decay_without_interaction": false,
+  "relationships_are_directed": true,
+  "repeatable_event_policy": "limited_and_configurable",
+  "rewards_require_explicit_conditions": true,
+  "persistence_target": "SaveManager snapshot (integration not implemented)",
+  "prototype_characters": [
+    "guild_tavern_keeper",
+    "guild_physician",
+    "wei_shan"
+  ],
+  "implementation_verified": false,
+  "open_decisions": [
+    "rank_thresholds",
+    "score_visibility",
+    "reward_balance",
+    "negative_relationship_model",
+    "reconciliation_rules"
+  ]
+}
