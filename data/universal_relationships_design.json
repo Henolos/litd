@@ -1,46 +1,42 @@
 {
-  "schema_version": 1,
-  "status": "design_proposal_not_runtime",
-  "system_id": "universal_relationships",
+  "schema_version": 2,
+  "status": "user_validated_single_affinity_bar_design_not_runtime",
+  "system_id": "universal_affinity",
   "scope": [
-    "hero_to_npc",
-    "npc_to_hero",
-    "companion_to_companion",
-    "narratively_relevant_npc_pairs"
+    "guild_npcs",
+    "companions",
+    "villagers",
+    "narratively_relevant_characters"
   ],
-  "dimensions": {
-    "affinity": {
+  "affinity": {
+    "single_bar": true,
+    "includes_trust": true,
+    "range_proposal": {
       "min": 0,
-      "max": 100,
-      "meaning": "attachement et appréciation"
+      "max": 100
     },
-    "trust": {
-      "min": 0,
-      "max": 100,
-      "meaning": "fiabilité et disposition à se confier"
-    },
-    "story": {
-      "type": "completed_event_ids",
-      "meaning": "progression narrative indépendante des scores"
-    }
+    "per_character": true
   },
   "rank_count_provisional": 5,
-  "decay_without_interaction": false,
-  "relationships_are_directed": true,
-  "repeatable_event_policy": "limited_and_configurable",
-  "rewards_require_explicit_conditions": true,
-  "persistence_target": "SaveManager snapshot (integration not implemented)",
-  "prototype_characters": [
-    "guild_tavern_keeper",
-    "guild_physician",
-    "wei_shan"
+  "progression_sources": [
+    "meaningful_choices",
+    "quests",
+    "scripted_interactions"
   ],
+  "negative_consequences": true,
+  "passive_decay": false,
+  "daily_social_maintenance": false,
+  "npc_to_npc_management": false,
+  "story_flags_are_not_relationship_bars": true,
+  "reward_conditions": [
+    "affinity_rank",
+    "completed_quest_or_story_flag"
+  ],
+  "persistence_target": "existing SaveManager snapshot",
   "implementation_verified": false,
   "open_decisions": [
     "rank_thresholds",
     "score_visibility",
-    "reward_balance",
-    "negative_relationship_model",
-    "reconciliation_rules"
+    "reward_balance"
   ]
 }
