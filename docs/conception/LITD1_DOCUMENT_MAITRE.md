@@ -3085,3 +3085,59 @@ Incident INVALID_ARGUMENT : création du schéma réussie, relecture échouée �
 16. Résistances, dégâts de collision et exceptions à définir après simulations et tests.
 
 Immobilisation ou inconscience ne vaut pas automatiquement retrait. Une créature multirang reste une seule unité. Traitement des grandes créatures recrutées à arbitrer séparément ; aucune déclinaison artistique imposée. Respecter économie d'un PA par combattant et par tour et sauvegarde transactionnelle V8.3. Validation documentaire uniquement.
+
+
+---
+## V7.63 — Combos, interceptions et interruptions contextuels (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, résolution contextuelle selon les dépendances du combo, interceptions anatomiques, transmission des afflictions et seize règles complémentaires explicitement approuvées.**
+
+1. Combos de un à quatre participants.
+2. Un PA par participant effectivement engagé.
+3. Préparation et résolution dans le même round.
+4. Respect intégral de l'initiative adverse.
+5. Distinguer contributions indispensables et complémentaires.
+6. Résolution partielle uniquement si cohérente avec le combo.
+7. Pas d'interruption automatique à chaque blessure.
+8. Vérifier capacités anatomiques, équipements, rangs et états nécessaires.
+9. Pas de restitution automatique des PA engagés après interruption.
+10. Conserver effets effectivement résolus avant interruption.
+11. Compétence appropriée nécessaire à la protection/interception, sans PA supplémentaire créé.
+12. Respecter positionnement et mobilité des protecteurs.
+13. Conserver redirection anatomique validée : partie correspondante ; bras absent vers torse ; jambe absente vers autre jambe ou torse si deux absentes.
+14. Afflictions, attaques de zone et dommages aux prothèses selon propriétés réelles.
+15. Sauvegarder préparations, interceptions, interruptions et effets résolus sans duplication ni nouveau tirage au rechargement.
+16. Seuils d'interruption, priorités de protection, coefficients et exceptions après simulations et tests.
+
+Blessure directe et saignement causé par l'attaque sur combattant effectivement touché/blessé ; poison sur combattant exposé ; malédiction selon propriétés ; affliction préexistante reste sur porteur ; zone résolue individuellement ; prothèse effectivement touchée. Protection distante ou magique sans transfert physique systématique. Préserver vulnérabilité des préparateurs, PA non engagés, découverte collective des combos et compatibilité des familles d'armes. Aucun test runtime.
+
+---
+## V7.64 — Consolidation de référence : combat tactique et capture (23 novembre 2026)
+
+**Statut : dix axes de principes arbitrés en conception ; consolidation documentaire, non validation technique.** Les décisions explicites les plus récentes prévalent sur les formulations historiques incompatibles. Registre de référence :
+
+| Axe | Référence | Principe applicable |
+|---|---|---|
+| Éligibilité | V7.46, V7.60 | Nature et particularités individuelles ; cinq boss principaux recrutables uniquement NG+ ; distinguer capture et recrutement différé garanti pour captif éligible extrait. |
+| Méthodes | V7.47 | Immobilisation physique, neutralisation non létale, affaiblissement alchimique, soumission, confinement magique, scellement spirituel, désactivation ; indépendantes ou combinables selon compatibilité. |
+| Probabilités | V7.48 | Moteur commun, facteurs contextuels, éligibilité préalable, probabilité réelle affichée, aucun nouveau tirage après résolution. |
+| Échecs | V7.51 | Résistance spécifique et vigilance générale contextuelles, temporaires et plafonnées. |
+| Apprentissage | V7.52, V7.54 | Connaissances collectives persistantes, expérimentation, documentation, missions médicales ; cinq niveaux de connaissance ; maîtrise individuelle distincte. |
+| Spécialistes | V7.56 | Maîtrise commune, classe spécialisée, compétences complémentaires, aptitudes naturelles ; réutiliser maîtrise fondamentale/avancée, pas de spécialiste universellement indispensable. |
+| Extraction | V7.58, V7.49 | Contention distincte du sac et des quatre combattants, transport contextuel, risques persistants, retour conditionnel immédiat, pas de transfert magique. |
+| Recrutement | V7.59, V7.60 | Sept familles, cinq états relationnels compatibles, recrutement garanti après capture/extraction éligibles ; confiance et loyauté déterminent délai en expéditions, non succès final. |
+| Rangs | V7.62 | Quatre rangs, permutation adjacente 1 PA, resserrement gratuit, déplacements forcés contextuels, ennemis multirangs sans duplication. |
+| Combos | V7.63, D.5 | 1–4 participants, 1 PA chacun, même round, initiative adverse, dépendances et interceptions anatomiques. |
+
+### Réconciliation et limites
+- V7.60 remplace explicitement la règle 10 de V7.46 et la règle 9 de V7.59 ainsi que toute formulation historique niant la garantie de recrutement. Refus définitif non applicable au captif éligible extrait ; distinguer perte avant extraction et choix volontaire du joueur. Aucun barème de délai validé.
+- V7.54 et V8.1–V8.3 prévalent sur bestiaire individuel et retour du même protagoniste dans anciens documents. Connaissance collective persistante ; maîtrise personnelle non héritée, aucun crédit posthume.
+- V7.62 et V7.63 respectent V4.2–4.4 : un PA par combattant et par tour, bonus léger collectif de guet-apens déjoué premier round seulement. Définition fine tour/round, initiative et égalités restent ouvertes. Les protections ne créent pas de PA.
+- D.5 : cible historique 4–6 attaques équipées non définitive ; appliquer les limites explicites ultérieures de compétences actives/passives et spécialisation, sans confondre attaques et autres catégories. Réconciliation détaillée des catégories à effectuer avant implémentation.
+- Captifs hors rangs actifs ; créatures recrutées dans réserves selon capacité ; grandes recrues et encombrement à arbitrer, sans modification des originaux artistiques. Évasion de contention distincte de fuite volontaire ennemie réservée aux Némésis.
+- V8.3 : transactions cohérentes pour PA, rangs, blessures, décès, capture, effets, crédits, extraction et recrutement ; reprise des résultats confirmés sans recalcul aléatoire. Ne pas raccorder au journal expérimental avant validation de son contrat.
+
+### Restes à traiter avant validation technique
+Barèmes de recrutement et comptage des expéditions ; capacités de détention/contention ; effets de confiance/loyauté ; initiative, réactions et priorités ; grandes recrues et invocations ; coûts et coefficients de capture, résistances, collisions et interruptions ; catalogue des classes, techniques et équipements ; UI ; audit de réutilisation du moteur existant ; tests automatisés, interruption/reprise, équilibrage humain et Windows. Aucun de ces tests exécuté lors de cette consolidation. Plan de tests candidat : incompatibilité anatomique, capture garantie après extraction et délai persistant, perte de captif avant retour, boss hors NG+, multirang sans double impact, retrait et resserrement, combo indispensable interrompu ou complémentaire perdu, interception avec membre absent, afflictions et prothèses, PA et crédits non dupliqués, reprise à chaque frontière durable. Pas de code ni fusion modifiés.
+
+Avancement des arbitrages de principe : 10/10 (100 % de ce périmètre documentaire). Chantier technique non évalué ; projet global à évaluer. Prochaine étape proposée : arbitrages résiduels bloquants et audit du moteur de combat avant contrat technique et prototype isolé.
