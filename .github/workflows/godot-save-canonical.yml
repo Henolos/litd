@@ -3,7 +3,7 @@ name: Godot canonical save state tests
 on:
   pull_request:
     paths:
-      - 'scripts/core/canonical_save_state.gd'
+      - 'scripts/core/save_manager.gd'
       - 'tests/godot/test_save_canonical_headless.gd'
       - '.github/workflows/godot-save-canonical.yml'
   workflow_dispatch:
