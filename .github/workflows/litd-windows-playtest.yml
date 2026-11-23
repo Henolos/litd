@@ -1,0 +1,40 @@
+name: LITD Windows playtest build
+on:
+  pull_request:
+    paths:
+      - 'scripts/ui/playtest_gallery.gd'
+      - 'scripts/ui/game_hub.gd'
+      - 'scenes/tests/playtest_gallery.tscn'
+      - 'export_presets.cfg'
+      - '.github/workflows/litd-windows-playtest.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  windows-playtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    container:
+      image: barichello/godot-ci:4.7.2
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Export Windows debug build
+        shell: bash
+        run: |
+          set -euo pipefail
+          sandbox=$(mktemp -d)
+          trap 'rm -rf "$sandbox"' EXIT
+          export XDG_DATA_HOME="$sandbox"
+          mkdir -p build/windows
+          bash tools/ci/run_godot_checked.sh --log "$sandbox/import.log" -- godot --headless --path . --import --quit
+          bash tools/ci/run_godot_checked.sh --log "$sandbox/export.log" -- godot --headless --path . --export-debug "Windows Desktop" build/windows/LightInTheDark.exe
+          test -s build/windows/LightInTheDark.exe
+          test -s build/windows/LightInTheDark.pck
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: LITD1-Windows-Playtest
+          path: |
+            build/windows/LightInTheDark.exe
+            build/windows/LightInTheDark.pck
+          if-no-files-found: error
+          retention-days: 7
