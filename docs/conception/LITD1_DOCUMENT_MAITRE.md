@@ -2582,3 +2582,11 @@ Source : LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md, bibliothèque util
 Préserver les contraintes de génération, de stabilité intra-expédition, de persistance et d'accessibilité des objectifs. Les exemples de régions ne constituent pas une validation de leur catalogue. Les valeurs et algorithmes restent à spécifier.
 
 **Traçabilité :** validation explicite de l'utilisateur de l'option C et des huit règles. Mise à jour documentaire uniquement ; aucun développement ni test en jeu. Statut : 🟡 À CONSOLIDER pour l'implémentation.
+
+
+---
+## V7.33 — Architecture interne hybride des donjons (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et quatre règles complémentaires, explicitement choisies par l'utilisateur.** Architecture propre à chaque donjon : horizontale, verticale ou secteurs interconnectés, avec géométries impossibles possibles pour certains donjons conformément à la DA Escher. Quatre règles : retour aux niveaux précédents sauf restriction contextuelle justifiée ; secteurs facultatifs et secrets éventuels ; taille et profondeur variables selon l'identité du donjon ; conservation de la configuration et des découvertes pendant l'expédition. Maintenir génération hybride, brouillard intégral, difficulté propre évolutive, conséquences persistantes et navigation exclusivement sur carte. Exemples architecturaux indicatifs ; dimensions, transitions et paramètres restent à spécifier.
+
+**Traçabilité :** validation explicite de l'option C concernant l'architecture interne des donjons avec les quatre règles complémentaires. Mise à jour documentaire uniquement ; aucun développement ni test en jeu. **Statut : 🟡 À CONSOLIDER. Avancement des arbitrages détaillés : 6/8 (75 %, estimation non pondérée). Avancement du projet global : À évaluer.**
