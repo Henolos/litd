@@ -2162,3 +2162,26 @@ Avant de modifier le runtime, arbitrer explicitement si :
 - **Statut :** 🟡 À CONSOLIDER.
 - **Avancement du chantier actuel : À évaluer. Avancement du projet global : À évaluer.**
 - **Prochaine priorité :** confirmer l'articulation entre carte stratégique et exploration 3D avant de modifier les scènes ou de déclarer une architecture définitive.
+
+
+---
+## V7.15 — Arbitrage validé : exploration exclusivement sur carte à embranchements (23 novembre 2026)
+
+**DÉCISION EXPLICITEMENT VALIDÉE PAR L'UTILISATEUR.** Toute l'exploration de LITD 1 se déroule **directement sur une grande carte à embranchements**, avec **illustrations et événements interactifs**. Il n'y a **pas de déplacement libre dans des environnements 3D** pour l'exploration.
+
+### Conséquences de conception
+- La carte est le support principal de navigation, des itinéraires, du retour en arrière, des rencontres, des quêtes et des découvertes.
+- Les régions, biomes, ruines, donjons et lieux conservent leur **identité artistique** mais sont représentés sur la carte et dans des illustrations, interfaces ou événements ; leur existence ne prescrit pas des niveaux explorables en 3D.
+- Les combats tactiques **2D** restent un système distinct, déclenché depuis les rencontres ou événements.
+- La référence *Slay the Spire* porte sur la **lecture des embranchements et le choix d'itinéraires**, avec une carte LITD plus vaste et la possibilité de revenir en arrière ; aucune copie de ses contraintes de déplacement n'est décidée.
+- Les références de rendu isométrique de *No Rest for the Wicked* et les anciennes mentions d'« exploration 3D isométrique en temps réel » sont **supplantées pour le mode de navigation d'exploration**. Elles demeurent dans l'historique documentaire comme références antérieures, **pas comme fonctionnalités encore à développer**.
+- Les règles historiques supposant une simulation en temps réel pendant l'exploration (déplacements libres, menus pendant que le monde continue d'évoluer, poursuites spatiales, transition physique 3D→2D) devront être **réévaluées ou reformulées** pour une carte à nœuds ; elles ne doivent pas être implémentées littéralement par inertie.
+- Le hub illustré interactif de la Guilde reste une décision distincte et compatible.
+
+### Ce qui reste à définir
+Aspect exact de la carte, taille et nombre de nœuds, visibilité des chemins, illustrations et interfaces des événements, modalités du retour en arrière, évolution des nœuds, règles de renouvellement, coûts de déplacement et transitions carte-combat. **Aucune de ces modalités n'est implicitement validée par le présent arbitrage.**
+
+**Traçabilité :** réponse explicite « oui » de l'utilisateur à la question « toute l'exploration se déroule directement sur la carte à embranchements, avec des illustrations et des événements interactifs, sans déplacement libre dans des environnements 3D ? ».
+
+**Exécution :** décision enregistrée dans le document maître ; aucun changement du runtime Godot, aucune validation en jeu.
+**Statut :** 🟡 À CONSOLIDER. **Avancement du chantier actuel : À évaluer. Avancement du projet global : À évaluer.**
