@@ -2787,3 +2787,24 @@ Préserver V8.1–V8.3, notamment les conditions de maîtrise exigeant des contr
 12. Résultats conservés dans la sauvegarde transactionnelle, sans duplication ni nouveau tirage au rechargement.
 
 Familles indicatives non encore validées individuellement : immobilisation physique, neutralisation non létale, affaiblissement chimique, soumission, confinement magique, scellement spirituel, désactivation. Méthodes détaillées, probabilités, coûts et tests restent ouverts. Validation documentaire uniquement.
+
+
+---
+## V7.47 — Méthodes de capture indépendantes ou combinables (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, méthodes de capture indépendantes ou combinables selon la créature, sept familles et douze règles complémentaires explicitement approuvées.** Familles : immobilisation physique, neutralisation non létale, affaiblissement alchimique, soumission, confinement magique, scellement spirituel, désactivation.
+
+1. Retenir les sept familles.
+2. Autoriser leur utilisation indépendante ou combinée.
+3. Respecter les compatibilités anatomiques, biologiques et surnaturelles.
+4. Permettre la neutralisation non létale.
+5. Distinguer neutralisation temporaire et capture effective.
+6. Plusieurs héros peuvent contribuer à une capture.
+7. Les blessures anatomiques peuvent faciliter ou compromettre la capture.
+8. Une créature définitivement morte ne peut être capturée vivante.
+9. Une méthode incompatible ne devient pas efficace par répétition.
+10. Certaines méthodes nécessitent équipements, consommables ou compétences particulières.
+11. Les méthodes découvertes sont consignées dans le bestiaire collectif.
+12. Coûts, durées, résistances et probabilités à déterminer lors des arbitrages et tests.
+
+Les combinaisons illustratives ne sont pas des recettes définitives par espèce. Préserver V7.46 et V8.3. Validation documentaire uniquement.
