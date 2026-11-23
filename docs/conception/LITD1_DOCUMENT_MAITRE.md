@@ -2758,3 +2758,11 @@ Préserver V8.1–V8.3, notamment les conditions de maîtrise exigeant des contr
 12. Seuils, plafonds et bonus définitifs après simulations et tests de combat.
 
 Évolutions qualitatives possibles : apparence, techniques, résistances, comportement, territoire, alliés, réputation et récompenses, selon compatibilité ; exemples et courbes numériques indicatifs, non validés comme barèmes. Préserver V7.12, V7.34–V7.42 et invariants V8.3. Les sept axes du chantier mort, succession et Némésis sont arbitrés au niveau des principes ; spécifications, implémentation, équilibrage et tests restent ouverts. Validation documentaire uniquement.
+
+
+---
+## V7.45 — Intégration hybride contextuelle des guet-apens (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et dix règles complémentaires explicitement approuvées.** 1. Ratio cible 35 % détectables / 65 % indétectables sur l'ensemble des guet-apens procéduraux, non par carte. 2. Guet-apens scénarisés soumis aux contraintes narratives et comptabilisés séparément. 3. Caractère détectable fixé à la génération. 4. Détection contextuelle par aptitudes, observation et bestiaire. 5. Aucun spécialiste ne garantit la détection systématique. 6. Détection seule insuffisante pour déjouer. 7. Guet-apens déjoué si évité, neutralisé ou avantage de surprise effectivement supprimé. 8. Attaque préventive seulement si ennemis localisés et accessibles. 9. Si combat après guet-apens déjoué, léger bonus collectif d'initiative au premier round uniquement, sans PA supplémentaire. 10. Aucun nouveau tirage artificiel par aller-retour ou rechargement en contexte inchangé. Pièges mécaniques autonomes hors ratio en attente d'arbitrage spécifique. Aucune poursuite ennemie. Paramètres statistiques et tests restent à définir.
+
+**Traçabilité :** validation explicite de l'option C concernant l'intégration des guet-apens avec les dix règles complémentaires. Consolidation : 3/4 arbitrages validés. Mise à jour documentaire uniquement ; aucun test runtime. Statut : 🟡 À CONSOLIDER. Avancement global : À évaluer.
