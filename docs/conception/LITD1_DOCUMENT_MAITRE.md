@@ -2301,3 +2301,12 @@ Ces éléments proviennent des validations utilisateur retrouvées dans l'histor
 
 **Traçabilité :** validation explicite de l'option C concernant la sécurisation des chemins. Mise à jour documentaire uniquement ; aucun changement Godot ni test en jeu.
 **Statut : 🟡 À CONSOLIDER. Avancement de conception : 7 axes sur 8 (87,5 %, estimation non pondérée). Avancement du projet global : À évaluer.**
+
+
+---
+## V7.23 — Transitions et interactions hybrides contextuelles (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, explicitement choisie par l'utilisateur.** Les transitions entre carte, événements, combats et donjons dépendent du contexte. Les combats ordinaires peuvent être volontaires ou imposés selon la rencontre ; les guet-apens non déjoués peuvent imposer un combat ; l'entrée dans un donjon est volontaire ; les découvertes et événements sont volontaires ou imposés selon leur nature. Après résolution, conserver l'état du groupe et les conséquences sur le monde, puis reprendre la carte concernée lorsque la situation le permet. Préserver les règles antérieures de retraite, capture, attaque préventive et retour volontaire, en les adaptant à la navigation par nœuds. Aucun déplacement libre en 3D. Les modalités précises, exceptions, sauvegarde et reprise des transitions restent à spécifier et tester.
+
+**Traçabilité :** validation explicite de l'option C concernant les transitions et interactions sur la carte. Les huit axes structurels sont arbitrés ; cela ne clôt pas la conception détaillée ni le développement. Prochaine priorité : génération procédurale et découverte, avec garanties de connectivité, stabilité pendant l'expédition et persistance des conséquences.
+**Exécution :** mise à jour documentaire uniquement ; aucun changement Godot ni test en jeu. **Statut : 🟡 À CONSOLIDER. Avancement des arbitrages structurels : 8/8 ; avancement de la conception détaillée et du projet global : À évaluer.**
