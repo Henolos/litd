@@ -2563,3 +2563,22 @@ Source : LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md, bibliothèque util
 **VALIDÉ EN CONCEPTION : option C, explicitement choisie par l'utilisateur.** Répartition écologique, territoriale et narrative : rencontres dispersées compatibles avec les habitats, concentrations autour des repaires et lieux dangereux, variations contextuelles liées aux quêtes et événements. Respecter les catégories d'ennemis, conditions des Némésis, règles de guet-apens, difficulté extérieure et difficulté hybride des donjons, sécurisation dynamique, renouvellement et persistance déjà validés. Les exemples de distribution par catégorie restent indicatifs ; probabilités, densités et modalités de déplacement restent à définir. Aucune simulation écologique complète n'est prescrite.
 
 **Traçabilité :** validation explicite de l'option C concernant la répartition des rencontres. Mise à jour documentaire uniquement ; aucun développement ni test en jeu. **Statut : 🟡 À CONSOLIDER. Avancement des arbitrages détaillés : 5/8 (62,5 %, estimation non pondérée). Avancement du projet global : À évaluer.**
+
+
+---
+## V7.32 — Répartition contextuelle sous contraintes des rencontres et événements (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et huit règles complémentaires explicitement approuvées.** Chaque région possède ses bibliothèques de rencontres, fourchettes de fréquence et contraintes de placement ; l'état du monde influence la génération.
+
+1. Rencontres cohérentes avec leur environnement.
+2. Priorité aux événements importants des quêtes lorsque leurs prérequis sont remplis.
+3. Certains lieux peuvent ne contenir ni combat ni récompense.
+4. Éviter les répétitions excessives d'un même événement.
+5. Les rencontres rares restent rares et non obligatoires à chaque expédition.
+6. Les événements uniques résolus ne réapparaissent pas artificiellement.
+7. Les conséquences antérieures peuvent modifier la répartition future.
+8. Aucun pourcentage définitif de répartition avant les essais d'équilibrage.
+
+Préserver les contraintes de génération, de stabilité intra-expédition, de persistance et d'accessibilité des objectifs. Les exemples de régions ne constituent pas une validation de leur catalogue. Les valeurs et algorithmes restent à spécifier.
+
+**Traçabilité :** validation explicite de l'utilisateur de l'option C et des huit règles. Mise à jour documentaire uniquement ; aucun développement ni test en jeu. Statut : 🟡 À CONSOLIDER pour l'implémentation.
