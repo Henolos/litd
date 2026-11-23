@@ -2185,3 +2185,22 @@ Aspect exact de la carte, taille et nombre de nœuds, visibilité des chemins, i
 
 **Exécution :** décision enregistrée dans le document maître ; aucun changement du runtime Godot, aucune validation en jeu.
 **Statut :** 🟡 À CONSOLIDER. **Avancement du chantier actuel : À évaluer. Avancement du projet global : À évaluer.**
+
+
+---
+## V7.16 — Déplacements sur carte : modèle hybride C (23 novembre 2026)
+
+**DÉCISION VALIDÉE EXPLICITEMENT EN CONCEPTION PAR L'UTILISATEUR : option C.**
+
+Les déplacements sur la carte à embranchements utilisent un **modèle hybride** :
+1. Les **chemins déjà sécurisés** deviennent plus faciles à traverser ; le retour sur ces itinéraires ne doit pas infliger automatiquement les mêmes contraintes qu'une première traversée dangereuse.
+2. Les chemins **inconnus, dangereux ou modifiés** peuvent entraîner des **coûts de déplacement ou événements supplémentaires**.
+3. Le **retour en arrière reste possible**, conformément à V7.14 et V7.15. Son coût et ses risques dépendent de l'état du chemin, plutôt que d'une pénalité uniforme.
+4. L'état d'un chemin peut **évoluer** avec les quêtes, les découvertes et les conséquences persistantes ; un chemin précédemment sûr n'est pas nécessairement sûr pour toujours.
+5. **Non décidé :** ressources précises consommées, formules de coûts, critères de sécurisation, probabilité des événements, visibilité des changements, modalités d'accès et restrictions ponctuelles. Aucune de ces modalités n'est validée par le choix C.
+
+**Compatibilité :** conserver la distinction mission/expédition, la stabilité de configuration pendant une expédition et les règles de renouvellement entre missions déjà documentées ; définir les exceptions explicites avant toute implémentation. Ne pas réintroduire d'exploration 3D libre.
+
+**Traçabilité :** validation explicite de l'utilisateur : « Pour LITD 1, je valide l'option C pour le fonctionnement des déplacements sur la carte à embranchements. »
+
+**Exécution :** décision enregistrée, sans modification Godot ni test en jeu. **Statut : 🟡 À CONSOLIDER. Avancement du chantier actuel : À évaluer. Avancement du projet global : À évaluer.**
