@@ -51,4 +51,7 @@ Vérifier pour chaque personnage : voix reconnaissable, au moins une contradicti
 Ce principe s'applique à la construction du passé, de la personnalité et de l'évolution de chaque personnage important. L'intérêt de progresser en affinité doit reposer principalement sur l'attachement, les découvertes narratives et les conséquences humaines, et non sur l'optimisation de récompenses.
 
 ## Chantier suivant : création du protagoniste
-Décision antérieure à préserver : le joueur crée son héros ou son héroïne au début du prologue, avant la cinématique et l'intégration à la compagnie de quatre. Périmètre précis du créateur (apparence, identité, origine, classe, voix, pronoms, options de personnalisation) à concevoir et valider. Aucune implémentation n'est revendiquée.
+Décision antérieure à préserver : le joueur crée son héros ou son héroïne **après la cinématique d'ouverture**, lors de son inscription comme aventurier à la Guilde, avant l'intégration à la compagnie de quatre. Périmètre précis du créateur (apparence, identité, origine, classe, voix, pronoms, options de personnalisation) à concevoir et valider. Aucune implémentation n'est revendiquée.
+
+## Ordre du prologue corrigé (décision utilisateur 2026-11-23)
+Cinématique d'ouverture → arrivée à la Guilde → inscription comme aventurier et création du héros/héroïne → validation de l'inscription → formation de la compagnie → quête « La cueillette ». Les modalités d'inscription et le rôle exact de Kélia restent à préciser. Ne pas révéler le sens du rang S ni l'omelette avant le retour de quête.
