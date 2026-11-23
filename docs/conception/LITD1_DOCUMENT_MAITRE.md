@@ -2863,3 +2863,24 @@ Simulation et maquette HUD indicatives, aucun coefficient, coût ou seuil numér
 
 ### Clôture documentaire
 Les quatre arbitrages de consolidation sont approuvés (V7.40,43,45,49). Les huit arbitrages structurels et huit arbitrages détaillés sont approuvés. Les points de cohérence identifiés lors de l'audit sont traités au niveau des principes ; les paramètres ouverts restent explicitement reportés à la spécification technique et aux essais. **Chantier borné des principes de conception : terminé sous réserve de vérification documentaire de cette synthèse ; implémentation et tests non commencés dans ce chantier. Projet global : À évaluer.** Aucun changement Godot ni fusion.
+
+
+---
+## V7.51 — Résistance hybride, progressive et contextuelle après échec de capture (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, résistance hybride, progressive et contextuelle après échec de capture, conséquences contextuelles et douze règles complémentaires explicitement approuvées.** Résistance spécifique à la méthode et résistance générale de vigilance/comportement lorsque compatible avec la nature de la cible ; temporaires, cumulatives et plafonnées.
+
+1. Une tentative ratée peut augmenter temporairement les résistances.
+2. Distinguer résistance générale et spécifique à une méthode.
+3. Adapter les résistances à la nature et aux capacités de la créature.
+4. Accumulation dans des limites définies.
+5. Diminution progressive selon temps et événements du jeu.
+6. Changer de méthode peut contourner certaines résistances.
+7. Une simple alternance ne doit pas annuler artificiellement toutes les résistances.
+8. Nouvelle préparation tactique pouvant améliorer les chances.
+9. Actualisation immédiate de la probabilité réelle affichée.
+10. Conséquences contextuelles supplémentaires possibles après échec.
+11. Conservation des résistances actives après sauvegarde et rechargement, sans réinitialisation artificielle par déplacements.
+12. Plafonds, durées, coefficients et conséquences définitives après simulations et tests.
+
+Conséquences possibles, non systématiques ni obligatoirement cumulées : rupture d'entrave, consommation de l'équipement utilisé, agressivité accrue, réaction défensive immédiate, perte d'occasion favorable, tentative de fuite réservée aux Némésis selon V7.41. Réactions par famille et simulation numérique indicatives. Préserver V7.46–V7.48 et V8.3. Validation documentaire uniquement.
