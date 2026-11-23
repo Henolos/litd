@@ -2729,3 +2729,11 @@ Préserver V7.12 et la fuite volontaire réservée aux Némésis. Coûts en poin
 12. Aucune révélation prématurée des secrets du protagoniste ou du maître.
 
 Préserver V8.1–V8.3, notamment les conditions de maîtrise exigeant des contributions réelles en expédition. Exemples de spécialisations indicatifs, aucune nouvelle classe validée. Validation documentaire uniquement, aucun développement ni test en jeu.
+
+
+---
+## V7.43 — Structure stable et transformations contextuelles des cartes (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et dix règles complémentaires explicitement approuvées.** 1. Conservation de la configuration initiale pendant l'expédition. 2. Toute transformation a une cause identifiable dans le monde. 3. Ouverture, fermeture, restauration ou destruction possibles de passages. 4. Transformation locale ou apparition d'un lieu si le contexte le justifie. 5. Distinction entre transformations temporaires et permanentes. 6. Conservation des découvertes antérieures même obsolètes. 7. Révélation des changements selon les règles de reconnaissance et renseignements. 8. Validation automatique après chaque transformation. 9. Sauvegarde des transformations et conséquences. 10. Aucune recomposition aléatoire globale pendant une même expédition. Les architectures impossibles restent soumises aux contrôles de validité et de sauvegarde. Concilier V7.17, V7.19, V7.36 et V7.38 ; exemples environnementaux indicatifs, non validés individuellement.
+
+**Traçabilité :** validation explicite de l'option C concernant la stabilité et l'évolution contextuelle des cartes avec les dix règles complémentaires. Consolidation : 2/4 arbitrages validés. Mise à jour documentaire uniquement, aucun test runtime. Statut : 🟡 À CONSOLIDER. Avancement global : À évaluer.
