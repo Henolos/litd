@@ -14,7 +14,7 @@
         "Quêtes spéciales",
         "Déblocages par affinité"
       ],
-      "visual_asset_status": "validated_concept_binary_pending_import",
+      "visual_asset_status": "validated_concept_binary_imported_hash_verified",
       "dialogues": [
         {
           "speaker": "Han Lu",
@@ -43,7 +43,7 @@
         "Humour noir sur les amputations",
         "Recherche des faiblesses des créatures"
       ],
-      "visual_asset_status": "validated_concept_binary_pending_import",
+      "visual_asset_status": "validated_concept_binary_imported_hash_verified",
       "dialogues": [
         {
           "speaker": "Dr Mei Ling",
@@ -61,11 +61,18 @@
       ]
     }
   ],
-  "shared_bestiary": {
+  "bestiary_knowledge": {
     "canonical_catalog": "res://data/bestiary_catalog.json",
+    "catalog_scope": "shared_species_definitions_only",
     "archive_researcher": "wei_shan",
     "anatomy_researcher": "guild_physician",
-    "rule": "Une seule fiche par créature. Wei Shan apporte le contexte documentaire ; Mei Ling peut débloquer les faiblesses via des missions.",
-    "unlocks_status": "not_implemented"
+    "rule": "Une seule fiche par créature dans le bestiaire de chaque protagoniste. Wei Shan apporte le contexte documentaire ; les missions de Mei Ling peuvent ajouter des connaissances à ce bestiaire. La maîtrise des compagnons est suivie individuellement ; aucun partage automatique entre protagonistes.",
+    "unlocks_status": "not_implemented",
+    "knowledge_scope": {
+      "per_protagonist": true,
+      "companion_mastery": "tracked_individually",
+      "persists_between_attempts": true,
+      "automatic_sharing_between_protagonists": false
+    }
   }
 }
