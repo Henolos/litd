@@ -27,3 +27,21 @@ La distinction chiffrée affinité/confiance, les relations orientées A→B, le
 
 ## État
 Décision de conception enregistrée ; moteur Godot non implémenté et non testé. Valeurs numériques et paliers à confirmer.
+
+## Principe narratif validé : l'attachement avant le butin (2026-11-23)
+- Chaque personnage important doit avoir un **passé**, une **personnalité propre**, des **motivations**, des **contradictions**, des **relations au monde** et une **évolution possible**.
+- Le joueur doit vouloir approfondir la relation pour le personnage lui-même, non uniquement pour le butin ou les bonus.
+- Les dialogues, anecdotes, comportements et événements personnels doivent porter la progression ; les récompenses matérielles restent secondaires.
+- Ne pas imposer de passé tragique universel : diversité des tempéraments, vies et situations.
+- Avant d'écrire une biographie, **auditer les fiches, dialogues et décisions déjà présents** pour conserver les éléments validés et éviter les contradictions.
+- Chaque personnage doit disposer d'une fiche de caractérisation distinguant : **canon validé**, **éléments existants à vérifier**, **propositions nouvelles**, **éléments ouverts**.
+- Déployer la caractérisation par ordre de priorité narrative : les trois compagnons du prologue en premier pour rendre leur disparition marquante ; personnages majeurs de la Guilde ensuite ; habitants et personnages secondaires selon leur importance.
+- Une seule jauge d'affinité par personnage demeure la règle ; la profondeur narrative n'ajoute aucune jauge ni routine de gestion sociale.
+- Les confidences et changements de comportement doivent pouvoir constituer des récompenses narratives à part entière.
+
+### Exemples non validés
+- Tavernier : un épisode d'expédition qu'il évite d'évoquer malgré son humour habituel.
+- Médecin : un événement ayant nourri sa passion pour l'anatomie, sans fixer pour l'instant son origine.
+
+### Contrôle qualité des fiches
+Vérifier pour chaque personnage : voix reconnaissable, au moins une contradiction crédible, motivation indépendante du joueur, cohérence avec l'univers, scène d'introduction marquante, évolution possible, réactions aux événements majeurs, absence de dépendance exclusive au butin.
