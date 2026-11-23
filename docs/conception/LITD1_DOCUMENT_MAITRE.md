@@ -2117,3 +2117,48 @@ Avant de proposer plusieurs options pour un arbitrage de conception de LITD 1, e
 
 ### Traçabilité
 Décisions explicites formulées par l'utilisateur au cours de la conception du bestiaire. **Validation documentaire seulement** ; aucune implémentation Godot ni test en jeu revendiqués. **Statut : 🟡 À CONSOLIDER**. Avancement du chantier actuel : À évaluer ; avancement du projet global : À évaluer.
+
+
+---
+## V7.14 — Consolidation de l'exploration par carte à embranchements (23 novembre 2026)
+
+**Origine et niveau de preuve.** Cette section consigne les orientations de gameplay rappelées explicitement dans la conversation du 23 novembre 2026, ainsi que les règles préexistantes du document maître. Les détails de topologie, de génération et d'interaction ne sont **pas** réputés validés s'ils n'ont pas été arbitrés explicitement. La présente mise à jour est documentaire : aucun prototype jouable ni test d'équilibrage n'est revendiqué.
+
+### A. Orientations de conception à préserver
+
+1. **Carte d'expédition à embranchements.** Étudier une grande carte de progression et de choix d'itinéraire, avec *Slay the Spire* comme référence de principe pour la lisibilité des embranchements, mais sans copier son échelle, sa structure ou ses contraintes de déplacement. La carte envisagée pour LITD 1 est plus vaste.
+2. **Retour en arrière.** Préserver la possibilité de revenir vers des lieux ou nœuds déjà traversés ; définir ultérieurement les conditions, coûts, exceptions et conséquences. Ne pas imposer par défaut la progression strictement descendante de la référence.
+3. **Contenus rencontrés.** La carte doit pouvoir accueillir missions principales et secondaires, événements, rencontres ordinaires, élites, mini-boss, boss, découvertes et lieux secrets. Leur visibilité, leurs fréquences et leurs règles de placement restent à spécifier.
+4. **Monde évolutif et conséquences.** Les quêtes, les choix, les découvertes, les morts et les événements importants doivent pouvoir modifier la carte ou son contenu, sans effacer les conséquences persistantes déjà définies dans le document maître.
+5. **Renouvellement hybride.** Distinguer les rencontres et ressources ordinaires susceptibles de se renouveler des événements, ennemis uniques, objets et conséquences devant persister. Préserver les règles documentées de renouvellement entre missions et de stabilité des zones pendant une même expédition, sous réserve de leur adaptation explicite à la carte.
+6. **Combat.** Conserver l'orientation des affrontements tactiques en **2D**, distincts de la navigation sur la carte. Le groupe de départ de quatre combattants et la formation doivent respecter les décisions existantes ; ne pas choisir arbitrairement les quatre héros initiaux.
+7. **Missions et expéditions interdépendantes.** Maintenir le principe déjà validé : « Les missions servent l'expédition et l'expédition sert les missions. » Préserver la retraite volontaire et les règles d'interruption ou de blocage déjà consignées, à adapter à la navigation par nœuds.
+
+### B. Réconciliation obligatoire avec les anciennes sections
+
+Le document maître antérieur présente à plusieurs endroits une **exploration 3D isométrique en temps réel** inspirée visuellement de *No Rest for the Wicked*, ainsi que des règles de menus et de guet-apens conçues pour ce contexte. La carte à embranchements introduit une tension de conception réelle : **ne pas considérer simultanément les deux modalités comme implémentation principale définitivement arrêtée**.
+
+Avant de modifier le runtime, arbitrer explicitement si :
+- la carte à embranchements **remplace** la navigation 3D isométrique pour les expéditions ;
+- la carte sert de **surcouche stratégique** et donne accès à des lieux jouables en 3D isométrique ;
+- ou si une autre articulation est retenue.
+
+**En attendant cet arbitrage**, conserver les anciennes sections comme historique traçable et ne pas supprimer les références visuelles approuvées. Les mentions de déplacement en temps réel, menu laissant évoluer le monde, embuscades en exploration et transitions vers le combat sont à requalifier selon le modèle choisi ; aucune compatibilité automatique n'est présumée.
+
+### C. Questions ouvertes, sans validation implicite
+
+- Structure de la carte : régions, nombre et types de nœuds, chemins alternatifs, boucles et accès secrets.
+- Déplacement, retour arrière, coût en temps ou ressources, danger et éventuelles limitations temporaires.
+- Visibilité des itinéraires, brouillard de guerre, reconnaissance, découverte et déverrouillage.
+- Règles précises de génération ou de renouvellement par mission, par expédition et selon les événements persistants.
+- Emplacement des événements aléatoires, quêtes, élites, mini-boss et boss ; répartition entre carte et scènes locales.
+- Articulation avec le hub illustré interactif de la Guilde, les combats 2D et les éventuelles scènes 3D.
+- Contrôles de sauvegarde et de reprise en cours d'expédition : **chantier distinct**, ne pas confondre avec la PR de récupération des sauvegardes.
+
+### D. Suivi et traçabilité
+
+- **Réalisé :** consolidation documentaire des orientations rappelées et rapprochement explicite avec les règles antérieures.
+- **Non réalisé :** arbitrage de l'articulation carte/3D, mise à jour du gameplay Godot, essais utilisateurs, validation de la jouabilité et de l'équilibrage.
+- **Statut :** 🟡 À CONSOLIDER.
+- **Avancement du chantier actuel : À évaluer. Avancement du projet global : À évaluer.**
+- **Prochaine priorité :** confirmer l'articulation entre carte stratégique et exploration 3D avant de modifier les scènes ou de déclarer une architecture définitive.
