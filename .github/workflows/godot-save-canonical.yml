@@ -1,0 +1,30 @@
+name: Godot canonical save state tests
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/core/canonical_save_state.gd'
+      - 'tests/godot/test_save_canonical_headless.gd'
+      - '.github/workflows/godot-save-canonical.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  canonical-state:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    container:
+      image: barichello/godot-ci:4.7.2
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Run canonical state contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          sandbox=$(mktemp -d)
+          trap 'rm -rf "$sandbox"' EXIT
+          export XDG_DATA_HOME="$sandbox"
+          bash tools/ci/run_godot_checked.sh --log "$sandbox/import.log" -- godot --headless --path . --import --quit
+          bash tools/ci/run_godot_checked.sh --log "$sandbox/canonical.log" --expect SAVE_CANONICAL_CONTRACT_PASS -- godot --headless --path . --script res://tests/godot/test_save_canonical_headless.gd
