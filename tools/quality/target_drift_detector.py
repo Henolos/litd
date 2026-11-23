@@ -33,6 +33,15 @@ def classify_target_change(old: dict[str, Any], new: dict[str, Any]) -> str:
     if old_type != new_type:
         return UNSUPPORTED
 
+    # Qualitative canonical rules cannot be ordered numerically. Treat any
+    # content change as potentially more permissive and require the existing
+    # strong justification + independent evidence path before review can pass.
+    if old_type == "canonical_rule":
+        old_value, new_value = old.get("value"), new.get("value")
+        if not isinstance(old_value, str) or not isinstance(new_value, str):
+            return UNSUPPORTED
+        return EQUIVALENT if old_value == new_value else MORE_PERMISSIVE
+
     if old_type == "max":
         old_max, new_max = _num(old.get("max")), _num(new.get("max"))
         if old_max is None or new_max is None:

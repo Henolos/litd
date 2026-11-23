@@ -5,20 +5,29 @@
     "canon-starting-quartet"
   ],
   "old_values": {
-    "id": "canon-starting-quartet",
-    "description": "Le quatuor de départ canonique est Mathilde, Marec, Anouk et Aurélien.",
-    "rationale": "Évite la réintroduction involontaire d'anciens héros de départ.",
-    "validation": "pending_reference_data"
+    "canon-starting-quartet": {
+      "type": "canonical_rule",
+      "value": "Le quatuor de départ canonique est Mathilde, Marec, Anouk et Aurélien."
+    }
   },
   "new_values": {
-    "id": "canon-starting-roster",
-    "description": "Aucune composition de départ n'est canonique tant qu'un nouveau roster n'a pas été défini explicitement.",
-    "rationale": "Évite de réactiver par erreur l'ancien quatuor ou d'inventer ses remplaçants.",
-    "validation": "automated_unassigned_roster_guard"
+    "canon-starting-quartet": {
+      "type": "canonical_rule",
+      "value": "Aucune composition de départ n'est canonique tant qu'un nouveau roster n'a pas été défini explicitement."
+    }
   },
   "rationale": "L'utilisateur a retiré Aurélien, Anouk, Marec et Mathilde du quatuor de départ et a demandé de supprimer cette règle. Le nouveau groupe de départ reste non défini ; aucune composition de remplacement ne doit être supposée.",
-  "evidence_refs": [
-    "docs/knowledge/decisions/ADR-0009-roster-de-depart-a-definir.md"
+  "permissiveness_justification": "This removes the hard-coded quartet constraint while leaving the new starting roster unassigned. No replacement hero is selected, and future roster assignment remains subject to a separate explicit decision.",
+  "permissiveness_evidence_refs": [
+    "docs/knowledge/decisions/ADR-0009-roster-de-depart-a-definir.md",
+    "data/veilleurs/canonical_roster.json"
   ],
-  "core_write_allowed": false
+  "evidence_refs": [
+    "docs/knowledge/decisions/ADR-0009-roster-de-depart-a-definir.md",
+    "data/veilleurs/canonical_roster.json"
+  ],
+  "core_write_allowed": false,
+  "candidate_hash": "dd10e8f012205f6a398e4224266485c45f7270f625636516d50f7bb96e3bf12f",
+  "decided_by": "repository_owner_by_explicit_user_instruction",
+  "decided_at": "2026-11-23T09:14:09Z"
 }

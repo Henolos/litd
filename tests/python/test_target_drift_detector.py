@@ -31,6 +31,26 @@ def test_equivalent_target_is_equivalent():
     assert classify_target_change({"type": "max", "max": 10}, {"type": "max", "max": 10}) == EQUIVALENT
 
 
+def test_canonical_rule_change_requires_the_existing_permissiveness_review():
+    payload = {
+        "target_ids": ["canon-starting-quartet"],
+        "old_values": {"canon-starting-quartet": {"type": "canonical_rule", "value": "fixed quartet"}},
+        "new_values": {"canon-starting-quartet": {"type": "canonical_rule", "value": "roster unassigned"}},
+    }
+    assert evaluate_revision_proposal(payload)["status"] == "BLOCK"
+    payload.update({
+        "permissiveness_justification": (
+            "This removes the hard-coded quartet constraint while leaving the new starting roster unassigned. "
+            "No replacement hero is selected, and future roster assignment remains subject to a separate explicit decision."
+        ),
+        "permissiveness_evidence_refs": ["ADR-0009", "canonical-roster-data"],
+    })
+    result = evaluate_revision_proposal(payload)
+    assert result["status"] == "PASS"
+    assert result["requires_explicit_justification"] is True
+    assert result["core_write_allowed"] is False
+
+
 def test_permissive_change_blocks_without_strong_justification_and_two_evidence_refs():
     payload = {
         "target_ids": ["combat.boss_rounds"],
