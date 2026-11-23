@@ -2679,3 +2679,11 @@ Aucun inventaire complexe ni simulation économique complète imposés à chaque
 10. Aucun Némésis lié à un objectif obligatoire définitivement inaccessible du fait d'une migration.
 
 Simulation événementielle des déplacements plutôt que simulation permanente de toutes les créatures. Exemples de biomes et itinéraires indicatifs. Préserver la stabilité intra-expédition, la persistance et les invariants de sauvegarde. Paramètres, déclencheurs et tests restent à définir. Validation documentaire uniquement, aucun développement ni test en jeu.
+
+
+---
+## V7.40 — Repeuplement contextuel et sécurisation des chemins (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et huit règles complémentaires explicitement approuvées.** 1. Une nouvelle mission déclenche le renouvellement des rencontres ordinaires. 2. Les chemins sécurisés ne sont pas systématiquement repeuplés. 3. Toute nouvelle menace doit être cohérente avec le contexte local. 4. Aucun renouvellement automatique par simples allers-retours. 5. Préserver les conséquences des destructions de repaires et éliminations uniques. 6. Les coffres renouvelables suivent les règles entre missions déjà validées. 7. Les ressources récoltables suivent leur propre délai de régénération mesuré dans le temps du jeu. 8. Némésis, objets uniques et événements persistants ne sont jamais réinitialisés par le renouvellement ordinaire. Concilier V5.0–V5.1 et V7.22 sans modifier la topologie de base intra-expédition ni effacer les conséquences persistantes. Paramètres et tests restent à définir.
+
+**Traçabilité :** validation explicite de l'option C concernant le renouvellement des ennemis et la sécurisation des chemins avec les huit règles complémentaires. Consolidation : 1/4 arbitrages validés. Mise à jour documentaire uniquement ; aucun test runtime. Statut : 🟡 À CONSOLIDER. Avancement global : À évaluer.
