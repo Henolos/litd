@@ -362,8 +362,13 @@ func journal_append_preview(journal_dir: String, current_state: Dictionary, reco
     }
     if not _supported(entry):
         return false
-    var body := JSON.stringify(entry, "", true, true)
-    var encoded := JSON.stringify({"body": body, "sha256": body.sha256_text()})
+    # Godot JSON parsing converts integer variants to floats; preserve exact types
+    # for the canonical revision and SHA-256 checks during recovery.
+    var binary := var_to_bytes(entry)
+    var encoded := JSON.stringify({
+        "payload_base64": Marshalls.raw_to_base64(binary),
+        "sha256": binary.sha256_text()
+    })
     var temp := path + ".pending"
     if FileAccess.file_exists(temp):
         return false
@@ -404,12 +409,16 @@ func journal_recover_preview(journal_dir: String, campaign_id: String, base_revi
         if parser.parse(FileAccess.get_file_as_string(path)) != OK or not (parser.data is Dictionary):
             return {}
         var envelope: Dictionary = parser.data
-        var body: Variant = envelope.get("body")
-        if typeof(body) != TYPE_STRING or envelope.get("sha256") != String(body).sha256_text():
+        var payload_base64: Variant = envelope.get("payload_base64")
+        if typeof(payload_base64) != TYPE_STRING:
             return {}
-        if parser.parse(body) != OK or not (parser.data is Dictionary):
+        var binary := Marshalls.base64_to_raw(payload_base64)
+        if binary.is_empty() or envelope.get("sha256") != binary.sha256_text():
             return {}
-        var entry: Dictionary = parser.data
+        var decoded: Variant = bytes_to_var(binary, false)
+        if not (decoded is Dictionary):
+            return {}
+        var entry: Dictionary = decoded
         if entry.get("journal_schema_version") != 1 or not (entry.get("record") is Dictionary):
             return {}
         var record: Dictionary = entry["record"]
