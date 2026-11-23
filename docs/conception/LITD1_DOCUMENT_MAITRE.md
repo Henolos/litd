@@ -2274,3 +2274,12 @@ Les modalités de génération, dimensions, nombre de nœuds, coûts de déplace
 
 ### Exécution et suivi
 Consolidation documentaire partielle, sans modification du runtime ni fusion. Les décisions historiques sont conservées. Statut : 🟡 À CONSOLIDER. Avancement du chantier actuel : À évaluer ; avancement du projet global : À évaluer.
+
+
+---
+## V7.21 — Coûts de déplacement : dangers contextuels (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, explicitement choisie par l'utilisateur.** Les déplacements ordinaires ne consomment pas automatiquement de ressources. Les coûts éventuels découlent des dangers, obstacles et conditions rencontrés, notamment du contexte régional. Les chemins sécurisés restent plus faciles à parcourir conformément à V7.16. Aucun coût uniforme de provisions ou de temps n'est adopté par cet arbitrage. Les exemples de froid, contamination, passages endommagés, guet-apens et objets d'accès illustrent le principe sans valider leurs modalités individuelles. Les ressources affectées, valeurs, conditions de sécurisation et exceptions restent à définir.
+
+**Traçabilité :** validation explicite de l'option C concernant les coûts de déplacement. Mise à jour documentaire uniquement ; aucun changement Godot ni test en jeu.
+**Statut : 🟡 À CONSOLIDER. Avancement de conception : 6 axes sur 8 (75 %, estimation non pondérée). Avancement du projet global : À évaluer.**
