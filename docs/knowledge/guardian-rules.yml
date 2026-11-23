@@ -1,11 +1,11 @@
 version: 1
 rules:
-  - id: canon-starting-quartet
+  - id: canon-starting-roster
     severity: red
     domain: veilleurs
-    description: "Le quatuor de départ canonique est Mathilde, Marec, Anouk et Aurélien."
-    rationale: "Évite la réintroduction involontaire d'anciens héros de départ."
-    validation: pending_reference_data
+    description: "Aucune composition de départ n'est canonique tant qu'un nouveau roster n'a pas été défini explicitement."
+    rationale: "Évite de réactiver par erreur l'ancien quatuor ou d'inventer ses remplaçants."
+    validation: automated_unassigned_roster_guard
 
   - id: skill-tree-count
     severity: red

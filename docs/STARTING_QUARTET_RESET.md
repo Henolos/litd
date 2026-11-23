@@ -1,7 +1,9 @@
-# LITD : Les Veilleurs — Reset puis réattribution canonique du quatuor de départ
+# HISTORIQUE — LITD : Les Veilleurs — Reset puis réattribution du quatuor
 
 Date : 2026-09-09
-Statut : **RESET TERMINÉ — NOUVEAU QUATUOR CANONIQUE ATTRIBUÉ**
+Statut : **SUPERSEDÉ le 2026-11-23 — conservation historique uniquement**
+
+> Cette décision de septembre 2026 est conservée pour l'historique. L'utilisateur a depuis confirmé que Mathilde, Marec, Anouk et Aurélien ne font plus partie du quatuor de départ. Voir ADR-0009 et `docs/VEILLEURS_CANONICAL_ROSTER.md` pour l'état courant : roster non attribué.
 
 ## Nouveau quatuor de départ
 

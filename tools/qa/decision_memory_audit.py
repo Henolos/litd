@@ -30,7 +30,7 @@ def run(root: Path = ROOT) -> dict:
     profiles = set(map(str, data.get("hero_profiles", {}).keys()))
     check("Mémoire décisions : schéma", int(data.get("version", 0)) >= 1)
     check("Mémoire décisions : huit convictions", set(map(str, data.get("convictions", []))) == EXPECTED_CONVICTIONS)
-    check("Mémoire décisions : profils du quatuor canonique", profiles == EXPECTED_HEROES)
+    check("Mémoire décisions : profils des héros référencés", profiles == EXPECTED_HEROES)
     check("Mémoire décisions : anciens Veilleurs absents", profiles.isdisjoint(LEGACY_STARTER_HEROES))
     check("Mémoire décisions : trois choix politiques couverts", EXPECTED_QUESTS <= set(map(str, data.get("choice_vectors", {}).keys())))
     for quest_id in EXPECTED_QUESTS:

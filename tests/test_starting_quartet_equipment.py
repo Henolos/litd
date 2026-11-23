@@ -4,11 +4,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_starting_quartet_has_two_weapons_and_one_armor_each():
+def test_former_roster_combat_fixtures_have_two_weapons_and_one_armor_each():
     heroes = json.loads((ROOT / "data/heroes.json").read_text(encoding="utf-8"))
     base_equipment = json.loads((ROOT / "data/equipment.json").read_text(encoding="utf-8"))
-    quartet_equipment = json.loads((ROOT / "data/equipment_starting_quartet.json").read_text(encoding="utf-8"))
-    equipment = base_equipment + quartet_equipment
+    fixture_equipment = json.loads((ROOT / "data/equipment_starting_quartet.json").read_text(encoding="utf-8"))
+    equipment = base_equipment + fixture_equipment
 
     for hero in heroes:
         class_id = hero["class_id"]

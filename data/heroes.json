@@ -11,9 +11,8 @@
     "fear": 0,
     "madness": 0,
     "hope": 50,
-    "canon_status": "canonical_starting_hero",
+    "canon_status": "canonical_hero_not_in_starting_roster",
     "legendary_hero": true,
-    "starting_quartet_order": 1,
     "runtime_seed_note": "Gameplay baseline only; character identity, visual design and authored progression come from the existing Mathilde canon sheets."
   },
   {
@@ -28,9 +27,8 @@
     "fear": 0,
     "madness": 0,
     "hope": 50,
-    "canon_status": "canonical_starting_hero",
+    "canon_status": "canonical_hero_not_in_starting_roster",
     "legendary_hero": true,
-    "starting_quartet_order": 2,
     "runtime_seed_note": "Gameplay baseline only; character identity, visual design and authored progression come from the existing Marec canon sheets."
   },
   {
@@ -45,9 +43,8 @@
     "fear": 0,
     "madness": 0,
     "hope": 50,
-    "canon_status": "canonical_starting_hero",
+    "canon_status": "canonical_hero_not_in_starting_roster",
     "legendary_hero": true,
-    "starting_quartet_order": 3,
     "runtime_seed_note": "Gameplay baseline only; character identity, visual design and authored progression come from the existing Anouk canon sheets."
   },
   {
@@ -62,9 +59,8 @@
     "fear": 0,
     "madness": 0,
     "hope": 50,
-    "canon_status": "canonical_starting_hero",
+    "canon_status": "canonical_hero_not_in_starting_roster",
     "legendary_hero": true,
-    "starting_quartet_order": 4,
     "runtime_seed_note": "Gameplay baseline only; character identity, visual design and authored progression come from the existing Aurélien canon sheets."
   }
 ]

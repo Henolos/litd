@@ -46,13 +46,14 @@ def main() -> int:
     contract = load_json(CONTRACT_PATH)
     selftest = load_json(SELFTEST_PATH)
 
-    expected_watchers = ["Mathilde", "Marec", "Anouk", "Aurélien"]
     checks["canonical_watchers"] = (
-        contract.get("canonical_watchers") == expected_watchers
-        and selftest.get("canonical_watchers") == expected_watchers
+        contract.get("canonical_roster_status") == "unassigned_pending_new_selection"
+        and selftest.get("canonical_roster_status") == "unassigned_pending_new_selection"
+        and contract.get("canonical_watchers") == []
+        and selftest.get("canonical_watchers") == []
     )
     if not checks["canonical_watchers"]:
-        errors.append("Le quatuor du gate pré-play diverge du canon du self-test.")
+        errors.append("Le gate pré-play ne reflète pas le roster de départ non attribué.")
 
     contract_steps = contract.get("required_selftest_steps", [])
     selftest_steps = [row.get("id") for row in selftest.get("steps", [])]

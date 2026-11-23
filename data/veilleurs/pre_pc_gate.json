@@ -2,12 +2,8 @@
   "schema_version": 11,
   "stage": "pre_pc_lock",
   "godot_version": "4.7",
-  "canonical_watchers": [
-    "ENT_WATCHER_marec",
-    "ENT_WATCHER_mathilde",
-    "ENT_WATCHER_aurelien",
-    "ENT_WATCHER_anouk"
-  ],
+  "canonical_roster_status": "unassigned_pending_new_selection",
+  "canonical_watchers": [],
   "forbidden_stale_runtime_ids": [
     "ENT_WATCHER_SAHEN",
     "ENT_WATCHER_MIRA",
