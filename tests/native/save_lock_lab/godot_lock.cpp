@@ -1,4 +1,6 @@
 #include "campaign_lock.hpp"
+#include <cstdio>
+#include <cstdlib>
 #include <godot_cpp/classes/ref_counted.hpp>
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/godot.hpp>
@@ -39,9 +41,14 @@ public:
 };
 
 static void initialize(ModuleInitializationLevel level) {
-    if (level == MODULE_INITIALIZATION_LEVEL_SCENE) GDREGISTER_RUNTIME_CLASS(SaveLockLab);
+    std::fprintf(stderr, "SAVE_LOCK_INIT_LEVEL=%d\n", static_cast<int>(level));
+    std::fflush(stderr);
+    if (level == MODULE_INITIALIZATION_LEVEL_SCENE && !std::getenv("LITD_LOCK_INIT_ONLY")) GDREGISTER_RUNTIME_CLASS(SaveLockLab);
 }
-static void terminate(ModuleInitializationLevel) {}
+static void terminate(ModuleInitializationLevel level) {
+    std::fprintf(stderr, "SAVE_LOCK_TERMINATE_LEVEL=%d\n", static_cast<int>(level));
+    std::fflush(stderr);
+}
 
 extern "C" GDExtensionBool GDE_EXPORT save_lock_lab_init(
     GDExtensionInterfaceGetProcAddress address,
