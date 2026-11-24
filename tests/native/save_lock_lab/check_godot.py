@@ -14,7 +14,18 @@ def main():
         root = Path(tmp).resolve()
         env = dict(os.environ, APPDATA=tmp, LOCALAPPDATA=tmp, XDG_DATA_HOME=tmp)
         base = [exe, "--headless", "--path", str(project)]
-        subprocess.run(base + ["--import", "--quit"], env=env, check=True, timeout=120)
+        # Establish whether the editor crashes even without the extension.
+        import shutil
+        baseline = root / "baseline"
+        baseline.mkdir()
+        shutil.copyfile(project / "project.godot", baseline / "project.godot")
+        print("GODOT_BASELINE_IMPORT_START", flush=True)
+        subprocess.run([exe, "--headless", "--path", str(baseline), "--import", "--quit"],
+                       env=env, check=True, timeout=120)
+        print("GODOT_BASELINE_IMPORT_PASS", flush=True)
+        print("GODOT_EXTENSION_IMPORT_START", flush=True)
+        subprocess.run(base + ["--import", "--quit", "--verbose"], env=env, check=True, timeout=120)
+        print("GODOT_EXTENSION_IMPORT_PASS", flush=True)
         def command(mode):
             return base + ["--script", "res://probe.gd", "--", str(root / "campaign.lock"), mode]
         def reject_path(path):
