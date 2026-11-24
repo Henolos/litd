@@ -1,0 +1,56 @@
+test_budget (test_expedition.ExpeditionTests.test_budget) ... ok
+test_context_reset (test_expedition.ExpeditionTests.test_context_reset) ... ok
+test_insufficient (test_expedition.ExpeditionTests.test_insufficient) ... ok
+test_next_expedition (test_expedition.ExpeditionTests.test_next_expedition) ... ok
+test_reward_edge (test_expedition.ExpeditionTests.test_reward_edge) ... ok
+test_snapshot (test_expedition.ExpeditionTests.test_snapshot) ... ok
+test_two_keys (test_expedition.ExpeditionTests.test_two_keys) ... ok
+test_zero (test_expedition.ExpeditionTests.test_zero) ... ok
+test_historical (test_extension.Extension.test_historical) ... ok
+test_narrative_gate (test_extension.Extension.test_narrative_gate) ... ok
+test_refuge_allowed (test_extension.Extension.test_refuge_allowed) ... ok
+test_refuge_blocked (test_extension.Extension.test_refuge_blocked) ... ok
+test_refuge_resolution (test_extension.Extension.test_refuge_resolution) ... ok
+test_schema_wrong_type (test_extension.Extension.test_schema_wrong_type) ... ok
+test_secret_discovered (test_extension.Extension.test_secret_discovered) ... ok
+test_secret_undiscovered (test_extension.Extension.test_secret_undiscovered) ... ok
+test_abandon (test_v14.Audit.test_abandon) ... ok
+test_bad_prior (test_v14.Audit.test_bad_prior) ... ok
+test_duplicate (test_v14.Audit.test_duplicate) ... ok
+test_negative (test_v14.Audit.test_negative) ... ok
+test_no_permission (test_v14.Audit.test_no_permission) ... ok
+test_objective_block (test_v14.Audit.test_objective_block) ... ok
+test_optional (test_v14.Audit.test_optional) ... ok
+test_reward_effect (test_v14.Audit.test_reward_effect) ... ok
+test_block_path (test_v15.V15.test_block_path) ... ok
+test_closure (test_v15.V15.test_closure) ... ok
+test_cost_once (test_v15.V15.test_cost_once) ... ok
+test_cost_requires_reward (test_v15.V15.test_cost_requires_reward) ... ok
+test_repeat_cost (test_v15.V15.test_repeat_cost) ... ok
+test_state_budget (test_v15.V15.test_state_budget) ... ok
+test_time_budget (test_v15.V15.test_time_budget) ... ok
+test_budget (test_validator.Tests.test_budget) ... ok
+test_consumption (test_validator.Tests.test_consumption) ... ok
+test_reference (test_validator.Tests.test_reference) ... ok
+test_schema (test_validator.Tests.test_schema) ... ok
+test_time (test_validator.Tests.test_time) ... ok
+test_trap (test_validator.Tests.test_trap) ... ok
+test_valid (test_validator.Tests.test_valid) ... ok
+test_budget (test_world.WorldTests.test_budget) ... ok
+test_context_resolution (test_world.WorldTests.test_context_resolution) ... ok
+test_context_trap (test_world.WorldTests.test_context_trap) ... ok
+test_dynamic_reversible (test_world.WorldTests.test_dynamic_reversible) ... ok
+test_dynamic_safe (test_world.WorldTests.test_dynamic_safe) ... ok
+test_dynamic_trap (test_world.WorldTests.test_dynamic_trap) ... ok
+test_forbid_narrative_reset (test_world.WorldTests.test_forbid_narrative_reset) ... ok
+test_no_key_respawn (test_world.WorldTests.test_no_key_respawn) ... ok
+test_no_narrative_bypass (test_world.WorldTests.test_no_narrative_bypass) ... ok
+test_no_secret_bypass (test_world.WorldTests.test_no_secret_bypass) ... ok
+test_persistent_consequence (test_world.WorldTests.test_persistent_consequence) ... ok
+test_separation (test_world.WorldTests.test_separation) ... ok
+test_time (test_world.WorldTests.test_time) ... ok
+
+----------------------------------------------------------------------
+Ran 51 tests in 0.833s
+
+OK
