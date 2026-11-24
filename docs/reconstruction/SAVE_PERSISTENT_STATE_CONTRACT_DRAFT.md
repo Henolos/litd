@@ -75,3 +75,20 @@ Les clés supplémentaires sont actuellement préservées par le snapshot opaque
 **Non établi :** identité persistante des héros et de la campagne, provenance des révisions, état de mort permanente, événements confirmés, succession `pending`, économie idempotente, captures, RNG, schéma de combat, règles de reprise. Aucun champ ne peut être déclaré obligatoire en production sans producteur et consommateur prouvés.
 
 **Porte de sortie :** reconstruire ou identifier un producteur runtime actuel pour chaque domaine, collecter des exemples de snapshot réels sur copies, définir invariants et versions, puis tester migrations, journaux et interruptions. En attendant, ne pas bloquer ni transformer les sauvegardes 0.31 existantes.
+
+## Contrat versionné expérimental — 24 novembre 2026
+
+Le fichier `save_canonical_envelope_v1.schema.json` décrit uniquement l'enveloppe produite par `canonical_body` (JSON Schema 2020-12). Il ne valide pas les sauvegardes 0.31. Les champs inconnus de l'état sont conservés ; les cinq exclusions racine correspondent au code actuel. Les nombres non finis sont rejetés avant sérialisation par Godot ; le schéma ne garantit ni la précision numérique ni la canonicalisation Unicode.
+
+### Projection métier proposée (non normative)
+
+| Domaine | Invariants à prouver avant raccordement |
+| --- | --- |
+| Campagne et héros | Identités stables, décès irréversibles, succession après perte du groupe actif ; aucun roster inventé |
+| Guilde et bestiaire | Connaissances collectives persistantes, maîtrise personnelle non héritée |
+| Exploration | Clés consommées une seule fois, passages et transformations persistants, retour contextuel au refuge |
+| Combat et capture | Résultat confirmé atomique, aucune répétition des tirages, récompenses uniques |
+| Monde et économie | Quêtes, conséquences différées, inventaire et ressources cohérents avec les transactions |
+| Journal | Révisions contiguës, identités uniques, empreintes avant/après, détection de perte de fin de journal à concevoir |
+
+Les noms et structures métier restent à valider contre les producteurs réels. Le schéma d'enveloppe ne certifie aucun invariant métier. Les tests de schéma utilisent des fixtures synthétiques ; ils ne remplacent pas les tests Godot, les interruptions réelles ou les migrations sur copies. Aucun raccordement au runtime ni modification des sauvegardes utilisateur autorisé à ce stade.
