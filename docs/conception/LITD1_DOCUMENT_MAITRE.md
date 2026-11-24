@@ -1,3 +1,5 @@
+> **Révision proposée : V8.3 complétée par l’addendum de réconciliation du 24 novembre 2026 ci-dessous. La source V8.3 du 23 novembre est archivée sans modification.**
+
 # LITD 1 — Document maître V8.3 — clôture des 40 arbitrages
 
 **Date : 23 novembre 2026.** **Statut : conception validée, non implémentée et non testée.** La V8.2 et son socle historique V8.1 sont conservés intégralement après cette section. Les règles récentes prévalent seulement sur les contradictions expressément tranchées. **Clôture : série des arbitrages n° 1 à 40 close en conception ; chantier d'implémentation non clos.**
@@ -2192,3 +2194,43 @@ Ne pas présenter l’une de ces interprétations comme validée avant clarifica
 **À arbitrer :** modalités de distribution des points, compétences initiales indispensables, conséquences sur les passifs et les emplacements liés aux niveaux, compatibilité avec les règles de progression antérieures.
 
 **État :** décision de conception consignée ; aucune modification du gameplay ni test dans Godot.
+
+
+---
+
+# Addendum de réconciliation — décisions antérieures confirmées (24 novembre 2026)
+
+**Portée :** cet addendum complète la base V8.3 par des décisions utilisateur antérieures retrouvées directement. Il n’actualise pas les détails non prouvés des PR #619/#620/#641. Le texte source V8.3 du 23 novembre est conservé intégralement dans `docs/conception/archive/LITD1_DOCUMENT_MAITRE_V8.3_SOURCE_2026-11-23.md`.
+
+## Méthode de conception — recherche comparative obligatoire
+
+**Date de validation :** 17 novembre 2026 à 14:26:20 UTC (15:26:20, heure de Paris).  
+**Règle validée :** « Recherche comparative obligatoire avant chaque arbitrage de conception à choix multiples ».  
+**Portée :** règle de méthode; elle ne valide aucune mécanique de gameplay.  
+**Paramètres ouverts :** la règle établit le préalable comparatif et l’arbitrage explicite; les sous-étapes plus détaillées de la PR #619 ne sont pas toutes attestées séparément comme texte utilisateur approuvé.
+
+## Némésis — rivalité et droit de fuite
+
+### Orientation de comportement
+
+**Date de validation retrouvée :** 17 novembre 2026 à 15:11 UTC (16:11 Paris).  
+**Principe approuvé :** orientation C visant à éviter les fuites répétitives tout en conservant un comportement crédible du Némésis. Le verbatim complet du message d’approbation n’est pas récupéré; aucune modalité d’implémentation n’est déduite.
+
+### Option A — rivalité par exploit et fuite
+
+**Date de validation :** 17 novembre 2026 à 17:29:42 UTC (18:29:42 Paris).  
+**Textes utilisateur retrouvés :** « Choix : A — Rivalité par exploit. »; « Comme les ennemis ne peuvent fuir sauf s’ils deviennent némésis »; « Comme seul les némésis peuvent fuir, nous n’aurons jamais l’opportunité de rencontrer plusieurs fois un meme ennemis ».
+
+**Règles actives attestées :** rivalité par exploit; les ennemis ordinaires ne fuient pas; seuls les ennemis devenus Némésis peuvent fuir.  
+**Reste à arbitrer :** exploit précis qui déclenche la rivalité, seuils et fréquence, moment de transformation, conditions de réussite ou d’empêchement de la fuite, conséquences et persistance. Les détails supplémentaires de la PR #620 (bonus, grade, déclenchement automatique, etc.) ne sont pas approuvés par le seul texte retrouvé et restent à vérifier.
+
+## Statut des autres PR
+
+- La carte à nœuds qui remplace l’exploration 3D isométrique et maintient les combats 2D est déjà une décision de V8.3 n°1; la question correspondante de la PR #641 est dépassée.
+- Les précisions topologiques, de renouvellement hybride et d’évolution du monde écrites dans #641 restent propositions tant qu’une validation utilisateur directe n’est pas retrouvée.
+- La demande utilisateur du 23 novembre d’ajouter des cas de clés consommables, blocages irréversibles, passages secrets, retours contextuels au refuge, conséquences persistantes, transformations de carte, dépassement du budget et validation JSON Schema porte sur le périmètre des tests du validateur; elle ne vaut pas à elle seule approbation des règles de gameplay sous-jacentes.
+- Les fixtures et le schéma V0 de #641 restent isolés pour une revue de compatibilité; aucun fichier V0 original n’est remplacé dans cette PR.
+
+---
+
+**Séparation des statuts :** décisions de conception ci-dessus; intégration documentaire proposée; aucune implémentation runtime ni test de gameplay n’est revendiqué par cet addendum.
