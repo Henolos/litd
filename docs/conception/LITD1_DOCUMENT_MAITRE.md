@@ -3251,3 +3251,58 @@ Commandes actives via PA de l'invocateur, effets passifs explicitement bornés ;
 18. Barèmes, seuils, effets relationnels et critères précis d'admissibilité après simulations et tests.
 
 Respecter V7.59–60 et V8.3. Confiance : perception de sécurité et fiabilité ; loyauté : attachement et volonté de servir. Compatibilité fonctionnelle pour constructions non conscientes. Barème illustratif hostile 5, méfiant 4, réceptif 3, coopératif 1, loyal 0 non validé numériquement. Expéditions significatives réussies ou non, y compris retraite ou Game Over, candidates au crédit ; critères précis ouverts. Pas de crédit pour expédition de capture du nouveau captif, rechargement ou simple aller-retour. Plusieurs missions dans une expédition ne multiplient pas le crédit. Aucun refus aléatoire d'ordre en combat approuvé. Aucun code ni test modifié. Prochain arbitrage : priorités des réactions et interceptions.
+
+
+---
+## V7.70 — Priorités contextuelles et résolution encadrée des réactions (24 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, sept phases et vingt règles complémentaires explicitement approuvées.**
+
+Phases : (1) déclaration de l'action, cible, compétence et PA ; (2) interruptions préventives ; (3) interceptions physiques ; (4) résolution de l'impact, précision, esquive, parade, barrières ; (5) conséquences anatomiques, dégâts, blessures, afflictions ; (6) réactions consécutives, ripostes et effets déclenchés ; (7) actualisation du combat, états, rangs, combos et sauvegarde. Réévaluer les états après chaque effet résolu.
+
+1. Distinguer interruptions, interceptions, protections et ripostes.
+2. Utiliser les sept phases de résolution.
+3. Vérifier conditions réelles avant chaque réaction.
+4. Respecter un PA par combattant et par round.
+5. Ne pas consommer deux fois un PA déjà engagé.
+6. Compétence appropriée exigée pour réactions actives.
+7. Réactions passives uniquement si explicitement définies.
+8. Interruptions préventives avant impacts.
+9. Une interception physique maximum par impact individuel.
+10. Protections compatibles peuvent se compléter.
+11. Respecter règles anatomiques validées.
+12. Afflictions appliquées aux combattants effectivement concernés.
+13. Effets de zone résolus individuellement.
+14. Départager réactions concurrentes selon priorités définies.
+15. Préférences de réaction configurables par le joueur.
+16. Réévaluer capacités et combos après chaque effet résolu.
+17. Pas d'annulation rétroactive des effets résolus, sauf mécanique explicite restaurant l'état sans effacer l'événement.
+18. Empêcher chaînes infinies de réactions.
+19. Sauvegarder réactions préparées, décisions, effets résolus et liens causaux sans duplication.
+20. Plafonds, durées, priorités spécifiques et exceptions après simulations et tests.
+
+Priorité dans une phase : compatibilité réelle, priorité explicite de compétence, préférence tactique du joueur pour ses combattants éligibles (priorité comportementale pour ennemis), initiative du round, départage stable. Choix contextuel entre protections compatibles. PA engagé à la préparation, pas de seconde consommation au déclenchement ; aucun droit général à une réaction active gratuite. Barrières selon bénéficiaire effectif, interception selon mobilité et propriétés de l'attaque. Identifiants causaux uniques et chaînes bornées ; valeurs des plafonds ouvertes. Respecter V7.63, V7.66–69 et V8.3. Aucun test runtime.
+
+---
+## V7.71 — Consolidation finale des arbitrages résiduels du combat tactique (24 novembre 2026)
+
+**Cinq axes sur cinq validés en conception et consolidés ; validation technique non acquise.**
+
+| Axe | Référence | Règle applicable |
+|---|---|---|
+| Initiative | V7.66 | Recalcul au début du round, ordre normalement stable, modifications explicites des tours restants, départage indépendant du camp, un PA par combattant, bonus guet-apens déjoué premier round seulement. |
+| Grandes recrues | V7.67 | Quatre combattants au départ, une recrue par rang logique, taille et anatomie préservées, ennemis multirangs inchangés. |
+| Invocations | V7.68 | Six familles, auxiliaires liées au créateur, pas de rang principal, PA du créateur pour commandes actives, effets autonomes explicitement bornés, aucune substitution à un survivant. |
+| Recrutement | V7.69 | Garantie V7.60, confiance et loyauté distinctes, délai fini en expéditions admissibles après extraction, progression conservée en succession, intégration aux réserves distincte de disponibilité. |
+| Réactions | V7.70 | Sept phases, priorités contextuelles, PA préparés non débités deux fois, une interception par impact, effets anatomiques et causaux, chaînes bornées. |
+
+### Cohérence et préséance
+V7.66 précise V4.2–4.4 et V7.64 : tour individuel, round collectif ; PA du premier round consommé par attaque préventive. V7.67 résout l'encombrement des recrues sans modifier les ennemis multirangs V7.62. V7.68 ne change ni le nombre de combattants actifs ni le déclenchement de succession V8.1 ; aucun droit général à des PA autonomes. V7.69 précise V7.60, qui supplante les refus définitifs historiques V7.46/59 ; pas de barème numérique arrêté. V7.70 complète V7.63 : dépendances des combos réévaluées après chaque effet, pas de rétroactivité, protection préparée compatible avec PA unique V7.66. Les effets persistants et crédits respectent V8.3, notamment absence de crédit personnel posthume et de duplication. Aucun original artistique modifié.
+
+### Contrat technique à préparer, non validé
+Identifier composants existants avant développement ; définir file d'initiative, registre PA engagés, identité et rang logique des unités, liens invocateur/auxiliaire, états de préparation, file causale bornée, transitions de recrutement et crédit unique d'expédition. Prévoir frontières durables cohérentes avec V8.3 : aucun nouveau tirage ni effet dupliqué après reprise ; ne pas publier un état intermédiaire incohérent. Les phases sont un ordre métier, pas une obligation de sept écritures indépendantes. Paramètres, exceptions, critères d'expédition significative, capacité des réserves, limites des invocations, départage stable précis, priorités par compétence, budgets de réaction, lisibilité et équilibrage restent à spécifier/tester. Ne pas considérer les maquettes comme preuves runtime.
+
+### Tests candidats
+Initiative et égalités reproductibles ; attaque préventive sans double PA ; changement d'ordre sans second tour ; recrue volumineuse sélectionnable et ennemi multirang sans double impact ; invocation et décès du créateur sans substitution de survivant ; recrutement fini, crédit unique, succession et capacité ; interruption avant impact, protection concurrente, interception anatomique, zone et afflictions, combo partiel, ripostes cycliques bornées ; interruption/reprise à chaque frontière durable ; régression Linux/Windows et validation visuelle. Aucun test exécuté dans cette consolidation.
+
+Avancement des arbitrages résiduels : 5/5, 100 % du périmètre documentaire après vérification de l'enregistrement. Implémentation et validation technique à évaluer ; projet global à évaluer. Prochaine étape prioritaire : audit en lecture seule du moteur de combat existant, branches et PR, composants réutilisables, tests et preuves, puis spécification technique isolée. Aucun code, main ou fusion modifié.
