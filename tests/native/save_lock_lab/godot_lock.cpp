@@ -22,7 +22,15 @@ public:
         auto utf8 = absolute_path.utf8();
         auto path = std::filesystem::u8path(utf8.get_data());
         if (!path.is_absolute() || path.filename() != "campaign.lock") return false;
-        // Standalone lab interface only. Caller must establish trusted sandbox.
+        // Reject lexical traversal and redirected parents in the laboratory.
+        // This is a preflight check, not race-proof confinement: the caller must
+        // own and protect the directory against concurrent replacement.
+        std::error_code ec;
+        const auto parent = path.parent_path();
+        if (parent != parent.lexically_normal()) return false;
+        const auto canonical_parent = std::filesystem::canonical(parent, ec);
+        if (ec || canonical_parent != parent) return false;
+        if (!std::filesystem::is_directory(canonical_parent, ec) || ec) return false;
         held = lock.acquire(path);
         return held;
     }
