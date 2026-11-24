@@ -12,7 +12,7 @@
 - **Texte normatif attesté :** « Recherche comparative obligatoire avant chaque arbitrage de conception à choix multiples ».
 - **Statut :** règle méthodologique active; elle ne valide aucune mécanique de gameplay particulière.
 - **Limite :** les six sous-étapes détaillées dans la PR #619 (sources, comparaison, avantages/risques/coûts, recommandation, etc.) ne sont pas chacune prouvées comme texte utilisateur approuvé. Les principes plus généraux de méthode déjà présents en V8.3 s’appliquent; ne pas traiter toutes les élaborations de PR #619 comme des décisions additionnelles.
-- **Disposition :** conserver la règle courte dans cette réconciliation; garder la PR #619 en brouillon et éviter une seconde modification concurrente du document maître.
+- **Disposition :** conserver la règle courte dans cette réconciliation; la PR #619 est clôturée comme doublon documentaire après transfert de la règle confirmée. Sa branche et son historique restent disponibles.
 
 ### Némésis et fuite
 
@@ -35,14 +35,14 @@
 | PR | Traitement |
 |---|---|
 | #644 | Brouillon central : V8.3 proposé comme document maître du dépôt; copie exacte de V7.9 archivée; ce fichier décrit les arbitrages croisés. |
-| #619 | Noyau de règle confirmé et repris ici; PR documentaire concurrente maintenue en brouillon, sans fusion séparée. |
+| #619 | Noyau de règle confirmé repris dans l’addendum du document maître; PR doublon clôturée sans fusion, branche historique conservée. |
 | #620 | Principes de fuite explicitement approuvés repris ici; détails de la PR qui n’ont pas de preuve directe restent en attente, PR maintenue en brouillon. |
 | #641 | Le choix carte à nœuds remplaçant l’isométrique vient de V8.3; phrase « non arbitré » à corriger. Les détails et fixtures V0 restent isolés pour revue, PR maintenue en brouillon. |
 
 ## Séparation des statuts
 
 - **Conception :** V8.3 n°1, règle comparative (texte court ci-dessus), principes Némésis/fuite directement attestés ci-dessus.
-- **Implémentation :** les PR #619/#620/#641 sont des changements documentaires ou QA sur branches; leur présence ne signifie pas raccordement au runtime.
+- **Implémentation :** les PR #620/#641 restent des propositions documentaires ou QA en brouillon; la PR #619 est clôturée après transfert de sa règle confirmée. Aucun de ces états ne signifie raccordement au runtime.
 - **Tests :** les fixtures et tests ajoutés par #641 sont des tests synthétiques du contrat qu’ils encodent; aucun test n’a été exécuté dans cette réconciliation.
 - **Validation technique :** pas de preuve ici d’un playtest carte, d’un runtime Némésis validé ni d’un comportement de fuite testé.
 
