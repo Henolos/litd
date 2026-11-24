@@ -4735,3 +4735,27 @@ Inspection directe main : combat_anatomy_v2.json (095d21818b4c56cfc55276307688a0
 | CT-0480 | V7.58 / V7.49 | Blessures et identité conservées lors du transport et extraction | Comparer états avant et après retour |
 
 480 entrées cumulées, dont recouvrements intentionnels. Les interactions dérivées ne constituent pas de nouveaux arbitrages. Capacité sac 12/16/20/24 provisoire ; dernier palier composant boss à conserver comme condition de conception à préciser. Restent catalogue des afflictions, règles de cumul, seuils de blessures, prothèses et psychologie à réconcilier avec sources et décisions. Aucun test exécuté, aucune donnée historique modifiée. T1 non clos.
+
+
+---
+## V7.81 — Réconciliation documentaire des afflictions, psychologie et soins (24 novembre 2026)
+
+Sources main inspectées : data/veilleurs/skills/affliction_builds.json (81bdd7fbc537e63bd1a27443cc0e0913d4a5ed16), affliction_build_synergies.json (180e700e2735811dbed5ff3ea901b43ebe633838), data/psychology_events.json (6c1321621c0434963d01097538c2a73d3555ea48), psychology_social_combat.json (19d67744b0eedc98e6f14b2c40de9dd882cad358), docs/psychology_combat_pass_04.md (4b4d401eb002d1abf8de5c1ae777c6300d16b6c3), docs/design/psychology_social_combat_pass_05.md (8486ad84862dde179c020ea96e8cd645beff66f9). Aucun runtime démontré. Les anciens documents déclarent des tests, non rejoués ici.
+
+| ID | Domaine | Constat | Réconciliation / statut | Test candidat |
+|---|---|---|---|---|
+| CT-0481 | Afflictions | Résolveur unique historique compatible avec moteur commun | Conserver principe ; interface candidate | Deux compétences appliquent même effet sans double résolution |
+| CT-0482 | Afflictions | 7 liaisons historiques bleed blind stun vulnerability weakness silence snare ; poison burn prototypes ; freeze compatibilité | Préserver catalogue historique, ne pas imposer roster ni durées | Vérifier chaque liaison et refuser effet non implémenté |
+| CT-0483 | Cumul | max_duration_no_stacking et immunité stun 1 tour | Paramètres historiques à arbitrer par effet | Applications répétées, expiration, immunité |
+| CT-0484 | Propagation | V7.63/70 : porteur réel, exposition, propriétés, zone individuelle | Applicable ; pas de transfert automatique | Interception physique, barrière distante, poison, saignement |
+| CT-0485 | Psychologie | psychology_events v3 distingue peur, traces humaines, Folie du Voile | Référence historique plus précise que pass04 ; préserver distinction, validation cible à confirmer | Mutilation ordinaire ne crée pas automatiquement exposition surnaturelle |
+| CT-0486 | Espoir | Pass04 événement non monnaie ; JSON bandes numériques et charge | Divergence documentaire ; ne pas choisir formule | Comparer manifestation répétée et crise |
+| CT-0487 | Panique | Pass04 perte action ou recul ; V7.66 un PA par round | Arbitrer consommation ou indisponibilité ; aucun PA supplémentaire | Crise avant action, ordre et PA cohérents |
+| CT-0488 | Compagnons | Pass05 intervention gratuite une fois par round | V7.70 : active nécessite PA ou préparation ; passif explicite seulement | Intervention sans PA refusée sauf passif explicitement défini |
+| CT-0489 | IA | Fuite ordinaire 35% historique | Remplacée V7.41 ; recul tactique distinct | Ennemi ordinaire blessé ne quitte pas combat volontairement |
+| CT-0490 | IA | Score peur et blessures historique | Candidat ; capacités réelles et connaissance contextuelle | Membre perdu invalide attaque dépendante |
+| CT-0491 | Soins | Blessure, affliction, amputation et prothèse distinctes | D.3/D.6 et V7.63 ; modalités de soins non fixées | Soin PV ne restaure pas implicitement membre ; proposition à valider |
+| CT-0492 | Combos | Bonus précision +5/+10 anciens et héros nommés | Ne pas importer ; V7.63 découverte collective et 1 PA chacun | Combo interrompu, effet déjà résolu conservé |
+| CT-0493 | Persistance | Effets, causalité, crédits et états confirmés | V7.70/V8.3 applicables | Reprise sans double tick ni nouveau tirage |
+
+Architecture candidate : un état métier par combattant, anatomie et équipement distincts, registre d'effets avec source/cible/partie si pertinente/durée/unité temporelle/conditions/cumul/causalité ; psychologie distincte des afflictions physiques, IA lit capacités et informations autorisées ; résolution via sept phases V7.70, réévaluation après effet, transaction V8.3. Aucun nouveau seuil ni règle de cumul validé. Préserver les données originales. Catalogue exhaustif non démontré : les sept liaisons ne sont pas la totalité des effets possibles ; rechercher autres contrats et données. Prothèses : forge et impact réel validés, restauration fonctionnelle, soins, coût et compatibilité à arbitrer. 493 entrées cumulées, recouvrements intentionnels. T1 non clos, aucun code ni test modifié.
