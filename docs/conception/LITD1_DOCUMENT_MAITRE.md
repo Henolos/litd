@@ -3972,3 +3972,148 @@ Identifiants source conservés ; identifiants canoniques stables CT-0001 et suiv
 | CT-0260 | ADR-0009 | Aucun ancien quatuor imposé au départ | Complément à vérifier / rattacher |
 
 Contrôle : 220 lignes historiques reprises, 40 compléments, 2 clauses remplacées, 6 alias initiaux. Aucun décompte d'exigences uniques exhaustives revendiqué. Restent notamment V8.3, Némésis, retraite, guet-apens, paragraphes hors listes et contrôle de toutes les PR pertinentes. Aucun test exécuté.
+
+
+---
+## V7.76 — Extension de la matrice : Némésis, guet-apens, extraction et V8.3 (24 novembre 2026)
+
+Reprise individuelle des règles numérotées des neuf sections V7.34, 35, 37, 39, 41, 42, 44, 45, 49 et des 40 arbitrages V8.3. Identifiants CT-0261 et suivants, sans renuméroter V7.75. Les lignes sources composites restent à scinder et les recouvrements à qualifier ; aucun test exécuté. Les seuils explicitement indicatifs restent indicatifs. Arbitrage 3 remplacé par 4, 2 précisé par 5. V7.34 résout la persistance Némésis laissée ouverte dans le préambule V8.3. V7.66 précise consommation du PA préventif ; V7.49 ne remplace pas la retraite en combat. Ne pas confondre garantie de recrutement et éligibilité. Les divergences ADR-0005/0008 restent ouvertes : ne pas modifier Guardian sans preuve de portée et décision de migration. 
+
+| ID | Source | Exigence source | Domaine / qualification |
+|---|---|---|---|
+| CT-0261 | V7.34-1 | Aucun affaiblissement automatique lors d'un Game Over. | Némésis / monde |
+| CT-0262 | V7.34-2 | Conservation de l'identité, des souvenirs et de l'historique des victimes. | Némésis / monde |
+| CT-0263 | V7.34-3 | Conservation des grades, promotions et bonus réellement obtenus. | Némésis / monde |
+| CT-0264 | V7.34-4 | Possibilité de retrouver le Némésis lors de futures expéditions. | Némésis / monde |
+| CT-0265 | V7.34-5 | Conservation des informations acquises dans les archives de la Guilde. | Némésis / monde |
+| CT-0266 | V7.34-6 | Le Némésis ne reconnaît pas automatiquement le successeur comme son prédécesseur. | Némésis / monde |
+| CT-0267 | V7.34-7 | Aucun bonus supplémentaire pour le simple Game Over, indépendamment des héros effectivement tués. | Némésis / monde |
+| CT-0268 | V7.34-8 | Aucun anéantissement de compagnie ne doit rendre définitivement impossible la poursuite du jeu. | Némésis / monde |
+| CT-0269 | V7.35-1 | Le devenir des corps persiste après Game Over. | Némésis / monde |
+| CT-0270 | V7.35-2 | Aucun transfert automatique des équipements au coffre de la Guilde. | Némésis / monde |
+| CT-0271 | V7.35-3 | La recomposition procédurale ne supprime pas arbitrairement les dépouilles. | Némésis / monde |
+| CT-0272 | V7.35-4 | Les ennemis peuvent piller selon leur nature et leur comportement. | Némésis / monde |
+| CT-0273 | V7.35-5 | La réanimation nécessite un contexte compatible avec l'univers. | Némésis / monde |
+| CT-0274 | V7.35-6 | Un héros réanimé hostile reste définitivement mort comme héros recrutable. | Némésis / monde |
+| CT-0275 | V7.35-7 | Aucune duplication d'équipement par récupération. | Némésis / monde |
+| CT-0276 | V7.35-8 | Les objets légendaires uniques conservent leur caractère indestructible déjà validé. | Némésis / monde |
+| CT-0277 | V7.35-9 | Les simples allers-retours ne modifient pas artificiellement le devenir d'un corps. | Némésis / monde |
+| CT-0278 | V7.35-10 | La disparition d'une dépouille n'implique pas nécessairement la destruction de tous ses équipements. | Némésis / monde |
+| CT-0279 | V7.37-1 | Respect de la compatibilité anatomique. | Némésis / monde |
+| CT-0280 | V7.37-2 | Respect des compétences nécessaires à l'utilisation. | Némésis / monde |
+| CT-0281 | V7.37-3 | Application des propriétés réellement utilisables. | Némésis / monde |
+| CT-0282 | V7.37-4 | Conservation possible sans utilisation. | Némésis / monde |
+| CT-0283 | V7.37-5 | Trophées issus des victimes possibles pour les Némésis. | Némésis / monde |
+| CT-0284 | V7.37-6 | Conservation de l'identifiant unique et de l'historique de chaque objet persistant. | Némésis / monde |
+| CT-0285 | V7.37-7 | Aucune duplication lors des transferts. | Némésis / monde |
+| CT-0286 | V7.37-8 | Représentation visuelle des équipements importants lorsque techniquement possible. | Némésis / monde |
+| CT-0287 | V7.37-9 | Distinction entre bonus de progression du Némésis et bonus d'équipement. | Némésis / monde |
+| CT-0288 | V7.37-10 | Persistance des équipements pillés après Game Over. | Némésis / monde |
+| CT-0289 | V7.39-1 | Territoire d'origine enregistré pour chaque Némésis. | Némésis / monde |
+| CT-0290 | V7.39-2 | Déplacements compatibles avec capacités physiques et habitats. | Némésis / monde |
+| CT-0291 | V7.39-3 | Sédentarité complète possible. | Némésis / monde |
+| CT-0292 | V7.39-4 | Migration justifiée écologiquement, comportementalement ou narrativement. | Némésis / monde |
+| CT-0293 | V7.39-5 | Aucun déplacement arbitraire dû uniquement à la régénération des cartes. | Némésis / monde |
+| CT-0294 | V7.39-6 | Recherche par renseignements, témoignages et traces. | Némésis / monde |
+| CT-0295 | V7.39-7 | Équipements transportés suivant leur détenteur. | Némésis / monde |
+| CT-0296 | V7.39-8 | Identité, souvenirs, grade et puissance conservés. | Némésis / monde |
+| CT-0297 | V7.39-9 | Aucune présence simultanée dans plusieurs lieux. | Némésis / monde |
+| CT-0298 | V7.39-10 | Aucun Némésis lié à un objectif obligatoire définitivement inaccessible du fait d'une migration. | Némésis / monde |
+| CT-0299 | V7.41-1 | Aucune fuite automatique après la mort d'un héros. | Némésis / monde |
+| CT-0300 | V7.41-2 | Aucun seuil de santé universel. | Némésis / monde |
+| CT-0301 | V7.41-3 | Intention de fuite identifiable avant exécution. | Némésis / monde |
+| CT-0302 | V7.41-4 | Interruption possible par actions compatibles. | Némésis / monde |
+| CT-0303 | V7.41-5 | Prise en compte des blessures anatomiques et capacités de déplacement. | Némésis / monde |
+| CT-0304 | V7.41-6 | Aucune disparition artificielle pour protéger le Némésis d'une défaite. | Némésis / monde |
+| CT-0305 | V7.41-7 | Limitation des tentatives répétitives. | Némésis / monde |
+| CT-0306 | V7.41-8 | Conservation des blessures, équipements et souvenirs après fuite, sous réserve de leur évolution ultérieure. | Némésis / monde |
+| CT-0307 | V7.41-9 | Recherche du fugitif via reconnaissance et renseignements déjà validés. | Némésis / monde |
+| CT-0308 | V7.41-10 | Résultat enregistré dans la sauvegarde persistante, sans nouveau tirage au rechargement. | Némésis / monde |
+| CT-0309 | V7.42-1 | Obligatoires après chaque succession. | Succession |
+| CT-0310 | V7.42-2 | Contenu variable selon classe et progression de campagne. | Succession |
+| CT-0311 | V7.42-3 | Durée relativement courte. | Succession |
+| CT-0312 | V7.42-4 | Échecs d'entraînement sans mort définitive. | Succession |
+| CT-0313 | V7.42-5 | Équipements d'entraînement éventuellement fournis par la Guilde. | Succession |
+| CT-0314 | V7.42-6 | Réservistes autorisés aux épreuves collectives. | Succession |
+| CT-0315 | V7.42-7 | Aucune réinitialisation des quêtes. | Succession |
+| CT-0316 | V7.42-8 | Maîtrise personnelle avancée impossible à obtenir uniquement par ces épreuves. | Succession |
+| CT-0317 | V7.42-9 | Aucun échec ne bloque définitivement la campagne. | Succession |
+| CT-0318 | V7.42-10 | Aucun farming de ressources, équipements ou crédits de maîtrise. | Succession |
+| CT-0319 | V7.42-11 | Dialogues pouvant tenir compte des compagnies disparues. | Succession |
+| CT-0320 | V7.42-12 | Aucune révélation prématurée des secrets du protagoniste ou du maître. | Succession |
+| CT-0321 | V7.44-1 | Chaque mort définitive de héros attribuable au Némésis contribue à sa progression. | Némésis / monde |
+| CT-0322 | V7.44-2 | Gains statistiques décroissants et bornés. | Némésis / monde |
+| CT-0323 | V7.44-3 | Promotions distinctes des bonus cumulatifs. | Némésis / monde |
+| CT-0324 | V7.44-4 | Exploits exceptionnels impliquant plusieurs morts de héros pouvant accélérer une promotion. | Némésis / monde |
+| CT-0325 | V7.44-5 | Aucun bonus de progression pour simple fuite, blessure infligée ou survie au combat. | Némésis / monde |
+| CT-0326 | V7.44-6 | Promotions pouvant débloquer des capacités compatibles. | Némésis / monde |
+| CT-0327 | V7.44-7 | Faiblesses anatomiques et tactiques toujours exploitables. | Némésis / monde |
+| CT-0328 | V7.44-8 | Bonus d'équipement distincts des bonus de progression. | Némésis / monde |
+| CT-0329 | V7.44-9 | Aucun affaiblissement artificiel après Game Over. | Némésis / monde |
+| CT-0330 | V7.44-10 | Aucune guérison intégrale automatique lors d'une promotion. | Némésis / monde |
+| CT-0331 | V7.44-11 | Aucun retour d'un Némésis définitivement mort uniquement pour maintenir la difficulté. | Némésis / monde |
+| CT-0332 | V7.44-12 | Seuils, plafonds et bonus définitifs après simulations et tests de combat. | Némésis / monde |
+| CT-0333 | V7.45-1 | Ratio cible 35 % détectables / 65 % indétectables sur l'ensemble des guet-apens procéduraux, non par carte. | Guet-apens |
+| CT-0334 | V7.45-2 | Guet-apens scénarisés soumis aux contraintes narratives et comptabilisés séparément. | Guet-apens |
+| CT-0335 | V7.45-3 | Caractère détectable fixé à la génération. | Guet-apens |
+| CT-0336 | V7.45-4 | Détection contextuelle par aptitudes, observation et bestiaire. | Guet-apens |
+| CT-0337 | V7.45-5 | Aucun spécialiste ne garantit la détection systématique. | Guet-apens |
+| CT-0338 | V7.45-6 | Détection seule insuffisante pour déjouer. | Guet-apens |
+| CT-0339 | V7.45-7 | Guet-apens déjoué si évité, neutralisé ou avantage de surprise effectivement supprimé. | Guet-apens |
+| CT-0340 | V7.45-8 | Attaque préventive seulement si ennemis localisés et accessibles. | Guet-apens |
+| CT-0341 | V7.45-9 | Si combat après guet-apens déjoué, léger bonus collectif d'initiative au premier round uniquement, sans PA supplémentaire. | Guet-apens |
+| CT-0342 | V7.45-10 | Aucun nouveau tirage artificiel par aller-retour ou rechargement en contexte inchangé. Pièges mécaniques autonomes hors ratio en attente d'arbitrage spécifique. Aucune poursuite ennemie. Paramètres statistiques et tests restent à définir. | Guet-apens |
+| CT-0343 | V7.49-1 | Retour immédiat depuis cartes régionales et donjons. | Extraction |
+| CT-0344 | V7.49-2 | Aucun trajet inverse systématique. | Extraction |
+| CT-0345 | V7.49-3 | Avant ou après accomplissement de mission. | Extraction |
+| CT-0346 | V7.49-4 | Interdit en combat actif, retraite distincte. | Extraction |
+| CT-0347 | V7.49-5 | Bloqué pendant résolution d'une menace immédiate incompatible avec extraction. | Extraction |
+| CT-0348 | V7.49-6 | Restrictions scénarisées justifiées et communiquées. | Extraction |
+| CT-0349 | V7.49-7 | Motif de toute interdiction affiché. | Extraction |
+| CT-0350 | V7.49-8 | Traitement explicite des héros immobilisés, capturés ou séparés avant confirmation, sans mort automatique. | Extraction |
+| CT-0351 | V7.49-9 | Conservation blessures, pertes, équipements et conséquences selon leurs règles. | Extraction |
+| CT-0352 | V7.49-10 | Aucune pénalité narrative permanente liée au seul abandon. | Extraction |
+| CT-0353 | V7.49-11 | Sauvegarde transactionnelle du retour, prévention des duplications et pertes accidentelles. | Extraction |
+| CT-0354 | V7.49-12 | Aucune poursuite ni réapparition artificielle provoquée par la demande. La dangerosité générale ne suffit pas à bloquer. Le retour clôt l'expédition ; une nouvelle expédition génère une nouvelle carte sans effacer les conséquences de mission. Poursuite de l'exploration possible après accomplissement. Les modalités détaillées de traitement des héros séparés restent à spécifier. | Extraction |
+| CT-0355 | V8.3-arbitrage-1 | Exploration par grande carte à nœuds ramifiés, retours et chemins cachés ; remplace la 3D isométrique. Combats 2D conservés. | Succession / exploration |
+| CT-0356 | V8.3-arbitrage-2 | Bestiaire persistant et maîtrise individuelle des compagnons ; précisé par le n° 5. | Succession / exploration |
+| CT-0357 | V8.3-arbitrage-3 | Même protagoniste survivant après Game Over. | Remplacé par arbitrage 4 |
+| CT-0358 | V8.3-arbitrage-4 | Après anéantissement des quatre combattants, nouveau protagoniste et nouvelle compagnie. Monde, narration, quêtes principales et secondaires générales conservent leur progression. Épreuves de Guilde avant reprise des missions. | Succession / exploration |
+| CT-0359 | V8.3-arbitrage-5 | Bestiaire transmis par les archives consultables de la Guilde ; maîtrise individuelle du successeur à reconstruire. | Succession / exploration |
+| CT-0360 | V8.3-arbitrage-6 | Réservistes survivants, progression intacte et disponibilité immédiate selon leur état normal. | Succession / exploration |
+| CT-0361 | V8.3-arbitrage-7 | Nouveau protagoniste au niveau numérique du précédent ; classe, identité, maîtrise et choix personnels nouveaux. Points de compétence à répartir. | Succession / exploration |
+| CT-0362 | V8.3-arbitrage-8 | Réputation et acquis relationnels permanents conservés ; liens personnels du successeur à construire ; souvenirs et relations des survivants préservés. | Succession / exploration |
+| CT-0363 | V8.3-arbitrage-9 | Quêtes personnelles d'un héros unique mort définitivement interrompues ou inaccessibles ; quêtes déjà terminées et acquis conservés. | Succession / exploration |
+| CT-0364 | V8.3-arbitrage-10 | Quêtes principales et quêtes personnelles/secondaires propres aux héros uniques sans dépendances de progression réciproques. | Succession / exploration |
+| CT-0365 | V8.3-arbitrage-11 | Successeur : points de compétence correspondant au niveau hérité ; emplacements passifs personnels à regagner par maîtrise et défi. | Maîtrise / progression |
+| CT-0366 | V8.3-arbitrage-12 | Successeur : attributs de base de sa classe et points liés au niveau hérité à répartir dans les contraintes de classe. | Maîtrise / progression |
+| CT-0367 | V8.3-arbitrage-13 | Successeur : traits personnels initiaux compatibles, développement personnel sans héritage des traits du défunt. | Maîtrise / progression |
+| CT-0368 | V8.3-arbitrage-14 | Deux emplacements passifs de progression personnelle obtenus par accomplissements de classe/rôle, non par niveau numérique seul. | Maîtrise / progression |
+| CT-0369 | V8.3-arbitrage-15 | Deux jalons de maîtrise, fondamental et avancé ; contribution réelle en expédition obligatoire, entraînement de refuge complémentaire. | Maîtrise / progression |
+| CT-0370 | V8.3-arbitrage-16 | Objectifs de maîtrise mesurables et spécifiques à la classe/spécialisation, comptage automatique des contributions réelles. | Maîtrise / progression |
+| CT-0371 | V8.3-arbitrage-17 | Fondamental : 3 situations distinctes sur ≥2 expéditions et ≥2 catégories ; avancé : 6 situations supplémentaires sur ≥3 expéditions et ≥3 catégories, avec danger significatif ; pas de réutilisation. | Maîtrise / progression |
+| CT-0372 | V8.3-arbitrage-18 | Bonus d’entraînement évolutifs avec bâtiments, plafonnés ; ne remplacent pas diversité des expéditions et catégories. | Maîtrise / progression |
+| CT-0373 | V8.3-arbitrage-19 | Crédits et déblocages reconnus immédiatement en jeu, conservés après retraite/échec si le héros survit ; mort efface sa progression personnelle jouable. | Maîtrise / progression |
+| CT-0374 | V8.3-arbitrage-20 | Capture non létale réussie = victoire pour défi personnel si contribution active et héros vivant à résolution ; pas de coup final requis. | Maîtrise / progression |
+| CT-0375 | V8.3-arbitrage-21 | Progression par situations tactiques résolues, non par nombre brut d’actions. | Maîtrise / progression |
+| CT-0376 | V8.3-arbitrage-22 | Crédit individuel si contribution significative et vérifiable ; plusieurs héros peuvent être crédités pour une même situation. | Maîtrise / progression |
+| CT-0377 | V8.3-arbitrage-23 | Seuils hybrides selon rôle : 15 % des PV max de la cible indicatif pour soin/protection/dégâts OU conséquence tactique significative démontrable ; contrôle/capture par résultat effectif. | Maîtrise / progression |
+| CT-0378 | V8.3-arbitrage-24 | Pas de plafond arbitraire par combat ; seules menaces réellement distinctes comptent ; anti-farming. | Maîtrise / progression |
+| CT-0379 | V8.3-arbitrage-25 | Nouvelle menace reconnue par signature ou changement significatif du contexte tactique ; identifiant seul insuffisant. | Maîtrise / progression |
+| CT-0380 | V8.3-arbitrage-26 | Seuils de changement contextuel indicatifs (30 % PV alliés, 25 % dégâts potentiels entrants, 50 % ressource pertinente perdue) OU événement déterminant objectivable. | Maîtrise / progression |
+| CT-0381 | V8.3-arbitrage-27 | Traçabilité causale directe/indirecte/différée ; au plus un crédit par héros et situation ; sans plafond par combat. | Maîtrise / progression |
+| CT-0382 | V8.3-arbitrage-28 | Effets suivis durant leur activité et conséquences directement attribuables, sans limite arbitraire de tours ; corrélation seule insuffisante. | Maîtrise / progression |
+| CT-0383 | V8.3-arbitrage-29 | Aucun nouveau crédit personnel après mort définitive ; effets persistants possibles selon règles ; faits antérieurs archivables, non hérités. | Maîtrise / progression |
+| CT-0384 | V8.3-arbitrage-30 | Sauvegardes automatiques sécurisées en expédition ; attribution idempotente des crédits et états cohérents. | Persistance / validation |
+| CT-0385 | V8.3-arbitrage-31 | Reprise du combat au dernier état sécurisé à frontière cohérente ; événements déjà validés préservés. | Persistance / validation |
+| CT-0386 | V8.3-arbitrage-32 | Sauvegarde active + secours technique protégé ; registre cohérent des conséquences permanentes. | Persistance / validation |
+| CT-0387 | V8.3-arbitrage-33 | Registre transactionnel associé aux instantanés par révisions et validations cohérentes. | Persistance / validation |
+| CT-0388 | V8.3-arbitrage-34 | Journal durable prioritaire des morts définitives et transitions de succession, récupération transactionnelle cohérente. | Persistance / validation |
+| CT-0389 | V8.3-arbitrage-35 | Journal des conséquences permanentes et des données de résolution nécessaires à une reprise cohérente et déterministe. | Persistance / validation |
+| CT-0390 | V8.3-arbitrage-36 | Reconstruction par réapplication ordonnée des modifications d’état validées, sans resimulation des actions déjà résolues. | Persistance / validation |
+| CT-0391 | V8.3-arbitrage-37 | Vérification des invariants métier et empreinte SHA-256 canonique de l'état persistant reconstruit. | Persistance / validation |
+| CT-0392 | V8.3-arbitrage-38 | Migrations versionnées et sécurisées ; original préservé ; conversion sur copie ; validation avant publication. | Persistance / validation |
+| CT-0393 | V8.3-arbitrage-39 | Mode de récupération sécurisé et guidé ; aucune reconstruction inventée ni modification des originaux ; restauration uniquement d'états démontrablement cohérents. | Persistance / validation |
+| CT-0394 | V8.3-arbitrage-40 | Validation progressive : tests automatisés, interruptions simulées, migrations et essais réels sur Windows avant validation technique. | Persistance / validation |
+
+Contrôle : 94 règles numérotées complémentaires et 40 arbitrages, 394 entrées cumulées, pas un nombre d'exigences uniques. Reste à intégrer les règles techniques détaillées V8.3 hors registre, retraite active, paragraphes non numérotés et à qualifier les doublons et preuves. Aucun code, ADR ou Guardian modifié. Exhaustivité non acquise.
