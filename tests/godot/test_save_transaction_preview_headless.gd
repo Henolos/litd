@@ -138,6 +138,39 @@ func _run() -> void:
     _check(manager.journal_recover_preview(journal_dir, "campaign-1", 3, before).get("revision") == 4, "Restored journal must recover")
     _check(DirAccess.remove_absolute(ProjectSettings.globalize_path(journal_path)) == OK, "Test journal cleanup")
     _check(DirAccess.remove_absolute(ProjectSettings.globalize_path(journal_dir)) == OK, "Test directory cleanup")
+    # Two committed entries, with a separately retained confirmation fixture.
+    var strict_dir := "user://litd_transaction_lab/strict_anchor"
+    var final_state := {"heroes": [{"id": "hero-a", "alive": false}], "gold": 8, "keys": 0, "opened": ["gate-a"], "rng_cursor": 17}
+    var second := {
+        "campaign_id": "campaign-1", "transaction_id": "action-43",
+        "base_revision": 4, "current_revision": 4, "result_revision": 5,
+        "pre_state_sha256": manager.canonical_sha256("campaign-1", 4, after),
+        "post_state_sha256": manager.canonical_sha256("campaign-1", 5, final_state),
+        "result_state": final_state
+    }
+    var anchor := {"campaign_id": "campaign-1", "revision": 5, "state_sha256": second["post_state_sha256"]}
+    _check(manager.journal_append_preview(strict_dir, before, record, []), "Strict fixture first entry")
+    _check(manager.journal_append_preview(strict_dir, after, second, ["action-42"]), "Strict fixture second entry")
+    var strict_result: Dictionary = manager.journal_recover_confirmed_preview(strict_dir, "campaign-1", 3, before, anchor)
+    _check(strict_result.get("persistent_state") == final_state, "Confirmed chain must preserve resolved death, gate, key and RNG fixture")
+    _check(strict_result.get("applied_transaction_ids") == ["action-42", "action-43"], "Confirmed chain must preserve unique ordered IDs")
+    _check(manager.journal_recover_confirmed_preview(strict_dir, "campaign-1", 3, before, anchor) == strict_result, "Confirmed recovery must be deterministic")
+    var wrong_anchor := anchor.duplicate(true)
+    wrong_anchor["state_sha256"] = "0".repeat(64)
+    _check(manager.journal_recover_confirmed_preview(strict_dir, "campaign-1", 3, before, wrong_anchor).is_empty(), "Wrong anchor hash must fail closed")
+    wrong_anchor = anchor.duplicate(true)
+    wrong_anchor["campaign_id"] = "other"
+    _check(manager.journal_recover_confirmed_preview(strict_dir, "campaign-1", 3, before, wrong_anchor).is_empty(), "Wrong anchor campaign must fail closed")
+    wrong_anchor = {"campaign_id": "campaign-1", "revision": 4, "state_sha256": record["post_state_sha256"]}
+    _check(manager.journal_recover_confirmed_preview(strict_dir, "campaign-1", 3, before, wrong_anchor).is_empty(), "Unconfirmed suffix must not be promoted")
+    _check(manager.journal_recover_confirmed_preview(strict_dir, "campaign-1", 3, before, {}).is_empty(), "Missing anchor must fail closed")
+    var tail_path := strict_dir.path_join("revision_0000000005.json")
+    _check(DirAccess.remove_absolute(ProjectSettings.globalize_path(tail_path)) == OK, "Simulate lost confirmed tail")
+    _check(manager.journal_recover_preview(strict_dir, "campaign-1", 3, before).get("revision") == 4, "Unanchored preview cannot detect lost tail")
+    _check(manager.journal_recover_confirmed_preview(strict_dir, "campaign-1", 3, before, anchor).is_empty(), "Confirmed tail loss must fail closed")
+    _check(DirAccess.remove_absolute(ProjectSettings.globalize_path(strict_dir.path_join("revision_0000000004.json"))) == OK, "Simulate total journal loss")
+    _check(manager.journal_recover_confirmed_preview(strict_dir, "campaign-1", 3, before, anchor).is_empty(), "Total journal loss must fail closed")
+    _check(DirAccess.remove_absolute(ProjectSettings.globalize_path(strict_dir)) == OK, "Clean strict fixture")
     if failures == 0:
         print("SAVE_TRANSACTION_PREVIEW_PASS")
     quit(1 if failures else 0)
