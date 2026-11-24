@@ -7,6 +7,7 @@ on:
       - 'tests/godot/test_save_canonical_headless.gd'
       - 'tests/godot/test_save_transaction_preview_headless.gd'
       - '.github/workflows/godot-save-canonical.yml'
+      - 'tests/native/save_lock_lab/**'
       - 'tests/python/save_lock_lab.py'
       - 'tests/python/test_save_lock_lab.py'
   workflow_dispatch:
@@ -83,3 +84,19 @@ jobs:
         run: python -m pip install "pytest>=8,<9"
       - name: Verify native lock contention and forced termination
         run: python -m pytest -v tests/python/test_save_lock_lab.py
+
+      - name: Compile native lock on Linux
+        if: runner.os == 'Linux'
+        run: g++ -std=c++17 -Wall -Wextra -Werror tests/native/save_lock_lab/main.cpp -o save-lock-lab
+      - name: Compile native lock on Windows
+        if: runner.os == 'Windows'
+        shell: cmd
+        run: |
+          for /f "usebackq tokens=*" %%i in (`"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath`) do call "%%i\VC\Auxiliary\Build\vcvars64.bat"
+          cl /nologo /std:c++17 /EHsc /W4 /WX tests\native\save_lock_lab\main.cpp /Fe:save-lock-lab.exe
+      - name: Test compiled native lock on Linux
+        if: runner.os == 'Linux'
+        run: python tests/native/save_lock_lab/check.py ./save-lock-lab
+      - name: Test compiled native lock on Windows
+        if: runner.os == 'Windows'
+        run: python tests/native/save_lock_lab/check.py ./save-lock-lab.exe
