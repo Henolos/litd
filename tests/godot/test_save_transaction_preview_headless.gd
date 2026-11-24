@@ -202,6 +202,12 @@ func _run() -> void:
         var committed: Dictionary = manager.coordinated_commit_preview(jd, ad, "campaign-1", 3, before, record, boundary)
         _check(not committed.is_empty() if boundary.is_empty() else committed.is_empty(), "Coordinator return at " + boundary)
         var observed: Dictionary = manager.journal_recover_confirmed_preview(jd, "campaign-1", 3, before, manager.anchor_read_preview(ad, "campaign-1"))
+        var diagnosis: Dictionary = manager.inspect_unconfirmed_preview(jd, ad, "campaign-1", 3, before)
+        var expected_status := "confirmed" if boundary in ["", "before_journal", "anchor_after_rename", "after_anchor"] else "unconfirmed"
+        _check(diagnosis.get("status") == expected_status, "Read-only diagnosis at " + boundary)
+        if expected_status == "unconfirmed":
+            _check(diagnosis.get("candidate_state_sha256") == record["post_state_sha256"], "Candidate hash preserved")
+            _check(manager.anchor_read_preview(ad, "campaign-1").get("revision") == 3, "Diagnosis must not publish")
         if boundary in ["", "anchor_after_rename", "after_anchor"]:
             _check(observed.get("revision") == 4 and observed.get("persistent_state") == after, "Confirmed recovery at " + boundary)
             _check(manager.coordinated_commit_preview(jd, ad, "campaign-1", 3, before, record).is_empty(), "Reject repeated transaction")
