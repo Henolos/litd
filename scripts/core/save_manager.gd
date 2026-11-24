@@ -69,7 +69,7 @@ func load_qa_snapshot() -> bool:
 
 func delete_qa_snapshot() -> bool:
     var removed := false
-    for path: String in [QA_SNAPSHOT_PATH, _backup_for(QA_SNAPSHOT_PATH), _temp_for(QA_SNAPSHOT_PATH)]:
+    for path: String in [QA_SNAPSHOT_PATH, _backup_for(QA_SNAPSHOT_PATH), _temp_for(QA_SNAPSHOT_PATH), _backup_for(QA_SNAPSHOT_PATH) + ".tmp"]:
         if FileAccess.file_exists(path):
             removed = DirAccess.remove_absolute(ProjectSettings.globalize_path(path)) == OK or removed
     return removed
@@ -132,10 +132,10 @@ func all_slots_metadata() -> Array[Dictionary]:
 func delete_slot(slot: int) -> bool:
     slot = _valid_slot(slot)
     var removed := false
-    var paths := [_path(slot), _backup_path(slot), _temp_path(slot)]
+    var paths := [_path(slot), _backup_path(slot), _temp_path(slot), _backup_path(slot) + ".tmp"]
     if slot == 0:
         # A deleted slot must not be resurrected from the legacy mirror.
-        paths.append_array([SAVE_PATH, _backup_for(SAVE_PATH), _temp_for(SAVE_PATH)])
+        paths.append_array([SAVE_PATH, _backup_for(SAVE_PATH), _temp_for(SAVE_PATH), _backup_for(SAVE_PATH) + ".tmp"])
     for path in paths:
         if FileAccess.file_exists(path):
             removed = DirAccess.remove_absolute(ProjectSettings.globalize_path(path)) == OK or removed
@@ -201,9 +201,23 @@ func _atomic_write(path: String, text: String) -> bool:
     var previous_is_valid := not _migrate(_read_payload(path)).is_empty()
     if previous_is_valid:
         # An already-corrupt primary must never overwrite the last good backup.
-        if DirAccess.copy_absolute(destination, backup) != OK:
+        var backup_stage := _backup_for(path) + ".tmp"
+        var previous_text := FileAccess.get_file_as_string(path)
+        var backup_file := FileAccess.open(backup_stage, FileAccess.WRITE)
+        if backup_file == null:
             return false
-        if FileAccess.get_file_as_string(path) != FileAccess.get_file_as_string(_backup_for(path)):
+        backup_file.store_string(previous_text)
+        backup_file.flush()
+        var backup_error := backup_file.get_error()
+        backup_file.close()
+        if backup_error != OK or FileAccess.get_file_as_string(backup_stage) != previous_text:
+            return false
+        if _migrate(_read_payload(backup_stage)).is_empty():
+            return false
+        # Keep the primary intact until the staged backup has been published.
+        if _replace_save_file(ProjectSettings.globalize_path(backup_stage), backup) != OK:
+            return false
+        if FileAccess.get_file_as_string(_backup_for(path)) != previous_text:
             return false
     # Let the filesystem replace the destination; do not delete it first.
     if _replace_save_file(temporary, destination) == OK:
