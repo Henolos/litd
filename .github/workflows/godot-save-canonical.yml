@@ -122,7 +122,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          docker run --rm -v "$PWD:/workspace" -w /workspace --entrypoint /bin/bash barichello/godot-ci:4.7.2 -c 'python3 tests/native/save_lock_lab/check_godot.py "$(command -v godot)"'
+          docker run --rm -v "$PWD:/workspace" -w /workspace --entrypoint /bin/bash barichello/godot-ci:4.7.2@sha256:cdcca31e9194fd59a68a63f4b1b9c3981716819c520cd6f7966c5d72ca7246bd -c 'set -e; apt-get update; apt-get install -y --no-install-recommends python3; python3 tests/native/save_lock_lab/check_godot.py "$(command -v godot)"'
       - name: Install pinned Godot console build
         if: runner.os == 'Windows'
         shell: pwsh
