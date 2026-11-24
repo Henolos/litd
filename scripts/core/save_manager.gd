@@ -478,3 +478,90 @@ func journal_recover_confirmed_preview(journal_dir: String, campaign_id: String,
     if canonical_sha256(campaign_id, confirmed_revision, recovered["persistent_state"]) != confirmed_hash:
         return {}
     return recovered
+
+
+# A/B confirmation laboratory. Immutable slot generations avoid overwriting
+# the previous confirmation. No pruning or production integration yet.
+func anchor_read_preview(dir: String, campaign_id: String) -> Dictionary:
+    if not dir.begins_with("user://litd_transaction_lab/") or campaign_id.is_empty():
+        return {}
+    var d := DirAccess.open(dir)
+    if d == null:
+        return {}
+    var latest: Dictionary = {}
+    var count := 0
+    for name in d.get_files():
+        if not name.begins_with("anchor_") or not name.ends_with(".json"):
+            continue
+        var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(dir.path_join(name)))
+        if not (parsed is Dictionary):
+            return {}
+        var payload: Variant = parsed.get("payload")
+        if typeof(payload) != TYPE_STRING or parsed.get("sha256") != String(payload).sha256_text():
+            return {}
+        var a: Variant = JSON.parse_string(payload)
+        if not (a is Dictionary) or a.get("campaign_id") != campaign_id:
+            return {}
+        var rev: Variant = a.get("revision")
+        var h: Variant = a.get("state_sha256")
+        if typeof(rev) != TYPE_STRING or not String(rev).is_valid_int() or int(rev) < 0 or str(int(rev)) != rev:
+            return {}
+        if typeof(h) != TYPE_STRING or String(h).length() != 64:
+            return {}
+        var n := int(rev)
+        var expected := "anchor_%s_%010d.json" % ["A" if n % 2 == 0 else "B", n]
+        if name != expected:
+            return {}
+        count += 1
+        if latest.is_empty() or n > latest["revision"]:
+            latest = {"campaign_id": campaign_id, "revision": n, "state_sha256": h}
+    if latest.is_empty():
+        return {}
+    # All generations are retained; detect missing interior generations.
+    var first := int(latest["revision"]) - count + 1
+    for n in range(first, int(latest["revision"]) + 1):
+        if not FileAccess.file_exists(dir.path_join("anchor_%s_%010d.json" % ["A" if n % 2 == 0 else "B", n])):
+            return {}
+    return latest
+
+func anchor_publish_preview(dir: String, campaign_id: String, revision: int, state: Dictionary, interrupt_at: String = "") -> bool:
+    if not dir.begins_with("user://litd_transaction_lab/") or revision < 0:
+        return false
+    var h := canonical_sha256(campaign_id, revision, state)
+    if h.is_empty():
+        return false
+    if DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(dir)) != OK:
+        return false
+    var previous := anchor_read_preview(dir, campaign_id)
+    if previous.is_empty():
+        for name in DirAccess.get_files_at(dir):
+            if name.begins_with("anchor_") and name.ends_with(".json"):
+                return false
+    elif revision != int(previous["revision"]) + 1:
+        return false
+    var path := dir.path_join("anchor_%s_%010d.json" % ["A" if revision % 2 == 0 else "B", revision])
+    var temp := path + ".pending"
+    if FileAccess.file_exists(path) or FileAccess.file_exists(temp) or interrupt_at == "before_open":
+        return false
+    var payload := JSON.stringify({"campaign_id": campaign_id, "revision": str(revision), "state_sha256": h})
+    var encoded := JSON.stringify({"payload": payload, "sha256": payload.sha256_text()})
+    var f := FileAccess.open(temp, FileAccess.WRITE)
+    if f == null:
+        return false
+    if interrupt_at == "after_open":
+        f.close()
+        return false
+    f.store_string(encoded.left(maxi(1, encoded.length() / 2)) if interrupt_at == "during_store" else encoded)
+    if interrupt_at == "during_store" or interrupt_at == "after_store":
+        f.close()
+        return false
+    f.flush()
+    var err := f.get_error()
+    f.close()
+    if err != OK or FileAccess.get_file_as_string(temp) != encoded or interrupt_at in ["after_flush", "before_rename"]:
+        return false
+    if DirAccess.rename_absolute(ProjectSettings.globalize_path(temp), ProjectSettings.globalize_path(path)) != OK:
+        return false
+    if interrupt_at == "after_rename":
+        return false
+    return anchor_read_preview(dir, campaign_id).get("revision") == revision
