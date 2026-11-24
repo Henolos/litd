@@ -32,6 +32,14 @@ def main():
                                      "--import", "--quit", "--verbose"],
                                     env=minimal_env, timeout=120)
         print(f"GODOT_INIT_ONLY_IMPORT_EXIT={diagnostic.returncode}", flush=True)
+        empty_class = root / "empty_class"
+        shutil.copytree(project, empty_class, ignore=shutil.ignore_patterns(".godot"))
+        empty_env = dict(env, LITD_LOCK_EMPTY_CLASS="1")
+        print("GODOT_EMPTY_CLASS_IMPORT_START", flush=True)
+        diagnostic = subprocess.run([exe, "--headless", "--path", str(empty_class),
+                                     "--import", "--quit", "--verbose"],
+                                    env=empty_env, timeout=120)
+        print(f"GODOT_EMPTY_CLASS_IMPORT_EXIT={diagnostic.returncode}", flush=True)
         class_only = root / "class_only"
         shutil.copytree(project, class_only, ignore=shutil.ignore_patterns(".godot"))
         class_env = dict(env, LITD_LOCK_CLASS_ONLY="1")
