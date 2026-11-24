@@ -4,7 +4,7 @@
 **PR de consolidation documentaire :** [#644](https://github.com/Henolos/litd/pull/644), brouillon.  
 **Règle de preuve :** une affirmation dans une PR ou un résumé d’assistant ne suffit pas à prouver une validation utilisateur. Les éléments non attestés restent en attente ou en proposition.
 
-## Décisions directes retrouvées
+## Décisions directes retrouvées et reprises dans l’addendum du document maître
 
 ### Recherche comparative avant arbitrage
 
