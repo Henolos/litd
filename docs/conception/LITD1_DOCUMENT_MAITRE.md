@@ -4773,3 +4773,28 @@ Règles validées : 1) règle de cumul propre à chaque effet ; 2) source et por
 Réconciliation historique (sources main : data/veilleurs/skills/affliction_build_synergies.json et affliction_builds.json) : open_wound_team = saignement + lésion, exploitation par technique compatible ; breaker_execution_window = vulnérabilité + faiblesse, états historiques à classifier ; control_window = étourdissement, silence, entrave, aveuglement distincts, sans conversion ni prolongation automatique. Les bonus +5/+10, héros nommés, durées 2 et immunité 1 tour ne sont pas réadoptés. Gel compatibilité historique ne prévaut pas sur le catalogue cible. Les synergies de compétences ne sont pas nécessairement des réactions entre deux afflictions. Préserver découverte collective et coût de 1 PA par participant selon V7.63.
 
 Matrice candidate : 45 couples distincts, 90 ordres d'application, 10 réapplications. Correction de la matrice conversationnelle : brûlure + silence manquait ; brûlure + corrosion et brûlure + aveuglement avaient des descriptions décalées. Par défaut aucune réaction automatique. Pistes non validées : saignement/foudre (piste historique à préciser), brûlure/gel, brûlure/saignement, poison/saignement, fracture/saignement, gel/fracture, corrosion/foudre, confusion/aveuglement. Tester dans les deux ordres, avec exposition réelle, immunité, localisation, expiration, sauvegarde et absence de double effet. Ne pas déduire une interaction symétrique. Les dix règles supplémentaires d'interaction proposées restent à valider explicitement. Aucun test runtime exécuté, T1 non clos.
+
+
+---
+## V7.83 — Matrice directionnelle candidate et réconciliation soins/prothèses (24 novembre 2026)
+
+V7.82 relue sur branche, blob d9bf4d7e5251d6fd2679e5c050abf61bcfb6b8a2 ; sept workflows du commit d8127e584925b41af567e0c511b636dc54286eda terminés success. Aucun test du futur moteur.
+
+Matrice candidate : ligne effet initial, colonne nouvel effet. I indépendance par défaut, C condition explicite, A atténuation conditionnelle, P piste historique à préciser, R réapplication selon V7.82. Les 100 cellules sont des cas de conception, non des tests exécutés. Aucun nouvel arbitrage implicite.
+
+| Initial | Foudre | Brûlure | Poison | Gel | Saignement | Confusion | Silence | Corrosion | Aveuglement | Fracture |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Foudre | R | I | I | I | C | I | I | I | I | I |
+| Brûlure | I | R | I | A | C | I | I | C | C | I |
+| Poison | I | I | R | I | C | C | C | I | C | I |
+| Gel | I | A | I | R | C | I | I | C | I | C |
+| Saignement | P | A | C | I | R | C | I | I | I | I |
+| Confusion | I | I | I | I | I | R | I | I | C | I |
+| Silence | I | I | I | I | I | I | R | I | I | I |
+| Corrosion | C | C | I | I | I | I | I | R | C | C |
+| Aveuglement | I | I | I | I | I | C | I | I | R | I |
+| Fracture | I | I | I | C | C | I | I | I | I | R |
+
+Conditions candidates : exposition thermique réelle pour brûlure/gel et cautérisation ; plaie compatible pour poison/saignement et fracture/saignement ; propriétés réelles pour corrosion/foudre et dégradation matérielle ; effets perceptifs distincts pour confusion/aveuglement ; autres C uniquement sur propriété explicite, jamais par simple coexistence. Les I n'interdisent pas une future recette validée. Foudre puis saignement : nouvelle lésion indépendante sauf règle explicite ; aucune création automatique de saignement. Saignement puis foudre : piste à spécifier. Les dix réapplications suivent V7.82.
+
+Soins : source historique docs/PERSISTENT_INJURIES_AND_ADAPTATION.md sur main : blessures persistantes, stabilisation distincte du traitement, soigneur apte indépendamment de classe y compris créature, absence de repousse et de cécité permanente, Ambidextre ne contourne pas deux bras fonctionnels. Réconcilier avec D.3/D.6 et V7.63 : forge, prothèses, exposition réelle ; pas d'usure ordinaire, destruction explicite, légendaires indestructibles mais endommageables. Proposition non validée : prothèse restaure fonctions spécifiées sans effacer amputation ; réparation distincte du soin ; dommage explicite, pas d'usure automatique. À arbitrer : fonctions, compatibilité, coût, traitement, états historiques stun/weakness/vulnerability/snare et interaction avec PA. Aucun code, test ou original modifié ; T1 non clos.
