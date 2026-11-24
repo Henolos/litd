@@ -171,6 +171,29 @@ func _run() -> void:
     _check(DirAccess.remove_absolute(ProjectSettings.globalize_path(strict_dir.path_join("revision_0000000004.json"))) == OK, "Simulate total journal loss")
     _check(manager.journal_recover_confirmed_preview(strict_dir, "campaign-1", 3, before, anchor).is_empty(), "Total journal loss must fail closed")
     _check(DirAccess.remove_absolute(ProjectSettings.globalize_path(strict_dir)) == OK, "Clean strict fixture")
+    for stage: String in write_stages:
+        var anchor_dir := "user://litd_transaction_lab/anchor_" + stage
+        _check(manager.anchor_publish_preview(anchor_dir, "campaign-1", 3, before), "Publish initial B anchor")
+        _check(not manager.anchor_publish_preview(anchor_dir, "campaign-1", 4, after, stage), "Interrupt anchor publication at " + stage)
+        var found: Dictionary = manager.anchor_read_preview(anchor_dir, "campaign-1")
+        var expected_revision := 4 if stage == "after_rename" else 3
+        _check(found.get("revision") == expected_revision, "Anchor recovery at " + stage)
+        _check(found.get("state_sha256") == manager.canonical_sha256("campaign-1", expected_revision, after if expected_revision == 4 else before), "Anchor hash at " + stage)
+        for name: String in DirAccess.get_files_at(anchor_dir):
+            _check(DirAccess.remove_absolute(ProjectSettings.globalize_path(anchor_dir.path_join(name))) == OK, "Clean anchor file")
+        _check(DirAccess.remove_absolute(ProjectSettings.globalize_path(anchor_dir)) == OK, "Clean anchor fixture")
+    var ab_dir := "user://litd_transaction_lab/anchor_chain"
+    _check(manager.anchor_publish_preview(ab_dir, "campaign-1", 3, before), "Publish B3")
+    _check(manager.anchor_publish_preview(ab_dir, "campaign-1", 4, after), "Publish A4")
+    _check(manager.anchor_publish_preview(ab_dir, "campaign-1", 5, final_state), "Publish B5")
+    _check(not manager.anchor_publish_preview(ab_dir, "campaign-1", 4, after), "Reject rollback publication")
+    _check(manager.anchor_read_preview(ab_dir, "other").is_empty(), "Reject wrong anchor campaign")
+    _check(DirAccess.remove_absolute(ProjectSettings.globalize_path(ab_dir.path_join("anchor_A_0000000004.json"))) == OK, "Remove interior anchor")
+    _check(manager.anchor_read_preview(ab_dir, "campaign-1").is_empty(), "Reject missing interior anchor")
+    for name: String in DirAccess.get_files_at(ab_dir):
+        _check(DirAccess.remove_absolute(ProjectSettings.globalize_path(ab_dir.path_join(name))) == OK, "Clean chain file")
+    _check(manager.anchor_read_preview(ab_dir, "campaign-1").is_empty(), "Reject total anchor loss")
+    _check(DirAccess.remove_absolute(ProjectSettings.globalize_path(ab_dir)) == OK, "Clean chain fixture")
     if failures == 0:
         print("SAVE_TRANSACTION_PREVIEW_PASS")
     quit(1 if failures else 0)
