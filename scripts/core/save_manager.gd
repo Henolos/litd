@@ -641,3 +641,29 @@ func inspect_unconfirmed_preview(journal_dir: String, anchor_dir: String, campai
     if int(anchor["revision"]) < base_revision or canonical_sha256(campaign_id, anchor["revision"], prefix_state) != anchor["state_sha256"]:
         return {"status": "blocked"}
     return {"status": "unconfirmed", "confirmed_revision": anchor["revision"], "candidate_revision": recovered["revision"], "candidate_state_sha256": canonical_sha256(campaign_id, recovered["revision"], recovered["persistent_state"])}
+
+
+# Explicit laboratory resolution only. Caller must hold exclusive access.
+# Never re-simulates gameplay. A pending anchor requires separate repair.
+func resolve_unconfirmed_preview(journal_dir: String, anchor_dir: String, campaign_id: String, base_revision: int, base_state: Dictionary, expected_revision: int, expected_hash: String) -> Dictionary:
+    if _coordinator_preview_busy or journal_dir == anchor_dir:
+        return {}
+    if not journal_dir.begins_with("user://litd_transaction_lab/") or not anchor_dir.begins_with("user://litd_transaction_lab/"):
+        return {}
+    _coordinator_preview_busy = true
+    var result := _resolve_unconfirmed_unlocked_preview(journal_dir, anchor_dir, campaign_id, base_revision, base_state, expected_revision, expected_hash)
+    _coordinator_preview_busy = false
+    return result
+
+func _resolve_unconfirmed_unlocked_preview(journal_dir: String, anchor_dir: String, campaign_id: String, base_revision: int, base_state: Dictionary, expected_revision: int, expected_hash: String) -> Dictionary:
+    var diagnosis := inspect_unconfirmed_preview(journal_dir, anchor_dir, campaign_id, base_revision, base_state)
+    if diagnosis.get("status") != "unconfirmed" or diagnosis.get("candidate_revision") != expected_revision or diagnosis.get("candidate_state_sha256") != expected_hash:
+        return {}
+    var recovered := journal_recover_preview(journal_dir, campaign_id, base_revision, base_state)
+    if recovered.is_empty() or recovered.get("revision") != expected_revision:
+        return {}
+    if canonical_sha256(campaign_id, expected_revision, recovered["persistent_state"]) != expected_hash:
+        return {}
+    if not anchor_publish_preview(anchor_dir, campaign_id, expected_revision, recovered["persistent_state"]):
+        return {}
+    return journal_recover_confirmed_preview(journal_dir, campaign_id, base_revision, base_state, anchor_read_preview(anchor_dir, campaign_id))
