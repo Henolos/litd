@@ -113,6 +113,6 @@ jobs:
           test "$(git -C "$RUNNER_TEMP/godot-cpp" rev-parse HEAD)" = "$sha"
           actual_license=$(git -C "$RUNNER_TEMP/godot-cpp" rev-parse HEAD:LICENSE.md)
           echo "Committed license blob: $actual_license"
-          test "$actual_license" = eb446fe72ce5c705f70413394200f67a123cd
+          test "$actual_license" = eb446fe72ce5c705f70413394200f10f67a123cd
           cmake -S tests/native/save_lock_lab -B "$RUNNER_TEMP/lock-build" -DGODOT_CPP_DIR="$RUNNER_TEMP/godot-cpp" -DCMAKE_BUILD_TYPE=Debug
           cmake --build "$RUNNER_TEMP/lock-build" --config Debug --parallel 2
