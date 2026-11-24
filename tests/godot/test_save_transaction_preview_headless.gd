@@ -194,6 +194,28 @@ func _run() -> void:
         _check(DirAccess.remove_absolute(ProjectSettings.globalize_path(ab_dir.path_join(name))) == OK, "Clean chain file")
     _check(manager.anchor_read_preview(ab_dir, "campaign-1").is_empty(), "Reject total anchor loss")
     _check(DirAccess.remove_absolute(ProjectSettings.globalize_path(ab_dir)) == OK, "Clean chain fixture")
+    for boundary: String in ["", "before_journal", "after_journal", "anchor_during_store", "anchor_before_rename", "anchor_after_rename", "after_anchor"]:
+        var coord_root := "user://litd_transaction_lab/coord_" + ("normal" if boundary.is_empty() else boundary)
+        var jd := coord_root.path_join("journal")
+        var ad := coord_root.path_join("anchors")
+        _check(manager.anchor_publish_preview(ad, "campaign-1", 3, before), "Initialize coordinator anchor")
+        var committed: Dictionary = manager.coordinated_commit_preview(jd, ad, "campaign-1", 3, before, record, boundary)
+        _check(not committed.is_empty() if boundary.is_empty() else committed.is_empty(), "Coordinator return at " + boundary)
+        var observed: Dictionary = manager.journal_recover_confirmed_preview(jd, "campaign-1", 3, before, manager.anchor_read_preview(ad, "campaign-1"))
+        if boundary in ["", "anchor_after_rename", "after_anchor"]:
+            _check(observed.get("revision") == 4 and observed.get("persistent_state") == after, "Confirmed recovery at " + boundary)
+            _check(manager.coordinated_commit_preview(jd, ad, "campaign-1", 3, before, record).is_empty(), "Reject repeated transaction")
+        elif boundary == "before_journal":
+            _check(observed.get("revision") == 3, "Preserve base before journal")
+        else:
+            _check(observed.is_empty(), "Unconfirmed suffix blocks recovery at " + boundary)
+            _check(manager.coordinated_commit_preview(jd, ad, "campaign-1", 3, before, record).is_empty(), "Do not promote unconfirmed suffix on retry")
+        for folder: String in [jd, ad]:
+            if DirAccess.dir_exists_absolute(ProjectSettings.globalize_path(folder)):
+                for entry_name: String in DirAccess.get_files_at(folder):
+                    _check(DirAccess.remove_absolute(ProjectSettings.globalize_path(folder.path_join(entry_name))) == OK, "Clean coordinator file")
+                _check(DirAccess.remove_absolute(ProjectSettings.globalize_path(folder)) == OK, "Clean coordinator folder")
+        _check(DirAccess.remove_absolute(ProjectSettings.globalize_path(coord_root)) == OK, "Clean coordinator root")
     if failures == 0:
         print("SAVE_TRANSACTION_PREVIEW_PASS")
     quit(1 if failures else 0)
