@@ -4117,3 +4117,78 @@ Reprise individuelle des règles numérotées des neuf sections V7.34, 35, 37, 3
 | CT-0394 | V8.3-arbitrage-40 | Validation progressive : tests automatisés, interruptions simulées, migrations et essais réels sur Windows avant validation technique. | Persistance / validation |
 
 Contrôle : 94 règles numérotées complémentaires et 40 arbitrages, 394 entrées cumulées, pas un nombre d'exigences uniques. Reste à intégrer les règles techniques détaillées V8.3 hors registre, retraite active, paragraphes non numérotés et à qualifier les doublons et preuves. Aucun code, ADR ou Guardian modifié. Exhaustivité non acquise.
+
+
+---
+## V7.77 — Décomposition transactionnelle et retraite, audit des contrats historiques (24 novembre 2026)
+
+Les composants et scénarios ci-dessous sont des affectations candidates, pas des modules existants ni des tests exécutés. V8.3-Tn désigne le paragraphe numéroté des règles techniques consolidées 30–40. Les limites V8.3-T9 demeurent explicites : aucune garantie absolue de données non synchronisées, panne matérielle ou corruption totale ; validation Windows indispensable.
+
+| ID | Source | Exigence | Composant candidat | Scénario candidat |
+|---|---|---|---|---|
+| CT-0395 | V8.3-T1 | Transaction atomique de toutes conséquences interdépendantes | Transaction | Interruption après premier impact multi-cible : aucun état partiel |
+| CT-0396 | V8.3-T1 | Succession séparée uniquement avec succession_pending durable | Succession | Reprise répétée : un seul successeur |
+| CT-0397 | V8.3-T2 | Journal contient identité campagne | Journal | Omettre ou altérer identité campagne : refuser confirmation |
+| CT-0398 | V8.3-T2 | Journal contient ordre | Journal | Omettre ou altérer ordre : refuser confirmation |
+| CT-0399 | V8.3-T2 | Journal contient révision initiale | Journal | Omettre ou altérer révision initiale : refuser confirmation |
+| CT-0400 | V8.3-T2 | Journal contient préconditions | Journal | Omettre ou altérer préconditions : refuser confirmation |
+| CT-0401 | V8.3-T2 | Journal contient diffs complets | Journal | Omettre ou altérer diffs complets : refuser confirmation |
+| CT-0402 | V8.3-T2 | Journal contient événements permanents | Journal | Omettre ou altérer événements permanents : refuser confirmation |
+| CT-0403 | V8.3-T2 | Journal contient état aléatoire | Journal | Omettre ou altérer état aléatoire : refuser confirmation |
+| CT-0404 | V8.3-T2 | Journal contient identifiants crédits | Journal | Omettre ou altérer identifiants crédits : refuser confirmation |
+| CT-0405 | V8.3-T2 | Journal contient preuve intégrité | Journal | Omettre ou altérer preuve intégrité : refuser confirmation |
+| CT-0406 | V8.3-T2 | Refuser marqueur de mort isolé incompatible | Journal | Injecter mort sans conséquences associées |
+| CT-0407 | V8.3-T3 | Respecter frontière préparation | Persistance | Interruption à frontière préparation : reprise cohérente |
+| CT-0408 | V8.3-T3 | Respecter frontière écriture | Persistance | Interruption à frontière écriture : reprise cohérente |
+| CT-0409 | V8.3-T3 | Respecter frontière synchronisation durable données | Persistance | Interruption à frontière synchronisation durable données : reprise cohérente |
+| CT-0410 | V8.3-T3 | Respecter frontière confirmation durable | Persistance | Interruption à frontière confirmation durable : reprise cohérente |
+| CT-0411 | V8.3-T3 | Respecter frontière publication instantané | Persistance | Interruption à frontière publication instantané : reprise cohérente |
+| CT-0412 | V8.3-T3 | Respecter frontière publication manifeste | Persistance | Interruption à frontière publication manifeste : reprise cohérente |
+| CT-0413 | V8.3-T4 | Reconstruction : instantané vérifiable | Reprise | Cas nominal et violation de instantané vérifiable |
+| CT-0414 | V8.3-T4 | Reconstruction : ordre confirmé | Reprise | Cas nominal et violation de ordre confirmé |
+| CT-0415 | V8.3-T4 | Reconstruction : absence de resimulation | Reprise | Cas nominal et violation de absence de resimulation |
+| CT-0416 | V8.3-T4 | Reconstruction : préconditions | Reprise | Cas nominal et violation de préconditions |
+| CT-0417 | V8.3-T4 | Reconstruction : unicité transaction | Reprise | Cas nominal et violation de unicité transaction |
+| CT-0418 | V8.3-T4 | Reconstruction : continuité révisions | Reprise | Cas nominal et violation de continuité révisions |
+| CT-0419 | V8.3-T4 | Reconstruction : refus divergence | Reprise | Cas nominal et violation de refus divergence |
+| CT-0420 | V8.3-T5 | Invariant : identité héros unique | Invariants | Injecter violation de identité héros unique : rejet |
+| CT-0421 | V8.3-T5 | Invariant : absence résurrection | Invariants | Injecter violation de absence résurrection : rejet |
+| CT-0422 | V8.3-T5 | Invariant : succession unique | Invariants | Injecter violation de succession unique : rejet |
+| CT-0423 | V8.3-T5 | Invariant : absence crédit posthume | Invariants | Injecter violation de absence crédit posthume : rejet |
+| CT-0424 | V8.3-T5 | Invariant : absence double attribution | Invariants | Injecter violation de absence double attribution : rejet |
+| CT-0425 | V8.3-T5 | Invariant : causalité et durée effets | Invariants | Injecter violation de causalité et durée effets : rejet |
+| CT-0426 | V8.3-T5 | Invariant : absence duplication ressources et équipement | Invariants | Injecter violation de absence duplication ressources et équipement : rejet |
+| CT-0427 | V8.3-T5 | Invariant : acquis collectifs et quêtes persistants | Invariants | Injecter violation de acquis collectifs et quêtes persistants : rejet |
+| CT-0428 | V8.3-T5 | Invariant : ordre strict | Invariants | Injecter violation de ordre strict : rejet |
+| CT-0429 | V8.3-T6 | Canonicalisation : ordre clés et collections | Canonicalisation | Comparer états équivalents et altérés pour ordre clés et collections |
+| CT-0430 | V8.3-T6 | Canonicalisation : encodage | Canonicalisation | Comparer états équivalents et altérés pour encodage |
+| CT-0431 | V8.3-T6 | Canonicalisation : nombres | Canonicalisation | Comparer états équivalents et altérés pour nombres |
+| CT-0432 | V8.3-T6 | Canonicalisation : null et facultatifs | Canonicalisation | Comparer états équivalents et altérés pour null et facultatifs |
+| CT-0433 | V8.3-T6 | Canonicalisation : versions | Canonicalisation | Comparer états équivalents et altérés pour versions |
+| CT-0434 | V8.3-T6 | Canonicalisation : exclusion transitoires | Canonicalisation | Comparer états équivalents et altérés pour exclusion transitoires |
+| CT-0435 | V8.3-T6 | Canonicalisation : comparaison SHA-256 et invariants | Canonicalisation | Comparer états équivalents et altérés pour comparaison SHA-256 et invariants |
+| CT-0436 | V8.3-T7 | versions distinctes schéma données règles | Migration | Migration nominale et interruption : versions distinctes schéma données règles |
+| CT-0437 | V8.3-T7 | chaîne migrations testée | Migration | Migration nominale et interruption : chaîne migrations testée |
+| CT-0438 | V8.3-T7 | conversion sur copie | Migration | Migration nominale et interruption : conversion sur copie |
+| CT-0439 | V8.3-T7 | préservation original | Migration | Migration nominale et interruption : préservation original |
+| CT-0440 | V8.3-T7 | validation avant publication | Migration | Migration nominale et interruption : validation avant publication |
+| CT-0441 | V8.3-T7 | version future non écrasée | Migration | Migration nominale et interruption : version future non écrasée |
+| CT-0442 | V8.3-T8 | inspecter manifestes instantanés journaux | Récupération | Corpus corrompu : inspecter manifestes instantanés journaux |
+| CT-0443 | V8.3-T8 | proposer seulement révisions vérifiables | Récupération | Corpus corrompu : proposer seulement révisions vérifiables |
+| CT-0444 | V8.3-T8 | préserver originaux | Récupération | Corpus corrompu : préserver originaux |
+| CT-0445 | V8.3-T8 | ne pas inventer mort succession inventaire | Récupération | Corpus corrompu : ne pas inventer mort succession inventaire |
+| CT-0446 | V8.3-T8 | bloquer avec diagnostic si aucune reprise cohérente | Récupération | Corpus corrompu : bloquer avec diagnostic si aucune reprise cohérente |
+| CT-0447 | C.2 | Retraite possible avec survivant et conséquences claires | Retraite | Un survivant peut demander retraite |
+| CT-0448 | C.2 | Libération allié immobilisé par moyen compatible | Retraite | Libération valide puis extraction |
+| CT-0449 | C.2 | Abandon allié immobilisé possible | Retraite | Extraire survivants sans téléporter abandonné |
+| CT-0450 | C.2 | Sort abandonné non automatiquement décidé | Retraite | Abandon vivant ne force pas décès |
+| CT-0451 | C.2 | Biens emportés conservés | Inventaire | Comparer biens avant/après extraction |
+| CT-0452 | C.2 | Biens abandonnés restent avec détenteur | Inventaire | Aucun transfert magique au refuge |
+| CT-0453 | C.4 | Coût précis et sort abandonné ouverts | Arbitrage | Ne pas figer valeurs ni issue sans décision |
+
+### Boss et contrats historiques
+main/data/veilleurs/v07/bosses_5_definitions.json contient Gardien du Seuil, Chœur Fendu, Mère des Mues, Juge Sans Visage, Archiviste Aveugle, tous recruitable=false. Ange absent de ce catalogue historique ; aucune preuve que ce catalogue représente les cinq boss actuels. data/world/ngplus_boss_recruits.json contient un autre ensemble de boss/mini-boss et seuils PV/Essence historiques ; ne pas importer ces seuils ni conclure sur l'Ange. Identité actuelle des cinq boss et voie de recrutement restent à confirmer. Guardian inchangé.
+
+source_contract.json conserve empreintes et 15 paliers historiques ; resolver_contract.json v6 distingue actions, postures, réactions, passifs et transformations, interdit fallback générique silencieux et boutons manuels de passifs. Conserver sources ; adapter modèle cible V6.7/V6.8/V7.0/V8.2 ; ne pas imposer 3×15, ni supposer les anciens entrypoints actifs. Migration individuelle des compétences et ADR-0005 à qualifier. Aucun changement de données.
+
+59 entrées complémentaires, 453 cumulées. Recouvrements avec arbitrages 30–40 intentionnels comme sous-exigences ; ne pas les compter comme règles uniques. Reste qualification ligne à ligne des 394 précédentes, vérification des alias et couverture de tous les paragraphes, association aux tests et preuve des interfaces réelles PR639. T1 non clos, T2 non ouvert. Aucun test exécuté.
