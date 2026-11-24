@@ -1,34 +1,192 @@
-# LITD 1 — DOCUMENT MAÎTRE DE CONCEPTION
-**Version courante : 7.9 — fusion documentaire sur socle fourni 7.7 (incluant V7.8) ; complément artistique du fichier 3.3**  
-**Date : 17 novembre 2026**  
-**Périmètre de cette intervention : les deux fichiers fournis `7.7.md` et `3.3.md` ; aucun dépôt ni jeu audité. La provenance historique des huit documents antérieurs reste consignée en J.**
+# LITD 1 — Document maître V8.3 — clôture des 40 arbitrages
 
-## Repères de la fusion documentaire V7.9
+**Date : 23 novembre 2026.** **Statut : conception validée, non implémentée et non testée.** La V8.2 et son socle historique V8.1 sont conservés intégralement après cette section. Les règles récentes prévalent seulement sur les contradictions expressément tranchées. **Clôture : série des arbitrages n° 1 à 40 close en conception ; chantier d'implémentation non clos.**
 
-**Socle :** fichier fourni `7.7.md`, conservé pour sa structure, ses règles, ses décisions et son historique. **Complément :** fichier fourni `3.3.md`, dont la section artistique est intégrée en partie L. Les originaux restent inchangés.
+## Registre des décisions complémentaires
 
-La comparaison des deux fichiers établit que leur contenu est identique depuis le périmètre jusqu’à la fin de V4.5, hors métadonnées de version et de date. Ce tronc commun ne figure qu’une fois. Après V4.5, le socle contient les évolutions de gameplay jusqu’à V7.8 ; le complément contient la direction artistique. Ces deux ensembles sont conservés.
+| N° | Décision | Statut |
+|---|---|---|
+| 37 | Vérification des invariants métier et empreinte SHA-256 canonique de l'état persistant reconstruit. | 🟢 Validé en conception |
+| 38 | Migrations versionnées et sécurisées ; original préservé ; conversion sur copie ; validation avant publication. | 🟢 Validé en conception |
+| 39 | Mode de récupération sécurisé et guidé ; aucune reconstruction inventée ni modification des originaux ; restauration uniquement d'états démontrablement cohérents. | 🟢 Validé en conception |
+| 40 | Validation progressive : tests automatisés, interruptions simulées, migrations et essais réels sur Windows avant validation technique. | 🟢 Validé en conception |
 
-| Point contrôlé | Traitement dans la fusion |
+## Règles techniques consolidées des arbitrages 30 à 40
+
+1. **Unité atomique :** une action entièrement résolue avec toutes ses conséquences interdépendantes (dégâts multi-cibles, morts, captures, effets, ressources et crédits). Une succession peut constituer une transaction séparée si un état durable `succession_pending` garantit son achèvement exactement une fois.
+2. **Journal durable :** une transaction irréversible confirmée doit inclure son identité de campagne, son ordre, sa révision de départ, ses préconditions, les modifications d'état nécessaires à une reprise complète, les événements permanents, l'état aléatoire nécessaire, les identifiants de crédits et une preuve d'intégrité. Ne jamais appliquer un marqueur de mort isolé à un état incompatible.
+3. **Validation :** préparer, écrire, synchroniser durablement les données et la preuve de confirmation, puis publier l'instantané et le manifeste. La méthode exacte de synchronisation des fichiers et répertoires doit être adaptée à Windows et au système de fichiers. Une écriture non durable ne peut être garantie après coupure.
+4. **Reconstruction :** partir du dernier instantané vérifiable, rejouer dans l'ordre uniquement les modifications d'état confirmées, sans resimuler les actions ; vérifier préconditions, unicité des transactions et continuité des révisions ; refuser les divergences.
+5. **Invariants :** aucun héros unique dupliqué, aucune résurrection interdite, succession unique, pas de crédit personnel posthume, pas de double attribution, causalité et durée des effets conservées, ressources et équipement non dupliqués, acquis collectifs et quêtes persistants, ordre des transactions strict.
+6. **Empreinte canonique :** représentation stable et documentée de l'état persistant (ordre des clés et collections, encodage, nombres, null, champs facultatifs, versions) ; exclure les données purement transitoires. Comparer SHA-256 attendu et calculé **en plus** des invariants. Une empreinte ne protège pas contre la modification volontaire du fichier et de son empreinte.
+7. **Migrations :** versions distinctes du schéma de sauvegarde, des données de jeu et des règles ; chaîne explicite de migrations testées ; conversion non destructive sur copie ; conservation de l'original ; contrôle des invariants et empreintes avant publication ; version future inconnue non écrasée.
+8. **Récupération guidée :** inspecter manifestes, instantanés et journaux ; ne proposer que des révisions entièrement vérifiables ; conserver les originaux ; ne jamais reconstruire artificiellement une mort, une succession ou un inventaire manquant ; si aucune reprise cohérente n'existe, bloquer la reprise de cette campagne avec diagnostic clair.
+9. **Limites :** pas de garantie absolue contre la perte de données non synchronisées, panne matérielle, corruption de tous les supports ou copie manuelle d'anciennes sauvegardes hors ligne. Les garanties ne sont pas prouvées avant tests réels.
+
+## Plan du chantier d'implémentation (proposé, non exécuté)
+
+| Phase | Travaux | Preuve exigée |
+|---|---|---|
+| P0 — Audit | Examiner `Henolos/litd`, branche `main`, PR ouvertes, architecture de sauvegarde, scènes/scripts et environnement Windows ; ne pas créer de système parallèle | Inventaire des fichiers et écarts sourcé par commits |
+| P1 — Contrat | Définir schémas de transaction, invariants, canonicalisation, versionnement et scénarios de référence | Spécifications revues + jeux de données de test |
+| P2 — Prototype | Implémenter journal, instantanés, confirmation durable, restauration idempotente et secours sur branche isolée | Tests unitaires et d'intégration reproductibles |
+| P3 — Résilience | Injecter des interruptions à chaque frontière ; corruptions, doublons, pertes de manifeste, attaques multi-cibles et succession | Matrice de tests automatisés, résultats et logs |
+| P4 — Migration | Tester sauvegardes anciennes, futures et migrations interrompues ; garantir la conservation des originaux | Corpus de sauvegardes et rapports comparatifs |
+| P5 — Windows | Produire un build identifiable ; vérifier fermeture forcée, reprise, sauvegardes sur disque réel et interface de récupération | Captures/logs, build et observations d'essai réels |
+| P6 — Validation | Réconcilier les anomalies, contrôler les non-régressions, documenter limites et décider l'intégration | Rapport de validation, PR revue, décision explicite |
+
+**Critères de passage :** zéro duplication/résurrection non autorisée ; aucune transaction partielle reconnue ; reprise identique à l'état persistant attendu ; corruption détectée sans modification des originaux ; migrations réversibles par préservation des sources ; essais Windows documentés. Aucun taux de réussite ni pourcentage de progression ne peut être annoncé sans résultats mesurés.
+
+**État réel au 23/11/2026 :** décisions n° 1 à 40 closes en conception ; intégration documentaire réalisée dans cette V8.3 ; aucune implémentation ni campagne de tests attestée dans cette opération. **Avancement du chantier d'implémentation : À évaluer. Avancement du projet global : À évaluer.**
+
+---
+
+# Archive intégrale : V8.2 et socle V8.1
+
+# LITD 1 — Document maître de conception V8.2 — consolidation des arbitrages 11 à 36
+
+**Date : 23 novembre 2026**  
+**Statut : décisions validées en conception ; intégration documentaire uniquement. Aucune implémentation ni validation en jeu attestée.**  
+**Socle : V8.1 conservée intégralement ci-dessous.** Cette section nouvelle prévaut sur les passages historiques incompatibles pour les points expressément arbitrés. Les paramètres présentés comme indicatifs restent à équilibrer.
+
+## Registre complémentaire des arbitrages validés
+
+| N° | Décision validée en conception |
 |---|---|
-| Priorité documentaire | Le fichier `7.7.md` fait foi pour les décisions déjà présentes ; le complément artistique conserve ses statuts de validation. |
-| Version annoncée du socle | L’en-tête indique 7.7 mais le contenu inclut V7.8. Aucune de ces décisions n’est supprimée ; la fusion reçoit le repère V7.9. |
-| Deux sections nommées V4.6 | V4.6 du socle reste consacré aux guet-apens ; la section artistique du complément devient la partie L, avec provenance explicite. |
-| Direction artistique et références générales | L’identité sino-gothico-dark fantasy de L précise les intentions Berserk / No Rest for the Wicked déjà présentes ; les mythologies mondiales du bestiaire restent compatibles avec cette identité. |
-| Anciens arbitrages et suivis | Les listes H à K et les suivis des versions successives sont des états historiques. Les décisions explicites ultérieures du socle prévalent sur les propositions ou questions qu’elles ont résolues. |
-| Portée des preuves | Les tests ou prototypes mentionnés dans les sources restent des déclarations historiques ; ils n’ont pas été rejoués lors de cette fusion. Aucune validation technique ou artistique nouvelle n’est déduite de l’assemblage. |
+| 11 | Successeur : points de compétence correspondant au niveau hérité ; emplacements passifs personnels à regagner par maîtrise et défi. |
+| 12 | Successeur : attributs de base de sa classe et points liés au niveau hérité à répartir dans les contraintes de classe. |
+| 13 | Successeur : traits personnels initiaux compatibles, développement personnel sans héritage des traits du défunt. |
+| 14 | Deux emplacements passifs de progression personnelle obtenus par accomplissements de classe/rôle, non par niveau numérique seul. |
+| 15 | Deux jalons de maîtrise, fondamental et avancé ; contribution réelle en expédition obligatoire, entraînement de refuge complémentaire. |
+| 16 | Objectifs de maîtrise mesurables et spécifiques à la classe/spécialisation, comptage automatique des contributions réelles. |
+| 17 | Fondamental : 3 situations distinctes sur ≥2 expéditions et ≥2 catégories ; avancé : 6 situations supplémentaires sur ≥3 expéditions et ≥3 catégories, avec danger significatif ; pas de réutilisation. |
+| 18 | Bonus d’entraînement évolutifs avec bâtiments, plafonnés ; ne remplacent pas diversité des expéditions et catégories. |
+| 19 | Crédits et déblocages reconnus immédiatement en jeu, conservés après retraite/échec si le héros survit ; mort efface sa progression personnelle jouable. |
+| 20 | Capture non létale réussie = victoire pour défi personnel si contribution active et héros vivant à résolution ; pas de coup final requis. |
+| 21 | Progression par situations tactiques résolues, non par nombre brut d’actions. |
+| 22 | Crédit individuel si contribution significative et vérifiable ; plusieurs héros peuvent être crédités pour une même situation. |
+| 23 | Seuils hybrides selon rôle : 15 % des PV max de la cible indicatif pour soin/protection/dégâts OU conséquence tactique significative démontrable ; contrôle/capture par résultat effectif. |
+| 24 | Pas de plafond arbitraire par combat ; seules menaces réellement distinctes comptent ; anti-farming. |
+| 25 | Nouvelle menace reconnue par signature ou changement significatif du contexte tactique ; identifiant seul insuffisant. |
+| 26 | Seuils de changement contextuel indicatifs (30 % PV alliés, 25 % dégâts potentiels entrants, 50 % ressource pertinente perdue) OU événement déterminant objectivable. |
+| 27 | Traçabilité causale directe/indirecte/différée ; au plus un crédit par héros et situation ; sans plafond par combat. |
+| 28 | Effets suivis durant leur activité et conséquences directement attribuables, sans limite arbitraire de tours ; corrélation seule insuffisante. |
+| 29 | Aucun nouveau crédit personnel après mort définitive ; effets persistants possibles selon règles ; faits antérieurs archivables, non hérités. |
+| 30 | Sauvegardes automatiques sécurisées en expédition ; attribution idempotente des crédits et états cohérents. |
+| 31 | Reprise du combat au dernier état sécurisé à frontière cohérente ; événements déjà validés préservés. |
+| 32 | Sauvegarde active + secours technique protégé ; registre cohérent des conséquences permanentes. |
+| 33 | Registre transactionnel associé aux instantanés par révisions et validations cohérentes. |
+| 34 | Journal durable prioritaire des morts définitives et transitions de succession, récupération transactionnelle cohérente. |
+| 35 | Journal des conséquences permanentes et des données de résolution nécessaires à une reprise cohérente et déterministe. |
+| 36 | Reconstruction par réapplication ordonnée des modifications d’état validées, sans resimulation des actions déjà résolues. |
 
-**Navigation :** A–B : lecture et vision ; C–D : règles de campagne et interface ; E : registre historique ; F–G : méthodes ; H–K : registres et suivi d’origine ; L : direction artistique ; puis mises à jour de conception du socle, jusqu’à V7.8.
+## Spécification consolidée : maîtrise, succession et sauvegarde
 
-**Bilan de cette intervention**
+### Succession et maîtrise individuelle
+- Après l'anéantissement des quatre combattants, la succession narrative et la persistance du monde suivent les arbitrages 4 à 10 de V8.1.
+- Le successeur reçoit le niveau numérique et les points de compétence correspondants, avec attributs et traits personnels propres à sa classe. Les emplacements passifs personnels doivent être regagnés ; les acquis collectifs restent acquis.
+- La maîtrise se fonde sur des situations tactiques **résolues**, des contributions causales significatives, la diversité des expéditions et des objectifs, et des jalons distincts. Les seuils de 15 %, 30 %, 25 % et 50 % restent des **repères indicatifs**, pas des paramètres équilibrés par playtest.
+- Une situation peut créditer plusieurs héros distincts, mais jamais plusieurs fois le même héros pour la même situation et le même jalon. Les contributions différées sont suivies sans limite arbitraire de tours, sous réserve d'une causalité démontrable.
+- Une mort définitive interdit les nouveaux crédits personnels ; un effet déjà créé peut se poursuivre si les règles le permettent. Les accomplissements passés peuvent rester archivés sans être transmis au successeur.
 
-- **Chantier :** fusion documentaire des fichiers fournis 7.7 et 3.3.
-- **Statut :** 🟢 TERMINÉ / VALIDÉ — fusion documentaire uniquement.
-- **Avancement du chantier actuel : 100 %** — comparaison des sources, intégration du complément, traitement des collisions et contrôle de conservation terminés (4 étapes sur 4).
-- **Avancement du projet global : À évaluer** — aucune base de calcul vérifiable dans ces deux fichiers.
-- **Réalisé et vérifié :** tronc commun unique ; conservation du socle et des compléments artistiques ; repérage des incohérences de version ; conservation des statuts de décision et des questions ouvertes.
-- **Restant pour cette fusion :** aucun ; les arbitrages de conception et validations en jeu demeurent ouverts selon les sections concernées.
-- **Prochaine étape prioritaire du projet :** reprendre les questions encore ouvertes de V7.8 sur la contribution utile au défi individuel, sans confondre cette suite de conception avec la fusion terminée.
+### Architecture de sauvegarde validée
+- Une sauvegarde active, un secours technique protégé et un registre transactionnel des conséquences permanentes sont associés par identifiants de campagne, transactions et révisions.
+- Les conséquences irréversibles (morts définitives, transitions de succession) nécessitent une journalisation durable prioritaire, avant de permettre la poursuite des actions qui en dépendent.
+- Les transactions enregistrent les modifications d'état et les données de résolution indispensables pour reconstruire un état cohérent, y compris lorsque les conséquences sont différées ou aléatoires.
+- La reconstruction réapplique **dans l'ordre** les modifications d'état confirmées ; elle ne recalcule pas les attaques ni les tirages déjà résolus. La réapplication doit être idempotente.
+- La confirmation d'une transaction doit désigner un ensemble cohérent ; une écriture incomplète ne peut pas être présentée comme validée. Une coupure antérieure à toute écriture durable peut faire perdre l'événement encore uniquement en mémoire vive.
+- Une sauvegarde de secours n'autorise pas un retour arrière libre annulant des conséquences irréversibles confirmées. Si une reconstruction cohérente ne peut pas être prouvée, le jeu doit refuser la restauration plutôt qu'inventer des données.
+
+### Invariants de reconstruction proposés, non encore arbitrés séparément
+1. Identité unique des héros et absence de résurrection d'un héros définitivement mort.
+2. Successeur unique par transition de succession confirmée.
+3. Crédits de maîtrise attribués une seule fois par héros, situation et jalon ; pas de crédits posthumes.
+4. Conservation de la causalité, des auteurs et des durées des effets différés.
+5. Cohérence des inventaires, ressources, formations, captures, blessures et équipements.
+6. Persistance des connaissances collectives, quêtes générales, bâtiments et conséquences narratives.
+7. Application des seules transactions confirmées, dans l'ordre, une seule fois.
+
+### Points encore ouverts, à ne pas considérer comme validés
+- Arbitrage 37 : validation par invariants et empreinte canonique de l'état persistant (option B recommandée, non validée à ce stade).
+- Arbitrages 38 à 40 : sérialisation/versionnement, migrations/récupération, et critères de recette/gel du périmètre (ordre de travail proposé, non validé).
+- Granularité précise des checkpoints ordinaires, détails des transactions, garanties de synchronisation propres aux plateformes et comportement UX en cas de corruption.
+- Les autres questions de gameplay et de production signalées dans V8.1 restent ouvertes lorsqu'elles ne sont pas explicitement résolues par les arbitrages 11 à 36.
+
+### Statut d'exécution
+- **Réalisé :** consolidation documentaire des arbitrages 11 à 36 sur socle V8.1.
+- **Non réalisé :** audit du code de sauvegarde dans GitHub, implémentation, exécution des tests, vérification des performances, validation sur build jouable.
+- **Avancement du chantier actuel : À évaluer. Avancement du projet global : À évaluer.**
+
+---
+
+# Socle V8.1 conservé intégralement (archive et références antérieures)
+
+# LITD 1 — Document maître V8.1 : arbitrages de succession et persistance
+
+**Statut : validé en conception, non implémenté ni testé.** Cette section est prioritaire sur les passages historiques contradictoires de la V8.0, conservée intégralement en annexe. Aucun point non tranché ne doit être considéré comme validé.
+
+## Registre des décisions
+
+| N° | Décision | Statut |
+|---|---|---|
+| 1 | Exploration par grande carte à nœuds ramifiés, retours et chemins cachés ; remplace la 3D isométrique. Combats 2D conservés. | Validé |
+| 2 | Bestiaire persistant et maîtrise individuelle des compagnons ; précisé par le n° 5. | Validé |
+| 3 | Même protagoniste survivant après Game Over. | **Remplacé par n° 4** |
+| 4 | Après anéantissement des quatre combattants, nouveau protagoniste et nouvelle compagnie. Monde, narration, quêtes principales et secondaires générales conservent leur progression. Épreuves de Guilde avant reprise des missions. | Validé |
+| 5 | Bestiaire transmis par les archives consultables de la Guilde ; maîtrise individuelle du successeur à reconstruire. | Validé |
+| 6 | Réservistes survivants, progression intacte et disponibilité immédiate selon leur état normal. | Validé |
+| 7 | Nouveau protagoniste au niveau numérique du précédent ; classe, identité, maîtrise et choix personnels nouveaux. Points de compétence à répartir. | Validé |
+| 8 | Réputation et acquis relationnels permanents conservés ; liens personnels du successeur à construire ; souvenirs et relations des survivants préservés. | Validé |
+| 9 | Quêtes personnelles d'un héros unique mort définitivement interrompues ou inaccessibles ; quêtes déjà terminées et acquis conservés. | Validé |
+| 10 | Quêtes principales et quêtes personnelles/secondaires propres aux héros uniques sans dépendances de progression réciproques. | Validé |
+
+## Règles actives après Game Over
+
+1. **Mort définitive.** L'anéantissement des quatre combattants actifs entraîne la mort du protagoniste et des trois compagnons engagés, même si des réservistes survivent. Aucun héros unique mort ne revient ni ne peut être recruté de nouveau.
+2. **Succession narrative.** Un nouveau protagoniste prend la relève, sans remise à zéro du monde, des choix, des conséquences, ni de l'état des quêtes principales et secondaires générales. Les épreuves spécifiques de la Guilde constituent une condition temporaire d'autorisation de reprise, **pas** une réinitialisation des quêtes. Le maître de la Guilde peut relever une ressemblance avec un héros disparu ; sa signification n'est pas fixée.
+3. **Niveau du successeur.** Le niveau numérique du précédent protagoniste est transmis, pas sa classe, son identité, sa maîtrise pratique ni ses choix de spécialisation. Les points de compétence du nouveau personnage sont à répartir selon sa classe. Le calcul exact des points, des attributs, des traits et des emplacements passifs reste à arbitrer.
+4. **Réservistes.** Les héros demeurés à la Guilde survivent et restent immédiatement disponibles, sous réserve des restrictions ordinaires liées à leur état. Ils conservent leurs niveaux, compétences, traits, équipements, blessures, souvenirs, affinités et maîtrise individuelle. Les héros morts ne sont pas replacés en réserve.
+5. **Bestiaire.** Toutes les découvertes acquises restent accessibles dans les archives de la Guilde. Le successeur développe sa maîtrise propre ; les survivants gardent la leur.
+6. **Hub et biens.** Bâtiments et améliorations du hub, coffre et biens/or qui y ont été déposés persistent, conformément aux règles V8.0. L'équipement porté par les combattants anéantis n'est pas transféré magiquement au coffre ; la récupération éventuelle dans le monde obéira aux règles des corps et du butin encore à préciser.
+7. **Réputation et relations.** Réputation de la compagnie et conséquences collectives conservées. Les PNJ et compagnons se souviennent de leurs liens avec le héros mort, mais le nouveau protagoniste ne reçoit pas automatiquement ses affinités personnelles. Les survivants gardent leurs relations. Les déblocages permanents issus des relations (lieux, services, accès, récompenses déjà obtenues) restent acquis, sans faire revenir un personnage mort.
+8. **Héros uniques.** Un héros unique vivant, déjà recruté et présent à la Guilde reste recruté et disponible. Un héros unique mort ne peut être recruté une seconde fois. Les héros uniques ne sont jamais dupliqués par le renouvellement du tableau de recrutement.
+
+## Indépendance des quêtes et exception des héros uniques
+
+- **Quêtes principales :** elles ne dépendent jamais de l'accomplissement d'une quête personnelle d'un héros unique. Aucun objet, personnage, accès ou événement exclusivement fourni par une telle quête ne peut bloquer la progression principale.
+- **Quêtes personnelles/secondaires propres aux héros uniques :** elles ne dépendent pas réciproquement de la progression de la quête principale. Elles peuvent refléter le contexte du monde sans dépendance bloquante.
+- **Si le héros unique meurt :** ses quêtes personnelles non commencées deviennent définitivement inaccessibles, celles en cours sont définitivement interrompues, celles achevées restent achevées. Les conséquences et déblocages permanents déjà obtenus restent acquis ; les récompenses jamais obtenues ne sont pas attribuées rétroactivement.
+- **Quêtes secondaires générales :** leur état persiste après succession. Le sort de ces quêtes si un PNJ non héroïque indispensable meurt demeure une question ouverte.
+
+## Contradictions historiques explicitement résolues
+
+- La survie du même protagoniste après Game Over est **obsolète** : le nouveau protagoniste succède au défunt.
+- Le bestiaire exclusivement personnel sans transmission est **obsolète** : archives persistantes de la Guilde, maîtrise individuelle non héritée.
+- Toute remise à zéro des quêtes principales ou secondaires générales après Game Over est **obsolète**.
+- La poursuite des quêtes personnelles d'un héros unique mort est **interdite**.
+- Les dépendances de progression entre quêtes principales et quêtes personnelles des héros uniques sont **interdites**.
+- L'exploration 3D isométrique comme système actif est **remplacée** par la carte à nœuds.
+
+## Points ouverts et contrôles nécessaires
+
+- Calcul exact des points de compétence, attributs, traits et passifs du successeur au niveau hérité.
+- Contenu et conditions des épreuves de succession ; distinction entre accès temporairement verrouillé et progression des quêtes conservée.
+- Règles de récupération des équipements et corps, notamment après Game Over.
+- Réactions relationnelles détaillées, exceptions liées à la présence physique d'un héros mort, et destin des héros uniques jamais recrutés.
+- Vérification des scénarios : aucune dépendance bloquante entre trame principale et quêtes personnelles des héros uniques.
+- Équilibrage en prototype : successeur de niveau hérité, vétérans conservés, difficulté des épreuves.
+- Le NG+ après victoire reste distinct de la succession après défaite.
+
+**État d'exécution :** consolidation documentaire uniquement. Aucune implémentation, aucun test en jeu, aucune modification GitHub réalisés par cette mise à jour.
+
+---
+
+# Annexe historique : V8.0 intégrale, conservée pour traçabilité
+
+# LITD 1 — DOCUMENT MAÎTRE DE CONCEPTION
+**Version courante : 8.0 — document maître évolutif (conception) ; sections historiques conservées**  
+**Date : 17 novembre 2026**  
+**Périmètre : huit documents sources identifiés dans la conversation ; aucun dépôt ni jeu audité.**
 
 ## A. Règles de lecture et statut
 
@@ -378,8 +536,7 @@ LITD 1 - Parcours de création et règles de
 
 
 LITD 1 | Référence de méthode | v1.0                                                                                              1
-
- 2. Règles LITD 1 complémentaires
+ 2. Règles LITD 1 complémentaires
  Ces règles s’ajoutent à la méthode permanente. Les huit premières reprennent le socle proposé pour la reconstruction ; les
  règles 9 à 18 précisent le parcours de création étudié. Chaque contrôle doit être lié à une version identifiable.
 
@@ -443,8 +600,7 @@ LITD 1 | Référence de méthode | v1.0                                         
 
 
 LITD 1 | Référence de méthode | v1.0                                                                                             2
-
- 15. Accessibilité précoce
+ 15. Accessibilité précoce
  Dès les premières interfaces, contrôler taille et espacement des commandes, lisibilité du texte, contraste et informations
  essentielles transmises par plus que la seule couleur ou le seul son. Essayer le tactile sur appareil si retenu.
 
@@ -660,7 +816,7 @@ Ne présente jamais une intention comme une réalisation, un résultat partiel c
 7. Équilibrer ultérieurement capacités du sac, forge, coûts, probabilités et progression persistante.
 8. Vérifier les contraintes juridiques et artistiques avant exploitation commerciale.
 
-## J. Traçabilité de la fusion et contrôles — état historique du socle
+## J. Traçabilité de la fusion et contrôles
 
 **Sources inspectées (8)** : méthode permanente (11/11), parcours LITD 1 (12/11), registres V0.5–V0.9, V0.5–V1.6, V0.5–V1.9, registre consolidé V2.0, fiche de vision V2.1, référence de conception du 16/11.
 
@@ -668,7 +824,7 @@ Ne présente jamais une intention comme une réalisation, un résultat partiel c
 
 **Limite :** cette fusion est une réconciliation documentaire par priorité explicite, pas une vérification mot à mot de chaque échange oral ni de tous les documents éventuellement conservés ailleurs. Aucun test en jeu n’a été réalisé.
 
-## K. Suivi — état historique du socle
+## K. Suivi
 
 - **Chantier :** réconciliation du document maître de conception LITD 1.
 - **Statut :** 🟡 À CONSOLIDER, car les arbitrages ouverts restent à décider.
@@ -679,75 +835,6 @@ Ne présente jamais une intention comme une réalisation, un résultat partiel c
 - **Avancement du projet global : À évaluer**
 - **Prochaine priorité :** arbitrer le sort d’un héros abandonné vivant, puis le coût de la retraite.
 
-
----
-
-## L. Direction artistique — identité et inspirations
-
-**Provenance :** section intitulée « V4.6 — Direction artistique » dans le fichier fourni `3.3.md`. Le repère L évite la collision avec V4.6 du socle, qui concerne les guet-apens.
-
-**Statut : décisions validées en conception par l'utilisateur.** Les références servent de points d'étude et de transformation créative, non de modèles à reproduire à l'identique. Cette section complète le document maître sans annuler les décisions de gameplay.
-
-### 1. Identité artistique directrice — VALIDÉE
-
-**Identité : sino-gothico-dark fantasy.**
-
-- La direction artistique générale de LITD 1 est **principalement d'inspiration chinoise**, complétée par d'autres influences asiatiques.
-- Les codes **gothiques** et **dark fantasy** sont intégrés et adaptés à cette base chinoise/asiatique, **et non l'inverse**.
-- Cette règle s'applique à l'architecture, aux biomes, à l'univers visuel, aux personnages, factions, vêtements, armures, armes, accessoires et silhouettes.
-- Il faut développer un langage visuel original et cohérent, sans juxtaposition superficielle ni copie des œuvres de référence.
-- Les formes historiques, les cultures et les mythes mobilisés nécessiteront une recherche documentaire spécifique avant leur traduction en créations originales.
-
-### 2. Créatures et bestiaire : périmètre mythologique — VALIDÉ
-
-**Explorer les mythologies, légendes et folklores du monde entier**, et non uniquement les mythologies chinoises ou asiatiques. L'origine mythologique peut être mondiale ; la réinterprétation visuelle doit rester cohérente avec l'identité artistique globale du jeu. Ne pas confondre origine d'une créature et direction artistique d'ensemble.
-
-### 3. Inspirations artistiques par sous-branche — VALIDÉES
-
-| Sous-branche | Artistes retenus | Usage et limites |
-|---|---|---|
-| Architecture | **M. C. Escher**, **Zdzisław Beksiński**, **Mariusz Lewandowski** | Escher : géométries impossibles et perspectives paradoxales pour **certains donjons seulement** ; Beksiński : structures organiques, ruines et monumentalité oppressante ; Lewandowski : architectures irréelles et sanctuaires monumentaux. |
-| Biomes et environnements | **Zdzisław Beksiński**, **Mariusz Lewandowski**, **Claude Monet**, **Caspar David Friedrich**, **Vincent van Gogh**, **J. M. W. Turner**, **John Constable**, **Camille Corot**, **Paul Cézanne** | Beksiński : désolation et mondes décomposés ; Lewandowski : espaces métaphysiques ; Monet : eau, végétation et lumière ; Friedrich : brumes, ruines et solitude ; Van Gogh : ciels expressifs ; Turner : tempêtes ; Constable : campagnes et nuages réalistes ; Corot : forêts, lacs et brumes ; Cézanne : reliefs, roches et géométrie du terrain. |
-| Univers et atmosphère | **Mariusz Lewandowski** | Mysticisme, mélancolie, immensité et atmosphères métaphysiques. |
-| Créatures et bestiaire | **Mariusz Lewandowski** | Entités colossales et figures énigmatiques ; recherche mythologique mondiale. |
-| Personnages et équipements | **Mariusz Lewandowski** | Silhouettes mystérieuses et symbolisme visuel ; les équipements doivent respecter l'identité sino-gothico-dark fantasy. |
-
-Les sept peintres paysagistes sont **validés pour la sous-branche Biomes et environnements** ; leur présence ne signifie pas que toutes leurs palettes ou techniques seront reproduites. H. R. Giger et les autres artistes seulement évoqués ne deviennent pas automatiquement des références validées.
-
-### 4. Corpus d'étude : jeux vidéo classés par sous-branche
-
-**Statut : corpus de recherche et de comparaison, pas validation globale de chaque direction artistique.** Toute adoption d'un motif précis reste à arbitrer.
-
-| Sous-branche | Jeux à étudier |
-|---|---|
-| Architecture | Elden Ring ; Dark Souls III ; Bloodborne ; Lords of the Fallen (2023) |
-| Biomes et environnements | Elden Ring ; Black Myth: Wukong ; No Rest for the Wicked |
-| Univers et atmosphère | Bloodborne ; Blasphemous ; Dark Souls (série) |
-| Créatures et bestiaire | Bloodborne ; Nioh 3 ; Black Myth: Wukong |
-| Personnages et équipements | Elden Ring ; Blasphemous ; Lords of the Fallen (2023) |
-| Rendu 3D isométrique | No Rest for the Wicked |
-| Dimensions altérées | Lords of the Fallen (2023) ; The Legend of Zelda: Tears of the Kingdom |
-
-**Règle d'interprétation :** No Rest for the Wicked sert notamment à étudier le rendu pictural et la lisibilité de l'exploration isométrique. Elden Ring, Bloodborne et Lords of the Fallen fournissent des références gothiques et dark fantasy **à traduire dans l'identité sino-gothico-dark fantasy**, jamais à plaquer telles quelles.
-
-### 5. Méthode d'application et validations futures
-
-1. Pour chaque nouveau biome, donjon, faction ou personnage, identifier sa fonction, son contexte et ses sources artistiques.
-2. Documenter les références historiques et culturelles, distinguer les faits vérifiés des propositions de design.
-3. Produire des études de silhouettes, de matériaux, de palettes et de formes ; vérifier leur cohérence avec la direction chinoise dominante.
-4. Comparer les propositions et valider explicitement les choix avant de les considérer comme références définitives.
-5. Tester la lisibilité en jeu, notamment en vue isométrique, avant validation technique.
-
-**Non réalisé à la date de cette consolidation :** aucune planche originale, aucun asset 3D, aucune intégration Godot ni aucun test de rendu ne sont validés par cette seule mise à jour documentaire.
-
-### 6. Suivi de chantier
-
-- **Chantier :** LITD 1 — Direction artistique et document maître.
-- **Statut documentaire :** 🟢 TERMINÉ / VALIDÉ — section artistique intégrée et conservation de son contenu contrôlée dans cette fusion.
-- **Statut de mise en œuvre artistique :** 🟡 À CONSOLIDER (concepts et prototypes visuels non vérifiés).
-- **Avancement du chantier actuel :** À évaluer (aucune base de calcul validée).
-- **Avancement du projet global :** À évaluer (aucune base de calcul validée).
-- **Prochaine étape prioritaire :** produire puis évaluer les premières planches de silhouettes, d'armes et d'armures sino-gothico-dark fantasy.
 
 ---
 
@@ -2041,79 +2128,67 @@ Ne pas présenter l’une de ces interprétations comme validée avant clarifica
 - **Non réalisé :** implémentation Godot, tests en jeu et équilibrage.
 - **Chantier : 🟡 À CONSOLIDER.** Avancement du chantier actuel : À évaluer. Avancement du projet global : À évaluer.
 
----
-## V7.10 — Contribution effective au défi individuel (17 novembre 2026)
-
-### Décision validée en conception
-- Une contribution au défi individuel compte **uniquement si l'action du héros produit un effet réel et utile pendant l'affrontement contre l'adversaire désigné**. Une simple tentative, même pertinente, ne suffit pas si elle reste sans effet.
-- Exemples admissibles : infliger effectivement des dégâts ; appliquer une altération qui prend effet ; restaurer des points de vie réellement perdus ; empêcher ou réduire effectivement des dégâts par une protection ; produire un autre effet offensif ou défensif mesurable et pertinent.
-- Exemples non admissibles : attaque manquée ou sans effet ; altération entièrement résistée ; soin ne restaurant aucun point de vie ; protection qui ne prévient aucun dommage ; simple présence dans le groupe.
-- Les règles précédentes demeurent : le coup final n'est pas requis ; le héros doit être vivant lors de la victoire ; la validation intervient immédiatement à la victoire, sans retour au refuge.
-
-### Points encore ouverts
-- **Seuil validé : un seul effet réel et utile suffit** à remplir le critère de contribution active du défi individuel. Aucune quantité minimale supplémentaire de dégâts, de soins ou de protections n'est requise. Les autres conditions du défi, notamment la victoire contre l'adversaire désigné et la survie du héros à cette victoire, restent applicables.
-- Effets indirects et cas limites (dégâts sur la durée, soins préventifs, boucliers absorbants, contrôle ayant un effet sans dégâts, etc.).
-- Victoire par capture, identification de l'adversaire désigné et paramètres d'équilibrage.
-
-### Exécution et suivi
-- **Validé :** règle de conception confirmée oralement par l'utilisateur le 17 novembre 2026.
-- **Non réalisé :** implémentation Godot, tests automatisés, essais en jeu et équilibrage.
-- **Statut :** 🟡 À CONSOLIDER. **Avancement du chantier actuel : À évaluer. Avancement du projet global : À évaluer.**
-
 
 ---
-## V7.11 — Règle de méthode : comparaison des jeux avant les choix multiples (17 novembre 2026)
 
-**Statut : VALIDÉ EN MÉTHODE par décision explicite de l'utilisateur.** Cette règle n'entérine aucune mécanique de gameplay particulière.
+## V7.8 — Grandes lignes du prologue, affinité et recrutement lié à la maîtresse d'armes (23 novembre 2026)
 
-Avant de proposer plusieurs options pour un arbitrage de conception de LITD 1, effectuer une recherche documentée sur les solutions effectivement utilisées dans des jeux comparables (RPG tactiques, dungeon crawlers, roguelikes ou jeux pertinents pour la mécanique étudiée).
+### Décisions validées par l'utilisateur
+- Le prologue débute par une **cinématique d'ouverture**.
+- **Après la cinématique**, le joueur arrive à la Guilde des aventuriers et **crée son héros ou son héroïne au moment de son inscription**.
+- La personnalisation détaillée du protagoniste sera conçue ultérieurement : ne pas présenter comme validés les choix de classes, origines, morphologies, voix ou autres options.
+- Après l'inscription, la compagnie de **quatre aventuriers** (protagoniste et trois compagnons) se forme avant la quête introductive « La cueillette ».
+- Ne révéler **ni la signification du rang S ni l'omelette** avant le retour de cette quête.
+- **Une seule jauge d'affinité par personnage**, qui englobe la confiance. Pas de seconde barre ni de jeu de gestion sociale.
+- L'affinité progresse par les aventures, les décisions et les interactions scénarisées ; pas d'obligation d'entretien quotidien.
+- **Chaque personnage important possède un passé, une personnalité singulière, des motivations, des contradictions et une évolution narrative.** Le joueur doit s'attacher aux personnages pour eux-mêmes, sans que le butin soit la seule motivation.
+- **Principe directeur : « Le personnage est la récompense principale de la relation. Le butin n'est qu'un complément. »**
+- Le joueur pourra **débloquer des héros grâce à sa relation avec la maîtresse d'armes**. Les modalités précises de rencontre, de disponibilité et de recrutement restent à concevoir.
 
-1. **Définir la question** et les contraintes déjà validées de LITD 1 ; ne pas rouvrir arbitrairement les décisions prises.
-2. **Étudier des références pertinentes** et leur fonctionnement réel, en privilégiant les sources primaires (documentation, notes de mise à jour, présentations de développeurs, gameplay observable), complétées lorsque utile par des analyses indépendantes et retours de joueurs.
-3. **Confronter les approches**, y compris leurs échecs et limites, sans présenter comme vérifié un fonctionnement non confirmé.
-4. **Présenter les choix adaptés à LITD 1** avec, pour chacun, exemples sourcés, avantages, inconvénients, risques de frustration, lisibilité tactique, cohérence avec les systèmes existants et coût ou complexité de production.
-5. **Formuler une recommandation argumentée**, distinguer les faits vérifiés des hypothèses et indiquer les points à tester.
-6. **Attendre l'arbitrage explicite de l'utilisateur** avant de marquer une option comme validée ; consigner ensuite la décision et les questions restantes dans le document maître.
+### Cohérence avec les décisions antérieures
+- La maîtresse d'armes a une planche visuelle validée, mais son identité narrative complète et ses mécaniques détaillées restent à préciser.
+- Le déblocage de héros par affinité ne doit pas attribuer automatiquement les **deux emplacements passifs liés aux niveaux** ni celui du **défi individuel** : ils exigent une progression personnelle avec le héros concerné.
+- L'**emplacement passif collectif** est attribué automatiquement aux recrues tardives concernées, conformément aux décisions V7.4–V7.6.
+- Le plafond antérieurement validé demeure **cinq emplacements passifs** (un initial, deux niveaux, un défi individuel, un collectif).
+- Les héros recrutés tardivement disposent du **rattrapage hybride** déjà prévu (expéditions et entraînement au refuge), sans contourner leur progression personnelle.
 
-**Principe directeur :** s'inspirer des enseignements des autres jeux sans reproduire leurs mécaniques à l'identique. Adapter la profondeur de la recherche à l'importance du choix ; ne pas inventer de références ni de résultats de tests.
+### Questions ouvertes
+- Quels héros sont liés à la maîtresse d'armes et pourquoi ?
+- L'affinité donne-t-elle accès à une rencontre, à une épreuve ou directement à une proposition de recrutement ?
+- Quelles histoires individuelles, motivations et conditions narratives différencient ces héros ?
+- Quels seuils et événements d'affinité sont nécessaires ? Rien n'est fixé à ce stade.
 
-**Portée de cette mise à jour :** règle documentaire uniquement. Aucune recherche comparative particulière, implémentation Godot ni validation en jeu n'est revendiquée ici.
+### État d'exécution
+- **Terminé :** consolidation documentaire des grandes lignes et conservation intégrale des sections antérieures.
+- **Non réalisé :** intégration du créateur de personnage, moteur d'affinité et recrutement des héros dans Godot ; aucun test de jeu.
+- **Suivi :** avancement du chantier actuel : À évaluer ; avancement du projet global LITD 1 : À évaluer.
 
 
 ---
-## V7.12 — Orientation validée : comportement crédible des Némésis et limitation des fuites (17 novembre 2026)
 
-### Décision explicitement validée en conception
-- Retenir l'**orientation C** pour le comportement des Némésis : **éviter les fuites répétitives tout en donnant au Némésis un comportement crédible**.
-- Le choix porte sur ce principe de conception, et non sur une règle chiffrée ou une logique détaillée déjà arrêtée.
+## V7.9 — Niveau des héros débloqués par la maîtresse d’armes (23 novembre 2026)
 
-### Modalités restant à définir (non validées)
-- Conditions exactes autorisant ou empêchant la fuite, réactions aux blessures et au contexte du combat, fréquence, éventuels délais et conséquences.
-- Conditions précises de passage au statut Némésis et de recrutement, notamment pour les cinq boss recrutables seulement en NG+.
-- Critères de test pour vérifier que les comportements sont variés, crédibles et non frustrants.
+**Décision validée :** tout héros débloqué grâce à la relation avec la maîtresse d’armes rejoint le groupe **au même niveau que le héros principal au moment de son recrutement**. Aucun rattrapage de niveau n’est requis pour cette catégorie de héros.
 
-### Traçabilité et exécution
-- Source de l'arbitrage : formulation explicite de l'utilisateur « Je recommande C, pour éviter les fuites répétitives tout en donnant au Némésis un comportement crédible », puis demande de validation et d'enregistrement.
-- **Validé :** principe d'éviter les fuites répétitives tout en préservant la crédibilité.
-- **Non validé :** interprétation détaillée de l'option C, dont le libellé complet n'est pas disponible dans le contexte consulté.
-- **Non réalisé :** implémentation Godot et tests de gameplay.
-- **Suivi :** 🟡 À CONSOLIDER. Avancement du chantier actuel : À évaluer ; avancement du projet global : À évaluer.
+**Périmètre :** cette règle concerne les héros débloqués par la maîtresse d’armes ; elle ne remplace pas les règles de recrutement des autres personnages.
+
+**Distinction importante :** égalité de niveau ne signifie pas attribution automatique de toutes les récompenses, épreuves ou étapes personnelles. Les modalités précises d’accès aux emplacements passifs liés au niveau pour ces héros doivent être arbitrées, afin d’éviter toute contradiction avec les règles antérieures.
+
+**Non décidé :** ajustement des compétences et équipements au recrutement, évolution ultérieure du niveau, modalités des déblocages passifs et histoires individuelles.
+
+**État :** décision de conception enregistrée, aucune implémentation ou validation Godot.
 
 
 ---
-## V7.13 — Bestiaire : périmètre et déclinaisons validés (17 novembre 2026)
 
-### Décisions validées en conception
-- Prévoir **40 créatures ou archétypes au total, dont 5 boss** ; les 35 autres sont des créatures ordinaires.
-- Chaque créature partage une **base anatomique et artistique** dont les statistiques, équipements, capacités et l'apparence évoluent légèrement selon les formes.
-- Les cinq statuts ou déclinaisons envisagés sont **normal, élite, mini-boss, Némésis et héros recruté**. Ils ne représentent pas nécessairement cinq modèles entièrement indépendants ni 200 modèles uniques.
-- **Les cinq boss peuvent devenir Némésis** et disposent d'une possibilité de recrutement comme héros **uniquement en NG+**.
-- **La forme de héros recruté demeure cachée pendant la partie normale** : ne pas la dévoiler prématurément au joueur.
-- Les créatures ordinaires sont recrutables durant la campagne normale selon le principe discuté ; leurs conditions précises de recrutement restent à définir.
+## V8.0 — Compétences des héros débloqués par la maîtresse d’armes (23 novembre 2026)
 
-### Questions ouvertes, sans validation implicite
-- Conditions détaillées de passage en Némésis, de fuite et de recrutement ; exceptions éventuelles entre espèces ; déclinaisons particulières des boss ; modalités de révélation du héros recruté.
-- Équilibrage, production artistique, tests en jeu et validation de la faisabilité des 40 archétypes.
+**Décision validée :** ces héros sont recrutés au **même niveau que le protagoniste** et arrivent avec leur **arbre de compétences et leurs compétences évolutives remis à zéro**, sans spécialisation de combat prédéfinie. Le joueur choisit lui-même leur orientation de combat en développant leur arbre.
 
-### Traçabilité
-Décisions explicites formulées par l'utilisateur au cours de la conception du bestiaire. **Validation documentaire seulement** ; aucune implémentation Godot ni test en jeu revendiqués. **Statut : 🟡 À CONSOLIDER**. Avancement du chantier actuel : À évaluer ; avancement du projet global : À évaluer.
+**Interprétation à confirmer :** pour permettre une répartition équitable, mettre à disposition les points de compétences correspondant à leur niveau actuel. Le barème exact et les éventuelles compétences innées ou contraintes propres au personnage ne sont pas encore arbitrés.
+
+**À préserver :** chaque héros conserve son identité, son histoire, sa personnalité et ses spécificités narratives ; la remise à zéro ne signifie pas suppression de ces caractéristiques.
+
+**À arbitrer :** modalités de distribution des points, compétences initiales indispensables, conséquences sur les passifs et les emplacements liés aux niveaux, compatibilité avec les règles de progression antérieures.
+
+**État :** décision de conception consignée ; aucune modification du gameplay ni test dans Godot.
