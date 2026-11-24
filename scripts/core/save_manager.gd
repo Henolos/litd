@@ -565,3 +565,29 @@ func anchor_publish_preview(dir: String, campaign_id: String, revision: int, sta
     if interrupt_at == "after_rename":
         return false
     return anchor_read_preview(dir, campaign_id).get("revision") == revision
+
+
+# Experimental single-writer coordinator. Caller must serialize access.
+# A published but unconfirmed suffix blocks recovery; no automatic promotion.
+func coordinated_commit_preview(journal_dir: String, anchor_dir: String, campaign_id: String, base_revision: int, base_state: Dictionary, record: Dictionary, interrupt_at: String = "") -> Dictionary:
+    if not journal_dir.begins_with("user://litd_transaction_lab/") or not anchor_dir.begins_with("user://litd_transaction_lab/") or journal_dir == anchor_dir:
+        return {}
+    var anchor := anchor_read_preview(anchor_dir, campaign_id)
+    var current := journal_recover_confirmed_preview(journal_dir, campaign_id, base_revision, base_state, anchor)
+    if current.is_empty() or record.get("campaign_id") != campaign_id or record.get("base_revision") != current["revision"]:
+        return {}
+    var next := preview_committed_transaction(current["persistent_state"], record, current["applied_transaction_ids"])
+    if next.is_empty() or interrupt_at == "before_journal":
+        return {}
+    if not journal_append_preview(journal_dir, current["persistent_state"], record, current["applied_transaction_ids"]):
+        return {}
+    if interrupt_at == "after_journal":
+        return {}
+    var readback := journal_recover_preview(journal_dir, campaign_id, base_revision, base_state)
+    if readback != {"revision": next["revision"], "persistent_state": next["persistent_state"], "applied_transaction_ids": next["applied_transaction_ids"]}:
+        return {}
+    if not anchor_publish_preview(anchor_dir, campaign_id, next["revision"], next["persistent_state"], interrupt_at.trim_prefix("anchor_") if interrupt_at.begins_with("anchor_") else ""):
+        return {}
+    if interrupt_at == "after_anchor":
+        return {}
+    return journal_recover_confirmed_preview(journal_dir, campaign_id, base_revision, base_state, anchor_read_preview(anchor_dir, campaign_id))
