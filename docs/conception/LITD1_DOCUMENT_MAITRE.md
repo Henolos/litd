@@ -4708,3 +4708,30 @@ Corrections de la préqualification V7.78, sans suppression des identifiants ni 
 6. Relecture finale de cohérence, aucune exigence orpheline, aucune suppression d'original ; T2 seulement après satisfaction des critères.
 
 464 entrées cumulées, pas 464 règles uniques. Aucun test exécuté, aucun code modifié. T1 non clos ; ne pas augmenter mécaniquement le pourcentage sur la base du nombre de lignes.
+
+
+---
+## V7.80 — Audit anatomie, blessures, démembrements, afflictions et équipement (24 novembre 2026)
+
+Inspection directe main : combat_anatomy_v2.json (095d21818b4c56cfc55276307688a0e19f5f4357), combat_dismemberment.json (bfcefe57f7d972fb9dcd87a98d9657af75f6f387), combat_injuries.json (2160ee011e6f0958d1a95403951af82d218c1a00), combat_mutilation_psychology.json (ad09f876a9a07a690b1967a248398fa2a26c1307), combat_post_mutilation_ai.json (17717d17a07d7344e49294b83bdde8a98447dbf0), combat_displacement.json (7630efaaf662a29defac7a401fc0808ee570f651). Données historiques, pas preuve de runtime. Profils anatomiques humanoïde, bête, arachnide, aberration, construction, boss candidats ; tags fonctionnels et blessures critiques sans amputation à examiner. Seuils 35–95, échec ciblage multiplicateur 0.65, trauma 100/135, coefficients psychologiques et peur 100 non adoptés. Ancien flee_chance_regular 35 incompatible V7.41 ; distinguer recul tactique de fuite hors combat. Identifiants anciens héros/boss et classification par mots-clés à réexaminer. Préserver séparation présentation gore/mécanique comme proposition technique issue du fichier historique, pas nouvelle validation utilisateur.
+
+| ID | Source | Exigence ou interaction dérivée | Test candidat |
+|---|---|---|---|
+| CT-0465 | D.3 | Représentation anatomique reflète blessures, amputations, protections et prothèses autant que possible | Comparer état métier et fiche après modification |
+| CT-0466 | D.3 | Même blessure explicable depuis anatomie et statistiques | Comparer identifiant et effets dans les deux vues |
+| CT-0467 | D.3 | Détails de base, équipement, blessures et effets accessibles | Vérifier décomposition sans fixer formule |
+| CT-0468 | D.5 | Préparateurs vulnérables et interruption contextuelle | Blessure pertinente puis non pertinente |
+| CT-0469 | D.6 | Équipement intact, endommagé, cassé réparable, détruit irrécupérable | Tester transitions autorisées |
+| CT-0470 | D.6 | Destruction permanente annoncée avec possibilité de réaction | Vérifier annonce et réaction avant résolution |
+| CT-0471 | D.6 | Réparation légendaire avec composants spéciaux | Refuser réparation ordinaire incompatible |
+| CT-0472 | D.6 | Forge au refuge : réparation, amélioration, prothèses, fabrication limitée par plans | Vérifier opérations et préconditions |
+| CT-0473 | D.6 | Plans appris définitivement même si expédition échoue | Échec puis consultation des plans |
+| CT-0474 | D.6 | Rendement recyclage fixe et connu | Comparer aperçu et résultat |
+| CT-0475 | D.6 | Arme armure bouclier une case ; composants empilables avec limites par famille ; aucune poche gratuite | Tester saturation et empilement |
+| CT-0476 | D.6 | Tri automatique hors combat et consolidation sans perte | Comparer multiensemble avant après |
+| CT-0477 | D.6 | Sac plein : laisser au sol ou renoncer, pas recycler en donjon | Tester refus de recyclage et conservation |
+| CT-0478 | V7.63 / V7.70 | Interception redirige impact et afflictions selon bénéficiaire réel et anatomie | Tester bras absent, jambes absentes, barrière, zone |
+| CT-0479 | V7.62 / V7.63 / V7.70 | Réévaluer mobilité et capacité de combo après chaque effet | Tester perte fonctionnelle avant contribution |
+| CT-0480 | V7.58 / V7.49 | Blessures et identité conservées lors du transport et extraction | Comparer états avant et après retour |
+
+480 entrées cumulées, dont recouvrements intentionnels. Les interactions dérivées ne constituent pas de nouveaux arbitrages. Capacité sac 12/16/20/24 provisoire ; dernier palier composant boss à conserver comme condition de conception à préciser. Restent catalogue des afflictions, règles de cumul, seuils de blessures, prothèses et psychologie à réconcilier avec sources et décisions. Aucun test exécuté, aucune donnée historique modifiée. T1 non clos.
