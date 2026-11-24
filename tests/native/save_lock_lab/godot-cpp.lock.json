@@ -1,0 +1,10 @@
+{
+  "repository": "https://github.com/godotengine/godot-cpp.git",
+  "tag": "10.0.0-stable",
+  "commit": "507ed9d840c01a3c5b2a39af8bb4000bfac30bf5",
+  "license": "MIT",
+  "license_path": "LICENSE.md",
+  "license_blob": "eb446fe72ce5c705f70413394200f67a123cd",
+  "target_api": "4.7",
+  "scope": "isolated laboratory; dependency not yet downloaded or built"
+}
