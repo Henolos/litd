@@ -39,7 +39,7 @@ public:
 };
 
 static void initialize(ModuleInitializationLevel level) {
-    if (level == MODULE_INITIALIZATION_LEVEL_SCENE) ClassDB::register_class<SaveLockLab>();
+    if (level == MODULE_INITIALIZATION_LEVEL_SCENE) GDREGISTER_RUNTIME_CLASS(SaveLockLab);
 }
 static void terminate(ModuleInitializationLevel) {}
 
