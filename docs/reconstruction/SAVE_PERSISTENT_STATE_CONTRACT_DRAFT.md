@@ -92,3 +92,22 @@ Le fichier `save_canonical_envelope_v1.schema.json` décrit uniquement l'envelop
 | Journal | Révisions contiguës, identités uniques, empreintes avant/après, détection de perte de fin de journal à concevoir |
 
 Les noms et structures métier restent à valider contre les producteurs réels. Le schéma d'enveloppe ne certifie aucun invariant métier. Les tests de schéma utilisent des fixtures synthétiques ; ils ne remplacent pas les tests Godot, les interruptions réelles ou les migrations sur copies. Aucun raccordement au runtime ni modification des sauvegardes utilisateur autorisé à ce stade.
+
+## Preuves CI et approfondissement métier — 24 novembre 2026
+
+Révision testée : `d07d8d6473cd498960f3880ce6ad4dd5fc6f6196`. Onze workflows retournés réussis. CI 45341253542, job 138265178031 : jsonschema 4.26.0 installé, 1470 tests réussis, 2 avertissements ; le journal compact ne détaille pas les 18 cas du nouveau fichier. Run 45341253429, jobs Windows 138265174221 et Linux 138265174760 : marqueurs SAVE_CANONICAL_CONTRACT_PASS et SAVE_TRANSACTION_PREVIEW_PASS observés. Aucun essai manuel ni coupure électrique réelle.
+
+### Frontières métier candidates (à confronter aux producteurs actuels)
+
+| Agrégat | Identité et état minimal proposé | Transaction et contrôle inter-états |
+| --- | --- | --- |
+| Campagne | ID stable, révision, génération, protagoniste courant | Succession unique liée à la perte du groupe actif ; préserver monde et réserves |
+| Héros | ID d'instance, référence catalogue, état de vie, progression, blessures, équipement | Décès définitif et effets associés atomiques ; pas de réapparition implicite |
+| Succession | ID de transition, état pending/applied, prédécesseur, successeur éventuel | Une seule application par ID ; aucun successeur inventé à la reprise |
+| Bestiaire | ID de créature, connaissance collective, maîtrise par ID de héros | Connaissance collective conservée ; maîtrise personnelle non transférée |
+| Exploration | ID carte/expédition, révision topologique, nœuds visités, arêtes, secrets, clés, état des rencontres | Consommation et ouverture atomiques ; validation des chemins et retour contextuel avant confirmation |
+| Combat | ID rencontre/action, résultats résolus, participants, effets différés, état RNG nécessaire | Aucun nouveau tirage à la reprise ; morts multiples, capture et récompenses dans une transaction cohérente |
+| Économie | ID objet/attribution, quantités, propriétaire, ressources | Pas de solde négatif ni double attribution ; consommation et transfert atomiques |
+| Monde/Guilde | ID événement, quête, relation, service, conséquence, statut | Persistance des conséquences confirmées et déclenchement unique des effets différés |
+
+Ces agrégats sont des propositions de conception, pas des champs runtime imposés. Les règles de capture, de retour et de succession détaillées doivent être réconciliées avec le document maître et les décisions utilisateur avant gel du schéma. JSON Schema valide la structure locale ; unicité par ID, références croisées, transitions et invariants temporels nécessitent un validateur métier distinct. Ne pas ajouter de deuxième SaveManager. Le journal actuel ne prouve pas la détection d'une disparition de la dernière entrée : prévoir un ancrage de révision confirmée et tester sa propre durabilité. Aucun changement de format 0.31.
