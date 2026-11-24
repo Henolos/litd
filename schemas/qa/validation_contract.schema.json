@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "baseline_commit",
+    "references",
+    "rules"
+  ],
+  "properties": {
+    "version": {
+      "const": "1.0.0-draft"
+    },
+    "baseline_commit": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "references": {
+      "type": "array",
+      "minItems": 5,
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "rules": {
+      "type": "array",
+      "minItems": 129,
+      "maxItems": 129,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "title",
+          "design_status",
+          "test_status",
+          "blocking"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^(COM|EXP|SAV|PRO|REF|ANA|PSY|UI|INT)-[0-9]{2}$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "design_status": {
+            "const": "PENDING_RECONCILIATION"
+          },
+          "test_status": {
+            "const": "NOT_RUN"
+          },
+          "blocking": {
+            "const": false
+          }
+        }
+      }
+    }
+  }
+}
