@@ -1,0 +1,47 @@
+#include "campaign_lock.hpp"
+#include <godot_cpp/classes/ref_counted.hpp>
+#include <godot_cpp/core/class_db.hpp>
+#include <godot_cpp/godot.hpp>
+#include <godot_cpp/variant/string.hpp>
+
+using namespace godot;
+
+class SaveLockLab : public RefCounted {
+    GDCLASS(SaveLockLab, RefCounted)
+    CampaignLock lock;
+    bool held = false;
+protected:
+    static void _bind_methods() {
+        ClassDB::bind_method(D_METHOD("try_acquire", "absolute_path"), &SaveLockLab::try_acquire);
+        ClassDB::bind_method(D_METHOD("release"), &SaveLockLab::release);
+        ClassDB::bind_method(D_METHOD("is_held"), &SaveLockLab::is_held);
+    }
+public:
+    bool try_acquire(const String &absolute_path) {
+        if (held) return false;
+        auto utf8 = absolute_path.utf8();
+        auto path = std::filesystem::u8path(utf8.get_data());
+        if (!path.is_absolute() || path.filename() != "campaign.lock") return false;
+        // Standalone lab interface only. Caller must establish trusted sandbox.
+        held = lock.acquire(path);
+        return held;
+    }
+    void release() { lock.release(); held = false; }
+    bool is_held() const { return held; }
+};
+
+static void initialize(ModuleInitializationLevel level) {
+    if (level == MODULE_INITIALIZATION_LEVEL_SCENE) ClassDB::register_class<SaveLockLab>();
+}
+static void terminate(ModuleInitializationLevel) {}
+
+extern "C" GDExtensionBool GDE_EXPORT save_lock_lab_init(
+    GDExtensionInterfaceGetProcAddress address,
+    GDExtensionClassLibraryPtr library,
+    GDExtensionInitialization *initialization) {
+    GDExtensionBinding::InitObject init(address, library, initialization);
+    init.register_initializer(initialize);
+    init.register_terminator(terminate);
+    init.set_minimum_library_initialization_level(MODULE_INITIALIZATION_LEVEL_SCENE);
+    return init.init();
+}
