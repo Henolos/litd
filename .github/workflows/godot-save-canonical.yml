@@ -101,28 +101,6 @@ jobs:
         if: runner.os == 'Windows'
         run: python tests/native/save_lock_lab/check.py ./save-lock-lab.exe
 
-      - name: Fetch pinned godot-cpp and compile isolated extension
-        shell: bash
-        run: |
-          set -euo pipefail
-          sha=507ed9d840c01a3c5b2a39af8bb4000bfac30bf5
-          git init "$RUNNER_TEMP/godot-cpp"
-          git -C "$RUNNER_TEMP/godot-cpp" remote add origin https://github.com/godotengine/godot-cpp.git
-          git -C "$RUNNER_TEMP/godot-cpp" fetch --depth=1 origin "$sha"
-          git -C "$RUNNER_TEMP/godot-cpp" checkout --detach FETCH_HEAD
-          test "$(git -C "$RUNNER_TEMP/godot-cpp" rev-parse HEAD)" = "$sha"
-          actual_license=$(git -C "$RUNNER_TEMP/godot-cpp" rev-parse HEAD:LICENSE.md)
-          echo "Committed license blob: $actual_license"
-          test "$actual_license" = eb446fe72ce5c705f70413394200f10f67a123cd
-          cmake -S tests/native/save_lock_lab -B "$RUNNER_TEMP/lock-build" -DGODOT_CPP_DIR="$RUNNER_TEMP/godot-cpp" -DCMAKE_BUILD_TYPE=Debug
-          cmake --build "$RUNNER_TEMP/lock-build" --config Debug --parallel 2
-
-      - name: Run isolated Godot lock test on Linux
-        if: runner.os == 'Linux'
-        shell: bash
-        run: |
-          set -euo pipefail
-          docker run --rm -v "$PWD:/workspace" -w /workspace --entrypoint /bin/bash barichello/godot-ci:4.7.2@sha256:cdcca31e9194fd59a68a63f4b1b9c3981716819c520cd6f7966c5d72ca7246bd -c 'set -e; apt-get update; apt-get install -y --no-install-recommends python3; python3 tests/native/save_lock_lab/check_godot.py "$(command -v godot)"'
       - name: Install pinned Godot console build
         if: runner.os == 'Windows'
         shell: pwsh
@@ -140,6 +118,47 @@ jobs:
           $exe = Get-ChildItem -Path $install -Filter "*console.exe" -Recurse | Select-Object -First 1
           if (-not $exe) { throw "Godot console executable was not extracted." }
           "GODOT_EXE=$($exe.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Extract exact engine API on Linux
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/engine-api"
+          docker run --rm -v "$RUNNER_TEMP/engine-api:/api" -w /api --entrypoint /bin/bash barichello/godot-ci:4.7.2@sha256:cdcca31e9194fd59a68a63f4b1b9c3981716819c520cd6f7966c5d72ca7246bd -c 'godot --headless --dump-extension-api'
+          test -s "$RUNNER_TEMP/engine-api/extension_api.json"
+      - name: Extract exact engine API on Windows
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $dir = Join-Path $env:RUNNER_TEMP "engine-api"
+          New-Item -ItemType Directory -Path $dir -Force | Out-Null
+          Push-Location $dir
+          try {
+            & $env:GODOT_EXE --headless --dump-extension-api
+            if ($LASTEXITCODE -ne 0 -or -not (Test-Path extension_api.json)) { throw "Engine API extraction failed" }
+          } finally { Pop-Location }
+      - name: Fetch pinned godot-cpp and compile isolated extension
+        shell: bash
+        run: |
+          set -euo pipefail
+          sha=507ed9d840c01a3c5b2a39af8bb4000bfac30bf5
+          git init "$RUNNER_TEMP/godot-cpp"
+          git -C "$RUNNER_TEMP/godot-cpp" remote add origin https://github.com/godotengine/godot-cpp.git
+          git -C "$RUNNER_TEMP/godot-cpp" fetch --depth=1 origin "$sha"
+          git -C "$RUNNER_TEMP/godot-cpp" checkout --detach FETCH_HEAD
+          test "$(git -C "$RUNNER_TEMP/godot-cpp" rev-parse HEAD)" = "$sha"
+          actual_license=$(git -C "$RUNNER_TEMP/godot-cpp" rev-parse HEAD:LICENSE.md)
+          echo "Committed license blob: $actual_license"
+          test "$actual_license" = eb446fe72ce5c705f70413394200f10f67a123cd
+          python -c 'import json,sys; a=json.load(open(sys.argv[1],encoding="utf-8")); b=json.load(open(sys.argv[2],encoding="utf-8")); print("PINNED_API_HEADER",a["header"]); print("ENGINE_API_HEADER",b["header"]); print("API_JSON_EQUAL",a==b)' "$RUNNER_TEMP/godot-cpp/gdextension/extension_api-4-7.json" "$RUNNER_TEMP/engine-api/extension_api.json"
+          cmake -S tests/native/save_lock_lab -B "$RUNNER_TEMP/lock-build" -DGODOT_CPP_DIR="$RUNNER_TEMP/godot-cpp" -DCMAKE_BUILD_TYPE=Debug -DGODOTCPP_CUSTOM_API_FILE="$RUNNER_TEMP/engine-api/extension_api.json"
+          cmake --build "$RUNNER_TEMP/lock-build" --config Debug --parallel 2
+
+      - name: Run isolated Godot lock test on Linux
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker run --rm -v "$PWD:/workspace" -w /workspace --entrypoint /bin/bash barichello/godot-ci:4.7.2@sha256:cdcca31e9194fd59a68a63f4b1b9c3981716819c520cd6f7966c5d72ca7246bd -c 'set -e; apt-get update; apt-get install -y --no-install-recommends python3; python3 tests/native/save_lock_lab/check_godot.py "$(command -v godot)"'
       - name: Run isolated Godot lock test on Windows
         if: runner.os == 'Windows'
         shell: pwsh
