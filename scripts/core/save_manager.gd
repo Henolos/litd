@@ -458,3 +458,23 @@ func journal_recover_preview(journal_dir: String, campaign_id: String, base_revi
             return {}
         revision += 1
     return {"revision": revision, "persistent_state": state, "applied_transaction_ids": ids}
+
+
+# Strict preview: caller supplies an independently retained confirmation anchor.
+# This does not persist the anchor or establish crash/power-loss durability.
+# Unconfirmed suffixes are rejected rather than silently promoted.
+func journal_recover_confirmed_preview(journal_dir: String, campaign_id: String, base_revision: int, base_state: Dictionary, anchor: Dictionary) -> Dictionary:
+    if campaign_id.is_empty() or base_revision < 0 or anchor.get("campaign_id") != campaign_id:
+        return {}
+    var confirmed_revision: Variant = anchor.get("revision")
+    var confirmed_hash: Variant = anchor.get("state_sha256")
+    if typeof(confirmed_revision) != TYPE_INT or confirmed_revision < base_revision:
+        return {}
+    if typeof(confirmed_hash) != TYPE_STRING or String(confirmed_hash).length() != 64:
+        return {}
+    var recovered := journal_recover_preview(journal_dir, campaign_id, base_revision, base_state)
+    if recovered.is_empty() or recovered.get("revision") != confirmed_revision:
+        return {}
+    if canonical_sha256(campaign_id, confirmed_revision, recovered["persistent_state"]) != confirmed_hash:
+        return {}
+    return recovered
