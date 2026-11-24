@@ -41,10 +41,22 @@ public:
     bool is_held() const { return held; }
 };
 
+class EmptyLockLab : public RefCounted {
+    GDCLASS(EmptyLockLab, RefCounted)
+protected:
+    static void _bind_methods() {}
+};
+
 static void initialize(ModuleInitializationLevel level) {
     std::fprintf(stderr, "SAVE_LOCK_INIT_LEVEL=%d\n", static_cast<int>(level));
     std::fflush(stderr);
-    if (level == MODULE_INITIALIZATION_LEVEL_SCENE && !std::getenv("LITD_LOCK_INIT_ONLY")) GDREGISTER_CLASS(SaveLockLab);
+    if (level == MODULE_INITIALIZATION_LEVEL_SCENE && !std::getenv("LITD_LOCK_INIT_ONLY")) {
+        if (std::getenv("LITD_LOCK_EMPTY_CLASS")) {
+            GDREGISTER_CLASS(EmptyLockLab);
+        } else {
+            GDREGISTER_CLASS(SaveLockLab);
+        }
+    }
 }
 static void terminate(ModuleInitializationLevel level) {
     std::fprintf(stderr, "SAVE_LOCK_TERMINATE_LEVEL=%d\n", static_cast<int>(level));
