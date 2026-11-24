@@ -569,7 +569,7 @@ func anchor_publish_preview(dir: String, campaign_id: String, revision: int, sta
 
 # Experimental single-writer coordinator. Caller must serialize access.
 # A published but unconfirmed suffix blocks recovery; no automatic promotion.
-func coordinated_commit_preview(journal_dir: String, anchor_dir: String, campaign_id: String, base_revision: int, base_state: Dictionary, record: Dictionary, interrupt_at: String = "") -> Dictionary:
+func _coordinated_commit_unlocked_preview(journal_dir: String, anchor_dir: String, campaign_id: String, base_revision: int, base_state: Dictionary, record: Dictionary, interrupt_at: String = "") -> Dictionary:
     if not journal_dir.begins_with("user://litd_transaction_lab/") or not anchor_dir.begins_with("user://litd_transaction_lab/") or journal_dir == anchor_dir:
         return {}
     var anchor := anchor_read_preview(anchor_dir, campaign_id)
@@ -591,3 +591,53 @@ func coordinated_commit_preview(journal_dir: String, anchor_dir: String, campaig
     if interrupt_at == "after_anchor":
         return {}
     return journal_recover_confirmed_preview(journal_dir, campaign_id, base_revision, base_state, anchor_read_preview(anchor_dir, campaign_id))
+
+
+# In-process reentrancy guard only; not a cross-process filesystem lock.
+var _coordinator_preview_busy := false
+
+func coordinated_commit_preview(journal_dir: String, anchor_dir: String, campaign_id: String, base_revision: int, base_state: Dictionary, record: Dictionary, interrupt_at: String = "") -> Dictionary:
+    if _coordinator_preview_busy:
+        return {}
+    _coordinator_preview_busy = true
+    var result := _coordinated_commit_unlocked_preview(journal_dir, anchor_dir, campaign_id, base_revision, base_state, record, interrupt_at)
+    _coordinator_preview_busy = false
+    return result
+
+# Read-only diagnosis. Never publishes a confirmation or applies gameplay.
+func inspect_unconfirmed_preview(journal_dir: String, anchor_dir: String, campaign_id: String, base_revision: int, base_state: Dictionary) -> Dictionary:
+    var anchor := anchor_read_preview(anchor_dir, campaign_id)
+    if anchor.is_empty():
+        return {"status": "blocked"}
+    var recovered := journal_recover_preview(journal_dir, campaign_id, base_revision, base_state)
+    if recovered.is_empty():
+        return {"status": "blocked"}
+    if recovered["revision"] == anchor["revision"]:
+        if canonical_sha256(campaign_id, recovered["revision"], recovered["persistent_state"]) == anchor["state_sha256"]:
+            return {"status": "confirmed", "revision": recovered["revision"]}
+        return {"status": "blocked"}
+    if recovered["revision"] != int(anchor["revision"]) + 1:
+        return {"status": "blocked"}
+    # Verify the confirmed prefix against its independent anchor, not merely
+    # the self-consistency of the journal's unconfirmed final entry.
+    var prefix_state := base_state.duplicate(true)
+    var ids: Array = []
+    for revision in range(base_revision + 1, int(anchor["revision"]) + 1):
+        var path := journal_dir.path_join("revision_%010d.json" % revision)
+        var envelope: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+        if not (envelope is Dictionary) or typeof(envelope.get("payload_base64")) != TYPE_STRING:
+            return {"status": "blocked"}
+        var encoded: String = envelope["payload_base64"]
+        if envelope.get("sha256") != encoded.sha256_text():
+            return {"status": "blocked"}
+        var entry: Variant = bytes_to_var(Marshalls.base64_to_raw(encoded))
+        if not (entry is Dictionary) or not (entry.get("record") is Dictionary):
+            return {"status": "blocked"}
+        var step := preview_committed_transaction(prefix_state, entry["record"], ids)
+        if step.is_empty() or step["revision"] != revision or step["campaign_id"] != campaign_id:
+            return {"status": "blocked"}
+        prefix_state = step["persistent_state"]
+        ids = step["applied_transaction_ids"]
+    if int(anchor["revision"]) < base_revision or canonical_sha256(campaign_id, anchor["revision"], prefix_state) != anchor["state_sha256"]:
+        return {"status": "blocked"}
+    return {"status": "unconfirmed", "confirmed_revision": anchor["revision"], "candidate_revision": recovered["revision"], "candidate_state_sha256": canonical_sha256(campaign_id, recovered["revision"], recovered["persistent_state"])}
