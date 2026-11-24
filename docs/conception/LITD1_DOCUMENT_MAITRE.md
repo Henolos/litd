@@ -3224,3 +3224,30 @@ Familles : spirituelles, élémentaires, nécromantiques, familiers temporaires,
 18. Capacités maximales, durées, coûts de maintien et coefficients après simulations et tests.
 
 Commandes actives via PA de l'invocateur, effets passifs explicitement bornés ; disparition en fin de combat pour entités temporaires, aucune invocation ne remplace un survivant de la compagnie. Les exemples de coûts et de comportement restent indicatifs hors règles explicitement approuvées. Préserver V7.63, V7.66–67 et V8.3. Aucun code, original artistique ou test modifié. Prochain arbitrage : confiance, loyauté et délais de recrutement en nombre d'expéditions.
+
+
+---
+## V7.69 — Délai garanti et progression relationnelle évolutive (24 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et dix-huit règles complémentaires explicitement approuvées.**
+
+1. Recrutement garanti après capture et extraction éligibles.
+2. Distinguer confiance et loyauté.
+3. Conserver cinq états relationnels validés.
+4. Délai initial exprimé en nombre d'expéditions.
+5. Adapter délai aux particularités individuelles.
+6. Garantir délai maximal fini, sans prolongation indéfinie.
+7. Progression naturelle à chaque expédition admissible.
+8. Soins, recherches et interactions pertinentes peuvent réduire délai.
+9. Adapter progression aux sept familles de recrutement.
+10. Exclure expéditions artificielles sans activité significative.
+11. Comptabiliser chaque expédition admissible une seule fois.
+12. Décompte après arrivée effective du captif à la Guilde.
+13. Afficher nombre d'expéditions restantes.
+14. Intégration automatique aux réserves à échéance, contraintes de disponibilité et capacité traitées séparément.
+15. Cinq boss principaux recrutables uniquement en NG+.
+16. Préserver progression lors des successions pour captifs conservés à la Guilde.
+17. Conserver caractéristiques relationnelles après recrutement.
+18. Barèmes, seuils, effets relationnels et critères précis d'admissibilité après simulations et tests.
+
+Respecter V7.59–60 et V8.3. Confiance : perception de sécurité et fiabilité ; loyauté : attachement et volonté de servir. Compatibilité fonctionnelle pour constructions non conscientes. Barème illustratif hostile 5, méfiant 4, réceptif 3, coopératif 1, loyal 0 non validé numériquement. Expéditions significatives réussies ou non, y compris retraite ou Game Over, candidates au crédit ; critères précis ouverts. Pas de crédit pour expédition de capture du nouveau captif, rechargement ou simple aller-retour. Plusieurs missions dans une expédition ne multiplient pas le crédit. Aucun refus aléatoire d'ordre en combat approuvé. Aucun code ni test modifié. Prochain arbitrage : priorités des réactions et interceptions.
