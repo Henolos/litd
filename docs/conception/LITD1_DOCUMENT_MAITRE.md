@@ -3697,3 +3697,278 @@ Le registre V7.73 compte 220 lignes numérotées, pas 220 exigences uniques déf
 
 ### Limite et suite
 Les 220 lignes initiales restent conservées. Les familles ci-dessus complètent la couverture thématique mais ne sont pas encore décomposées en exigences atomiques uniques ni associées exhaustivement aux composants/tests. Vérifier aussi les décisions de dépôt hors document maître (notamment roster non assigné), résoudre les divergences et les statuts avant clôture. Aucun code ni test modifié. Ne pas ouvrir la spécification définitive tant que le registre applicable n'est pas vérifié.
+
+
+---
+## V7.75 — Normalisation initiale et contrôle des ADR (24 novembre 2026)
+
+### Réconciliation externe au document maître
+Lecture directe sur main des ADR 0002, 0003, 0005, 0006, 0007, 0008, 0009 et guardian-rules.yml. ADR-0002 superseded par 0009 ; roster non assigné. ADR-0003 compatible avec D.4, préserver divulgation progressive. ADR-0006 conserve R1 contact et affichage R4 R3 R2 R1 ; tests historiques imposant anciens héros à réaligner. ADR-0005 active impose 3×15 aux quatre anciens Veilleurs seulement ; divergence de structure avec V6.7 cinq mixtes par branche, migration des fiches à qualifier sans supprimer les originaux. ADR-0007 revalidate : Lumière et boucle historique, ne pas réintroduire automatiquement dans le nouveau moteur. ADR-0008 revalidate avec invariant Ange jamais capturable et Guardian dédié : conflit potentiel avec recrutement des cinq boss principaux en NG+ si Ange appartient à ce groupe ; identité et voie de recrutement à vérifier avant modification. Limite historique deux captures par zone et Manifestation destructrice à réexaminer, non promues en exigences nouvelles. Aucune ADR ni règle Guardian modifiée.
+
+### Identifiants et dédoublonnage initial
+Identifiants source conservés ; identifiants canoniques stables CT-0001 et suivants. Alias uniquement lorsque portée compatible ; les nuances de contexte restent dans les sources. Les lignes de calibrage restent des tâches de conception/test et non des valeurs définitives. Les lignes composites restent à scinder.
+
+| ID | Source | Exigence | Qualification |
+|---|---|---|---|
+| CT-0001 | V7.46-1 | Distinguer éligibilité, tentative de capture et recrutement. | Candidate applicable à qualifier |
+| CT-0002 | V7.46-2 | Respecter nature et anatomie des créatures. | Candidate applicable à qualifier |
+| CT-0003 | V7.46-3 | Plusieurs méthodes compatibles possibles pour certaines espèces. | Candidate applicable à qualifier |
+| CT-0004 | V7.46-4 | Particularités individuelles possibles au sein d'une espèce. | Candidate applicable à qualifier |
+| CT-0005 | V7.46-5 | Aucun seuil de PV universel. | Candidate applicable à qualifier |
+| CT-0006 | V7.46-6 | Immobilisation ne signifie pas nécessairement capturabilité. | Candidate applicable à qualifier |
+| CT-0007 | V7.46-7 | Connaissances ou équipements spécifiques éventuellement nécessaires. | Candidate applicable à qualifier |
+| CT-0008 | V7.46-8 | Aucun spécialiste indispensable à toutes les captures. | Candidate applicable à qualifier |
+| CT-0009 | V7.46-9 | Respecter les restrictions de recrutement des cinq boss principaux en NG+. | Candidate applicable à qualifier |
+| CT-0010 | V7.46-10 | Capture réussie ne garantit pas recrutement. | Remplacée par V7.60/V7.69 |
+| CT-0011 | V7.46-11 | Réutiliser les familles de mécaniques pour limiter les coûts. | Candidate applicable à qualifier |
+| CT-0012 | V7.46-12 | Résultats conservés dans la sauvegarde transactionnelle, sans duplication ni nouveau tirage au rechargement. | Candidate applicable à qualifier |
+| CT-0013 | V7.47-1 | Retenir les sept familles. | Candidate applicable à qualifier |
+| CT-0014 | V7.47-2 | Autoriser leur utilisation indépendante ou combinée. | Candidate applicable à qualifier |
+| CT-0015 | V7.47-3 | Respecter les compatibilités anatomiques, biologiques et surnaturelles. | Candidate applicable à qualifier |
+| CT-0016 | V7.47-4 | Permettre la neutralisation non létale. | Candidate applicable à qualifier |
+| CT-0017 | V7.47-5 | Distinguer neutralisation temporaire et capture effective. | Candidate applicable à qualifier |
+| CT-0018 | V7.47-6 | Plusieurs héros peuvent contribuer à une capture. | Candidate applicable à qualifier |
+| CT-0019 | V7.47-7 | Les blessures anatomiques peuvent faciliter ou compromettre la capture. | Candidate applicable à qualifier |
+| CT-0020 | V7.47-8 | Une créature définitivement morte ne peut être capturée vivante. | Candidate applicable à qualifier |
+| CT-0021 | V7.47-9 | Une méthode incompatible ne devient pas efficace par répétition. | Candidate applicable à qualifier |
+| CT-0022 | V7.47-10 | Certaines méthodes nécessitent équipements, consommables ou compétences particulières. | Candidate applicable à qualifier |
+| CT-0023 | V7.47-11 | Les méthodes découvertes sont consignées dans le bestiaire collectif. | Candidate applicable à qualifier |
+| CT-0024 | V7.47-12 | Coûts, durées, résistances et probabilités à déterminer lors des arbitrages et tests. | Candidate applicable à qualifier |
+| CT-0025 | V7.48-1 | Moteur commun avec coefficients contextuels. | Candidate applicable à qualifier |
+| CT-0026 | V7.48-2 | Conserver les cinq facteurs : PV, états de combat, nature de l'ennemi, équipement de capture, moral et volonté. | Candidate applicable à qualifier |
+| CT-0027 | V7.48-3 | Adapter leur importance à chaque famille de méthodes. | Candidate applicable à qualifier |
+| CT-0028 | V7.48-4 | Prendre en compte les caractéristiques individuelles. | Candidate applicable à qualifier |
+| CT-0029 | V7.48-5 | Vérifier l'éligibilité avant calcul probabiliste. | Candidate applicable à qualifier |
+| CT-0030 | V7.48-6 | Afficher la probabilité réelle avant confirmation. | Candidate applicable à qualifier |
+| CT-0031 | V7.48-7 | Actualiser la probabilité à chaque changement pertinent. | Candidate applicable à qualifier |
+| CT-0032 | V7.48-8 | Distinguer capture impossible et difficile. | Candidate applicable à qualifier |
+| CT-0033 | V7.48-9 | Réussite garantie possible si conditions spécifiques justifiées. | Candidate applicable à qualifier |
+| CT-0034 | V7.48-10 | Ne pas révéler automatiquement les caractéristiques secrètes par les coefficients détaillés. | Candidate applicable à qualifier |
+| CT-0035 | V7.48-11 | Enregistrer durablement les résultats résolus, sans nouveau tirage au rechargement. | Candidate applicable à qualifier |
+| CT-0036 | V7.48-12 | Formules, coefficients, plafonds et seuils définitifs après simulations et tests de combat. | Candidate applicable à qualifier |
+| CT-0037 | V7.51-1 | Une tentative ratée peut augmenter temporairement les résistances. | Candidate applicable à qualifier |
+| CT-0038 | V7.51-2 | Distinguer résistance générale et spécifique à une méthode. | Candidate applicable à qualifier |
+| CT-0039 | V7.51-3 | Adapter les résistances à la nature et aux capacités de la créature. | Candidate applicable à qualifier |
+| CT-0040 | V7.51-4 | Accumulation dans des limites définies. | Candidate applicable à qualifier |
+| CT-0041 | V7.51-5 | Diminution progressive selon temps et événements du jeu. | Candidate applicable à qualifier |
+| CT-0042 | V7.51-6 | Changer de méthode peut contourner certaines résistances. | Candidate applicable à qualifier |
+| CT-0043 | V7.51-7 | Une simple alternance ne doit pas annuler artificiellement toutes les résistances. | Candidate applicable à qualifier |
+| CT-0044 | V7.51-8 | Nouvelle préparation tactique pouvant améliorer les chances. | Candidate applicable à qualifier |
+| CT-0045 | V7.51-9 | Actualisation immédiate de la probabilité réelle affichée. | Candidate applicable à qualifier |
+| CT-0046 | V7.51-10 | Conséquences contextuelles supplémentaires possibles après échec. | Candidate applicable à qualifier |
+| CT-0047 | V7.51-11 | Conservation des résistances actives après sauvegarde et rechargement, sans réinitialisation artificielle par déplacements. | Candidate applicable à qualifier |
+| CT-0048 | V7.51-12 | Plafonds, durées, coefficients et conséquences définitives après simulations et tests. | Candidate applicable à qualifier |
+| CT-0049 | V7.52-1 | Apprentissage hybride par plusieurs sources. | Candidate applicable à qualifier |
+| CT-0050 | V7.52-2 | Conserver les connaissances dans le bestiaire collectif. | Candidate applicable à qualifier |
+| CT-0051 | V7.52-3 | Distinguer connaissance théorique et maîtrise individuelle. | Candidate applicable à qualifier |
+| CT-0052 | V7.52-4 | Découverte par expérimentation possible. | Candidate applicable à qualifier |
+| CT-0053 | V7.52-5 | Apprentissage par réussites et échecs significatifs. | Candidate applicable à qualifier |
+| CT-0054 | V7.52-6 | Distinguer les cinq niveaux de connaissance. | Candidate applicable à qualifier |
+| CT-0055 | V7.52-7 | Confirmation par recoupement des sources. | Candidate applicable à qualifier |
+| CT-0056 | V7.52-8 | Informations partielles ou erronées si narrativement justifiées. | Candidate applicable à qualifier |
+| CT-0057 | V7.52-9 | Valoriser recherches et compétences des PNJ de la Guilde. | Candidate applicable à qualifier |
+| CT-0058 | V7.52-10 | Préserver connaissances collectives après morts et Game Over. | Candidate applicable à qualifier |
+| CT-0059 | V7.52-11 | Empêcher acquisition illimitée par répétition identique sans nouvelle information. | Candidate applicable à qualifier |
+| CT-0060 | V7.52-12 | Afficher probabilité réelle sans révéler automatiquement les caractéristiques secrètes. | Candidate applicable à qualifier |
+| CT-0061 | V7.56-1 | Héros compatibles capables d'utiliser des méthodes élémentaires de capture. | Candidate applicable à qualifier |
+| CT-0062 | V7.56-2 | Prévoir une classe spécialisée dans la capture. | Candidate applicable à qualifier |
+| CT-0063 | V7.56-3 | Certaines autres classes peuvent posséder des compétences complémentaires de capture. | Candidate applicable à qualifier |
+| CT-0064 | V7.56-4 | Créatures recrutables pouvant disposer d'aptitudes naturelles favorables à la capture. | Candidate applicable à qualifier |
+| CT-0065 | V7.56-5 | Aucun spécialiste indispensable à l'ensemble des captures. | Alias de V7.46-8 |
+| CT-0066 | V7.56-6 | Limiter et plafonner les bonus individuels de probabilité. | Candidate applicable à qualifier |
+| CT-0067 | V7.56-7 | Privilégier avantages tactiques plutôt que seuls bonus statistiques. | Candidate applicable à qualifier |
+| CT-0068 | V7.56-8 | Réutiliser la maîtrise fondamentale et avancée existante. | Candidate applicable à qualifier |
+| CT-0069 | V7.56-9 | Reconnaître les contributions directes et indirectes significatives à une capture. | Candidate applicable à qualifier |
+| CT-0070 | V7.56-10 | Respecter limites d'emplacements et règles de spécialisation avant et après NG+. | Candidate applicable à qualifier |
+| CT-0071 | V7.56-11 | Préserver maîtrise des survivants et réservistes, sans transmettre celle des morts aux successeurs. | Candidate applicable à qualifier |
+| CT-0072 | V7.56-12 | Compétences, bonus, coûts en PA et conditions particulières à déterminer après conception détaillée des classes et tests d'équilibrage. | Candidate applicable à qualifier |
+| CT-0073 | V7.58-1 | Distinguer capture réussie, sécurisation, transport, extraction et recrutement. | Candidate applicable à qualifier |
+| CT-0074 | V7.58-2 | Interdire transfert automatique à la Guilde. | Candidate applicable à qualifier |
+| CT-0075 | V7.58-3 | Adapter moyens de transport à la nature et aux dimensions des créatures. | Candidate applicable à qualifier |
+| CT-0076 | V7.58-4 | Capacité de contention limitée, distincte de l'inventaire ordinaire. | Candidate applicable à qualifier |
+| CT-0077 | V7.58-5 | Captifs non comptabilisés parmi les quatre combattants actifs. | Candidate applicable à qualifier |
+| CT-0078 | V7.58-6 | Poursuite de l'expédition possible après capture. | Candidate applicable à qualifier |
+| CT-0079 | V7.58-7 | Retour immédiat au refuge selon conditions déjà validées. | Candidate applicable à qualifier |
+| CT-0080 | V7.58-8 | Risques contextuels d'évasion, blessure ou perte des captifs. | Candidate applicable à qualifier |
+| CT-0081 | V7.58-9 | Informer le joueur de l'état des contentions et risques connus. | Candidate applicable à qualifier |
+| CT-0082 | V7.58-10 | Libération ou abandon volontaire possible, avec conséquences persistantes. | Candidate applicable à qualifier |
+| CT-0083 | V7.58-11 | Préserver identité, blessures et particularités individuelles des créatures transportées. | Candidate applicable à qualifier |
+| CT-0084 | V7.58-12 | Prendre en compte les captifs lors d'une défaite ou Game Over, sans transfert automatique ni duplication. | Candidate applicable à qualifier |
+| CT-0085 | V7.58-13 | Remise des spécimens à la médecin pour ses missions de recherche. | Candidate applicable à qualifier |
+| CT-0086 | V7.58-14 | Capacités, coûts, contraintes de surveillance et probabilités d'incidents à déterminer après simulations et tests. | Candidate applicable à qualifier |
+| CT-0087 | V7.59-1 | Distinction stricte capture et recrutement. | Candidate applicable à qualifier |
+| CT-0088 | V7.59-2 | Moteur commun avec conditions contextuelles. | Candidate applicable à qualifier |
+| CT-0089 | V7.59-3 | Retenir les sept familles. | Candidate applicable à qualifier |
+| CT-0090 | V7.59-4 | Plusieurs méthodes compatibles possibles par créature. | Candidate applicable à qualifier |
+| CT-0091 | V7.59-5 | Recrutement narratif sans capture préalable possible. | Candidate applicable à qualifier |
+| CT-0092 | V7.59-6 | Installations adaptées de détention et prise en charge, capacité limitée et évolutive. | Candidate applicable à qualifier |
+| CT-0093 | V7.59-7 | Intégrer soins, recherches et contributions des PNJ. | Candidate applicable à qualifier |
+| CT-0094 | V7.59-8 | Cinq états relationnels lorsque la nature le justifie. | Candidate applicable à qualifier |
+| CT-0095 | V7.59-9 | Capture ne garantit pas recrutement. | Remplacée par V7.60/V7.69 |
+| CT-0096 | V7.59-10 | Refus, libération, remise à la recherche ou maintien en détention selon circonstances. | Candidate applicable à qualifier |
+| CT-0097 | V7.59-11 | Conserver identité, histoire et particularités individuelles. | Candidate applicable à qualifier |
+| CT-0098 | V7.59-12 | Cinq boss principaux recrutables uniquement en NG+. | Alias de V7.46-9 |
+| CT-0099 | V7.59-13 | Préserver conséquences persistantes, empêcher duplications et résurrections artificielles. | Candidate applicable à qualifier |
+| CT-0100 | V7.59-14 | Empêcher augmentation illimitée de confiance par interactions identiques répétées. | Candidate applicable à qualifier |
+| CT-0101 | V7.59-15 | Intégrer les créatures recrutées aux réserves de combattants sous réserve des capacités disponibles. | Candidate applicable à qualifier |
+| CT-0102 | V7.59-16 | Coûts, durées, seuils, capacités et effets de loyauté après simulations et tests. | Candidate applicable à qualifier |
+| CT-0103 | V7.62-1 | Conserver quatre rangs R1 à R4. | Candidate applicable à qualifier |
+| CT-0104 | V7.62-2 | Déplacement volontaire ordinaire limité à permutation adjacente. | Candidate applicable à qualifier |
+| CT-0105 | V7.62-3 | Permutation coûtant un PA. | Candidate applicable à qualifier |
+| CT-0106 | V7.62-4 | Déplacements particuliers par compétences. | Candidate applicable à qualifier |
+| CT-0107 | V7.62-5 | Mobilité adaptée aux blessures anatomiques et états de combat. | Candidate applicable à qualifier |
+| CT-0108 | V7.62-6 | Déplacements forcés des alliés et ennemis possibles. | Candidate applicable à qualifier |
+| CT-0109 | V7.62-7 | Prendre en compte masse, anatomie et résistances. | Candidate applicable à qualifier |
+| CT-0110 | V7.62-8 | Collisions uniquement lorsque le contexte le justifie. | Candidate applicable à qualifier |
+| CT-0111 | V7.62-9 | Resserrement automatique après retrait effectif d'un combattant. | Candidate applicable à qualifier |
+| CT-0112 | V7.62-10 | Préserver ordre relatif des combattants restants. | Candidate applicable à qualifier |
+| CT-0113 | V7.62-11 | Resserrement sans PA. | Candidate applicable à qualifier |
+| CT-0114 | V7.62-12 | Ennemis pouvant occuper plusieurs rangs. | Candidate applicable à qualifier |
+| CT-0115 | V7.62-13 | Empêcher chevauchements invalides et dégâts multiples involontaires sur une même créature multirang. | Candidate applicable à qualifier |
+| CT-0116 | V7.62-14 | Afficher déplacements possibles et conséquences connues avant confirmation. | Candidate applicable à qualifier |
+| CT-0117 | V7.62-15 | Préserver formation et déplacements résolus lors des sauvegardes. | Candidate applicable à qualifier |
+| CT-0118 | V7.62-16 | Résistances, dégâts de collision et exceptions à définir après simulations et tests. | Candidate applicable à qualifier |
+| CT-0119 | V7.63-1 | Combos de un à quatre participants. | Candidate applicable à qualifier |
+| CT-0120 | V7.63-2 | Un PA par participant effectivement engagé. | Candidate applicable à qualifier |
+| CT-0121 | V7.63-3 | Préparation et résolution dans le même round. | Candidate applicable à qualifier |
+| CT-0122 | V7.63-4 | Respect intégral de l'initiative adverse. | Candidate applicable à qualifier |
+| CT-0123 | V7.63-5 | Distinguer contributions indispensables et complémentaires. | Candidate applicable à qualifier |
+| CT-0124 | V7.63-6 | Résolution partielle uniquement si cohérente avec le combo. | Candidate applicable à qualifier |
+| CT-0125 | V7.63-7 | Pas d'interruption automatique à chaque blessure. | Candidate applicable à qualifier |
+| CT-0126 | V7.63-8 | Vérifier capacités anatomiques, équipements, rangs et états nécessaires. | Candidate applicable à qualifier |
+| CT-0127 | V7.63-9 | Pas de restitution automatique des PA engagés après interruption. | Candidate applicable à qualifier |
+| CT-0128 | V7.63-10 | Conserver effets effectivement résolus avant interruption. | Candidate applicable à qualifier |
+| CT-0129 | V7.63-11 | Compétence appropriée nécessaire à la protection/interception, sans PA supplémentaire créé. | Candidate applicable à qualifier |
+| CT-0130 | V7.63-12 | Respecter positionnement et mobilité des protecteurs. | Candidate applicable à qualifier |
+| CT-0131 | V7.63-13 | Conserver redirection anatomique validée : partie correspondante ; bras absent vers torse ; jambe absente vers autre jambe ou torse si deux absentes. | Candidate applicable à qualifier |
+| CT-0132 | V7.63-14 | Afflictions, attaques de zone et dommages aux prothèses selon propriétés réelles. | Candidate applicable à qualifier |
+| CT-0133 | V7.63-15 | Sauvegarder préparations, interceptions, interruptions et effets résolus sans duplication ni nouveau tirage au rechargement. | Candidate applicable à qualifier |
+| CT-0134 | V7.63-16 | Seuils d'interruption, priorités de protection, coefficients et exceptions après simulations et tests. | Candidate applicable à qualifier |
+| CT-0135 | V7.66-1 | Distinguer tour individuel et round collectif. | Candidate applicable à qualifier |
+| CT-0136 | V7.66-2 | Un PA par combattant et par round, utilisable pendant son tour. | Candidate applicable à qualifier |
+| CT-0137 | V7.66-3 | Calculer initiative au début de chaque round. | Candidate applicable à qualifier |
+| CT-0138 | V7.66-4 | Prendre en compte caractéristiques, équipements, blessures et états réels. | Candidate applicable à qualifier |
+| CT-0139 | V7.66-5 | Composante aléatoire limitée. | Candidate applicable à qualifier |
+| CT-0140 | V7.66-6 | Ordre normalement stable pendant le round. | Candidate applicable à qualifier |
+| CT-0141 | V7.66-7 | Certaines compétences modifient explicitement les tours restants. | Candidate applicable à qualifier |
+| CT-0142 | V7.66-8 | Aucune création de PA par modification d'initiative. | Candidate applicable à qualifier |
+| CT-0143 | V7.66-9 | Pas de report automatique des PA inutilisés au round suivant. | Candidate applicable à qualifier |
+| CT-0144 | V7.66-10 | Supprimer tours restants des morts, capturés ou effectivement retirés. | Candidate applicable à qualifier |
+| CT-0145 | V7.66-11 | Départage indépendant du camp : vitesse effective hors aléatoire, priorité spécifique éventuelle, puis tirage enregistré. | Candidate applicable à qualifier |
+| CT-0146 | V7.66-12 | Afficher ordre d'action et modifications. | Candidate applicable à qualifier |
+| CT-0147 | V7.66-13 | Léger bonus collectif après guet-apens déjoué, premier round uniquement. | Candidate applicable à qualifier |
+| CT-0148 | V7.66-14 | Attaque préventive comptabilisée dans le PA du premier round, sans double action. | Candidate applicable à qualifier |
+| CT-0149 | V7.66-15 | Sauvegarder ordre, PA, résultats aléatoires et tours résolus. | Candidate applicable à qualifier |
+| CT-0150 | V7.66-16 | Coefficients, seuils et exceptions après simulations et tests. | Candidate applicable à qualifier |
+| CT-0151 | V7.67-1 | Exactement quatre combattants au départ d'une expédition. | Candidate applicable à qualifier |
+| CT-0152 | V7.67-2 | Un seul rang tactique par créature recrutée. | Candidate applicable à qualifier |
+| CT-0153 | V7.67-3 | Distinguer taille physique et occupation tactique. | Candidate applicable à qualifier |
+| CT-0154 | V7.67-4 | Préserver identité visuelle et anatomique. | Candidate applicable à qualifier |
+| CT-0155 | V7.67-5 | Autoriser débordement visuel maîtrisé au-delà du rang. | Candidate applicable à qualifier |
+| CT-0156 | V7.67-6 | Garantir visibilité et sélection des autres combattants. | Candidate applicable à qualifier |
+| CT-0157 | V7.67-7 | Adapter compétences à morphologie réelle. | Candidate applicable à qualifier |
+| CT-0158 | V7.67-8 | Adapter déplacements et collisions à masse et anatomie. | Candidate applicable à qualifier |
+| CT-0159 | V7.67-9 | Un PA par round par créature recrutée. | Alias de V7.66-2 |
+| CT-0160 | V7.67-10 | Participation aux combos selon capacités. | Candidate applicable à qualifier |
+| CT-0161 | V7.67-11 | Équipements adaptés lorsque anatomie le nécessite. | Candidate applicable à qualifier |
+| CT-0162 | V7.67-12 | Préserver mort définitive, succession et persistance. | Candidate applicable à qualifier |
+| CT-0163 | V7.67-13 | Cinq boss principaux recrutables uniquement en NG+. | Alias de V7.46-9 |
+| CT-0164 | V7.67-14 | Tester proportions d'affichage, lisibilité et équilibrage avant intégration définitive. | Candidate applicable à qualifier |
+| CT-0165 | V7.68-1 | Distinguer invocation, recrutement et capture. | Candidate applicable à qualifier |
+| CT-0166 | V7.68-2 | Quatre combattants actifs au départ de l'expédition. | Alias de V7.67-1 |
+| CT-0167 | V7.68-3 | Aucun rang principal indépendant pour les invocations auxiliaires. | Candidate applicable à qualifier |
+| CT-0168 | V7.68-4 | Rattacher chaque invocation à son créateur. | Candidate applicable à qualifier |
+| CT-0169 | V7.68-5 | Moteur commun aux six familles. | Candidate applicable à qualifier |
+| CT-0170 | V7.68-6 | Un PA pour déclencher une compétence d'invocation. | Candidate applicable à qualifier |
+| CT-0171 | V7.68-7 | Pas de PA indépendant systématique pour les invocations. | Candidate applicable à qualifier |
+| CT-0172 | V7.68-8 | Effets autonomes limités et explicitement définis. | Candidate applicable à qualifier |
+| CT-0173 | V7.68-9 | Limiter le nombre d'invocations simultanées. | Candidate applicable à qualifier |
+| CT-0174 | V7.68-10 | Durée et maintien adaptés à leur nature. | Candidate applicable à qualifier |
+| CT-0175 | V7.68-11 | Ciblage possible selon leur nature. | Candidate applicable à qualifier |
+| CT-0176 | V7.68-12 | Résistances, blessures et afflictions compatibles. | Candidate applicable à qualifier |
+| CT-0177 | V7.68-13 | Synergies avec combos sans contourner leurs coûts. | Candidate applicable à qualifier |
+| CT-0178 | V7.68-14 | Résolution contextuelle de neutralisation ou mort de l'invocateur. | Candidate applicable à qualifier |
+| CT-0179 | V7.68-15 | Aucun contournement de mort définitive et succession. | Candidate applicable à qualifier |
+| CT-0180 | V7.68-16 | Préserver lisibilité du HUD et quatre rangs. | Candidate applicable à qualifier |
+| CT-0181 | V7.68-17 | Sauvegarder états, durées et effets résolus sans duplication. | Candidate applicable à qualifier |
+| CT-0182 | V7.68-18 | Capacités maximales, durées, coûts de maintien et coefficients après simulations et tests. | Candidate applicable à qualifier |
+| CT-0183 | V7.69-1 | Recrutement garanti après capture et extraction éligibles. | Candidate applicable à qualifier |
+| CT-0184 | V7.69-2 | Distinguer confiance et loyauté. | Candidate applicable à qualifier |
+| CT-0185 | V7.69-3 | Conserver cinq états relationnels validés. | Candidate applicable à qualifier |
+| CT-0186 | V7.69-4 | Délai initial exprimé en nombre d'expéditions. | Candidate applicable à qualifier |
+| CT-0187 | V7.69-5 | Adapter délai aux particularités individuelles. | Candidate applicable à qualifier |
+| CT-0188 | V7.69-6 | Garantir délai maximal fini, sans prolongation indéfinie. | Candidate applicable à qualifier |
+| CT-0189 | V7.69-7 | Progression naturelle à chaque expédition admissible. | Candidate applicable à qualifier |
+| CT-0190 | V7.69-8 | Soins, recherches et interactions pertinentes peuvent réduire délai. | Candidate applicable à qualifier |
+| CT-0191 | V7.69-9 | Adapter progression aux sept familles de recrutement. | Candidate applicable à qualifier |
+| CT-0192 | V7.69-10 | Exclure expéditions artificielles sans activité significative. | Candidate applicable à qualifier |
+| CT-0193 | V7.69-11 | Comptabiliser chaque expédition admissible une seule fois. | Candidate applicable à qualifier |
+| CT-0194 | V7.69-12 | Décompte après arrivée effective du captif à la Guilde. | Candidate applicable à qualifier |
+| CT-0195 | V7.69-13 | Afficher nombre d'expéditions restantes. | Candidate applicable à qualifier |
+| CT-0196 | V7.69-14 | Intégration automatique aux réserves à échéance, contraintes de disponibilité et capacité traitées séparément. | Candidate applicable à qualifier |
+| CT-0197 | V7.69-15 | Cinq boss principaux recrutables uniquement en NG+. | Alias de V7.46-9 |
+| CT-0198 | V7.69-16 | Préserver progression lors des successions pour captifs conservés à la Guilde. | Candidate applicable à qualifier |
+| CT-0199 | V7.69-17 | Conserver caractéristiques relationnelles après recrutement. | Candidate applicable à qualifier |
+| CT-0200 | V7.69-18 | Barèmes, seuils, effets relationnels et critères précis d'admissibilité après simulations et tests. | Candidate applicable à qualifier |
+| CT-0201 | V7.70-1 | Distinguer interruptions, interceptions, protections et ripostes. | Candidate applicable à qualifier |
+| CT-0202 | V7.70-2 | Utiliser les sept phases de résolution. | Candidate applicable à qualifier |
+| CT-0203 | V7.70-3 | Vérifier conditions réelles avant chaque réaction. | Candidate applicable à qualifier |
+| CT-0204 | V7.70-4 | Respecter un PA par combattant et par round. | Candidate applicable à qualifier |
+| CT-0205 | V7.70-5 | Ne pas consommer deux fois un PA déjà engagé. | Candidate applicable à qualifier |
+| CT-0206 | V7.70-6 | Compétence appropriée exigée pour réactions actives. | Candidate applicable à qualifier |
+| CT-0207 | V7.70-7 | Réactions passives uniquement si explicitement définies. | Candidate applicable à qualifier |
+| CT-0208 | V7.70-8 | Interruptions préventives avant impacts. | Candidate applicable à qualifier |
+| CT-0209 | V7.70-9 | Une interception physique maximum par impact individuel. | Candidate applicable à qualifier |
+| CT-0210 | V7.70-10 | Protections compatibles peuvent se compléter. | Candidate applicable à qualifier |
+| CT-0211 | V7.70-11 | Respecter règles anatomiques validées. | Candidate applicable à qualifier |
+| CT-0212 | V7.70-12 | Afflictions appliquées aux combattants effectivement concernés. | Candidate applicable à qualifier |
+| CT-0213 | V7.70-13 | Effets de zone résolus individuellement. | Candidate applicable à qualifier |
+| CT-0214 | V7.70-14 | Départager réactions concurrentes selon priorités définies. | Candidate applicable à qualifier |
+| CT-0215 | V7.70-15 | Préférences de réaction configurables par le joueur. | Candidate applicable à qualifier |
+| CT-0216 | V7.70-16 | Réévaluer capacités et combos après chaque effet résolu. | Candidate applicable à qualifier |
+| CT-0217 | V7.70-17 | Pas d'annulation rétroactive des effets résolus, sauf mécanique explicite restaurant l'état sans effacer l'événement. | Candidate applicable à qualifier |
+| CT-0218 | V7.70-18 | Empêcher chaînes infinies de réactions. | Candidate applicable à qualifier |
+| CT-0219 | V7.70-19 | Sauvegarder réactions préparées, décisions, effets résolus et liens causaux sans duplication. | Candidate applicable à qualifier |
+| CT-0220 | V7.70-20 | Plafonds, durées, priorités spécifiques et exceptions après simulations et tests. | Candidate applicable à qualifier |
+| CT-0221 | D.3 | Afficher héros entier et anatomie correspondant au héros sélectionné | Complément à vérifier / rattacher |
+| CT-0222 | D.3 | Afficher au survol les informations connues de la zone anatomique | Complément à vérifier / rattacher |
+| CT-0223 | D.3 | Permettre inspection approfondie au clic | Complément à vérifier / rattacher |
+| CT-0224 | D.3 | Unifier états et effets avec filtres et durée connue | Complément à vérifier / rattacher |
+| CT-0225 | D.3 | Masquer passifs secrets non découverts | Complément à vérifier / rattacher |
+| CT-0226 | D.3 | Afficher caractéristiques effectives avant détails | Complément à vérifier / rattacher |
+| CT-0227 | D.4 | Afficher combattant actif, PV, PA, rangs, cibles accessibles et états critiques | Complément à vérifier / rattacher |
+| CT-0228 | D.4 | Mettre en évidence cibles et zones accessibles après sélection | Complément à vérifier / rattacher |
+| CT-0229 | D.4 | Afficher probabilité de toucher et conséquences connues au survol | Complément à vérifier / rattacher |
+| CT-0230 | D.4 | Exécuter attaque valide au clic gauche | Complément à vérifier / rattacher |
+| CT-0231 | D.4 | Inspection sans attaque ni PA au clic droit | Complément à vérifier / rattacher |
+| CT-0232 | D.4 | Annuler ciblage avec Échap | Complément à vérifier / rattacher |
+| CT-0233 | D.5 | Respecter familles d'armes compatibles | Complément à vérifier / rattacher |
+| CT-0234 | D.5 | Attaque spéciale d'arme épique/légendaire occupe un emplacement actif | Complément à vérifier / rattacher |
+| CT-0235 | D.5 | Changer compétences équipées hors combat | Complément à vérifier / rattacher |
+| CT-0236 | D.5 | Conserver découvertes de combos collectivement | Complément à vérifier / rattacher |
+| CT-0237 | D.6 | Aucune usure ordinaire progressive | Complément à vérifier / rattacher |
+| CT-0238 | D.6 | Destruction seulement par événement explicite lisible | Complément à vérifier / rattacher |
+| CT-0239 | D.6 | Légendaires uniques indestructibles mais endommageables | Complément à vérifier / rattacher |
+| CT-0240 | D.6 | Recyclage uniquement à la forge | Complément à vérifier / rattacher |
+| CT-0241 | D.6 | Équipement cassé sans rendement de recyclage | Complément à vérifier / rattacher |
+| CT-0242 | D.6 | Sac commun unique | Complément à vérifier / rattacher |
+| CT-0243 | V5.3 | Héros uniques avec identité classe histoire | Complément à vérifier / rattacher |
+| CT-0244 | V5.3 | Composition libre parmi disponibles | Complément à vérifier / rattacher |
+| CT-0245 | V5.4 | Pas de remplacement automatique par réserviste | Complément à vérifier / rattacher |
+| CT-0246 | V5.8 | Branches visibles dès départ sans tronc préalable | Complément à vérifier / rattacher |
+| CT-0247 | V6.1 | Verrouiller branche au premier investissement avant NG+ | Complément à vérifier / rattacher |
+| CT-0248 | V5.9 | Mélange intraclasse autorisé en NG+ | Complément à vérifier / rattacher |
+| CT-0249 | V6.5 | Une évolution majeure par compétence | Complément à vérifier / rattacher |
+| CT-0250 | V6.6 | Remplacement évolution majeure au refuge | Complément à vérifier / rattacher |
+| CT-0251 | V6.7 | Cinq compétences mixtes par branche | Complément à vérifier / rattacher |
+| CT-0252 | V6.8 | Quatre emplacements actifs maximum | Complément à vérifier / rattacher |
+| CT-0253 | V6.8 | Emplacements actifs et passifs distincts | Complément à vérifier / rattacher |
+| CT-0254 | V7.0 | Cinq emplacements passifs maximum | Complément à vérifier / rattacher |
+| CT-0255 | V7.0 | Occupation pondérée des passifs | Complément à vérifier / rattacher |
+| CT-0256 | V6.9 | Un emplacement passif initial | Complément à vérifier / rattacher |
+| CT-0257 | V7.4 | Déblocage collectif automatique y compris recrues tardives | Complément à vérifier / rattacher |
+| CT-0258 | V8.2-14 | Deux emplacements personnels par accomplissements de rôle | Complément à vérifier / rattacher |
+| CT-0259 | ADR-0006 | R1 au contact et ordre visuel R4 R3 R2 R1 | Complément à vérifier / rattacher |
+| CT-0260 | ADR-0009 | Aucun ancien quatuor imposé au départ | Complément à vérifier / rattacher |
+
+Contrôle : 220 lignes historiques reprises, 40 compléments, 2 clauses remplacées, 6 alias initiaux. Aucun décompte d'exigences uniques exhaustives revendiqué. Restent notamment V8.3, Némésis, retraite, guet-apens, paragraphes hors listes et contrôle de toutes les PR pertinentes. Aucun test exécuté.
