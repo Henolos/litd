@@ -14,6 +14,7 @@ class SaveLockLab : public RefCounted {
     bool held = false;
 protected:
     static void _bind_methods() {
+        if (std::getenv("LITD_LOCK_CLASS_ONLY")) return;
         ClassDB::bind_method(D_METHOD("try_acquire", "absolute_path"), &SaveLockLab::try_acquire);
         ClassDB::bind_method(D_METHOD("release"), &SaveLockLab::release);
         ClassDB::bind_method(D_METHOD("is_held"), &SaveLockLab::is_held);
