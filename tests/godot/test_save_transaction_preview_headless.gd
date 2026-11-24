@@ -216,6 +216,12 @@ func _run() -> void:
         else:
             _check(observed.is_empty(), "Unconfirmed suffix blocks recovery at " + boundary)
             _check(manager.coordinated_commit_preview(jd, ad, "campaign-1", 3, before, record).is_empty(), "Do not promote unconfirmed suffix on retry")
+        if boundary == "after_journal":
+            _check(manager.resolve_unconfirmed_preview(jd, ad, "campaign-1", 3, before, 4, "0".repeat(64)).is_empty(), "Reject wrong resolution hash")
+            _check(manager.resolve_unconfirmed_preview(jd, ad, "campaign-1", 3, before, 5, record["post_state_sha256"]).is_empty(), "Reject wrong resolution revision")
+            var resolved: Dictionary = manager.resolve_unconfirmed_preview(jd, ad, "campaign-1", 3, before, 4, record["post_state_sha256"])
+            _check(resolved.get("persistent_state") == after and resolved.get("applied_transaction_ids") == ["action-42"], "Explicit resolution preserves original outcome")
+            _check(manager.resolve_unconfirmed_preview(jd, ad, "campaign-1", 3, before, 4, record["post_state_sha256"]).is_empty(), "Reject repeated resolution")
         for folder: String in [jd, ad]:
             if DirAccess.dir_exists_absolute(ProjectSettings.globalize_path(folder)):
                 for entry_name: String in DirAccess.get_files_at(folder):
