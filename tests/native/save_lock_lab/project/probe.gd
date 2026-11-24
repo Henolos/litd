@@ -14,6 +14,9 @@ func _initialize() -> void:
         return
     print("GODOT_LOCK_ACQUIRED")
     if args[1] == "hold":
-        await create_timer(120.0).timeout
+        for i in range(1200):
+            if FileAccess.file_exists(args[0].get_base_dir().path_join("release.request")):
+                break
+            await create_timer(0.1).timeout
     lock.release()
     quit(0)
