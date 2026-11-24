@@ -4659,3 +4659,52 @@ Passage automatique sur les 453 identifiants existants : contrôle unicité, rap
 SaveManager blob 7124c2d39324c0768350fbbd49cb425eca4a0527 ; tests transactionnels blob 1c00f8acc24bfa8d2f7dcc3062c49023d35625d3 ; contrat V0 blob 5d3c7675c609e377070e8ca74970b65cc1c1b037. canonical_body/sha256, preview_committed_transaction, journal_append/recover_preview, journal_recover_confirmed_preview, anchor_read/publish_preview, coordinated_commit_preview, inspect/resolve_unconfirmed_preview existent. Journal isolé, non appelé par save_game/load_game. Révisions, empreintes, doublons et chaîne confirmée contrôlés ; pas de validation des invariants métier ni durabilité démontrée. Garde de réentrance intra-processus seulement. Les fichiers .pending peuvent bloquer une nouvelle tentative ; résolution explicite du suffixe non confirmé ne traite pas la réparation d'ancre pending. Le test source contient injections écriture/reprise et vérification de déterminisme, sans nouvelle exécution ici. Le contrat V0 propose mutations et événements permanents ; le prototype transporte result_state complet. Ne pas assimiler ces deux contrats. Ne pas intégrer avant validation des producteurs métier, confirmation durable, réparation contrôlée et tests Windows. Aucun changement runtime.
 
 T1 reste ouvert : relecture sémantique des 453 lignes, vérification des alias, couverture des sources et correspondance précise tests. T2 non ouvert.
+
+
+---
+## V7.79 — Relecture ciblée des anomalies sémantiques et critères de clôture T1 (24 novembre 2026)
+
+Corrections de la préqualification V7.78, sans suppression des identifiants ni modification des décisions. Relecture directe V7.47,54,59,60,68,70 et entrées concernées. Les six alias ont été examinés ; les treize clauses signalées et le faux doublon ont été examinés. La relecture exhaustive des autres entrées reste ouverte.
+
+| ID | Référence liée | Qualification corrigée |
+|---|---|---|
+| CT-0065 | CT-0008 | Alias confirmé |
+| CT-0098 | CT-0009 | Précision explicite NG+ à conserver |
+| CT-0159 | CT-0136 | Application aux recrues, conserver test dédié |
+| CT-0163 | CT-0098 | Alias confirmé |
+| CT-0166 | CT-0151 | Alias confirmé, test invocations |
+| CT-0197 | CT-0098 | Alias confirmé |
+| CT-0089 | CT-0013 | Faux doublon : familles recrutement distinctes capture |
+| CT-0096 | CT-0183 | Refus définitif remplacé ; libération volontaire, recherche et détention contextuelle conservées |
+| CT-0101 | CT-0196 | Intégration garantie à échéance, disponibilité séparée |
+| CT-0023 | V7.47 | Obligation bestiaire, pas paramètre |
+| CT-0052 | V7.52 | Obligation expérimentation, pas paramètre |
+| CT-0225 | D.3 | Obligation secret, pas paramètre |
+| CT-0236 | D.5 | Obligation mémoire collective, pas paramètre |
+| CT-0024 / 0072 / 0086 / 0118 / 0453 | Sources respectives | Paramètres ouverts |
+| CT-0342 / 0354 / 0377 / 0380 | Sources respectives | Clauses mixtes : scinder obligations et calibrage |
+
+### Compléments explicites des paragraphes hors listes
+| ID | Source | Exigence | Test candidat |
+|---|---|---|---|
+| CT-0454 | V7.47 | Sept familles capture : immobilisation physique, neutralisation non létale, affaiblissement alchimique, soumission, confinement magique, scellement spirituel, désactivation | Tester compatibilité de chaque famille |
+| CT-0455 | V7.59 | Sept familles recrutement : apprivoisement, persuasion, allégeance, pacte, purification, liaison spirituelle, réactivation | Tester parcours distincts |
+| CT-0456 | V7.59 | États hostile, méfiant, réceptif, coopératif, loyal si compatibles ; conditions fonctionnelles possibles | Tester créature artificielle sans loyauté imposée |
+| CT-0457 | V7.54 | Médecin : recherche expérimentale et anatomie ; Wei Shan : documentation historique et mythologique ; maîtresse d'armes : pratique | Tester provenance et conservation collective des connaissances |
+| CT-0458 | V7.68 | Six familles spirituelles, élémentaires, nécromantiques, familiers temporaires, constructions artificielles, manifestations rituelles | Tester contrat commun par famille |
+| CT-0459 | V7.68 | Commandes actives via PA invocateur | Commande sans PA disponible rejetée |
+| CT-0460 | V7.68 | Entités temporaires disparaissent fin combat | Fin combat sans invocation temporaire persistante |
+| CT-0461 | V7.68 | Invocation ne remplace pas survivant | Défaite avec invocation seule ne compte pas comme survivant |
+| CT-0462 | V7.70 | Sept phases ordonnées déclaration, interruption, interception, impact, anatomie, réactions consécutives, actualisation | Trace ordonnée et interruption avant impact |
+| CT-0463 | V7.70 | Priorité compatibilité, compétence, préférence ou comportement, initiative, départage stable | Réactions concurrentes avec égalité et préférence |
+| CT-0464 | V7.70 | PA payé à préparation, pas de seconde consommation ni droit général à réaction gratuite | Déclenchement préparé puis tentative active non préparée |
+
+### Critères de clôture T1 (proposés)
+1. Chaque entrée relue contre source exacte et statut ; clauses composites décomposées, alias avec portée conservée.
+2. Couverture vérifiée des paragraphes hors listes, notamment anatomie, équipement, maîtrise, interfaces exploration.
+3. Contradictions documentées avec décision explicite ou blocage circonscrit (Ange, ADR-0005, anciens seuils).
+4. Chaque exigence applicable reliée à composant candidat, scénario observable positif/négatif et interaction pertinente ; paramètres ouverts distincts.
+5. Preuves de composants existants et tests distinguées des propositions ; aucun besoin de prétendre tests runtime réussis pour clôturer audit documentaire.
+6. Relecture finale de cohérence, aucune exigence orpheline, aucune suppression d'original ; T2 seulement après satisfaction des critères.
+
+464 entrées cumulées, pas 464 règles uniques. Aucun test exécuté, aucun code modifié. T1 non clos ; ne pas augmenter mécaniquement le pourcentage sur la base du nombre de lignes.
