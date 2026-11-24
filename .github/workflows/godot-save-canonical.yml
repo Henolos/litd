@@ -111,6 +111,8 @@ jobs:
           git -C "$RUNNER_TEMP/godot-cpp" fetch --depth=1 origin "$sha"
           git -C "$RUNNER_TEMP/godot-cpp" checkout --detach FETCH_HEAD
           test "$(git -C "$RUNNER_TEMP/godot-cpp" rev-parse HEAD)" = "$sha"
-          test "$(git -C "$RUNNER_TEMP/godot-cpp" hash-object LICENSE.md)" = eb446fe72ce5c705f70413394200f67a123cd
+          actual_license=$(git -C "$RUNNER_TEMP/godot-cpp" rev-parse HEAD:LICENSE.md)
+          echo "Committed license blob: $actual_license"
+          test "$actual_license" = eb446fe72ce5c705f70413394200f67a123cd
           cmake -S tests/native/save_lock_lab -B "$RUNNER_TEMP/lock-build" -DGODOT_CPP_DIR="$RUNNER_TEMP/godot-cpp" -DCMAKE_BUILD_TYPE=Debug
           cmake --build "$RUNNER_TEMP/lock-build" --config Debug --parallel 2
