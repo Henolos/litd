@@ -36,7 +36,10 @@
           "title",
           "design_status",
           "test_status",
-          "blocking"
+          "blocking",
+          "proposed_bots",
+          "mapping_status",
+          "canonical_source"
         ],
         "properties": {
           "id": {
@@ -55,6 +58,29 @@
           },
           "blocking": {
             "const": false
+          },
+          "proposed_bots": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^V([1-9]|[12][0-9]|3[01])$"
+            }
+          },
+          "mapping_status": {
+            "const": "PROPOSED"
+          },
+          "canonical_source": {
+            "type": "null"
+          },
+          "review_channel": {
+            "enum": [
+              "human",
+              "visual",
+              "F8",
+              "measurement_and_human",
+              "physical_windows"
+            ]
           }
         }
       }
