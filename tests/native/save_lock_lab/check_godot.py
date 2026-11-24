@@ -11,12 +11,32 @@ def main():
     exe = str(Path(sys.argv[1]).resolve())
     project = Path(__file__).resolve().parent / "project"
     with tempfile.TemporaryDirectory(prefix="litd-godot-lock-") as tmp:
-        root = Path(tmp)
+        root = Path(tmp).resolve()
         env = dict(os.environ, APPDATA=tmp, LOCALAPPDATA=tmp, XDG_DATA_HOME=tmp)
         base = [exe, "--headless", "--path", str(project)]
         subprocess.run(base + ["--import", "--quit"], env=env, check=True, timeout=120)
         def command(mode):
             return base + ["--script", "res://probe.gd", "--", str(root / "campaign.lock"), mode]
+        def reject_path(path):
+            result = subprocess.run(base + ["--script", "res://probe.gd", "--", str(path), "probe"],
+                                    env=env, capture_output=True, text=True, timeout=30)
+            assert result.returncode == 23, result
+        child = root / "child"
+        child.mkdir()
+        reject_path(str(child) + "/../campaign.lock")
+        reject_path(root / "missing" / "campaign.lock")
+        alias = root / "alias"
+        try:
+            alias.symlink_to(child, target_is_directory=True)
+        except OSError as exc:
+            if os.name != "nt" or getattr(exc, "winerror", None) != 1314:
+                raise
+            print("GODOT_PARENT_SYMLINK_SKIPPED_WINDOWS_PRIVILEGE")
+        else:
+            reject_path(alias / "campaign.lock")
+            assert not (child / "campaign.lock").exists()
+            print("GODOT_PARENT_SYMLINK_PASS")
+        print("GODOT_PARENT_PREFLIGHT_PASS")
         for forced in (False, True):
             owner = subprocess.Popen(command("hold"), env=env, stdout=subprocess.PIPE,
                                      stderr=subprocess.STDOUT, text=True)
