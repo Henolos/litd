@@ -50,7 +50,12 @@ def main():
         print(f"GODOT_CLASS_ONLY_IMPORT_EXIT={diagnostic.returncode}", flush=True)
         # Always run the full case, even if the minimal case fails.
         print("GODOT_EXTENSION_IMPORT_START", flush=True)
-        subprocess.run(base + ["--import", "--quit", "--verbose"], env=env, check=True, timeout=120)
+        # Godot upstream #111048: cold headless import may race documentation shutdown.
+        # Keep the immediate-exit diagnostic cases above; delay only the full import.
+        print("GODOT_DELAYED_IMPORT_START", flush=True)
+        subprocess.run(base + ["--import", "--quit", "--frame-delay", "1000", "--verbose"],
+                       env=env, check=True, timeout=180)
+        print("GODOT_DELAYED_IMPORT_PASS", flush=True)
         print("GODOT_EXTENSION_IMPORT_PASS", flush=True)
         def command(mode):
             return base + ["--script", "res://probe.gd", "--", str(root / "campaign.lock"), mode]
