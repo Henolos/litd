@@ -59,6 +59,18 @@ func _test_replacement_failures() -> void:
     _check(not failing._atomic_write(FAILURE_PATH, _envelope("new")), "destructive backend failure reported")
     _check(str(failing._read_payload(FAILURE_PATH).get("marker", "")) == "safe", "missing destination restored from backup")
     _check(str(failing._read_payload(FAILURE_PATH + ".bak").get("marker", "")) == "safe", "backup survives destructive failure")
+    failing.fail_replacement = false
+    failing.fail_backup_replacement = true
+    failing.remove_destination_before_failure = false
+    _check(not failing._atomic_write(FAILURE_PATH, _envelope("blocked-backup")), "backup publication failure reported")
+    _check(str(failing._read_payload(FAILURE_PATH).get("marker", "")) == "safe", "backup publication failure preserves primary")
+    _check(str(failing._read_payload(FAILURE_PATH + ".bak").get("marker", "")) == "safe", "non-destructive backup failure preserves backup")
+    failing.remove_destination_before_failure = true
+    _check(not failing._atomic_write(FAILURE_PATH, _envelope("destructive-backup")), "destructive backup failure reported")
+    _check(str(failing._read_payload(FAILURE_PATH).get("marker", "")) == "safe", "destructive backup failure preserves primary")
+    failing.fail_backup_replacement = false
+    _check(failing._atomic_write(FAILURE_PATH, _envelope("recovered")), "retry after backup failure")
+    _check(str(failing._read_payload(FAILURE_PATH + ".bak").get("marker", "")) == "safe", "retry restores backup generation")
     failing.free()
     _check(SaveManager._atomic_write(BLOCKED_PATH, _envelope("safe")), "seed backup failure fixture")
     _check(DirAccess.make_dir_absolute(BLOCKED_PATH + ".bak") == OK, "block backup creation")
@@ -95,7 +107,7 @@ func _write_raw(path: String, body: String) -> bool:
 
 func _cleanup() -> void:
     for primary: String in [TEST_PATH, FAILURE_PATH, BLOCKED_PATH]:
-        for suffix: String in ["", ".bak", ".tmp"]:
+        for suffix: String in ["", ".bak", ".tmp", ".bak.tmp"]:
             var path := ProjectSettings.globalize_path(primary + suffix)
             if FileAccess.file_exists(path) or DirAccess.dir_exists_absolute(path):
                 DirAccess.remove_absolute(path)
