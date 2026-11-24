@@ -23,6 +23,16 @@ def main():
         subprocess.run([exe, "--headless", "--path", str(baseline), "--import", "--quit"],
                        env=env, check=True, timeout=120)
         print("GODOT_BASELINE_IMPORT_PASS", flush=True)
+        # Use a separate project/cache so the init-only case cannot mask full import.
+        minimal = root / "init_only"
+        shutil.copytree(project, minimal, ignore=shutil.ignore_patterns(".godot"))
+        minimal_env = dict(env, LITD_LOCK_INIT_ONLY="1")
+        print("GODOT_INIT_ONLY_IMPORT_START", flush=True)
+        diagnostic = subprocess.run([exe, "--headless", "--path", str(minimal),
+                                     "--import", "--quit", "--verbose"],
+                                    env=minimal_env, timeout=120)
+        print(f"GODOT_INIT_ONLY_IMPORT_EXIT={diagnostic.returncode}", flush=True)
+        # Always run the full case, even if the minimal case fails.
         print("GODOT_EXTENSION_IMPORT_START", flush=True)
         subprocess.run(base + ["--import", "--quit", "--verbose"], env=env, check=True, timeout=120)
         print("GODOT_EXTENSION_IMPORT_PASS", flush=True)
