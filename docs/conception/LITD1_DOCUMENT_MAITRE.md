@@ -3195,3 +3195,32 @@ Respecter V4.2–4.4, V7.62–64 et V8.3. Frise compacte proposée, maquette et 
 14. Tester proportions d'affichage, lisibilité et équilibrage avant intégration définitive.
 
 Préserver originaux artistiques, identité sino-gothico-dark fantasy et particularités individuelles ; aucun bonus automatique lié à la taille. Les ennemis multirangs restent régis par V7.62. Respecter V7.60, V7.63, V7.66 et V8.3. Aucun code ni test modifié. Prochain arbitrage : invocations.
+
+
+---
+## V7.68 — Invocations auxiliaires contextuelles (24 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, six familles et dix-huit règles complémentaires explicitement approuvées.**
+
+Familles : spirituelles, élémentaires, nécromantiques, familiers temporaires, constructions artificielles, manifestations rituelles.
+
+1. Distinguer invocation, recrutement et capture.
+2. Quatre combattants actifs au départ de l'expédition.
+3. Aucun rang principal indépendant pour les invocations auxiliaires.
+4. Rattacher chaque invocation à son créateur.
+5. Moteur commun aux six familles.
+6. Un PA pour déclencher une compétence d'invocation.
+7. Pas de PA indépendant systématique pour les invocations.
+8. Effets autonomes limités et explicitement définis.
+9. Limiter le nombre d'invocations simultanées.
+10. Durée et maintien adaptés à leur nature.
+11. Ciblage possible selon leur nature.
+12. Résistances, blessures et afflictions compatibles.
+13. Synergies avec combos sans contourner leurs coûts.
+14. Résolution contextuelle de neutralisation ou mort de l'invocateur.
+15. Aucun contournement de mort définitive et succession.
+16. Préserver lisibilité du HUD et quatre rangs.
+17. Sauvegarder états, durées et effets résolus sans duplication.
+18. Capacités maximales, durées, coûts de maintien et coefficients après simulations et tests.
+
+Commandes actives via PA de l'invocateur, effets passifs explicitement bornés ; disparition en fin de combat pour entités temporaires, aucune invocation ne remplace un survivant de la compagnie. Les exemples de coûts et de comportement restent indicatifs hors règles explicitement approuvées. Préserver V7.63, V7.66–67 et V8.3. Aucun code, original artistique ou test modifié. Prochain arbitrage : confiance, loyauté et délais de recrutement en nombre d'expéditions.
