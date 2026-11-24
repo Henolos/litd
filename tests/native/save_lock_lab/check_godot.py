@@ -32,6 +32,14 @@ def main():
                                      "--import", "--quit", "--verbose"],
                                     env=minimal_env, timeout=120)
         print(f"GODOT_INIT_ONLY_IMPORT_EXIT={diagnostic.returncode}", flush=True)
+        class_only = root / "class_only"
+        shutil.copytree(project, class_only, ignore=shutil.ignore_patterns(".godot"))
+        class_env = dict(env, LITD_LOCK_CLASS_ONLY="1")
+        print("GODOT_CLASS_ONLY_IMPORT_START", flush=True)
+        diagnostic = subprocess.run([exe, "--headless", "--path", str(class_only),
+                                     "--import", "--quit", "--verbose"],
+                                    env=class_env, timeout=120)
+        print(f"GODOT_CLASS_ONLY_IMPORT_EXIT={diagnostic.returncode}", flush=True)
         # Always run the full case, even if the minimal case fails.
         print("GODOT_EXTENSION_IMPORT_START", flush=True)
         subprocess.run(base + ["--import", "--quit", "--verbose"], env=env, check=True, timeout=120)
