@@ -7,6 +7,8 @@ on:
       - 'tests/godot/test_save_canonical_headless.gd'
       - 'tests/godot/test_save_transaction_preview_headless.gd'
       - '.github/workflows/godot-save-canonical.yml'
+      - 'tests/python/save_lock_lab.py'
+      - 'tests/python/test_save_lock_lab.py'
   workflow_dispatch:
 
 permissions:
@@ -67,3 +69,17 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "Windows canonical save test failed: $LASTEXITCODE" }
           & $env:GODOT_EXE --headless --path . --script res://tests/godot/test_save_transaction_preview_headless.gd
           if ($LASTEXITCODE -ne 0) { throw "Windows interrupted-write/recovery matrix failed: $LASTEXITCODE" }
+
+  native-lock-lab:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Install test dependency
+        run: python -m pip install "pytest>=8,<9"
+      - name: Verify native lock contention and forced termination
+        run: python -m pytest -v tests/python/test_save_lock_lab.py
