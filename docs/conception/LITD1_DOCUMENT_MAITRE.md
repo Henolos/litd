@@ -3548,3 +3548,152 @@ Extraction des lignes numérotées des sections sélectionnées ; les règles hi
 | V7.70-20 | Plafonds, durées, priorités spécifiques et exceptions après simulations et tests. | À vérifier | À associer / à associer | Non acquise |
 
 Prochaine étape : compléter inventaire des règles non numérotées et anciennes applicables, qualifier chaque ligne par composant et preuve, résoudre préséances et établir tests. Ne pas annoncer exhaustivité avant couverture vérifiée.
+
+
+---
+## V7.74 — Extension de l'inventaire de conformité et contrôle de couverture (24 novembre 2026)
+
+Le registre V7.73 compte 220 lignes numérotées, pas 220 exigences uniques définitivement applicables. Complément : index des blocs sources du document avant V7.73, avec plages de lignes relatives au commit 09b04054b3d648ff43b2dd35a91d1406800f9bce (SHA du fichier source, non SHA de commit). Les blocs couvrent aussi les archives, propositions et sujets hors combat ; leur présence ne signifie pas validation. L'index est un outil de couverture, pas une matrice atomique achevée.
+
+| Bloc source | Lignes source | Qualification |
+|---|---|---|
+| A. Règles de lecture et statut | 33–43 | Transversal / historique à qualifier |
+| B. Vision de travail et piliers | 44–51 | Transversal / historique à qualifier |
+| C. Arbitrages explicites récents : défaite, retraite et progression intercampagnes | 52–112 | Transversal / historique à qualifier |
+| D. Navigation, fiche du héros, HUD et systèmes associés | 113–178 | Transversal / historique à qualifier |
+| E. Registre historique des mécaniques et de la vision (préférences et études) | 179–315 | Transversal / historique à qualifier |
+| F. Méthode de création de LITD 1 | 316–496 | Transversal / historique à qualifier |
+| G. Méthode permanente de travail | 497–632 | Transversal / historique à qualifier |
+| H. Registre unique des contradictions, révisions et décisions ouvertes | 633–651 | Transversal / historique à qualifier |
+| I. Décisions restant à prendre : ordre de travail | 652–662 | Transversal / historique à qualifier |
+| J. Traçabilité de la fusion et contrôles — état historique du socle | 663–670 | Transversal / historique à qualifier |
+| K. Suivi — état historique du socle | 671–684 | Transversal / historique à qualifier |
+| L. Direction artistique — identité et inspirations | 685–753 | Transversal / historique à qualifier |
+| Mise à jour de conception — 16 novembre 2026 : expéditions mixtes (V3.2) | 754–768 | À qualifier selon statut et préséance |
+| Mise à jour de conception — 16 novembre 2026 : retour immédiat sous conditions (V3.3) | 769–806 | À qualifier selon statut et préséance |
+| Mise à jour — 16 novembre 2026 : états d’extraction et prototype logique V3.4 | 807–836 | À qualifier selon statut et préséance |
+| Mise à jour V3.5 — Suppression de la poursuite et objets de fuite (16 novembre 2026) | 837–867 | À qualifier selon statut et préséance |
+| Mise à jour V3.6 — Guet-apens en remplacement des poursuites (16 novembre 2026) | 868–896 | À qualifier selon statut et préséance |
+| Mise à jour V3.7 — Typologie et anticipation des guet-apens (16 novembre 2026) | 897–934 | À qualifier selon statut et préséance |
+| Mise à jour V3.8 — Étude de la détection hybride des guet-apens (16 novembre 2026) | 935–968 | À qualifier selon statut et préséance |
+| Mise à jour V3.9 — Détection hybride validée et préparation tactique (16 novembre 2026) | 969–1010 | À qualifier selon statut et préséance |
+| Mise à jour V4.0 — Attaque préventive conditionnelle et transition tactique (16 novembre 2026) | 1011–1058 | À qualifier selon statut et préséance |
+| Mise à jour V4.1 — Action d’ouverture avec coût normal en PA (16 novembre 2026) | 1059–1104 | À qualifier selon statut et préséance |
+| V4.2 — Économie d’action : 1 PA par combattant et par tour (DÉCISION VALIDÉE EN CONCEPTION, 16 novembre 2026) | 1105–1136 | À qualifier selon statut et préséance |
+| V4.3 — Guet-apens déjoué : léger bonus collectif d’initiative (DÉCISION VALIDÉE EN CONCEPTION, 16 novembre 2026) | 1137–1166 | À qualifier selon statut et préséance |
+| V4.4 — Durée du bonus d’initiative après guet-apens déjoué (DÉCISION VALIDÉE EN CONCEPTION, 16 novembre 2026) | 1167–1187 | À qualifier selon statut et préséance |
+| V4.5 — Politique transversale de report des valeurs (DÉCISION VALIDÉE EN CONCEPTION, 16 novembre 2026) | 1188–1209 | À qualifier selon statut et préséance |
+| V4.6 — Guet-apens, pièges mécaniques et coffres ennemis (décisions de conception, 16 novembre 2026) | 1210–1240 | À qualifier selon statut et préséance |
+| V4.7 — Vision du monde, expéditions et difficulté (17 novembre 2026) | 1241–1283 | À qualifier selon statut et préséance |
+| V4.9 — Arbitrages validés : difficulté, missions et expéditions (17 novembre 2026) | 1284–1313 | À qualifier selon statut et préséance |
+| V5.0 — Persistance par mission et régénération des ressources (17 novembre 2026) | 1314–1343 | À qualifier selon statut et préséance |
+| V5.1 — Horloge de régénération et exceptions régionales (17 novembre 2026) | 1344–1367 | À qualifier selon statut et préséance |
+| V5.2 — Progression et spécialisation de la compagnie (17 novembre 2026) | 1368–1390 | À qualifier selon statut et préséance |
+| V5.3 — Identité des héros et composition libre (17 novembre 2026) | 1391–1417 | À qualifier selon statut et préséance |
+| V5.4 — Recrutement à la guilde et héros de réserve (17 novembre 2026) | 1418–1443 | À qualifier selon statut et préséance |
+| V5.5 — Renouvellement du recrutement et capacité de la salle (17 novembre 2026) | 1444–1467 | À qualifier selon statut et préséance |
+| V5.6 — Familles de classes et branches de compétences (17 novembre 2026) | 1468–1495 | À qualifier selon statut et préséance |
+| V5.7 — Orientation d’accessibilité des arbres de compétences (17 novembre 2026) | 1496–1513 | À qualifier selon statut et préséance |
+| V5.8 — Branches accessibles dès le départ et styles distincts (17 novembre 2026) | 1514–1538 | À qualifier selon statut et préséance |
+| V5.9 — Spécialisation exclusive en première partie et mélange des branches en NG+ (17 novembre 2026) | 1539–1563 | À qualifier selon statut et préséance |
+| V6.0 — Spécialisation définitive avant NG+ et diversité de la compagnie (17 novembre 2026) | 1564–1588 | À qualifier selon statut et préséance |
+| V6.1 — Choix de spécialisation au premier investissement (17 novembre 2026) | 1589–1612 | À qualifier selon statut et préséance |
+| V6.2 — Acquisition hybride et compétences à degrés d’évolution (17 novembre 2026) | 1613–1640 | À qualifier selon statut et préséance |
+| V6.3 — Degrés d’évolution et choix tactiques des compétences (17 novembre 2026) | 1641–1665 | À qualifier selon statut et préséance |
+| V6.4 — Évolutions mixtes et sélection des compétences (17 novembre 2026) | 1666–1691 | À qualifier selon statut et préséance |
+| V6.5 — Une évolution tactique majeure par compétence (17 novembre 2026) | 1692–1716 | À qualifier selon statut et préséance |
+| V6.6 — Modification de l’évolution tactique majeure au refuge (17 novembre 2026) | 1717–1741 | À qualifier selon statut et préséance |
+| V6.7 — Cinq compétences de nature mixte (17 novembre 2026) | 1742–1767 | À qualifier selon statut et préséance |
+| V6.8 — Emplacements distincts pour compétences actives et passives (17 novembre 2026) | 1768–1794 | À qualifier selon statut et préséance |
+| V6.9 — Déblocage progressif des emplacements passifs (17 novembre 2026) | 1795–1819 | À qualifier selon statut et préséance |
+| V7.0 — Plafond et occupation pondérée des emplacements passifs (17 novembre 2026) | 1820–1846 | À qualifier selon statut et préséance |
+| V7.1 — Déblocage hybride des emplacements passifs (17 novembre 2026) | 1847–1871 | À qualifier selon statut et préséance |
+| V7.2 — Répartition des déblocages passifs (17 novembre 2026) | 1872–1896 | À qualifier selon statut et préséance |
+| V7.3 — Nature des deux accomplissements ouvrant des emplacements passifs (17 novembre 2026) | 1897–1921 | À qualifier selon statut et préséance |
+| V7.4 — Attribution collective automatique et progression personnelle des recrues (17 novembre 2026) | 1922–1945 | À qualifier selon statut et préséance |
+| V7.5 — Recrues tardives : progression personnelle avec rattrapage (17 novembre 2026) | 1946–1971 | À qualifier selon statut et préséance |
+| V7.6 — Rattrapage hybride, entraînement au refuge et piste de défi individuel (17 novembre 2026) | 1972–1996 | À qualifier selon statut et préséance |
+| V7.7 — Validation immédiate du défi individuel lors de la victoire (17 novembre 2026) | 1997–2021 | À qualifier selon statut et préséance |
+| V7.8 — Contribution offensive ou défensive au défi individuel (17 novembre 2026) | 2022–2044 | À qualifier selon statut et préséance |
+| V7.10 — Contribution effective au défi individuel (17 novembre 2026) | 2045–2064 | À qualifier selon statut et préséance |
+| V7.11 — Règle de méthode : comparaison des jeux avant les choix multiples (17 novembre 2026) | 2065–2083 | Transversal / historique à qualifier |
+| V7.12 — Orientation validée : comportement crédible des Némésis et limitation des fuites (17 novembre 2026) | 2084–2103 | À qualifier selon statut et préséance |
+| V7.13 — Bestiaire : périmètre et déclinaisons validés (17 novembre 2026) | 2104–2122 | À qualifier selon statut et préséance |
+| V7.14 — Consolidation de l'exploration par carte à embranchements (23 novembre 2026) | 2123–2167 | À qualifier selon statut et préséance |
+| V7.15 — Arbitrage validé : exploration exclusivement sur carte à embranchements (23 novembre 2026) | 2168–2190 | À qualifier selon statut et préséance |
+| V7.16 — Déplacements sur carte : modèle hybride C (23 novembre 2026) | 2191–2209 | À qualifier selon statut et préséance |
+| V7.17 — Revisite des nœuds : événements hybrides et persistants (23 novembre 2026) | 2210–2223 | À qualifier selon statut et préséance |
+| V7.18 — Visibilité de la carte : brouillard de guerre intégral (23 novembre 2026) | 2224–2236 | À qualifier selon statut et préséance |
+| V7.19 — Justification du brouillard intégral : génération procédurale (23 novembre 2026) | 2237–2248 | À qualifier selon statut et préséance |
+| V7.20 — Architecture régionale et cartes internes des donjons (23 novembre 2026) | 2249–2279 | À qualifier selon statut et préséance |
+| V7.21 — Coûts de déplacement : dangers contextuels (23 novembre 2026) | 2280–2297 | À qualifier selon statut et préséance |
+| V7.22 — Sécurisation dynamique contextuelle des chemins (23 novembre 2026) | 2298–2306 | À qualifier selon statut et préséance |
+| V7.23 — Transitions et interactions hybrides contextuelles (23 novembre 2026) | 2307–2315 | À qualifier selon statut et préséance |
+| Consolidation V8.3 — registre intégral des 40 arbitrages | 2316–2319 | À qualifier selon statut et préséance |
+| LITD 1 — Document maître V8.3 — clôture des 40 arbitrages | 2320–2364 | À qualifier selon statut et préséance |
+| LITD 1 — Document maître de conception V8.2 — consolidation des arbitrages 11 à 36 | 2365–2442 | À qualifier selon statut et préséance |
+| LITD 1 — Document maître V8.1 : arbitrages de succession et persistance | 2443–2504 | À qualifier selon statut et préséance |
+| V7.24 — Génération procédurale hybride structurée des cartes régionales (23 novembre 2026) | 2505–2512 | À qualifier selon statut et préséance |
+| V7.25 — Taille et densité variables des cartes régionales (23 novembre 2026) | 2513–2520 | À qualifier selon statut et préséance |
+| V7.26 — Organisation hybride structurée des embranchements (23 novembre 2026) | 2521–2528 | À qualifier selon statut et préséance |
+| V7.27 — Reconnaissance et renseignements hybrides (23 novembre 2026) | 2529–2536 | À qualifier selon statut et préséance |
+| V7.28 — Typologie et fonctionnement des nœuds hybrides évolutifs (23 novembre 2026) | 2537–2544 | À qualifier selon statut et préséance |
+| V7.29 — Découverte hybride des passages et lieux secrets (23 novembre 2026) | 2545–2552 | À qualifier selon statut et préséance |
+| V7.30 — Fiabilité contextuelle des renseignements (23 novembre 2026) | 2553–2560 | À qualifier selon statut et préséance |
+| V7.31 — Répartition hybride contextuelle des rencontres (23 novembre 2026) | 2561–2568 | À qualifier selon statut et préséance |
+| V7.32 — Répartition contextuelle sous contraintes des rencontres et événements (23 novembre 2026) | 2569–2587 | À qualifier selon statut et préséance |
+| V7.33 — Architecture interne hybride des donjons (23 novembre 2026) | 2588–2595 | À qualifier selon statut et préséance |
+| V7.34 — Persistance intégrale des Némésis après Game Over | 2596–2611 | À qualifier selon statut et préséance |
+| V7.35 — Évolution contextuelle des corps et équipements (23 novembre 2026) | 2612–2630 | À qualifier selon statut et préséance |
+| V7.36 — Persistance narrative hybride à plusieurs niveaux (23 novembre 2026) | 2631–2638 | À qualifier selon statut et préséance |
+| V7.37 — Utilisation des équipements pillés selon la compatibilité | 2639–2657 | À qualifier selon statut et préséance |
+| V7.38 — Double contrôle de validité des cartes et mécanisme de secours (23 novembre 2026) | 2658–2665 | À qualifier selon statut et préséance |
+| V7.39 — Mobilité territoriale contextuelle des Némésis (23 novembre 2026) | 2666–2684 | À qualifier selon statut et préséance |
+| V7.40 — Repeuplement contextuel et sécurisation des chemins (23 novembre 2026) | 2685–2692 | À qualifier selon statut et préséance |
+| V7.41 — Fuite contextuelle, tactique et interruptible des Némésis (23 novembre 2026) | 2693–2711 | À qualifier selon statut et préséance |
+| V7.42 — Épreuves de succession hybrides évolutives de la Guilde (23 novembre 2026) | 2712–2734 | À qualifier selon statut et préséance |
+| V7.43 — Structure stable et transformations contextuelles des cartes (23 novembre 2026) | 2735–2742 | À qualifier selon statut et préséance |
+| V7.44 — Progression cumulative maîtrisée et promotions évolutives des Némésis (23 novembre 2026) | 2743–2763 | À qualifier selon statut et préséance |
+| V7.45 — Intégration hybride contextuelle des guet-apens (23 novembre 2026) | 2764–2771 | À qualifier selon statut et préséance |
+| V7.46 — Capture hybride par familles et particularités individuelles (23 novembre 2026) | 2772–2792 | À qualifier selon statut et préséance |
+| V7.47 — Méthodes de capture indépendantes ou combinables (23 novembre 2026) | 2793–2813 | Transversal / historique à qualifier |
+| V7.48 — Moteur commun de calcul des probabilités de capture (23 novembre 2026) | 2814–2834 | À qualifier selon statut et préséance |
+| V7.49 — Retour immédiat contextuel au refuge (23 novembre 2026) | 2835–2838 | À qualifier selon statut et préséance |
+| V7.50 — Spécification consolidée de référence : exploration (23 novembre 2026) | 2839–2868 | À qualifier selon statut et préséance |
+| V7.51 — Résistance hybride, progressive et contextuelle après échec de capture (23 novembre 2026) | 2869–2889 | À qualifier selon statut et préséance |
+| V7.52 — Apprentissage hybride, expérimental et documentaire des méthodes de capture (23 novembre 2026) | 2890–2910 | Transversal / historique à qualifier |
+| V7.53 — Contrat technique candidat des données persistantes d'exploration (23 novembre 2026) | 2911–2932 | À qualifier selon statut et préséance |
+| V7.54 — Missions de recherche de la médecin et apprentissage de la capture (23 novembre 2026) | 2933–2942 | À qualifier selon statut et préséance |
+| V7.55 — Réconciliation du contrat d'exploration avec issue #638 (23 novembre 2026) | 2943–2964 | À qualifier selon statut et préséance |
+| V7.56 — Maîtrise commune et spécialisations complémentaires de capture (23 novembre 2026) | 2965–2985 | À qualifier selon statut et préséance |
+| V7.57 — Architecture technique candidate du générateur et du validateur d'exploration (23 novembre 2026) | 2986–3003 | À qualifier selon statut et préséance |
+| V7.58 — Transport contextualisé et surveillance simplifiée des créatures capturées (23 novembre 2026) | 3004–3026 | À qualifier selon statut et préséance |
+| V7.59 — Système commun et parcours de recrutement contextuels (23 novembre 2026) | 3027–3053 | À qualifier selon statut et préséance |
+| V7.60 — Correction : garantie de recrutement après capture (23 novembre 2026) | 3054–3059 | À qualifier selon statut et préséance |
+| V7.61 — Prototype de contrat graphe v0 : fixtures et preuve initiale (23 novembre 2026) | 3060–3065 | À qualifier selon statut et préséance |
+| V7.62 — Mobilité tactique encadrée et contextuelle (23 novembre 2026) | 3066–3090 | À qualifier selon statut et préséance |
+| V7.63 — Combos, interceptions et interruptions contextuels (23 novembre 2026) | 3091–3114 | À qualifier selon statut et préséance |
+| V7.64 — Consolidation de référence : combat tactique et capture (23 novembre 2026) | 3115–3146 | À qualifier selon statut et préséance |
+| V7.65 — Ouverture des arbitrages résiduels du combat (23 novembre 2026) | 3147–3152 | À qualifier selon statut et préséance |
+| V7.66 — Initiative hybride et évolutive (23 novembre 2026) | 3153–3177 | À qualifier selon statut et préséance |
+| V7.67 — Grandes créatures recrutées : dissociation tactique et visuelle (24 novembre 2026) | 3178–3200 | À qualifier selon statut et préséance |
+| V7.68 — Invocations auxiliaires contextuelles (24 novembre 2026) | 3201–3229 | À qualifier selon statut et préséance |
+| V7.69 — Délai garanti et progression relationnelle évolutive (24 novembre 2026) | 3230–3256 | À qualifier selon statut et préséance |
+| V7.70 — Priorités contextuelles et résolution encadrée des réactions (24 novembre 2026) | 3257–3286 | À qualifier selon statut et préséance |
+| V7.71 — Consolidation finale des arbitrages résiduels du combat tactique (24 novembre 2026) | 3287–3311 | À qualifier selon statut et préséance |
+| V7.72 — Préséance des règles validées sur le moteur (24 novembre 2026) | 3312–3320 | À qualifier selon statut et préséance |
+
+### Exigences complémentaires à intégrer et préséances contrôlées
+- C et V8.1–8.3 : retraite avec survivants, libération ou abandon des immobilisés, biens effectivement emportés ; succession après mort des quatre actifs, pas de nouvelle campagne effaçant le monde, réservistes non substitués automatiquement. V8.1 arbitrage 4 remplace 3 et ancien Game Over de C. Sort du captif abandonné contextuel, coût précis ouvert.
+- D.2–4 : HUD compact, informations essentielles visibles, ciblage anatomique et inspection gratuite, clic gauche offensif valide, Échap annule, connaissances limitées, valeurs effectives et détails, anatomie et statistiques cohérentes. V7.15 remplace exploration 3D, ne pas reprendre ses modalités temps réel sans qualification.
+- D.5–6 : compatibilité armes/compétences, combos collectifs découverts, changements hors combat, équipements sans usure ordinaire, destruction explicite, légendaires indestructibles mais endommageables, forge/prothèses/plans/recyclage au refuge, sac partagé et empilement ; capacités chiffrées provisoires. V6.7–8 et V7.0 précisent les emplacements, ne pas reprendre la cible historique 4–6 attaques comme plafond définitif.
+- V5.2–V6.6 : héros uniques, classe non hybride, composition libre de quatre disponibles, réserves sans remplacement automatique, branches visibles dès départ, verrouillage au premier investissement jusqu'au NG+, mélange intraclasse en NG+, progression par degrés, une évolution majeure exclusive par compétence, changement au refuge seulement ; pas de nouveau PA. Liste des classes et paramètres ouverts.
+- V6.7–V7.10 et V8.2 : distinguer actifs/passifs et occupation pondérée ; deux emplacements personnels par maîtrise de rôle et non niveau seul ; contributions réelles, diversité, crédit causal unique, pas de crédit posthume, capture non létale admissible ; V8.2 affine les anciennes règles. Seuils indicatifs non figés.
+- V7.12–13, V7.34–35, V7.37, V7.39, V7.41–42, V7.44 : fuite volontaire réservée aux Némésis, mort définitive, corps et objets persistants, pillage compatible, promotions distinctes et gains bornés, aucune résurrection ni affaiblissement automatique, succession avec épreuves. Ne pas réintroduire fuite ennemie ordinaire ; distinguer rupture de contention.
+- V3.5–V4.6 et V7.45 : pas de poursuite, guet-apens détectables 35 % cible globale, détection distincte de neutralisation, attaque préventive conditionnelle au PA du premier round, bonus collectif premier round seulement. V7.66 précise tour/round. Pièges autonomes et valeurs ouvertes.
+- V7.49–50, V7.53–57, V7.61 : interfaces exploration/retour, état persistant et contrats candidats ; ne pas confondre contrat proposé et validation runtime.
+- V7.54 et V7.60 : recherche médicale et apprentissage, garantie recrutement après extraction ; remplacent les refus définitifs historiques. V7.69 précise délai fini et admissibilité.
+- V8.3 : atomicité des conséquences interdépendantes, journal durable, révisions et préconditions, reprise sans resimulation, idempotence, invariants et SHA-256, migrations sur copie, récupération guidée, tests interruption et Windows ; aucune preuve de conformité du SaveManager actuel.
+
+### Limite et suite
+Les 220 lignes initiales restent conservées. Les familles ci-dessus complètent la couverture thématique mais ne sont pas encore décomposées en exigences atomiques uniques ni associées exhaustivement aux composants/tests. Vérifier aussi les décisions de dépôt hors document maître (notamment roster non assigné), résoudre les divergences et les statuts avant clôture. Aucun code ni test modifié. Ne pas ouvrir la spécification définitive tant que le registre applicable n'est pas vérifié.
