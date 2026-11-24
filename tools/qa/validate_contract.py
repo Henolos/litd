@@ -1,4 +1,6 @@
 """Draft inventory validation; never promotes historical evidence."""
+import hashlib
+import hmac
 import json
 import re
 from pathlib import Path
@@ -18,6 +20,12 @@ def evidence_current(evidence, commit, canonical_digest):
         and isinstance(evidence.get("report_sha256"), str)
         and re.fullmatch(r"[0-9a-f]{64}", evidence["report_sha256"]) is not None
     )
+
+def report_integrity_matches(evidence, commit, canonical_digest, report_bytes):
+    """Check actual bytes, not provenance or gameplay correctness."""
+    return (evidence_current(evidence, commit, canonical_digest)
+            and isinstance(report_bytes, bytes)
+            and hmac.compare_digest(hashlib.sha256(report_bytes).hexdigest(), evidence['report_sha256']))
 
 def validate(contract, schema, root):
     from jsonschema import Draft202012Validator
