@@ -3172,3 +3172,26 @@ Suite demandée par l'utilisateur après consolidation V7.64. Priorité : initia
 16. Coefficients, seuils et exceptions après simulations et tests.
 
 Respecter V4.2–4.4, V7.62–64 et V8.3. Frise compacte proposée, maquette et valeurs numériques indicatives. Aucun code ni test modifié. Prochain arbitrage : grandes créatures recrutées.
+
+
+---
+## V7.67 — Grandes créatures recrutées : dissociation tactique et visuelle (24 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et quatorze règles complémentaires explicitement approuvées.**
+
+1. Exactement quatre combattants au départ d'une expédition.
+2. Un seul rang tactique par créature recrutée.
+3. Distinguer taille physique et occupation tactique.
+4. Préserver identité visuelle et anatomique.
+5. Autoriser débordement visuel maîtrisé au-delà du rang.
+6. Garantir visibilité et sélection des autres combattants.
+7. Adapter compétences à morphologie réelle.
+8. Adapter déplacements et collisions à masse et anatomie.
+9. Un PA par round par créature recrutée.
+10. Participation aux combos selon capacités.
+11. Équipements adaptés lorsque anatomie le nécessite.
+12. Préserver mort définitive, succession et persistance.
+13. Cinq boss principaux recrutables uniquement en NG+.
+14. Tester proportions d'affichage, lisibilité et équilibrage avant intégration définitive.
+
+Préserver originaux artistiques, identité sino-gothico-dark fantasy et particularités individuelles ; aucun bonus automatique lié à la taille. Les ennemis multirangs restent régis par V7.62. Respecter V7.60, V7.63, V7.66 et V8.3. Aucun code ni test modifié. Prochain arbitrage : invocations.
