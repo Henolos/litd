@@ -26,3 +26,14 @@ def test_reject_stale_or_incomplete(field,value):
 
 def test_missing_evidence():
     assert not evidence_current({},None,None)
+
+
+def test_report_bytes_integrity():
+    import hashlib
+    from tools.qa.validate_contract import report_integrity_matches
+    report = b'actual report'
+    e = dict(tested_commit='a'*40, canonical_digest='b'*64, kind='runtime', status='PASS', report_sha256=hashlib.sha256(report).hexdigest())
+    assert report_integrity_matches(e,'a'*40,'b'*64,report)
+    assert not report_integrity_matches(e,'a'*40,'b'*64,report+b'!')
+    assert not report_integrity_matches(e,'a'*40,'b'*64,None)
+    assert not report_integrity_matches(e,'c'*40,'b'*64,report)
