@@ -8,6 +8,7 @@
 #else
 #include <fcntl.h>
 #include <sys/file.h>
+#include <sys/stat.h>
 #include <unistd.h>
 #endif
 
@@ -28,8 +29,13 @@ public:
         if (handle != INVALID_HANDLE_VALUE) return false;
         HANDLE h = CreateFileW(path.c_str(), GENERIC_READ | GENERIC_WRITE,
             FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr, OPEN_ALWAYS,
-            FILE_ATTRIBUTE_NORMAL, nullptr);
+            FILE_ATTRIBUTE_NORMAL | FILE_FLAG_OPEN_REPARSE_POINT, nullptr);
         if (h == INVALID_HANDLE_VALUE) return false;
+        BY_HANDLE_FILE_INFORMATION info{};
+        if (GetFileType(h) != FILE_TYPE_DISK || !GetFileInformationByHandle(h, &info) ||
+            (info.dwFileAttributes & (FILE_ATTRIBUTE_REPARSE_POINT | FILE_ATTRIBUTE_DIRECTORY)) || info.nNumberOfLinks != 1) {
+            CloseHandle(h); return false;
+        }
         OVERLAPPED ov{};
         if (!LockFileEx(h, LOCKFILE_EXCLUSIVE_LOCK | LOCKFILE_FAIL_IMMEDIATELY, 0, 1, 0, &ov)) {
             CloseHandle(h); return false;
@@ -37,8 +43,10 @@ public:
         handle = h;
 #else
         if (fd != -1) return false;
-        int h = open(path.c_str(), O_CREAT | O_RDWR | O_CLOEXEC | O_NOFOLLOW, 0600);
+        int h = open(path.c_str(), O_CREAT | O_RDWR | O_CLOEXEC | O_NOFOLLOW | O_NONBLOCK, 0600);
         if (h < 0) return false;
+        struct stat info{};
+        if (fstat(h, &info) != 0 || !S_ISREG(info.st_mode) || info.st_nlink != 1) { close(h); return false; }
         if (flock(h, LOCK_EX | LOCK_NB) != 0) { close(h); return false; }
         fd = h;
 #endif
