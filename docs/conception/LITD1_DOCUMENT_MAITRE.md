@@ -3314,3 +3314,237 @@ Avancement des arbitrages résiduels : 5/5, 100 % du périmètre documentaire ap
 **Exigence impérative approuvée par l'utilisateur : le moteur doit être en adéquation avec toutes les règles de combat validées.** Le document maître et ses arbitrages applicables priment sur les prototypes et le code historique. Conserver et tester les composants conformes, adapter les composants partiellement conformes, remplacer les incompatibles, développer les manquants, retirer les comportements contraires. Toute limitation technique exige la recherche d'alternatives ; aucune modification, suppression ou simplification d'une règle validée sans accord explicite.
 
 Établir une matrice exhaustive de traçabilité par règle applicable : référence, exigence, composant, état d'implémentation, test individuel, test d'interaction, preuve et anomalie, validation finale. Identifier les règles historiques remplacées et les paramètres encore ouverts sans les transformer en exigences numériques définitives. Validation du moteur conditionnée à la conformité intégrale, tests individuels et conjoints, persistance et reprise, vérification réelle sous Windows. Les prototypes et CI historiques ne suffisent pas. Préserver le reset, les originaux et l'isolation ; aucune fusion ni modification runtime dans cette étape documentaire.
+
+
+---
+## V7.73 — Audit de conformité : registre initial de traçabilité (24 novembre 2026)
+
+Audit en lecture seule des composants runtime, hors cette mise à jour documentaire. Combat A PR #616 et boucle PR #637 dupliquent attaque, garde, progression et IA ; dégâts ennemis 3 contre 1, garde 1 contre 0, fixtures non canoniques. Combat A exige quatre anciens héros alors que main/data/veilleurs/canonical_roster.json schema 5 contient heroes vide et starting_roster_unassigned ; décision target-revisions/starting-roster-unassigned-20261123.json. Ne pas restaurer l'ancien quatuor. data/combat_tactics.json et combat_displacement.json contiennent identités historiques et valeurs non validées ; combat_anatomy_v2.json fournit profils candidats ; data/veilleurs/skills/resolver_contract.json contient contrats et références historiques, existence runtime non démontrée. SaveManager main stocke snapshot opaque avec checksum et écriture atomique, conformité V8.3 non démontrée. Réutiliser après audit, moteur métier unique.
+
+### Inventaire initial des règles numérotées (non exhaustif)
+Extraction des lignes numérotées des sections sélectionnées ; les règles historiques, paragraphes non numérotés, V8.3, HUD, équipement, progression et interactions restent à inventorier et dédoublonner. Aucun test individuel ou conjoint nouveau exécuté ; aucune conformité finale attribuée. Les lignes historiques V7.46/59 doivent être réconciliées avec V7.60 avant qualification.
+
+| Identifiant source | Exigence source | État d'audit | Test individuel / conjoint | Validation |
+|---|---|---|---|---|
+| V7.46-1 | Distinguer éligibilité, tentative de capture et recrutement. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.46-2 | Respecter nature et anatomie des créatures. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.46-3 | Plusieurs méthodes compatibles possibles pour certaines espèces. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.46-4 | Particularités individuelles possibles au sein d'une espèce. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.46-5 | Aucun seuil de PV universel. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.46-6 | Immobilisation ne signifie pas nécessairement capturabilité. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.46-7 | Connaissances ou équipements spécifiques éventuellement nécessaires. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.46-8 | Aucun spécialiste indispensable à toutes les captures. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.46-9 | Respecter les restrictions de recrutement des cinq boss principaux en NG+. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.46-10 | Capture réussie ne garantit pas recrutement. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.46-11 | Réutiliser les familles de mécaniques pour limiter les coûts. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.46-12 | Résultats conservés dans la sauvegarde transactionnelle, sans duplication ni nouveau tirage au rechargement. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.47-1 | Retenir les sept familles. | À vérifier | À associer / à associer | Non acquise |
+| V7.47-2 | Autoriser leur utilisation indépendante ou combinée. | À vérifier | À associer / à associer | Non acquise |
+| V7.47-3 | Respecter les compatibilités anatomiques, biologiques et surnaturelles. | À vérifier | À associer / à associer | Non acquise |
+| V7.47-4 | Permettre la neutralisation non létale. | À vérifier | À associer / à associer | Non acquise |
+| V7.47-5 | Distinguer neutralisation temporaire et capture effective. | À vérifier | À associer / à associer | Non acquise |
+| V7.47-6 | Plusieurs héros peuvent contribuer à une capture. | À vérifier | À associer / à associer | Non acquise |
+| V7.47-7 | Les blessures anatomiques peuvent faciliter ou compromettre la capture. | À vérifier | À associer / à associer | Non acquise |
+| V7.47-8 | Une créature définitivement morte ne peut être capturée vivante. | À vérifier | À associer / à associer | Non acquise |
+| V7.47-9 | Une méthode incompatible ne devient pas efficace par répétition. | À vérifier | À associer / à associer | Non acquise |
+| V7.47-10 | Certaines méthodes nécessitent équipements, consommables ou compétences particulières. | À vérifier | À associer / à associer | Non acquise |
+| V7.47-11 | Les méthodes découvertes sont consignées dans le bestiaire collectif. | À vérifier | À associer / à associer | Non acquise |
+| V7.47-12 | Coûts, durées, résistances et probabilités à déterminer lors des arbitrages et tests. | À vérifier | À associer / à associer | Non acquise |
+| V7.48-1 | Moteur commun avec coefficients contextuels. | À vérifier | À associer / à associer | Non acquise |
+| V7.48-2 | Conserver les cinq facteurs : PV, états de combat, nature de l'ennemi, équipement de capture, moral et volonté. | À vérifier | À associer / à associer | Non acquise |
+| V7.48-3 | Adapter leur importance à chaque famille de méthodes. | À vérifier | À associer / à associer | Non acquise |
+| V7.48-4 | Prendre en compte les caractéristiques individuelles. | À vérifier | À associer / à associer | Non acquise |
+| V7.48-5 | Vérifier l'éligibilité avant calcul probabiliste. | À vérifier | À associer / à associer | Non acquise |
+| V7.48-6 | Afficher la probabilité réelle avant confirmation. | À vérifier | À associer / à associer | Non acquise |
+| V7.48-7 | Actualiser la probabilité à chaque changement pertinent. | À vérifier | À associer / à associer | Non acquise |
+| V7.48-8 | Distinguer capture impossible et difficile. | À vérifier | À associer / à associer | Non acquise |
+| V7.48-9 | Réussite garantie possible si conditions spécifiques justifiées. | À vérifier | À associer / à associer | Non acquise |
+| V7.48-10 | Ne pas révéler automatiquement les caractéristiques secrètes par les coefficients détaillés. | À vérifier | À associer / à associer | Non acquise |
+| V7.48-11 | Enregistrer durablement les résultats résolus, sans nouveau tirage au rechargement. | À vérifier | À associer / à associer | Non acquise |
+| V7.48-12 | Formules, coefficients, plafonds et seuils définitifs après simulations et tests de combat. | À vérifier | À associer / à associer | Non acquise |
+| V7.51-1 | Une tentative ratée peut augmenter temporairement les résistances. | À vérifier | À associer / à associer | Non acquise |
+| V7.51-2 | Distinguer résistance générale et spécifique à une méthode. | À vérifier | À associer / à associer | Non acquise |
+| V7.51-3 | Adapter les résistances à la nature et aux capacités de la créature. | À vérifier | À associer / à associer | Non acquise |
+| V7.51-4 | Accumulation dans des limites définies. | À vérifier | À associer / à associer | Non acquise |
+| V7.51-5 | Diminution progressive selon temps et événements du jeu. | À vérifier | À associer / à associer | Non acquise |
+| V7.51-6 | Changer de méthode peut contourner certaines résistances. | À vérifier | À associer / à associer | Non acquise |
+| V7.51-7 | Une simple alternance ne doit pas annuler artificiellement toutes les résistances. | À vérifier | À associer / à associer | Non acquise |
+| V7.51-8 | Nouvelle préparation tactique pouvant améliorer les chances. | À vérifier | À associer / à associer | Non acquise |
+| V7.51-9 | Actualisation immédiate de la probabilité réelle affichée. | À vérifier | À associer / à associer | Non acquise |
+| V7.51-10 | Conséquences contextuelles supplémentaires possibles après échec. | À vérifier | À associer / à associer | Non acquise |
+| V7.51-11 | Conservation des résistances actives après sauvegarde et rechargement, sans réinitialisation artificielle par déplacements. | À vérifier | À associer / à associer | Non acquise |
+| V7.51-12 | Plafonds, durées, coefficients et conséquences définitives après simulations et tests. | À vérifier | À associer / à associer | Non acquise |
+| V7.52-1 | Apprentissage hybride par plusieurs sources. | À vérifier | À associer / à associer | Non acquise |
+| V7.52-2 | Conserver les connaissances dans le bestiaire collectif. | À vérifier | À associer / à associer | Non acquise |
+| V7.52-3 | Distinguer connaissance théorique et maîtrise individuelle. | À vérifier | À associer / à associer | Non acquise |
+| V7.52-4 | Découverte par expérimentation possible. | À vérifier | À associer / à associer | Non acquise |
+| V7.52-5 | Apprentissage par réussites et échecs significatifs. | À vérifier | À associer / à associer | Non acquise |
+| V7.52-6 | Distinguer les cinq niveaux de connaissance. | À vérifier | À associer / à associer | Non acquise |
+| V7.52-7 | Confirmation par recoupement des sources. | À vérifier | À associer / à associer | Non acquise |
+| V7.52-8 | Informations partielles ou erronées si narrativement justifiées. | À vérifier | À associer / à associer | Non acquise |
+| V7.52-9 | Valoriser recherches et compétences des PNJ de la Guilde. | À vérifier | À associer / à associer | Non acquise |
+| V7.52-10 | Préserver connaissances collectives après morts et Game Over. | À vérifier | À associer / à associer | Non acquise |
+| V7.52-11 | Empêcher acquisition illimitée par répétition identique sans nouvelle information. | À vérifier | À associer / à associer | Non acquise |
+| V7.52-12 | Afficher probabilité réelle sans révéler automatiquement les caractéristiques secrètes. | À vérifier | À associer / à associer | Non acquise |
+| V7.56-1 | Héros compatibles capables d'utiliser des méthodes élémentaires de capture. | À vérifier | À associer / à associer | Non acquise |
+| V7.56-2 | Prévoir une classe spécialisée dans la capture. | À vérifier | À associer / à associer | Non acquise |
+| V7.56-3 | Certaines autres classes peuvent posséder des compétences complémentaires de capture. | À vérifier | À associer / à associer | Non acquise |
+| V7.56-4 | Créatures recrutables pouvant disposer d'aptitudes naturelles favorables à la capture. | À vérifier | À associer / à associer | Non acquise |
+| V7.56-5 | Aucun spécialiste indispensable à l'ensemble des captures. | À vérifier | À associer / à associer | Non acquise |
+| V7.56-6 | Limiter et plafonner les bonus individuels de probabilité. | À vérifier | À associer / à associer | Non acquise |
+| V7.56-7 | Privilégier avantages tactiques plutôt que seuls bonus statistiques. | À vérifier | À associer / à associer | Non acquise |
+| V7.56-8 | Réutiliser la maîtrise fondamentale et avancée existante. | À vérifier | À associer / à associer | Non acquise |
+| V7.56-9 | Reconnaître les contributions directes et indirectes significatives à une capture. | À vérifier | À associer / à associer | Non acquise |
+| V7.56-10 | Respecter limites d'emplacements et règles de spécialisation avant et après NG+. | À vérifier | À associer / à associer | Non acquise |
+| V7.56-11 | Préserver maîtrise des survivants et réservistes, sans transmettre celle des morts aux successeurs. | À vérifier | À associer / à associer | Non acquise |
+| V7.56-12 | Compétences, bonus, coûts en PA et conditions particulières à déterminer après conception détaillée des classes et tests d'équilibrage. | À vérifier | À associer / à associer | Non acquise |
+| V7.58-1 | Distinguer capture réussie, sécurisation, transport, extraction et recrutement. | À vérifier | À associer / à associer | Non acquise |
+| V7.58-2 | Interdire transfert automatique à la Guilde. | À vérifier | À associer / à associer | Non acquise |
+| V7.58-3 | Adapter moyens de transport à la nature et aux dimensions des créatures. | À vérifier | À associer / à associer | Non acquise |
+| V7.58-4 | Capacité de contention limitée, distincte de l'inventaire ordinaire. | À vérifier | À associer / à associer | Non acquise |
+| V7.58-5 | Captifs non comptabilisés parmi les quatre combattants actifs. | À vérifier | À associer / à associer | Non acquise |
+| V7.58-6 | Poursuite de l'expédition possible après capture. | À vérifier | À associer / à associer | Non acquise |
+| V7.58-7 | Retour immédiat au refuge selon conditions déjà validées. | À vérifier | À associer / à associer | Non acquise |
+| V7.58-8 | Risques contextuels d'évasion, blessure ou perte des captifs. | À vérifier | À associer / à associer | Non acquise |
+| V7.58-9 | Informer le joueur de l'état des contentions et risques connus. | À vérifier | À associer / à associer | Non acquise |
+| V7.58-10 | Libération ou abandon volontaire possible, avec conséquences persistantes. | À vérifier | À associer / à associer | Non acquise |
+| V7.58-11 | Préserver identité, blessures et particularités individuelles des créatures transportées. | À vérifier | À associer / à associer | Non acquise |
+| V7.58-12 | Prendre en compte les captifs lors d'une défaite ou Game Over, sans transfert automatique ni duplication. | À vérifier | À associer / à associer | Non acquise |
+| V7.58-13 | Remise des spécimens à la médecin pour ses missions de recherche. | À vérifier | À associer / à associer | Non acquise |
+| V7.58-14 | Capacités, coûts, contraintes de surveillance et probabilités d'incidents à déterminer après simulations et tests. | À vérifier | À associer / à associer | Non acquise |
+| V7.59-1 | Distinction stricte capture et recrutement. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.59-2 | Moteur commun avec conditions contextuelles. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.59-3 | Retenir les sept familles. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.59-4 | Plusieurs méthodes compatibles possibles par créature. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.59-5 | Recrutement narratif sans capture préalable possible. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.59-6 | Installations adaptées de détention et prise en charge, capacité limitée et évolutive. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.59-7 | Intégrer soins, recherches et contributions des PNJ. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.59-8 | Cinq états relationnels lorsque la nature le justifie. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.59-9 | Capture ne garantit pas recrutement. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.59-10 | Refus, libération, remise à la recherche ou maintien en détention selon circonstances. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.59-11 | Conserver identité, histoire et particularités individuelles. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.59-12 | Cinq boss principaux recrutables uniquement en NG+. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.59-13 | Préserver conséquences persistantes, empêcher duplications et résurrections artificielles. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.59-14 | Empêcher augmentation illimitée de confiance par interactions identiques répétées. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.59-15 | Intégrer les créatures recrutées aux réserves de combattants sous réserve des capacités disponibles. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.59-16 | Coûts, durées, seuils, capacités et effets de loyauté après simulations et tests. | Préséance V7.60 à contrôler | À associer / à associer | Non acquise |
+| V7.62-1 | Conserver quatre rangs R1 à R4. | À vérifier | À associer / à associer | Non acquise |
+| V7.62-2 | Déplacement volontaire ordinaire limité à permutation adjacente. | À vérifier | À associer / à associer | Non acquise |
+| V7.62-3 | Permutation coûtant un PA. | À vérifier | À associer / à associer | Non acquise |
+| V7.62-4 | Déplacements particuliers par compétences. | À vérifier | À associer / à associer | Non acquise |
+| V7.62-5 | Mobilité adaptée aux blessures anatomiques et états de combat. | À vérifier | À associer / à associer | Non acquise |
+| V7.62-6 | Déplacements forcés des alliés et ennemis possibles. | À vérifier | À associer / à associer | Non acquise |
+| V7.62-7 | Prendre en compte masse, anatomie et résistances. | À vérifier | À associer / à associer | Non acquise |
+| V7.62-8 | Collisions uniquement lorsque le contexte le justifie. | À vérifier | À associer / à associer | Non acquise |
+| V7.62-9 | Resserrement automatique après retrait effectif d'un combattant. | À vérifier | À associer / à associer | Non acquise |
+| V7.62-10 | Préserver ordre relatif des combattants restants. | À vérifier | À associer / à associer | Non acquise |
+| V7.62-11 | Resserrement sans PA. | À vérifier | À associer / à associer | Non acquise |
+| V7.62-12 | Ennemis pouvant occuper plusieurs rangs. | À vérifier | À associer / à associer | Non acquise |
+| V7.62-13 | Empêcher chevauchements invalides et dégâts multiples involontaires sur une même créature multirang. | À vérifier | À associer / à associer | Non acquise |
+| V7.62-14 | Afficher déplacements possibles et conséquences connues avant confirmation. | À vérifier | À associer / à associer | Non acquise |
+| V7.62-15 | Préserver formation et déplacements résolus lors des sauvegardes. | À vérifier | À associer / à associer | Non acquise |
+| V7.62-16 | Résistances, dégâts de collision et exceptions à définir après simulations et tests. | À vérifier | À associer / à associer | Non acquise |
+| V7.63-1 | Combos de un à quatre participants. | À vérifier | À associer / à associer | Non acquise |
+| V7.63-2 | Un PA par participant effectivement engagé. | À vérifier | À associer / à associer | Non acquise |
+| V7.63-3 | Préparation et résolution dans le même round. | À vérifier | À associer / à associer | Non acquise |
+| V7.63-4 | Respect intégral de l'initiative adverse. | À vérifier | À associer / à associer | Non acquise |
+| V7.63-5 | Distinguer contributions indispensables et complémentaires. | À vérifier | À associer / à associer | Non acquise |
+| V7.63-6 | Résolution partielle uniquement si cohérente avec le combo. | À vérifier | À associer / à associer | Non acquise |
+| V7.63-7 | Pas d'interruption automatique à chaque blessure. | À vérifier | À associer / à associer | Non acquise |
+| V7.63-8 | Vérifier capacités anatomiques, équipements, rangs et états nécessaires. | À vérifier | À associer / à associer | Non acquise |
+| V7.63-9 | Pas de restitution automatique des PA engagés après interruption. | À vérifier | À associer / à associer | Non acquise |
+| V7.63-10 | Conserver effets effectivement résolus avant interruption. | À vérifier | À associer / à associer | Non acquise |
+| V7.63-11 | Compétence appropriée nécessaire à la protection/interception, sans PA supplémentaire créé. | À vérifier | À associer / à associer | Non acquise |
+| V7.63-12 | Respecter positionnement et mobilité des protecteurs. | À vérifier | À associer / à associer | Non acquise |
+| V7.63-13 | Conserver redirection anatomique validée : partie correspondante ; bras absent vers torse ; jambe absente vers autre jambe ou torse si deux absentes. | À vérifier | À associer / à associer | Non acquise |
+| V7.63-14 | Afflictions, attaques de zone et dommages aux prothèses selon propriétés réelles. | À vérifier | À associer / à associer | Non acquise |
+| V7.63-15 | Sauvegarder préparations, interceptions, interruptions et effets résolus sans duplication ni nouveau tirage au rechargement. | À vérifier | À associer / à associer | Non acquise |
+| V7.63-16 | Seuils d'interruption, priorités de protection, coefficients et exceptions après simulations et tests. | À vérifier | À associer / à associer | Non acquise |
+| V7.66-1 | Distinguer tour individuel et round collectif. | À vérifier | À associer / à associer | Non acquise |
+| V7.66-2 | Un PA par combattant et par round, utilisable pendant son tour. | À vérifier | À associer / à associer | Non acquise |
+| V7.66-3 | Calculer initiative au début de chaque round. | À vérifier | À associer / à associer | Non acquise |
+| V7.66-4 | Prendre en compte caractéristiques, équipements, blessures et états réels. | À vérifier | À associer / à associer | Non acquise |
+| V7.66-5 | Composante aléatoire limitée. | À vérifier | À associer / à associer | Non acquise |
+| V7.66-6 | Ordre normalement stable pendant le round. | À vérifier | À associer / à associer | Non acquise |
+| V7.66-7 | Certaines compétences modifient explicitement les tours restants. | À vérifier | À associer / à associer | Non acquise |
+| V7.66-8 | Aucune création de PA par modification d'initiative. | À vérifier | À associer / à associer | Non acquise |
+| V7.66-9 | Pas de report automatique des PA inutilisés au round suivant. | À vérifier | À associer / à associer | Non acquise |
+| V7.66-10 | Supprimer tours restants des morts, capturés ou effectivement retirés. | À vérifier | À associer / à associer | Non acquise |
+| V7.66-11 | Départage indépendant du camp : vitesse effective hors aléatoire, priorité spécifique éventuelle, puis tirage enregistré. | À vérifier | À associer / à associer | Non acquise |
+| V7.66-12 | Afficher ordre d'action et modifications. | À vérifier | À associer / à associer | Non acquise |
+| V7.66-13 | Léger bonus collectif après guet-apens déjoué, premier round uniquement. | À vérifier | À associer / à associer | Non acquise |
+| V7.66-14 | Attaque préventive comptabilisée dans le PA du premier round, sans double action. | À vérifier | À associer / à associer | Non acquise |
+| V7.66-15 | Sauvegarder ordre, PA, résultats aléatoires et tours résolus. | À vérifier | À associer / à associer | Non acquise |
+| V7.66-16 | Coefficients, seuils et exceptions après simulations et tests. | À vérifier | À associer / à associer | Non acquise |
+| V7.67-1 | Exactement quatre combattants au départ d'une expédition. | À vérifier | À associer / à associer | Non acquise |
+| V7.67-2 | Un seul rang tactique par créature recrutée. | À vérifier | À associer / à associer | Non acquise |
+| V7.67-3 | Distinguer taille physique et occupation tactique. | À vérifier | À associer / à associer | Non acquise |
+| V7.67-4 | Préserver identité visuelle et anatomique. | À vérifier | À associer / à associer | Non acquise |
+| V7.67-5 | Autoriser débordement visuel maîtrisé au-delà du rang. | À vérifier | À associer / à associer | Non acquise |
+| V7.67-6 | Garantir visibilité et sélection des autres combattants. | À vérifier | À associer / à associer | Non acquise |
+| V7.67-7 | Adapter compétences à morphologie réelle. | À vérifier | À associer / à associer | Non acquise |
+| V7.67-8 | Adapter déplacements et collisions à masse et anatomie. | À vérifier | À associer / à associer | Non acquise |
+| V7.67-9 | Un PA par round par créature recrutée. | À vérifier | À associer / à associer | Non acquise |
+| V7.67-10 | Participation aux combos selon capacités. | À vérifier | À associer / à associer | Non acquise |
+| V7.67-11 | Équipements adaptés lorsque anatomie le nécessite. | À vérifier | À associer / à associer | Non acquise |
+| V7.67-12 | Préserver mort définitive, succession et persistance. | À vérifier | À associer / à associer | Non acquise |
+| V7.67-13 | Cinq boss principaux recrutables uniquement en NG+. | À vérifier | À associer / à associer | Non acquise |
+| V7.67-14 | Tester proportions d'affichage, lisibilité et équilibrage avant intégration définitive. | À vérifier | À associer / à associer | Non acquise |
+| V7.68-1 | Distinguer invocation, recrutement et capture. | À vérifier | À associer / à associer | Non acquise |
+| V7.68-2 | Quatre combattants actifs au départ de l'expédition. | À vérifier | À associer / à associer | Non acquise |
+| V7.68-3 | Aucun rang principal indépendant pour les invocations auxiliaires. | À vérifier | À associer / à associer | Non acquise |
+| V7.68-4 | Rattacher chaque invocation à son créateur. | À vérifier | À associer / à associer | Non acquise |
+| V7.68-5 | Moteur commun aux six familles. | À vérifier | À associer / à associer | Non acquise |
+| V7.68-6 | Un PA pour déclencher une compétence d'invocation. | À vérifier | À associer / à associer | Non acquise |
+| V7.68-7 | Pas de PA indépendant systématique pour les invocations. | À vérifier | À associer / à associer | Non acquise |
+| V7.68-8 | Effets autonomes limités et explicitement définis. | À vérifier | À associer / à associer | Non acquise |
+| V7.68-9 | Limiter le nombre d'invocations simultanées. | À vérifier | À associer / à associer | Non acquise |
+| V7.68-10 | Durée et maintien adaptés à leur nature. | À vérifier | À associer / à associer | Non acquise |
+| V7.68-11 | Ciblage possible selon leur nature. | À vérifier | À associer / à associer | Non acquise |
+| V7.68-12 | Résistances, blessures et afflictions compatibles. | À vérifier | À associer / à associer | Non acquise |
+| V7.68-13 | Synergies avec combos sans contourner leurs coûts. | À vérifier | À associer / à associer | Non acquise |
+| V7.68-14 | Résolution contextuelle de neutralisation ou mort de l'invocateur. | À vérifier | À associer / à associer | Non acquise |
+| V7.68-15 | Aucun contournement de mort définitive et succession. | À vérifier | À associer / à associer | Non acquise |
+| V7.68-16 | Préserver lisibilité du HUD et quatre rangs. | À vérifier | À associer / à associer | Non acquise |
+| V7.68-17 | Sauvegarder états, durées et effets résolus sans duplication. | À vérifier | À associer / à associer | Non acquise |
+| V7.68-18 | Capacités maximales, durées, coûts de maintien et coefficients après simulations et tests. | À vérifier | À associer / à associer | Non acquise |
+| V7.69-1 | Recrutement garanti après capture et extraction éligibles. | À vérifier | À associer / à associer | Non acquise |
+| V7.69-2 | Distinguer confiance et loyauté. | À vérifier | À associer / à associer | Non acquise |
+| V7.69-3 | Conserver cinq états relationnels validés. | À vérifier | À associer / à associer | Non acquise |
+| V7.69-4 | Délai initial exprimé en nombre d'expéditions. | À vérifier | À associer / à associer | Non acquise |
+| V7.69-5 | Adapter délai aux particularités individuelles. | À vérifier | À associer / à associer | Non acquise |
+| V7.69-6 | Garantir délai maximal fini, sans prolongation indéfinie. | À vérifier | À associer / à associer | Non acquise |
+| V7.69-7 | Progression naturelle à chaque expédition admissible. | À vérifier | À associer / à associer | Non acquise |
+| V7.69-8 | Soins, recherches et interactions pertinentes peuvent réduire délai. | À vérifier | À associer / à associer | Non acquise |
+| V7.69-9 | Adapter progression aux sept familles de recrutement. | À vérifier | À associer / à associer | Non acquise |
+| V7.69-10 | Exclure expéditions artificielles sans activité significative. | À vérifier | À associer / à associer | Non acquise |
+| V7.69-11 | Comptabiliser chaque expédition admissible une seule fois. | À vérifier | À associer / à associer | Non acquise |
+| V7.69-12 | Décompte après arrivée effective du captif à la Guilde. | À vérifier | À associer / à associer | Non acquise |
+| V7.69-13 | Afficher nombre d'expéditions restantes. | À vérifier | À associer / à associer | Non acquise |
+| V7.69-14 | Intégration automatique aux réserves à échéance, contraintes de disponibilité et capacité traitées séparément. | À vérifier | À associer / à associer | Non acquise |
+| V7.69-15 | Cinq boss principaux recrutables uniquement en NG+. | À vérifier | À associer / à associer | Non acquise |
+| V7.69-16 | Préserver progression lors des successions pour captifs conservés à la Guilde. | À vérifier | À associer / à associer | Non acquise |
+| V7.69-17 | Conserver caractéristiques relationnelles après recrutement. | À vérifier | À associer / à associer | Non acquise |
+| V7.69-18 | Barèmes, seuils, effets relationnels et critères précis d'admissibilité après simulations et tests. | À vérifier | À associer / à associer | Non acquise |
+| V7.70-1 | Distinguer interruptions, interceptions, protections et ripostes. | À vérifier | À associer / à associer | Non acquise |
+| V7.70-2 | Utiliser les sept phases de résolution. | À vérifier | À associer / à associer | Non acquise |
+| V7.70-3 | Vérifier conditions réelles avant chaque réaction. | À vérifier | À associer / à associer | Non acquise |
+| V7.70-4 | Respecter un PA par combattant et par round. | À vérifier | À associer / à associer | Non acquise |
+| V7.70-5 | Ne pas consommer deux fois un PA déjà engagé. | À vérifier | À associer / à associer | Non acquise |
+| V7.70-6 | Compétence appropriée exigée pour réactions actives. | À vérifier | À associer / à associer | Non acquise |
+| V7.70-7 | Réactions passives uniquement si explicitement définies. | À vérifier | À associer / à associer | Non acquise |
+| V7.70-8 | Interruptions préventives avant impacts. | À vérifier | À associer / à associer | Non acquise |
+| V7.70-9 | Une interception physique maximum par impact individuel. | À vérifier | À associer / à associer | Non acquise |
+| V7.70-10 | Protections compatibles peuvent se compléter. | À vérifier | À associer / à associer | Non acquise |
+| V7.70-11 | Respecter règles anatomiques validées. | À vérifier | À associer / à associer | Non acquise |
+| V7.70-12 | Afflictions appliquées aux combattants effectivement concernés. | À vérifier | À associer / à associer | Non acquise |
+| V7.70-13 | Effets de zone résolus individuellement. | À vérifier | À associer / à associer | Non acquise |
+| V7.70-14 | Départager réactions concurrentes selon priorités définies. | À vérifier | À associer / à associer | Non acquise |
+| V7.70-15 | Préférences de réaction configurables par le joueur. | À vérifier | À associer / à associer | Non acquise |
+| V7.70-16 | Réévaluer capacités et combos après chaque effet résolu. | À vérifier | À associer / à associer | Non acquise |
+| V7.70-17 | Pas d'annulation rétroactive des effets résolus, sauf mécanique explicite restaurant l'état sans effacer l'événement. | À vérifier | À associer / à associer | Non acquise |
+| V7.70-18 | Empêcher chaînes infinies de réactions. | À vérifier | À associer / à associer | Non acquise |
+| V7.70-19 | Sauvegarder réactions préparées, décisions, effets résolus et liens causaux sans duplication. | À vérifier | À associer / à associer | Non acquise |
+| V7.70-20 | Plafonds, durées, priorités spécifiques et exceptions après simulations et tests. | À vérifier | À associer / à associer | Non acquise |
+
+Prochaine étape : compléter inventaire des règles non numérotées et anciennes applicables, qualifier chaque ligne par composant et preuve, résoudre préséances et établir tests. Ne pas annoncer exhaustivité avant couverture vérifiée.
