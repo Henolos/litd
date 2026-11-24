@@ -4192,3 +4192,470 @@ main/data/veilleurs/v07/bosses_5_definitions.json contient Gardien du Seuil, Ch�
 source_contract.json conserve empreintes et 15 paliers historiques ; resolver_contract.json v6 distingue actions, postures, réactions, passifs et transformations, interdit fallback générique silencieux et boutons manuels de passifs. Conserver sources ; adapter modèle cible V6.7/V6.8/V7.0/V8.2 ; ne pas imposer 3×15, ni supposer les anciens entrypoints actifs. Migration individuelle des compétences et ADR-0005 à qualifier. Aucun changement de données.
 
 59 entrées complémentaires, 453 cumulées. Recouvrements avec arbitrages 30–40 intentionnels comme sous-exigences ; ne pas les compter comme règles uniques. Reste qualification ligne à ligne des 394 précédentes, vérification des alias et couverture de tous les paragraphes, association aux tests et preuve des interfaces réelles PR639. T1 non clos, T2 non ouvert. Aucun test exécuté.
+
+
+---
+## V7.78 — Préqualification systématique et audit PR #639 (24 novembre 2026)
+
+Passage automatique sur les 453 identifiants existants : contrôle unicité, rapprochement textuel normalisé, reprise des préséances et alias déjà signalés, détection lexicale des paramètres ouverts, affectation candidate par famille. Ce passage n'est pas une validation sémantique individuelle : les clauses mixtes, alias et affectations doivent être relus ; les exigences source restent dans V7.75–77. Aucun test nouveau exécuté. Résultats : {"Candidate applicable":378,"Remplacée":3,"Paramètre ou clause mixte à qualifier":13,"Alias à vérifier":6,"Doublon textuel":1,"Sous-exigence technique":52}.
+
+| ID | Source | Préqualification | Composant candidat | Réserve | Conformité runtime |
+|---|---|---|---|---|---|
+| CT-0001 | V7.46-1 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0002 | V7.46-2 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0003 | V7.46-3 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0004 | V7.46-4 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0005 | V7.46-5 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0006 | V7.46-6 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0007 | V7.46-7 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0008 | V7.46-8 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0009 | V7.46-9 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0010 | V7.46-10 | Remplacée | Capture / connaissance | Remplacée par V7.60/V7.69 | Non démontrée |
+| CT-0011 | V7.46-11 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0012 | V7.46-12 | Candidate applicable | Persistance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0013 | V7.47-1 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0014 | V7.47-2 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0015 | V7.47-3 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0016 | V7.47-4 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0017 | V7.47-5 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0018 | V7.47-6 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0019 | V7.47-7 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0020 | V7.47-8 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0021 | V7.47-9 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0022 | V7.47-10 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0023 | V7.47-11 | Paramètre ou clause mixte à qualifier | Capture / connaissance | Ne pas figer les paramètres ; conserver les obligations explicites | Non démontrée |
+| CT-0024 | V7.47-12 | Paramètre ou clause mixte à qualifier | Capture / connaissance | Ne pas figer les paramètres ; conserver les obligations explicites | Non démontrée |
+| CT-0025 | V7.48-1 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0026 | V7.48-2 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0027 | V7.48-3 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0028 | V7.48-4 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0029 | V7.48-5 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0030 | V7.48-6 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0031 | V7.48-7 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0032 | V7.48-8 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0033 | V7.48-9 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0034 | V7.48-10 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0035 | V7.48-11 | Candidate applicable | Persistance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0036 | V7.48-12 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0037 | V7.51-1 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0038 | V7.51-2 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0039 | V7.51-3 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0040 | V7.51-4 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0041 | V7.51-5 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0042 | V7.51-6 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0043 | V7.51-7 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0044 | V7.51-8 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0045 | V7.51-9 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0046 | V7.51-10 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0047 | V7.51-11 | Candidate applicable | Persistance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0048 | V7.51-12 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0049 | V7.52-1 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0050 | V7.52-2 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0051 | V7.52-3 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0052 | V7.52-4 | Paramètre ou clause mixte à qualifier | Capture / connaissance | Ne pas figer les paramètres ; conserver les obligations explicites | Non démontrée |
+| CT-0053 | V7.52-5 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0054 | V7.52-6 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0055 | V7.52-7 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0056 | V7.52-8 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0057 | V7.52-9 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0058 | V7.52-10 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0059 | V7.52-11 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0060 | V7.52-12 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0061 | V7.56-1 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0062 | V7.56-2 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0063 | V7.56-3 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0064 | V7.56-4 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0065 | V7.56-5 | Alias à vérifier | Capture / connaissance | Alias de V7.46-8 | Non démontrée |
+| CT-0066 | V7.56-6 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0067 | V7.56-7 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0068 | V7.56-8 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0069 | V7.56-9 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0070 | V7.56-10 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0071 | V7.56-11 | Candidate applicable | Capture / connaissance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0072 | V7.56-12 | Paramètre ou clause mixte à qualifier | Capture / connaissance | Ne pas figer les paramètres ; conserver les obligations explicites | Non démontrée |
+| CT-0073 | V7.58-1 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0074 | V7.58-2 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0075 | V7.58-3 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0076 | V7.58-4 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0077 | V7.58-5 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0078 | V7.58-6 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0079 | V7.58-7 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0080 | V7.58-8 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0081 | V7.58-9 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0082 | V7.58-10 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0083 | V7.58-11 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0084 | V7.58-12 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0085 | V7.58-13 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0086 | V7.58-14 | Paramètre ou clause mixte à qualifier | Transport / recrutement | Ne pas figer les paramètres ; conserver les obligations explicites | Non démontrée |
+| CT-0087 | V7.59-1 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0088 | V7.59-2 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0089 | V7.59-3 | Doublon textuel | Transport / recrutement | CT-0013 | Non démontrée |
+| CT-0090 | V7.59-4 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0091 | V7.59-5 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0092 | V7.59-6 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0093 | V7.59-7 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0094 | V7.59-8 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0095 | V7.59-9 | Remplacée | Transport / recrutement | Remplacée par V7.60/V7.69 | Non démontrée |
+| CT-0096 | V7.59-10 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0097 | V7.59-11 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0098 | V7.59-12 | Alias à vérifier | Transport / recrutement | Alias de V7.46-9 | Non démontrée |
+| CT-0099 | V7.59-13 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0100 | V7.59-14 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0101 | V7.59-15 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0102 | V7.59-16 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0103 | V7.62-1 | Candidate applicable | Formation | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0104 | V7.62-2 | Candidate applicable | Formation | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0105 | V7.62-3 | Candidate applicable | Formation | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0106 | V7.62-4 | Candidate applicable | Formation | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0107 | V7.62-5 | Candidate applicable | Formation | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0108 | V7.62-6 | Candidate applicable | Formation | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0109 | V7.62-7 | Candidate applicable | Formation | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0110 | V7.62-8 | Candidate applicable | Formation | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0111 | V7.62-9 | Candidate applicable | Formation | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0112 | V7.62-10 | Candidate applicable | Formation | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0113 | V7.62-11 | Candidate applicable | Formation | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0114 | V7.62-12 | Candidate applicable | Formation | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0115 | V7.62-13 | Candidate applicable | Formation | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0116 | V7.62-14 | Candidate applicable | Formation | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0117 | V7.62-15 | Candidate applicable | Persistance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0118 | V7.62-16 | Paramètre ou clause mixte à qualifier | Formation | Ne pas figer les paramètres ; conserver les obligations explicites | Non démontrée |
+| CT-0119 | V7.63-1 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0120 | V7.63-2 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0121 | V7.63-3 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0122 | V7.63-4 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0123 | V7.63-5 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0124 | V7.63-6 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0125 | V7.63-7 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0126 | V7.63-8 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0127 | V7.63-9 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0128 | V7.63-10 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0129 | V7.63-11 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0130 | V7.63-12 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0131 | V7.63-13 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0132 | V7.63-14 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0133 | V7.63-15 | Candidate applicable | Persistance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0134 | V7.63-16 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0135 | V7.66-1 | Candidate applicable | Initiative / PA | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0136 | V7.66-2 | Candidate applicable | Initiative / PA | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0137 | V7.66-3 | Candidate applicable | Initiative / PA | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0138 | V7.66-4 | Candidate applicable | Initiative / PA | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0139 | V7.66-5 | Candidate applicable | Initiative / PA | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0140 | V7.66-6 | Candidate applicable | Initiative / PA | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0141 | V7.66-7 | Candidate applicable | Initiative / PA | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0142 | V7.66-8 | Candidate applicable | Initiative / PA | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0143 | V7.66-9 | Candidate applicable | Initiative / PA | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0144 | V7.66-10 | Candidate applicable | Initiative / PA | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0145 | V7.66-11 | Candidate applicable | Initiative / PA | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0146 | V7.66-12 | Candidate applicable | Initiative / PA | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0147 | V7.66-13 | Candidate applicable | Initiative / PA | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0148 | V7.66-14 | Candidate applicable | Initiative / PA | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0149 | V7.66-15 | Candidate applicable | Persistance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0150 | V7.66-16 | Candidate applicable | Initiative / PA | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0151 | V7.67-1 | Candidate applicable | Formation | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0152 | V7.67-2 | Candidate applicable | Formation | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0153 | V7.67-3 | Candidate applicable | Formation | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0154 | V7.67-4 | Candidate applicable | Formation | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0155 | V7.67-5 | Candidate applicable | Formation | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0156 | V7.67-6 | Candidate applicable | Formation | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0157 | V7.67-7 | Candidate applicable | Formation | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0158 | V7.67-8 | Candidate applicable | Formation | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0159 | V7.67-9 | Alias à vérifier | Formation | Alias de V7.66-2 | Non démontrée |
+| CT-0160 | V7.67-10 | Candidate applicable | Formation | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0161 | V7.67-11 | Candidate applicable | Formation | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0162 | V7.67-12 | Candidate applicable | Formation | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0163 | V7.67-13 | Alias à vérifier | Formation | Alias de V7.46-9 | Non démontrée |
+| CT-0164 | V7.67-14 | Candidate applicable | Formation | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0165 | V7.68-1 | Candidate applicable | Invocations | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0166 | V7.68-2 | Alias à vérifier | Invocations | Alias de V7.67-1 | Non démontrée |
+| CT-0167 | V7.68-3 | Candidate applicable | Invocations | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0168 | V7.68-4 | Candidate applicable | Invocations | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0169 | V7.68-5 | Candidate applicable | Invocations | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0170 | V7.68-6 | Candidate applicable | Invocations | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0171 | V7.68-7 | Candidate applicable | Invocations | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0172 | V7.68-8 | Candidate applicable | Invocations | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0173 | V7.68-9 | Candidate applicable | Invocations | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0174 | V7.68-10 | Candidate applicable | Invocations | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0175 | V7.68-11 | Candidate applicable | Invocations | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0176 | V7.68-12 | Candidate applicable | Invocations | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0177 | V7.68-13 | Candidate applicable | Invocations | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0178 | V7.68-14 | Candidate applicable | Invocations | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0179 | V7.68-15 | Candidate applicable | Invocations | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0180 | V7.68-16 | Candidate applicable | Invocations | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0181 | V7.68-17 | Candidate applicable | Persistance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0182 | V7.68-18 | Candidate applicable | Invocations | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0183 | V7.69-1 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0184 | V7.69-2 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0185 | V7.69-3 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0186 | V7.69-4 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0187 | V7.69-5 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0188 | V7.69-6 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0189 | V7.69-7 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0190 | V7.69-8 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0191 | V7.69-9 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0192 | V7.69-10 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0193 | V7.69-11 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0194 | V7.69-12 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0195 | V7.69-13 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0196 | V7.69-14 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0197 | V7.69-15 | Alias à vérifier | Transport / recrutement | Alias de V7.46-9 | Non démontrée |
+| CT-0198 | V7.69-16 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0199 | V7.69-17 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0200 | V7.69-18 | Candidate applicable | Transport / recrutement | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0201 | V7.70-1 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0202 | V7.70-2 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0203 | V7.70-3 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0204 | V7.70-4 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0205 | V7.70-5 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0206 | V7.70-6 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0207 | V7.70-7 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0208 | V7.70-8 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0209 | V7.70-9 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0210 | V7.70-10 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0211 | V7.70-11 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0212 | V7.70-12 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0213 | V7.70-13 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0214 | V7.70-14 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0215 | V7.70-15 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0216 | V7.70-16 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0217 | V7.70-17 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0218 | V7.70-18 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0219 | V7.70-19 | Candidate applicable | Persistance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0220 | V7.70-20 | Candidate applicable | Résolution / réactions | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0221 | D.3 | Candidate applicable | HUD | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0222 | D.3 | Candidate applicable | HUD | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0223 | D.3 | Candidate applicable | HUD | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0224 | D.3 | Candidate applicable | HUD | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0225 | D.3 | Paramètre ou clause mixte à qualifier | HUD | Ne pas figer les paramètres ; conserver les obligations explicites | Non démontrée |
+| CT-0226 | D.3 | Candidate applicable | HUD | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0227 | D.4 | Candidate applicable | HUD | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0228 | D.4 | Candidate applicable | HUD | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0229 | D.4 | Candidate applicable | HUD | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0230 | D.4 | Candidate applicable | HUD | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0231 | D.4 | Candidate applicable | HUD | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0232 | D.4 | Candidate applicable | HUD | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0233 | D.5 | Candidate applicable | Compétences / progression | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0234 | D.5 | Candidate applicable | Compétences / progression | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0235 | D.5 | Candidate applicable | Compétences / progression | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0236 | D.5 | Paramètre ou clause mixte à qualifier | Compétences / progression | Ne pas figer les paramètres ; conserver les obligations explicites | Non démontrée |
+| CT-0237 | D.6 | Candidate applicable | Inventaire | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0238 | D.6 | Candidate applicable | Inventaire | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0239 | D.6 | Candidate applicable | Inventaire | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0240 | D.6 | Candidate applicable | Inventaire | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0241 | D.6 | Candidate applicable | Inventaire | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0242 | D.6 | Candidate applicable | Inventaire | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0243 | V5.3 | Candidate applicable | Compétences / progression | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0244 | V5.3 | Candidate applicable | Compétences / progression | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0245 | V5.4 | Candidate applicable | Compétences / progression | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0246 | V5.8 | Candidate applicable | Compétences / progression | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0247 | V6.1 | Candidate applicable | Compétences / progression | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0248 | V5.9 | Candidate applicable | Compétences / progression | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0249 | V6.5 | Candidate applicable | Compétences / progression | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0250 | V6.6 | Candidate applicable | Compétences / progression | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0251 | V6.7 | Candidate applicable | Compétences / progression | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0252 | V6.8 | Candidate applicable | Compétences / progression | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0253 | V6.8 | Candidate applicable | Compétences / progression | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0254 | V7.0 | Candidate applicable | Compétences / progression | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0255 | V7.0 | Candidate applicable | Compétences / progression | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0256 | V6.9 | Candidate applicable | Compétences / progression | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0257 | V7.4 | Candidate applicable | Compétences / progression | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0258 | V8.2-14 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0259 | ADR-0006 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0260 | ADR-0009 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0261 | V7.34-1 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0262 | V7.34-2 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0263 | V7.34-3 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0264 | V7.34-4 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0265 | V7.34-5 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0266 | V7.34-6 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0267 | V7.34-7 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0268 | V7.34-8 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0269 | V7.35-1 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0270 | V7.35-2 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0271 | V7.35-3 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0272 | V7.35-4 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0273 | V7.35-5 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0274 | V7.35-6 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0275 | V7.35-7 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0276 | V7.35-8 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0277 | V7.35-9 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0278 | V7.35-10 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0279 | V7.37-1 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0280 | V7.37-2 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0281 | V7.37-3 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0282 | V7.37-4 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0283 | V7.37-5 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0284 | V7.37-6 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0285 | V7.37-7 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0286 | V7.37-8 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0287 | V7.37-9 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0288 | V7.37-10 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0289 | V7.39-1 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0290 | V7.39-2 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0291 | V7.39-3 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0292 | V7.39-4 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0293 | V7.39-5 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0294 | V7.39-6 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0295 | V7.39-7 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0296 | V7.39-8 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0297 | V7.39-9 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0298 | V7.39-10 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0299 | V7.41-1 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0300 | V7.41-2 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0301 | V7.41-3 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0302 | V7.41-4 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0303 | V7.41-5 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0304 | V7.41-6 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0305 | V7.41-7 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0306 | V7.41-8 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0307 | V7.41-9 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0308 | V7.41-10 | Candidate applicable | Persistance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0309 | V7.42-1 | Candidate applicable | Succession | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0310 | V7.42-2 | Candidate applicable | Succession | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0311 | V7.42-3 | Candidate applicable | Succession | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0312 | V7.42-4 | Candidate applicable | Succession | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0313 | V7.42-5 | Candidate applicable | Succession | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0314 | V7.42-6 | Candidate applicable | Succession | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0315 | V7.42-7 | Candidate applicable | Succession | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0316 | V7.42-8 | Candidate applicable | Succession | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0317 | V7.42-9 | Candidate applicable | Succession | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0318 | V7.42-10 | Candidate applicable | Succession | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0319 | V7.42-11 | Candidate applicable | Succession | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0320 | V7.42-12 | Candidate applicable | Succession | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0321 | V7.44-1 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0322 | V7.44-2 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0323 | V7.44-3 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0324 | V7.44-4 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0325 | V7.44-5 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0326 | V7.44-6 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0327 | V7.44-7 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0328 | V7.44-8 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0329 | V7.44-9 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0330 | V7.44-10 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0331 | V7.44-11 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0332 | V7.44-12 | Candidate applicable | Némésis / monde | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0333 | V7.45-1 | Candidate applicable | Guet-apens | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0334 | V7.45-2 | Candidate applicable | Guet-apens | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0335 | V7.45-3 | Candidate applicable | Guet-apens | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0336 | V7.45-4 | Candidate applicable | Guet-apens | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0337 | V7.45-5 | Candidate applicable | Guet-apens | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0338 | V7.45-6 | Candidate applicable | Guet-apens | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0339 | V7.45-7 | Candidate applicable | Guet-apens | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0340 | V7.45-8 | Candidate applicable | Guet-apens | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0341 | V7.45-9 | Candidate applicable | Guet-apens | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0342 | V7.45-10 | Paramètre ou clause mixte à qualifier | Persistance | Ne pas figer les paramètres ; conserver les obligations explicites | Non démontrée |
+| CT-0343 | V7.49-1 | Candidate applicable | Extraction | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0344 | V7.49-2 | Candidate applicable | Extraction | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0345 | V7.49-3 | Candidate applicable | Extraction | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0346 | V7.49-4 | Candidate applicable | Extraction | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0347 | V7.49-5 | Candidate applicable | Extraction | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0348 | V7.49-6 | Candidate applicable | Extraction | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0349 | V7.49-7 | Candidate applicable | Extraction | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0350 | V7.49-8 | Candidate applicable | Extraction | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0351 | V7.49-9 | Candidate applicable | Extraction | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0352 | V7.49-10 | Candidate applicable | Extraction | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0353 | V7.49-11 | Candidate applicable | Persistance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0354 | V7.49-12 | Paramètre ou clause mixte à qualifier | Extraction | Ne pas figer les paramètres ; conserver les obligations explicites | Non démontrée |
+| CT-0355 | V8.3-arbitrage-1 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0356 | V8.3-arbitrage-2 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0357 | V8.3-arbitrage-3 | Remplacée | Transversal à préciser | Remplacé par arbitrage 4 | Non démontrée |
+| CT-0358 | V8.3-arbitrage-4 | Candidate applicable | Persistance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0359 | V8.3-arbitrage-5 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0360 | V8.3-arbitrage-6 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0361 | V8.3-arbitrage-7 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0362 | V8.3-arbitrage-8 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0363 | V8.3-arbitrage-9 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0364 | V8.3-arbitrage-10 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0365 | V8.3-arbitrage-11 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0366 | V8.3-arbitrage-12 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0367 | V8.3-arbitrage-13 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0368 | V8.3-arbitrage-14 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0369 | V8.3-arbitrage-15 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0370 | V8.3-arbitrage-16 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0371 | V8.3-arbitrage-17 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0372 | V8.3-arbitrage-18 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0373 | V8.3-arbitrage-19 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0374 | V8.3-arbitrage-20 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0375 | V8.3-arbitrage-21 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0376 | V8.3-arbitrage-22 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0377 | V8.3-arbitrage-23 | Paramètre ou clause mixte à qualifier | Transversal à préciser | Ne pas figer les paramètres ; conserver les obligations explicites | Non démontrée |
+| CT-0378 | V8.3-arbitrage-24 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0379 | V8.3-arbitrage-25 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0380 | V8.3-arbitrage-26 | Paramètre ou clause mixte à qualifier | Transversal à préciser | Ne pas figer les paramètres ; conserver les obligations explicites | Non démontrée |
+| CT-0381 | V8.3-arbitrage-27 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0382 | V8.3-arbitrage-28 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0383 | V8.3-arbitrage-29 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0384 | V8.3-arbitrage-30 | Candidate applicable | Persistance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0385 | V8.3-arbitrage-31 | Candidate applicable | Persistance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0386 | V8.3-arbitrage-32 | Candidate applicable | Persistance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0387 | V8.3-arbitrage-33 | Candidate applicable | Persistance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0388 | V8.3-arbitrage-34 | Candidate applicable | Persistance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0389 | V8.3-arbitrage-35 | Candidate applicable | Persistance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0390 | V8.3-arbitrage-36 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0391 | V8.3-arbitrage-37 | Candidate applicable | Persistance | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0392 | V8.3-arbitrage-38 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0393 | V8.3-arbitrage-39 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0394 | V8.3-arbitrage-40 | Candidate applicable | Transversal à préciser | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0395 | V8.3-T1 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0396 | V8.3-T1 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0397 | V8.3-T2 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0398 | V8.3-T2 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0399 | V8.3-T2 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0400 | V8.3-T2 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0401 | V8.3-T2 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0402 | V8.3-T2 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0403 | V8.3-T2 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0404 | V8.3-T2 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0405 | V8.3-T2 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0406 | V8.3-T2 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0407 | V8.3-T3 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0408 | V8.3-T3 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0409 | V8.3-T3 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0410 | V8.3-T3 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0411 | V8.3-T3 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0412 | V8.3-T3 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0413 | V8.3-T4 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0414 | V8.3-T4 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0415 | V8.3-T4 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0416 | V8.3-T4 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0417 | V8.3-T4 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0418 | V8.3-T4 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0419 | V8.3-T4 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0420 | V8.3-T5 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0421 | V8.3-T5 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0422 | V8.3-T5 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0423 | V8.3-T5 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0424 | V8.3-T5 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0425 | V8.3-T5 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0426 | V8.3-T5 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0427 | V8.3-T5 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0428 | V8.3-T5 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0429 | V8.3-T6 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0430 | V8.3-T6 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0431 | V8.3-T6 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0432 | V8.3-T6 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0433 | V8.3-T6 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0434 | V8.3-T6 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0435 | V8.3-T6 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0436 | V8.3-T7 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0437 | V8.3-T7 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0438 | V8.3-T7 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0439 | V8.3-T7 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0440 | V8.3-T7 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0441 | V8.3-T7 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0442 | V8.3-T8 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0443 | V8.3-T8 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0444 | V8.3-T8 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0445 | V8.3-T8 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0446 | V8.3-T8 | Sous-exigence technique | Persistance | Décomposition des arbitrages 30–40, non indépendante | Non démontrée |
+| CT-0447 | C.2 | Candidate applicable | Extraction | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0448 | C.2 | Candidate applicable | Extraction | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0449 | C.2 | Candidate applicable | Extraction | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0450 | C.2 | Candidate applicable | Extraction | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0451 | C.2 | Candidate applicable | Extraction | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0452 | C.2 | Candidate applicable | Extraction | Relecture sémantique et test spécifique requis | Non démontrée |
+| CT-0453 | C.4 | Paramètre ou clause mixte à qualifier | Extraction | Ne pas figer les paramètres ; conserver les obligations explicites | Non démontrée |
+
+### PR #639 — inspection directe
+SaveManager blob 7124c2d39324c0768350fbbd49cb425eca4a0527 ; tests transactionnels blob 1c00f8acc24bfa8d2f7dcc3062c49023d35625d3 ; contrat V0 blob 5d3c7675c609e377070e8ca74970b65cc1c1b037. canonical_body/sha256, preview_committed_transaction, journal_append/recover_preview, journal_recover_confirmed_preview, anchor_read/publish_preview, coordinated_commit_preview, inspect/resolve_unconfirmed_preview existent. Journal isolé, non appelé par save_game/load_game. Révisions, empreintes, doublons et chaîne confirmée contrôlés ; pas de validation des invariants métier ni durabilité démontrée. Garde de réentrance intra-processus seulement. Les fichiers .pending peuvent bloquer une nouvelle tentative ; résolution explicite du suffixe non confirmé ne traite pas la réparation d'ancre pending. Le test source contient injections écriture/reprise et vérification de déterminisme, sans nouvelle exécution ici. Le contrat V0 propose mutations et événements permanents ; le prototype transporte result_state complet. Ne pas assimiler ces deux contrats. Ne pas intégrer avant validation des producteurs métier, confirmation durable, réparation contrôlée et tests Windows. Aucun changement runtime.
+
+T1 reste ouvert : relecture sémantique des 453 lignes, vérification des alias, couverture des sources et correspondance précise tests. T2 non ouvert.
