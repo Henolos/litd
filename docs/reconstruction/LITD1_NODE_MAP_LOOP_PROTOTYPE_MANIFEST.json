@@ -1,0 +1,9 @@
+{
+  "phase": "litd1_node_map_loop_prototype",
+  "scripts": [
+    "scripts/prototype/litd1_node_map_loop.gd"
+  ],
+  "scenes": [
+    "scenes/prototype/litd1_node_map_loop.tscn"
+  ]
+}

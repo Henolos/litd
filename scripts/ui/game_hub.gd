@@ -55,11 +55,11 @@ func _build_interface() -> void:
 	start_button.custom_minimum_size.y = 54
 	content.add_child(start_button)
 
-	var node_map_button := Button.new()
-	node_map_button.text = "Tester le parcours à nœuds (prototype)"
-	node_map_button.custom_minimum_size.y = 50
-	node_map_button.pressed.connect(_open_node_map_loop)
-	content.add_child(node_map_button)
+	var prototype_button := Button.new()
+	prototype_button.text = "Tester le parcours à nœuds (prototype)"
+	prototype_button.custom_minimum_size.y = 50
+	prototype_button.pressed.connect(_open_node_map_loop)
+	content.add_child(prototype_button)
 
 	var bestiary_button := Button.new()
 	bestiary_button.text = _bestiary_button_text()
@@ -74,7 +74,7 @@ func _build_interface() -> void:
 	content.add_child(qa_button)
 
 	var explanation := Label.new()
-	explanation.text = "Le catalogue est accessible. L’aventure jouable et ses scènes restent à créer."
+	explanation.text = "La campagne reste à construire. Un parcours de test à nœuds est disponible en prototype."
 	explanation.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	explanation.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	explanation.add_theme_color_override("font_color", MUTED)

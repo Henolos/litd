@@ -10,6 +10,7 @@ import re
 ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = 'docs/reconstruction/RESET_20261112_MANIFEST.json'
 AUTHORIZED_REVISIONS = 'docs/reconstruction/AUTHORIZED_REFERENCE_REVISIONS_20261123.json'
+NODE_MAP_LOOP_PROTOTYPE_MANIFEST = 'docs/reconstruction/LITD1_NODE_MAP_LOOP_PROTOTYPE_MANIFEST.json'
 HEX_SHA256 = re.compile(r'^[0-9a-f]{64}$')
 
 
@@ -94,6 +95,32 @@ def validate(root: Path = ROOT, group: str = 'all') -> list[str]:
         if (root / name).exists():
             errors.append('retired_runtime_returned:' + name)
     allowed = set(manifest['technical_scripts'])
+    prototype_manifest_path = root / NODE_MAP_LOOP_PROTOTYPE_MANIFEST
+    if prototype_manifest_path.is_file():
+        try:
+            prototype_manifest = json.loads(prototype_manifest_path.read_text(encoding='utf-8'))
+        except (OSError, json.JSONDecodeError):
+            prototype_manifest = {}
+            errors.append('invalid_node_map_loop_prototype_manifest')
+        if not isinstance(prototype_manifest, dict) or prototype_manifest.get('phase') != 'litd1_node_map_loop_prototype':
+            errors.append('invalid_node_map_loop_prototype_manifest')
+            prototype_manifest = {}
+        prototype_scripts = prototype_manifest.get('scripts', [])
+        prototype_scenes = prototype_manifest.get('scenes', [])
+        if not isinstance(prototype_scripts, list) or not isinstance(prototype_scenes, list):
+            errors.append('invalid_node_map_loop_prototype_manifest')
+            prototype_scripts = []
+            prototype_scenes = []
+        allowed.update(name for name in prototype_scripts if isinstance(name, str))
+        for name in [*prototype_scripts, *prototype_scenes]:
+            if (
+                not isinstance(name, str)
+                or name in manifest['removed_runtime_files']
+                or Path(name).is_absolute()
+                or '..' in Path(name).parts
+                or not (root / name).is_file()
+            ):
+                errors.append('prototype_scope_invalid:' + str(name))
     production = {p.relative_to(root).as_posix() for p in (root / 'scripts').rglob('*.gd') if '/tests/' not in p.as_posix()}
     if production != allowed:
         errors.append('technical_script_scope:' + repr(sorted(production ^ allowed)))
