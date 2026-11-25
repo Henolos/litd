@@ -3028,3 +3028,63 @@ Le système doit identifier le véritable responsable d'une mort définitive lor
 ### Vérification de provenance — règle 19 ARCH-12
 
 La formulation de la règle 19 retrouvée dans la proposition du 25 novembre 2026 correspond au texte enregistré. La validation explicite des vingt règles couvre le nom rouge et la tête de mort rouge permanents dans les Archives, y compris après le décès du Némésis. La source indépendante antérieure à ARCH-12 reste à retrouver ; les dix-neuf autres formulations initiales restent à certifier mot pour mot. Aucun nouvel arbitrage.
+
+
+## ARCH-12.5 — Changement de maître des invocations
+
+**VALIDÉ EN CONCEPTION — option C : responsabilité du maître au moment de l'action.** Validation explicite du 25 novembre 2026.
+
+Le principe est de conserver la responsabilité causale de chaque action d'une invocation, indépendamment de ses changements ultérieurs de maître, d'allégeance ou d'autonomie.
+
+### Identification et conservation de la responsabilité
+
+| Nº | Règle | Description |
+|---:|---|---|
+| 1 | Maître au moment de l'action | Chaque action d'une invocation contrôlée est attribuable au maître qui exerce effectivement son contrôle au moment de cette action. |
+| 2 | Identification unique | L'invocation et chacun de ses maîtres disposent d'une identité permettant de retracer leurs responsabilités respectives. |
+| 3 | Conservation de l'origine | Chaque action conserve son auteur physique, son responsable causal et son contexte de contrôle. |
+| 4 | Effets différés | Les afflictions et autres conséquences persistantes restent attribuables au maître responsable de l'action initiale. |
+| 5 | Absence de rétroactivité | Un changement de maître ne transfère jamais automatiquement les responsabilités associées aux actions antérieures. |
+
+### Changements de contrôle
+
+| Nº | Règle | Description |
+|---:|---|---|
+| 6 | Nouveau maître | Les nouvelles actions contrôlées après un transfert relèvent du nouveau maître. |
+| 7 | Changements successifs | Une invocation peut changer plusieurs fois de maître sans perdre l'historique de ses responsabilités. |
+| 8 | Contrôle temporaire | Une prise de contrôle temporaire attribue au contrôleur effectif les actions réalisées pendant cette période. |
+| 9 | Retour au maître précédent | La récupération du contrôle ne modifie pas les responsabilités acquises durant la période intermédiaire. |
+| 10 | Contrôle contesté | Lorsque plusieurs entités exercent simultanément une influence, la responsabilité est établie par l'analyse causale réelle, conformément à ARCH-12.4. Aucun maître n'est désigné arbitrairement. |
+
+### Autonomie et disparition du maître
+
+| Nº | Règle | Description |
+|---:|---|---|
+| 11 | Invocation autonome | Une invocation devenue indépendante assume la responsabilité de ses nouvelles actions autonomes. |
+| 12 | Éligibilité au statut Némésis | Une invocation autonome ne peut acquérir le statut Némésis que si elle satisfait aux conditions générales d'éligibilité. |
+| 13 | Mort du maître | Le décès du maître ne supprime pas les responsabilités liées aux actions effectuées sous son contrôle. |
+| 14 | Reconnaissance posthume | Si une ancienne action contrôlée provoque ultérieurement la mort définitive d'un héros, le maître décédé peut être reconnu conformément à ARCH-12.2. |
+| 15 | Disparition de l'invocation | La disparition, la révocation ou la destruction de l'invocation n'efface pas les conséquences persistantes de ses actions antérieures. |
+
+### Recrutement, attribution et persistance
+
+| Nº | Règle | Description |
+|---:|---|---|
+| 16 | Recrutement du maître | Son recrutement n'efface pas ses anciennes responsabilités hostiles. ARCH-12.1 et ARCH-12.3 restent applicables. |
+| 17 | Changement d'allégeance de l'invocation | Le recrutement ou le changement de faction d'une invocation ne réattribue pas ses anciennes actions. |
+| 18 | Réactions en chaîne | Les interventions indépendantes ultérieures sont examinées conformément aux règles générales d'ARCH-12 et d'ARCH-12.4. |
+| 19 | Unicité de l'attribution | Une même mort définitive ne peut produire plusieurs attributions principales du statut Némésis. L'invocation et son maître ne reçoivent pas simultanément les bénéfices associés à une même responsabilité. |
+| 20 | Persistance et déterminisme | L'historique du contrôle, les responsabilités causales et les résultats d'attribution sont conservés durablement, sans duplication ni modification arbitraire lors d'une sauvegarde, d'un chargement ou d'un Game Over. |
+
+### Réconciliation documentaire et préséance
+
+- ARCH-12.5 précise les règles 08 et 09 d'ARCH-12 : le maître pertinent est le contrôleur effectif au moment de l'action, non celui au moment de la mort. La réserve sur le changement de maître est résolue en conception.
+- ARCH-05/06 : aucune nouvelle autorisation de fuite ni modification des conditions générales d'acquisition du statut Némésis.
+- ARCH-07/08/09 : restrictions NG+, progression des recrues et règles de possession des équipements inchangées ; aucun transfert automatique d'équipement.
+- ARCH-11 : conserver les événements et conséquences persistantes.
+- ARCH-12.1/12.2/12.3 : responsabilité historique après recrutement ou décès, sans progression hostile ou posthume interdite.
+- ARCH-12.4 : contrôle contesté et contributions multiples résolus sans attribution arbitraire ; zéro ou un responsable principal.
+- Archives, afflictions et sauvegardes : conserver les identités, le contexte de contrôle, les responsables d'origine et les résultats durables sans duplication.
+- Les conditions de prise de contrôle, sa durée, son coût, les résistances et l'accès à l'autonomie restent à concevoir. Aucun mécanisme de contrôle supplémentaire n'est validé.
+- Cas de contrôle à préparer : poison avant transfert, attaque après transfert, contrôle temporaire, retour au maître précédent, décès ou recrutement du maître, autonomie, destruction de l'invocation, égalité causale, sauvegarde pendant transfert.
+- La comparaison technique des contributions causales, les preuves historiques encore manquantes et les tests runtime restent ouverts. Aucun changement moteur ni validation technique revendiqués.
