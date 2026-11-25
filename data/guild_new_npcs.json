@@ -14,7 +14,7 @@
         "Quêtes spéciales",
         "Déblocages par affinité"
       ],
-      "visual_asset_status": "validated_concept_binary_imported_hash_verified",
+      "visual_asset_status": "validated_concept_board_binary_present_hash_verified_individual_portrait_missing",
       "dialogues": [
         {
           "speaker": "Han Lu",
@@ -29,7 +29,8 @@
         "anecdotes",
         "affinite",
         "quetes_personnelles"
-      ]
+      ],
+      "individual_portrait_status": "not_present_in_repository_as_of_2026_11_24"
     },
     {
       "id": "guild_physician",
@@ -43,7 +44,7 @@
         "Humour noir sur les amputations",
         "Recherche des faiblesses des créatures"
       ],
-      "visual_asset_status": "validated_concept_binary_imported_hash_verified",
+      "visual_asset_status": "validated_concept_board_binary_present_hash_verified_individual_portrait_missing",
       "dialogues": [
         {
           "speaker": "Dr Mei Ling",
@@ -58,7 +59,8 @@
         "soins",
         "recherche_anatomique",
         "quetes_personnelles"
-      ]
+      ],
+      "individual_portrait_status": "not_present_in_repository_as_of_2026_11_24"
     }
   ],
   "bestiary_knowledge": {
