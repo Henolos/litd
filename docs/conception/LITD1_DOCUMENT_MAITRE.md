@@ -2768,3 +2768,42 @@ Délais, probabilités et utilisation des équipements pillés par les Némésis
 - ARCH-09/V7.37 : récupération et utilisation des équipements selon leur détenteur réel, leur accessibilité et leur compatibilité ; les règles ARCH-09 complètent les questions historiques de récupération. Aucun transfert automatique, aucune duplication ; indestructibilité des légendaires distincte de leur état ou accessibilité.
 - V8.1/V8.3 : préserver mort définitive, identité, conséquences et possession ; enregistrer les transitions de dépouille et d'équipement conformément aux invariants transactionnels, sans réapparition artificielle ni recalcul d'un résultat confirmé.
 - Délais, probabilités, conditions précises de réanimation et paramètres de pillage restent ouverts ; aucun nouveau barème ni exemple de bestiaire validé. Les contrats CT-0269 à CT-0278 restent à auditer et tester. Réconciliation documentaire uniquement ; aucun changement moteur, test runtime ni fusion.
+
+
+## ARCH-11 — Réintégration de V7.39 (25 novembre 2026)
+
+**VALIDÉ EN CONCEPTION.** Accord direct : « Pour LITD 1, je confirme explicitement l'option C de V7.39, ses dix règles historiques intégrales, les six comportements territoriaux et la simulation événementielle. Réintègre cette section au document maître dans ARCH-11 et réconcilie les systèmes concernés. »
+
+Source historique : commit f558dbf08872128f1c22fb8764a9d954ad877c37. Section reproduite intégralement ; la confirmation actuelle établit la validation explicite indépendamment de la preuve de l'accord original.
+
+## V7.39 — Mobilité territoriale contextuelle des Némésis (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, mobilité territoriale contextuelle des Némésis, dix règles complémentaires et simulation événementielle explicitement approuvées.** Les déplacements dépendent de la nature, des capacités, du comportement et des événements du monde. Comportements possibles : sédentaire, territorial, migrateur, conquérant, fugitif, chasseur, combinables selon la créature.
+
+1. Territoire d'origine enregistré pour chaque Némésis.
+2. Déplacements compatibles avec capacités physiques et habitats.
+3. Sédentarité complète possible.
+4. Migration justifiée écologiquement, comportementalement ou narrativement.
+5. Aucun déplacement arbitraire dû uniquement à la régénération des cartes.
+6. Recherche par renseignements, témoignages et traces.
+7. Équipements transportés suivant leur détenteur.
+8. Identité, souvenirs, grade et puissance conservés.
+9. Aucune présence simultanée dans plusieurs lieux.
+10. Aucun Némésis lié à un objectif obligatoire définitivement inaccessible du fait d'une migration.
+
+Simulation événementielle des déplacements plutôt que simulation permanente de toutes les créatures. Exemples de biomes et itinéraires indicatifs. Préserver la stabilité intra-expédition, la persistance et les invariants de sauvegarde. Paramètres, déclencheurs et tests restent à définir. Validation documentaire uniquement, aucun développement ni test en jeu.
+
+
+---
+
+### Réconciliation documentaire ARCH-11
+
+- ARCH-01/V7.38 : préserver l'accessibilité des objectifs obligatoires malgré les migrations, sans imposer de mécanisme de déplacement non validé.
+- ARCH-02/ARCH-03/V7.43 : renouvellement procédural et transformations contextuelles ne constituent pas à eux seuls une justification de migration ; préserver la stabilité intra-expédition.
+- ARCH-05/V7.41 : distinguer fuite volontaire en combat, migration territoriale et rupture de contention ; le comportement territorial fugitif ne crée aucune dérogation aux restrictions de fuite en combat.
+- ARCH-06 : conserver identité, souvenirs, rang, promotions et bonus lors des déplacements ; aucune réapparition d'un Némésis définitivement mort.
+- ARCH-07/ARCH-08 : restrictions NG+ inchangées ; aucune présence simultanée hostile et alliée après recrutement ; adaptation des caractéristiques selon ARCH-08.
+- ARCH-09/ARCH-10/V7.37 : les équipements suivent leur détenteur réel, sans duplication ni transfert automatique ; les objets déjà retirés ne suivent pas le captif.
+- V7.27/V7.30 : recherche par renseignements, témoignages et traces, avec distinction entre informations durables et localisation susceptible d'évoluer.
+- V8.3 : transitions territoriales persistantes, identité unique et absence de nouveau tirage des résultats confirmés au rechargement.
+- Simulation événementielle confirmée, sans imposer une simulation permanente de toutes les créatures. Paramètres, déclencheurs, distances, fréquences, itinéraires et tests restent ouverts. Aucun exemple de biome ni barème numérique nouvellement validé. Contrats CT-0289 à CT-0298 à auditer et tester. Réconciliation documentaire uniquement ; aucun changement moteur, test runtime ni fusion.
