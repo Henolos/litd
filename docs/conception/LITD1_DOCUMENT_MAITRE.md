@@ -2552,3 +2552,56 @@ Préserver V7.12 et la fuite volontaire réservée aux Némésis. Coûts en poin
 - V8.3 : persistance des résultats confirmés sans nouveau tirage.
 - Les modalités de transformation en boss, coûts en PA, seuils, délais, capacités admissibles et limites de répétition restent ouverts. Aucun des dix-huit énoncés ARCH-05 précédemment proposés n'est globalement approuvé par cet accord. Aucun changement moteur ni test runtime.
 
+
+
+---
+
+## ARCH-06 — Acquisition et évolution du statut Némésis (25 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et vingt règles complémentaires.** Accord direct : « Pour LITD 1, je valide explicitement l'option C de l'arbitrage ARCH-06 concernant l'acquisition et l'évolution du statut Némésis, avec les vingt règles complémentaires proposées. Enregistre le texte intégral et réconcilie les systèmes concernés. »
+
+### Acquisition du statut Némésis
+
+1. Seule la mort définitive d'un héros attribuable à un ennemi permet à celui-ci d'acquérir le statut Némésis.
+2. L'acquisition du statut est automatique lorsque cette condition est remplie.
+3. Une blessure, une mutilation, une capture ou une victoire non létale ne suffit pas à créer un Némésis.
+4. La récupération d'un équipement, quelle que soit sa rareté, ne confère pas le statut Némésis.
+5. La mort d'un héros doit être effectivement confirmée et attribuée selon les règles de causalité du combat.
+
+### Progression statistique
+
+6. Le bonus initial dépend du rang de l'ennemi au moment de l'acquisition du statut.
+7. Un ennemi ordinaire reçoit un bonus initial supérieur à celui d'une élite, qui reçoit elle-même un bonus supérieur à celui d'un mini-boss.
+8. Chaque nouvelle mort définitive d'un héros attribuable au Némésis contribue à sa progression statistique.
+9. Les gains statistiques supplémentaires sont décroissants et plafonnés.
+10. Les bonus provenant des équipements restent distincts des bonus propres au statut Némésis.
+
+### Promotions et évolution
+
+11. Les promotions constituent une évolution distincte de la progression statistique.
+12. Les morts définitives de héros peuvent contribuer aux promotions.
+13. Certains exploits majeurs non létaux peuvent accélérer une promotion, sans attribuer automatiquement de bonus statistique lié aux morts de héros.
+14. Une simple fuite, une blessure ordinaire ou la survie à un combat ne constitue pas un exploit majeur.
+15. Un Némésis conserve au minimum son rang d'origine et peut évoluer jusqu'au rang de boss émergent.
+16. Les promotions peuvent modifier son apparence, ses capacités, son comportement et son influence territoriale, selon sa nature.
+
+### Persistance et cohérence
+
+17. Une promotion ne provoque aucune guérison intégrale automatique et ne supprime pas arbitrairement les faiblesses anatomiques.
+18. Le Némésis conserve son identité, ses souvenirs, ses victimes, ses promotions et ses bonus après un Game Over.
+19. Un Némésis définitivement mort ne peut pas réapparaître artificiellement pour maintenir la difficulté.
+20. L'acquisition du statut, les gains, les promotions et leurs conséquences sont enregistrés conformément aux règles transactionnelles V8.3, sans duplication ni nouveau tirage au rechargement.
+
+### Réconciliation documentaire et préséance
+
+- Le déclenchement historique par « exploits majeurs » est remplacé par les règles 1 à 5 pour l'acquisition du statut. Les exploits non létaux ne concernent que les promotions après acquisition, selon les règles 13 et 14.
+- V7.44 : distinguer bonus statistiques et promotions ; conserver les clauses compatibles. La restriction historique sur les blessures ne doit pas être interprétée comme excluant tout exploit non létal majeur des promotions. La liste des exploits admissibles reste ouverte.
+- V7.34 : la persistance après Game Over est confirmée par la règle 18 ; aucun bonus supplémentaire pour le simple Game Over, selon la règle historique compatible, dont la validation originale reste à vérifier.
+- V7.35/37 : séparer pillage, bonus d'équipement et acquisition du statut ; préserver les invariants d'identité et de non-duplication.
+- V7.39 : préserver la mobilité territoriale contextuelle ; aucune nouvelle règle de déplacement.
+- ARCH-04 : abandon, disparition ou captivité ne valent pas mort définitive confirmée.
+- ARCH-05/V7.41 : la fuite est réservée aux Némésis non devenus boss établis ; aucune progression pour simple fuite. Une promotion ne permet pas de contourner les restrictions de fuite.
+- V8.3 : acquisition, attribution causale, gains et promotions interdépendants soumis aux transactions confirmées exactement une fois.
+- Capture/recrutement : la garantie historique V7.60 ne tranche pas à elle seule l'éligibilité des Némésis ou des boss émergents. Ne pas déduire de nouvelle restriction ou autorisation de recrutement d'ARCH-06.
+
+Ces articulations constituent une réconciliation documentaire, non de nouveaux arbitrages. Les exemples d'exploits non létaux ne sont pas validés individuellement. Attribution des morts indirectes, bonus initiaux des rangs non spécifiés, valeurs, seuils, plafonds, conditions exactes des promotions et recrutement des Némésis/boss émergents restent ouverts. Aucun code ni test runtime modifié ; audit des contrats et implémentations restant à effectuer.
