@@ -3023,3 +3023,8 @@ Le système doit identifier le véritable responsable d'une mort définitive lor
 - V8.3 et Archives : conserver identité, provenance, justification et résolution durable sans duplication ni nouveau tirage au chargement.
 - Cas de contrôle à préparer : poison antérieur au recrutement, recrue décédée, deux poisons conjointement mortels, Némésis existants à égalité, intervention indépendante, piège à installateur distinct du déclencheur, environnement sans responsable, sauvegarde/reprise. Aucun test runtime effectué.
 - La méthode technique de comparaison des contributions causales, le changement de maître d'une invocation et la provenance historique du marquage rouge restent à préciser ou vérifier. Le verbatim des vingt règles initiales ARCH-12 reste à certifier. Ces réserves ne sont pas de nouvelles décisions.
+
+
+### Vérification de provenance — règle 19 ARCH-12
+
+La formulation de la règle 19 retrouvée dans la proposition du 25 novembre 2026 correspond au texte enregistré. La validation explicite des vingt règles couvre le nom rouge et la tête de mort rouge permanents dans les Archives, y compris après le décès du Némésis. La source indépendante antérieure à ARCH-12 reste à retrouver ; les dix-neuf autres formulations initiales restent à certifier mot pour mot. Aucun nouvel arbitrage.
