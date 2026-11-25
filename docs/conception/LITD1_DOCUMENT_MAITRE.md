@@ -2615,3 +2615,62 @@ Ces articulations constituent une réconciliation documentaire, non de nouveaux 
 ### ARCH-07 — Extension explicite de la restriction à la capture (25 novembre 2026)
 
 **VALIDÉ EN CONCEPTION.** Accord direct : « La capture et le recrutement des mini-boss, Némésis et boss sont réservés au NG+. » Cette décision complète ARCH-07 : mini-boss, Némésis quel que soit leur rang, boss émergents et boss principaux ne sont ni capturables ni recrutables avant NG+. En NG+, les conditions individuelles d'éligibilité restent applicables. Les ennemis ordinaires et élites sans statut Némésis conservent les conditions existantes. Réconciliation : V7.46/V7.48/V7.64, restriction d'éligibilité avant calcul de capture ; V7.58, étapes de transport et extraction inchangées ; V7.59/V7.60/V7.69, restriction NG+ et garantie de recrutement des captifs éligibles extraits ; ARCH-06, le statut et les promotions déterminent l'application de la restriction, sans modification des règles d'acquisition. V8.3, persistance et non-duplication inchangées. Les cas particuliers (Ange, voies narratives, devenir des bonus et équipements après recrutement) restent à examiner sans présumer de nouvelles décisions. Aucun changement moteur ni test runtime.
+
+
+## ARCH-08 — Adaptation des ennemis recrutés (25 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et vingt règles complémentaires.** Accord direct : « Pour LITD 1, je valide explicitement l'option C de l'arbitrage ARCH-08 concernant l'adaptation des ennemis recrutés, avec les vingt règles complémentaires proposées. Enregistre le texte intégral et réconcilie les systèmes concernés. »
+
+Le principe consiste à préserver l'identité et l'histoire de la créature recrutée, tout en adaptant ses caractéristiques à son nouveau rôle de héros jouable.
+
+### Identité et continuité
+
+1. La créature recrutée conserve son identité unique, son histoire et ses souvenirs.
+2. Elle conserve la mémoire de ses affrontements précédents, notamment des héros qu'elle a tués.
+3. Son recrutement ne crée pas une nouvelle entité indépendante de la créature d'origine.
+4. Son anatomie, sa morphologie et ses particularités physiques sont conservées.
+5. Son apparence conserve les évolutions acquises avant son recrutement, notamment celles résultant de ses promotions.
+
+### Statistiques et progression
+
+6. Les statistiques de combat ennemies sont adaptées aux règles applicables aux héros jouables.
+7. Les bonus acquis en tant que Némésis ne sont pas systématiquement supprimés, mais adaptés aux contraintes d'équilibrage.
+8. Les promotions obtenues avant le recrutement doivent conserver un intérêt tangible après celui-ci.
+9. Les bonus provenant des équipements restent distincts des caractéristiques intrinsèques de la recrue.
+10. Après son recrutement, la créature évolue selon le système de progression des héros, et non selon celui des ennemis Némésis.
+
+### Capacités et techniques
+
+11. Les capacités caractéristiques de la créature sont conservées lorsqu'elles sont compatibles avec le système de combat des héros.
+12. Les capacités incompatibles peuvent être adaptées sans dénaturer leur identité ni leur fonction principale.
+13. Les techniques des mini-boss et boss recrutés respectent les contraintes de points d'action, de rangs, de ciblage et de réactions applicables aux héros.
+14. Les particularités anatomiques, résistances et vulnérabilités naturelles restent prises en compte.
+
+### Équipements et état physique
+
+15. Le recrutement ne provoque aucune guérison intégrale automatique.
+16. Les blessures, amputations et autres conséquences physiques persistent jusqu'à leur résolution par les mécanismes appropriés.
+17. Les équipements détenus par la créature restent soumis aux règles de possession et de compatibilité anatomique. Aucun objet ne peut être dupliqué lors du recrutement.
+
+### Relations et persistance
+
+18. La confiance, la loyauté et les caractéristiques relationnelles acquises pendant la captivité sont conservées après le recrutement.
+19. La créature recrutée est soumise aux règles de mort définitive des héros.
+20. La transition entre ennemi, captif et héros recruté respecte les règles transactionnelles V8.3, sans duplication, réinitialisation arbitraire ni réapparition simultanée de la créature comme ennemi.
+
+### Réconciliation documentaire et préséance
+
+- ARCH-06/V7.44 : distinguer historique des promotions et bonus ennemis adaptés ; après recrutement, progression des héros exclusivement. Ne pas appliquer une nouvelle acquisition de bonus Némésis au héros recruté.
+- ARCH-07 : restrictions de capture et recrutement NG+ inchangées pour mini-boss, Némésis et boss.
+- V7.34/V7.39 : conserver identité et souvenirs ; la transition de rôle exclut la présence simultanée hostile et alliée.
+- V7.35/V7.37 : possession, compatibilité anatomique et unicité des équipements préservées ; devenir précis des équipements incompatibles et trophées reste ouvert.
+- V7.58/V7.60 : capture, transport, extraction et garantie de recrutement éligible inchangés.
+- V7.67 : anatomie et morphologie conservées ; techniques adaptées aux contraintes des héros, sans trancher les paramètres encore ouverts.
+- V7.69 : caractéristiques relationnelles conservées, sans fixer les réactions psychologiques détaillées.
+- V8.1/V8.2 : progression et mort définitive des héros applicables après recrutement ; ne pas déduire un niveau initial ni une règle de succession particulière non validée.
+- V8.3 : transition cohérente et unique, sans duplication des entités, objets, bonus ou crédits.
+- Les hypothèses historiques de copie brute des statistiques ou de réinitialisation intégrale ne sont pas retenues. Les règles V7.84 et suivantes dont la validation est contestée ne sont pas réhabilitées par cette décision.
+
+### Paramètres et arbitrages ouverts
+
+Niveau initial de la créature recrutée ; coefficients de conversion des statistiques et des bonus Némésis ; nombre de techniques conservées ou adaptées ; possibilité de conserver le titre Némésis comme distinction historique ; conséquences psychologiques du recrutement d'un ancien adversaire meurtrier ; mécanismes empêchant l'exploitation volontaire des morts de héros pour renforcer une future recrue. Cas de l'Ange et devenir précis des équipements capturés restent ouverts. Aucun barème numérique validé. Réconciliation documentaire uniquement ; aucun changement moteur, test runtime ou fusion.
