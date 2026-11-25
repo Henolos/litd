@@ -23,7 +23,7 @@
 - **17 novembre, 17:29 UTC :** option A « Rivalité par exploit » et exclusivité de fuite des Némésis.
 - **17 novembre, 14:48 UTC :** la règle d’exclusivité de fuite est remplacée : les ennemis normaux, élites et mini-boss peuvent fuir; les boss établis ne fuient pas; un mini-boss évoluant en boss peut exceptionnellement fuir pendant sa transformation.
 - **Équilibrage restant ouvert :** valeurs des bonus, seuils/rythme de promotion, définition des exploits majeurs, fréquence et conditions exactes d’interception/interruption. Ne pas présenter les paramètres non décidés comme des règles codées ou testées.
-- **Butin / équipement :** la question de l’équipement récupéré doit être rapprochée des décisions de butin antérieures et de leur périmètre; ne pas la classer non validée ou l’attribuer aux Némésis sans vérifier ces sources.
+- **Équipement récupéré (16 novembre) :** l’ennemi peut utiliser armes/armures abandonnées compatibles; l’équipement peut influer sur rôle, statistiques, capacités et comportement; un ennemi tuant un héros récupère un objet choisi aléatoirement; les bonus passifs identiques ne s’additionnent pas (garder la valeur la plus élevée); l’équipement est visible si compatible et conservé jusqu’à la mort de l’ennemi. Élites, mini-boss et Némésis partagent la même préférence pour les objets de rang élevé. Ce système est distinct du statut Némésis et reste à tester/implémenter.
 
 
 ## Carte d’exploration et PR #641
