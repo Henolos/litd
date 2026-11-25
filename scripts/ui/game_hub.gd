@@ -74,6 +74,12 @@ func _build_interface() -> void:
 	guild_button.pressed.connect(func(): get_tree().change_scene_to_file(GUILD_NPCS_SCENE))
 	content.add_child(guild_button)
 
+	var qa_button := Button.new()
+	qa_button.text = "Laboratoire visuel · héros et Guilde"
+	qa_button.custom_minimum_size.y = 54
+	qa_button.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/tests/playtest_gallery.tscn"))
+	content.add_child(qa_button)
+
 	var explanation := Label.new()
 	explanation.text = "La campagne reste à construire. Un parcours de test à nœuds est disponible en prototype."
 	explanation.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER

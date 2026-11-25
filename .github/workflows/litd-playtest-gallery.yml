@@ -1,0 +1,32 @@
+name: LITD visual playtest scene smoke
+on:
+  pull_request:
+    paths:
+      - 'tests/godot/playtest_gallery.gd'
+      - 'data/hero_portrait_catalog.json'
+      - 'data/guild_npcs.json'
+      - 'assets/characters/heroes/**'
+      - 'assets/characters/guild_npcs/**'
+      - 'scripts/ui/game_hub.gd'
+      - 'scenes/tests/playtest_gallery.tscn'
+      - '.github/workflows/litd-playtest-gallery.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    container:
+      image: barichello/godot-ci:4.7.2
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Import and parse visual QA scene
+        shell: bash
+        run: |
+          set -euo pipefail
+          sandbox=$(mktemp -d)
+          trap 'rm -rf "$sandbox"' EXIT
+          export XDG_DATA_HOME="$sandbox"
+          bash tools/ci/run_godot_checked.sh --log "$sandbox/import.log" -- godot --headless --path . --import --quit
+          bash tools/ci/run_godot_checked.sh --log "$sandbox/gallery.log" -- godot --headless --path . --scene res://scenes/tests/playtest_gallery.tscn --quit-after 15
