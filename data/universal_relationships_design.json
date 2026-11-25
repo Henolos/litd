@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "status": "user_validated_single_affinity_bar_design_not_runtime",
+  "status": "proposal_pending_explicit_validation_not_runtime",
   "system_id": "universal_affinity",
   "scope": [
     "guild_npcs",
@@ -9,13 +9,13 @@
     "narratively_relevant_characters"
   ],
   "affinity": {
-    "single_bar": true,
-    "includes_trust": true,
+    "single_bar_proposal": true,
+    "includes_trust_proposal": true,
     "range_proposal": {
       "min": 0,
       "max": 100
     },
-    "per_character": true
+    "per_character_proposal": true
   },
   "rank_count_provisional": 5,
   "progression_sources": [
@@ -35,8 +35,28 @@
   "persistence_target": "existing SaveManager snapshot",
   "implementation_verified": false,
   "open_decisions": [
+    "Aucune validation utilisateur directe retrouvée pour ce modèle universel.",
+    "Confirmer ou rejeter chaque option avant de la traiter comme décision de conception.",
     "rank_thresholds",
     "score_visibility",
-    "reward_balance"
-  ]
+    "reward_balance",
+    "persistence_contract"
+  ],
+  "scope_status": "proposal",
+  "rank_count_proposal": 5,
+  "progression_sources_proposal": [
+    "meaningful_choices",
+    "quests",
+    "scripted_interactions"
+  ],
+  "negative_consequences_proposal": true,
+  "passive_decay_proposal": false,
+  "daily_social_maintenance_proposal": false,
+  "npc_to_npc_management_proposal": false,
+  "story_flags_are_not_relationship_bars_proposal": true,
+  "reward_conditions_proposal": [
+    "affinity_rank",
+    "completed_quest_or_story_flag"
+  ],
+  "persistence_target_proposal": "existing SaveManager snapshot"
 }
