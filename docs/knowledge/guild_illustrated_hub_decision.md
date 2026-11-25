@@ -92,11 +92,16 @@ Ce document enregistre une décision de conception. Il ne prouve ni la présence
 ## Correction validée — placement de la création de personnage (2026-11-23)
 La **cinématique d'ouverture précède** la création du héros ou de l'héroïne. Le créateur de personnage intervient **pendant l'inscription officielle comme aventurier à la Guilde**, avant la formation de la compagnie et la quête « La cueillette ». L'inscription peut servir de cadre narratif à l'interface ; l'intervention précise de Kélia reste une proposition. Préserver les révélations tardives sur le rang S et l'omelette.
 
-## Décisions validées — bestiaire et reprise après Game Over (2026-11-23)
-- **Bestiaire :** chaque protagoniste possède son bestiaire persistant entre ses tentatives ; les compagnons ont une maîtrise individuelle. Les missions de la médecin contribuent à l'étude et à la progression des connaissances associées à ce protagoniste. Le partage automatique entre protagonistes est exclu. Le modèle de données et le runtime restent à concevoir.
-- **Game Over :** la défaite simultanée des quatre combattants termine la tentative. Le joueur reprend avec le même protagoniste à la Guilde après le prologue, joué une seule fois pour ce protagoniste. Le protagoniste conserve son niveau, ses compétences, ses points de passifs et son bestiaire. Les compagnons morts dans l'équipe vaincue restent morts ; les survivants conservent leur progression. Les recrues renouvelables de la Guilde permettent de reformer l'équipe.
-- Ces règles décrivent des décisions de conception validées, pas des fonctions déjà implémentées dans cette PR. La persistance du coffre, la perte des biens emportés, la réinitialisation des quêtes et du monde et la disponibilité des héros narratifs sont régies par l'avenant de décisions et restent à intégrer au document maître après arbitrage complet.
+## Règles actives après succession — source V8.3 (23 novembre 2026)
 
+Les règles plus récentes du document maître V8.3 remplacent les formulations de ce fichier qui prévoyaient la reprise avec le même protagoniste et le partage du bestiaire uniquement par protagoniste.
+
+- **Game Over :** après l'anéantissement des quatre combattants de l'expédition, la tentative prend fin et un nouveau protagoniste succède au précédent. Le prologue ne se rejoue pas automatiquement à chaque tentative; les épreuves de la Guilde précèdent la reprise des missions.
+- **Persistance collective :** le monde, la trame narrative, les quêtes principales et les quêtes secondaires générales conservent leur état selon V8.1. Les connaissances collectives du bestiaire sont transmises par les archives de la Guilde.
+- **Successeur :** il hérite du niveau numérique et des points de compétence correspondants, mais possède une nouvelle classe/identité et reconstruit sa maîtrise et ses choix personnels. Les emplacements passifs personnels sont à regagner conformément aux règles V8.2; ils ne sont pas automatiquement hérités.
+- **Réserves et survivants :** les réservistes survivants conservent leur progression et restent disponibles selon les règles V8.1.
+- **Bestiaire :** distinguer les connaissances collectives archivées et transmises du bestiaire de la maîtrise individuelle. La maîtrise personnelle du successeur est reconstruite; elle ne doit pas être confondue avec la conservation des connaissances collectives.
+- **Portée technique :** ces règles sont validées en conception. Le modèle de données, le runtime et les tests de sauvegarde restent à réaliser et valider; ce document ne les certifie pas.
 
 ## Prototype de boucle à nœuds — état au 2026-11-23
 La PR #637 fournit un parcours expérimental de démonstration depuis le hub de test vers une carte fixe, une rencontre 2D au tour par tour et un retour à la Guilde. Son test Godot headless passe localement ; la CI de la PR et une revue visuelle restent en attente. La route, les acteurs et les chiffres sont des fixtures. Le prototype ne raccorde ni le recrutement, ni la sauvegarde de campagne, ni la génération de cartes, ni le Game Over validé.
