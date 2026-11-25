@@ -2245,3 +2245,61 @@ Ne pas présenter l’une de ces interprétations comme validée avant clarifica
 ---
 
 **Séparation des statuts :** décisions de conception ci-dessus; intégration documentaire proposée; aucune implémentation runtime ni test de gameplay n’est revendiqué par cet addendum.
+
+---
+
+## ARCH-01 — Missions simultanées selon leur compatibilité (25 novembre 2026)
+
+**VALIDÉ EN CONCEPTION — option C.** Accord explicite : « Pour LITD 1, je valide explicitement l'option C de l'arbitrage ARCH-01 concernant les missions simultanées selon leur compatibilité, avec les douze règles complémentaires proposées. »
+
+Le joueur peut poursuivre plusieurs missions pendant une même expédition, à condition que leurs objectifs et leurs conditions soient compatibles.
+
+1. Une expédition peut permettre de poursuivre plusieurs missions.
+2. Les missions doivent respecter le périmètre régional de l'expédition.
+3. Une mission peut progresser sans être entièrement accomplie.
+4. Des missions peuvent être découvertes pendant l'exploration.
+5. Une même action peut faire progresser plusieurs missions compatibles.
+6. Les missions incompatibles doivent être clairement identifiées.
+7. L'accomplissement d'une mission ne termine pas automatiquement l'expédition.
+8. L'abandon d'une mission n'entraîne pas automatiquement l'abandon des autres.
+9. Chaque mission conserve son propre état de progression.
+10. Les conséquences réellement survenues persistent.
+11. Une récompense ne peut pas être attribuée plusieurs fois pour le même accomplissement.
+12. Les missions personnelles respectent les règles de mort définitive des héros concernés.
+
+Dépendances documentaires : V3.2, V4.9, V7.49, V7.50 et V8.3 ; vérification exhaustive des contradictions et paramètres de compatibilité restant à effectuer. Aucun plafond numérique, algorithme de compatibilité ou nouveau comportement de sauvegarde n'est décidé par cet arbitrage. Implémentation et tests non vérifiés. Aucun changement moteur ni fusion. Avancements chantier/global : à évaluer.
+
+## ARCH-02 — Renouvellement hybride contextuel (25 novembre 2026)
+
+**VALIDÉ EN CONCEPTION — option C.** Accord explicite : « Pour LITD 1, je valide explicitement l'option C de l'arbitrage ARCH-02 concernant le renouvellement hybride contextuel, avec les quinze règles complémentaires et les modifications des décisions antérieures proposées. »
+
+Le renouvellement ordinaire des ennemis et des coffres dépend principalement des nouvelles expéditions. Pendant une même expédition, de nouveaux dangers peuvent apparaître lorsque le contexte du monde le justifie. La simple acceptation d'une mission ne provoque plus de renouvellement automatique.
+
+1. Une nouvelle expédition permet le renouvellement des ennemis ordinaires admissibles.
+2. Les coffres renouvelables peuvent être réapprovisionnés entre expéditions.
+3. Accepter une nouvelle mission pendant une expédition ne renouvelle pas automatiquement les ennemis.
+4. Accomplir une mission ne provoque aucun renouvellement automatique.
+5. Abandonner une mission ne provoque aucun renouvellement automatique.
+6. Plusieurs missions simultanées partagent le même état effectif du monde.
+7. Les ennemis éliminés ne réapparaissent pas simplement parce qu'une autre mission est activée.
+8. De nouveaux ennemis peuvent apparaître pendant une expédition si un événement, une mission ou une évolution du monde le justifie.
+9. Les chemins sécurisés conservent leur sécurité tant qu'aucun changement contextuel ne la remet en cause.
+10. Les destructions de repaires et leurs conséquences persistent.
+11. Les ennemis uniques, Némésis, objets uniques et événements persistants restent soumis à leurs propres règles.
+12. Les ressources récoltables conservent leur système de régénération fondé sur le temps du jeu.
+13. La reprise d'une mission conserve sa progression et ses conséquences, sans imposer la restauration d'une ancienne carte incompatible avec l'état actuel du monde.
+14. Aucun changement de mission, aller-retour ou rechargement de sauvegarde ne doit permettre de provoquer artificiellement un renouvellement.
+15. Les renouvellements et leurs conséquences sont enregistrés dans la sauvegarde, sans duplication ni nouveau tirage lors de la reprise d'un résultat confirmé.
+
+### Modifications antérieures explicitement approuvées
+- V5.0, règle 2 : renouvellement ordinaire principalement lié à l'expédition plutôt qu'à la mission.
+- V5.1, règle 3 : adaptation du déclencheur de renouvellement.
+- V7.40, règle 1 : suppression du renouvellement automatique à chaque nouvelle mission.
+- V7.40, règle 6 : adaptation du renouvellement des coffres.
+- V7.50 : actualisation de la spécification consolidée.
+
+Toutes les autres règles compatibles sont conservées. Les références V7.40 et V7.50 désignent les sections historiques du commit f558dbf, restant à réconcilier. Aucun seuil ou algorithme supplémentaire validé. Aucun test runtime.
+
+## Traçabilité de la réconciliation du 25 novembre 2026
+
+ARCH-01 repris intégralement du commit f558dbf08872128f1c22fb8764a9d954ad877c37. ARCH-02 provient de l'accord explicite du 25 novembre. Ces deux décisions constituent des exceptions désormais explicitement validées au statut de proposition des précisions de #641 mentionné dans l'addendum du 24 novembre. Les « go » autorisent la poursuite, jamais la validation métier. Les propositions V7.82–V7.87 fondées uniquement sur ces messages restent en quarantaine ; prototypes combat V0.1–V0.4 expérimentaux, V0.5 suspendue. Rectificatifs historiques : 78a5d4f et 401fd6f. Réconcilier individuellement les autres décisions avec les accords explicites, préserver les archives, ne pas restaurer le master concurrent de #641. Aucun changement moteur. Avancements chantier/global : à évaluer.
