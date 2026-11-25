@@ -71,7 +71,33 @@
             "const": "PROPOSED"
           },
           "canonical_source": {
-            "type": "null"
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "document",
+                  "section",
+                  "locator"
+                ],
+                "properties": {
+                  "document": {
+                    "const": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md"
+                  },
+                  "section": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "locator": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            ]
           },
           "review_channel": {
             "enum": [
