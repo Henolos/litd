@@ -1,5 +1,9 @@
 #pragma once
 #include <filesystem>
+#include <cstdint>
+#include <cstdio>
+#include <cstddef>
+#include <cstring>
 #ifdef _WIN32
 #ifndef NOMINMAX
 #define NOMINMAX
@@ -10,6 +14,10 @@
 #include <sys/file.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#ifdef __linux__
+#include <sys/socket.h>
+#include <sys/un.h>
+#endif
 #endif
 
 // Laboratory core. Stable lock path required; never unlink a lock file.
@@ -18,6 +26,9 @@ class CampaignLock {
     HANDLE handle = INVALID_HANDLE_VALUE;
 #else
     int fd = -1;
+#ifdef __linux__
+    int namespace_fd = -1;
+#endif
 #endif
 public:
     CampaignLock() = default;
@@ -48,6 +59,30 @@ public:
         struct stat info{};
         if (fstat(h, &info) != 0 || !S_ISREG(info.st_mode) || info.st_nlink != 1) { close(h); return false; }
         if (flock(h, LOCK_EX | LOCK_NB) != 0) { close(h); return false; }
+#ifdef __linux__
+        // Abstract Unix sockets have kernel-owned names, independent of file
+        // deletion/rename. Scope: cooperating processes in one network namespace.
+        // Hash collisions deny acquisition rather than allow concurrent ownership.
+        std::error_code ec;
+        const auto absolute = std::filesystem::absolute(path, ec).lexically_normal();
+        if (ec) { close(h); return false; }
+        std::uint64_t hash = 14695981039346656037ULL;
+        for (unsigned char c : absolute.native()) { hash ^= c; hash *= 1099511628211ULL; }
+        sockaddr_un address{};
+        address.sun_family = AF_UNIX;
+        const int length = std::snprintf(address.sun_path + 1, sizeof(address.sun_path) - 1,
+            "litd-save-lock-v1-%016llx", static_cast<unsigned long long>(hash));
+        if (length < 0 || static_cast<std::size_t>(length) >= sizeof(address.sun_path) - 1) {
+            close(h); return false;
+        }
+        int guard = socket(AF_UNIX, SOCK_STREAM | SOCK_CLOEXEC, 0);
+        if (guard < 0) { close(h); return false; }
+        if (bind(guard, reinterpret_cast<const sockaddr*>(&address),
+                 static_cast<socklen_t>(offsetof(sockaddr_un, sun_path) + 1 + length)) != 0) {
+            close(guard); close(h); return false;
+        }
+        namespace_fd = guard;
+#endif
         fd = h;
 #endif
         return true;
@@ -57,6 +92,9 @@ public:
         if (handle != INVALID_HANDLE_VALUE) { CloseHandle(handle); handle = INVALID_HANDLE_VALUE; }
 #else
         if (fd != -1) { close(fd); fd = -1; }
+#ifdef __linux__
+        if (namespace_fd != -1) { close(namespace_fd); namespace_fd = -1; }
+#endif
 #endif
     }
 };
