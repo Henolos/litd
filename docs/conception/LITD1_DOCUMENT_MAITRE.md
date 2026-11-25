@@ -2513,3 +2513,42 @@ Réconciliation documentaire : l'exclusivité de V7.12 et V7.41 est confirmée ;
 ### ARCH-05 — Restriction des boss établis (25 novembre 2026)
 
 **VALIDÉ EN CONCEPTION : option B.** L'utilisateur répond « oui » à la recommandation explicitement sélectionnée : un Némésis perd sa capacité de fuite lorsqu'il devient définitivement un boss. Seuls les Némésis non devenus boss établis sont éligibles à la fuite volontaire, sous conditions. Les boss principaux et émergents établis ne fuient pas. L'exception historique de transformation ne peut concerner qu'un Némésis avant son établissement définitif comme boss ; ses modalités précises ne sont pas nouvellement validées. Cette décision lève l'incertitude sur les boss établis dans ARCH-05. Aucun changement moteur ni test runtime.
+
+
+### ARCH-05 — Modalités hybrides de fuite et réconciliation V7.41 (25 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C.** Accord direct : « Pour LITD 1, je valide explicitement l'option C concernant les modalités de fuite des Némésis dans ARCH-05. Réconcilie les règles V7.41 en conséquence. »
+
+La fuite ordinaire est annoncée et interruptible. Certaines capacités spécifiques permettent une fuite immédiate, à condition que cette possibilité soit cohérente avec la nature du Némésis et explicitement définie dans ses capacités. Seuls les Némésis non devenus boss établis sont éligibles. Aucune disparition arbitraire.
+
+#### V7.41 — Transcription historique conservée pour traçabilité
+
+Source : commit f558dbf08872128f1c22fb8764a9d954ad877c37. Le registre historique qualifie les dix règles de validées ; les messages originaux n'ont pas été indépendamment retrouvés. Les clauses 3 et 4 sont désormais réconciliées par l'accord direct ci-dessus ; les autres clauses sont conservées sans nouvelle prétention de validation indépendante.
+
+##### V7.41 — Fuite contextuelle, tactique et interruptible des Némésis (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, fuite contextuelle, tactique et interruptible des Némésis, avec les dix règles complémentaires explicitement approuvées.** La décision combine état physique, tempérament, circonstances du combat et possibilités réelles de retraite. Le joueur dispose d'une fenêtre de réaction tactique.
+
+1. Aucune fuite automatique après la mort d'un héros.
+2. Aucun seuil de santé universel.
+3. Intention de fuite identifiable avant exécution.
+4. Interruption possible par actions compatibles.
+5. Prise en compte des blessures anatomiques et capacités de déplacement.
+6. Aucune disparition artificielle pour protéger le Némésis d'une défaite.
+7. Limitation des tentatives répétitives.
+8. Conservation des blessures, équipements et souvenirs après fuite, sous réserve de leur évolution ultérieure.
+9. Recherche du fugitif via reconnaissance et renseignements déjà validés.
+10. Résultat enregistré dans la sauvegarde persistante, sans nouveau tirage au rechargement.
+
+Préserver V7.12 et la fuite volontaire réservée aux Némésis. Coûts en points d'action, délais, seuils et mécanismes précis de limitation à déterminer lors des essais. Validation documentaire uniquement, aucun développement ni test en jeu.
+
+#### Préséance normative ARCH-05 sur V7.41
+
+- Règle 3 : intention identifiable avant exécution pour la fuite ordinaire ; exception pour les capacités spécifiques de fuite immédiate explicitement définies.
+- Règle 4 : interruption possible par actions compatibles pour la fuite ordinaire ; la fuite immédiate ne garantit pas une fenêtre préalable de réaction. Les interactions précises avec les réactions de combat restent à définir.
+- Règles 1, 2, 5 à 10 : conservées sans changement de formulation.
+- V7.12 : préserver la crédibilité et la limitation des fuites répétitives.
+- V7.51, V7.58, V7.64 : maintenir la distinction entre fuite volontaire et rupture de contention ; aucune fuite volontaire pour les non-Némésis.
+- V8.3 : persistance des résultats confirmés sans nouveau tirage.
+- Les modalités de transformation en boss, coûts en PA, seuils, délais, capacités admissibles et limites de répétition restent ouverts. Aucun des dix-huit énoncés ARCH-05 précédemment proposés n'est globalement approuvé par cet accord. Aucun changement moteur ni test runtime.
+
