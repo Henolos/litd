@@ -2303,3 +2303,28 @@ Toutes les autres règles compatibles sont conservées. Les références V7.40 e
 ## Traçabilité de la réconciliation du 25 novembre 2026
 
 ARCH-01 repris intégralement du commit f558dbf08872128f1c22fb8764a9d954ad877c37. ARCH-02 provient de l'accord explicite du 25 novembre. Ces deux décisions constituent des exceptions désormais explicitement validées au statut de proposition des précisions de #641 mentionné dans l'addendum du 24 novembre. Les « go » autorisent la poursuite, jamais la validation métier. Les propositions V7.82–V7.87 fondées uniquement sur ces messages restent en quarantaine ; prototypes combat V0.1–V0.4 expérimentaux, V0.5 suspendue. Rectificatifs historiques : 78a5d4f et 401fd6f. Réconcilier individuellement les autres décisions avec les accords explicites, préserver les archives, ne pas restaurer le master concurrent de #641. Aucun changement moteur. Avancements chantier/global : à évaluer.
+
+
+---
+
+## Réconciliation des cartes — 25 novembre 2026
+
+Les accords explicites du 22 novembre concernant le contrôle de validité (option C, dix règles) et la stabilité et évolution contextuelle (option C, dix règles) sont attestés dans les échanges utilisateur. Le texte ci-dessous est repris du registre historique du 23 novembre (commit f558dbf08872128f1c22fb8764a9d954ad877c37) ; l'identité mot à mot avec les propositions conversationnelles originales n'est pas vérifiée. Ces sections constituent des exceptions documentées au statut de proposition des précisions #641. Les références historiques non encore réconciliées ne sont pas validées par transitivité.
+
+## V7.38 — Double contrôle de validité des cartes et mécanisme de secours (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et dix règles complémentaires, explicitement choisies par l'utilisateur.** Génération sous contraintes puis validation indépendante avant utilisation des cartes régionales et internes des donjons. Contrôles obligatoires : 1. Accessibilité des objectifs obligatoires lorsque leurs prérequis sont réunis ; 2. absence de zones obligatoires accidentellement isolées ; 3. dépendances clés, portes, énigmes et quêtes ; 4. retour et sortie conformément aux restrictions narratives autorisées ; 5. cohérence écologique, territoriale et artistique ; 6. absence de duplication des personnages, objets et événements uniques ; 7. respect intégral des conséquences persistantes ; 8. limites de taille, densité et difficulté ; 9. sauvegarde de la configuration validée et vérification de restitution après interruption ; 10. tentatives limitées, secours compatible lui-même validé ou arrêt sécurisé sans perte de progression. Aucun contournement des contraintes narratives. Prévoir tests automatisés de nombreuses graines, dépendances circulaires, itinéraires conditionnels, régénération après décès/retraite/Game Over, interruptions et reprise, traçabilité des graines et anomalies, puis tests humains d'équilibrage. Ces tests sont planifiés, non exécutés.
+
+**Traçabilité :** validation explicite de l'option C concernant le contrôle de validité des cartes avec les dix règles complémentaires. Huit axes de conception détaillée arbitrés sur huit ; audit transversal et paramètres techniques encore ouverts. Mise à jour documentaire uniquement ; aucun développement ni test en jeu. **Statut : 🟡 À CONSOLIDER avant clôture. Avancement des arbitrages : 8/8 ; avancement du chantier complet et du projet global : À évaluer.**
+
+---
+
+## V7.43 — Structure stable et transformations contextuelles des cartes (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et dix règles complémentaires explicitement approuvées.** 1. Conservation de la configuration initiale pendant l'expédition. 2. Toute transformation a une cause identifiable dans le monde. 3. Ouverture, fermeture, restauration ou destruction possibles de passages. 4. Transformation locale ou apparition d'un lieu si le contexte le justifie. 5. Distinction entre transformations temporaires et permanentes. 6. Conservation des découvertes antérieures même obsolètes. 7. Révélation des changements selon les règles de reconnaissance et renseignements. 8. Validation automatique après chaque transformation. 9. Sauvegarde des transformations et conséquences. 10. Aucune recomposition aléatoire globale pendant une même expédition. Les architectures impossibles restent soumises aux contrôles de validité et de sauvegarde. Concilier V7.17, V7.19, V7.36 et V7.38 ; exemples environnementaux indicatifs, non validés individuellement.
+
+**Traçabilité :** validation explicite de l'option C concernant la stabilité et l'évolution contextuelle des cartes avec les dix règles complémentaires. Consolidation : 2/4 arbitrages validés. Mise à jour documentaire uniquement, aucun test runtime. Statut : 🟡 À CONSOLIDER. Avancement global : À évaluer.
+
+### Articulation avec ARCH-01 et ARCH-02
+
+La carte et l'état effectif du monde sont communs aux missions compatibles. Accepter, accomplir ou abandonner une mission ne déclenche pas de régénération automatique. Les transformations contextuelles restent soumises aux contrôles de validité et de persistance. Le renouvellement des rencontres suit ARCH-02 ; il ne constitue pas une autorisation de recomposition globale intra-expédition. Cette articulation est une déduction des décisions existantes, sans nouvel arbitrage. V7.19 et V7.24 retrouvées dans l'historique, à rapprocher des accords originaux avant promotion normative. Algorithmes, limites numériques, critères artistiques et tests runtime restent ouverts. Aucun moteur ni archive modifié.
