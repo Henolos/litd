@@ -2389,3 +2389,36 @@ Accord explicite retrouvé dans les échanges du 22 novembre : option C concerna
 ### Articulation et limites
 
 V7.45 précise V4.6 (dénominateur procédural, scénarisés séparés), V4.3–V4.4 (définition de déjoué, bonus uniquement si combat). La règle historique V4.3–V4.4 de consommation du PA normal du premier tour lors d'une attaque préventive reste à rapprocher des décisions tactiques originales ; aucune action gratuite ajoutée. V3.6 exclut la poursuite continue. ARCH-01/02/03 impliquent que les changements de mission ne relancent pas le tirage et que les guet-apens persistants respectent l'état du monde et les transformations contextuelles validées. V8.3 impose la conservation des résultats confirmés sans nouveau tirage. Cette articulation est déduite des règles existantes, pas un nouvel arbitrage. Les pièges mécaniques autonomes, le montant du bonus, les effets précis de surprise, les familles de guet-apens, les modalités de retraite et le comportement des coffres-créatures restent à réconcilier ou arbitrer ; ne pas promouvoir les propositions V3.7/V3.8 par transitivité. Aucun code ni test runtime modifié.
+
+
+---
+
+## Réconciliation des secrets et renseignements — 25 novembre 2026
+
+Reprise des sections V7.27, V7.29 et V7.30 du commit historique f558dbf08872128f1c22fb8764a9d954ad877c37, contenant chacune une citation d'accord explicite. Les citations sont attestées par ce registre historique ; les messages originaux et le verbatim intégral des propositions n'ont pas été vérifiés indépendamment.
+
+## V7.27 — Reconnaissance et renseignements hybrides (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, explicitement choisie par l'utilisateur.** Combiner découverte physique, reconnaissance des héros, renseignements des PNJ et archives de la Guilde. Un renseignement peut signaler un lieu sans révéler son itinéraire. Préserver le brouillard intégral, la génération procédurale entre expéditions, la stabilité pendant une expédition et les conséquences persistantes. Distinguer connaissances durables et renseignements dépendant de la configuration actuelle ; les anciens itinéraires ne sont pas automatiquement valables. La connaissance et la sécurisation d'un lieu sont distinctes. Les fonctions détaillées des PNJ, niveaux de connaissance, fiabilité, portée, coûts et conditions de reconnaissance restent des propositions à arbitrer, sans validation implicite.
+
+**Traçabilité :** « Je valide l'option C : renseignements hybrides. Enregistre la décision dans le document maître et poursuis les arbitrages. » Mise à jour documentaire uniquement, aucun test en jeu. Statut : 🟡 À CONSOLIDER pour l'implémentation. Avancement du chantier détaillé et du projet global : À évaluer.
+
+---
+
+## V7.29 — Découverte hybride des passages et lieux secrets (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et règles complémentaires, explicitement choisies par l'utilisateur.** Combiner aptitudes des héros, observation du joueur, renseignements et interactions contextuelles. Certains secrets sont découvrables sans spécialiste ; les spécialistes facilitent la recherche sans garantir toutes les découvertes. Les secrets peuvent mener à des raccourcis, trésors, créatures, quêtes ou révélations narratives. Les simples allers-retours ne déclenchent pas de nouveaux tirages de détection. Aucun secret facultatif ne doit bloquer involontairement la quête principale. Distinguer découverte et ouverture éventuelle ; les conditions précises, clés, aptitudes, énigmes, seuils et modalités de détection restent à spécifier. Préserver V7.27 et les contraintes de génération et de persistance antérieures.
+
+**Traçabilité :** « Je valide l'option C : découverte hybride des secrets, avec les règles complémentaires proposées. Enregistre et poursuis. » Mise à jour documentaire uniquement ; aucun développement ni test en jeu. Statut : 🟡 À CONSOLIDER pour l'implémentation.
+
+---
+
+## V7.30 — Fiabilité contextuelle des renseignements (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, quatre catégories et règles complémentaires explicitement approuvées.** La fiabilité dépend de la provenance, de l'ancienneté, de la nature du renseignement et des motivations de son auteur. Catégories : connaissances permanentes (histoire, mythologie, propriétés des créatures, identité des lieux) conservées ; renseignements géographiques à actualiser selon la génération ; renseignements temporaires (ennemis, embuscades, ressources) susceptibles d'obsolescence ; rumeurs et témoignages partiels, erronés ou mensongers à confirmer. Aucun faux renseignement arbitraire ; mensonges justifiés narrativement ou contextuellement ; affinités susceptibles d'améliorer la qualité ; recoupement des sources possible ; archives conservant les renseignements anciens même obsolètes ; interface distinguant confirmation et rumeur ; aucune erreur ne doit bloquer définitivement la progression principale. Préserver V7.27 et V7.29. Les durées, seuils, règles de présentation et modalités de recoupement restent à spécifier.
+
+**Traçabilité :** « Je valide l'option C : fiabilité contextuelle des renseignements, avec les quatre catégories et les règles complémentaires proposées. Enregistre et poursuis. » Mise à jour documentaire uniquement, sans développement ni test en jeu.
+
+### Articulation avec les décisions réconciliées
+
+ARCH-03 intègre les passages secrets dans la génération ; V7.38 contrôle l'accessibilité des objectifs obligatoires et les dépendances ; V7.43 encadre les transformations et la conservation des découvertes. V7.29 distingue découverte et ouverture et exclut les nouveaux tirages par simples allers-retours. ARCH-01/02 excluent une recomposition ou un renouvellement automatique par changement de mission. V7.27/30 distinguent connaissance durable et itinéraire dépendant de la configuration : conserver les renseignements anciens sans garantir leur validité actuelle. V8.3 impose la persistance des résultats confirmés. Ces articulations sont des déductions documentaires, non des arbitrages supplémentaires. Aucun secret facultatif ne doit bloquer involontairement la quête principale ; ne pas déduire une interdiction générale des prérequis narratifs obligatoires. Les conditions de clés consommables, coûts, seuils, énigmes et conséquences narratives spécifiques restent à préciser ; la demande de tests ne valide pas leurs règles métier. V7.28 retrouvée mais accord original non cité dans cette section, à vérifier séparément. Aucun code ni test runtime modifié.
