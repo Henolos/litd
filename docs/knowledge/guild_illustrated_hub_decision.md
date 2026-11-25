@@ -9,7 +9,7 @@ Statut : **VALIDÉ pour le mode de navigation du hub, la carte à nœuds d'expé
 - La vue générale du bâtiment sert de carte illustrée interactive. La sélection d'une zone ouvre une scène illustrée, le portrait du PNJ, les dialogues et les services associés.
 - Le 23 novembre 2026, l'utilisateur a tranché la contradiction : **la carte à nœuds remplace entièrement l'exploration 3D**. Aucun espace 3D explorable n'est conservé hors de la Guilde.
 - Les expéditions utilisent une grande carte à embranchements et nœuds ; le joueur peut revenir sur les nœuds déjà visités. Les combats restent tactiques, en 2D et au tour par tour. Les règles de génération des nœuds restent à spécifier.
-- Les planches et portraits des six personnages restent leurs références officielles. Ne pas régénérer les personnages existants.
+- Préserver les planches originales effectivement validées et vérifier chaque ressource au manifeste. Une planche validée n'implique pas qu'un portrait individuel existe ou soit approuvé. Les portraits de Han Lu et de Dr Mei Ling n'étaient pas présents dans le dépôt lors du contrôle du 24 novembre; Mei Ling V5 a reçu une validation artistique explicite le 24 novembre, mais son transfert et son intégration n'étaient pas achevés. Ne pas générer, remplacer ou marquer comme approuvé un portrait sans preuve utilisateur spécifique.
 
 ## Zones et responsables
 | Zone | Personnage | Service envisagé |
