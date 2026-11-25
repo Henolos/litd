@@ -2498,3 +2498,14 @@ Cette formulation remplace le contenu normatif introuvable de l'accord précéde
 - V8.3 : enregistrer les transitions et conséquences interdépendantes de manière atomique ; reprise des résultats confirmés exactement une fois, sans nouveau tirage.
 
 Ces articulations sont des déductions des règles validées, pas des arbitrages supplémentaires. Probabilités de survie, délais de captivité, fréquence des missions de sauvetage, conditions précises de transport, comportements par espèce et conséquences psychologiques restent ouverts. Aucun code ni test runtime modifié. La réconciliation exhaustive des contrats et des implémentations reste à effectuer.
+
+
+---
+
+## ARCH-05 — Exclusivité de la fuite volontaire des Némésis (25 novembre 2026)
+
+**VALIDÉ EN CONCEPTION.** Accords directs successifs : « Pas de fuite des ennemis » puis, en réponse à la question sur l'exception Némésis, « seul les némésis peuvent fuir ».
+
+Seuls les ennemis possédant le statut Némésis peuvent volontairement fuir un combat. La fuite n'est pas systématique. Les ennemis ordinaires, élites et mini-boss sans ce statut ne peuvent pas fuir. La correction du 18 novembre autorisant la fuite des catégories non Némésis est remplacée sur ce point. Le cas des Némésis devenus boss établis et l'exception de transformation restent à clarifier explicitement : l'exclusivité est une condition nécessaire, pas une autorisation universelle de fuite pour tous les rangs Némésis.
+
+Réconciliation documentaire : l'exclusivité de V7.12 et V7.41 est confirmée ; les clauses compatibles de V7.51, V7.58 et V7.64 distinguant évasion de contention et fuite volontaire sont préservées. Les dix règles historiques de V7.41 et les exceptions de fuite immédiate doivent être rapprochées des validations originales avant consolidation détaillée. Aucun des dix-huit nouveaux énoncés ARCH-05 proposés ni des sous-arbitrages ARCH-05.1 à 05.6 n'est réputé approuvé par cette décision. La retraite des héros, les déplacements tactiques et l'évasion de contention ne sont pas redéfinis. Aucun changement moteur ni test runtime.
