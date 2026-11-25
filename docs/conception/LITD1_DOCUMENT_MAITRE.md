@@ -2674,3 +2674,60 @@ Le principe consiste à préserver l'identité et l'histoire de la créature rec
 ### Paramètres et arbitrages ouverts
 
 Niveau initial de la créature recrutée ; coefficients de conversion des statistiques et des bonus Némésis ; nombre de techniques conservées ou adaptées ; possibilité de conserver le titre Némésis comme distinction historique ; conséquences psychologiques du recrutement d'un ancien adversaire meurtrier ; mécanismes empêchant l'exploitation volontaire des morts de héros pour renforcer une future recrue. Cas de l'Ange et devenir précis des équipements capturés restent ouverts. Aucun barème numérique validé. Réconciliation documentaire uniquement ; aucun changement moteur, test runtime ou fusion.
+
+
+## ARCH-09 — Devenir des équipements des ennemis capturés (25 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et vingt règles complémentaires.** Accord direct : « Pour LITD 1, je valide explicitement l'option C de l'arbitrage ARCH-09 concernant le devenir des équipements des ennemis capturés, avec les vingt règles complémentaires proposées. Enregistre le texte intégral et réconcilie les systèmes concernés. »
+
+Le principe consiste à permettre au joueur de récupérer les équipements détenus par les ennemis capturés, indépendamment de leur recrutement, tout en respectant les contraintes physiques, anatomiques et logistiques.
+
+### Capture et désarmement
+
+1. La capture d'un ennemi n'entraîne pas automatiquement le transfert de ses équipements dans l'inventaire du joueur.
+2. Le joueur peut désarmer un ennemi capturé lorsque les conditions de sécurité et d'accessibilité le permettent.
+3. Les équipements amovibles peuvent être récupérés indépendamment du recrutement de leur détenteur.
+4. Les éléments constitutifs de l'anatomie d'une créature ne sont pas considérés comme des équipements amovibles.
+5. Les équipements qui participent au maintien en vie, au fonctionnement ou à la contention d'une créature ne peuvent être retirés sans prendre en compte les conséquences de cette action.
+
+### Possession et récupération
+
+6. Chaque équipement persistant conserve son identifiant unique, son état et son historique de possession.
+7. Les équipements pillés sur des héros morts peuvent être récupérés auprès de leur nouveau détenteur.
+8. Les objets légendaires uniques restent indestructibles et peuvent être récupérés sans nécessiter obligatoirement la mort de leur détenteur.
+9. Les trophées conservés par les Némésis peuvent être récupérés lorsqu'ils constituent des objets physiquement accessibles.
+10. Les équipements effectivement récupérés sont soumis aux contraintes normales d'inventaire et de transport.
+
+### Transport et détention
+
+11. Les équipements non récupérés restent associés à la créature, sauf événement justifiant un changement de possession.
+12. L'évasion, la libération ou la perte d'un captif ne provoque pas la disparition des équipements qui lui ont déjà été retirés.
+13. Les équipements encore détenus par un captif perdu ou évadé suivent les règles contextuelles de possession et de persistance.
+14. L'arrivée au refuge permet de gérer les équipements restants selon les conditions de sécurité et d'accessibilité, sans transfert automatique au coffre de la Guilde.
+
+### Recrutement et utilisation
+
+15. Une créature recrutée conserve les équipements compatibles qu'elle détient encore au moment de son intégration.
+16. Après recrutement, le joueur peut modifier les équipements de la créature selon les règles applicables aux héros et ses particularités anatomiques.
+17. Les équipements incompatibles mais physiquement récupérables peuvent être transférés dans l'inventaire sans être détruits ni dupliqués.
+18. Les bonus provenant des équipements restent distincts des statistiques intrinsèques, des promotions et des bonus Némésis adaptés conformément à ARCH-08.
+
+### Persistance et intégrité
+
+19. Les changements de possession, l'état des équipements et les conséquences de leur retrait persistent entre les expéditions et après un Game Over.
+20. Toute récupération, confiscation, restitution ou modification de possession respecte les règles transactionnelles V8.3, sans duplication, perte artificielle ni nouveau tirage au rechargement.
+
+### Réconciliation documentaire et préséance
+
+- ARCH-04/V7.35 : les équipements des héros abandonnés ou morts suivent leur possession réelle ; récupération auprès du détenteur sans transfert automatique au refuge. Le devenir contextuel des dépouilles reste distinct.
+- ARCH-06/V7.37 : distinguer bonus intrinsèques, promotions et propriétés réellement utilisables des équipements ; trophées accessibles récupérables, identité et historique des objets préservés.
+- ARCH-07 : aucune dérogation aux restrictions de capture et recrutement en NG+.
+- ARCH-08, notamment règles 9 et 17 : préciser le devenir des objets incompatibles et trophées ; conserver les équipements compatibles non retirés ; aucune duplication.
+- V7.58 : distinguer capture, sécurisation, récupération, transport et extraction ; les objets déjà retirés ne suivent plus automatiquement le captif ; leur devenir reste soumis aux règles ordinaires de possession, y compris après Game Over.
+- V7.60/V7.69 : la confiscation ne doit pas contourner la garantie de recrutement du captif éligible extrait ; conséquences relationnelles à préciser, sans réintroduire un refus définitif contraire à V7.60.
+- V8.3 : enregistrer de manière cohérente les transferts, l'état des objets et les conséquences du retrait, sans duplication ni nouveau tirage.
+- Les exemples illustratifs ne valident aucun nouvel équipement ni aucune créature. L'indestructibilité des légendaires ne signifie pas immunité aux dommages ni récupération automatique.
+
+### Paramètres ouverts
+
+Coûts en points d'action du désarmement, modalités de fouille, risques du retrait, conséquences sur confiance et loyauté, modalités de retrait chirurgical des équipements intégrés. Aucun barème numérique validé. Réconciliation documentaire uniquement ; aucun changement moteur, test runtime ou fusion.
