@@ -189,7 +189,11 @@
         "V25"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "4, 29"
+      }
     },
     {
       "id": "COM-15",
@@ -202,7 +206,11 @@
         "V6"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "19, 20 (capture et conservation des acquis uniquement)"
+      }
     },
     {
       "id": "COM-16",
@@ -215,7 +223,11 @@
         "V21"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "14–29"
+      }
     },
     {
       "id": "COM-17",
@@ -279,7 +291,11 @@
         "V28"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "1 (topologie à nœuds uniquement)"
+      }
     },
     {
       "id": "EXP-02",
@@ -331,7 +347,11 @@
         "V28"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "1 (chemins cachés uniquement)"
+      }
     },
     {
       "id": "EXP-06",
@@ -422,7 +442,11 @@
         "V21"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "4, 8"
+      }
     },
     {
       "id": "EXP-13",
@@ -448,7 +472,11 @@
         "V22"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "4, 9, 10"
+      }
     },
     {
       "id": "EXP-15",
@@ -499,7 +527,11 @@
         "V9"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "30–37"
+      }
     },
     {
       "id": "SAV-02",
@@ -732,7 +764,11 @@
         "V25"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "37, 39 (détection divergence et refus de restauration)"
+      }
     },
     {
       "id": "SAV-16",
@@ -828,7 +864,11 @@
         "V21"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "7 (niveau hérité uniquement)"
+      }
     },
     {
       "id": "PRO-02",
@@ -841,7 +881,11 @@
         "V21"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "11, 12"
+      }
     },
     {
       "id": "PRO-03",
@@ -854,7 +898,11 @@
         "V21"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "11, 14"
+      }
     },
     {
       "id": "PRO-04",
@@ -867,7 +915,11 @@
         "V21"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "15–17"
+      }
     },
     {
       "id": "PRO-05",
@@ -880,7 +932,11 @@
         "V21"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "15–17"
+      }
     },
     {
       "id": "PRO-06",
@@ -893,7 +949,11 @@
         "V22"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "17, 21, 25"
+      }
     },
     {
       "id": "PRO-07",
@@ -906,7 +966,11 @@
         "V18"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "22, 27"
+      }
     },
     {
       "id": "PRO-08",
@@ -919,7 +983,11 @@
         "V18"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "27, 28"
+      }
     },
     {
       "id": "PRO-09",
@@ -932,7 +1000,11 @@
         "V24"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "24–26"
+      }
     },
     {
       "id": "PRO-10",
@@ -945,7 +1017,11 @@
         "V21"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "7, 11–13"
+      }
     },
     {
       "id": "PRO-11",
@@ -958,7 +1034,11 @@
         "V21"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "4, 5, 8"
+      }
     },
     {
       "id": "PRO-12",
@@ -971,7 +1051,11 @@
         "V21"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "7, 11, 13, 29"
+      }
     },
     {
       "id": "PRO-13",
@@ -1057,7 +1141,11 @@
         "V21"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "15, 18"
+      }
     },
     {
       "id": "REF-05",
@@ -1070,7 +1158,11 @@
         "V24"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "18"
+      }
     },
     {
       "id": "REF-06",
@@ -1135,7 +1227,11 @@
         "V21"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "V8.1 Règles actives après Game Over, point 6"
+      }
     },
     {
       "id": "ANA-01",
@@ -1329,7 +1425,11 @@
         "V21"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "8 (persistance des relations uniquement)"
+      }
     },
     {
       "id": "PSY-06",
@@ -1548,7 +1648,11 @@
         "V25"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "8, 29 (relations et mémoire uniquement)"
+      }
     },
     {
       "id": "INT-06",
@@ -1561,7 +1665,11 @@
         "V25"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "4, 34"
+      }
     },
     {
       "id": "INT-07",
@@ -1574,7 +1682,11 @@
         "V21"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "15–24"
+      }
     },
     {
       "id": "INT-08",
@@ -1587,7 +1699,11 @@
         "V18"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "27, 28"
+      }
     },
     {
       "id": "INT-09",
@@ -1600,7 +1716,11 @@
         "V11"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "29"
+      }
     },
     {
       "id": "INT-10",
@@ -1613,7 +1733,11 @@
         "V18"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "20"
+      }
     },
     {
       "id": "INT-11",
@@ -1626,7 +1750,11 @@
         "V9"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "19"
+      }
     },
     {
       "id": "INT-12",
@@ -1691,7 +1819,11 @@
         "V24"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "15, 18, 24"
+      }
     },
     {
       "id": "INT-17",
@@ -1751,7 +1883,11 @@
         "V21"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "4; V8.1 Règles actives après Game Over, point 6"
+      }
     }
   ]
 }
