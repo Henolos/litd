@@ -54,6 +54,13 @@ public:
         handle = h;
 #else
         if (fd != -1) return false;
+        // Reject redirected parent paths at the native boundary as well.
+        // Preflight only: not a guarantee against concurrent directory changes.
+        std::error_code parent_ec;
+        const auto parent = path.parent_path();
+        if (!path.is_absolute() || parent != parent.lexically_normal()) return false;
+        const auto canonical_parent = std::filesystem::canonical(parent, parent_ec);
+        if (parent_ec || canonical_parent != parent) return false;
         int h = open(path.c_str(), O_CREAT | O_RDWR | O_CLOEXEC | O_NOFOLLOW | O_NONBLOCK, 0600);
         if (h < 0) return false;
         struct stat info{};
