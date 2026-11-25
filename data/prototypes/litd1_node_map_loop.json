@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "status": "playable_vertical_slice_fixture_not_campaign_runtime",
+  "protagonist_id": "prototype_protagonist",
+  "start_node_id": "guild_road",
+  "nodes": [
+    {
+      "id": "guild_road",
+      "label": "Chemin depuis la Guilde",
+      "kind": "start",
+      "description": "Point de départ de l'expédition de test.",
+      "next": ["ash_path", "shelter"]
+    },
+    {
+      "id": "ash_path",
+      "label": "Sentier de cendres",
+      "kind": "combat",
+      "description": "Rencontre d'essai contre deux adversaires provisoires.",
+      "next": ["crossroads"]
+    },
+    {
+      "id": "shelter",
+      "label": "Abri provisoire",
+      "kind": "rest",
+      "description": "Nœud sûr de test. Aucun soin ni effet de campagne n'est simulé.",
+      "next": ["crossroads"]
+    },
+    {
+      "id": "crossroads",
+      "label": "Carrefour des sentiers",
+      "kind": "choice",
+      "description": "Le joueur peut revisiter un nœud déjà découvert ou terminer l'expédition.",
+      "next": ["return_to_guild"]
+    },
+    {
+      "id": "return_to_guild",
+      "label": "Retour à la Guilde",
+      "kind": "return",
+      "description": "Fin du parcours de démonstration.",
+      "next": []
+    }
+  ]
+}
