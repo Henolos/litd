@@ -2233,7 +2233,7 @@ Ne pas présenter l’une de ces interprétations comme validée avant clarifica
 - **Fuite :** validation du 17 novembre à 14:57 UTC : règle hybride comprenant des fuites annoncées et interceptables, ainsi que des fuites immédiates pour certaines capacités; interruption par contrôle ou dégâts selon des modalités hybrides, paramètres ouverts.
 - **Correction ultérieure de catégorie :** le 18 novembre 2026 à 14:48 UTC, l'utilisateur a précisé que les ennemis normaux, les élites et les mini-boss peuvent fuir; les boss établis ne fuient pas; un mini-boss évoluant en boss peut exceptionnellement fuir pendant sa transformation. Cela remplace la règle antérieure selon laquelle seuls les Némésis pouvaient fuir.
 - **Rivalité :** l'option A « Rivalité par exploit » reste validée; l'orientation C vise à éviter les fuites répétitives tout en gardant un Némésis crédible. Articuler ces principes sans annuler les catégories de fuite autorisées ci-dessus.
-- **À équilibrer / préciser :** valeurs des bonus, seuils et rythme des promotions, définition des exploits majeurs, fréquence des fuites, conditions précises d'interception/interruption et persistance. L'équipement récupéré constitue une décision antérieure séparée, datée du 16 novembre et reprise dans la section suivante; ne pas confondre ses règles générales avec le déclenchement du statut Némésis.
+- **À équilibrer / préciser :** valeurs des bonus, seuils et rythme des promotions, définition des exploits majeurs, fréquence des fuites, conditions précises d'interception/interruption et persistance. L'équipement récupéré constitue une décision antérieure séparée, datée du 16 novembre et reprise ci-dessus; ne pas confondre ses règles générales avec le déclenchement du statut Némésis.
 
 ## Statut des autres PR
 
