@@ -146,5 +146,26 @@ def test_node_map_prototype_cannot_authorize_retired_runtime(foundation):
     assert 'prototype_scope_invalid:scripts/ui/main.gd' in validate(foundation)
 
 
+def test_declared_guild_ui_prototype_is_allowed_without_changing_reset_manifest(foundation):
+    script = 'scripts/ui/guild_new_npcs_screen.gd'
+    scene = 'scenes/hub/guild_new_npcs_screen.tscn'
+    (foundation/script).parent.mkdir(parents=True)
+    (foundation/script).write_text('extends Control\n')
+    (foundation/scene).parent.mkdir(parents=True)
+    (foundation/scene).write_text('[gd_scene format=3]\n')
+    (foundation/'docs/reconstruction/GUILD_UI_PROTOTYPE_MANIFEST.json').write_text(json.dumps({
+        'phase': 'guild_npc_ui_prototype', 'scripts': [script], 'scenes': [scene],
+    }))
+    assert validate(foundation) == []
+
+
+def test_guild_ui_prototype_cannot_authorize_retired_runtime(foundation):
+    (foundation/'docs/reconstruction/GUILD_UI_PROTOTYPE_MANIFEST.json').write_text(json.dumps({
+        'phase': 'guild_npc_ui_prototype', 'scripts': ['scripts/ui/main.gd'], 'scenes': [],
+    }))
+    assert 'prototype_scope_invalid:scripts/ui/main.gd' in validate(foundation)
+
+
+
 def test_real_repository_matches_reset_manifest():
     assert validate() == []

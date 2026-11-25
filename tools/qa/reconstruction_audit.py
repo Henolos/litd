@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = 'docs/reconstruction/RESET_20261112_MANIFEST.json'
 AUTHORIZED_REVISIONS = 'docs/reconstruction/AUTHORIZED_REFERENCE_REVISIONS_20261123.json'
 NODE_MAP_LOOP_PROTOTYPE_MANIFEST = 'docs/reconstruction/LITD1_NODE_MAP_LOOP_PROTOTYPE_MANIFEST.json'
+GUILD_UI_PROTOTYPE_MANIFEST = 'docs/reconstruction/GUILD_UI_PROTOTYPE_MANIFEST.json'
 HEX_SHA256 = re.compile(r'^[0-9a-f]{64}$')
 
 
@@ -113,6 +114,32 @@ def validate(root: Path = ROOT, group: str = 'all') -> list[str]:
             prototype_scenes = []
         allowed.update(name for name in prototype_scripts if isinstance(name, str))
         for name in [*prototype_scripts, *prototype_scenes]:
+            if (
+                not isinstance(name, str)
+                or name in manifest['removed_runtime_files']
+                or Path(name).is_absolute()
+                or '..' in Path(name).parts
+                or not (root / name).is_file()
+            ):
+                errors.append('prototype_scope_invalid:' + str(name))
+    guild_manifest_path = root / GUILD_UI_PROTOTYPE_MANIFEST
+    if guild_manifest_path.is_file():
+        try:
+            guild_manifest = json.loads(guild_manifest_path.read_text(encoding='utf-8'))
+        except (OSError, json.JSONDecodeError):
+            guild_manifest = {}
+            errors.append('invalid_guild_ui_prototype_manifest')
+        if not isinstance(guild_manifest, dict) or guild_manifest.get('phase') != 'guild_npc_ui_prototype':
+            errors.append('invalid_guild_ui_prototype_manifest')
+            guild_manifest = {}
+        guild_scripts = guild_manifest.get('scripts', [])
+        guild_scenes = guild_manifest.get('scenes', [])
+        if not isinstance(guild_scripts, list) or not isinstance(guild_scenes, list):
+            errors.append('invalid_guild_ui_prototype_manifest')
+            guild_scripts = []
+            guild_scenes = []
+        allowed.update(name for name in guild_scripts if isinstance(name, str))
+        for name in [*guild_scripts, *guild_scenes]:
             if (
                 not isinstance(name, str)
                 or name in manifest['removed_runtime_files']
