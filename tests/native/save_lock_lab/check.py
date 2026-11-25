@@ -67,4 +67,46 @@ with tempfile.TemporaryDirectory() as directory:
     result = subprocess.run([exe, str(lock), "probe"], capture_output=True, timeout=15)
     assert result.returncode == 0 and result.stdout.strip() == b"ACQUIRED", result
     print("NATIVE_LOCK_FILE_PROTECTIONS_PASS")
+
+# Diagnostic only: measure namespace replacement while the original owner lives.
+# A vulnerable result is explicitly reported, never treated as a protection pass.
+for scenario in ("unlink", "rename_parent"):
+    with tempfile.TemporaryDirectory() as directory:
+        root = Path(directory)
+        parent = root / "active"
+        parent.mkdir()
+        lock = parent / "campaign.lock"
+        owner = subprocess.Popen([exe, str(lock), "hold"], stdin=subprocess.PIPE,
+                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        try:
+            with ThreadPoolExecutor(max_workers=1) as pool:
+                future = pool.submit(owner.stdout.readline)
+                try:
+                    assert future.result(timeout=15).strip() == "ACQUIRED"
+                except BaseException:
+                    owner.kill()
+                    raise
+            assert owner.poll() is None
+            try:
+                if scenario == "unlink":
+                    lock.unlink()
+                else:
+                    parent.rename(root / "displaced")
+                    parent.mkdir()
+            except PermissionError:
+                print(f"NATIVE_NAMESPACE_{scenario.upper()}_OS_DENIED", flush=True)
+            else:
+                probe = subprocess.run([exe, str(lock), "probe"], capture_output=True, timeout=15)
+                assert owner.poll() is None
+                assert probe.returncode in (0, 23), probe
+                if probe.returncode == 0:
+                    assert probe.stdout.strip() == b"ACQUIRED", probe
+                    print(f"NATIVE_NAMESPACE_{scenario.upper()}_DOUBLE_ACQUIRE", flush=True)
+                else:
+                    print(f"NATIVE_NAMESPACE_{scenario.upper()}_SECOND_DENIED", flush=True)
+        finally:
+            if owner.poll() is None:
+                owner.kill()
+            owner.communicate(timeout=15)
+
 print("NATIVE_SAVE_LOCK_PASS")
