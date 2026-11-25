@@ -2973,3 +2973,53 @@ La décision précédemment validée reste applicable : le Némésis conserve d�
 ### Consolidation après fusion de la PR #647
 
 Les sections ARCH-01 à ARCH-11 et l'index de préséance sont conservés intégralement depuis main. La PR #647 est fusionnée (3e853717070ac35e958c3f3d69bc5e73e2a7f45e). Les réserves historiques et les paramètres ouverts restent applicables. ARCH-12.1 et ARCH-12.2 précisent les exceptions de progression d'ARCH-06 sans modifier ARCH-05. Aucun changement moteur.
+
+
+## ARCH-12.3 — Acquisition historique du statut Némésis après recrutement
+
+**VALIDÉ EN CONCEPTION — option C : acquisition exclusivement historique.** Validation explicite du 25 novembre 2026.
+
+Un ennemi recruté peut être reconnu comme Némésis pour les conséquences de ses anciennes actions hostiles, sans retrouver son statut actif d'ennemi.
+
+| Nº | Règle | Description |
+|---:|---|---|
+| 1 | Acquisition historique | Une recrue auparavant non Némésis peut acquérir cette reconnaissance historique si une action hostile antérieure au recrutement provoque la mort définitive d'un héros. |
+| 2 | Conservation du statut actif | La recrue conserve son statut de héros recruté et ne redevient pas un ennemi. |
+| 3 | Antériorité obligatoire | L'action à l'origine de la mort doit avoir été effectuée avant le recrutement, durant une période d'hostilité. |
+| 4 | Reconnaissance dans les Archives | Les Archives enregistrent le statut historique de Némésis, l'identité de la victime, la cause de sa mort et les circonstances. |
+| 5 | Absence de bonus | Cette reconnaissance n'accorde aucun nouveau bonus statistique Némésis. |
+| 6 | Absence de promotion | Elle ne déclenche aucune promotion dans la hiérarchie des ennemis. |
+| 7 | Absence de capacité de fuite | Elle ne confère aucune capacité de fuite réservée aux Némésis actifs. Les règles de retraite des héros restent applicables. |
+| 8 | Progression inchangée | La recrue continue exclusivement sa progression selon les systèmes applicables aux héros recrutés. |
+| 9 | Identité et historique uniques | La reconnaissance complète l'historique de l'entité existante, sans créer de nouvelle entité ni de fiche Némésis indépendante. |
+| 10 | Persistance | Cette reconnaissance historique reste conservée après la mort définitive de la recrue, une sauvegarde, un chargement ou un Game Over. |
+
+## ARCH-12.4 — Résolution des responsabilités causales équivalentes
+
+**VALIDÉ EN CONCEPTION — option C : hiérarchie causale déterministe.** Validation explicite du 25 novembre 2026.
+
+Le système doit identifier le véritable responsable d'une mort définitive lorsque plusieurs ennemis y ont contribué, sans attribution arbitraire.
+
+| Nº | Règle | Description |
+|---:|---|---|
+| 1 | Analyse causale obligatoire | Toute mort définitive impliquant plusieurs responsables potentiels fait l'objet d'une résolution causale. |
+| 2 | Cause effective | Le système identifie en priorité les événements et les effets ayant effectivement provoqué la mort. |
+| 3 | Responsabilité réelle | La responsabilité est déterminée par la chaîne causale, indépendamment du caractère direct ou indirect de l'attaque. |
+| 4 | Intervention déterminante | Une intervention indépendante et décisive peut attribuer la responsabilité principale à son auteur. |
+| 5 | Contribution causale | Lorsque plusieurs effets sont conjointement responsables, le système examine leurs contributions respectives à la mort. |
+| 6 | Dégâts non prioritaires | La quantité totale de dégâts infligés ne constitue jamais, à elle seule, un critère suffisant de départage. |
+| 7 | Chronologie non prioritaire | Le premier ou le dernier attaquant ne bénéficie d'aucune priorité automatique. La chronologie sert uniquement à établir la causalité. |
+| 8 | Égalité irréductible | Si aucun responsable principal ne peut être objectivement distingué, tous les responsables identifiés sont enregistrés comme contributeurs. |
+| 9 | Absence de récompense artificielle | Une égalité irréductible n'accorde aucun nouveau statut, bonus ou promotion Némésis au titre de cette mort. Les statuts précédemment acquis restent inchangés. |
+| 10 | Déterminisme et persistance | La résolution et ses justificatifs sont enregistrés durablement. Une sauvegarde ou un chargement ne doit jamais permettre de recalculer arbitrairement l'attribution. |
+
+### Réconciliation et préséance documentaire
+
+- ARCH-12.3 résout la réserve sur le titre historique d'une recrue auparavant non Némésis dans ARCH-12.1 et la réconciliation ARCH-07/08. Elle ne tranche pas les autres paramètres ouverts d'ARCH-08.
+- ARCH-05 : la reconnaissance historique ne donne aucun droit de fuite hostile ; les restrictions des Némésis actifs et des boss établis restent inchangées. La correction historique du 18 novembre autorisant la fuite des ennemis non Némésis est remplacée sur ce point par ARCH-05.
+- ARCH-06 : l'acquisition active et les gains hostiles restent réservés aux entités éligibles ; ARCH-12.1 à 12.4 précisent les exceptions historiques et les égalités irréductibles.
+- ARCH-12.4 résout la réserve sur les égalités causales dans ARCH-12 : zéro ou un responsable principal, contributeurs multiples possibles ; aucune priorité automatique directe, chronologique ou quantitative.
+- ARCH-04/07/09/10/11 : mort définitive, restrictions NG+, possession des équipements, dépouilles et simulation événementielle inchangées.
+- V8.3 et Archives : conserver identité, provenance, justification et résolution durable sans duplication ni nouveau tirage au chargement.
+- Cas de contrôle à préparer : poison antérieur au recrutement, recrue décédée, deux poisons conjointement mortels, Némésis existants à égalité, intervention indépendante, piège à installateur distinct du déclencheur, environnement sans responsable, sauvegarde/reprise. Aucun test runtime effectué.
+- La méthode technique de comparaison des contributions causales, le changement de maître d'une invocation et la provenance historique du marquage rouge restent à préciser ou vérifier. Le verbatim des vingt règles initiales ARCH-12 reste à certifier. Ces réserves ne sont pas de nouvelles décisions.
