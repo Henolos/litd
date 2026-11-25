@@ -2,6 +2,7 @@ extends Control
 
 const BESTIARY_SCENE := "res://scenes/bestiary/bestiary_screen.tscn"
 const NODE_MAP_LOOP_SCENE := "res://scenes/prototype/litd1_node_map_loop.tscn"
+const GUILD_NPCS_SCENE := "res://scenes/hub/guild_new_npcs_screen.tscn"
 const BACKGROUND := Color("#111116")
 const PANEL := Color("#1c1b1f")
 const GOLD := Color("#d3b675")
@@ -66,6 +67,12 @@ func _build_interface() -> void:
 	bestiary_button.custom_minimum_size.y = 54
 	bestiary_button.pressed.connect(_open_bestiary)
 	content.add_child(bestiary_button)
+
+	var guild_button := Button.new()
+	guild_button.text = "Guilde · tavernier et médecin (prototype)"
+	guild_button.custom_minimum_size.y = 54
+	guild_button.pressed.connect(func(): get_tree().change_scene_to_file(GUILD_NPCS_SCENE))
+	content.add_child(guild_button)
 
 	var explanation := Label.new()
 	explanation.text = "La campagne reste à construire. Un parcours de test à nœuds est disponible en prototype."

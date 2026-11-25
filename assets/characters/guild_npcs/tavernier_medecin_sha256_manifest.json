@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "assets": [
+    {
+      "id": "guild_tavern_keeper",
+      "target_path": "assets/characters/guild_npcs/tavernier_planche_validee.png",
+      "sha256": "ba24389db7072a5795cedf6ac508b724272c163ff4855ab8a0016bd617a55cad",
+      "bytes": 3119445,
+      "git_import_verified": true,
+      "asset_kind": "concept_board",
+      "user_approval_status": "not_proven_for_this_exact_binary_by_direct_user_message",
+      "individual_portrait_status": "not_present_in_repository_as_of_2026_11_24"
+    },
+    {
+      "id": "guild_physician",
+      "target_path": "assets/characters/guild_npcs/medecin_planche_validee.png",
+      "sha256": "a6446f4bdfb468d66101782885d5c3c2f3d0286781d0328a69f883a33a782e35",
+      "bytes": 2943072,
+      "git_import_verified": true,
+      "asset_kind": "concept_board",
+      "user_approval_status": "not_proven_for_this_exact_binary_by_direct_user_message",
+      "individual_portrait_status": "not_present_in_repository_as_of_2026_11_24"
+    }
+  ],
+  "note": "Les deux binaires source sont présents dans le dépôt après synchronisation avec main ; leurs SHA-256 correspondent au manifeste de livraison et ont été recalculés localement le 23 novembre 2026. Présence et intégrité ne prouvent pas l'approbation utilisateur de ces binaires précis."
+}

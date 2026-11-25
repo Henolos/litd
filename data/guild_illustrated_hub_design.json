@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "status": "design_proposal_not_runtime",
+  "navigation_mode": "illustrated_interactive_map",
+  "art_direction": "sino-gothico-dark fantasy",
+  "preserve_approved_architectural_board": true,
+  "locations": [
+    {
+      "id": "hall",
+      "label": "Hall de la Guilde",
+      "npc_id": null,
+      "services": [
+        "annonces",
+        "tableau_quetes",
+        "depart_expedition"
+      ]
+    },
+    {
+      "id": "administration",
+      "label": "Administration",
+      "npc_id": "kelia_anzora",
+      "services": [
+        "contrats",
+        "rangs",
+        "primes"
+      ]
+    },
+    {
+      "id": "recruitment",
+      "label": "Recrutement",
+      "npc_id": "lian_yue",
+      "services": [
+        "recrutement",
+        "compagnie"
+      ]
+    },
+    {
+      "id": "commerce",
+      "label": "Commerce",
+      "npc_id": "soleyman",
+      "services": [
+        "boutique",
+        "equipement"
+      ]
+    },
+    {
+      "id": "training",
+      "label": "Salle d'entraînement",
+      "npc_id": "maitresse_armes",
+      "services": [
+        "entrainement",
+        "techniques"
+      ]
+    },
+    {
+      "id": "archives",
+      "label": "Archives",
+      "npc_id": "wei_shan",
+      "services": [
+        "codex",
+        "bestiary",
+        "recherche"
+      ]
+    },
+    {
+      "id": "guild_master",
+      "label": "Bureau du maître",
+      "npc_id": "guild_master",
+      "services": [
+        "dialogues",
+        "evenements"
+      ]
+    },
+    {
+      "id": "tavern",
+      "label": "Taverne de la Guilde",
+      "npc_id": "guild_tavern_keeper",
+      "npc_status": "prototype_registered",
+      "services": [
+        "rencontres",
+        "rumeurs",
+        "anecdotes",
+        "affinite",
+        "quetes_personnelles"
+      ],
+      "details_pending_validation": true,
+      "npc_name_status": "provisional"
+    },
+    {
+      "id": "infirmary",
+      "label": "Infirmerie de la Guilde",
+      "npc_id": "guild_physician",
+      "npc_status": "prototype_registered",
+      "services": [
+        "soins",
+        "recuperation",
+        "recherche_anatomique",
+        "quetes_personnelles"
+      ],
+      "details_pending_validation": true,
+      "npc_name_status": "provisional"
+    }
+  ],
+  "implementation_verified": false,
+  "world_hub": {
+    "type": "illustrated_interactive_village",
+    "status": "validated_navigation_concept",
+    "guild_is_subhub": true,
+    "village_buildings_status": "to_define",
+    "village_character_roster_status": "to_define",
+    "artwork_status": "concept_pending_visual_validation"
+  },
+  "prototype_scene": "res://scenes/hub/guild_new_npcs_screen.tscn",
+  "expedition_navigation": {
+    "type": "branching_node_map",
+    "status": "validated_design_not_runtime",
+    "replaces_3d_exploration": true,
+    "visited_nodes_revisitable": true,
+    "combat_mode": "2d_turn_based_tactical",
+    "generation_rules": "pending_design"
+  },
+  "campaign_persistence": {
+    "game_over_rule": "annihilation_of_all_four_expedition_fighters_ends_attempt",
+    "next_attempt": "new_successor_after_guild_trials",
+    "world_and_quest_state": [
+      "world",
+      "main_narrative",
+      "main_quests",
+      "general_side_quests"
+    ],
+    "successor_inherits": [
+      "numeric_level",
+      "corresponding_skill_points"
+    ],
+    "successor_rebuilds": [
+      "personal_mastery",
+      "personal_choices",
+      "personal_passive_slots"
+    ],
+    "collective_bestiary_knowledge": "transmitted_through_guild_archives",
+    "reserve_survivors": "retain_progression_and_remain_available",
+    "status": "validated_design_not_runtime",
+    "source": "LITD1 V8.1 decisions 4, 5, 7; V8.2 decisions 11, 19",
+    "prologue_replay": "not_specified_by_validated_decision"
+  }
+}

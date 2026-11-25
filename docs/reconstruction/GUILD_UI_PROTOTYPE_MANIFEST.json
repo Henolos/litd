@@ -1,0 +1,9 @@
+{
+  "phase": "guild_npc_ui_prototype",
+  "scripts": [
+    "scripts/ui/guild_new_npcs_screen.gd"
+  ],
+  "scenes": [
+    "scenes/hub/guild_new_npcs_screen.tscn"
+  ]
+}

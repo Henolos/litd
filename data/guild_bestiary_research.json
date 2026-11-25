@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "design_only_no_gameplay_unlocks",
+  "catalog": "res://data/bestiary_catalog.json",
+  "catalog_scope": "shared_species_definitions_only",
+  "enemy_identity_field": "enemy_id",
+  "sources": {
+    "wei_shan": [
+      "lore",
+      "origine",
+      "habitat",
+      "comportement"
+    ],
+    "guild_physician": [
+      "anatomie",
+      "faiblesses",
+      "resistances"
+    ]
+  },
+  "unlock_event_proposal": "medical_research_completed",
+  "rule": "Ne pas modifier les statistiques de combat sans validation. Les connaissances collectives validées sont transmises par les archives de la Guilde; la maîtrise personnelle du successeur est reconstruite. La maîtrise des compagnons reste suivie individuellement. Les missions de la médecin peuvent contribuer à l'étude des faiblesses selon les décisions de conception, mais tout déblocage, modèle de progression et raccordement runtime reste à spécifier et tester.",
+  "entries": [],
+  "knowledge_scope": {
+    "collective_archive_knowledge": "persists_and_is_transmitted_to_successor",
+    "successor_personal_mastery": "rebuilt",
+    "companion_mastery": "tracked_individually",
+    "medical_missions_contribute": "validated_in_principle_runtime_unspecified"
+  }
+}
