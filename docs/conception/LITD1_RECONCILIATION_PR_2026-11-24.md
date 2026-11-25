@@ -14,14 +14,17 @@
 - **Limite :** les six sous-étapes détaillées dans la PR #619 (sources, comparaison, avantages/risques/coûts, recommandation, etc.) ne sont pas chacune prouvées comme texte utilisateur approuvé. Les principes plus généraux de méthode déjà présents en V8.3 s’appliquent; ne pas traiter toutes les élaborations de PR #619 comme des décisions additionnelles.
 - **Disposition :** conserver la règle courte dans cette réconciliation; la PR #619 est clôturée comme doublon documentaire après transfert de la règle confirmée. Sa branche et son historique restent disponibles.
 
-### Némésis et fuite
+### Némésis, promotions et fuite
 
-- **Orientation C :** le contexte récupéré date l’approbation au 17 novembre 2026 à 15:11 UTC (16:11 Paris) : éviter les fuites répétitives tant que le Némésis reste crédible. Le verbatim complet du message d’approbation n’est pas disponible; les détails d’implémentation restent ouverts.
-- **Option A :** le 17 novembre 2026 à 17:29:42 UTC (18:29:42 Paris), l’utilisateur a approuvé « A — Rivalité par exploit » et précisé : « Comme les ennemis ne peuvent fuir sauf s’ils deviennent némésis » et « Comme seul les némésis peuvent fuir, nous n’aurons jamais l’opportunité de rencontrer plusieurs fois un meme ennemis ».
-- **Statut :** la rivalité par exploit reste validée. La règle de fuite du 17 novembre (« seuls les Némésis peuvent fuir ») a été remplacée par la correction utilisateur du 18 novembre 2026 à 14:48 UTC : ennemis normaux, élites et mini-boss peuvent fuir; les boss établis ne fuient pas; un mini-boss évoluant en boss peut fuir exceptionnellement pendant sa transformation. Cette décision plus récente prévaut.
-- **À définir :** sens opérationnel de « éviter les fuites répétitives » pour le Némésis et articulation des fuites avec les situations de combat. Ne pas réintroduire l’interdiction générale visant les ennemis normaux.
-- Les sources retrouvées ne suffisent pas à confirmer les seuils, bonus de puissance, chaîne de grades, déclenchement automatique ni tous les détails de fuite présents dans #620.
-- **Disposition de la PR #620 :** ne pas considérer tous les ajouts de sa section V8.0 comme approuvés. Garder la PR en brouillon jusqu’à récupération de la preuve directe des détails; seul le noyau ci-dessus est repris dans la présente réconciliation.
+- **17 novembre 2026, 14:37 UTC :** seuls les exploits majeurs déclenchent le statut Némésis; tuer définitivement un héros suffit.
+- **17 novembre, 14:41 UTC :** puissance initiale liée au rang d'origine (normal élevé, élite intermédiaire, mini-boss faible); les bonus accordés aux victimes héroïques ultérieures sont indépendants du rang d'origine.
+- **17 novembre, 14:47 UTC :** progression hybride Ennemi → Némésis → Mini-boss → Boss émergent; des exploits non létaux peuvent accélérer les promotions; chiffres reportés.
+- **17 novembre, 14:57 UTC :** fuite hybride annoncée/interceptable ou immédiate par certaines capacités; interruption hybride par contrôle ou dégâts, paramètres ouverts.
+- **17 novembre, 17:29 UTC :** option A « Rivalité par exploit » et exclusivité de fuite des Némésis.
+- **17 novembre, 14:48 UTC :** la règle d’exclusivité de fuite est remplacée : les ennemis normaux, élites et mini-boss peuvent fuir; les boss établis ne fuient pas; un mini-boss évoluant en boss peut exceptionnellement fuir pendant sa transformation.
+- **Équilibrage restant ouvert :** valeurs des bonus, seuils/rythme de promotion, définition des exploits majeurs, fréquence et conditions exactes d’interception/interruption. Ne pas présenter les paramètres non décidés comme des règles codées ou testées.
+- **Butin / équipement :** la question de l’équipement récupéré doit être rapprochée des décisions de butin antérieures et de leur périmètre; ne pas la classer non validée ou l’attribuer aux Némésis sans vérifier ces sources.
+
 
 ## Carte d’exploration et PR #641
 
