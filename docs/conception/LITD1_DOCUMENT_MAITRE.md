@@ -2221,8 +2221,10 @@ Ne pas présenter l’une de ces interprétations comme validée avant clarifica
 **Date de validation :** 17 novembre 2026 à 17:29:42 UTC (18:29:42 Paris).  
 **Textes utilisateur retrouvés :** « Choix : A — Rivalité par exploit. »; « Comme les ennemis ne peuvent fuir sauf s’ils deviennent némésis »; « Comme seul les némésis peuvent fuir, nous n’aurons jamais l’opportunité de rencontrer plusieurs fois un meme ennemis ».
 
-**Règles actives attestées :** rivalité par exploit; les ennemis ordinaires ne fuient pas; seuls les ennemis devenus Némésis peuvent fuir.  
-**Reste à arbitrer :** exploit précis qui déclenche la rivalité, seuils et fréquence, moment de transformation, conditions de réussite ou d’empêchement de la fuite, conséquences et persistance. Les détails supplémentaires de la PR #620 (bonus, grade, déclenchement automatique, etc.) ne sont pas approuvés par le seul texte retrouvé et restent à vérifier.
+**Règle historique remplacée :** le 17 novembre 2026, l'utilisateur avait indiqué que seuls les Némésis pouvaient fuir.  
+**Correction ultérieure active (18 novembre 2026, 14:48 UTC) :** les ennemis normaux, les élites et les mini-boss peuvent fuir; les boss établis ne fuient pas. Un mini-boss qui évolue en boss peut exceptionnellement fuir pendant sa transformation. Cette décision ultérieure remplace l'exclusivité de fuite accordée aux Némésis le 17 novembre.  
+**Rivalité :** l'option A « Rivalité par exploit » demeure retenue. L'orientation C vise à éviter les fuites répétitives tout en gardant le comportement crédible du Némésis; sa modalité exacte et son articulation avec la règle de fuite ultérieure restent à formaliser sans contredire celle-ci.  
+**Reste à arbitrer :** exploit précis déclenchant la rivalité, seuils/fréquence, conditions exactes de fuite ou d'interception, conséquences et persistance. Les bonus, la progression de grades et le déclenchement automatique décrits dans #620 ne sont pas validés par les seules sources retrouvées et restent à vérifier.
 
 ## Statut des autres PR
 
