@@ -2807,3 +2807,14 @@ Simulation événementielle des déplacements plutôt que simulation permanente 
 - V7.27/V7.30 : recherche par renseignements, témoignages et traces, avec distinction entre informations durables et localisation susceptible d'évoluer.
 - V8.3 : transitions territoriales persistantes, identité unique et absence de nouveau tirage des résultats confirmés au rechargement.
 - Simulation événementielle confirmée, sans imposer une simulation permanente de toutes les créatures. Paramètres, déclencheurs, distances, fréquences, itinéraires et tests restent ouverts. Aucun exemple de biome ni barème numérique nouvellement validé. Contrats CT-0289 à CT-0298 à auditer et tester. Réconciliation documentaire uniquement ; aucun changement moteur, test runtime ni fusion.
+
+
+## Index de préséance normative — ARCH-03, ARCH-04 et ARCH-07
+
+Clarification documentaire des décisions déjà validées, sans nouvel arbitrage ni suppression des sources historiques.
+
+- ARCH-03 : la décision explicitement validée fait autorité. Les sections historiques V7.19 et V7.24 sont conservées comme provenance ; leur validation indépendante reste à confirmer. Aucune disposition non confirmée ne devient normative par transitivité.
+- ARCH-04 : la section « Nouvelle formulation normative » et ses dix-huit règles explicitement validées font autorité. La première transcription incomplète est conservée uniquement pour traçabilité et ne constitue pas une spécification concurrente.
+- ARCH-07 : l'extension explicite de la restriction à la capture prévaut sur la formulation antérieure laissant la capture avant NG+ ouverte. Capture et recrutement des mini-boss, Némésis et boss sont réservés au NG+, sous réserve des conditions individuelles d'éligibilité. Les autres dispositions compatibles restent inchangées.
+
+Les textes historiques sont conservés intégralement. Aucun changement moteur ni validation runtime.
