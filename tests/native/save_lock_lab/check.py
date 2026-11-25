@@ -137,8 +137,8 @@ if os.name != "nt":
                                        capture_output=True, timeout=15)
                 assert owner.poll() is None
                 assert probe.returncode in (0, 23), probe
-                marker = "DOUBLE_ACQUIRE" if probe.returncode == 0 else "SECOND_DENIED"
-                print(f"NATIVE_ALIAS_{phase.upper()}_{marker}", flush=True)
+                assert probe.returncode == 23, (phase, probe)
+                print(f"NATIVE_ALIAS_{phase.upper()}_SECOND_DENIED", flush=True)
             # Model a path-based publication after parent replacement.
             # This is a filesystem experiment, not a SaveManager runtime test.
             original = parent / "slot.json"
@@ -155,6 +155,19 @@ if os.name != "nt":
             assert (displaced / "slot.tmp").read_bytes() == b"staged"
             assert (parent / "slot.json").read_bytes() == b"foreign"
             print("NATIVE_PATH_PUBLICATION_REDIRECT_REPRODUCED", flush=True)
+            # Prototype descriptor-relative publication: never target the substitute.
+            fd = os.open(displaced, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+            try:
+                held = os.fstat(fd)
+                current = parent.stat()
+                assert (held.st_dev, held.st_ino) != (current.st_dev, current.st_ino)
+                print("NATIVE_DIRECTORY_IDENTITY_MISMATCH_PASS", flush=True)
+                os.replace("slot.tmp", "slot.json", src_dir_fd=fd, dst_dir_fd=fd)
+                assert (displaced / "slot.json").read_bytes() == b"staged"
+                assert (parent / "slot.json").read_bytes() == b"foreign"
+                print("NATIVE_DESCRIPTOR_PUBLICATION_CONFINED_PASS", flush=True)
+            finally:
+                os.close(fd)
         finally:
             if owner.poll() is None:
                 owner.kill()
