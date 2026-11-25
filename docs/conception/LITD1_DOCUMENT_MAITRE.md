@@ -2216,15 +2216,16 @@ Ne pas présenter l’une de ces interprétations comme validée avant clarifica
 **Date de validation retrouvée :** 17 novembre 2026 à 15:11 UTC (16:11 Paris).  
 **Principe approuvé :** orientation C visant à éviter les fuites répétitives tout en conservant un comportement crédible du Némésis. Le verbatim complet du message d’approbation n’est pas récupéré; aucune modalité d’implémentation n’est déduite.
 
-### Option A — rivalité par exploit et fuite
+### Système Némésis — décisions directes retrouvées
 
-**Date de validation :** 17 novembre 2026 à 17:29:42 UTC (18:29:42 Paris).  
-**Textes utilisateur retrouvés :** « Choix : A — Rivalité par exploit. »; « Comme les ennemis ne peuvent fuir sauf s’ils deviennent némésis »; « Comme seul les némésis peuvent fuir, nous n’aurons jamais l’opportunité de rencontrer plusieurs fois un meme ennemis ».
-
-**Règle historique remplacée :** le 17 novembre 2026, l'utilisateur avait indiqué que seuls les Némésis pouvaient fuir.  
-**Correction ultérieure active (18 novembre 2026, 14:48 UTC) :** les ennemis normaux, les élites et les mini-boss peuvent fuir; les boss établis ne fuient pas. Un mini-boss qui évolue en boss peut exceptionnellement fuir pendant sa transformation. Cette décision ultérieure remplace l'exclusivité de fuite accordée aux Némésis le 17 novembre.  
-**Rivalité :** l'option A « Rivalité par exploit » demeure retenue. L'orientation C vise à éviter les fuites répétitives tout en gardant le comportement crédible du Némésis; sa modalité exacte et son articulation avec la règle de fuite ultérieure restent à formaliser sans contredire celle-ci.  
-**Reste à arbitrer :** exploit précis déclenchant la rivalité, seuils/fréquence, conditions exactes de fuite ou d'interception, conséquences et persistance. Les bonus, la progression de grades et le déclenchement automatique décrits dans #620 ne sont pas validés par les seules sources retrouvées et restent à vérifier.
+- **Déclenchement :** validation du 17 novembre 2026 à 14:37 UTC : seuls les exploits majeurs déclenchent le statut Némésis; tuer définitivement un héros suffit à le déclencher.
+- **Puissance initiale :** validation du 17 novembre à 14:41 UTC : le bonus dépend du rang d'origine — élevé pour un ennemi normal, intermédiaire pour une élite, faible pour un mini-boss. Les valeurs restent à équilibrer.
+- **Victimes ultérieures :** un Némésis gagne un bonus additionnel après chaque héros tué; ce bonus est indépendant de son rang d'origine. Son montant et ses limites restent ouverts.
+- **Promotions :** validation du 17 novembre à 14:47 UTC : progression hybride Ennemi → Némésis → Mini-boss → Boss émergent. Des exploits non létaux peuvent accélérer les promotions. Les chiffres sont reportés.
+- **Fuite :** validation du 17 novembre à 14:57 UTC : règle hybride comprenant des fuites annoncées et interceptables, ainsi que des fuites immédiates pour certaines capacités; interruption par contrôle ou dégâts selon des modalités hybrides, paramètres ouverts.
+- **Correction ultérieure de catégorie :** le 18 novembre 2026 à 14:48 UTC, l'utilisateur a précisé que les ennemis normaux, les élites et les mini-boss peuvent fuir; les boss établis ne fuient pas; un mini-boss évoluant en boss peut exceptionnellement fuir pendant sa transformation. Cela remplace la règle antérieure selon laquelle seuls les Némésis pouvaient fuir.
+- **Rivalité :** l'option A « Rivalité par exploit » reste validée; l'orientation C vise à éviter les fuites répétitives tout en gardant un Némésis crédible. Articuler ces principes sans annuler les catégories de fuite autorisées ci-dessus.
+- **À équilibrer / préciser :** valeurs des bonus, seuils et rythme des promotions, définition des exploits majeurs, fréquence des fuites, conditions précises d'interception/interruption et persistance. Ne pas déduire de règle de butin ou d'équipement du seul système Némésis sans vérifier son périmètre dans les décisions séparées.
 
 ## Statut des autres PR
 
