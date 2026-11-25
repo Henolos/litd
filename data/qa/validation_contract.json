@@ -512,7 +512,11 @@
         "V25"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "1. Unité atomique"
+      }
     },
     {
       "id": "SAV-03",
@@ -525,7 +529,11 @@
         "V25"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "3. Validation"
+      }
     },
     {
       "id": "SAV-04",
@@ -538,7 +546,11 @@
         "V25"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "4. Reconstruction"
+      }
     },
     {
       "id": "SAV-05",
@@ -551,7 +563,11 @@
         "V24"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "4. Reconstruction; 5. Invariants"
+      }
     },
     {
       "id": "SAV-06",
@@ -564,7 +580,11 @@
         "V25"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "5. Invariants"
+      }
     },
     {
       "id": "SAV-07",
@@ -577,7 +597,11 @@
         "V24"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "5. Invariants"
+      }
     },
     {
       "id": "SAV-08",
@@ -590,7 +614,11 @@
         "V25"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "1. Unité atomique; 5. Invariants"
+      }
     },
     {
       "id": "SAV-09",
@@ -603,7 +631,11 @@
         "V24"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "5. Invariants"
+      }
     },
     {
       "id": "SAV-10",
@@ -616,7 +648,11 @@
         "V24"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "5. Invariants"
+      }
     },
     {
       "id": "SAV-11",
@@ -629,7 +665,11 @@
         "V21"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "5. Invariants"
+      }
     },
     {
       "id": "SAV-12",
@@ -642,7 +682,11 @@
         "V11"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "5. Invariants (durée et causalité des effets uniquement)"
+      }
     },
     {
       "id": "SAV-13",
@@ -655,7 +699,11 @@
         "V25"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "2. Journal durable"
+      }
     },
     {
       "id": "SAV-14",
@@ -667,7 +715,11 @@
         "V9"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "Registre des décisions complémentaires",
+        "locator": "37"
+      }
     },
     {
       "id": "SAV-15",
@@ -692,7 +744,11 @@
         "V9"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "Registre des décisions complémentaires",
+        "locator": "38"
+      }
     },
     {
       "id": "SAV-17",
@@ -704,7 +760,11 @@
         "V9"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "Registre des décisions complémentaires",
+        "locator": "38"
+      }
     },
     {
       "id": "SAV-18",
@@ -717,7 +777,11 @@
         "V25"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "Registre des décisions complémentaires",
+        "locator": "39"
+      }
     },
     {
       "id": "SAV-19",
@@ -729,7 +793,11 @@
         "V9"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null,
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "Registre des décisions complémentaires",
+        "locator": "40"
+      },
       "review_channel": "physical_windows"
     },
     {
@@ -743,7 +811,11 @@
         "V25"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "4. Reconstruction; 5. Invariants"
+      }
     },
     {
       "id": "PRO-01",
@@ -912,7 +984,11 @@
         "V25"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "5. Invariants"
+      }
     },
     {
       "id": "PRO-14",
@@ -925,7 +1001,11 @@
         "V24"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "5. Invariants"
+      }
     },
     {
       "id": "REF-01",
@@ -1637,7 +1717,11 @@
         "V11"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "1. Unité atomique"
+      }
     },
     {
       "id": "INT-19",
@@ -1650,7 +1734,11 @@
         "V25"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": {
+        "document": "LITD1_DOCUMENT_MAITRE_CONCEPTION_V8.3_2026-11-23.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "4. Reconstruction"
+      }
     },
     {
       "id": "INT-20",
