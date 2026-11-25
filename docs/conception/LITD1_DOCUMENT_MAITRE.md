@@ -4853,3 +4853,25 @@ Instruction utilisateur : « non nous n’avons rien validé de tout ça ressame
 ## Procédure de réconciliation et de réarbitrage — 24 novembre 2026
 
 Instruction utilisateur : « et refaire si nécessaire les décision ». Document maître actif unique, cohérent, exhaustif et traçable ; archives intactes. V8.3 est un point de départ documentaire, pas une approbation globale. Pour chaque règle : identifiant, source et date, accord explicite exact, texte des règles et exceptions, dépendances, remplacements, état documentaire, implémentation, tests et validation technique distincts. Conserver les décisions démontrées cohérentes ; réintégrer les omissions ; archiver les décisions remplacées ; soumettre contradictions non résolues, preuves manquantes et incompatibilités à un nouvel arbitrage. Présenter problème, options, avantages, inconvénients, recommandation et règles complémentaires ; attendre accord explicite avant enregistrement normatif. Un go autorise uniquement la poursuite. Aucun arbitrage métier nouveau. Ne pas promouvoir les prototypes combat V0.1–V0.4 ni reprendre V0.5 avant réconciliation du périmètre concerné. Préserver les originaux, ne pas modifier le moteur ni fusionner pendant cet audit. Avancement chantier/global : à évaluer.
+
+
+## ARCH-01 — Missions simultanées selon leur compatibilité (25 novembre 2026)
+
+**VALIDÉ EN CONCEPTION — option C.** Accord explicite : « Pour LITD 1, je valide explicitement l'option C de l'arbitrage ARCH-01 concernant les missions simultanées selon leur compatibilité, avec les douze règles complémentaires proposées. »
+
+Le joueur peut poursuivre plusieurs missions pendant une même expédition, à condition que leurs objectifs et leurs conditions soient compatibles.
+
+1. Une expédition peut permettre de poursuivre plusieurs missions.
+2. Les missions doivent respecter le périmètre régional de l'expédition.
+3. Une mission peut progresser sans être entièrement accomplie.
+4. Des missions peuvent être découvertes pendant l'exploration.
+5. Une même action peut faire progresser plusieurs missions compatibles.
+6. Les missions incompatibles doivent être clairement identifiées.
+7. L'accomplissement d'une mission ne termine pas automatiquement l'expédition.
+8. L'abandon d'une mission n'entraîne pas automatiquement l'abandon des autres.
+9. Chaque mission conserve son propre état de progression.
+10. Les conséquences réellement survenues persistent.
+11. Une récompense ne peut pas être attribuée plusieurs fois pour le même accomplissement.
+12. Les missions personnelles respectent les règles de mort définitive des héros concernés.
+
+Dépendances documentaires : V3.2, V4.9, V7.49, V7.50 et V8.3 ; vérification exhaustive des contradictions et paramètres de compatibilité restant à effectuer. Aucun plafond numérique, algorithme de compatibilité ou nouveau comportement de sauvegarde n'est décidé par cet arbitrage. Implémentation et tests non vérifiés. Aucun changement moteur ni fusion. Avancements chantier/global : à évaluer.
