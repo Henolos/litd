@@ -2731,3 +2731,40 @@ Le principe consiste à permettre au joueur de récupérer les équipements dét
 ### Paramètres ouverts
 
 Coûts en points d'action du désarmement, modalités de fouille, risques du retrait, conséquences sur confiance et loyauté, modalités de retrait chirurgical des équipements intégrés. Aucun barème numérique validé. Réconciliation documentaire uniquement ; aucun changement moteur, test runtime ou fusion.
+
+
+## ARCH-10 — Réintégration de V7.35 (25 novembre 2026)
+
+**VALIDÉ EN CONCEPTION.** Accord direct : « Pour LITD 1, je confirme explicitement l'option C de V7.35 et ses dix règles historiques intégrales. Réintègre cette section au document maître dans ARCH-10 et réconcilie les systèmes concernés. »
+
+Source historique : commit f558dbf08872128f1c22fb8764a9d954ad877c37, section V7.35 reproduite intégralement ci-dessous. La confirmation du 25 novembre établit la validation explicite actuelle, indépendamment de la preuve de l'accord original.
+
+## V7.35 — Évolution contextuelle des corps et équipements (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, évolution contextuelle sous contraintes des corps et équipements, avec les dix règles complémentaires explicitement approuvées.** Le devenir des dépouilles dépend du lieu, des créatures présentes, de l'environnement et des événements depuis la mort : conservation, pillage, disparition ou réanimation hostile selon le contexte.
+
+1. Le devenir des corps persiste après Game Over.
+2. Aucun transfert automatique des équipements au coffre de la Guilde.
+3. La recomposition procédurale ne supprime pas arbitrairement les dépouilles.
+4. Les ennemis peuvent piller selon leur nature et leur comportement.
+5. La réanimation nécessite un contexte compatible avec l'univers.
+6. Un héros réanimé hostile reste définitivement mort comme héros recrutable.
+7. Aucune duplication d'équipement par récupération.
+8. Les objets légendaires uniques conservent leur caractère indestructible déjà validé.
+9. Les simples allers-retours ne modifient pas artificiellement le devenir d'un corps.
+10. La disparition d'une dépouille n'implique pas nécessairement la destruction de tous ses équipements.
+
+Délais, probabilités et utilisation des équipements pillés par les Némésis restent à arbitrer. Exemples de lieux indicatifs uniquement. Préserver la mort définitive et les invariants de sauvegarde V8.3. Validation documentaire uniquement, aucun développement ni test en jeu.
+
+
+---
+
+### Réconciliation documentaire ARCH-10
+
+- ARCH-02/ARCH-03, V7.38/V7.43 : renouvellement et transformations des cartes compatibles avec le devenir persistant des dépouilles ; aucune suppression arbitraire ni nouveau tirage par simple aller-retour.
+- ARCH-04 : distinguer héros vivant abandonné, décès définitif confirmé et dépouille ; les règles de sauvetage du vivant ne constituent pas une résurrection.
+- ARCH-06 : le pillage et la possession d'un équipement ne confèrent pas le statut Némésis ; attribution des morts indirectes encore ouverte.
+- ARCH-07/ARCH-08 : la réanimation hostile ne rend pas le héros mort recrutable, même en NG+ ; ne pas contourner la mort définitive par adaptation de recrue.
+- ARCH-09/V7.37 : récupération et utilisation des équipements selon leur détenteur réel, leur accessibilité et leur compatibilité ; les règles ARCH-09 complètent les questions historiques de récupération. Aucun transfert automatique, aucune duplication ; indestructibilité des légendaires distincte de leur état ou accessibilité.
+- V8.1/V8.3 : préserver mort définitive, identité, conséquences et possession ; enregistrer les transitions de dépouille et d'équipement conformément aux invariants transactionnels, sans réapparition artificielle ni recalcul d'un résultat confirmé.
+- Délais, probabilités, conditions précises de réanimation et paramètres de pillage restent ouverts ; aucun nouveau barème ni exemple de bestiaire validé. Les contrats CT-0269 à CT-0278 restent à auditer et tester. Réconciliation documentaire uniquement ; aucun changement moteur, test runtime ni fusion.
