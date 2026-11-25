@@ -68,8 +68,7 @@ with tempfile.TemporaryDirectory() as directory:
     assert result.returncode == 0 and result.stdout.strip() == b"ACQUIRED", result
     print("NATIVE_LOCK_FILE_PROTECTIONS_PASS")
 
-# Diagnostic only: measure namespace replacement while the original owner lives.
-# A vulnerable result is explicitly reported, never treated as a protection pass.
+# Regression gate: namespace replacement must not allow a second owner.
 for scenario in ("unlink", "rename_parent"):
     with tempfile.TemporaryDirectory() as directory:
         root = Path(directory)
@@ -101,12 +100,15 @@ for scenario in ("unlink", "rename_parent"):
                 assert probe.returncode in (0, 23), probe
                 if probe.returncode == 0:
                     assert probe.stdout.strip() == b"ACQUIRED", probe
-                    print(f"NATIVE_NAMESPACE_{scenario.upper()}_DOUBLE_ACQUIRE", flush=True)
+                    raise AssertionError(f"NATIVE_NAMESPACE_{scenario.upper()}_DOUBLE_ACQUIRE")
                 else:
                     print(f"NATIVE_NAMESPACE_{scenario.upper()}_SECOND_DENIED", flush=True)
         finally:
             if owner.poll() is None:
                 owner.kill()
             owner.communicate(timeout=15)
+        probe = subprocess.run([exe, str(lock), "probe"], capture_output=True, timeout=15)
+        assert probe.returncode == 0 and probe.stdout.strip() == b"ACQUIRED", probe
+        print(f"NATIVE_NAMESPACE_{scenario.upper()}_RECOVERY_PASS", flush=True)
 
 print("NATIVE_SAVE_LOCK_PASS")
