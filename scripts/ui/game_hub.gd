@@ -1,6 +1,7 @@
 extends Control
 
 const BESTIARY_SCENE := "res://scenes/bestiary/bestiary_screen.tscn"
+const NODE_MAP_LOOP_SCENE := "res://scenes/prototype/litd1_node_map_loop.tscn"
 const GUILD_NPCS_SCENE := "res://scenes/hub/guild_new_npcs_screen.tscn"
 const BACKGROUND := Color("#111116")
 const PANEL := Color("#1c1b1f")
@@ -55,6 +56,12 @@ func _build_interface() -> void:
 	start_button.custom_minimum_size.y = 54
 	content.add_child(start_button)
 
+	var node_map_button := Button.new()
+	node_map_button.text = "Tester le parcours à nœuds (prototype)"
+	node_map_button.custom_minimum_size.y = 50
+	node_map_button.pressed.connect(_open_node_map_loop)
+	content.add_child(node_map_button)
+
 	var bestiary_button := Button.new()
 	bestiary_button.text = _bestiary_button_text()
 	bestiary_button.custom_minimum_size.y = 54
@@ -88,6 +95,9 @@ func _bestiary_button_text() -> String:
 
 func _open_bestiary() -> void:
 	get_tree().change_scene_to_file(BESTIARY_SCENE)
+
+func _open_node_map_loop() -> void:
+	get_tree().change_scene_to_file(NODE_MAP_LOOP_SCENE)
 
 func _panel_style() -> StyleBoxFlat:
 	var style := StyleBoxFlat.new()
