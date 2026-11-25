@@ -66,13 +66,13 @@
     "catalog_scope": "shared_species_definitions_only",
     "archive_researcher": "wei_shan",
     "anatomy_researcher": "guild_physician",
-    "rule": "Une seule fiche par créature dans le bestiaire de chaque protagoniste. Wei Shan apporte le contexte documentaire ; les missions de Mei Ling peuvent ajouter des connaissances à ce bestiaire. La maîtrise des compagnons est suivie individuellement ; aucun partage automatique entre protagonistes.",
+    "rule": "Une seule fiche par créature dans le catalogue canonique. Les connaissances collectives validées sont transmises par les archives de la Guilde au successeur; sa maîtrise personnelle est reconstruite. La maîtrise des compagnons est suivie individuellement. Les missions de Mei Ling peuvent contribuer à l'étude des faiblesses en principe; les règles de déblocage et le raccordement runtime restent à spécifier.",
     "unlocks_status": "not_implemented",
     "knowledge_scope": {
-      "per_protagonist": true,
+      "collective_archive_knowledge": "persists_and_is_transmitted_to_successor",
+      "successor_personal_mastery": "rebuilt",
       "companion_mastery": "tracked_individually",
-      "persists_between_attempts": true,
-      "automatic_sharing_between_protagonists": false
+      "physician_research": "validated_in_principle_runtime_unspecified"
     }
   }
 }
