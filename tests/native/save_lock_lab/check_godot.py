@@ -57,6 +57,39 @@ def main():
                        env=env, check=True, timeout=180)
         print("GODOT_DELAYED_IMPORT_PASS", flush=True)
         print("GODOT_EXTENSION_IMPORT_PASS", flush=True)
+        # A delayed import is an editor shutdown workaround, not runtime lazy loading.
+        # Verify a fresh cache and fail-closed behavior without the native class.
+        fresh = root / "fresh_delayed"
+        shutil.copytree(project, fresh, ignore=shutil.ignore_patterns(".godot"))
+        fresh_base = [exe, "--headless", "--path", str(fresh)]
+        subprocess.run(fresh_base + ["--import", "--quit", "--frame-delay", "1000"],
+                       env=env, check=True, timeout=180)
+        fresh_lock = root / "fresh" / "campaign.lock"
+        fresh_lock.parent.mkdir()
+        probe_args = ["--script", "res://probe.gd", "--", str(fresh_lock), "probe"]
+        result = subprocess.run(fresh_base + probe_args, env=env,
+                                capture_output=True, text=True, timeout=30)
+        assert result.returncode == 0 and "GODOT_LOCK_ACQUIRED" in result.stdout, result
+        print("GODOT_FRESH_DELAYED_RUNTIME_PASS", flush=True)
+        absent_lock = root / "absent" / "campaign.lock"
+        absent_lock.parent.mkdir()
+        absent_args = ["--script", "res://probe.gd", "--", str(absent_lock), "probe"]
+        result = subprocess.run(fresh_base + absent_args,
+                                env=dict(env, LITD_LOCK_INIT_ONLY="1"),
+                                capture_output=True, text=True, timeout=30)
+        assert result.returncode == 2, result
+        assert "GODOT_LOCK_ACQUIRED" not in result.stdout and not absent_lock.exists(), result
+        print("GODOT_UNREGISTERED_CLASS_FAIL_CLOSED_PASS", flush=True)
+        missing = root / "missing_extension"
+        missing.mkdir()
+        for filename in ("project.godot", "probe.gd"):
+            shutil.copyfile(project / filename, missing / filename)
+        missing_base = [exe, "--headless", "--path", str(missing)]
+        result = subprocess.run(missing_base + absent_args, env=env,
+                                capture_output=True, text=True, timeout=30)
+        assert result.returncode == 2, result
+        assert "GODOT_LOCK_ACQUIRED" not in result.stdout and not absent_lock.exists(), result
+        print("GODOT_MISSING_EXTENSION_FAIL_CLOSED_PASS", flush=True)
         def command(mode):
             return base + ["--script", "res://probe.gd", "--", str(root / "campaign.lock"), mode]
         def reject_path(path):
