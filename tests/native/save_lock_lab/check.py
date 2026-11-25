@@ -111,4 +111,53 @@ for scenario in ("unlink", "rename_parent"):
         assert probe.returncode == 0 and probe.stdout.strip() == b"ACQUIRED", probe
         print(f"NATIVE_NAMESPACE_{scenario.upper()}_RECOVERY_PASS", flush=True)
 
+# Residual-risk diagnostics: no production data or transaction engine involved.
+if os.name != "nt":
+    with tempfile.TemporaryDirectory() as directory:
+        root = Path(directory)
+        parent = root / "active"
+        parent.mkdir()
+        lock = parent / "campaign.lock"
+        alias = root / "alias"
+        alias.symlink_to(parent, target_is_directory=True)
+        owner = subprocess.Popen([exe, str(lock), "hold"], stdin=subprocess.PIPE,
+                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        try:
+            with ThreadPoolExecutor(max_workers=1) as pool:
+                future = pool.submit(owner.stdout.readline)
+                try:
+                    assert future.result(timeout=15).strip() == "ACQUIRED"
+                except BaseException:
+                    owner.kill()
+                    raise
+            for phase in ("same_inode", "recreated_inode"):
+                if phase == "recreated_inode":
+                    lock.unlink()
+                probe = subprocess.run([exe, str(alias / "campaign.lock"), "probe"],
+                                       capture_output=True, timeout=15)
+                assert owner.poll() is None
+                assert probe.returncode in (0, 23), probe
+                marker = "DOUBLE_ACQUIRE" if probe.returncode == 0 else "SECOND_DENIED"
+                print(f"NATIVE_ALIAS_{phase.upper()}_{marker}", flush=True)
+            # Model a path-based publication after parent replacement.
+            # This is a filesystem experiment, not a SaveManager runtime test.
+            original = parent / "slot.json"
+            original.write_bytes(b"original")
+            staged = parent / "slot.tmp"
+            staged.write_bytes(b"staged")
+            displaced = root / "displaced"
+            parent.rename(displaced)
+            parent.mkdir()
+            (parent / "slot.json").write_bytes(b"replacement")
+            (parent / "slot.tmp").write_bytes(b"foreign")
+            os.replace(parent / "slot.tmp", parent / "slot.json")
+            assert (displaced / "slot.json").read_bytes() == b"original"
+            assert (displaced / "slot.tmp").read_bytes() == b"staged"
+            assert (parent / "slot.json").read_bytes() == b"foreign"
+            print("NATIVE_PATH_PUBLICATION_REDIRECT_REPRODUCED", flush=True)
+        finally:
+            if owner.poll() is None:
+                owner.kill()
+            owner.communicate(timeout=15)
+
 print("NATIVE_SAVE_LOCK_PASS")
