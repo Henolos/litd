@@ -2216,6 +2216,14 @@ Ne pas présenter l’une de ces interprétations comme validée avant clarifica
 **Date de validation retrouvée :** 17 novembre 2026 à 15:11 UTC (16:11 Paris).  
 **Principe approuvé :** orientation C visant à éviter les fuites répétitives tout en conservant un comportement crédible du Némésis. Le verbatim complet du message d’approbation n’est pas récupéré; aucune modalité d’implémentation n’est déduite.
 
+### Équipement récupéré par les ennemis — décision distincte (16 novembre 2026)
+
+- Les ennemis peuvent récupérer et utiliser des armes et armures abandonnées ainsi que leurs effets, sous réserve de compatibilité morphologique.
+- L'équipement récupéré peut modifier leur rôle, leurs caractéristiques, capacités et comportement; un ennemi peut progresser d'ordinaire à élite puis mini-boss tout en conservant l'équipement. Cette évolution ne crée pas à elle seule un Némésis : le statut Némésis nécessite qu'il tue un héros.
+- Un ennemi ayant tué un héros peut récupérer un objet choisi aléatoirement parmi les objets de ce héros; les règles d'application des bonus passifs sont distinctes de l'attribution des objets. Les bonus passifs identiques ne s'additionnent pas : retenir la valeur la plus élevée.
+- L'équipement récupéré peut être visible si la morphologie le permet. Élites, mini-boss et Némésis ont la même préférence pour les objets de rang élevé. L'ennemi conserve les objets récupérés jusqu'à sa propre mort.
+- Les choix de calcul détaillés et leur implémentation/tests restent à vérifier; ne pas présenter ces règles de conception comme déjà opérationnelles.
+
 ### Système Némésis — décisions directes retrouvées
 
 - **Déclenchement :** validation du 17 novembre 2026 à 14:37 UTC : seuls les exploits majeurs déclenchent le statut Némésis; tuer définitivement un héros suffit à le déclencher.
@@ -2225,7 +2233,7 @@ Ne pas présenter l’une de ces interprétations comme validée avant clarifica
 - **Fuite :** validation du 17 novembre à 14:57 UTC : règle hybride comprenant des fuites annoncées et interceptables, ainsi que des fuites immédiates pour certaines capacités; interruption par contrôle ou dégâts selon des modalités hybrides, paramètres ouverts.
 - **Correction ultérieure de catégorie :** le 18 novembre 2026 à 14:48 UTC, l'utilisateur a précisé que les ennemis normaux, les élites et les mini-boss peuvent fuir; les boss établis ne fuient pas; un mini-boss évoluant en boss peut exceptionnellement fuir pendant sa transformation. Cela remplace la règle antérieure selon laquelle seuls les Némésis pouvaient fuir.
 - **Rivalité :** l'option A « Rivalité par exploit » reste validée; l'orientation C vise à éviter les fuites répétitives tout en gardant un Némésis crédible. Articuler ces principes sans annuler les catégories de fuite autorisées ci-dessus.
-- **À équilibrer / préciser :** valeurs des bonus, seuils et rythme des promotions, définition des exploits majeurs, fréquence des fuites, conditions précises d'interception/interruption et persistance. Ne pas déduire de règle de butin ou d'équipement du seul système Némésis sans vérifier son périmètre dans les décisions séparées.
+- **À équilibrer / préciser :** valeurs des bonus, seuils et rythme des promotions, définition des exploits majeurs, fréquence des fuites, conditions précises d'interception/interruption et persistance. L'équipement récupéré constitue une décision antérieure séparée, datée du 16 novembre et reprise dans la section suivante; ne pas confondre ses règles générales avec le déclenchement du statut Némésis.
 
 ## Statut des autres PR
 
