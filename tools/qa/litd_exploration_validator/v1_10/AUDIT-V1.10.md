@@ -1,0 +1,2 @@
+# V1.10 — audit local
+84 méthodes de test réussies (5,757 s), dont 10 nouvelles. Validation commune de la projection et des transactions candidates, schéma JSON 2020-12, rejet des quantités non entières ou non positives, doublons avant conversion et champs inconnus. Aucun stockage durable ni raccordement Godot. Les champs inconnus sont rejetés uniquement dans le contrat expérimental de projection, pas dans les sauvegardes existantes. Originaux V0 locaux reconstruits, non certifiés. Publication GitHub non réalisée.
