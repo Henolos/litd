@@ -2303,3 +2303,112 @@ Toutes les autres règles compatibles sont conservées. Les références V7.40 e
 ## Traçabilité de la réconciliation du 25 novembre 2026
 
 ARCH-01 repris intégralement du commit f558dbf08872128f1c22fb8764a9d954ad877c37. ARCH-02 provient de l'accord explicite du 25 novembre. Ces deux décisions constituent des exceptions désormais explicitement validées au statut de proposition des précisions de #641 mentionné dans l'addendum du 24 novembre. Les « go » autorisent la poursuite, jamais la validation métier. Les propositions V7.82–V7.87 fondées uniquement sur ces messages restent en quarantaine ; prototypes combat V0.1–V0.4 expérimentaux, V0.5 suspendue. Rectificatifs historiques : 78a5d4f et 401fd6f. Réconcilier individuellement les autres décisions avec les accords explicites, préserver les archives, ne pas restaurer le master concurrent de #641. Aucun changement moteur. Avancements chantier/global : à évaluer.
+
+
+---
+
+## ARCH-12 — Attribution des morts indirectes et acquisition du statut Némésis
+
+**Validation explicite : 25 novembre 2026. Option C : responsabilité causale directe et indirecte. Statut : validé en conception, non testé en jeu.**
+
+### Responsabilité et attribution
+
+**Règle 01 — Unicité du responsable**
+
+Une mort définitive ne peut attribuer le statut Némésis qu'à un seul ennemi. Plusieurs ennemis peuvent néanmoins être enregistrés comme contributeurs.
+
+**Règle 02 — Primauté de la causalité**
+
+La responsabilité de la mort prévaut sur la quantité totale de dégâts infligés.
+
+**Règle 03 — Traçabilité des afflictions**
+
+Chaque affliction conserve l'identité de son responsable, son origine et ses éventuelles transmissions.
+
+**Règle 04 — Afflictions cumulées**
+
+Lorsque plusieurs ennemis appliquent une même affliction, leurs contributions respectives restent identifiables.
+
+**Règle 05 — Transmission des afflictions**
+
+Une affliction propagée conserve sa chaîne de causalité. Une intervention indépendante peut toutefois modifier l'attribution finale.
+
+### Pièges, invocations et environnement
+
+**Règle 06 — Pièges installés**
+
+Un ennemi peut devenir Némésis grâce à un piège qu'il a installé, même en son absence.
+
+**Règle 07 — Pièges déclenchés**
+
+Un ennemi déclenchant volontairement un piège pour tuer un héros peut être reconnu comme responsable principal, même s'il n'en est pas l'installateur.
+
+**Règle 08 — Invocations contrôlées**
+
+La mort provoquée par une invocation contrôlée est attribuée à son maître.
+
+**Règle 09 — Invocations autonomes**
+
+Une invocation devenue indépendante peut être reconnue comme responsable si elle possède les caractéristiques nécessaires à l'acquisition du statut Némésis.
+
+**Règle 10 — Utilisation de l'environnement**
+
+Un ennemi utilisant volontairement le décor, le feu, le vide ou un autre danger environnemental pour tuer un héros peut acquérir le statut Némésis.
+
+### Réactions en chaîne et temporalité
+
+**Règle 11 — Déplacements forcés**
+
+Une poussée, une projection ou une traction entraînant une mort définitive engage la responsabilité de son auteur.
+
+**Règle 12 — Réactions en chaîne**
+
+Le système conserve les relations causales entre les événements successifs jusqu'à la résolution de la mort.
+
+**Règle 13 — Intervention déterminante**
+
+Lorsqu'un autre ennemi intervient de manière indépendante et déterminante dans une chaîne causale, il peut devenir le responsable principal.
+
+**Règle 14 — Mort différée**
+
+La fin d'un affrontement ne supprime pas automatiquement la responsabilité d'un ennemi.
+
+**Règle 15 — Rupture de causalité**
+
+Une guérison complète de l'affliction concernée, sa neutralisation ou une nouvelle cause mortelle indépendante peut interrompre la responsabilité initiale.
+
+### Persistance et cohérence narrative
+
+**Règle 16 — Absence de responsable identifiable**
+
+Aucun Némésis artificiel ne doit être créé lorsque la responsabilité ne peut être établie.
+
+**Règle 17 — Responsable déjà mort**
+
+Un ennemi décédé peut être reconnu à titre posthume comme Némésis si une conséquence persistante de ses actions provoque ultérieurement la mort définitive d'un héros.
+
+**Règle 18 — Némésis préexistant**
+
+Un ennemi déjà Némésis conserve son statut. Toute nouvelle mort définitive dont il est responsable enrichit son historique, sans créer de doublon.
+
+**Règle 19 — Conservation dans les Archives**
+
+Les Archives conservent le héros décédé, la cause de sa mort, son responsable et les circonstances pertinentes.
+
+La décision précédemment validée reste applicable : le Némésis conserve définitivement son nom rouge et sa tête de mort rouge dans les Archives, même après sa propre mort.
+
+**Règle 20 — Résolution déterministe**
+
+À situation identique et données identiques, le système doit produire la même attribution. Aucun choix aléatoire ne doit départager les responsabilités.
+
+### Réconciliation documentaire et limites
+
+- Le déclenchement historique par mort définitive est conservé ; ARCH-12 précise l'attribution indirecte, sans modifier les autres exploits majeurs, promotions, fuites ou paramètres de bonus.
+- Les invariants V8.3 de causalité persistante, absence de double attribution, journal durable et reprise sans resimulation s'appliquent à la résolution de la mort et à son inscription aux Archives.
+- La reconnaissance posthume aux Archives doit être distinguée des crédits personnels posthumes interdits par V8.3. Le devenir des bonus posthumes reste à arbitrer si nécessaire ; aucune résurrection ni récompense nouvelle n'est autorisée par cet addendum.
+- Afflictions, pièges, invocations, combat, simulation du monde, sauvegardes, Archives et Némésis doivent partager la provenance causale. Aucun nouveau système parallèle n'est validé.
+- Capture et recrutement : confronter ARCH-08 et ARCH-09 avant de fixer les effets d'un changement d'allégeance ou de propriétaire ; ne pas inventer leurs textes historiques.
+- ARCH-10 et ARCH-11 : confronter les textes intégraux avant de déclarer la réconciliation exhaustive. Les textes ARCH-01 à ARCH-11 n'ont pas été retrouvés intégralement dans le document inspecté.
+- Cas de contrôle à préparer : poison différé, afflictions concurrentes, piège à installateur distinct du déclencheur, invocation contrôlée/autonome, changement de maître, chute forcée, chaîne multi-ennemis, guérison, mort environnementale autonome, responsable décédé, Némésis existant, changement d'allégeance, sauvegarde/reprise et déterminisme. Les égalités causales non résolues restent à préciser, sans choix arbitraire.
+- Statut : intégration documentaire proposée ; aucune implémentation ni validation runtime attestée.
+
