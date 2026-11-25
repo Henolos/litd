@@ -2605,3 +2605,8 @@ Préserver V7.12 et la fuite volontaire réservée aux Némésis. Coûts en poin
 - Capture/recrutement : la garantie historique V7.60 ne tranche pas à elle seule l'éligibilité des Némésis ou des boss émergents. Ne pas déduire de nouvelle restriction ou autorisation de recrutement d'ARCH-06.
 
 Ces articulations constituent une réconciliation documentaire, non de nouveaux arbitrages. Les exemples d'exploits non létaux ne sont pas validés individuellement. Attribution des morts indirectes, bonus initiaux des rangs non spécifiés, valeurs, seuils, plafonds, conditions exactes des promotions et recrutement des Némésis/boss émergents restent ouverts. Aucun code ni test runtime modifié ; audit des contrats et implémentations restant à effectuer.
+
+
+## ARCH-07 — Restrictions de recrutement en NG+ (25 novembre 2026)
+
+**VALIDÉ EN CONCEPTION sur le principe.** Accords directs : « Non némésis et boss émergents recrutables en NG+ comme les boss » ; « Les mini boss ne sont pas recrutables avant le ng+ ». Les mini-boss, les Némésis quel que soit leur rang, les boss émergents et les cinq boss principaux ne sont recrutables qu'en NG+. Cette restriction prévaut sur toute formulation contraire. Les ennemis ordinaires et élites sans statut Némésis restent soumis aux conditions existantes. V7.60 ne garantit le recrutement que pour les captifs éligibles extraits ; ne pas contourner la restriction NG+. La possibilité de capture avant NG+ reste distincte et non arbitrée. Aucun changement moteur ni test runtime.
