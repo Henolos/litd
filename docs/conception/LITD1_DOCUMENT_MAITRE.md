@@ -2372,3 +2372,20 @@ L'utilisateur précise que le choix du brouillard de guerre intégral (V7.18) es
 **VALIDÉ EN CONCEPTION : option C, explicitement choisie par l'utilisateur.** Bibliothèques régionales de lieux, rencontres et événements conçus manuellement, assemblés procéduralement à chaque nouvelle expédition sous contraintes narratives et régionales. Respecter l'identité artistique et les biomes, l'accessibilité des objectifs obligatoires lorsque leurs prérequis sont remplis, les itinéraires alternatifs et accès secrets, la cohérence des rencontres, la persistance des conséquences et événements uniques, l'absence de blocage involontaire et la stabilité de la configuration pendant l'expédition, sauvegarde et reprise comprises. Conserver les décisions V7.15–V7.23 et la génération hybride des donjons déjà documentée. Dimensions, densité, répartition des nœuds, algorithmes et valeurs restent à spécifier.
 
 **Traçabilité :** validation explicite de l'option C concernant la génération procédurale des cartes régionales. Mise à jour documentaire uniquement ; aucun développement ni test en jeu. **Statut : 🟡 À CONSOLIDER. Avancement du chantier détaillé et du projet global : À évaluer.**
+
+
+---
+
+## Réconciliation des guet-apens — 25 novembre 2026
+
+Accord explicite retrouvé dans les échanges du 22 novembre : option C concernant l'intégration des guet-apens, avec dix règles complémentaires. Transcription historique du 23 novembre reprise ci-dessous depuis f558dbf08872128f1c22fb8764a9d954ad877c37 ; identité mot à mot avec la proposition conversationnelle originale non vérifiée.
+
+## V7.45 — Intégration hybride contextuelle des guet-apens (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et dix règles complémentaires explicitement approuvées.** 1. Ratio cible 35 % détectables / 65 % indétectables sur l'ensemble des guet-apens procéduraux, non par carte. 2. Guet-apens scénarisés soumis aux contraintes narratives et comptabilisés séparément. 3. Caractère détectable fixé à la génération. 4. Détection contextuelle par aptitudes, observation et bestiaire. 5. Aucun spécialiste ne garantit la détection systématique. 6. Détection seule insuffisante pour déjouer. 7. Guet-apens déjoué si évité, neutralisé ou avantage de surprise effectivement supprimé. 8. Attaque préventive seulement si ennemis localisés et accessibles. 9. Si combat après guet-apens déjoué, léger bonus collectif d'initiative au premier round uniquement, sans PA supplémentaire. 10. Aucun nouveau tirage artificiel par aller-retour ou rechargement en contexte inchangé. Pièges mécaniques autonomes hors ratio en attente d'arbitrage spécifique. Aucune poursuite ennemie. Paramètres statistiques et tests restent à définir.
+
+**Traçabilité :** validation explicite de l'option C concernant l'intégration des guet-apens avec les dix règles complémentaires. Consolidation : 3/4 arbitrages validés. Mise à jour documentaire uniquement ; aucun test runtime. Statut : 🟡 À CONSOLIDER. Avancement global : À évaluer.
+
+### Articulation et limites
+
+V7.45 précise V4.6 (dénominateur procédural, scénarisés séparés), V4.3–V4.4 (définition de déjoué, bonus uniquement si combat). La règle historique V4.3–V4.4 de consommation du PA normal du premier tour lors d'une attaque préventive reste à rapprocher des décisions tactiques originales ; aucune action gratuite ajoutée. V3.6 exclut la poursuite continue. ARCH-01/02/03 impliquent que les changements de mission ne relancent pas le tirage et que les guet-apens persistants respectent l'état du monde et les transformations contextuelles validées. V8.3 impose la conservation des résultats confirmés sans nouveau tirage. Cette articulation est déduite des règles existantes, pas un nouvel arbitrage. Les pièges mécaniques autonomes, le montant du bonus, les effets précis de surprise, les familles de guet-apens, les modalités de retraite et le comportement des coffres-créatures restent à réconcilier ou arbitrer ; ne pas promouvoir les propositions V3.7/V3.8 par transitivité. Aucun code ni test runtime modifié.
