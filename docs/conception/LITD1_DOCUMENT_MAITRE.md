@@ -2920,10 +2920,10 @@ La décision précédemment validée reste applicable : le Némésis conserve d�
 
 - Le déclenchement historique par mort définitive est conservé ; ARCH-12 précise l'attribution indirecte, sans modifier les autres exploits majeurs, promotions, fuites ou paramètres de bonus.
 - Les invariants V8.3 de causalité persistante, absence de double attribution, journal durable et reprise sans resimulation s'appliquent à la résolution de la mort et à son inscription aux Archives.
-- La reconnaissance posthume aux Archives doit être distinguée des crédits personnels posthumes interdits par V8.3. Le devenir des bonus posthumes reste à arbitrer si nécessaire ; aucune résurrection ni récompense nouvelle n'est autorisée par cet addendum.
+- La reconnaissance posthume aux Archives doit être distinguée des crédits personnels posthumes interdits par V8.3. ARCH-12.2 exclut les bonus et promotions posthumes ; aucune résurrection ni récompense nouvelle n'est autorisée par cet addendum.
 - Afflictions, pièges, invocations, combat, simulation du monde, sauvegardes, Archives et Némésis doivent partager la provenance causale. Aucun nouveau système parallèle n'est validé.
 - Capture et recrutement : confronter ARCH-08 et ARCH-09 avant de fixer les effets d'un changement d'allégeance ou de propriétaire ; ne pas inventer leurs textes historiques.
-- ARCH-10 et ARCH-11 : confronter les textes intégraux avant de déclarer la réconciliation exhaustive. Les textes ARCH-01 à ARCH-11 n'ont pas été retrouvés intégralement dans le document inspecté.
+- ARCH-10 et ARCH-11 : confronter les textes intégraux avant de déclarer la réconciliation exhaustive. Les sections ARCH-01 à ARCH-11 sont présentes dans main ; leur conformité exhaustive aux validations originales reste à certifier.
 - Cas de contrôle à préparer : poison différé, afflictions concurrentes, piège à installateur distinct du déclencheur, invocation contrôlée/autonome, changement de maître, chute forcée, chaîne multi-ennemis, guérison, mort environnementale autonome, responsable décédé, Némésis existant, changement d'allégeance, sauvegarde/reprise et déterminisme. Les égalités causales non résolues restent à préciser, sans choix arbitraire.
 - Statut : intégration documentaire proposée ; aucune implémentation ni validation runtime attestée.
 
@@ -2967,7 +2967,7 @@ La décision précédemment validée reste applicable : le Némésis conserve d�
 - ARCH-07/08 : restrictions NG+ inchangées, identité unique et progression des héros après recrutement ; responsabilité historique distincte de la progression hostile. Le titre historique d'une recrue auparavant non Némésis reste à préciser.
 - ARCH-09/10/11 : possession réelle des objets, devenir des dépouilles, mobilité et simulation événementielle ne réinitialisent pas la provenance causale ; aucune duplication ni réapparition artificielle.
 - V8.3 : enregistrer attribution, historique et éventuels gains admissibles exactement une fois ; aucune progression posthume.
-- Ces articulations sont des déductions documentaires, non des arbitrages supplémentaires. Sources ARCH-03 à ARCH-11 : PR #647 encore non fusionnée ; rapprochement des branches et nouveaux contrôles nécessaires. Le verbatim des vingt règles initiales ARCH-12 et la provenance du marquage rouge des Archives restent à vérifier. Aucun test runtime ni changement moteur revendiqué.
+- Ces articulations sont des déductions documentaires, non des arbitrages supplémentaires. Sources ARCH-03 à ARCH-11 : PR #647 fusionnée ; consolidation ARCH-12 fusionnée via #649. Le verbatim des vingt règles initiales ARCH-12 et la provenance du marquage rouge des Archives restent à vérifier. Aucun test runtime ni changement moteur revendiqué.
 
 
 ### Consolidation après fusion de la PR #647
