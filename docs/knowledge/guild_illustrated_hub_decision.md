@@ -96,7 +96,7 @@ La **cinématique d'ouverture précède** la création du héros ou de l'héroï
 
 Les règles plus récentes du document maître V8.3 remplacent les formulations de ce fichier qui prévoyaient la reprise avec le même protagoniste et le partage du bestiaire uniquement par protagoniste.
 
-- **Game Over :** après l'anéantissement des quatre combattants de l'expédition, la tentative prend fin et un nouveau protagoniste succède au précédent. Le prologue ne se rejoue pas automatiquement à chaque tentative; les épreuves de la Guilde précèdent la reprise des missions.
+- **Game Over :** après l'anéantissement des quatre combattants de l'expédition, la tentative prend fin et un nouveau protagoniste succède au précédent. La fréquence de répétition du prologue n'est pas fixée par cette décision; les épreuves de la Guilde précèdent la reprise des missions.
 - **Persistance collective :** le monde, la trame narrative, les quêtes principales et les quêtes secondaires générales conservent leur état selon V8.1. Les connaissances collectives du bestiaire sont transmises par les archives de la Guilde.
 - **Successeur :** il hérite du niveau numérique et des points de compétence correspondants, mais possède une nouvelle classe/identité et reconstruit sa maîtrise et ses choix personnels. Les emplacements passifs personnels sont à regagner conformément aux règles V8.2; ils ne sont pas automatiquement hérités.
 - **Réserves et survivants :** les réservistes survivants conservent leur progression et restent disponibles selon les règles V8.1.
