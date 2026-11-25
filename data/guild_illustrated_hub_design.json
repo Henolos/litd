@@ -120,18 +120,27 @@
     "generation_rules": "pending_design"
   },
   "campaign_persistence": {
-    "game_over_rule": "full_party_defeat_ends_attempt",
-    "same_protagonist_resumes_at_guild_after_prologue": true,
-    "prologue_once_per_protagonist": true,
-    "protagonist_progression_persists": [
-      "level",
-      "skills",
-      "passive_points",
-      "bestiary"
+    "game_over_rule": "annihilation_of_all_four_expedition_fighters_ends_attempt",
+    "next_attempt": "new_successor_after_guild_trials",
+    "prologue": "not_replayed_for_each_attempt",
+    "world_and_quest_state": [
+      "world",
+      "main_narrative",
+      "main_quests",
+      "general_side_quests"
     ],
-    "dead_companions_permanently_unavailable": true,
-    "surviving_companions_keep_progression": true,
-    "rebuild_party_from_guild_recruits": true,
-    "status": "validated_design_not_runtime"
+    "successor_inherits": [
+      "numeric_level",
+      "corresponding_skill_points"
+    ],
+    "successor_rebuilds": [
+      "personal_mastery",
+      "personal_choices",
+      "personal_passive_slots"
+    ],
+    "collective_bestiary_knowledge": "transmitted_through_guild_archives",
+    "reserve_survivors": "retain_progression_and_remain_available",
+    "status": "validated_design_not_runtime",
+    "source": "LITD1 V8.1 decisions 4, 5, 7; V8.2 decisions 11, 19"
   }
 }
