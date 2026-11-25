@@ -2818,3 +2818,158 @@ Clarification documentaire des décisions déjà validées, sans nouvel arbitrag
 - ARCH-07 : l'extension explicite de la restriction à la capture prévaut sur la formulation antérieure laissant la capture avant NG+ ouverte. Capture et recrutement des mini-boss, Némésis et boss sont réservés au NG+, sous réserve des conditions individuelles d'éligibilité. Les autres dispositions compatibles restent inchangées.
 
 Les textes historiques sont conservés intégralement. Aucun changement moteur ni validation runtime.
+
+
+---
+
+## ARCH-12 — Attribution des morts indirectes et acquisition du statut Némésis
+
+**Validation explicite : 25 novembre 2026. Option C : responsabilité causale directe et indirecte. Statut : validé en conception, non testé en jeu.**
+
+### Responsabilité et attribution
+
+**Règle 01 — Unicité du responsable**
+
+Une mort définitive ne peut attribuer le statut Némésis qu'à un seul ennemi. Plusieurs ennemis peuvent néanmoins être enregistrés comme contributeurs.
+
+**Règle 02 — Primauté de la causalité**
+
+La responsabilité de la mort prévaut sur la quantité totale de dégâts infligés.
+
+**Règle 03 — Traçabilité des afflictions**
+
+Chaque affliction conserve l'identité de son responsable, son origine et ses éventuelles transmissions.
+
+**Règle 04 — Afflictions cumulées**
+
+Lorsque plusieurs ennemis appliquent une même affliction, leurs contributions respectives restent identifiables.
+
+**Règle 05 — Transmission des afflictions**
+
+Une affliction propagée conserve sa chaîne de causalité. Une intervention indépendante peut toutefois modifier l'attribution finale.
+
+### Pièges, invocations et environnement
+
+**Règle 06 — Pièges installés**
+
+Un ennemi peut devenir Némésis grâce à un piège qu'il a installé, même en son absence.
+
+**Règle 07 — Pièges déclenchés**
+
+Un ennemi déclenchant volontairement un piège pour tuer un héros peut être reconnu comme responsable principal, même s'il n'en est pas l'installateur.
+
+**Règle 08 — Invocations contrôlées**
+
+La mort provoquée par une invocation contrôlée est attribuée à son maître.
+
+**Règle 09 — Invocations autonomes**
+
+Une invocation devenue indépendante peut être reconnue comme responsable si elle possède les caractéristiques nécessaires à l'acquisition du statut Némésis.
+
+**Règle 10 — Utilisation de l'environnement**
+
+Un ennemi utilisant volontairement le décor, le feu, le vide ou un autre danger environnemental pour tuer un héros peut acquérir le statut Némésis.
+
+### Réactions en chaîne et temporalité
+
+**Règle 11 — Déplacements forcés**
+
+Une poussée, une projection ou une traction entraînant une mort définitive engage la responsabilité de son auteur.
+
+**Règle 12 — Réactions en chaîne**
+
+Le système conserve les relations causales entre les événements successifs jusqu'à la résolution de la mort.
+
+**Règle 13 — Intervention déterminante**
+
+Lorsqu'un autre ennemi intervient de manière indépendante et déterminante dans une chaîne causale, il peut devenir le responsable principal.
+
+**Règle 14 — Mort différée**
+
+La fin d'un affrontement ne supprime pas automatiquement la responsabilité d'un ennemi.
+
+**Règle 15 — Rupture de causalité**
+
+Une guérison complète de l'affliction concernée, sa neutralisation ou une nouvelle cause mortelle indépendante peut interrompre la responsabilité initiale.
+
+### Persistance et cohérence narrative
+
+**Règle 16 — Absence de responsable identifiable**
+
+Aucun Némésis artificiel ne doit être créé lorsque la responsabilité ne peut être établie.
+
+**Règle 17 — Responsable déjà mort**
+
+Un ennemi décédé peut être reconnu à titre posthume comme Némésis si une conséquence persistante de ses actions provoque ultérieurement la mort définitive d'un héros.
+
+**Règle 18 — Némésis préexistant**
+
+Un ennemi déjà Némésis conserve son statut. Toute nouvelle mort définitive dont il est responsable enrichit son historique, sans créer de doublon.
+
+**Règle 19 — Conservation dans les Archives**
+
+Les Archives conservent le héros décédé, la cause de sa mort, son responsable et les circonstances pertinentes.
+
+La décision précédemment validée reste applicable : le Némésis conserve définitivement son nom rouge et sa tête de mort rouge dans les Archives, même après sa propre mort.
+
+**Règle 20 — Résolution déterministe**
+
+À situation identique et données identiques, le système doit produire la même attribution. Aucun choix aléatoire ne doit départager les responsabilités.
+
+### Réconciliation documentaire et limites
+
+- Le déclenchement historique par mort définitive est conservé ; ARCH-12 précise l'attribution indirecte, sans modifier les autres exploits majeurs, promotions, fuites ou paramètres de bonus.
+- Les invariants V8.3 de causalité persistante, absence de double attribution, journal durable et reprise sans resimulation s'appliquent à la résolution de la mort et à son inscription aux Archives.
+- La reconnaissance posthume aux Archives doit être distinguée des crédits personnels posthumes interdits par V8.3. Le devenir des bonus posthumes reste à arbitrer si nécessaire ; aucune résurrection ni récompense nouvelle n'est autorisée par cet addendum.
+- Afflictions, pièges, invocations, combat, simulation du monde, sauvegardes, Archives et Némésis doivent partager la provenance causale. Aucun nouveau système parallèle n'est validé.
+- Capture et recrutement : confronter ARCH-08 et ARCH-09 avant de fixer les effets d'un changement d'allégeance ou de propriétaire ; ne pas inventer leurs textes historiques.
+- ARCH-10 et ARCH-11 : confronter les textes intégraux avant de déclarer la réconciliation exhaustive. Les textes ARCH-01 à ARCH-11 n'ont pas été retrouvés intégralement dans le document inspecté.
+- Cas de contrôle à préparer : poison différé, afflictions concurrentes, piège à installateur distinct du déclencheur, invocation contrôlée/autonome, changement de maître, chute forcée, chaîne multi-ennemis, guérison, mort environnementale autonome, responsable décédé, Némésis existant, changement d'allégeance, sauvegarde/reprise et déterminisme. Les égalités causales non résolues restent à préciser, sans choix arbitraire.
+- Statut : intégration documentaire proposée ; aucune implémentation ni validation runtime attestée.
+
+
+
+## ARCH-12.1 — Responsabilité après recrutement
+
+**VALIDÉ EN CONCEPTION — option C : responsabilité historique sans progression hostile.** Accord explicite du 25 novembre 2026 sur le texte de validation sélectionné et les vingt règles des deux sous-arbitrages.
+
+1. Le recrutement n'efface aucune responsabilité antérieure.
+2. Les effets différés conservent leur auteur d'origine.
+3. Le changement d'allégeance ne rompt pas automatiquement la chaîne causale.
+4. Une mort définitive résultant d'une ancienne action hostile reste attribuée à son responsable.
+5. Cette mort est enregistrée dans les Archives et dans l'historique de la recrue.
+6. Aucun nouveau bonus Némésis n'est accordé après le recrutement.
+7. Aucune promotion hostile ne peut être déclenchée après le recrutement.
+8. Les bonus acquis avant le recrutement restent soumis aux règles d'adaptation d'ARCH-08.
+9. La recrue conserve son identité unique.
+10. Aucun recrutement ne doit permettre de contourner les règles de responsabilité ou de générer artificiellement des bonus.
+
+## ARCH-12.2 — Reconnaissance posthume
+
+**VALIDÉ EN CONCEPTION — option C : reconnaissance exclusivement historique.**
+
+1. Un ennemi décédé peut acquérir le statut Némésis à titre posthume.
+2. La mort définitive du héros doit lui être causalement attribuable.
+3. Les Archives enregistrent cette reconnaissance et ses circonstances.
+4. Les statistiques de l'ennemi restent figées à leur état au moment de sa mort.
+5. Aucun bonus statistique posthume n'est accordé.
+6. Aucune promotion posthume n'est possible.
+7. Cette reconnaissance ne provoque aucune résurrection ni réapparition.
+8. Un Némésis déjà décédé peut voir la liste de ses victimes complétée.
+9. Aucune nouvelle récompense ne découle automatiquement de cette reconnaissance.
+10. L'enregistrement respecte les invariants de sauvegarde V8.3, sans duplication.
+
+### Réconciliation documentaire des sous-arbitrages
+
+- ARCH-01/02/03/04 : persistance des conséquences, état partagé, stabilité des cartes et distinction entre absence et mort confirmée.
+- ARCH-05 : aucune modification des restrictions de fuite volontaire ; seuls les Némésis non devenus boss établis sont éligibles sous conditions.
+- ARCH-06 : les gains et promotions hostiles restent applicables aux ennemis vivants éligibles ; les exceptions explicitement validées ARCH-12.1/12.2 prévalent après recrutement ou décès.
+- ARCH-07/08 : restrictions NG+ inchangées, identité unique et progression des héros après recrutement ; responsabilité historique distincte de la progression hostile. Le titre historique d'une recrue auparavant non Némésis reste à préciser.
+- ARCH-09/10/11 : possession réelle des objets, devenir des dépouilles, mobilité et simulation événementielle ne réinitialisent pas la provenance causale ; aucune duplication ni réapparition artificielle.
+- V8.3 : enregistrer attribution, historique et éventuels gains admissibles exactement une fois ; aucune progression posthume.
+- Ces articulations sont des déductions documentaires, non des arbitrages supplémentaires. Sources ARCH-03 à ARCH-11 : PR #647 encore non fusionnée ; rapprochement des branches et nouveaux contrôles nécessaires. Le verbatim des vingt règles initiales ARCH-12 et la provenance du marquage rouge des Archives restent à vérifier. Aucun test runtime ni changement moteur revendiqué.
+
+
+### Consolidation après fusion de la PR #647
+
+Les sections ARCH-01 à ARCH-11 et l'index de préséance sont conservés intégralement depuis main. La PR #647 est fusionnée (3e853717070ac35e958c3f3d69bc5e73e2a7f45e). Les réserves historiques et les paramètres ouverts restent applicables. ARCH-12.1 et ARCH-12.2 précisent les exceptions de progression d'ARCH-06 sans modifier ARCH-05. Aucun changement moteur.
