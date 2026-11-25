@@ -7,7 +7,7 @@ Branche : feature/guild-illustrated-hub-design-20261122 (PR #633).
 - Écran Godot dans scenes/hub/guild_new_npcs_screen.tscn, script scripts/ui/guild_new_npcs_screen.gd.
 - Bouton d'accès depuis le hub existant (scripts/ui/game_hub.gd).
 - Raccordement des identifiants de PNJ aux lieux tavern et infirmary dans data/guild_illustrated_hub_design.json.
-- Contrat de recherche dans data/guild_bestiary_research.json, sans modifier le catalogue canonique des espèces. Les connaissances sont propres au protagoniste ; la maîtrise de chaque compagnon est suivie individuellement.
+- Contrat de recherche dans data/guild_bestiary_research.json, sans modifier le catalogue canonique des espèces. Les connaissances collectives du bestiaire sont conservées dans les archives de la Guilde et transmises au successeur; sa maîtrise personnelle est reconstruite. La maîtrise des compagnons reste suivie individuellement.
 - Manifeste d'images avec empreintes SHA-256.
 
 ## Non réalisé / non testé
@@ -15,7 +15,7 @@ Branche : feature/guild-illustrated-hub-design-20261122 (PR #633).
 - Aucun test d'exécution Godot 4.x ; vérifier compilation, chargement de la scène, boutons et dialogues.
 - Aucun effet réel de soins, quêtes, affinité ou déblocage de faiblesses. L'écran est un prototype de navigation et de dialogues.
 - Les deux portraits n'apparaissent pas encore dans l'interface, faute de ressources binaires dans le dépôt.
-- La recherche anatomique de Mei Ling et les connaissances historiques de Wei Shan alimentent **un seul catalogue de définitions d'espèces** ; le niveau de connaissance est conservé dans le bestiaire de chaque protagoniste. Ne pas créer de second catalogue de monstres ni partager automatiquement la progression entre protagonistes.
+- La recherche anatomique de Mei Ling et les connaissances historiques de Wei Shan alimentent **un seul catalogue de définitions d'espèces**. Distinguer les connaissances collectives transmises par les archives et la maîtrise personnelle reconstruite du successeur; ne pas partager automatiquement la maîtrise individuelle.
 - Les noms Han Lu et Dr Mei Ling restent à confirmer séparément des planches artistiques validées.
 
 ## Validation à faire
