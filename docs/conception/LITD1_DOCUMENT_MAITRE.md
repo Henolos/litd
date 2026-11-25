@@ -2437,3 +2437,12 @@ Accord explicite du 22 novembre : option C concernant le retour immédiat au ref
 ### Articulation avec les décisions réconciliées
 
 V7.49 précise V3.3 et les propositions historiques de restrictions. ARCH-01 conserve les états individuels des missions ; la fin d'expédition n'implique pas à elle seule l'abandon de toutes les missions. ARCH-02 gouverne le renouvellement admissible entre expéditions et interdit les renouvellements artificiels ; ARCH-03 gouverne la nouvelle configuration. V7.45 exclut la poursuite et les nouveaux tirages artificiels. V8.3 impose la cohérence transactionnelle et la reprise exactement une fois des conséquences confirmées. Ces articulations sont des déductions documentaires, non des arbitrages nouveaux. La synthèse historique V7.50 contient encore l'ancien renouvellement par nouvelle mission, remplacé par ARCH-02 ; ne pas la réintroduire intégralement comme norme. Le traitement précis des héros immobilisés, capturés ou séparés, les conditions de sauvetage et les modalités d'interface restent à arbitrer ; aucune mort automatique ni extraction universelle déduite. Prévoir vérification de la transaction de retour et interruptions à chaque étape durable conformément à V8.3, sans système de sauvegarde parallèle. Aucun test runtime exécuté ni code modifié.
+
+
+---
+
+## ARCH-04 — Devenir hybride contextuel des héros abandonnés (25 novembre 2026)
+
+**Accord explicite acquis ; transcription normative incomplète.** « Pour LITD 1, je valide explicitement l'option C de l'arbitrage ARCH-04 concernant le devenir hybride contextuel des héros abandonnés, avec les dix-huit règles complémentaires proposées. Enregistre cette décision et réconcilie les systèmes concernés. »
+
+Le texte exact des dix-huit règles n'a pas été retrouvé. Ne pas les reconstruire ni promouvoir une proposition de remplacement comme règle approuvée. Réconciliation détaillée suspendue jusqu'à récupération du texte. Dépendances à contrôler : V7.49 (retour, héros immobilisés/capturés/séparés, absence de mort automatique), retraite en combat, captivité, mort définitive, devenir des corps et équipements, persistance du monde, missions personnelles et V8.3 (transactions et reprise). Ces dépendances constituent un périmètre d'audit, non de nouvelles règles. Les règles existantes compatibles restent applicables. Aucun code ni test runtime modifié.
