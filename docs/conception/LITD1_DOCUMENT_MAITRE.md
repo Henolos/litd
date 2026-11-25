@@ -2446,3 +2446,55 @@ V7.49 précise V3.3 et les propositions historiques de restrictions. ARCH-01 con
 **Accord explicite acquis ; transcription normative incomplète.** « Pour LITD 1, je valide explicitement l'option C de l'arbitrage ARCH-04 concernant le devenir hybride contextuel des héros abandonnés, avec les dix-huit règles complémentaires proposées. Enregistre cette décision et réconcilie les systèmes concernés. »
 
 Le texte exact des dix-huit règles n'a pas été retrouvé. Ne pas les reconstruire ni promouvoir une proposition de remplacement comme règle approuvée. Réconciliation détaillée suspendue jusqu'à récupération du texte. Dépendances à contrôler : V7.49 (retour, héros immobilisés/capturés/séparés, absence de mort automatique), retraite en combat, captivité, mort définitive, devenir des corps et équipements, persistance du monde, missions personnelles et V8.3 (transactions et reprise). Ces dépendances constituent un périmètre d'audit, non de nouvelles règles. Les règles existantes compatibles restent applicables. Aucun code ni test runtime modifié.
+
+
+---
+
+## ARCH-04 — Nouvelle formulation normative (25 novembre 2026)
+
+**VALIDÉ EN CONCEPTION — option C.** Accord explicite : « Pour LITD 1, je valide explicitement la nouvelle formulation de l'arbitrage ARCH-04, option C, concernant le devenir hybride contextuel des héros abandonnés, avec les dix-huit règles complémentaires présentées. Enregistre le texte intégral et réconcilie les systèmes concernés. »
+
+Cette formulation remplace le contenu normatif introuvable de l'accord précédent, conservé ci-dessus pour traçabilité. Le blocage de transcription est levé pour cette nouvelle formulation.
+
+### Abandon et extraction
+
+1. Un héros vivant abandonné n'est pas automatiquement considéré comme mort.
+2. Le joueur peut tenter de libérer, secourir ou transporter un héros lorsque la situation le permet.
+3. L'abandon volontaire nécessite une confirmation explicite présentant les risques connus.
+4. Les possibilités de sauvetage dépendent de l'état physique du héros, des capacités de ses compagnons et de l'environnement.
+5. Le retour immédiat au refuge ne permet pas d'extraire automatiquement un héros inaccessible.
+
+### Devenir du héros
+
+6. Le devenir du héros dépend de ses blessures, de son environnement, des ennemis présents et des circonstances de son abandon.
+7. Un héros abandonné peut survivre, être capturé, demeurer introuvable, parvenir à s'échapper ou mourir.
+8. Les ennemis peuvent capturer un héros uniquement si leur nature, leurs capacités et leurs motivations le permettent.
+9. Le devenir d'un héros peut évoluer avec le temps du jeu et les événements du monde.
+10. Un héros dont la mort définitive est confirmée ne peut jamais redevenir un héros jouable.
+
+### Sauvetage et récupération
+
+11. Un héros vivant abandonné ou capturé peut faire l'objet d'une mission de sauvetage lorsque le contexte le permet.
+12. La réussite d'un sauvetage n'est jamais garantie.
+13. Les renseignements, témoignages et traces peuvent aider à retrouver un héros disparu.
+14. L'équipement du héros reste soumis aux règles de possession, de pillage et de récupération, sans transfert automatique au refuge.
+15. Un héros récupéré conserve son identité, sa progression personnelle et les conséquences réellement subies pendant son absence.
+
+### Persistance et sauvegarde
+
+16. Le devenir des héros abandonnés persiste entre les expéditions, malgré la génération de nouvelles cartes.
+17. Les simples déplacements, changements de mission et rechargements de sauvegarde ne permettent pas de modifier artificiellement un résultat confirmé.
+18. Chaque transition importante concernant le héros, son équipement et son état est enregistrée conformément aux règles transactionnelles V8.3, sans duplication ni résurrection interdite.
+
+### Réconciliation documentaire
+
+- V7.49 et V3.3 : traitement explicite avant extraction, confirmation de l'abandon volontaire, absence de mort automatique et absence d'extraction universelle. Retraite en combat distincte ; coûts et conditions tactiques non redéfinis.
+- ARCH-01 : missions de sauvetage soumises aux règles de compatibilité ; progression des missions distincte du devenir du héros.
+- ARCH-02/03, V7.38/43 : nouvelle carte et renouvellement admissible ne réinitialisent pas le sort du héros ; respecter les contraintes de validité et les conséquences persistantes.
+- V7.27/30 : renseignements et traces soumis à leur fiabilité contextuelle.
+- V8.1/2 : identité et progression personnelle du héros vivant récupéré conservées ; aucune résurrection jouable après mort définitive. Les règles de succession et missions personnelles restent applicables ; absence ou captivité ne vaut pas preuve de décès. Cas de succession avec héros absent à vérifier séparément.
+- Corps et équipements : les règles historiques de pillage et récupération restent applicables selon leur statut de validation ; ne pas assimiler un vivant abandonné à un cadavre. Aucun transfert automatique, aucune duplication.
+- Capture : distinguer captivité des héros et capture de créatures pour recrutement ; ne pas appliquer automatiquement les règles de recrutement aux héros capturés.
+- V8.3 : enregistrer les transitions et conséquences interdépendantes de manière atomique ; reprise des résultats confirmés exactement une fois, sans nouveau tirage.
+
+Ces articulations sont des déductions des règles validées, pas des arbitrages supplémentaires. Probabilités de survie, délais de captivité, fréquence des missions de sauvetage, conditions précises de transport, comportements par espèce et conséquences psychologiques restent ouverts. Aucun code ni test runtime modifié. La réconciliation exhaustive des contrats et des implémentations reste à effectuer.
