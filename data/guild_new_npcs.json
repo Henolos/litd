@@ -14,7 +14,7 @@
         "Quêtes spéciales",
         "Déblocages par affinité"
       ],
-      "visual_asset_status": "validated_concept_board_binary_present_hash_verified_individual_portrait_missing",
+      "visual_asset_status": "concept_board_binary_present_hash_verified_user_approval_asset_specific_not_confirmed",
       "dialogues": [
         {
           "speaker": "Han Lu",
@@ -44,7 +44,7 @@
         "Humour noir sur les amputations",
         "Recherche des faiblesses des créatures"
       ],
-      "visual_asset_status": "validated_concept_board_binary_present_hash_verified_individual_portrait_missing",
+      "visual_asset_status": "concept_board_binary_present_hash_verified_user_approval_asset_specific_not_confirmed",
       "dialogues": [
         {
           "speaker": "Dr Mei Ling",
