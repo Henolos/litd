@@ -2303,3 +2303,518 @@ Toutes les autres règles compatibles sont conservées. Les références V7.40 e
 ## Traçabilité de la réconciliation du 25 novembre 2026
 
 ARCH-01 repris intégralement du commit f558dbf08872128f1c22fb8764a9d954ad877c37. ARCH-02 provient de l'accord explicite du 25 novembre. Ces deux décisions constituent des exceptions désormais explicitement validées au statut de proposition des précisions de #641 mentionné dans l'addendum du 24 novembre. Les « go » autorisent la poursuite, jamais la validation métier. Les propositions V7.82–V7.87 fondées uniquement sur ces messages restent en quarantaine ; prototypes combat V0.1–V0.4 expérimentaux, V0.5 suspendue. Rectificatifs historiques : 78a5d4f et 401fd6f. Réconcilier individuellement les autres décisions avec les accords explicites, préserver les archives, ne pas restaurer le master concurrent de #641. Aucun changement moteur. Avancements chantier/global : à évaluer.
+
+
+---
+
+## Réconciliation des cartes — 25 novembre 2026
+
+Les accords explicites du 22 novembre concernant le contrôle de validité (option C, dix règles) et la stabilité et évolution contextuelle (option C, dix règles) sont attestés dans les échanges utilisateur. Le texte ci-dessous est repris du registre historique du 23 novembre (commit f558dbf08872128f1c22fb8764a9d954ad877c37) ; l'identité mot à mot avec les propositions conversationnelles originales n'est pas vérifiée. Ces sections constituent des exceptions documentées au statut de proposition des précisions #641. Les références historiques non encore réconciliées ne sont pas validées par transitivité.
+
+## V7.38 — Double contrôle de validité des cartes et mécanisme de secours (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et dix règles complémentaires, explicitement choisies par l'utilisateur.** Génération sous contraintes puis validation indépendante avant utilisation des cartes régionales et internes des donjons. Contrôles obligatoires : 1. Accessibilité des objectifs obligatoires lorsque leurs prérequis sont réunis ; 2. absence de zones obligatoires accidentellement isolées ; 3. dépendances clés, portes, énigmes et quêtes ; 4. retour et sortie conformément aux restrictions narratives autorisées ; 5. cohérence écologique, territoriale et artistique ; 6. absence de duplication des personnages, objets et événements uniques ; 7. respect intégral des conséquences persistantes ; 8. limites de taille, densité et difficulté ; 9. sauvegarde de la configuration validée et vérification de restitution après interruption ; 10. tentatives limitées, secours compatible lui-même validé ou arrêt sécurisé sans perte de progression. Aucun contournement des contraintes narratives. Prévoir tests automatisés de nombreuses graines, dépendances circulaires, itinéraires conditionnels, régénération après décès/retraite/Game Over, interruptions et reprise, traçabilité des graines et anomalies, puis tests humains d'équilibrage. Ces tests sont planifiés, non exécutés.
+
+**Traçabilité :** validation explicite de l'option C concernant le contrôle de validité des cartes avec les dix règles complémentaires. Huit axes de conception détaillée arbitrés sur huit ; audit transversal et paramètres techniques encore ouverts. Mise à jour documentaire uniquement ; aucun développement ni test en jeu. **Statut : 🟡 À CONSOLIDER avant clôture. Avancement des arbitrages : 8/8 ; avancement du chantier complet et du projet global : À évaluer.**
+
+---
+
+## V7.43 — Structure stable et transformations contextuelles des cartes (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et dix règles complémentaires explicitement approuvées.** 1. Conservation de la configuration initiale pendant l'expédition. 2. Toute transformation a une cause identifiable dans le monde. 3. Ouverture, fermeture, restauration ou destruction possibles de passages. 4. Transformation locale ou apparition d'un lieu si le contexte le justifie. 5. Distinction entre transformations temporaires et permanentes. 6. Conservation des découvertes antérieures même obsolètes. 7. Révélation des changements selon les règles de reconnaissance et renseignements. 8. Validation automatique après chaque transformation. 9. Sauvegarde des transformations et conséquences. 10. Aucune recomposition aléatoire globale pendant une même expédition. Les architectures impossibles restent soumises aux contrôles de validité et de sauvegarde. Concilier V7.17, V7.19, V7.36 et V7.38 ; exemples environnementaux indicatifs, non validés individuellement.
+
+**Traçabilité :** validation explicite de l'option C concernant la stabilité et l'évolution contextuelle des cartes avec les dix règles complémentaires. Consolidation : 2/4 arbitrages validés. Mise à jour documentaire uniquement, aucun test runtime. Statut : 🟡 À CONSOLIDER. Avancement global : À évaluer.
+
+### Articulation avec ARCH-01 et ARCH-02
+
+La carte et l'état effectif du monde sont communs aux missions compatibles. Accepter, accomplir ou abandonner une mission ne déclenche pas de régénération automatique. Les transformations contextuelles restent soumises aux contrôles de validité et de persistance. Le renouvellement des rencontres suit ARCH-02 ; il ne constitue pas une autorisation de recomposition globale intra-expédition. Cette articulation est une déduction des décisions existantes, sans nouvel arbitrage. V7.19 et V7.24 retrouvées dans l'historique, à rapprocher des accords originaux avant promotion normative. Algorithmes, limites numériques, critères artistiques et tests runtime restent ouverts. Aucun moteur ni archive modifié.
+
+
+---
+
+## ARCH-03 — Génération procédurale hybride structurée des cartes (25 novembre 2026)
+
+**VALIDÉ EN CONCEPTION — option C.** Accord explicite : « Pour LITD 1, je valide explicitement l'option C de l'arbitrage ARCH-03 concernant la génération procédurale hybride structurée des cartes, avec les douze règles complémentaires proposées. Enregistre cette décision et réconcilie V7.19 et V7.24. »
+
+1. Chaque région possède sa propre bibliothèque de lieux, rencontres et événements conçus manuellement.
+2. Chaque nouvelle expédition produit une nouvelle configuration procédurale.
+3. L'assemblage respecte l'identité artistique, écologique et territoriale de la région.
+4. Les contraintes narratives prévalent sur les choix aléatoires.
+5. Les objectifs obligatoires restent accessibles lorsque leurs prérequis sont réunis.
+6. Les itinéraires alternatifs et passages secrets sont pris en compte dans la génération.
+7. Les événements uniques et conséquences persistantes sont conservés entre expéditions.
+8. La configuration reste stable pendant une même expédition, hors transformations contextuelles autorisées.
+9. Le brouillard de guerre intégral permet la découverte progressive de la nouvelle configuration.
+10. Les retours sur des nœuds déjà visités conservent les découvertes effectuées pendant l'expédition.
+11. La génération et les transformations respectent les dix contrôles de validité V7.38.
+12. Les cartes régionales et les donjons respectent les principes de génération hybride, de sauvegarde et de reprise.
+
+Les dimensions, la densité, les algorithmes et les proportions des différents types de nœuds restent à déterminer.
+
+### Réconciliation V7.19 et V7.24
+
+ARCH-03 confirme les principes communs de ces sections historiques : nouvelle configuration par expédition, stabilité intra-expédition, découverte progressive, identité régionale, assemblage sous contraintes et persistance. ARCH-03 fait autorité ; les formulations historiques ci-dessous sont conservées comme provenance, sans prétendre avoir retrouvé leurs accords originaux ni valider par transitivité leurs références. ARCH-01, ARCH-02, V7.38 et V7.43 restent applicables. Aucun changement de mission ne déclenche de recomposition automatique. Aucun code ou test runtime modifié.
+
+### Sources historiques (commit f558dbf)
+
+#### V7.19 — Justification du brouillard intégral : génération procédurale (23 novembre 2026)
+
+L'utilisateur précise que le choix du brouillard de guerre intégral (V7.18) est également motivé par le caractère procédural de la carte à chaque visite. Cette précision rejoint la règle antérieure de configuration stable pendant une même expédition et renouvelée à l'expédition suivante.
+- Nouvelle expédition : nouvelle configuration procédurale de la carte, à découvrir progressivement.
+- Retour sur un nœud pendant la même expédition : conserver la configuration et les découvertes de cette expédition ; appliquer V7.16 et V7.17.
+- Préserver l'identité des régions, les événements uniques résolus et les conséquences persistantes malgré le renouvellement de la disposition.
+- L'interprétation de « chaque visite » comme nouvelle expédition, plutôt que chaque passage sur un nœud, découle des règles antérieures ; les modalités exactes de génération et de conservation des connaissances restent à définir.
+
+**Exécution :** précision documentaire, sans implémentation ni test Godot.
+
+#### V7.24 — Génération procédurale hybride structurée des cartes régionales (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, explicitement choisie par l'utilisateur.** Bibliothèques régionales de lieux, rencontres et événements conçus manuellement, assemblés procéduralement à chaque nouvelle expédition sous contraintes narratives et régionales. Respecter l'identité artistique et les biomes, l'accessibilité des objectifs obligatoires lorsque leurs prérequis sont remplis, les itinéraires alternatifs et accès secrets, la cohérence des rencontres, la persistance des conséquences et événements uniques, l'absence de blocage involontaire et la stabilité de la configuration pendant l'expédition, sauvegarde et reprise comprises. Conserver les décisions V7.15–V7.23 et la génération hybride des donjons déjà documentée. Dimensions, densité, répartition des nœuds, algorithmes et valeurs restent à spécifier.
+
+**Traçabilité :** validation explicite de l'option C concernant la génération procédurale des cartes régionales. Mise à jour documentaire uniquement ; aucun développement ni test en jeu. **Statut : 🟡 À CONSOLIDER. Avancement du chantier détaillé et du projet global : À évaluer.**
+
+
+---
+
+## Réconciliation des guet-apens — 25 novembre 2026
+
+Accord explicite retrouvé dans les échanges du 22 novembre : option C concernant l'intégration des guet-apens, avec dix règles complémentaires. Transcription historique du 23 novembre reprise ci-dessous depuis f558dbf08872128f1c22fb8764a9d954ad877c37 ; identité mot à mot avec la proposition conversationnelle originale non vérifiée.
+
+## V7.45 — Intégration hybride contextuelle des guet-apens (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et dix règles complémentaires explicitement approuvées.** 1. Ratio cible 35 % détectables / 65 % indétectables sur l'ensemble des guet-apens procéduraux, non par carte. 2. Guet-apens scénarisés soumis aux contraintes narratives et comptabilisés séparément. 3. Caractère détectable fixé à la génération. 4. Détection contextuelle par aptitudes, observation et bestiaire. 5. Aucun spécialiste ne garantit la détection systématique. 6. Détection seule insuffisante pour déjouer. 7. Guet-apens déjoué si évité, neutralisé ou avantage de surprise effectivement supprimé. 8. Attaque préventive seulement si ennemis localisés et accessibles. 9. Si combat après guet-apens déjoué, léger bonus collectif d'initiative au premier round uniquement, sans PA supplémentaire. 10. Aucun nouveau tirage artificiel par aller-retour ou rechargement en contexte inchangé. Pièges mécaniques autonomes hors ratio en attente d'arbitrage spécifique. Aucune poursuite ennemie. Paramètres statistiques et tests restent à définir.
+
+**Traçabilité :** validation explicite de l'option C concernant l'intégration des guet-apens avec les dix règles complémentaires. Consolidation : 3/4 arbitrages validés. Mise à jour documentaire uniquement ; aucun test runtime. Statut : 🟡 À CONSOLIDER. Avancement global : À évaluer.
+
+### Articulation et limites
+
+V7.45 précise V4.6 (dénominateur procédural, scénarisés séparés), V4.3–V4.4 (définition de déjoué, bonus uniquement si combat). La règle historique V4.3–V4.4 de consommation du PA normal du premier tour lors d'une attaque préventive reste à rapprocher des décisions tactiques originales ; aucune action gratuite ajoutée. V3.6 exclut la poursuite continue. ARCH-01/02/03 impliquent que les changements de mission ne relancent pas le tirage et que les guet-apens persistants respectent l'état du monde et les transformations contextuelles validées. V8.3 impose la conservation des résultats confirmés sans nouveau tirage. Cette articulation est déduite des règles existantes, pas un nouvel arbitrage. Les pièges mécaniques autonomes, le montant du bonus, les effets précis de surprise, les familles de guet-apens, les modalités de retraite et le comportement des coffres-créatures restent à réconcilier ou arbitrer ; ne pas promouvoir les propositions V3.7/V3.8 par transitivité. Aucun code ni test runtime modifié.
+
+
+---
+
+## Réconciliation des secrets et renseignements — 25 novembre 2026
+
+Reprise des sections V7.27, V7.29 et V7.30 du commit historique f558dbf08872128f1c22fb8764a9d954ad877c37, contenant chacune une citation d'accord explicite. Les citations sont attestées par ce registre historique ; les messages originaux et le verbatim intégral des propositions n'ont pas été vérifiés indépendamment.
+
+## V7.27 — Reconnaissance et renseignements hybrides (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, explicitement choisie par l'utilisateur.** Combiner découverte physique, reconnaissance des héros, renseignements des PNJ et archives de la Guilde. Un renseignement peut signaler un lieu sans révéler son itinéraire. Préserver le brouillard intégral, la génération procédurale entre expéditions, la stabilité pendant une expédition et les conséquences persistantes. Distinguer connaissances durables et renseignements dépendant de la configuration actuelle ; les anciens itinéraires ne sont pas automatiquement valables. La connaissance et la sécurisation d'un lieu sont distinctes. Les fonctions détaillées des PNJ, niveaux de connaissance, fiabilité, portée, coûts et conditions de reconnaissance restent des propositions à arbitrer, sans validation implicite.
+
+**Traçabilité :** « Je valide l'option C : renseignements hybrides. Enregistre la décision dans le document maître et poursuis les arbitrages. » Mise à jour documentaire uniquement, aucun test en jeu. Statut : 🟡 À CONSOLIDER pour l'implémentation. Avancement du chantier détaillé et du projet global : À évaluer.
+
+---
+
+## V7.29 — Découverte hybride des passages et lieux secrets (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et règles complémentaires, explicitement choisies par l'utilisateur.** Combiner aptitudes des héros, observation du joueur, renseignements et interactions contextuelles. Certains secrets sont découvrables sans spécialiste ; les spécialistes facilitent la recherche sans garantir toutes les découvertes. Les secrets peuvent mener à des raccourcis, trésors, créatures, quêtes ou révélations narratives. Les simples allers-retours ne déclenchent pas de nouveaux tirages de détection. Aucun secret facultatif ne doit bloquer involontairement la quête principale. Distinguer découverte et ouverture éventuelle ; les conditions précises, clés, aptitudes, énigmes, seuils et modalités de détection restent à spécifier. Préserver V7.27 et les contraintes de génération et de persistance antérieures.
+
+**Traçabilité :** « Je valide l'option C : découverte hybride des secrets, avec les règles complémentaires proposées. Enregistre et poursuis. » Mise à jour documentaire uniquement ; aucun développement ni test en jeu. Statut : 🟡 À CONSOLIDER pour l'implémentation.
+
+---
+
+## V7.30 — Fiabilité contextuelle des renseignements (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, quatre catégories et règles complémentaires explicitement approuvées.** La fiabilité dépend de la provenance, de l'ancienneté, de la nature du renseignement et des motivations de son auteur. Catégories : connaissances permanentes (histoire, mythologie, propriétés des créatures, identité des lieux) conservées ; renseignements géographiques à actualiser selon la génération ; renseignements temporaires (ennemis, embuscades, ressources) susceptibles d'obsolescence ; rumeurs et témoignages partiels, erronés ou mensongers à confirmer. Aucun faux renseignement arbitraire ; mensonges justifiés narrativement ou contextuellement ; affinités susceptibles d'améliorer la qualité ; recoupement des sources possible ; archives conservant les renseignements anciens même obsolètes ; interface distinguant confirmation et rumeur ; aucune erreur ne doit bloquer définitivement la progression principale. Préserver V7.27 et V7.29. Les durées, seuils, règles de présentation et modalités de recoupement restent à spécifier.
+
+**Traçabilité :** « Je valide l'option C : fiabilité contextuelle des renseignements, avec les quatre catégories et les règles complémentaires proposées. Enregistre et poursuis. » Mise à jour documentaire uniquement, sans développement ni test en jeu.
+
+### Articulation avec les décisions réconciliées
+
+ARCH-03 intègre les passages secrets dans la génération ; V7.38 contrôle l'accessibilité des objectifs obligatoires et les dépendances ; V7.43 encadre les transformations et la conservation des découvertes. V7.29 distingue découverte et ouverture et exclut les nouveaux tirages par simples allers-retours. ARCH-01/02 excluent une recomposition ou un renouvellement automatique par changement de mission. V7.27/30 distinguent connaissance durable et itinéraire dépendant de la configuration : conserver les renseignements anciens sans garantir leur validité actuelle. V8.3 impose la persistance des résultats confirmés. Ces articulations sont des déductions documentaires, non des arbitrages supplémentaires. Aucun secret facultatif ne doit bloquer involontairement la quête principale ; ne pas déduire une interdiction générale des prérequis narratifs obligatoires. Les conditions de clés consommables, coûts, seuils, énigmes et conséquences narratives spécifiques restent à préciser ; la demande de tests ne valide pas leurs règles métier. V7.28 retrouvée mais accord original non cité dans cette section, à vérifier séparément. Aucun code ni test runtime modifié.
+
+
+---
+
+## Réconciliation du retour au refuge — 25 novembre 2026
+
+Accord explicite du 22 novembre : option C concernant le retour immédiat au refuge avec douze règles complémentaires. Transcription historique du 23 novembre reprise depuis f558dbf08872128f1c22fb8764a9d954ad877c37 ; identité mot à mot avec la proposition conversationnelle originale non vérifiée.
+
+## V7.49 — Retour immédiat contextuel au refuge (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et douze règles complémentaires explicitement approuvées.** 1. Retour immédiat depuis cartes régionales et donjons. 2. Aucun trajet inverse systématique. 3. Avant ou après accomplissement de mission. 4. Interdit en combat actif, retraite distincte. 5. Bloqué pendant résolution d'une menace immédiate incompatible avec extraction. 6. Restrictions scénarisées justifiées et communiquées. 7. Motif de toute interdiction affiché. 8. Traitement explicite des héros immobilisés, capturés ou séparés avant confirmation, sans mort automatique. 9. Conservation blessures, pertes, équipements et conséquences selon leurs règles. 10. Aucune pénalité narrative permanente liée au seul abandon. 11. Sauvegarde transactionnelle du retour, prévention des duplications et pertes accidentelles. 12. Aucune poursuite ni réapparition artificielle provoquée par la demande. La dangerosité générale ne suffit pas à bloquer. Le retour clôt l'expédition ; une nouvelle expédition génère une nouvelle carte sans effacer les conséquences de mission. Poursuite de l'exploration possible après accomplissement. Les modalités détaillées de traitement des héros séparés restent à spécifier.
+
+### Articulation avec les décisions réconciliées
+
+V7.49 précise V3.3 et les propositions historiques de restrictions. ARCH-01 conserve les états individuels des missions ; la fin d'expédition n'implique pas à elle seule l'abandon de toutes les missions. ARCH-02 gouverne le renouvellement admissible entre expéditions et interdit les renouvellements artificiels ; ARCH-03 gouverne la nouvelle configuration. V7.45 exclut la poursuite et les nouveaux tirages artificiels. V8.3 impose la cohérence transactionnelle et la reprise exactement une fois des conséquences confirmées. Ces articulations sont des déductions documentaires, non des arbitrages nouveaux. La synthèse historique V7.50 contient encore l'ancien renouvellement par nouvelle mission, remplacé par ARCH-02 ; ne pas la réintroduire intégralement comme norme. Le traitement précis des héros immobilisés, capturés ou séparés, les conditions de sauvetage et les modalités d'interface restent à arbitrer ; aucune mort automatique ni extraction universelle déduite. Prévoir vérification de la transaction de retour et interruptions à chaque étape durable conformément à V8.3, sans système de sauvegarde parallèle. Aucun test runtime exécuté ni code modifié.
+
+
+---
+
+## ARCH-04 — Devenir hybride contextuel des héros abandonnés (25 novembre 2026)
+
+**Accord explicite acquis ; transcription normative incomplète.** « Pour LITD 1, je valide explicitement l'option C de l'arbitrage ARCH-04 concernant le devenir hybride contextuel des héros abandonnés, avec les dix-huit règles complémentaires proposées. Enregistre cette décision et réconcilie les systèmes concernés. »
+
+Le texte exact des dix-huit règles n'a pas été retrouvé. Ne pas les reconstruire ni promouvoir une proposition de remplacement comme règle approuvée. Réconciliation détaillée suspendue jusqu'à récupération du texte. Dépendances à contrôler : V7.49 (retour, héros immobilisés/capturés/séparés, absence de mort automatique), retraite en combat, captivité, mort définitive, devenir des corps et équipements, persistance du monde, missions personnelles et V8.3 (transactions et reprise). Ces dépendances constituent un périmètre d'audit, non de nouvelles règles. Les règles existantes compatibles restent applicables. Aucun code ni test runtime modifié.
+
+
+---
+
+## ARCH-04 — Nouvelle formulation normative (25 novembre 2026)
+
+**VALIDÉ EN CONCEPTION — option C.** Accord explicite : « Pour LITD 1, je valide explicitement la nouvelle formulation de l'arbitrage ARCH-04, option C, concernant le devenir hybride contextuel des héros abandonnés, avec les dix-huit règles complémentaires présentées. Enregistre le texte intégral et réconcilie les systèmes concernés. »
+
+Cette formulation remplace le contenu normatif introuvable de l'accord précédent, conservé ci-dessus pour traçabilité. Le blocage de transcription est levé pour cette nouvelle formulation.
+
+### Abandon et extraction
+
+1. Un héros vivant abandonné n'est pas automatiquement considéré comme mort.
+2. Le joueur peut tenter de libérer, secourir ou transporter un héros lorsque la situation le permet.
+3. L'abandon volontaire nécessite une confirmation explicite présentant les risques connus.
+4. Les possibilités de sauvetage dépendent de l'état physique du héros, des capacités de ses compagnons et de l'environnement.
+5. Le retour immédiat au refuge ne permet pas d'extraire automatiquement un héros inaccessible.
+
+### Devenir du héros
+
+6. Le devenir du héros dépend de ses blessures, de son environnement, des ennemis présents et des circonstances de son abandon.
+7. Un héros abandonné peut survivre, être capturé, demeurer introuvable, parvenir à s'échapper ou mourir.
+8. Les ennemis peuvent capturer un héros uniquement si leur nature, leurs capacités et leurs motivations le permettent.
+9. Le devenir d'un héros peut évoluer avec le temps du jeu et les événements du monde.
+10. Un héros dont la mort définitive est confirmée ne peut jamais redevenir un héros jouable.
+
+### Sauvetage et récupération
+
+11. Un héros vivant abandonné ou capturé peut faire l'objet d'une mission de sauvetage lorsque le contexte le permet.
+12. La réussite d'un sauvetage n'est jamais garantie.
+13. Les renseignements, témoignages et traces peuvent aider à retrouver un héros disparu.
+14. L'équipement du héros reste soumis aux règles de possession, de pillage et de récupération, sans transfert automatique au refuge.
+15. Un héros récupéré conserve son identité, sa progression personnelle et les conséquences réellement subies pendant son absence.
+
+### Persistance et sauvegarde
+
+16. Le devenir des héros abandonnés persiste entre les expéditions, malgré la génération de nouvelles cartes.
+17. Les simples déplacements, changements de mission et rechargements de sauvegarde ne permettent pas de modifier artificiellement un résultat confirmé.
+18. Chaque transition importante concernant le héros, son équipement et son état est enregistrée conformément aux règles transactionnelles V8.3, sans duplication ni résurrection interdite.
+
+### Réconciliation documentaire
+
+- V7.49 et V3.3 : traitement explicite avant extraction, confirmation de l'abandon volontaire, absence de mort automatique et absence d'extraction universelle. Retraite en combat distincte ; coûts et conditions tactiques non redéfinis.
+- ARCH-01 : missions de sauvetage soumises aux règles de compatibilité ; progression des missions distincte du devenir du héros.
+- ARCH-02/03, V7.38/43 : nouvelle carte et renouvellement admissible ne réinitialisent pas le sort du héros ; respecter les contraintes de validité et les conséquences persistantes.
+- V7.27/30 : renseignements et traces soumis à leur fiabilité contextuelle.
+- V8.1/2 : identité et progression personnelle du héros vivant récupéré conservées ; aucune résurrection jouable après mort définitive. Les règles de succession et missions personnelles restent applicables ; absence ou captivité ne vaut pas preuve de décès. Cas de succession avec héros absent à vérifier séparément.
+- Corps et équipements : les règles historiques de pillage et récupération restent applicables selon leur statut de validation ; ne pas assimiler un vivant abandonné à un cadavre. Aucun transfert automatique, aucune duplication.
+- Capture : distinguer captivité des héros et capture de créatures pour recrutement ; ne pas appliquer automatiquement les règles de recrutement aux héros capturés.
+- V8.3 : enregistrer les transitions et conséquences interdépendantes de manière atomique ; reprise des résultats confirmés exactement une fois, sans nouveau tirage.
+
+Ces articulations sont des déductions des règles validées, pas des arbitrages supplémentaires. Probabilités de survie, délais de captivité, fréquence des missions de sauvetage, conditions précises de transport, comportements par espèce et conséquences psychologiques restent ouverts. Aucun code ni test runtime modifié. La réconciliation exhaustive des contrats et des implémentations reste à effectuer.
+
+
+---
+
+## ARCH-05 — Exclusivité de la fuite volontaire des Némésis (25 novembre 2026)
+
+**VALIDÉ EN CONCEPTION.** Accords directs successifs : « Pas de fuite des ennemis » puis, en réponse à la question sur l'exception Némésis, « seul les némésis peuvent fuir ».
+
+Seuls les ennemis possédant le statut Némésis peuvent volontairement fuir un combat. La fuite n'est pas systématique. Les ennemis ordinaires, élites et mini-boss sans ce statut ne peuvent pas fuir. La correction du 18 novembre autorisant la fuite des catégories non Némésis est remplacée sur ce point. Le cas des Némésis devenus boss établis et l'exception de transformation restent à clarifier explicitement : l'exclusivité est une condition nécessaire, pas une autorisation universelle de fuite pour tous les rangs Némésis.
+
+Réconciliation documentaire : l'exclusivité de V7.12 et V7.41 est confirmée ; les clauses compatibles de V7.51, V7.58 et V7.64 distinguant évasion de contention et fuite volontaire sont préservées. Les dix règles historiques de V7.41 et les exceptions de fuite immédiate doivent être rapprochées des validations originales avant consolidation détaillée. Aucun des dix-huit nouveaux énoncés ARCH-05 proposés ni des sous-arbitrages ARCH-05.1 à 05.6 n'est réputé approuvé par cette décision. La retraite des héros, les déplacements tactiques et l'évasion de contention ne sont pas redéfinis. Aucun changement moteur ni test runtime.
+
+### ARCH-05 — Restriction des boss établis (25 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option B.** L'utilisateur répond « oui » à la recommandation explicitement sélectionnée : un Némésis perd sa capacité de fuite lorsqu'il devient définitivement un boss. Seuls les Némésis non devenus boss établis sont éligibles à la fuite volontaire, sous conditions. Les boss principaux et émergents établis ne fuient pas. L'exception historique de transformation ne peut concerner qu'un Némésis avant son établissement définitif comme boss ; ses modalités précises ne sont pas nouvellement validées. Cette décision lève l'incertitude sur les boss établis dans ARCH-05. Aucun changement moteur ni test runtime.
+
+
+### ARCH-05 — Modalités hybrides de fuite et réconciliation V7.41 (25 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C.** Accord direct : « Pour LITD 1, je valide explicitement l'option C concernant les modalités de fuite des Némésis dans ARCH-05. Réconcilie les règles V7.41 en conséquence. »
+
+La fuite ordinaire est annoncée et interruptible. Certaines capacités spécifiques permettent une fuite immédiate, à condition que cette possibilité soit cohérente avec la nature du Némésis et explicitement définie dans ses capacités. Seuls les Némésis non devenus boss établis sont éligibles. Aucune disparition arbitraire.
+
+#### V7.41 — Transcription historique conservée pour traçabilité
+
+Source : commit f558dbf08872128f1c22fb8764a9d954ad877c37. Le registre historique qualifie les dix règles de validées ; les messages originaux n'ont pas été indépendamment retrouvés. Les clauses 3 et 4 sont désormais réconciliées par l'accord direct ci-dessus ; les autres clauses sont conservées sans nouvelle prétention de validation indépendante.
+
+##### V7.41 — Fuite contextuelle, tactique et interruptible des Némésis (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, fuite contextuelle, tactique et interruptible des Némésis, avec les dix règles complémentaires explicitement approuvées.** La décision combine état physique, tempérament, circonstances du combat et possibilités réelles de retraite. Le joueur dispose d'une fenêtre de réaction tactique.
+
+1. Aucune fuite automatique après la mort d'un héros.
+2. Aucun seuil de santé universel.
+3. Intention de fuite identifiable avant exécution.
+4. Interruption possible par actions compatibles.
+5. Prise en compte des blessures anatomiques et capacités de déplacement.
+6. Aucune disparition artificielle pour protéger le Némésis d'une défaite.
+7. Limitation des tentatives répétitives.
+8. Conservation des blessures, équipements et souvenirs après fuite, sous réserve de leur évolution ultérieure.
+9. Recherche du fugitif via reconnaissance et renseignements déjà validés.
+10. Résultat enregistré dans la sauvegarde persistante, sans nouveau tirage au rechargement.
+
+Préserver V7.12 et la fuite volontaire réservée aux Némésis. Coûts en points d'action, délais, seuils et mécanismes précis de limitation à déterminer lors des essais. Validation documentaire uniquement, aucun développement ni test en jeu.
+
+#### Préséance normative ARCH-05 sur V7.41
+
+- Règle 3 : intention identifiable avant exécution pour la fuite ordinaire ; exception pour les capacités spécifiques de fuite immédiate explicitement définies.
+- Règle 4 : interruption possible par actions compatibles pour la fuite ordinaire ; la fuite immédiate ne garantit pas une fenêtre préalable de réaction. Les interactions précises avec les réactions de combat restent à définir.
+- Règles 1, 2, 5 à 10 : conservées sans changement de formulation.
+- V7.12 : préserver la crédibilité et la limitation des fuites répétitives.
+- V7.51, V7.58, V7.64 : maintenir la distinction entre fuite volontaire et rupture de contention ; aucune fuite volontaire pour les non-Némésis.
+- V8.3 : persistance des résultats confirmés sans nouveau tirage.
+- Les modalités de transformation en boss, coûts en PA, seuils, délais, capacités admissibles et limites de répétition restent ouverts. Aucun des dix-huit énoncés ARCH-05 précédemment proposés n'est globalement approuvé par cet accord. Aucun changement moteur ni test runtime.
+
+
+
+---
+
+## ARCH-06 — Acquisition et évolution du statut Némésis (25 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et vingt règles complémentaires.** Accord direct : « Pour LITD 1, je valide explicitement l'option C de l'arbitrage ARCH-06 concernant l'acquisition et l'évolution du statut Némésis, avec les vingt règles complémentaires proposées. Enregistre le texte intégral et réconcilie les systèmes concernés. »
+
+### Acquisition du statut Némésis
+
+1. Seule la mort définitive d'un héros attribuable à un ennemi permet à celui-ci d'acquérir le statut Némésis.
+2. L'acquisition du statut est automatique lorsque cette condition est remplie.
+3. Une blessure, une mutilation, une capture ou une victoire non létale ne suffit pas à créer un Némésis.
+4. La récupération d'un équipement, quelle que soit sa rareté, ne confère pas le statut Némésis.
+5. La mort d'un héros doit être effectivement confirmée et attribuée selon les règles de causalité du combat.
+
+### Progression statistique
+
+6. Le bonus initial dépend du rang de l'ennemi au moment de l'acquisition du statut.
+7. Un ennemi ordinaire reçoit un bonus initial supérieur à celui d'une élite, qui reçoit elle-même un bonus supérieur à celui d'un mini-boss.
+8. Chaque nouvelle mort définitive d'un héros attribuable au Némésis contribue à sa progression statistique.
+9. Les gains statistiques supplémentaires sont décroissants et plafonnés.
+10. Les bonus provenant des équipements restent distincts des bonus propres au statut Némésis.
+
+### Promotions et évolution
+
+11. Les promotions constituent une évolution distincte de la progression statistique.
+12. Les morts définitives de héros peuvent contribuer aux promotions.
+13. Certains exploits majeurs non létaux peuvent accélérer une promotion, sans attribuer automatiquement de bonus statistique lié aux morts de héros.
+14. Une simple fuite, une blessure ordinaire ou la survie à un combat ne constitue pas un exploit majeur.
+15. Un Némésis conserve au minimum son rang d'origine et peut évoluer jusqu'au rang de boss émergent.
+16. Les promotions peuvent modifier son apparence, ses capacités, son comportement et son influence territoriale, selon sa nature.
+
+### Persistance et cohérence
+
+17. Une promotion ne provoque aucune guérison intégrale automatique et ne supprime pas arbitrairement les faiblesses anatomiques.
+18. Le Némésis conserve son identité, ses souvenirs, ses victimes, ses promotions et ses bonus après un Game Over.
+19. Un Némésis définitivement mort ne peut pas réapparaître artificiellement pour maintenir la difficulté.
+20. L'acquisition du statut, les gains, les promotions et leurs conséquences sont enregistrés conformément aux règles transactionnelles V8.3, sans duplication ni nouveau tirage au rechargement.
+
+### Réconciliation documentaire et préséance
+
+- Le déclenchement historique par « exploits majeurs » est remplacé par les règles 1 à 5 pour l'acquisition du statut. Les exploits non létaux ne concernent que les promotions après acquisition, selon les règles 13 et 14.
+- V7.44 : distinguer bonus statistiques et promotions ; conserver les clauses compatibles. La restriction historique sur les blessures ne doit pas être interprétée comme excluant tout exploit non létal majeur des promotions. La liste des exploits admissibles reste ouverte.
+- V7.34 : la persistance après Game Over est confirmée par la règle 18 ; aucun bonus supplémentaire pour le simple Game Over, selon la règle historique compatible, dont la validation originale reste à vérifier.
+- V7.35/37 : séparer pillage, bonus d'équipement et acquisition du statut ; préserver les invariants d'identité et de non-duplication.
+- V7.39 : préserver la mobilité territoriale contextuelle ; aucune nouvelle règle de déplacement.
+- ARCH-04 : abandon, disparition ou captivité ne valent pas mort définitive confirmée.
+- ARCH-05/V7.41 : la fuite est réservée aux Némésis non devenus boss établis ; aucune progression pour simple fuite. Une promotion ne permet pas de contourner les restrictions de fuite.
+- V8.3 : acquisition, attribution causale, gains et promotions interdépendants soumis aux transactions confirmées exactement une fois.
+- Capture/recrutement : la garantie historique V7.60 ne tranche pas à elle seule l'éligibilité des Némésis ou des boss émergents. Ne pas déduire de nouvelle restriction ou autorisation de recrutement d'ARCH-06.
+
+Ces articulations constituent une réconciliation documentaire, non de nouveaux arbitrages. Les exemples d'exploits non létaux ne sont pas validés individuellement. Attribution des morts indirectes, bonus initiaux des rangs non spécifiés, valeurs, seuils, plafonds, conditions exactes des promotions et recrutement des Némésis/boss émergents restent ouverts. Aucun code ni test runtime modifié ; audit des contrats et implémentations restant à effectuer.
+
+
+## ARCH-07 — Restrictions de recrutement en NG+ (25 novembre 2026)
+
+**VALIDÉ EN CONCEPTION sur le principe.** Accords directs : « Non némésis et boss émergents recrutables en NG+ comme les boss » ; « Les mini boss ne sont pas recrutables avant le ng+ ». Les mini-boss, les Némésis quel que soit leur rang, les boss émergents et les cinq boss principaux ne sont recrutables qu'en NG+. Cette restriction prévaut sur toute formulation contraire. Les ennemis ordinaires et élites sans statut Némésis restent soumis aux conditions existantes. V7.60 ne garantit le recrutement que pour les captifs éligibles extraits ; ne pas contourner la restriction NG+. La possibilité de capture avant NG+ reste distincte et non arbitrée. Aucun changement moteur ni test runtime.
+
+
+### ARCH-07 — Extension explicite de la restriction à la capture (25 novembre 2026)
+
+**VALIDÉ EN CONCEPTION.** Accord direct : « La capture et le recrutement des mini-boss, Némésis et boss sont réservés au NG+. » Cette décision complète ARCH-07 : mini-boss, Némésis quel que soit leur rang, boss émergents et boss principaux ne sont ni capturables ni recrutables avant NG+. En NG+, les conditions individuelles d'éligibilité restent applicables. Les ennemis ordinaires et élites sans statut Némésis conservent les conditions existantes. Réconciliation : V7.46/V7.48/V7.64, restriction d'éligibilité avant calcul de capture ; V7.58, étapes de transport et extraction inchangées ; V7.59/V7.60/V7.69, restriction NG+ et garantie de recrutement des captifs éligibles extraits ; ARCH-06, le statut et les promotions déterminent l'application de la restriction, sans modification des règles d'acquisition. V8.3, persistance et non-duplication inchangées. Les cas particuliers (Ange, voies narratives, devenir des bonus et équipements après recrutement) restent à examiner sans présumer de nouvelles décisions. Aucun changement moteur ni test runtime.
+
+
+## ARCH-08 — Adaptation des ennemis recrutés (25 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et vingt règles complémentaires.** Accord direct : « Pour LITD 1, je valide explicitement l'option C de l'arbitrage ARCH-08 concernant l'adaptation des ennemis recrutés, avec les vingt règles complémentaires proposées. Enregistre le texte intégral et réconcilie les systèmes concernés. »
+
+Le principe consiste à préserver l'identité et l'histoire de la créature recrutée, tout en adaptant ses caractéristiques à son nouveau rôle de héros jouable.
+
+### Identité et continuité
+
+1. La créature recrutée conserve son identité unique, son histoire et ses souvenirs.
+2. Elle conserve la mémoire de ses affrontements précédents, notamment des héros qu'elle a tués.
+3. Son recrutement ne crée pas une nouvelle entité indépendante de la créature d'origine.
+4. Son anatomie, sa morphologie et ses particularités physiques sont conservées.
+5. Son apparence conserve les évolutions acquises avant son recrutement, notamment celles résultant de ses promotions.
+
+### Statistiques et progression
+
+6. Les statistiques de combat ennemies sont adaptées aux règles applicables aux héros jouables.
+7. Les bonus acquis en tant que Némésis ne sont pas systématiquement supprimés, mais adaptés aux contraintes d'équilibrage.
+8. Les promotions obtenues avant le recrutement doivent conserver un intérêt tangible après celui-ci.
+9. Les bonus provenant des équipements restent distincts des caractéristiques intrinsèques de la recrue.
+10. Après son recrutement, la créature évolue selon le système de progression des héros, et non selon celui des ennemis Némésis.
+
+### Capacités et techniques
+
+11. Les capacités caractéristiques de la créature sont conservées lorsqu'elles sont compatibles avec le système de combat des héros.
+12. Les capacités incompatibles peuvent être adaptées sans dénaturer leur identité ni leur fonction principale.
+13. Les techniques des mini-boss et boss recrutés respectent les contraintes de points d'action, de rangs, de ciblage et de réactions applicables aux héros.
+14. Les particularités anatomiques, résistances et vulnérabilités naturelles restent prises en compte.
+
+### Équipements et état physique
+
+15. Le recrutement ne provoque aucune guérison intégrale automatique.
+16. Les blessures, amputations et autres conséquences physiques persistent jusqu'à leur résolution par les mécanismes appropriés.
+17. Les équipements détenus par la créature restent soumis aux règles de possession et de compatibilité anatomique. Aucun objet ne peut être dupliqué lors du recrutement.
+
+### Relations et persistance
+
+18. La confiance, la loyauté et les caractéristiques relationnelles acquises pendant la captivité sont conservées après le recrutement.
+19. La créature recrutée est soumise aux règles de mort définitive des héros.
+20. La transition entre ennemi, captif et héros recruté respecte les règles transactionnelles V8.3, sans duplication, réinitialisation arbitraire ni réapparition simultanée de la créature comme ennemi.
+
+### Réconciliation documentaire et préséance
+
+- ARCH-06/V7.44 : distinguer historique des promotions et bonus ennemis adaptés ; après recrutement, progression des héros exclusivement. Ne pas appliquer une nouvelle acquisition de bonus Némésis au héros recruté.
+- ARCH-07 : restrictions de capture et recrutement NG+ inchangées pour mini-boss, Némésis et boss.
+- V7.34/V7.39 : conserver identité et souvenirs ; la transition de rôle exclut la présence simultanée hostile et alliée.
+- V7.35/V7.37 : possession, compatibilité anatomique et unicité des équipements préservées ; devenir précis des équipements incompatibles et trophées reste ouvert.
+- V7.58/V7.60 : capture, transport, extraction et garantie de recrutement éligible inchangés.
+- V7.67 : anatomie et morphologie conservées ; techniques adaptées aux contraintes des héros, sans trancher les paramètres encore ouverts.
+- V7.69 : caractéristiques relationnelles conservées, sans fixer les réactions psychologiques détaillées.
+- V8.1/V8.2 : progression et mort définitive des héros applicables après recrutement ; ne pas déduire un niveau initial ni une règle de succession particulière non validée.
+- V8.3 : transition cohérente et unique, sans duplication des entités, objets, bonus ou crédits.
+- Les hypothèses historiques de copie brute des statistiques ou de réinitialisation intégrale ne sont pas retenues. Les règles V7.84 et suivantes dont la validation est contestée ne sont pas réhabilitées par cette décision.
+
+### Paramètres et arbitrages ouverts
+
+Niveau initial de la créature recrutée ; coefficients de conversion des statistiques et des bonus Némésis ; nombre de techniques conservées ou adaptées ; possibilité de conserver le titre Némésis comme distinction historique ; conséquences psychologiques du recrutement d'un ancien adversaire meurtrier ; mécanismes empêchant l'exploitation volontaire des morts de héros pour renforcer une future recrue. Cas de l'Ange et devenir précis des équipements capturés restent ouverts. Aucun barème numérique validé. Réconciliation documentaire uniquement ; aucun changement moteur, test runtime ou fusion.
+
+
+## ARCH-09 — Devenir des équipements des ennemis capturés (25 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et vingt règles complémentaires.** Accord direct : « Pour LITD 1, je valide explicitement l'option C de l'arbitrage ARCH-09 concernant le devenir des équipements des ennemis capturés, avec les vingt règles complémentaires proposées. Enregistre le texte intégral et réconcilie les systèmes concernés. »
+
+Le principe consiste à permettre au joueur de récupérer les équipements détenus par les ennemis capturés, indépendamment de leur recrutement, tout en respectant les contraintes physiques, anatomiques et logistiques.
+
+### Capture et désarmement
+
+1. La capture d'un ennemi n'entraîne pas automatiquement le transfert de ses équipements dans l'inventaire du joueur.
+2. Le joueur peut désarmer un ennemi capturé lorsque les conditions de sécurité et d'accessibilité le permettent.
+3. Les équipements amovibles peuvent être récupérés indépendamment du recrutement de leur détenteur.
+4. Les éléments constitutifs de l'anatomie d'une créature ne sont pas considérés comme des équipements amovibles.
+5. Les équipements qui participent au maintien en vie, au fonctionnement ou à la contention d'une créature ne peuvent être retirés sans prendre en compte les conséquences de cette action.
+
+### Possession et récupération
+
+6. Chaque équipement persistant conserve son identifiant unique, son état et son historique de possession.
+7. Les équipements pillés sur des héros morts peuvent être récupérés auprès de leur nouveau détenteur.
+8. Les objets légendaires uniques restent indestructibles et peuvent être récupérés sans nécessiter obligatoirement la mort de leur détenteur.
+9. Les trophées conservés par les Némésis peuvent être récupérés lorsqu'ils constituent des objets physiquement accessibles.
+10. Les équipements effectivement récupérés sont soumis aux contraintes normales d'inventaire et de transport.
+
+### Transport et détention
+
+11. Les équipements non récupérés restent associés à la créature, sauf événement justifiant un changement de possession.
+12. L'évasion, la libération ou la perte d'un captif ne provoque pas la disparition des équipements qui lui ont déjà été retirés.
+13. Les équipements encore détenus par un captif perdu ou évadé suivent les règles contextuelles de possession et de persistance.
+14. L'arrivée au refuge permet de gérer les équipements restants selon les conditions de sécurité et d'accessibilité, sans transfert automatique au coffre de la Guilde.
+
+### Recrutement et utilisation
+
+15. Une créature recrutée conserve les équipements compatibles qu'elle détient encore au moment de son intégration.
+16. Après recrutement, le joueur peut modifier les équipements de la créature selon les règles applicables aux héros et ses particularités anatomiques.
+17. Les équipements incompatibles mais physiquement récupérables peuvent être transférés dans l'inventaire sans être détruits ni dupliqués.
+18. Les bonus provenant des équipements restent distincts des statistiques intrinsèques, des promotions et des bonus Némésis adaptés conformément à ARCH-08.
+
+### Persistance et intégrité
+
+19. Les changements de possession, l'état des équipements et les conséquences de leur retrait persistent entre les expéditions et après un Game Over.
+20. Toute récupération, confiscation, restitution ou modification de possession respecte les règles transactionnelles V8.3, sans duplication, perte artificielle ni nouveau tirage au rechargement.
+
+### Réconciliation documentaire et préséance
+
+- ARCH-04/V7.35 : les équipements des héros abandonnés ou morts suivent leur possession réelle ; récupération auprès du détenteur sans transfert automatique au refuge. Le devenir contextuel des dépouilles reste distinct.
+- ARCH-06/V7.37 : distinguer bonus intrinsèques, promotions et propriétés réellement utilisables des équipements ; trophées accessibles récupérables, identité et historique des objets préservés.
+- ARCH-07 : aucune dérogation aux restrictions de capture et recrutement en NG+.
+- ARCH-08, notamment règles 9 et 17 : préciser le devenir des objets incompatibles et trophées ; conserver les équipements compatibles non retirés ; aucune duplication.
+- V7.58 : distinguer capture, sécurisation, récupération, transport et extraction ; les objets déjà retirés ne suivent plus automatiquement le captif ; leur devenir reste soumis aux règles ordinaires de possession, y compris après Game Over.
+- V7.60/V7.69 : la confiscation ne doit pas contourner la garantie de recrutement du captif éligible extrait ; conséquences relationnelles à préciser, sans réintroduire un refus définitif contraire à V7.60.
+- V8.3 : enregistrer de manière cohérente les transferts, l'état des objets et les conséquences du retrait, sans duplication ni nouveau tirage.
+- Les exemples illustratifs ne valident aucun nouvel équipement ni aucune créature. L'indestructibilité des légendaires ne signifie pas immunité aux dommages ni récupération automatique.
+
+### Paramètres ouverts
+
+Coûts en points d'action du désarmement, modalités de fouille, risques du retrait, conséquences sur confiance et loyauté, modalités de retrait chirurgical des équipements intégrés. Aucun barème numérique validé. Réconciliation documentaire uniquement ; aucun changement moteur, test runtime ou fusion.
+
+
+## ARCH-10 — Réintégration de V7.35 (25 novembre 2026)
+
+**VALIDÉ EN CONCEPTION.** Accord direct : « Pour LITD 1, je confirme explicitement l'option C de V7.35 et ses dix règles historiques intégrales. Réintègre cette section au document maître dans ARCH-10 et réconcilie les systèmes concernés. »
+
+Source historique : commit f558dbf08872128f1c22fb8764a9d954ad877c37, section V7.35 reproduite intégralement ci-dessous. La confirmation du 25 novembre établit la validation explicite actuelle, indépendamment de la preuve de l'accord original.
+
+## V7.35 — Évolution contextuelle des corps et équipements (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, évolution contextuelle sous contraintes des corps et équipements, avec les dix règles complémentaires explicitement approuvées.** Le devenir des dépouilles dépend du lieu, des créatures présentes, de l'environnement et des événements depuis la mort : conservation, pillage, disparition ou réanimation hostile selon le contexte.
+
+1. Le devenir des corps persiste après Game Over.
+2. Aucun transfert automatique des équipements au coffre de la Guilde.
+3. La recomposition procédurale ne supprime pas arbitrairement les dépouilles.
+4. Les ennemis peuvent piller selon leur nature et leur comportement.
+5. La réanimation nécessite un contexte compatible avec l'univers.
+6. Un héros réanimé hostile reste définitivement mort comme héros recrutable.
+7. Aucune duplication d'équipement par récupération.
+8. Les objets légendaires uniques conservent leur caractère indestructible déjà validé.
+9. Les simples allers-retours ne modifient pas artificiellement le devenir d'un corps.
+10. La disparition d'une dépouille n'implique pas nécessairement la destruction de tous ses équipements.
+
+Délais, probabilités et utilisation des équipements pillés par les Némésis restent à arbitrer. Exemples de lieux indicatifs uniquement. Préserver la mort définitive et les invariants de sauvegarde V8.3. Validation documentaire uniquement, aucun développement ni test en jeu.
+
+
+---
+
+### Réconciliation documentaire ARCH-10
+
+- ARCH-02/ARCH-03, V7.38/V7.43 : renouvellement et transformations des cartes compatibles avec le devenir persistant des dépouilles ; aucune suppression arbitraire ni nouveau tirage par simple aller-retour.
+- ARCH-04 : distinguer héros vivant abandonné, décès définitif confirmé et dépouille ; les règles de sauvetage du vivant ne constituent pas une résurrection.
+- ARCH-06 : le pillage et la possession d'un équipement ne confèrent pas le statut Némésis ; attribution des morts indirectes encore ouverte.
+- ARCH-07/ARCH-08 : la réanimation hostile ne rend pas le héros mort recrutable, même en NG+ ; ne pas contourner la mort définitive par adaptation de recrue.
+- ARCH-09/V7.37 : récupération et utilisation des équipements selon leur détenteur réel, leur accessibilité et leur compatibilité ; les règles ARCH-09 complètent les questions historiques de récupération. Aucun transfert automatique, aucune duplication ; indestructibilité des légendaires distincte de leur état ou accessibilité.
+- V8.1/V8.3 : préserver mort définitive, identité, conséquences et possession ; enregistrer les transitions de dépouille et d'équipement conformément aux invariants transactionnels, sans réapparition artificielle ni recalcul d'un résultat confirmé.
+- Délais, probabilités, conditions précises de réanimation et paramètres de pillage restent ouverts ; aucun nouveau barème ni exemple de bestiaire validé. Les contrats CT-0269 à CT-0278 restent à auditer et tester. Réconciliation documentaire uniquement ; aucun changement moteur, test runtime ni fusion.
+
+
+## ARCH-11 — Réintégration de V7.39 (25 novembre 2026)
+
+**VALIDÉ EN CONCEPTION.** Accord direct : « Pour LITD 1, je confirme explicitement l'option C de V7.39, ses dix règles historiques intégrales, les six comportements territoriaux et la simulation événementielle. Réintègre cette section au document maître dans ARCH-11 et réconcilie les systèmes concernés. »
+
+Source historique : commit f558dbf08872128f1c22fb8764a9d954ad877c37. Section reproduite intégralement ; la confirmation actuelle établit la validation explicite indépendamment de la preuve de l'accord original.
+
+## V7.39 — Mobilité territoriale contextuelle des Némésis (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, mobilité territoriale contextuelle des Némésis, dix règles complémentaires et simulation événementielle explicitement approuvées.** Les déplacements dépendent de la nature, des capacités, du comportement et des événements du monde. Comportements possibles : sédentaire, territorial, migrateur, conquérant, fugitif, chasseur, combinables selon la créature.
+
+1. Territoire d'origine enregistré pour chaque Némésis.
+2. Déplacements compatibles avec capacités physiques et habitats.
+3. Sédentarité complète possible.
+4. Migration justifiée écologiquement, comportementalement ou narrativement.
+5. Aucun déplacement arbitraire dû uniquement à la régénération des cartes.
+6. Recherche par renseignements, témoignages et traces.
+7. Équipements transportés suivant leur détenteur.
+8. Identité, souvenirs, grade et puissance conservés.
+9. Aucune présence simultanée dans plusieurs lieux.
+10. Aucun Némésis lié à un objectif obligatoire définitivement inaccessible du fait d'une migration.
+
+Simulation événementielle des déplacements plutôt que simulation permanente de toutes les créatures. Exemples de biomes et itinéraires indicatifs. Préserver la stabilité intra-expédition, la persistance et les invariants de sauvegarde. Paramètres, déclencheurs et tests restent à définir. Validation documentaire uniquement, aucun développement ni test en jeu.
+
+
+---
+
+### Réconciliation documentaire ARCH-11
+
+- ARCH-01/V7.38 : préserver l'accessibilité des objectifs obligatoires malgré les migrations, sans imposer de mécanisme de déplacement non validé.
+- ARCH-02/ARCH-03/V7.43 : renouvellement procédural et transformations contextuelles ne constituent pas à eux seuls une justification de migration ; préserver la stabilité intra-expédition.
+- ARCH-05/V7.41 : distinguer fuite volontaire en combat, migration territoriale et rupture de contention ; le comportement territorial fugitif ne crée aucune dérogation aux restrictions de fuite en combat.
+- ARCH-06 : conserver identité, souvenirs, rang, promotions et bonus lors des déplacements ; aucune réapparition d'un Némésis définitivement mort.
+- ARCH-07/ARCH-08 : restrictions NG+ inchangées ; aucune présence simultanée hostile et alliée après recrutement ; adaptation des caractéristiques selon ARCH-08.
+- ARCH-09/ARCH-10/V7.37 : les équipements suivent leur détenteur réel, sans duplication ni transfert automatique ; les objets déjà retirés ne suivent pas le captif.
+- V7.27/V7.30 : recherche par renseignements, témoignages et traces, avec distinction entre informations durables et localisation susceptible d'évoluer.
+- V8.3 : transitions territoriales persistantes, identité unique et absence de nouveau tirage des résultats confirmés au rechargement.
+- Simulation événementielle confirmée, sans imposer une simulation permanente de toutes les créatures. Paramètres, déclencheurs, distances, fréquences, itinéraires et tests restent ouverts. Aucun exemple de biome ni barème numérique nouvellement validé. Contrats CT-0289 à CT-0298 à auditer et tester. Réconciliation documentaire uniquement ; aucun changement moteur, test runtime ni fusion.
+
+
+## Index de préséance normative — ARCH-03, ARCH-04 et ARCH-07
+
+Clarification documentaire des décisions déjà validées, sans nouvel arbitrage ni suppression des sources historiques.
+
+- ARCH-03 : la décision explicitement validée fait autorité. Les sections historiques V7.19 et V7.24 sont conservées comme provenance ; leur validation indépendante reste à confirmer. Aucune disposition non confirmée ne devient normative par transitivité.
+- ARCH-04 : la section « Nouvelle formulation normative » et ses dix-huit règles explicitement validées font autorité. La première transcription incomplète est conservée uniquement pour traçabilité et ne constitue pas une spécification concurrente.
+- ARCH-07 : l'extension explicite de la restriction à la capture prévaut sur la formulation antérieure laissant la capture avant NG+ ouverte. Capture et recrutement des mini-boss, Némésis et boss sont réservés au NG+, sous réserve des conditions individuelles d'éligibilité. Les autres dispositions compatibles restent inchangées.
+
+Les textes historiques sont conservés intégralement. Aucun changement moteur ni validation runtime.
