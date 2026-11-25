@@ -2328,3 +2328,47 @@ Les accords explicites du 22 novembre concernant le contrôle de validité (opti
 ### Articulation avec ARCH-01 et ARCH-02
 
 La carte et l'état effectif du monde sont communs aux missions compatibles. Accepter, accomplir ou abandonner une mission ne déclenche pas de régénération automatique. Les transformations contextuelles restent soumises aux contrôles de validité et de persistance. Le renouvellement des rencontres suit ARCH-02 ; il ne constitue pas une autorisation de recomposition globale intra-expédition. Cette articulation est une déduction des décisions existantes, sans nouvel arbitrage. V7.19 et V7.24 retrouvées dans l'historique, à rapprocher des accords originaux avant promotion normative. Algorithmes, limites numériques, critères artistiques et tests runtime restent ouverts. Aucun moteur ni archive modifié.
+
+
+---
+
+## ARCH-03 — Génération procédurale hybride structurée des cartes (25 novembre 2026)
+
+**VALIDÉ EN CONCEPTION — option C.** Accord explicite : « Pour LITD 1, je valide explicitement l'option C de l'arbitrage ARCH-03 concernant la génération procédurale hybride structurée des cartes, avec les douze règles complémentaires proposées. Enregistre cette décision et réconcilie V7.19 et V7.24. »
+
+1. Chaque région possède sa propre bibliothèque de lieux, rencontres et événements conçus manuellement.
+2. Chaque nouvelle expédition produit une nouvelle configuration procédurale.
+3. L'assemblage respecte l'identité artistique, écologique et territoriale de la région.
+4. Les contraintes narratives prévalent sur les choix aléatoires.
+5. Les objectifs obligatoires restent accessibles lorsque leurs prérequis sont réunis.
+6. Les itinéraires alternatifs et passages secrets sont pris en compte dans la génération.
+7. Les événements uniques et conséquences persistantes sont conservés entre expéditions.
+8. La configuration reste stable pendant une même expédition, hors transformations contextuelles autorisées.
+9. Le brouillard de guerre intégral permet la découverte progressive de la nouvelle configuration.
+10. Les retours sur des nœuds déjà visités conservent les découvertes effectuées pendant l'expédition.
+11. La génération et les transformations respectent les dix contrôles de validité V7.38.
+12. Les cartes régionales et les donjons respectent les principes de génération hybride, de sauvegarde et de reprise.
+
+Les dimensions, la densité, les algorithmes et les proportions des différents types de nœuds restent à déterminer.
+
+### Réconciliation V7.19 et V7.24
+
+ARCH-03 confirme les principes communs de ces sections historiques : nouvelle configuration par expédition, stabilité intra-expédition, découverte progressive, identité régionale, assemblage sous contraintes et persistance. ARCH-03 fait autorité ; les formulations historiques ci-dessous sont conservées comme provenance, sans prétendre avoir retrouvé leurs accords originaux ni valider par transitivité leurs références. ARCH-01, ARCH-02, V7.38 et V7.43 restent applicables. Aucun changement de mission ne déclenche de recomposition automatique. Aucun code ou test runtime modifié.
+
+### Sources historiques (commit f558dbf)
+
+#### V7.19 — Justification du brouillard intégral : génération procédurale (23 novembre 2026)
+
+L'utilisateur précise que le choix du brouillard de guerre intégral (V7.18) est également motivé par le caractère procédural de la carte à chaque visite. Cette précision rejoint la règle antérieure de configuration stable pendant une même expédition et renouvelée à l'expédition suivante.
+- Nouvelle expédition : nouvelle configuration procédurale de la carte, à découvrir progressivement.
+- Retour sur un nœud pendant la même expédition : conserver la configuration et les découvertes de cette expédition ; appliquer V7.16 et V7.17.
+- Préserver l'identité des régions, les événements uniques résolus et les conséquences persistantes malgré le renouvellement de la disposition.
+- L'interprétation de « chaque visite » comme nouvelle expédition, plutôt que chaque passage sur un nœud, découle des règles antérieures ; les modalités exactes de génération et de conservation des connaissances restent à définir.
+
+**Exécution :** précision documentaire, sans implémentation ni test Godot.
+
+#### V7.24 — Génération procédurale hybride structurée des cartes régionales (23 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C, explicitement choisie par l'utilisateur.** Bibliothèques régionales de lieux, rencontres et événements conçus manuellement, assemblés procéduralement à chaque nouvelle expédition sous contraintes narratives et régionales. Respecter l'identité artistique et les biomes, l'accessibilité des objectifs obligatoires lorsque leurs prérequis sont remplis, les itinéraires alternatifs et accès secrets, la cohérence des rencontres, la persistance des conséquences et événements uniques, l'absence de blocage involontaire et la stabilité de la configuration pendant l'expédition, sauvegarde et reprise comprises. Conserver les décisions V7.15–V7.23 et la génération hybride des donjons déjà documentée. Dimensions, densité, répartition des nœuds, algorithmes et valeurs restent à spécifier.
+
+**Traçabilité :** validation explicite de l'option C concernant la génération procédurale des cartes régionales. Mise à jour documentaire uniquement ; aucun développement ni test en jeu. **Statut : 🟡 À CONSOLIDER. Avancement du chantier détaillé et du projet global : À évaluer.**
