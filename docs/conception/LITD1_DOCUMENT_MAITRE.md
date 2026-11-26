@@ -3225,3 +3225,32 @@ Modèle D et CIB-01 à CIB-20 explicitement validés en conception.
 - CIB-20 : Conservation de l'identité anatomique, des états et de la causalité dans les sauvegardes.
 
 Réconciliation : complète les règles existantes de ciblage et HUD, FORM, MOB et COL ; conserve les exceptions d'interception explicitement autorisées et ARCH-12 pour la causalité. Les coefficients, conséquences des blessures et modalités de résolution d'une cible devenue inaccessible restent ouverts. Aucun test moteur exécuté.
+
+## REFONTE-COMP-01 — Bloc 07 : blessures hybrides (validation utilisateur du 26 novembre 2026)
+
+Modèle D et ANA-01 à ANA-20 explicitement validés en conception.
+
+- ANA-01 : Dégradation suivie individuellement pour chaque partie anatomique.
+- ANA-02 : Distinction entre dégâts, blessures, fractures et séquelles.
+- ANA-03 : Pénalités intermédiaires selon un modèle hybride.
+- ANA-04 : Conséquences déterminées par les fonctions anatomiques réelles.
+- ANA-05 : Une partie neutralisée n'entraîne pas automatiquement une incapacité générale.
+- ANA-06 : Une action nécessitant une fonction perdue devient indisponible.
+- ANA-07 : Les fonctions pouvant être compensées restent utilisables selon les capacités restantes.
+- ANA-08 : Compatibilité des prothèses avec la morphologie et la partie manquante.
+- ANA-09 : Installation d'une prothèse sans effacement de l'historique de l'amputation.
+- ANA-10 : Conservation de la dégradation après retrait et réinstallation.
+- ANA-11 : Aucune réparation automatique par changement d'équipement.
+- ANA-12 : Distinction entre guérison biologique et réparation des prothèses.
+- ANA-13 : Affichage des conséquences fonctionnelles dans l'interface.
+- ANA-14 : Application aux héros et aux ennemis selon leur morphologie.
+- ANA-15 : Aucun effacement automatique des blessures lors d'une promotion ou d'un recrutement.
+- ANA-16 : Les prothèses ne doivent pas constituer une stratégie d'optimisation universellement supérieure.
+- ANA-17 : Entretien simplifié, sans microgestion des composants individuels.
+- ANA-18 : Reconstruction d'une prothèse brisée sans duplication de l'objet.
+- ANA-19 : Conservation de la causalité des blessures selon ARCH-12.
+- ANA-20 : Conservation des états anatomiques et des progrès de guérison dans les sauvegardes.
+
+Compléments historiques présentés à l'utilisateur et dont la consolidation est explicitement autorisée le 26 novembre 2026 (date historique du 16 novembre rapportée, provenance originale non revérifiée) : progression de guérison conservée ; séquelles permanentes possibles après traitement ; cicatrices et amputations définitives ; aucune repousse à l'infirmerie ; membre endommagé à 80 % inutilisable, à 100 % amputé. Prothèses : fabrication à la forge, découverte en donjon, plusieurs prothèses possibles correspondant à des amputations réelles ; supériorité possible avec contrepartie négative obligatoire ; entretien et détérioration ; réparation immédiate payante chez le forgeron sans attente ; à 80 % inutilisable, à 100 % brisée ; reconstruction possible ; prothèse brisée occupant une place dans l'inventaire. Pas de microgestion ni d'incitation universelle à l'amputation volontaire. Conditions précises de reconstruction et coefficients intermédiaires ouverts.
+
+Réconciliation : CIB, MOB, COL et ARCH-12 applicables ; aucun système spécifique d'organes vitaux, aucun ancien catalogue réintroduit. Aucun test moteur exécuté.
