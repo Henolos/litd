@@ -77,10 +77,8 @@ def cited_rules(relation: str):
         yield "V8.3", ranges_in(tail)
 
 
-def validate() -> list[str]:
+def validate_texts(trace: str, master: str) -> list[str]:
     errors: list[str] = []
-    trace = TRACE.read_text(encoding="utf-8")
-    master = MASTER.read_text(encoding="utf-8")
     sections = get_sections(master)
 
     heading = "## Matrice individuelle des 80 règles"
@@ -173,6 +171,10 @@ def validate() -> list[str]:
         print("Relationship cells and source locators: populated and syntactically resolvable")
         print("Scope limit: no semantic approval, source authenticity, implementation, or gameplay claim")
     return errors
+
+
+def validate() -> list[str]:
+    return validate_texts(TRACE.read_text(encoding="utf-8"), MASTER.read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":
