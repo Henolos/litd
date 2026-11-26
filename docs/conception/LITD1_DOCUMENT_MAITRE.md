@@ -3423,3 +3423,14 @@ Synthèse normative des accords du bloc 12.2 :
 - Les propositions SAUV antérieures non validées sont abandonnées. Les modalités temporelles du retour, la qualification du résultat de mission et les cas de captifs relèvent des blocs suivants ; aucune extension implicite aux autres retraites ou à l'extraction des captifs.
 
 Bloc 12.2 clos pour les arbitrages de conception. Contrôles transversaux, implémentation et tests runtime non réalisés. Vérifications futures : interdiction d'assistance et de transport ; retour du vivant immobilisé et clôture non reprenable ; abandon sans décès automatique ; dépouille non extraite et équipement unique ; persistance et reprise transactionnelle.
+
+## REFONTE-COMP-01 — Bloc 12.3 — Navigation après retraite (26 novembre 2026)
+
+**VALIDÉ EN CONCEPTION — accord direct :** « Pour LITD 1, je valide les arbitrages de navigation après retraite suivants : franchissement C, position A, persistance des ennemis C, blocage stratégique A. Réconcilie ces décisions avec les règles de combat et révise les règles RET. »
+
+RET-NAV-01 : Le franchissement après retraite dépend des obstacles et conditions réelles ; la fuite ne valide pas automatiquement la rencontre.
+RET-NAV-02 : Retour au nœud d'origine si accessible ; si inaccessible, issue à arbitrer, sans téléportation implicite.
+RET-NAV-03 : Persistance des ennemis et évolution contextuelle selon les règles applicables ; aucune réinitialisation ni résurrection automatique.
+RET-NAV-04 : Blocage stratégique légitime accepté sans création artificielle de passage ; distinct d'un défaut de génération.
+
+Réconciliation : V8.3 n°1, V7.38, V7.43, ARCH-01/02/03 et V7.49 restent applicables. Les itinéraires alternatifs et secrets ne sont utilisables que si réellement accessibles. La stabilité de la carte et les conséquences confirmées sont préservées ; aucun nouveau tirage par fuite. La retraite tactique reste distincte du retour au hub ; le bloc 12.2 interdit transport et assistance des héros et clôt définitivement la mission lors du retour au hub avec héros immobilisé après combat. ARCH-04 régit les abandons, ARCH-05 la fuite ennemie, ARCH-12 la causalité, INIT les PA et l'ordre des tours. Les quatre arbitrages tactiques antérieurement proposés (modèle, rangs, boss, objets), coûts, interruptions, séparation des héros et destination si origine inaccessible restent ouverts. Les propositions RET-01 à RET-30 ne sont pas globalement approuvées par cet accord ; RET-21 à RET-30 doivent être relues à la lumière des quatre règles NAV ci-dessus. Contrôles de graphe à rattacher au validateur existant, non exécutés. Aucun changement moteur.
