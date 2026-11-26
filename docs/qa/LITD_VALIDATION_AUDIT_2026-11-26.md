@@ -103,4 +103,11 @@ Le contrôle `remanence-smoke` a d’abord rejeté la correction, car `docs/COMB
 
 La Bible UX/UI du dépôt fournit des critères textuels pour UI-01, UI-02, UI-03, UI-04, UI-05, UI-06, UI-08, UI-09 et UI-10. Ces neuf lignes sont maintenant reliées à `docs/BIBLE_UX_UI_LITD.md` avec une proposition de critère d’acceptation ; leurs sources restent `SUPPORTING_SOURCE_UNVERIFIED` et leurs critères `PARTIAL`, car leur autorité face au document maître et leur réalisation en jeu n’ont pas été contrôlées. UI-07 reste sans critère, car la Bible consultée ne permet pas d’interpréter sûrement le titre « Signalement ».
 
-Le contrat compte donc 10 critères partiels (COM-13, COM-15, UI-01 à UI-06, UI-08 à UI-10) et 119 contrôles sans critère défini. Les règles de canal, source et statut restent descriptives : aucun canal n’a encore été exécuté pour certifier ces contrôles.
+À cette étape, le contrat compte 11 critères partiels (COM-13, COM-15, UI-01 à UI-06, UI-08 à UI-10) et 118 contrôles sans critère défini. Les règles de canal, source et statut restent descriptives : aucun canal n’a encore été exécuté pour certifier ces contrôles.
+
+
+## Extension de la réconciliation psychologie
+
+Sept contrôles psychologiques (PSY-01 à PSY-04 et PSY-06 à PSY-08) disposent maintenant de critères partiels reliés aux passes 04/05 ou aux données psychologiques. Les critères couvrent les paliers de Peur, les déclencheurs et la répétition d’événements, la sélection de cible et la limite d’une intervention par round, les traces non diagnostiques, la crise à 100 et l’absence de cumul de l’Espoir. Les références sont corroborantes et non vérifiées individuellement contre le maître ; l’exécution/runtime n’est pas prouvée par leur présence.
+
+PSY-05 reste sans critère d’acceptation : son intitulé « Relations » n’est pas suffisamment défini par les seules règles de persistance déjà liées au maître. Après cette passe, le contrat compte 18 critères partiels sur 129 et 111 critères encore non définis.
