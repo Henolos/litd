@@ -3440,3 +3440,17 @@ Réconciliation : V8.3 n°1, V7.38, V7.43, ARCH-01/02/03 et V7.49 restent applic
 **VALIDÉ EN CONCEPTION — accord direct :** « La retraite est pour toute la compagnie ».
 
 RET-COLLECTIF-01 : La commande de retraite concerne exclusivement la compagnie entière. Aucune commande de retraite volontaire individuelle. La proposition RET-02 autorisant la retraite individuelle est écartée. La résolution des cas d'immobilisation et d'abandon reste régie par ARCH-04 et le bloc 12.2, sans transport ni décès automatique. Ne pas assimiler ordre collectif à garantie de sortie de chaque héros ; modalités de résolution, coût en PA, délai, interruption et objets de fuite restent à arbitrer. RET-NAV-01 à 04 conservées. Aucune validation implicite des autres propositions RET. Aucun test moteur.
+
+## REFONTE-COMP-01 — Bloc 12.3 — Arbitrages tactiques collectifs (26 novembre 2026)
+
+**VALIDÉ EN CONCEPTION — accord direct :** « Pour LITD 1, je valide les arbitrages de retraite collective suivants : coût B, conditions de réussite C, interruption C, objets de fuite C, restrictions C. Réconcilie les règles RET et prépare leur validation définitive. »
+
+RET-TACT-01 : Une tentative collective consomme 1 PA du héros actif ; aucune tentative individuelle successive.
+RET-TACT-02 : Conditions physiques obligatoires puis résolution contextuelle du risque ; aucun coefficient ni probabilité fixe validés.
+RET-TACT-03 : Interruption uniquement par capacités et réactions admissibles, sans attaque gratuite systématique ni renouvellement de PA.
+RET-TACT-04 : Objets de fuite comme action indépendante ou intégrée selon leurs propriétés explicites ; aucun contournement implicite des contraintes physiques.
+RET-TACT-05 : Restrictions contextuelles selon positions, obstacles, sorties et capacités ennemies ; aucune interdiction universelle fondée uniquement sur la catégorie boss.
+
+Réconciliation : RET-COLLECTIF-01 et RET-NAV-01 à 04 conservées. INIT et DEF encadrent PA, initiative et réactions ; MOB, FORM, COL, ANA, AFF et MORT encadrent faisabilité physique et conséquences ; ARCH-04 régit les abandons, ARCH-05 la fuite ennemie, ARCH-12 la causalité, V8.3 la persistance. Bloc 12.2 conservé, notamment interdiction de transport et d'assistance volontaire et clôture définitive lors du retour au hub avec héros immobilisé après combat. Aucun nouveau tirage de carte ni passage artificiel.
+
+Les trente propositions RET restent à valider globalement. À préciser avant clôture : héros nouvellement immobilisé pendant la tentative (consentement à l'abandon), destination si origine inaccessible, délai et état tactique lors d'un nouvel affrontement, conditions d'engagement et d'échec. Ne pas déduire une validation de ces modalités du présent accord. Aucun test moteur ni fusion.
