@@ -67,6 +67,6 @@ def test_supporting_sources_must_be_declared():
 def test_partial_criteria_must_be_present():
     c, s = inputs()
     rule = next(r for r in c["rules"] if r["id"] == "COM-15")
-    rule["acceptance_criteria"] = []
+    rule.pop("acceptance_criteria")
     with pytest.raises(ValueError, match="Partial criteria missing"):
         validate(c, s, ROOT)
