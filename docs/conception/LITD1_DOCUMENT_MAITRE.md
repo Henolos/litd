@@ -3088,3 +3088,30 @@ Le principe est de conserver la responsabilité causale de chaque action d'une i
 - Les conditions de prise de contrôle, sa durée, son coût, les résistances et l'accès à l'autonomie restent à concevoir. Aucun mécanisme de contrôle supplémentaire n'est validé.
 - Cas de contrôle à préparer : poison avant transfert, attaque après transfert, contrôle temporaire, retour au maître précédent, décès ou recrutement du maître, autonomie, destruction de l'invocation, égalité causale, sauvegarde pendant transfert.
 - La comparaison technique des contributions causales, les preuves historiques encore manquantes et les tests runtime restent ouverts. Aucun changement moteur ni validation technique revendiqués.
+
+## REFONTE-COMP-01 — Bloc 02 : initiative hybride (validation utilisateur du 26 novembre 2026)
+
+Modèle E et INIT-01 à INIT-20 explicitement validés en conception. Les identifiants sont locaux à ce bloc.
+
+- INIT-01 : Un tour correspond au créneau individuel d'un combattant.
+- INIT-02 : Un round correspond au cycle des tours de tous les combattants admissibles.
+- INIT-03 : Chaque combattant dispose normalement d'un seul tour par round.
+- INIT-04 : Le PA inutilisé à la fin du tour est perdu.
+- INIT-05 : L'initiative est recalculée au début de chaque round.
+- INIT-06 : Elle dépend des caractéristiques et de l'état réel du combattant.
+- INIT-07 : Une composante aléatoire limitée apporte de l'incertitude.
+- INIT-08 : L'ordre d'initiative est visible par le joueur.
+- INIT-09 : L'ordre est verrouillé pendant le round.
+- INIT-10 : Les modifications ordinaires d'initiative prennent effet au round suivant.
+- INIT-11 : Priorité au combattant possédant la meilleure initiative avant aléatoire.
+- INIT-12 : En cas d'égalité persistante, tirage de départage reproductible et mémorisé.
+- INIT-13 : Aucun avantage systématique accordé aux héros ou aux ennemis.
+- INIT-14 : Un combattant mort avant son tour perd définitivement son action.
+- INIT-15 : Une incapacité est évaluée lorsque le combattant atteint son tour.
+- INIT-16 : Les nouveaux combattants rejoignent normalement l'ordre d'initiative au round suivant.
+- INIT-17 : Un changement de contrôle ne renouvelle ni le tour ni le PA du combattant.
+- INIT-18 : Les résultats des tirages d'initiative sont conservés dans la sauvegarde.
+- INIT-19 : Une reprise de partie ne déclenche aucun nouveau tirage pour le round en cours.
+- INIT-20 : Aucun changement d'état, de rang ou de contrôle ne crée automatiquement un PA supplémentaire.
+
+Préséance : complète V4.2–V4.5 ; un PA unique, attaque préventive imputée au premier tour, bonus collectif léger de guet-apens limité au premier round. Compatible avec ARCH-12.5 : aucun renouvellement par transfert de contrôle. Les coefficients, amplitude numérique, réactions, interruptions et exceptions spécifiques restent ouverts. Aucun ancien catalogue de classes, armes, armures ou compétences réintroduit. Aucun test runtime exécuté.
