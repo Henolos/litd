@@ -1412,7 +1412,7 @@
       "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
       "acceptance_criteria_status": "PARTIAL",
       "acceptance_criteria": [
-        "Les services et traitements sont des étapes facultatives après expédition dans la boucle refuge; aucune dépense ne doit être appliquée sans choix/transaction de service."
+        "La boucle refuge suit l’ordre défini : résoudre l’expédition, sécuriser le butin et les connaissances, appliquer blessures/rémanence, puis proposer les soins optionnels avant les réparations et la préparation suivante."
       ],
       "supporting_sources": [
         {
