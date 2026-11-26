@@ -118,3 +118,10 @@ PSY-05 reste sans critère d’acceptation : son intitulé « Relations » n’e
 Cinq contrôles supplémentaires ont un critère partiel : EXP-01 et EXP-16 (conformité au schéma graph_v0 et fixtures), EXP-11 et EXP-12 (retour refuge, nœuds visités et non-répétition des événements), EXP-17 (fraîcheur des métadonnées et intégrité des octets du rapport). Les quatre premières vérifications ont des critères de prototype/schema, pas une certification de campagne complète. EXP-17 valide l’intégrité d’une preuve, pas le comportement du jeu, comme le dit le code lui-même.
 
 Les sources de ces lignes sont corroborantes et non réconciliées à la décision maître. Après cette passe, 23/129 critères sont partiellement définis et 106 restent sans critère formulé. Les 23 ne sont pas réputés testés ou validés.
+
+
+## Extension de la réconciliation refuge et économie
+
+Huit contrôles (REF-01, REF-02, REF-03, REF-06, REF-07, REF-08, REF-09 et REF-10) ont désormais des critères partiels dérivés des données v0.7 : boucle refuge, limites et conditions de recrutement, dépendances/niveaux de bâtiments, coûts de soins, déclenchement de la réserve d’urgence, sources/usages des monnaies, protections contre softlock et remboursement avant commit.
+
+Ces règles sont extraites de fichiers de données et restent à confirmer comme exigences courantes face au document maître. Les critères ne prouvent pas que le runtime respecte les valeurs. Après cette passe, 31 contrôles sur 129 ont des critères partiels ; 98 restent sans critère formulé. REF-04/05 sont laissés ouverts, car leurs règles d’entraînement/bonus n’ont pas été retrouvées avec un seuil ou un résultat d’acceptation clair dans les sources inspectées.
