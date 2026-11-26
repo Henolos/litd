@@ -44,3 +44,11 @@ def test_canonical_source_must_be_declared():
     c["references"].remove("docs/conception/LITD1_DOCUMENT_MAITRE.md")
     with pytest.raises(ValueError, match="Canonical source is not declared"):
         validate(c,s,ROOT)
+
+
+def test_every_rule_has_a_review_channel_and_open_reconciliation_statuses():
+    contract, schema = inputs()
+    validate(contract, schema, ROOT)
+    assert all(rule["review_channel"] in {"human", "visual", "F8", "measurement_and_human", "physical_windows"} for rule in contract["rules"])
+    assert all(rule["source_status"] in {"MISSING", "LINKED_UNVERIFIED"} for rule in contract["rules"])
+    assert all(rule["acceptance_criteria_status"] == "NOT_DEFINED" for rule in contract["rules"])
