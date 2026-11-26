@@ -100,7 +100,7 @@ Les comportements possibles incluent :
 - adaptation contrôlée des élites ;
 - adaptation de phase des boss.
 
-Une créature ordinaire très affaiblie et ayant perdu plusieurs parties peut tenter de fuir. Les mini-boss et boss ne fuient jamais.
+Seuls les ennemis dotés du statut Némésis peuvent volontairement fuir un combat, et cette fuite n'est pas systématique. Les ennemis ordinaires, les élites et les mini-boss sans statut Némésis ne fuient pas. Les cas des Némésis devenus boss établis et des transformations en boss restent à clarifier selon ARCH-05 du document maître.
 
 Certaines créatures protègent également une partie encore fonctionnelle. Une partie marquée **PROTÉGÉE** impose actuellement une pénalité de 15 points à la précision anatomique du joueur.
 
