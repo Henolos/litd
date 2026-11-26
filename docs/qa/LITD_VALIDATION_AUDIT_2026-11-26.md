@@ -49,4 +49,4 @@
 
 ## État
 
-Correction documentaire et garde-fou de traçabilité préparés pour revue. La CI du commit fc2c034 a réussi pour quality et godot-smoke, avec quality-full ignoré. Aucune fusion ni validation gameplay.
+Correction documentaire et garde-fou de traçabilité préparés pour revue. Sur le commit aa1b0f4, quality (1 467 tests Python) et godot-smoke ont réussi ; quality-full a été ignoré. Le pilote déclaratif a encore échoué uniquement sur le libellé du statut ; sa règle a été lue, la PR corrigée avec « Statut : PARTIEL », et une nouvelle exécution est en attente. Aucune fusion ni validation gameplay.
