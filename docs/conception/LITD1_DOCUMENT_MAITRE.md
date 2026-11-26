@@ -3308,3 +3308,30 @@ Modèle D et DEF-01 à DEF-20 explicitement validés en conception.
 - DEF-20 : Conservation des préparations et déclenchements dans les sauvegardes.
 
 Réconciliation : INIT, MOB, CIB, ANA et ARCH-12 applicables. La préparation dépense le PA, sans stockage du PA inutilisé ; les règles existantes d'interception anatomique sont conservées. Durées, probabilités, priorités concurrentes et coefficients ouverts. Aucun ancien catalogue réintroduit. Aucun test moteur exécuté.
+
+## REFONTE-COMP-01 — Bloc 10 : combos progressifs (validation utilisateur du 26 novembre 2026)
+
+Modèle D et COM-01 à COM-20 explicitement validés en conception.
+
+- COM-01 : Distinction entre combos individuels, synergies successives et attaques synchronisées.
+- COM-02 : Combinaisons soumises à des conditions de compatibilité explicites.
+- COM-03 : Découverte des combos inconnus par expérimentation réussie.
+- COM-04 : Conservation collective et permanente des combos découverts.
+- COM-05 : Connaissance distincte de la capacité à exécuter un combo.
+- COM-06 : Attaques synchronisées impliquant deux à quatre combattants.
+- COM-07 : Chaque participant engage son propre PA pendant son tour.
+- COM-08 : Aucun changement de l'ordre d'initiative.
+- COM-09 : Engagements synchronisés réalisés dans le même round.
+- COM-10 : Résolution lorsque toutes les conditions nécessaires sont réunies.
+- COM-11 : Vulnérabilité des combattants pendant leur préparation.
+- COM-12 : Protection possible conformément aux règles DEF.
+- COM-13 : Interruption dépendante des effets subis et des capacités nécessaires.
+- COM-14 : PA déjà engagé perdu en cas d'interruption.
+- COM-15 : PA non encore engagé restant disponible pendant le tour correspondant.
+- COM-16 : Combo réduit possible uniquement si une variante compatible existe.
+- COM-17 : Nouvelle vérification des positions, cibles et capacités avant résolution.
+- COM-18 : Puissance et effets adaptés aux contributions réelles, sans duplication d'actions.
+- COM-19 : Attribution des conséquences conforme aux règles ARCH-12.
+- COM-20 : Conservation des préparations, interruptions et découvertes dans les sauvegardes.
+
+Réconciliation : INIT, DEF, AFF, CIB et ARCH-12 applicables. Conditions précises d'interruption, variantes réduites et coefficients ouverts. Aucun ancien catalogue réintroduit. Aucun test moteur exécuté.
