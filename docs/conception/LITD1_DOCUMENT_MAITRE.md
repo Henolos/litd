@@ -3464,3 +3464,40 @@ RET-LIM-02 : Si le nœud d'origine est inaccessible, retraite possible uniquemen
 RET-LIM-03 : Nouvel affrontement selon les conditions réelles, avec conservation des états pertinents ; prévenir les exploitations de PA, initiative, surprise et effets temporaires. Aucun délai chiffré ni algorithme de transition validé.
 
 Réconciliation : RET-COLLECTIF-01, RET-NAV-01 à 04 et RET-TACT-01 à 05 conservées. RET-14 doit inclure la confirmation des abandons nouveaux ; RET-22 inclut l'exception de sortie réelle alternative ; RET-27/28 incluent la continuité des états pertinents lors du nouvel affrontement. ARCH-04, INIT, DEF, V8.3 et bloc 12.2 restent applicables. Validation globale des trente règles RET encore attendue ; aucune implémentation ni fusion.
+
+## REFONTE-COMP-01 — Bloc 12.3 — Registre définitif RET (26 novembre 2026)
+
+**VALIDÉ EN CONCEPTION — accord direct :** « Je valide définitivement les trente règles RET-01 à RET-30 dans leur dernière version consolidée. Enregistre-les, vérifie les contrôles automatisés, clôture la conception du bloc 12.3 et commence le bloc 12.4 consacré à la capture et à la contention. »
+
+- RET-01 : La retraite est distincte du retour au hub.
+- RET-02 : La retraite concerne exclusivement toute la compagnie.
+- RET-03 : La résolution est collective et tient compte de l'état de chaque héros.
+- RET-04 : Les capacités anatomiques réelles conditionnent la fuite.
+- RET-05 : Aucun transport ni déplacement assisté.
+- RET-06 : Une tentative coûte 1 PA au héros actif.
+- RET-07 : Aucun remboursement du PA après une tentative engagée qui échoue ou est interrompue.
+- RET-08 : Aucun renouvellement des PA ni modification artificielle de l'initiative en cas d'échec.
+- RET-09 : Seules les capacités et réactions admissibles peuvent interrompre la retraite.
+- RET-10 : Aucune chaîne illimitée d'interceptions.
+- RET-11 : Les objets de fuite constituent une action indépendante ou intégrée selon leurs propriétés.
+- RET-12 : Aucun objet de fuite universellement efficace.
+- RET-13 : Un héros entravé peut être libéré par des moyens compatibles avant la retraite.
+- RET-14 : Confirmation explicite des abandons prévisibles et nouvellement nécessaires pendant la tentative. Le refus interrompt la retraite sans annuler les conséquences déjà subies.
+- RET-15 : Aucun décès automatique par abandon.
+- RET-16 : Restrictions contextuelles, justifiées et communiquées au joueur.
+- RET-17 : Conservation des conséquences physiques et matérielles.
+- RET-18 : Retraite distincte de la fuite des Némésis.
+- RET-19 : Aucune poursuite continue après la sortie du combat.
+- RET-20 : Persistance déterministe des tentatives et résultats confirmés.
+- RET-21 : Aucune validation automatique de la rencontre.
+- RET-22 : Retour au nœud d'origine accessible ou, à défaut, utilisation d'une autre sortie réelle et accessible.
+- RET-23 : Franchissement conditionné par les obstacles réels.
+- RET-24 : Utilisation des itinéraires alternatifs accessibles.
+- RET-25 : Utilisation des passages secrets accessibles.
+- RET-26 : Aucune création artificielle de passage.
+- RET-27 : Persistance et évolution contextuelle des ennemis, y compris lors d'un nouvel affrontement.
+- RET-28 : Aucune réinitialisation artificielle de la carte, de la rencontre ou des états tactiques pertinents.
+- RET-29 : Blocages stratégiques légitimes autorisés.
+- RET-30 : Détection des blocages accidentels à intégrer au validateur existant.
+
+Bloc 12.3 clos en conception. Paramètres, implémentation, tests runtime et contrôle transversal restent ouverts. Les décisions RET-NAV, RET-COLLECTIF, RET-TACT et RET-LIM sont consolidées par ce registre ; aucune extension aux règles de capture ou extraction de captifs. Bloc 12.4 ouvert en lecture seule.
