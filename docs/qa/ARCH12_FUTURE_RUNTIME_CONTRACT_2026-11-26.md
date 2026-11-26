@@ -97,6 +97,34 @@ Avant de déclarer une liaison ARCH-12 fonctionnelle, il faut :
 
 Tant que ces étapes ne sont pas satisfaites, les tests du modèle de référence, les smoke généraux Godot et les anciens artefacts historiques ne constituent pas des preuves d’exécution ARCH-12.
 
-## 8. Décision proposée
+## 8. Proposition d’intégration sur le `main` actuel
 
-**Candidat de contrat technique à examiner** — ne vaut ni approbation du runtime, ni autorisation de modifier le gameplay. La décision suivante est de vérifier la structure actuelle de `main` et de proposer le point d’intégration du nouveau runtime avant toute implémentation.
+L’inspection du dernier `main` a confirmé que :
+
+- `scripts/core/` contient des services de données, paramètres, audio et sauvegarde, sans runtime de combat de production;
+- `scripts/prototype/litd1_node_map_loop.gd` porte directement l’état du combat de démonstration (acteurs, PV, attaque, garde et journal), et son propre commentaire le déclare provisoire;
+- `SaveManager` expose une API de snapshot opaque (`set_snapshot` / `get_snapshot`); il ne fournit pas à lui seul les données métier ou la causalité;
+- les scripts de combat retirés ne sont pas présents dans les chemins actuels et ne sont pas repris.
+
+**Architecture candidate à neuf, à partir de cette base :**
+
+1. **Runtime d’affrontement autoritaire** dans une nouvelle responsabilité de combat du projet courant. Il reçoit les commandes de jeu et produit les événements réels; la scène d’interface ne modifie pas directement la résolution.
+2. **Journal de provenance partagé**, attaché aux événements de domaine du combat. Chaque événement référence les événements causaux nécessaires et conserve l’état pertinent du maître/faction à l’action. Il n’existe qu’une autorité de provenance, partagée ensuite par les afflictions, pièges, invocations, dangers du monde, sauvegardes, Archives et Némésis.
+3. **Résolveur déterministe de décès**, consommateur du journal et des règles validées. Il retourne les contributeurs et zéro ou un responsable principal. Il ne départage pas arbitrairement les cas dont la politique reste ouverte; ces cas restent non résolus jusqu’à validation.
+4. **Projection des Archives et persistance**, produites depuis le résultat autoritaire et sauvegardées via le service snapshot actuel après vérification de son contrat. Elles ne deviennent pas une seconde source d’état.
+5. **Adaptateur de tests**, limité à l’injection au point d’entrée du runtime et à l’observation de ses sorties. Il ne calcule pas lui-même les morts, crédits ou statuts.
+
+Le prototype de carte à nœuds reste une démonstration séparée tant que le futur runtime n’est pas intégré; il ne sera pas converti silencieusement en moteur de production et aucun chiffre ou action provisoire n’est élevé au rang de règle. L’intégration finale devra utiliser un seul chemin autoritaire, et retirer ou isoler l’ancien parcours de démonstration selon la validation de la tranche de production.
+
+## 9. Garde-fous d’implémentation
+
+- Implémenter uniquement les comportements dont les règles et oracles sont déterminés; marquer les entrées P/D comme non testables ou « décision requise ».
+- Maintenir une séparation nette entre l’enregistrement des faits causaux et la politique qui choisit un responsable. Le schéma de preuve peut être construit sans figer le calcul quantitatif des contributions.
+- À données et séquence identiques, le résolveur doit être reproductible; toute dépendance à l’horloge réelle ou à l’aléatoire doit être injectée/contrôlée par le harnais.
+- Les sauvegardes doivent persister les identifiants et le marqueur de traitement des événements résolus afin d’éviter un double traitement après reprise.
+- Les oracles de production doivent appeler le runtime réel; un modèle abstrait demeure un contrôle séparé de la spécification.
+- Aucun contenu supprimé de `main` lors de la remise à zéro ne sert de code source, de schéma ou de comportement à réintroduire.
+
+## 10. Statut de la proposition
+
+**Contrat et architecture candidats rédigés; runtime non implémenté.** Ce document est non normatif et n’ajoute aucune règle de gameplay. L’inspection du point d’intégration actuel est terminée; la suite technique consistera à implémenter cette architecture sur le code courant, sous PR brouillon, une fois le contrat accepté et les points ouverts gardés hors du périmètre.
