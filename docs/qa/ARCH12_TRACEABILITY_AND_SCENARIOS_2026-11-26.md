@@ -1,21 +1,36 @@
 # ARCH-12 — traçabilité et préparation QA
 
-Date d’état : 26 novembre 2026. Base documentaire contrôlée : `main` à `154a80717a78fcd3d3bb02af445429be1524cc01`. Cette fiche complète le document maître; elle ne remplace aucune règle et ne constitue pas une validation de gameplay.
+Date d’état : 26 novembre 2026. Base documentaire contrôlée : `main` à `e9b1524ac635860df488b332dc47c9acd01d6bbb` (fusion de #654). Cette fiche complète le document maître; elle ne remplace aucune règle et ne constitue pas une validation de gameplay.
 
 ## Contrat et limites
 
 - Inventaire présent dans le document maître : ARCH-12 (20), ARCH-12.1 (10), ARCH-12.2 (10), ARCH-12.3 (10), ARCH-12.4 (10), ARCH-12.5 (20), soit **80 règles**.
 - PR #652 porte sur le contrat QA de 129 contrôles et indique explicitement que les 40 règles ARCH-12.3/.4/.5 sont présentes dans le document maître mais pas encore déclinées en contrôles QA complets. Elle ne modifie pas ce document maître. Cette fiche n'ajoute aucun doublon de ses neuf fichiers.
 - Les règles ci-dessous sont tracées par identifiant et locator, sans recopier leur texte normatif. La présence documentaire est confirmée. Les commits et patches établissent l'origine dans le dépôt, pas l'authenticité d'une conversation utilisateur.
-- Les résumés des conversations accessibles attestent les validations explicites de l'option C et des ensembles complémentaires. Les propositions originales intégrales ne sont pas disponibles pour une comparaison mot pour mot dans cette reprise. Aucune validation absente n'est reconstruite.
+- Les propositions intégrales des 80 règles ont été récupérées dans les commits de proposition des PR #649, #650 et #651. Leur correspondance avec le document maître actuel est contrôlée ci-dessous. Les messages conversationnels originaux de validation ne sont toujours pas accessibles; cette comparaison ne les authentifie pas et aucune validation manquante n'est reconstruite.
 - Pour chaque ligne, les références, dépendances et exceptions sont vérifiées au niveau du texte source. Main ne fournit pas encore de graphe de dépendances règle-par-règle; les dépendances ci-dessous sont donc des renvois de groupe, et non des liens formels exhaustifs. Cette lacune demeure à traiter avant la couverture de test complète.
 - Implémentation technique ARCH-12 : non attestée. Tests fonctionnels ARCH-12 : non exécutés. Les scénarios de la section suivante sont des propositions de campagne, pas des tests.
 
+
+## Comparaison des propositions versionnées avec le document maître
+
+Méthode : extraction des titres et textes normatifs de chaque proposition complète, puis comparaison des 80 règles présentes dans le document maître à `main` au commit `e9b1524ac635860df488b332dc47c9acd01d6bbb`. Seuls les espaces ont été normalisés; la ponctuation et les formulations ont été comparées.
+
+| Ensemble | Proposition récupérée | Règles comparées | Correspondance au document maître |
+|---|---|---:|---:|
+| ARCH-12 | #649, commit `5307dae91138fa202774bbbb185232fee8344666` | 20 | 20/20 exactes |
+| ARCH-12.1 et .2 | #649, commit `5307dae91138fa202774bbbb185232fee8344666` | 20 | 20/20 exactes |
+| ARCH-12.3 et .4 | #650, commit `5fe711287545f6194ef8d0361a4be128405eb564` | 20 | 20/20 exactes |
+| ARCH-12.5 | #651, commit `adaa53817bbcaa5308e1bc408dc662e1a3151f23` | 20 | 20/20 exactes |
+| **Total** | **#649–#651** | **80** | **80/80 exactes; zéro manque, ajout ou écart textuel** |
+
+Cette preuve certifie l'identité entre les propositions versionnées dans le dépôt et les règles présentes dans le document maître. Elle ne certifie pas mot pour mot le contenu des messages conversationnels ni l'origine antérieure indépendante du marquage rouge d'ARCH-12 règle 19.
+
 ## Matrice individuelle des 80 règles
 
-| Règle | Présence documentaire | Source authentifiée dans le dépôt | Validation explicite utilisateur | Conformité mot pour mot au texte initial | Réconciliation historique | Références / dépendances / exceptions | Implémentation technique | Tests fonctionnels |
+| Règle | Présence documentaire | Proposition versionnée dans le dépôt | Validation explicite utilisateur | Conformité au message de validation conversationnel | Réconciliation historique | Références / dépendances / exceptions | Implémentation technique | Tests fonctionnels |
 |---|---|---|---|---|---|---|---|---|
-| ARCH-12 01 | Oui — § ARCH-12, règles 01–20 | #649 — proposition originale enregistrée dans le commit 5307dae; fusion #649 | Validation explicite rapportée dans le dossier du 25-11; texte original de la conversation non récupéré ici | NON CERTIFIÉE — proposition conversationnelle initiale non accessible pour comparaison mot à mot | Partielle; réserve d'intégration et questions résolues dans les corrections de ce chantier; comparaison intégrale au fil d'origine absente | Références et exceptions décrites au niveau du groupe; aucune matrice de dépendances règle-par-règle dans main | Non attestée | Non exécuté / non attesté |
+| ARCH-12 01 | Oui — § ARCH-12, règles 01–20 | #649 — proposition originale enregistrée dans le commit 5307dae; fusion #649 | Validation explicite rapportée dans le dossier du 25-11; texte original de la conversation non récupéré ici | NON CERTIFIÉE — message de validation conversationnel non récupéré; proposition versionnée comparée à `main` (80/80) | Partielle; réserve d'intégration et questions résolues dans les corrections de ce chantier; message conversationnel non accessible; texte de proposition versionné comparé à `main` (80/80) | Références et exceptions décrites au niveau du groupe; aucune matrice de dépendances règle-par-règle dans main | Non attestée | Non exécuté / non attesté |
 | ARCH-12 02 | Oui — § ARCH-12, règles 01–20 | #649 — proposition originale enregistrée dans le commit 5307dae; fusion #649 | Validation explicite rapportée dans le dossier du 25-11; texte original de la conversation non récupéré ici | NON CERTIFIÉE — proposition conversationnelle initiale non accessible pour comparaison mot à mot | Partielle; réserve d'intégration et questions résolues dans les corrections de ce chantier; comparaison intégrale au fil d'origine absente | Références et exceptions décrites au niveau du groupe; aucune matrice de dépendances règle-par-règle dans main | Non attestée | Non exécuté / non attesté |
 | ARCH-12 03 | Oui — § ARCH-12, règles 01–20 | #649 — proposition originale enregistrée dans le commit 5307dae; fusion #649 | Validation explicite rapportée dans le dossier du 25-11; texte original de la conversation non récupéré ici | NON CERTIFIÉE — proposition conversationnelle initiale non accessible pour comparaison mot à mot | Partielle; réserve d'intégration et questions résolues dans les corrections de ce chantier; comparaison intégrale au fil d'origine absente | Références et exceptions décrites au niveau du groupe; aucune matrice de dépendances règle-par-règle dans main | Non attestée | Non exécuté / non attesté |
 | ARCH-12 04 | Oui — § ARCH-12, règles 01–20 | #649 — proposition originale enregistrée dans le commit 5307dae; fusion #649 | Validation explicite rapportée dans le dossier du 25-11; texte original de la conversation non récupéré ici | NON CERTIFIÉE — proposition conversationnelle initiale non accessible pour comparaison mot à mot | Partielle; réserve d'intégration et questions résolues dans les corrections de ce chantier; comparaison intégrale au fil d'origine absente | Références et exceptions décrites au niveau du groupe; aucune matrice de dépendances règle-par-règle dans main | Non attestée | Non exécuté / non attesté |
@@ -179,7 +194,7 @@ Les 70 entrées sont déduites des règles présentes. Elles restent au statut �
 
 ## Conditions préalables à la campagne
 
-1. Retrouver les textes originaux de validation ou marquer durablement les règles dont le verbatim reste non vérifiable.
+1. Retrouver les messages originaux de validation, ou conserver durablement la réserve « verbatim conversationnel non certifié ». Les propositions versionnées du dépôt ont été comparées intégralement à `main` (80/80).
 2. Compléter les dépendances, exceptions et renvois au niveau de chaque règle, sans ajouter de comportement par déduction.
 3. Fixer des préconditions, données, oracle et résultats attendus pour chaque scénario; couvrir positifs, négatifs, limites, sauvegarde/reprise et déterminisme.
 4. Réserver un sous-ensemble d'évaluation inédit et organiser une revue distincte selon MC-007.
@@ -187,7 +202,7 @@ Les 70 entrées sont déduites des règles présentes. Elles restent au statut �
 
 ## Point de reprise
 
-La réconciliation documentaire et la matrice sont préparées dans cette branche. Priorité suivante : contrôle distinct du diff, vérification automatisée des comptes 80/70 et des quatre réserves, puis PR. Les sources historiques manquantes, la revue indépendante, la spécification détaillée des tests et les validations techniques restent des blocages explicites.
+La PR #654 est fusionnée dans `main` à `e9b1524ac635860df488b332dc47c9acd01d6bbb`; les quatre réserves de conception/documentation sont réconciliées. La PR #653 a été fermée sans fusion après intégration de la correction correspondante dans #654. PR #652 et PR #655 restent ouvertes en brouillon. Restent ouverts : verbatim des messages de validation conversationnels, provenance antérieure de la règle 19, dépendances exhaustives par règle, spécification et exécution des tests ARCH-12, et revue indépendante MC-007.
 
 ## Critères d'acceptation et pondération fixés avant les corrections
 
@@ -195,10 +210,10 @@ La réconciliation documentaire et la matrice sont préparées dans cette branch
 |---|---:|---|---|
 | Préflight et gouvernance | 15 % | SHA de main, PR concurrentes/historiques, règles actives, approbations, protections et autorisations examinés | Satisfait avec limite documentée : endpoint classique de protection en 403; ruleset actif lu directement |
 | Inventaire qualité | 20 % | Comptage individuel des six ensembles, vérification des références/renvois/exceptions et absence de doublon avec #652 | Partiel : 80/80 présents; aucun graphe de dépendances individuel n'existe dans le texte source, et la couverture QA des 80 n'est pas établie |
-| Authentification historique | 25 % | Matrice 80 règles avec source, validation, verbatim, réconciliation, technique et tests vérifiés ou lacunes sourcées | Partiel : matrice créée et preuves examinées; propositions originales mot pour mot non accessibles, source historique de la règle 19 non retrouvée |
-| Corrections documentaires | 15 % | Quatre réserves anciennes préservées et explicitement réconciliées, sans modifier les règles validées; diff contrôlé | Réalisé et contrôlé sur branche isolée; pas encore fusionné dans main |
+| Authentification historique | 25 % | Matrice 80 règles avec source, validation, verbatim, réconciliation, technique et tests vérifiés ou lacunes sourcées | Partiel : propositions versionnées retrouvées et comparées à `main` (80/80); messages conversationnels originaux non récupérés; provenance antérieure de la règle 19 non retrouvée; dépendances par règle et tests fonctionnels encore incomplets |
+| Corrections documentaires | 15 % | Quatre réserves anciennes préservées et explicitement réconciliées, sans modifier les règles validées; diff contrôlé | Terminé et vérifié sur `main` à `e9b1524`; les formulations et limites techniques restent traçables |
 | Preuves V1.10 | 10 % | Run, 84 tests, SHA-256, conservation commit testé/fusionné et état 90 % vérifiés; lacunes signalées | Vérifié : 84/84, 43/43 empreintes, arbres test/fusion identiques; revue MC-007 reste en attente |
 | Scénarios | 10 % | Exactement 70 cas candidats identifiés, liés aux règles, sans prétendre à exécution | Réalisé : 70/70 inscrits, tous non exécutés et sans oracle fonctionnel définitif |
-| PR, CI, approbations, fusion | 5 % | PR appropriée, contrôles requis sur le SHA exact, approbations, Merge Queue et lecture de main après fusion | En cours : PR #654 brouillon, CI réussi; revue humaine et Merge Queue/post-fusion non faites |
+| PR, CI, approbations, fusion | 5 % | PR appropriée, contrôles requis sur le SHA exact, approbations, Merge Queue et lecture de main après fusion | Terminé pour #654 : six contrôles requis réussis sur `1e860a4`; `quality-full` ignoré et non requis; `Merge Execution Gate` réussi; ruleset actif exige Merge Queue et zéro approbation; fusion vérifiée dans `main` à `e9b1524`. #653 fermée sans fusion |
 
-Calcul reproductible au point de reprise : jalons terminés = 15 + 15 + 10 + 10 = **50 % du chantier**. Les autres jalons ne rapportent aucun poids tant que leurs critères complets ne sont pas satisfaits. Avancement global LITD 1 : **À évaluer**, car le dénominateur pondéré des chantiers globaux n'est pas disponible.
+Calcul reproductible après fusion de #654 : jalons terminés = 15 % préflight + 15 % corrections documentaires + 10 % preuves V1.10 + 10 % scénarios + 5 % PR/contrôles/fusion = **55 % du chantier**. Les jalons inventaire qualité (20 %) et authentification historique (25 %) restent partiels et ne rapportent pas leur poids complet. Avancement global LITD 1 : **À évaluer**, car le dénominateur pondéré des chantiers globaux n'est pas disponible.
