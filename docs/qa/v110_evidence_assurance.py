@@ -100,9 +100,17 @@ def metadata_control():
 
 def log_control():
     token = os.environ["GITHUB_TOKEN"]
-    zipped = read_url(API + "/actions/jobs/" + JOB + "/logs", token)
-    with zipfile.ZipFile(io.BytesIO(zipped)) as archive:
-        log = "\n".join(archive.read(n).decode("utf-8", "replace") for n in archive.namelist())
+    import subprocess
+    env = dict(os.environ)
+    env["GH_TOKEN"] = token
+    completed = subprocess.run(
+        ["gh", "run", "view", RUN, "--attempt", str(ATTEMPT), "--job", JOB,
+         "--log", "--repo", REPO],
+        text=True, capture_output=True, env=env, check=False,
+    )
+    if completed.returncode != 0:
+        raise ValueError("gh run view could not retrieve the pinned job logs: " + completed.stderr[-500:])
+    log = completed.stdout
     workflow = raw(FINAL_MERGE, WORKFLOW).decode()
     checks = {
         "merge_ref_checkout": "refs/remotes/pull/642/merge" in log and "HEAD is now at bc7ffcd" in log,
