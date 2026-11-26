@@ -8,7 +8,8 @@
     "data/veilleurs/player_validation_contract.json",
     "data/veilleurs/hardware_validation_contract.json",
     "docs/conception/LITD1_DOCUMENT_MAITRE.md",
-    "docs/COMBAT_ANATOMIE_AVANCEE.md"
+    "docs/COMBAT_ANATOMIE_AVANCEE.md",
+    "docs/BIBLE_UX_UI_LITD.md"
   ],
   "rules": [
     {
@@ -1800,8 +1801,18 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "human",
-      "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "Une action fréquente est accessible en deux interactions au plus depuis son contexte naturel; les positions, libellés et conventions de navigation restent stables entre écrans."
+      ],
+      "supporting_sources": [
+        {
+          "document": "docs/BIBLE_UX_UI_LITD.md",
+          "section": "Règles globales et sections de combat correspondantes",
+          "locator": "§2 lignes 20–36; appliquer la règle pertinente au contrôle"
+        }
+      ]
     },
     {
       "id": "UI-02",
@@ -1816,8 +1827,18 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "human",
-      "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "L’information nécessaire à une décision présente est accessible dans son contexte; le joueur ne doit pas avoir à mémoriser une statistique depuis un autre écran."
+      ],
+      "supporting_sources": [
+        {
+          "document": "docs/BIBLE_UX_UI_LITD.md",
+          "section": "Règles globales et sections de combat correspondantes",
+          "locator": "§2 lignes 20–36; appliquer la règle pertinente au contrôle"
+        }
+      ]
     },
     {
       "id": "UI-03",
@@ -1832,8 +1853,18 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "human",
-      "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "Toute action indisponible explique pourquoi elle est impossible et, si pertinent, ce qu’il faut changer."
+      ],
+      "supporting_sources": [
+        {
+          "document": "docs/BIBLE_UX_UI_LITD.md",
+          "section": "Règles globales et sections de combat correspondantes",
+          "locator": "§2 lignes 20–36; appliquer la règle pertinente au contrôle"
+        }
+      ]
     },
     {
       "id": "UI-04",
@@ -1845,8 +1876,18 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "visual",
-      "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "Le HUD permanent reste minimal; en combat, il affiche au plus deux états critiques directement et réserve les détails à la demande."
+      ],
+      "supporting_sources": [
+        {
+          "document": "docs/BIBLE_UX_UI_LITD.md",
+          "section": "Règles globales et sections de combat correspondantes",
+          "locator": "§3.1 lignes 42–53"
+        }
+      ]
     },
     {
       "id": "UI-05",
@@ -1858,8 +1899,18 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "human",
-      "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "Un changement important est communiqué par au moins deux canaux lorsque possible."
+      ],
+      "supporting_sources": [
+        {
+          "document": "docs/BIBLE_UX_UI_LITD.md",
+          "section": "Règles globales et sections de combat correspondantes",
+          "locator": "§2 lignes 20–36; appliquer la règle pertinente au contrôle"
+        }
+      ]
     },
     {
       "id": "UI-06",
@@ -1871,8 +1922,18 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "visual",
-      "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "L’inspection complète présente le portrait et l’identité de l’entité; le retour ferme l’inspection et rend le focus précédent."
+      ],
+      "supporting_sources": [
+        {
+          "document": "docs/BIBLE_UX_UI_LITD.md",
+          "section": "Règles globales et sections de combat correspondantes",
+          "locator": "§2 lignes 20–36; appliquer la règle pertinente au contrôle"
+        }
+      ]
     },
     {
       "id": "UI-07",
@@ -1897,8 +1958,18 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "measurement_and_human",
-      "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "Les animations ne bloquent pas l’entrée; l’interface est vérifiée avec mise à l’échelle, safe areas, petits écrans et plusieurs rapports d’image."
+      ],
+      "supporting_sources": [
+        {
+          "document": "docs/BIBLE_UX_UI_LITD.md",
+          "section": "Règles globales et sections de combat correspondantes",
+          "locator": "§2 lignes 20–36; appliquer la règle pertinente au contrôle"
+        }
+      ]
     },
     {
       "id": "UI-09",
@@ -1910,8 +1981,18 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "human",
-      "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "La couleur seule ne porte jamais une information indispensable; le focus clavier/manette est visible et son déplacement déterministe."
+      ],
+      "supporting_sources": [
+        {
+          "document": "docs/BIBLE_UX_UI_LITD.md",
+          "section": "Règles globales et sections de combat correspondantes",
+          "locator": "§2 lignes 20–36; appliquer la règle pertinente au contrôle"
+        }
+      ]
     },
     {
       "id": "UI-10",
@@ -1923,8 +2004,18 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "visual",
-      "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "L’information déjà compréhensible dans le monde n’est pas répétée inutilement dans le HUD; celui-ci ne garde que l’information critique pour la décision."
+      ],
+      "supporting_sources": [
+        {
+          "document": "docs/BIBLE_UX_UI_LITD.md",
+          "section": "Règles globales et sections de combat correspondantes",
+          "locator": "§2 lignes 20–36; appliquer la règle pertinente au contrôle"
+        }
+      ]
     },
     {
       "id": "INT-01",
