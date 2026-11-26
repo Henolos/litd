@@ -187,7 +187,7 @@ Les 70 entrées sont déduites des règles présentes. Elles restent au statut �
 
 ## Point de reprise
 
-La réconciliation documentaire et la matrice sont préparées dans cette branche. Priorité suivante : contrôle distinct du diff, vérification automatisée des comptes 80/70 et des quatre réserves, puis PR. Les sources historiques manquantes, la revue indépendante, la spécification détaillée des tests et les validations techniques restent des blocages explicites.
+La PR #653 porte la résolution de la réserve ARCH-12.5 dans le document maître; ne pas dupliquer ce changement dans #654. La PR #654 porte le statut d'intégration et les réserves ARCH-12.3/.4 ainsi que cette matrice et ces scénarios. Les deux propositions restent ouvertes; comparer leurs checks sur leurs SHA actuels et vérifier main après toute fusion. Les sources historiques manquantes, la revue indépendante V1.10, la spécification détaillée des tests et les validations techniques restent des blocages explicites.
 
 ## Critères d'acceptation et pondération fixés avant les corrections
 
@@ -196,7 +196,7 @@ La réconciliation documentaire et la matrice sont préparées dans cette branch
 | Préflight et gouvernance | 15 % | SHA de main, PR concurrentes/historiques, règles actives, approbations, protections et autorisations examinés | Satisfait avec limite documentée : endpoint classique de protection en 403; ruleset actif lu directement |
 | Inventaire qualité | 20 % | Comptage individuel des six ensembles, vérification des références/renvois/exceptions et absence de doublon avec #652 | Partiel : 80/80 présents; aucun graphe de dépendances individuel n'existe dans le texte source, et la couverture QA des 80 n'est pas établie |
 | Authentification historique | 25 % | Matrice 80 règles avec source, validation, verbatim, réconciliation, technique et tests vérifiés ou lacunes sourcées | Partiel : matrice créée et preuves examinées; propositions originales mot pour mot non accessibles, source historique de la règle 19 non retrouvée |
-| Corrections documentaires | 15 % | Quatre réserves anciennes préservées et explicitement réconciliées, sans modifier les règles validées; diff contrôlé | Réalisé et contrôlé sur branche isolée; pas encore fusionné dans main |
+| Corrections documentaires | 15 % | Quatre réserves anciennes préservées et explicitement réconciliées, sans modifier les règles validées; diff contrôlé | Trois corrections portées par #654; ARCH-12.5 portée séparément par #653 pour éviter le doublon. Les deux PR restent ouvertes, aucune intégration dans main |
 | Preuves V1.10 | 10 % | Run, 84 tests, SHA-256, conservation commit testé/fusionné et état 90 % vérifiés; lacunes signalées | Vérifié : 84/84, 43/43 empreintes, arbres test/fusion identiques; revue MC-007 reste en attente |
 | Scénarios | 10 % | Exactement 70 cas candidats identifiés, liés aux règles, sans prétendre à exécution | Réalisé : 70/70 inscrits, tous non exécutés et sans oracle fonctionnel définitif |
 | PR, CI, approbations, fusion | 5 % | PR appropriée, contrôles requis sur le SHA exact, approbations, Merge Queue et lecture de main après fusion | En cours : PR #654 brouillon, CI réussi; revue humaine et Merge Queue/post-fusion non faites |
