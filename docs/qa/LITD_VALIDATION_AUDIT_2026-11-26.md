@@ -97,3 +97,10 @@ Les canaux de revue sont maintenant renseignés au niveau du contrat, mais aucun
 ### Intégrité du document de référence protégé
 
 Le contrôle `remanence-smoke` a d’abord rejeté la correction, car `docs/COMBAT_ANATOMIE_AVANCEE.md` est dans le manifeste des références gelées. La correction est maintenant inscrite dans `docs/reconstruction/AUTHORIZED_REFERENCE_REVISIONS_20261123.json`, avec empreinte originale conservée, empreinte corrigée et preuve explicative sous `docs/qa/evidence/ARCH-05_FUITE_NEMESIS_2026-11-26.md`. Le passage du contrôle après cette autorisation reste à attendre ; l’échec initial ne constitue pas un résultat final de la branche.
+
+
+## Extension de la réconciliation UX/UI
+
+La Bible UX/UI du dépôt fournit des critères textuels pour UI-01, UI-02, UI-03, UI-04, UI-05, UI-06, UI-08, UI-09 et UI-10. Ces neuf lignes sont maintenant reliées à `docs/BIBLE_UX_UI_LITD.md` avec une proposition de critère d’acceptation ; leurs sources restent `SUPPORTING_SOURCE_UNVERIFIED` et leurs critères `PARTIAL`, car leur autorité face au document maître et leur réalisation en jeu n’ont pas été contrôlées. UI-07 reste sans critère, car la Bible consultée ne permet pas d’interpréter sûrement le titre « Signalement ».
+
+Le contrat compte donc 10 critères partiels (COM-13, COM-15, UI-01 à UI-06, UI-08 à UI-10) et 119 contrôles sans critère défini. Les règles de canal, source et statut restent descriptives : aucun canal n’a encore été exécuté pour certifier ces contrôles.
