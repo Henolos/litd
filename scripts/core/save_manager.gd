@@ -69,7 +69,7 @@ func load_qa_snapshot() -> bool:
 
 func delete_qa_snapshot() -> bool:
     var removed := false
-    for path: String in [QA_SNAPSHOT_PATH, _backup_for(QA_SNAPSHOT_PATH), _temp_for(QA_SNAPSHOT_PATH)]:
+    for path: String in [QA_SNAPSHOT_PATH, _backup_for(QA_SNAPSHOT_PATH), _temp_for(QA_SNAPSHOT_PATH), _backup_for(QA_SNAPSHOT_PATH) + ".tmp"]:
         if FileAccess.file_exists(path):
             removed = DirAccess.remove_absolute(ProjectSettings.globalize_path(path)) == OK or removed
     return removed
@@ -132,10 +132,10 @@ func all_slots_metadata() -> Array[Dictionary]:
 func delete_slot(slot: int) -> bool:
     slot = _valid_slot(slot)
     var removed := false
-    var paths := [_path(slot), _backup_path(slot), _temp_path(slot)]
+    var paths := [_path(slot), _backup_path(slot), _temp_path(slot), _backup_path(slot) + ".tmp"]
     if slot == 0:
         # A deleted slot must not be resurrected from the legacy mirror.
-        paths.append_array([SAVE_PATH, _backup_for(SAVE_PATH), _temp_for(SAVE_PATH)])
+        paths.append_array([SAVE_PATH, _backup_for(SAVE_PATH), _temp_for(SAVE_PATH), _backup_for(SAVE_PATH) + ".tmp"])
     for path in paths:
         if FileAccess.file_exists(path):
             removed = DirAccess.remove_absolute(ProjectSettings.globalize_path(path)) == OK or removed
@@ -201,9 +201,23 @@ func _atomic_write(path: String, text: String) -> bool:
     var previous_is_valid := not _migrate(_read_payload(path)).is_empty()
     if previous_is_valid:
         # An already-corrupt primary must never overwrite the last good backup.
-        if DirAccess.copy_absolute(destination, backup) != OK:
+        var backup_stage := _backup_for(path) + ".tmp"
+        var previous_text := FileAccess.get_file_as_string(path)
+        var backup_file := FileAccess.open(backup_stage, FileAccess.WRITE)
+        if backup_file == null:
             return false
-        if FileAccess.get_file_as_string(path) != FileAccess.get_file_as_string(_backup_for(path)):
+        backup_file.store_string(previous_text)
+        backup_file.flush()
+        var backup_error := backup_file.get_error()
+        backup_file.close()
+        if backup_error != OK or FileAccess.get_file_as_string(backup_stage) != previous_text:
+            return false
+        if _migrate(_read_payload(backup_stage)).is_empty():
+            return false
+        # Keep the primary intact until the staged backup has been published.
+        if _replace_save_file(ProjectSettings.globalize_path(backup_stage), backup) != OK:
+            return false
+        if FileAccess.get_file_as_string(_backup_for(path)) != previous_text:
             return false
     # Let the filesystem replace the destination; do not delete it first.
     if _replace_save_file(temporary, destination) == OK:
@@ -256,3 +270,414 @@ func _backup_for(path: String) -> String:
 
 func _temp_for(path: String) -> String:
     return path + ".tmp"
+
+# Canonical persistent-state contract; deliberately lives in the approved SaveManager
+# script scope defined by docs/reconstruction/RESET_20261112_MANIFEST.json.
+const SCHEMA_VERSION := 1
+const EXCLUDED_ROOT_FIELDS := ["metadata", "qa_snapshot", "runtime_cache", "animations", "ui_state"]
+
+func canonical_body(campaign_id: String, revision: int, persistent_state: Dictionary) -> String:
+    if campaign_id.is_empty() or revision < 0:
+        return ""
+    for field in EXCLUDED_ROOT_FIELDS:
+        if persistent_state.has(field):
+            return ""
+    if not _supported(persistent_state):
+        return ""
+    var record := {
+        "schema_version": SCHEMA_VERSION,
+        "campaign_id": campaign_id,
+        "revision": revision,
+        "persistent_state": persistent_state
+    }
+    # Godot JSON.stringify sorts dictionary keys recursively when sort_keys=true.
+    return JSON.stringify(record, "", true, true)
+
+func canonical_sha256(campaign_id: String, revision: int, persistent_state: Dictionary) -> String:
+    var body := canonical_body(campaign_id, revision, persistent_state)
+    return "" if body.is_empty() else body.sha256_text()
+
+func _supported(value: Variant) -> bool:
+    match typeof(value):
+        TYPE_NIL, TYPE_BOOL, TYPE_INT, TYPE_STRING:
+            return true
+        TYPE_FLOAT:
+            return is_finite(value)
+        TYPE_ARRAY:
+            for entry in value:
+                if not _supported(entry):
+                    return false
+            return true
+        TYPE_DICTIONARY:
+            for key in value.keys():
+                if typeof(key) != TYPE_STRING or not _supported(value[key]):
+                    return false
+            return true
+        _:
+            return false
+
+# Transaction preview only: pure validation on copies, with no disk writes.
+# This is NOT a durable write-ahead journal or a runtime commit operation.
+func preview_committed_transaction(current_state: Dictionary, record: Dictionary, applied_ids: Array) -> Dictionary:
+    var campaign_id: Variant = record.get("campaign_id")
+    var transaction_id: Variant = record.get("transaction_id")
+    var base_revision: Variant = record.get("base_revision")
+    var result_revision: Variant = record.get("result_revision")
+    var current_revision: Variant = record.get("current_revision")
+    var next_state: Variant = record.get("result_state")
+    var before_hash: Variant = record.get("pre_state_sha256")
+    var after_hash: Variant = record.get("post_state_sha256")
+    if typeof(campaign_id) != TYPE_STRING or String(campaign_id).is_empty():
+        return {}
+    if typeof(transaction_id) != TYPE_STRING or String(transaction_id).is_empty():
+        return {}
+    if typeof(base_revision) != TYPE_INT or typeof(result_revision) != TYPE_INT or typeof(current_revision) != TYPE_INT:
+        return {}
+    if base_revision < 0 or result_revision != base_revision + 1 or current_revision != base_revision:
+        return {}
+    if applied_ids.has(transaction_id):
+        return {}
+    if typeof(next_state) != TYPE_DICTIONARY or typeof(before_hash) != TYPE_STRING or typeof(after_hash) != TYPE_STRING:
+        return {}
+    if before_hash != canonical_sha256(campaign_id, base_revision, current_state):
+        return {}
+    if after_hash != canonical_sha256(campaign_id, result_revision, next_state):
+        return {}
+    if String(before_hash).length() != 64 or String(after_hash).length() != 64:
+        return {}
+    var ids := applied_ids.duplicate()
+    ids.append(transaction_id)
+    return {
+        "campaign_id": campaign_id,
+        "revision": result_revision,
+        "persistent_state": next_state.duplicate(true),
+        "applied_transaction_ids": ids
+    }
+
+# Experimental isolated journal. Never called by save_game/load_game.
+# Append-only revision files; a failed or interrupted write must not be accepted.
+# FileAccess.flush + readback does not establish power-loss durability.
+func journal_append_preview(journal_dir: String, current_state: Dictionary, record: Dictionary, applied_ids: Array, interrupt_at: String = "") -> bool:
+    if not journal_dir.begins_with("user://litd_transaction_lab/"):
+        return false
+    var preview := preview_committed_transaction(current_state, record, applied_ids)
+    if preview.is_empty():
+        return false
+    var revision: int = preview["revision"]
+    var path := journal_dir.path_join("revision_%010d.json" % revision)
+    if FileAccess.file_exists(path):
+        return false
+    if DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(journal_dir)) != OK:
+        return false
+    var entry := {
+        "journal_schema_version": 1,
+        "record": record.duplicate(true),
+        "transaction_id": preview["applied_transaction_ids"].back()
+    }
+    if not _supported(entry):
+        return false
+    # Godot JSON parsing converts integer variants to floats; preserve exact types
+    # for the canonical revision and SHA-256 checks during recovery.
+    var binary := var_to_bytes(entry)
+    var encoded := JSON.stringify({
+        "payload_base64": Marshalls.raw_to_base64(binary),
+        "sha256": Marshalls.raw_to_base64(binary).sha256_text()
+    })
+    var temp := path + ".pending"
+    if FileAccess.file_exists(temp):
+        return false
+    if interrupt_at == "before_open":
+        return false
+    var file := FileAccess.open(temp, FileAccess.WRITE)
+    if file == null:
+        return false
+    if interrupt_at == "after_open":
+        file.close()
+        return false
+    if interrupt_at == "during_store":
+        file.store_string(encoded.left(maxi(1, encoded.length() / 2)))
+        file.flush()
+        file.close()
+        return false
+    file.store_string(encoded)
+    if interrupt_at == "after_store":
+        file.close()
+        return false
+    file.flush()
+    var write_error := file.get_error()
+    file.close()
+    if write_error != OK or FileAccess.get_file_as_string(temp) != encoded:
+        return false
+    if interrupt_at == "after_flush" or interrupt_at == "before_rename":
+        return false
+    if DirAccess.rename_absolute(ProjectSettings.globalize_path(temp), ProjectSettings.globalize_path(path)) != OK:
+        return false
+    if interrupt_at == "after_rename":
+        return false
+    return FileAccess.get_file_as_string(path) == encoded
+
+# Recover a consecutive, validated prefix; never accept a malformed entry.
+# A missing revision is an error, not a reason to skip forward.
+func journal_recover_preview(journal_dir: String, campaign_id: String, base_revision: int, base_state: Dictionary, interrupt_at: String = "") -> Dictionary:
+    if not journal_dir.begins_with("user://litd_transaction_lab/"):
+        return {}
+    var state := base_state.duplicate(true)
+    var revision := base_revision
+    var ids: Array = []
+    var directory := DirAccess.open(journal_dir)
+    if directory == null:
+        return {"revision": revision, "persistent_state": state, "applied_transaction_ids": ids}
+    var files := directory.get_files()
+    var expected_count := 0
+    for name in files:
+        if name.begins_with("revision_") and name.ends_with(".json"):
+            expected_count += 1
+    for index in range(expected_count):
+        var path := journal_dir.path_join("revision_%010d.json" % (revision + 1))
+        if not FileAccess.file_exists(path):
+            return {}
+        var parser := JSON.new()
+        if parser.parse(FileAccess.get_file_as_string(path)) != OK or not (parser.data is Dictionary):
+            return {}
+        var envelope: Dictionary = parser.data
+        if interrupt_at == "after_read":
+            return {}
+        var payload_base64: Variant = envelope.get("payload_base64")
+        if typeof(payload_base64) != TYPE_STRING:
+            return {}
+        var binary := Marshalls.base64_to_raw(payload_base64)
+        if binary.is_empty() or envelope.get("sha256") != String(payload_base64).sha256_text():
+            return {}
+        if interrupt_at == "after_checksum":
+            return {}
+        var decoded: Variant = bytes_to_var(binary)
+        if not (decoded is Dictionary):
+            return {}
+        var entry: Dictionary = decoded
+        if interrupt_at == "after_decode":
+            return {}
+        if entry.get("journal_schema_version") != 1 or not (entry.get("record") is Dictionary):
+            return {}
+        var record: Dictionary = entry["record"]
+        if record.get("campaign_id") != campaign_id or record.get("transaction_id") != entry.get("transaction_id"):
+            return {}
+        if interrupt_at == "before_apply":
+            return {}
+        var preview := preview_committed_transaction(state, record, ids)
+        if preview.is_empty() or preview.get("revision") != revision + 1:
+            return {}
+        state = preview["persistent_state"]
+        ids = preview["applied_transaction_ids"]
+        if interrupt_at == "after_apply":
+            return {}
+        revision += 1
+    return {"revision": revision, "persistent_state": state, "applied_transaction_ids": ids}
+
+
+# Strict preview: caller supplies an independently retained confirmation anchor.
+# This does not persist the anchor or establish crash/power-loss durability.
+# Unconfirmed suffixes are rejected rather than silently promoted.
+func journal_recover_confirmed_preview(journal_dir: String, campaign_id: String, base_revision: int, base_state: Dictionary, anchor: Dictionary) -> Dictionary:
+    if campaign_id.is_empty() or base_revision < 0 or anchor.get("campaign_id") != campaign_id:
+        return {}
+    var confirmed_revision: Variant = anchor.get("revision")
+    var confirmed_hash: Variant = anchor.get("state_sha256")
+    if typeof(confirmed_revision) != TYPE_INT or confirmed_revision < base_revision:
+        return {}
+    if typeof(confirmed_hash) != TYPE_STRING or String(confirmed_hash).length() != 64:
+        return {}
+    var recovered := journal_recover_preview(journal_dir, campaign_id, base_revision, base_state)
+    if recovered.is_empty() or recovered.get("revision") != confirmed_revision:
+        return {}
+    if canonical_sha256(campaign_id, confirmed_revision, recovered["persistent_state"]) != confirmed_hash:
+        return {}
+    return recovered
+
+
+# A/B confirmation laboratory. Immutable slot generations avoid overwriting
+# the previous confirmation. No pruning or production integration yet.
+func anchor_read_preview(dir: String, campaign_id: String) -> Dictionary:
+    if not dir.begins_with("user://litd_transaction_lab/") or campaign_id.is_empty():
+        return {}
+    var d := DirAccess.open(dir)
+    if d == null:
+        return {}
+    var latest: Dictionary = {}
+    var count := 0
+    for name in d.get_files():
+        if not name.begins_with("anchor_") or not name.ends_with(".json"):
+            continue
+        var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(dir.path_join(name)))
+        if not (parsed is Dictionary):
+            return {}
+        var payload: Variant = parsed.get("payload")
+        if typeof(payload) != TYPE_STRING or parsed.get("sha256") != String(payload).sha256_text():
+            return {}
+        var a: Variant = JSON.parse_string(payload)
+        if not (a is Dictionary) or a.get("campaign_id") != campaign_id:
+            return {}
+        var rev: Variant = a.get("revision")
+        var h: Variant = a.get("state_sha256")
+        if typeof(rev) != TYPE_STRING or not String(rev).is_valid_int() or int(rev) < 0 or str(int(rev)) != rev:
+            return {}
+        if typeof(h) != TYPE_STRING or String(h).length() != 64:
+            return {}
+        var n := int(rev)
+        var expected := "anchor_%s_%010d.json" % ["A" if n % 2 == 0 else "B", n]
+        if name != expected:
+            return {}
+        count += 1
+        if latest.is_empty() or n > latest["revision"]:
+            latest = {"campaign_id": campaign_id, "revision": n, "state_sha256": h}
+    if latest.is_empty():
+        return {}
+    # All generations are retained; detect missing interior generations.
+    var first := int(latest["revision"]) - count + 1
+    for n in range(first, int(latest["revision"]) + 1):
+        if not FileAccess.file_exists(dir.path_join("anchor_%s_%010d.json" % ["A" if n % 2 == 0 else "B", n])):
+            return {}
+    return latest
+
+func anchor_publish_preview(dir: String, campaign_id: String, revision: int, state: Dictionary, interrupt_at: String = "") -> bool:
+    if not dir.begins_with("user://litd_transaction_lab/") or revision < 0:
+        return false
+    var h := canonical_sha256(campaign_id, revision, state)
+    if h.is_empty():
+        return false
+    if DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(dir)) != OK:
+        return false
+    var previous := anchor_read_preview(dir, campaign_id)
+    if previous.is_empty():
+        for name in DirAccess.get_files_at(dir):
+            if name.begins_with("anchor_") and name.ends_with(".json"):
+                return false
+    elif revision != int(previous["revision"]) + 1:
+        return false
+    var path := dir.path_join("anchor_%s_%010d.json" % ["A" if revision % 2 == 0 else "B", revision])
+    var temp := path + ".pending"
+    if FileAccess.file_exists(path) or FileAccess.file_exists(temp) or interrupt_at == "before_open":
+        return false
+    var payload := JSON.stringify({"campaign_id": campaign_id, "revision": str(revision), "state_sha256": h})
+    var encoded := JSON.stringify({"payload": payload, "sha256": payload.sha256_text()})
+    var f := FileAccess.open(temp, FileAccess.WRITE)
+    if f == null:
+        return false
+    if interrupt_at == "after_open":
+        f.close()
+        return false
+    f.store_string(encoded.left(maxi(1, encoded.length() / 2)) if interrupt_at == "during_store" else encoded)
+    if interrupt_at == "during_store" or interrupt_at == "after_store":
+        f.close()
+        return false
+    f.flush()
+    var err := f.get_error()
+    f.close()
+    if err != OK or FileAccess.get_file_as_string(temp) != encoded or interrupt_at in ["after_flush", "before_rename"]:
+        return false
+    if DirAccess.rename_absolute(ProjectSettings.globalize_path(temp), ProjectSettings.globalize_path(path)) != OK:
+        return false
+    if interrupt_at == "after_rename":
+        return false
+    return anchor_read_preview(dir, campaign_id).get("revision") == revision
+
+
+# Experimental single-writer coordinator. Caller must serialize access.
+# A published but unconfirmed suffix blocks recovery; no automatic promotion.
+func _coordinated_commit_unlocked_preview(journal_dir: String, anchor_dir: String, campaign_id: String, base_revision: int, base_state: Dictionary, record: Dictionary, interrupt_at: String = "") -> Dictionary:
+    if not journal_dir.begins_with("user://litd_transaction_lab/") or not anchor_dir.begins_with("user://litd_transaction_lab/") or journal_dir == anchor_dir:
+        return {}
+    var anchor := anchor_read_preview(anchor_dir, campaign_id)
+    var current := journal_recover_confirmed_preview(journal_dir, campaign_id, base_revision, base_state, anchor)
+    if current.is_empty() or record.get("campaign_id") != campaign_id or record.get("base_revision") != current["revision"]:
+        return {}
+    var next := preview_committed_transaction(current["persistent_state"], record, current["applied_transaction_ids"])
+    if next.is_empty() or interrupt_at == "before_journal":
+        return {}
+    if not journal_append_preview(journal_dir, current["persistent_state"], record, current["applied_transaction_ids"]):
+        return {}
+    if interrupt_at == "after_journal":
+        return {}
+    var readback := journal_recover_preview(journal_dir, campaign_id, base_revision, base_state)
+    if readback != {"revision": next["revision"], "persistent_state": next["persistent_state"], "applied_transaction_ids": next["applied_transaction_ids"]}:
+        return {}
+    if not anchor_publish_preview(anchor_dir, campaign_id, next["revision"], next["persistent_state"], interrupt_at.trim_prefix("anchor_") if interrupt_at.begins_with("anchor_") else ""):
+        return {}
+    if interrupt_at == "after_anchor":
+        return {}
+    return journal_recover_confirmed_preview(journal_dir, campaign_id, base_revision, base_state, anchor_read_preview(anchor_dir, campaign_id))
+
+
+# In-process reentrancy guard only; not a cross-process filesystem lock.
+var _coordinator_preview_busy := false
+
+func coordinated_commit_preview(journal_dir: String, anchor_dir: String, campaign_id: String, base_revision: int, base_state: Dictionary, record: Dictionary, interrupt_at: String = "") -> Dictionary:
+    if _coordinator_preview_busy:
+        return {}
+    _coordinator_preview_busy = true
+    var result := _coordinated_commit_unlocked_preview(journal_dir, anchor_dir, campaign_id, base_revision, base_state, record, interrupt_at)
+    _coordinator_preview_busy = false
+    return result
+
+# Read-only diagnosis. Never publishes a confirmation or applies gameplay.
+func inspect_unconfirmed_preview(journal_dir: String, anchor_dir: String, campaign_id: String, base_revision: int, base_state: Dictionary) -> Dictionary:
+    var anchor := anchor_read_preview(anchor_dir, campaign_id)
+    if anchor.is_empty():
+        return {"status": "blocked"}
+    var recovered := journal_recover_preview(journal_dir, campaign_id, base_revision, base_state)
+    if recovered.is_empty():
+        return {"status": "blocked"}
+    if recovered["revision"] == anchor["revision"]:
+        if canonical_sha256(campaign_id, recovered["revision"], recovered["persistent_state"]) == anchor["state_sha256"]:
+            return {"status": "confirmed", "revision": recovered["revision"]}
+        return {"status": "blocked"}
+    if recovered["revision"] != int(anchor["revision"]) + 1:
+        return {"status": "blocked"}
+    # Verify the confirmed prefix against its independent anchor, not merely
+    # the self-consistency of the journal's unconfirmed final entry.
+    var prefix_state := base_state.duplicate(true)
+    var ids: Array = []
+    for revision in range(base_revision + 1, int(anchor["revision"]) + 1):
+        var path := journal_dir.path_join("revision_%010d.json" % revision)
+        var envelope: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+        if not (envelope is Dictionary) or typeof(envelope.get("payload_base64")) != TYPE_STRING:
+            return {"status": "blocked"}
+        var encoded: String = envelope["payload_base64"]
+        if envelope.get("sha256") != encoded.sha256_text():
+            return {"status": "blocked"}
+        var entry: Variant = bytes_to_var(Marshalls.base64_to_raw(encoded))
+        if not (entry is Dictionary) or not (entry.get("record") is Dictionary):
+            return {"status": "blocked"}
+        var step := preview_committed_transaction(prefix_state, entry["record"], ids)
+        if step.is_empty() or step["revision"] != revision or step["campaign_id"] != campaign_id:
+            return {"status": "blocked"}
+        prefix_state = step["persistent_state"]
+        ids = step["applied_transaction_ids"]
+    if int(anchor["revision"]) < base_revision or canonical_sha256(campaign_id, anchor["revision"], prefix_state) != anchor["state_sha256"]:
+        return {"status": "blocked"}
+    return {"status": "unconfirmed", "confirmed_revision": anchor["revision"], "candidate_revision": recovered["revision"], "candidate_state_sha256": canonical_sha256(campaign_id, recovered["revision"], recovered["persistent_state"])}
+
+
+# Explicit laboratory resolution only. Caller must hold exclusive access.
+# Never re-simulates gameplay. A pending anchor requires separate repair.
+func resolve_unconfirmed_preview(journal_dir: String, anchor_dir: String, campaign_id: String, base_revision: int, base_state: Dictionary, expected_revision: int, expected_hash: String) -> Dictionary:
+    if _coordinator_preview_busy or journal_dir == anchor_dir:
+        return {}
+    if not journal_dir.begins_with("user://litd_transaction_lab/") or not anchor_dir.begins_with("user://litd_transaction_lab/"):
+        return {}
+    _coordinator_preview_busy = true
+    var result := _resolve_unconfirmed_unlocked_preview(journal_dir, anchor_dir, campaign_id, base_revision, base_state, expected_revision, expected_hash)
+    _coordinator_preview_busy = false
+    return result
+
+func _resolve_unconfirmed_unlocked_preview(journal_dir: String, anchor_dir: String, campaign_id: String, base_revision: int, base_state: Dictionary, expected_revision: int, expected_hash: String) -> Dictionary:
+    var diagnosis := inspect_unconfirmed_preview(journal_dir, anchor_dir, campaign_id, base_revision, base_state)
+    if diagnosis.get("status") != "unconfirmed" or diagnosis.get("candidate_revision") != expected_revision or diagnosis.get("candidate_state_sha256") != expected_hash:
+        return {}
+    var recovered := journal_recover_preview(journal_dir, campaign_id, base_revision, base_state)
+    if recovered.is_empty() or recovered.get("revision") != expected_revision:
+        return {}
+    if canonical_sha256(campaign_id, expected_revision, recovered["persistent_state"]) != expected_hash:
+        return {}
+    if not anchor_publish_preview(anchor_dir, campaign_id, expected_revision, recovered["persistent_state"]):
+        return {}
+    return journal_recover_confirmed_preview(journal_dir, campaign_id, base_revision, base_state, anchor_read_preview(anchor_dir, campaign_id))

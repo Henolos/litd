@@ -1,0 +1,6 @@
+[configuration]
+entry_symbol = "save_lock_lab_init"
+compatibility_minimum = "4.7"
+[libraries]
+linux.debug.x86_64 = "res://bin/save_lock_lab.so"
+windows.debug.x86_64 = "res://bin/save_lock_lab.dll"

@@ -37,6 +37,24 @@ func _run() -> void:
     _check(manager.load_qa_snapshot(), "QA snapshot load")
     _check(int(manager.get_snapshot().get("gold", -1)) == 321, "QA state restored")
     _check(manager.all_slots_metadata().size() == 4, "Three slots plus autosave")
+    manager.set_snapshot({"gold": 654})
+    _check(manager.save_game(2), "Second generation saved")
+    var primary := "user://litd_slot_2.json"
+    var backup := primary + ".bak"
+    var previous_backup := FileAccess.get_file_as_string(backup)
+    _check(not previous_backup.is_empty(), "Previous generation retained")
+    _check(not FileAccess.file_exists(backup + ".tmp"), "Backup staging consumed")
+    var corrupt := FileAccess.open(primary, FileAccess.WRITE)
+    if corrupt == null:
+        _check(false, "Open corruption fixture")
+    else:
+        corrupt.store_string("truncated")
+        corrupt.close()
+        _check(manager.load_game(2), "Recover previous generation after corruption")
+        _check(int(manager.get_snapshot().get("gold", -1)) == 321, "Recover correct previous state")
+        manager.set_snapshot({"gold": 987})
+        _check(manager.save_game(2), "Save after corrupt primary")
+        _check(FileAccess.get_file_as_string(backup) == previous_backup, "Corrupt primary never replaces good backup")
     manager.delete_slot(2)
     manager.delete_slot(manager.AUTOSAVE_SLOT)
     manager.delete_qa_snapshot()

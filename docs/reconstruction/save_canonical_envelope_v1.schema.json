@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LITD 1 canonical envelope v1 (experimental)",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "campaign_id",
+    "revision",
+    "persistent_state"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1,
+      "type": "integer"
+    },
+    "campaign_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "persistent_state": {
+      "type": "object",
+      "propertyNames": {
+        "not": {
+          "enum": [
+            "metadata",
+            "qa_snapshot",
+            "runtime_cache",
+            "animations",
+            "ui_state"
+          ]
+        }
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/jsonValue"
+      }
+    }
+  },
+  "$defs": {
+    "jsonValue": {
+      "anyOf": [
+        {
+          "type": [
+            "null",
+            "boolean",
+            "number",
+            "string"
+          ]
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/jsonValue"
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/jsonValue"
+          }
+        }
+      ]
+    }
+  }
+}
