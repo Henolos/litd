@@ -115,7 +115,7 @@ def log_control():
     checks = {
         "merge_ref_checkout": "refs/remotes/pull/642/merge" in log and "HEAD is now at bc7ffcd" in log,
         "unittest_command": "python -m unittest discover -s . -p 'test_*.py' -v" in log,
-        "84_tests_and_ok": re.search(r"Ran 84 tests in [0-9.]+s", log) is not None and "\nOK\n" in log,
+        "84_tests_and_ok": re.search(r"Ran 84 tests in [0-9.]+s", log) is not None and any(line.split()[-1:] == ["OK"] for line in log.splitlines()),
         "python_3_12": "python-version: '3.12'" in workflow,
         "jsonschema_4_26_0": "jsonschema-4.26.0" in log and "4.26.0" in workflow,
     }
