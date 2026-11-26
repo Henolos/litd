@@ -3368,3 +3368,30 @@ Réconciliation : INIT, FORM, ANA, AFF et ARCH-12.5 applicables. Coûts précis 
 **VALIDÉ EN CONCEPTION :** passage à zéro PV modèle D (résolution contextuelle) ; résolution D4 (résistance dynamique et exceptions explicites) ; hasard A (aucun tirage supplémentaire après résolution des dégâts) ; évolution critique C (aggravation dynamique selon état et effets subis) ; application héros/ennemis C (principes communs adaptés à la nature de chaque créature).
 
 Réconciliation : mort permanente irréversible ; INIT (aucun renouvellement de PA ni réordonnancement ordinaire), ANA (fonctions anatomiques), AFF (effets persistants), ARCH-12 (causalité), non-létalité directe des pièges d'exploration conservés. Aucun système spécifique d'organes vitaux réintroduit. Les règles MORT, la formule de résistance, les seuils, les modalités de stabilisation et les transitions détaillées restent à valider. Aucun test moteur exécuté.
+
+## REFONTE-COMP-01 — Bloc 12.1 : règles MORT V2 (validation utilisateur du 26 novembre 2026)
+
+MORT-01 à MORT-20 explicitement validées en conception, en complément des cinq arbitrages de mortalité précédents.
+
+- MORT-01 : Séparation des états biologique, fonctionnel, de conscience et de stabilité physique.
+- MORT-02 : Distinction entre incapacité, neutralisation et état critique.
+- MORT-03 : Incapacité locale sans neutralisation générale automatique.
+- MORT-04 : Conservation des actions compatibles avec les fonctions réellement disponibles.
+- MORT-05 : Neutralisation non létale possible, sans perte systématique de tous les PV.
+- MORT-06 : Passage à 0 PV résolu contextuellement selon le modèle D.
+- MORT-07 : Mort immédiate déterminée par une résistance dynamique et des exceptions explicitement définies.
+- MORT-08 : Aucun tirage supplémentaire de survie après résolution des dégâts.
+- MORT-09 : Aggravation critique dynamique selon l'état physique et les effets subis.
+- MORT-10 : Aucune phase d'agonie obligatoire ni durée minimale de survie garantie.
+- MORT-11 : Stabilisation distincte des soins, de la purification et du rétablissement fonctionnel.
+- MORT-12 : Aucun effacement automatique des blessures, amputations ou afflictions lors d'un sauvetage.
+- MORT-13 : Aucun renouvellement du PA ni changement ordinaire d'initiative après rétablissement.
+- MORT-14 : Aucune réinitialisation automatique de la résistance critique par des soins ordinaires ou une stabilisation.
+- MORT-15 : Aucun décès automatique résultant de la seule incapacité à combattre.
+- MORT-16 : Mort définitive irréversible après confirmation.
+- MORT-17 : Principes communs aux héros et ennemis, adaptés à la nature des créatures.
+- MORT-18 : État physique, dangers critiques et possibilités d'intervention communiqués au joueur selon les informations accessibles.
+- MORT-19 : Attribution causale conforme à ARCH-12, y compris pour les décès différés.
+- MORT-20 : Conservation déterministe des états, transitions et conséquences dans les sauvegardes.
+
+Réconciliation : INIT, FORM, MOB, ANA, AFF, INV, ARCH-12 et non-létalité directe des pièges d'exploration préservés. Seuils, coefficients et modalités précises d'intervention ouverts. Aucun système spécifique d'organes vitaux réintroduit. Aucun test moteur exécuté.
