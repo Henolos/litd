@@ -9,7 +9,11 @@
     "data/veilleurs/hardware_validation_contract.json",
     "docs/conception/LITD1_DOCUMENT_MAITRE.md",
     "docs/COMBAT_ANATOMIE_AVANCEE.md",
-    "docs/BIBLE_UX_UI_LITD.md"
+    "docs/BIBLE_UX_UI_LITD.md",
+    "docs/psychology_combat_pass_04.md",
+    "docs/design/psychology_social_combat_pass_05.md",
+    "data/psychology_events.json",
+    "data/psychology_social_combat.json"
   ],
   "rules": [
     {
@@ -1670,8 +1674,18 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "F8",
-      "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "Les bandes de Peur sont Calme 0–24, Inquiet 25–49, Effrayé 50–74, Terrifié 75–99 et Panique 100; une trace individuelle modifie les pénalités ou la réaction de panique selon sa définition."
+      ],
+      "supporting_sources": [
+        {
+          "document": "docs/psychology_combat_pass_04.md",
+          "section": "Paliers de Peur et Traces individuelles",
+          "locator": "sections correspondantes; données exactes dans data/psychology_events.json"
+        }
+      ]
     },
     {
       "id": "PSY-02",
@@ -1686,8 +1700,18 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "F8",
-      "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "Un événement psychologique ne s’applique que si son déclencheur et son filtre correspondent; un événement marqué once_per_campaign ne se rejoue pas dans la même campagne."
+      ],
+      "supporting_sources": [
+        {
+          "document": "data/psychology_events.json",
+          "section": "events[]",
+          "locator": "champs trigger, filter et once_per_campaign"
+        }
+      ]
     },
     {
       "id": "PSY-03",
@@ -1702,8 +1726,18 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "F8",
-      "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "La sélection psychologique des ennemis peut prendre en compte la Peur, le seuil Terrifié, la Panique, les PV manquants et les traumatismes durables. Une intervention de compagnon ne remplace pas son attaque et se produit au plus une fois par round."
+      ],
+      "supporting_sources": [
+        {
+          "document": "docs/design/psychology_social_combat_pass_05.md",
+          "section": "Ennemis et Compagnons capturés",
+          "locator": "sélection de cible et règle d’intervention"
+        }
+      ]
     },
     {
       "id": "PSY-04",
@@ -1718,8 +1752,18 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "F8",
-      "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "Les traces sont des vécus ou réactions persistantes, non des diagnostics; les définitions de traces portent explicitement non_diagnostic=true et déterminent une réaction de panique et des modificateurs de peur."
+      ],
+      "supporting_sources": [
+        {
+          "document": "data/psychology_events.json",
+          "section": "core_rule, terminology, trait_definitions",
+          "locator": "champs non_diagnostic, panic_reaction et fear_multipliers"
+        }
+      ]
     },
     {
       "id": "PSY-05",
@@ -1754,8 +1798,18 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "human",
-      "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "À 100 de Peur, sans protection, une crise consomme l’action et ramène la Peur à 85 après gel ou recul. Un élan de résolution disponible évite la crise, conserve l’action et ramène la Peur à 70; un seul élan peut être actif."
+      ],
+      "supporting_sources": [
+        {
+          "document": "docs/psychology_combat_pass_04.md",
+          "section": "Paliers de Peur et Espoir",
+          "locator": "règle de crise, seuil 100 et charges de résolution"
+        }
+      ]
     },
     {
       "id": "PSY-07",
@@ -1770,8 +1824,18 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "human",
-      "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "Chaque trait/trace appliqué correspond à une définition du registre et applique ses modificateurs déclarés; aucune trace ne doit être interprétée comme diagnostic psychiatrique."
+      ],
+      "supporting_sources": [
+        {
+          "document": "data/psychology_events.json",
+          "section": "trait_definitions et core_rule",
+          "locator": "définitions non diagnostiques et effets numériques"
+        }
+      ]
     },
     {
       "id": "PSY-08",
@@ -1786,8 +1850,23 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "human",
-      "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "L’espoir ne s’accumule pas comme une ressource et une manifestation prépare au maximum un élan; un événement once_per_campaign ne peut pas être farmé par des revisites de zone."
+      ],
+      "supporting_sources": [
+        {
+          "document": "docs/psychology_combat_pass_04.md",
+          "section": "Espoir",
+          "locator": "plafond d’un élan"
+        },
+        {
+          "document": "data/psychology_events.json",
+          "section": "events[]",
+          "locator": "once_per_campaign"
+        }
+      ]
     },
     {
       "id": "UI-01",
