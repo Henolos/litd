@@ -3362,3 +3362,9 @@ Modèles D de fonctionnement et D d'occupation de la formation, INV-01 à INV-20
 - INV-20 : Conservation des liens de contrôle, états et actions dans les sauvegardes.
 
 Réconciliation : INIT, FORM, ANA, AFF et ARCH-12.5 applicables. Coûts précis de commande, limites numériques, résistance, libération et modalités d'occupation ouverts. Aucun ancien catalogue réintroduit. Aucun test moteur exécuté.
+
+## REFONTE-COMP-01 — Bloc 12.1 — Arbitrages de mortalité (26 novembre 2026)
+
+**VALIDÉ EN CONCEPTION :** passage à zéro PV modèle D (résolution contextuelle) ; résolution D4 (résistance dynamique et exceptions explicites) ; hasard A (aucun tirage supplémentaire après résolution des dégâts) ; évolution critique C (aggravation dynamique selon état et effets subis) ; application héros/ennemis C (principes communs adaptés à la nature de chaque créature).
+
+Réconciliation : mort permanente irréversible ; INIT (aucun renouvellement de PA ni réordonnancement ordinaire), ANA (fonctions anatomiques), AFF (effets persistants), ARCH-12 (causalité), non-létalité directe des pièges d'exploration conservés. Aucun système spécifique d'organes vitaux réintroduit. Les règles MORT, la formule de résistance, les seuils, les modalités de stabilisation et les transitions détaillées restent à valider. Aucun test moteur exécuté.
