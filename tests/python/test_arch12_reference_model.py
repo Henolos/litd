@@ -1,4 +1,5 @@
 import importlib.util
+import sys
 from itertools import combinations
 from pathlib import Path
 
@@ -9,6 +10,7 @@ MODEL_PATH = ROOT / "tools/qa/arch12_reference_model.py"
 MODEL_SPEC = importlib.util.spec_from_file_location("arch12_reference_model", MODEL_PATH)
 assert MODEL_SPEC is not None and MODEL_SPEC.loader is not None
 MODEL = importlib.util.module_from_spec(MODEL_SPEC)
+sys.modules[MODEL_SPEC.name] = MODEL
 MODEL_SPEC.loader.exec_module(MODEL)
 
 
