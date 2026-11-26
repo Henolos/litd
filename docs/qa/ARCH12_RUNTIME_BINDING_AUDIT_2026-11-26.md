@@ -26,7 +26,7 @@ Par conséquent, **0/39 oracles O sont actuellement exécutables comme scénario
 
 Les recherches de l’arbre Git complet (2 095 chemins), des scripts GDScript et des termes de résolution causale/Némésis n’ont pas révélé de runtime ARCH-12 ni d’API de test correspondante. Le répertoire Unreal trouvé dans le dépôt porte LITD2 et n’est pas substitué au runtime LITD 1.
 
-## Runtime historique fusionné : source à évaluer, absent de la cible courante
+## Runtime historique fusionné : repère uniquement, exclu de la cible courante
 
 Une recherche complémentaire a retrouvé un système plus complet que les prototypes : la PR #160 « Implémenter la Rémanence persistante des Veilleurs » a bien été fusionnée (merge commit `70741133c77f9cc1703a39e305a28f1548aa689a`). Les fichiers `scripts/core/remanence_runtime.gd`, `remanence_combat_bridge.gd` et `veilleurs_tactical_combat_runtime.gd` sont lisibles à cette révision historique. Les trois chemins renvoient 404 sur `main` au SHA de base actuel : ils ne constituent donc pas un runtime utilisable en l’état sur la branche de production courante.
 
@@ -36,9 +36,9 @@ Une recherche complémentaire a retrouvé un système plus complet que les proto
 - Le bridge de Rémanence est cependant couplé à des singletons de l’ancienne architecture et détecte certains changements par scrutation. Lorsqu’un héros tombe, il attribue l’événement au dernier acteur ennemi signalé, avec repli sur le premier ennemi vivant. Ce n’est pas une chaîne de causalité complète avec liste de contributeurs.
 - Le test smoke historique couvre rencontres, mutilation, survie/retraite, mort laissant un cadavre persistant, réapparition, adaptations et sérialisation. Il ne couvre pas les 39 oracles O ARCH-12 et n’est pas une preuve de conformité à la version actuelle des règles.
 
-**Décision de réutilisation :** cette implémentation fusionnée est une source historique qui peut informer un portage sélectif (identifiants stables, journal structuré, persistance, test déterministe). Elle ne peut pas être désignée comme runtime courant sans restaurer des fichiers supprimés lors du reset, réconcilier ses contrats et vérifier chaque oracle contre ARCH-12. La restaurer telle quelle risquerait de réintroduire l’architecture que le reset a retirée. Aucune restauration ni adaptation n’est faite.
+**Garde-fou utilisateur :** ne rien reprendre de ce qui a été supprimé de `main` pour la remise à zéro. En conséquence, l’implémentation #160 est exclue des cibles, bases de portage et sources d’architecture pour la suite. Elle reste citée uniquement comme preuve historique de l’existence d’un runtime antérieur et de son retrait. Aucune de ses interfaces, données ou règles ne sera réintroduite. Aucun fichier supprimé n’est restauré ou adapté.
 
-Cela distingue désormais trois catégories : runtime historique fusionné mais absent de `main`; prototypes présents ou proposés mais provisoires; aucun runtime courant approuvé couvrant ARCH-12.
+Cela distingue désormais trois catégories : ancien runtime fusionné mais explicitement exclu par la remise à zéro; prototypes présents ou proposés mais provisoires; aucun runtime courant approuvé couvrant ARCH-12.
 
 ## Candidate historique examinée après la première passe
 
