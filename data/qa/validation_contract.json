@@ -17,7 +17,9 @@
     "docs/conception/exploration/graph_v0.schema.json",
     "docs/conception/exploration/graph_v0.fixtures.json",
     "docs/reconstruction/LITD1_NODE_MAP_LOOP_PROTOTYPE.md",
-    "tools/qa/validate_contract.py"
+    "tools/qa/validate_contract.py",
+    "data/veilleurs/v07/economy_refuge_rules.json",
+    "data/veilleurs/v07/recruitment_rules.json"
   ],
   "rules": [
     {
@@ -1407,8 +1409,18 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "F8",
-      "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "Les services et traitements sont des étapes facultatives après expédition dans la boucle refuge; aucune dépense ne doit être appliquée sans choix/transaction de service."
+      ],
+      "supporting_sources": [
+        {
+          "document": "data/veilleurs/v07/economy_refuge_rules.json",
+          "section": "refuge_loop et maintenance",
+          "locator": "ordre de boucle et coûts optionnels"
+        }
+      ]
     },
     {
       "id": "REF-02",
@@ -1423,8 +1435,18 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "human",
-      "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "La recrue cible doit survivre, être non-boss, avoir un emplacement refuge et respecter la limite de deux recrues par expédition; les conditions globales et de famille doivent être respectées."
+      ],
+      "supporting_sources": [
+        {
+          "document": "data/veilleurs/v07/recruitment_rules.json",
+          "section": "global_conditions, outcomes et familles",
+          "locator": "champs de recrutement"
+        }
+      ]
     },
     {
       "id": "REF-03",
@@ -1439,8 +1461,18 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "F8",
-      "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "Une amélioration progresse d’un seul niveau à la fois et les dépendances d’un bâtiment doivent être satisfaites avant l’achat."
+      ],
+      "supporting_sources": [
+        {
+          "document": "data/veilleurs/v07/economy_refuge_rules.json",
+          "section": "building_dependencies et upgrade_rules",
+          "locator": "one_level_at_a_time et dépendances"
+        }
+      ]
     },
     {
       "id": "REF-04",
@@ -1495,8 +1527,18 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "F8",
-      "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "Le coût des soins varie selon la gravité et non selon le niveau du bâtiment."
+      ],
+      "supporting_sources": [
+        {
+          "document": "data/veilleurs/v07/economy_refuge_rules.json",
+          "section": "maintenance",
+          "locator": "treatment_costs_scale_by_severity_not_level"
+        }
+      ]
     },
     {
       "id": "REF-07",
@@ -1511,8 +1553,18 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "F8",
-      "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "La réserve d’urgence se déclenche seulement si les pertes sont catastrophiques, l’or est inférieur à 80, aucune arme/armure commune utilisable n’existe et un membre vit; l’aide ne peut pas générer de profit et a un cooldown de trois expéditions."
+      ],
+      "supporting_sources": [
+        {
+          "document": "data/veilleurs/v07/economy_refuge_rules.json",
+          "section": "emergency_reserve",
+          "locator": "trigger, conditions, grant et cooldown"
+        }
+      ]
     },
     {
       "id": "REF-08",
@@ -1527,8 +1579,18 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "F8",
-      "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "Les sources et usages de chaque monnaie correspondent aux listes gold/materials/essence du contrat; l’Essence n’est pas obligatoire pour la progression commune."
+      ],
+      "supporting_sources": [
+        {
+          "document": "data/veilleurs/v07/economy_refuge_rules.json",
+          "section": "currencies",
+          "locator": "sources, sinks et mandatory_for_common_progression"
+        }
+      ]
     },
     {
       "id": "REF-09",
@@ -1543,8 +1605,18 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "human",
-      "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "L’économie ne prélève pas de taxe passive de bâtiment; l’Essence n’est pas obligatoire à la progression commune; la réserve d’urgence ne crée pas de profit."
+      ],
+      "supporting_sources": [
+        {
+          "document": "data/veilleurs/v07/economy_refuge_rules.json",
+          "section": "maintenance, currencies.essence et emergency_reserve",
+          "locator": "no_passive_building_tax, mandatory_for_common_progression=false, cannot_generate_profit"
+        }
+      ]
     },
     {
       "id": "REF-10",
@@ -1563,8 +1635,18 @@
         "locator": "V8.1 Règles actives après Game Over, point 6"
       },
       "review_channel": "F8",
-      "source_status": "LINKED_UNVERIFIED",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "CANONICAL_AND_SUPPORTING_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "Une amélioration se fait un niveau à la fois et une annulation avant validation restitue 100 % du coût."
+      ],
+      "supporting_sources": [
+        {
+          "document": "data/veilleurs/v07/economy_refuge_rules.json",
+          "section": "upgrade_rules",
+          "locator": "one_level_at_a_time et refund_on_cancel_before_commit"
+        }
+      ]
     },
     {
       "id": "ANA-01",
