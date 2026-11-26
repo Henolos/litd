@@ -3335,3 +3335,30 @@ Modèle D et COM-01 à COM-20 explicitement validés en conception.
 - COM-20 : Conservation des préparations, interruptions et découvertes dans les sauvegardes.
 
 Réconciliation : INIT, DEF, AFF, CIB et ARCH-12 applicables. Conditions précises d'interruption, variantes réduites et coefficients ouverts. Aucun ancien catalogue réintroduit. Aucun test moteur exécuté.
+
+## REFONTE-COMP-01 — Bloc 11 : invocations hybrides (validation utilisateur du 26 novembre 2026)
+
+Modèles D de fonctionnement et D d'occupation de la formation, INV-01 à INV-20 explicitement validés en conception. Quatre combattants principaux conservés ; occupation adaptée à la nature physique et tactique ; possession sans téléportation automatique.
+
+- INV-01 : Distinction entre invocation commandée, semi-autonome, indépendante et possession.
+- INV-02 : Identité unique de chaque entité individualisée.
+- INV-03 : Création d'une invocation par une action coûtant normalement 1 PA.
+- INV-04 : Conditions d'invocation adaptées à la capacité utilisée.
+- INV-05 : Occupation physique adaptée à la morphologie.
+- INV-06 : Aucun remplacement automatique d'un combattant principal.
+- INV-07 : Nombre d'invocations simultanées explicitement limité.
+- INV-08 : Modes de commande et coûts définis selon la nature de l'invocation.
+- INV-09 : Initiative propre pour les invocations disposant d'un tour indépendant.
+- INV-10 : Nouveaux combattants intégrés normalement au round suivant.
+- INV-11 : Possession soumise à des conditions d'éligibilité.
+- INV-12 : Résistance au contrôle adaptée à la nature et à l'état de la cible.
+- INV-13 : Durée du contrôle explicitement définie.
+- INV-14 : Aucun renouvellement du PA ou du tour lors d'un transfert.
+- INV-15 : Aucun effacement des blessures et afflictions par changement de maître.
+- INV-16 : Conséquences du décès du maître adaptées à la nature de l'invocation.
+- INV-17 : Aucune chaîne illimitée d'invocations ou de possessions.
+- INV-18 : Distinction entre disparition, révocation, libération et mort réelle.
+- INV-19 : Respect intégral des règles de responsabilité ARCH-12.5.
+- INV-20 : Conservation des liens de contrôle, états et actions dans les sauvegardes.
+
+Réconciliation : INIT, FORM, ANA, AFF et ARCH-12.5 applicables. Coûts précis de commande, limites numériques, résistance, libération et modalités d'occupation ouverts. Aucun ancien catalogue réintroduit. Aucun test moteur exécuté.
