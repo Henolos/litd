@@ -127,8 +127,10 @@ Vérification du 26 novembre 2026 :
 - PR #663 ouverte, en brouillon, tête bb0a8168edc2e2b472b3f400729f41ff4ba93a9d;
 - 70 scénarios spécifiés; 39 avec oracle O et 31 avec oracle P dans la spécification actuelle;
 - 0/70 scénarios exécutés;
-- validateur documentaire déterministe ajouté dans tools/qa/arch12_spec_validator.py et 7 tests structurels/négatifs dans tests/python/test_arch12_spec_validator.py; exécution CI sur le SHA courant à confirmer;
-- modèle abstrait comportemental et mutations des règles de jeu non encore implémentés;
+- validateur documentaire déterministe ajouté dans tools/qa/arch12_spec_validator.py, couvert par 7 tests structurels/négatifs;
+- modèle abstrait fini ajouté dans tools/qa/arch12_reference_model.py, couvert par 8 tests incluant l’exploration exhaustive des branches définies et trois mutations fautives;
+- CI sur le SHA 684cd58942bbf25da8c3f5214907d679ee974965 : 1472 tests Python réussis, 2 avertissements; godot-smoke réussi; quality-full ignoré selon la configuration PR;
+- ces résultats valident l’inventaire documentaire et le modèle abstrait seulement, pas les scénarios du jeu;
 - aucun résultat MC-007 automatisé n’est encore disponible;
 - la CI existante contrôle le dépôt, mais ne prouve pas l’exécution fonctionnelle d’ARCH-12.
 
