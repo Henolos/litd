@@ -236,15 +236,15 @@ Périmètre contrôlé : `main` au commit `4865b82ebe8c2ccf58b7b750af891836a9de5
 | S47–S55 | Attribution historique après recrutement selon ARCH-12.1/.3. | Runtime de recrutement avec historique des actions et états de faction avant/après. |
 | S56–S70 | Reconnaissance posthume, Archives, identité et reprise déterministe selon ARCH-12/.2/.3/.4/.5 et V8.3. | Runtime d'Archives/Némésis, persistance et Game Over observables. |
 
-Ces groupes donnent des oracles normatifs préliminaires, pas des scénarios entièrement paramétrés. Les 70 lignes existantes restent des candidats à spécifier; aucune précondition, jeu de données, résultat d'exécution ou réussite n'est inventé ici.
+Ces groupes résument les limites des oracles préliminaires. Une spécification logique des 70 cas (fixtures symboliques, séquences et sorties attendues, avec statuts O/P/D) est proposée dans la PR brouillon #663. Elle ne fixe pas les décisions ouvertes, ne mappe pas encore les fixtures à un runtime et n'est ni revue indépendamment ni exécutée.
 
 ## Revue indépendante MC-007
 
-**État : EN ATTENTE — aucune revue indépendante n'est attestée.** Le contrôle par le même assistant, une CI verte ou une fiche de revue ne satisfait pas MC-007. Le dossier de revue contient désormais le commit de référence, les textes sources, la comparaison des 80 règles, la cartographie des dépendances, le périmètre runtime inspecté et les limites ci-dessus. La revue critique reste suspendue jusqu'à une évaluation réellement distincte portant au minimum sur : (1) couverture et interprétation des 80 règles, (2) étiquettes explicite/déduite de la cartographie, (3) réserves et contradictions, (4) absence de runtime/test ARCH-12, (5) préparation des oracles et risques d'exécution. Aucun contact ou demande à un tiers n'a été effectué.
+**État : EN ATTENTE — aucune revue indépendante n'est attestée.** Le contrôle par le même assistant, une CI verte ou une fiche de revue ne satisfait pas MC-007. Le dossier de revue contient désormais le commit de référence, les textes sources, la comparaison des 80 règles, la cartographie des dépendances, le périmètre runtime inspecté et les limites ci-dessus. La PR brouillon #663 propose une spécification logique des 70 oracles, non encore revue indépendamment ni exécutable. La revue critique reste suspendue jusqu'à une évaluation réellement distincte portant au minimum sur : (1) couverture et interprétation des 80 règles, (2) étiquettes explicite/déduite de la cartographie, (3) réserves et contradictions, (4) absence de runtime/test ARCH-12, (5) préparation des oracles et risques d'exécution. Aucun contact ou demande à un tiers n'a été effectué.
 
 ## Inventaire préparatoire des 70 scénarios fonctionnels
 
-Les 70 entrées sont des cas candidats reliés aux règles. Leurs assertions constituent des oracles normatifs préliminaires, mais les préconditions concrètes, fixtures, données et hooks d'observation ne sont pas finalisés. Aucun scénario n'a été exécuté; voir l'analyse du support runtime et les blocages par famille ci-dessus.
+Les 70 entrées sont des cas candidats reliés aux règles. La spécification logique détaillée est proposée dans la PR brouillon #663 : elle décrit des fixtures symboliques et des sorties attendues, mais le lien aux fixtures concrètes, données de jeu et hooks d'observation n'est pas finalisé. Aucun scénario n'a été exécuté; voir l'analyse du support runtime et les blocages par famille ci-dessus.
 
 | ID | Scénario candidat | Règle(s) / assertion visée | État |
 |---|---|---|---|
