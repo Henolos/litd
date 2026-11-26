@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "status": "proposed_dialogues_pending_validation",
+  "scope": "guild_prologue",
+  "dialogues": [
+    {
+      "id": "lian_yue_first_meeting",
+      "speaker_id": "lian_yue",
+      "entry_node": "welcome",
+      "nodes": [
+        {
+          "id": "welcome",
+          "text": "Vous êtes les quatre nouveaux ? Je suis Lian Yue. Avant votre départ, j'aimerais connaître les compétences de chacun.",
+          "choices": [
+            {
+              "label": "Présenter la compagnie",
+              "next": "company"
+            },
+            {
+              "label": "Demander comment recruter",
+              "next": "recruitment"
+            }
+          ]
+        },
+        {
+          "id": "company",
+          "text": "Une compagnie tient aussi par la façon dont ses membres veillent les uns sur les autres.",
+          "choices": [
+            {
+              "label": "Terminer",
+              "next": null
+            }
+          ]
+        },
+        {
+          "id": "recruitment",
+          "text": "Je peux vous aider à rencontrer des aventuriers. Il faudra d'abord apprendre à connaître ceux qui vous accompagnent.",
+          "choices": [
+            {
+              "label": "Terminer",
+              "next": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "soleyman_first_meeting",
+      "speaker_id": "soleyman",
+      "entry_node": "welcome",
+      "nodes": [
+        {
+          "id": "welcome",
+          "text": "Entrez, entrez. Les routes n'attendent personne, mais un bon équipement peut vous éviter de les quitter trop tôt.",
+          "choices": [
+            {
+              "label": "Voir les marchandises",
+              "next": "wares"
+            },
+            {
+              "label": "Demander d'où viennent ses objets",
+              "next": "origins"
+            }
+          ]
+        },
+        {
+          "id": "wares",
+          "text": "Pour commencer, choisissez ce qui vous sera utile. Le reste pourra attendre votre retour.",
+          "choices": [
+            {
+              "label": "Terminer",
+              "next": null
+            }
+          ]
+        },
+        {
+          "id": "origins",
+          "text": "De loin, parfois. Mais ce qui compte, c'est ce qu'un objet peut encore accomplir entre de bonnes mains.",
+          "choices": [
+            {
+              "label": "Terminer",
+              "next": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "constraints": [
+    "Ne pas révéler la signification du rang S avant le retour de La cueillette.",
+    "Ne pas révéler l'omelette ni le véritable motif de la quête.",
+    "Aucun achat, recrutement ou changement de relation n'est réellement implémenté.",
+    "Dialogues proposés, non validés comme canon."
+  ]
+}
