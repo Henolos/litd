@@ -3115,3 +3115,32 @@ Modèle E et INIT-01 à INIT-20 explicitement validés en conception. Les identi
 - INIT-20 : Aucun changement d'état, de rang ou de contrôle ne crée automatiquement un PA supplémentaire.
 
 Préséance : complète V4.2–V4.5 ; un PA unique, attaque préventive imputée au premier tour, bonus collectif léger de guet-apens limité au premier round. Compatible avec ARCH-12.5 : aucun renouvellement par transfert de contrôle. Les coefficients, amplitude numérique, réactions, interruptions et exceptions spécifiques restent ouverts. Aucun ancien catalogue de classes, armes, armures ou compétences réintroduit. Aucun test runtime exécuté.
+
+## REFONTE-COMP-01 — Bloc 03 : formations (validation utilisateur du 26 novembre 2026)
+
+Modèle D : resserrement automatique avec obstacles physiques. FORM-01 à FORM-20 explicitement validées.
+
+- FORM-01 : Cadavres possibles dans les deux camps.
+- FORM-02 : Persistance selon la nature physique du corps.
+- FORM-03 : Aucune durée universelle de disparition.
+- FORM-04 : Un cadavre ne possède ni tour ni PA.
+- FORM-05 : Cadavres déplaçables ou destructibles selon leurs propriétés.
+- FORM-06 : Encombrement des cadavres adapté à leur morphologie.
+- FORM-07 : Obstacles dotés de propriétés physiques propres.
+- FORM-08 : Accessibilité dépendante du type d'attaque.
+- FORM-09 : Créatures pouvant occuper plusieurs rangs contigus.
+- FORM-10 : Une créature multirang conserve une seule identité.
+- FORM-11 : Aucun multiplicateur automatique de dégâts lié aux rangs occupés.
+- FORM-12 : Aucun PA supplémentaire lié à la taille.
+- FORM-13 : Resserrement automatique par segments accessibles.
+- FORM-14 : Resserrement gratuit.
+- FORM-15 : Ordre relatif des survivants conservé.
+- FORM-16 : Aucun dégât automatique causé par le resserrement.
+- FORM-17 : Resserrement sans modification de l'ordre d'initiative.
+- FORM-18 : Retraits simultanés résolus avant un resserrement unique.
+- FORM-19 : Conservation des positions et obstacles dans les sauvegardes.
+- FORM-20 : Exploitation éventuelle des cadavres sans annulation de la mort permanente ni duplication d'équipement.
+
+Modèle C pour les grandes créatures recrutées, explicitement validé le 26 novembre 2026 : rangs tactiques et encombrement physique distincts ; quatre combattants conservés, représentation physique et accessibilité anatomique adaptées à leur morphologie. FORM-09 reste applicable ; articulation exacte entre occupation multirang et quatre identités tactiques à arbitrer. Aucun changement de PA, aucune réduction automatique de morphologie. Les modalités de mobilité, chevauchement, collision et recrutement restent ouvertes.
+
+Préséance : remplace les hypothèses provisoires de resserrement inconditionnel du bloc formations ; respecte INIT-09, INIT-14, INIT-20 et les invariants de mort permanente et de non-duplication. Aucun test moteur exécuté.
