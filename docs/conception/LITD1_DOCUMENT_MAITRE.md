@@ -3454,3 +3454,13 @@ RET-TACT-05 : Restrictions contextuelles selon positions, obstacles, sorties et 
 Réconciliation : RET-COLLECTIF-01 et RET-NAV-01 à 04 conservées. INIT et DEF encadrent PA, initiative et réactions ; MOB, FORM, COL, ANA, AFF et MORT encadrent faisabilité physique et conséquences ; ARCH-04 régit les abandons, ARCH-05 la fuite ennemie, ARCH-12 la causalité, V8.3 la persistance. Bloc 12.2 conservé, notamment interdiction de transport et d'assistance volontaire et clôture définitive lors du retour au hub avec héros immobilisé après combat. Aucun nouveau tirage de carte ni passage artificiel.
 
 Les trente propositions RET restent à valider globalement. À préciser avant clôture : héros nouvellement immobilisé pendant la tentative (consentement à l'abandon), destination si origine inaccessible, délai et état tactique lors d'un nouvel affrontement, conditions d'engagement et d'échec. Ne pas déduire une validation de ces modalités du présent accord. Aucun test moteur ni fusion.
+
+## REFONTE-COMP-01 — Bloc 12.3 — Derniers cas limites (26 novembre 2026)
+
+**VALIDÉ EN CONCEPTION — accord direct :** « go, et je valide les réponses C pour les derniers cas limite à résoudre » (trois options C de la proposition précédente).
+
+RET-LIM-01 : Si un héros devient immobilisé pendant une tentative collective, demander une nouvelle confirmation : abandonner ou interrompre la retraite. Aucun retour arrière des dégâts ni restitution du PA engagé.
+RET-LIM-02 : Si le nœud d'origine est inaccessible, retraite possible uniquement par une autre sortie réelle et accessible ; aucun retour automatique au hub ni passage artificiel.
+RET-LIM-03 : Nouvel affrontement selon les conditions réelles, avec conservation des états pertinents ; prévenir les exploitations de PA, initiative, surprise et effets temporaires. Aucun délai chiffré ni algorithme de transition validé.
+
+Réconciliation : RET-COLLECTIF-01, RET-NAV-01 à 04 et RET-TACT-01 à 05 conservées. RET-14 doit inclure la confirmation des abandons nouveaux ; RET-22 inclut l'exception de sortie réelle alternative ; RET-27/28 incluent la continuité des états pertinents lors du nouvel affrontement. ARCH-04, INIT, DEF, V8.3 et bloc 12.2 restent applicables. Validation globale des trente règles RET encore attendue ; aucune implémentation ni fusion.
