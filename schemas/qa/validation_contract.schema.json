@@ -118,7 +118,44 @@
             ]
           },
           "acceptance_criteria_status": {
-            "const": "NOT_DEFINED"
+            "enum": [
+              "NOT_DEFINED",
+              "PARTIAL"
+            ]
+          },
+          "acceptance_criteria": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "supporting_sources": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "document",
+                "section",
+                "locator"
+              ],
+              "properties": {
+                "document": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "section": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "locator": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
           }
         }
       }
