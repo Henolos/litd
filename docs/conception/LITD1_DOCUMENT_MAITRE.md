@@ -3395,3 +3395,9 @@ MORT-01 à MORT-20 explicitement validées en conception, en complément des cin
 - MORT-20 : Conservation déterministe des états, transitions et conséquences dans les sauvegardes.
 
 Réconciliation : INIT, FORM, MOB, ANA, AFF, INV, ARCH-12 et non-létalité directe des pièges d'exploration préservés. Seuils, coefficients et modalités précises d'intervention ouverts. Aucun système spécifique d'organes vitaux réintroduit. Aucun test moteur exécuté.
+
+## REFONTE-COMP-01 — Bloc 12.2 — Exclusion du transport (26 novembre 2026)
+
+**VALIDÉ EN CONCEPTION — décision directe :** « pas de transport pendant et après le combat. Après un combat si un héros ne peut se déplacer ou on l’abandonne sur place ou on rentre au hub, ce qui termine la quête, mission ».
+
+Aucun système de portage, traînage, transport collectif ou transfert entre porteurs de héros pendant ou après le combat. Les propositions SAUV relatives au transport sont abandonnées. Préséance sur les clauses antérieures autorisant le transport des héros, notamment ARCH-04 règle 2 pour sa composante transport. MOB-14 à MOB-16 : articulation du déplacement assisté avec cette interdiction à clarifier ; ne pas assimiler automatiquement déplacement forcé et transport. Le devenir du héros abandonné reste soumis à ARCH-04. Le retour au hub dans cette situation termine la quête ou mission en cours ; distinction entre fin de tentative et clôture définitive, modalités de retour du héros immobilisé, récupération des dépouilles et transport des captifs à clarifier explicitement. Aucun test moteur exécuté.
