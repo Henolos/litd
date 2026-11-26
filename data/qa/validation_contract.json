@@ -13,7 +13,11 @@
     "docs/psychology_combat_pass_04.md",
     "docs/design/psychology_social_combat_pass_05.md",
     "data/psychology_events.json",
-    "data/psychology_social_combat.json"
+    "data/psychology_social_combat.json",
+    "docs/conception/exploration/graph_v0.schema.json",
+    "docs/conception/exploration/graph_v0.fixtures.json",
+    "docs/reconstruction/LITD1_NODE_MAP_LOOP_PROTOTYPE.md",
+    "tools/qa/validate_contract.py"
   ],
   "rules": [
     {
@@ -384,8 +388,23 @@
         "locator": "1 (topologie à nœuds uniquement)"
       },
       "review_channel": "F8",
-      "source_status": "LINKED_UNVERIFIED",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "CANONICAL_AND_SUPPORTING_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "La carte candidate respecte le schéma JSON Schema 2020-12; les fixtures valides sont acceptées et les fixtures invalides rejetées."
+      ],
+      "supporting_sources": [
+        {
+          "document": "docs/conception/exploration/graph_v0.schema.json",
+          "section": "Schéma graph_v0",
+          "locator": "contraintes de structure et valeurs"
+        },
+        {
+          "document": "docs/conception/exploration/graph_v0.fixtures.json",
+          "section": "fixtures graph_v0",
+          "locator": "valid_loop et fixtures invalides"
+        }
+      ]
     },
     {
       "id": "EXP-02",
@@ -548,8 +567,18 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "F8",
-      "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "Le retour au nœud refuge/hub est accessible; revisiter un nœud ne relance pas l’événement déjà résolu."
+      ],
+      "supporting_sources": [
+        {
+          "document": "docs/reconstruction/LITD1_NODE_MAP_LOOP_PROTOTYPE.md",
+          "section": "Contrôles d’acceptation",
+          "locator": "retour sur nœud visité, accès au nœud de retour et au hub"
+        }
+      ]
     },
     {
       "id": "EXP-12",
@@ -568,8 +597,18 @@
         "locator": "4, 8"
       },
       "review_channel": "F8",
-      "source_status": "LINKED_UNVERIFIED",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "CANONICAL_AND_SUPPORTING_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "Les nœuds visités restent sélectionnables et un événement déjà résolu ne se relance pas au retour."
+      ],
+      "supporting_sources": [
+        {
+          "document": "docs/reconstruction/LITD1_NODE_MAP_LOOP_PROTOTYPE.md",
+          "section": "Portée",
+          "locator": "persistance de sélection et non-répétition d’événement"
+        }
+      ]
     },
     {
       "id": "EXP-13",
@@ -636,8 +675,23 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "F8",
-      "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "Chaque carte sérialisée valide les champs et contraintes du schéma graph_v0; l’évolution du format doit maintenir des fixtures de validation positives et négatives."
+      ],
+      "supporting_sources": [
+        {
+          "document": "docs/conception/exploration/graph_v0.schema.json",
+          "section": "Schéma graph_v0",
+          "locator": "champs requis et contraintes"
+        },
+        {
+          "document": "docs/conception/exploration/graph_v0.fixtures.json",
+          "section": "fixtures graph_v0",
+          "locator": "validité structurelle"
+        }
+      ]
     },
     {
       "id": "EXP-17",
@@ -652,8 +706,18 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "measurement_and_human",
-      "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "source_status": "SUPPORTING_SOURCE_UNVERIFIED",
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "Une preuve runtime n’est recevable dans le registre que si commit testé et digest canonique correspondent, le statut est PASS, le type est runtime, et le SHA-256 du rapport correspond aux octets du rapport. Cette vérification d’intégrité ne prouve pas à elle seule la conformité du gameplay."
+      ],
+      "supporting_sources": [
+        {
+          "document": "tools/qa/validate_contract.py",
+          "section": "evidence_current et report_integrity_matches",
+          "locator": "éligibilité des métadonnées et intégrité binaire du rapport; docstring limite la portée"
+        }
+      ]
     },
     {
       "id": "SAV-01",
