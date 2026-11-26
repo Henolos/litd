@@ -355,3 +355,15 @@ La source antérieure de la règle 19 est retrouvée dans les messages utilisate
 Les oracles candidats détaillés pour les 70 scénarios et le paquet de revue indépendante V1.10 sont proposés dans [ARCH12_SCENARIO_ORACLES_AND_V110_REVIEW_2026-11-26.md](ARCH12_SCENARIO_ORACLES_AND_V110_REVIEW_2026-11-26.md). Aucun scénario n'est exécuté; la spécification reste préliminaire jusqu'à la revue MC-007 et à la fermeture des paramètres causaux et techniques ouverts.
 
 Le jalon d'authentification historique est crédité selon les pondérations gelées : source des propositions, comparaison versionnée 80/80, validations par groupe retrouvées, portée historique de la règle 19 clarifiée, et statuts techniques/tests consignés. L'absence de transcript brut intégral est une limite documentée. Le jalon d'inventaire qualité reste partiel jusqu'à la revue de ses liens déduits. Total : 15 + 25 + 15 + 10 + 10 + 5 = 80 % du chantier; le pourcentage global LITD 1 reste à évaluer.
+
+
+## Passe de contrôle structurelle distincte — 26 novembre 2026
+
+Entrées contrôlées : matrice et document maître sur le head PR `28d311f4010aab3c7dcba510883c6fc0db912481`. Le contrôle déterministe a extrait les lignes et références des tableaux puis les a comparées à l'inventaire du document maître.
+
+- 80 lignes de règles : ARCH-12 (20), ARCH-12.1 (10), ARCH-12.2 (10), ARCH-12.3 (10), ARCH-12.4 (10), ARCH-12.5 (20).
+- Les 80 cellules de références/dépendances/notes d'exception sont renseignées; aucune référence explicite à une règle ARCH-12 ne vise un identifiant absent ou hors plage.
+- Tous les chapitres ARCH cités dans ces cellules existent dans le document maître contrôlé.
+- 70 identifiants distincts S01–S70 sont présents comme scénarios candidats.
+
+Cette passe vérifie la structure, la résolution des identifiants et la présence documentaire. Elle ne certifie pas la validité sémantique de chaque lien déduit [D], l'authenticité du verbatim utilisateur, l'implémentation ou le comportement en jeu. La revue de fond MC-007 des liens déduits reste en attente; aucune validation manquante n'est reconstruite.
