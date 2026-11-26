@@ -114,7 +114,9 @@
           "source_status": {
             "enum": [
               "MISSING",
-              "LINKED_UNVERIFIED"
+              "LINKED_UNVERIFIED",
+              "SUPPORTING_SOURCE_UNVERIFIED",
+              "CANONICAL_AND_SUPPORTING_UNVERIFIED"
             ]
           },
           "acceptance_criteria_status": {
