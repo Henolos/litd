@@ -3171,3 +3171,30 @@ Modèle D et MOB-01 à MOB-20 explicitement validés en conception.
 - MOB-20 : Conservation des positions et conséquences lors de la sauvegarde et de la reprise.
 
 Réconciliation : distinguer déplacement volontaire, assistance, déplacement forcé et resserrement gratuit FORM-13 à FORM-18. MOB-13 concerne la permutation ordinaire, MOB-14 à MOB-16 l'assistance distincte. INIT-09 et INIT-20 restent applicables. Les seuils locomoteurs, modalités multirangs, poussées, attractions et collisions restent à arbitrer. Aucun test moteur exécuté.
+
+## REFONTE-COMP-01 — Bloc 05 : collisions hybrides (validation utilisateur du 26 novembre 2026)
+
+Modèle D et COL-01 à COL-20 explicitement validés en conception.
+
+- COL-01 : Poussées et attractions distinctes des mouvements volontaires.
+- COL-02 : Déplacements forcés soumis aux résistances physiques.
+- COL-03 : Force de projection opposée aux capacités de résistance.
+- COL-04 : Masse et corpulence traitées séparément.
+- COL-05 : Stabilité dépendante des appuis et de l'anatomie.
+- COL-06 : Ancrages spécifiques pouvant empêcher un déplacement.
+- COL-07 : Poussées ordinaires sans dégâts automatiques de collision.
+- COL-08 : Projections violentes pouvant provoquer des collisions.
+- COL-09 : Cible projetée et cible percutée évaluées séparément.
+- COL-10 : Intensité de l'impact influençant les dégâts.
+- COL-11 : Protections et résistances physiques prises en compte.
+- COL-12 : Blessures localisées possibles selon l'impact.
+- COL-13 : Fractures et amputations soumises aux règles anatomiques.
+- COL-14 : Déséquilibre ordinaire ne supprimant pas automatiquement le tour.
+- COL-15 : Obstacles et cadavres pouvant être percutés.
+- COL-16 : Limites de formation ne provoquant pas automatiquement une sortie du combat.
+- COL-17 : Déplacements en chaîne limités, sans propagation infinie.
+- COL-18 : Aucun PA supplémentaire ni renouvellement de tour.
+- COL-19 : Attribution causale conforme aux règles ARCH-12.
+- COL-20 : Conservation des conséquences physiques et causales dans les sauvegardes.
+
+Réconciliation : FORM-16 interdit les dégâts automatiques du resserrement, distinct des projections COL-08. MOB-01 à MOB-20 régissent la mobilité volontaire et assistée ; INIT-09 et INIT-20 restent applicables. ARCH-12 et ses compléments régissent la causalité. Les coefficients, catégories et seuils numériques, règles précises de propagation, résolution anatomique et encombrement multirang restent ouverts. Aucun test moteur exécuté.
