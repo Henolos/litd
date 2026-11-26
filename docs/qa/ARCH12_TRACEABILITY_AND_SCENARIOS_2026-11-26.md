@@ -217,3 +217,12 @@ Les 70 entrées sont déduites des règles présentes. Elles restent au statut �
 | PR, CI, approbations, fusion | 5 % | PR appropriée, contrôles requis sur le SHA exact, approbations, Merge Queue et lecture de main après fusion | Satisfait : six checks requis réussis sur le SHA de #654; aucune approbation requise (seuil 0), aucun fil ouvert; fusion par Merge Queue; contenu `main` relu. CI post-fusion `quality`, `godot-smoke` et `quality-full` réussies |
 
 Calcul reproductible au point de reprise : jalons terminés = 15 + 15 + 10 + 10 + 5 = **55 % du chantier**. Les jalons Inventaire et Authentification historique restent incomplets et ne rapportent aucun poids tant que leurs critères complets ne sont pas satisfaits. Avancement global LITD 1 : **À évaluer**, car le dénominateur pondéré des chantiers globaux n'est pas disponible.
+
+
+## Rectificatif de traçabilité — 26 novembre 2026
+
+La recherche ciblée a retrouvé les validations utilisateur par groupe et leurs horodatages : ARCH-12 (25-11, 20:32:41), ARCH-12.1/.2 (22:07:37, réponse « oui » après proposition des deux options et vingt règles), ARCH-12.3/.4 (22:24:29), ARCH-12.5 (22:34:30; le choix C de 22:33:58 était distinct de l'approbation des vingt règles). Les lignes qui indiquent que le transcript conversationnel n'est pas récupéré doivent se lire « pas d'export intégral du fil », et non « aucune validation accessible ». La comparaison 80/80 de la PR #657 porte uniquement sur les propositions versionnées et reste distincte de l'authenticité des validations.
+
+La source antérieure de la règle 19 est retrouvée dans les échanges utilisateur du 16-11-2026, 16:44:33–16:46:31 : nom rouge, tête de mort rouge, conservation de l'entrée Némésis dans les Archives après décès et ajout de l'histoire des héros morts. La formulation plus étroite « définitivement, même après sa propre mort » est incluse et approuvée dans ARCH-12 le 25-11; la source du 16-11 ne prouve pas à elle seule cette extension.
+
+Le crosswalk proposé règle par règle (renvois, dépendances et exceptions), ainsi que les préconditions et oracles candidats des scénarios S01–S70, se trouve dans [ARCH12_RULE_DEPENDENCIES_AND_ORACLES_2026-11-26.md](ARCH12_RULE_DEPENDENCIES_AND_ORACLES_2026-11-26.md). Tous les scénarios restent non exécutés; les cas dépendant de paramètres techniques ouverts restent partiels ou bloqués.
