@@ -92,3 +92,8 @@ Les canaux de revue sont maintenant renseignés au niveau du contrat, mais aucun
 - 2 contrôles (COM-13, COM-15) portent un critère partiel explicite ; 127 restent sans critère d’acceptation formulé. La règle d’exclusion des non-Némésis est testable, mais le système de fuite demeure incomplet tant que les cas ouverts et les conditions précises ne sont pas arbitrés.
 - Le schéma et le validateur vérifient désormais que toute source secondaire est déclarée, qu’un critère partiel existe lorsque son statut l’affirme et qu’aucun critère n’est dissimulé sous un statut `NOT_DEFINED`. Des tests dédiés couvrent ces cas.
 - Le statut de la correction est documentaire et non runtime : aucune validation du comportement en jeu n’est revendiquée.
+
+
+### Intégrité du document de référence protégé
+
+Le contrôle `remanence-smoke` a d’abord rejeté la correction, car `docs/COMBAT_ANATOMIE_AVANCEE.md` est dans le manifeste des références gelées. La correction est maintenant inscrite dans `docs/reconstruction/AUTHORIZED_REFERENCE_REVISIONS_20261123.json`, avec empreinte originale conservée, empreinte corrigée et preuve explicative sous `docs/qa/evidence/ARCH-05_FUITE_NEMESIS_2026-11-26.md`. Le passage du contrôle après cette autorisation reste à attendre ; l’échec initial ne constitue pas un résultat final de la branche.
