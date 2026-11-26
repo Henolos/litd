@@ -2910,7 +2910,7 @@ Un ennemi déjà Némésis conserve son statut. Toute nouvelle mort définitive 
 
 Les Archives conservent le héros décédé, la cause de sa mort, son responsable et les circonstances pertinentes.
 
-La décision précédemment validée reste applicable : le Némésis conserve définitivement son nom rouge et sa tête de mort rouge dans les Archives, même après sa propre mort.
+L'index conversationnel accessible rapporte le 16 novembre 2026 qu'un Némésis est affiché avec son nom rouge dans les Archives après sa mort; un autre extrait rapporte la demande d'une tête de mort rouge à côté du nom. Cet index est un résumé, pas le verbatim complet de la conversation. La règle 19 d'ARCH-12 formalise explicitement la conservation du nom rouge et de la tête de mort rouge dans les Archives après la mort du Némésis. La validation de cet ensemble est rapportée dans les sources versionnées du dépôt; faute du transcript brut de validation, sa conformité mot pour mot à la conversation ne peut pas être certifiée.
 
 **Règle 20 — Résolution déterministe**
 
@@ -3022,7 +3022,7 @@ Le système doit identifier le véritable responsable d'une mort définitive lor
 - ARCH-04/07/09/10/11 : mort définitive, restrictions NG+, possession des équipements, dépouilles et simulation événementielle inchangées.
 - V8.3 et Archives : conserver identité, provenance, justification et résolution durable sans duplication ni nouveau tirage au chargement.
 - Cas de contrôle à préparer : poison antérieur au recrutement, recrue décédée, deux poisons conjointement mortels, Némésis existants à égalité, intervention indépendante, piège à installateur distinct du déclencheur, environnement sans responsable, sauvegarde/reprise. Aucun test runtime effectué.
-- Réserve historique conservée : « La méthode technique de comparaison des contributions causales, le changement de maître d'une invocation et la provenance historique du marquage rouge restent à préciser ou vérifier. » ARCH-12.5 résout en conception la question du transfert de responsabilité selon le maître au moment de l'action. Restent ouverts les paramètres techniques de prise de contrôle, durée, coût, résistance et autonomie, ainsi que la méthode de comparaison causale et la provenance antérieure du marquage rouge. Le verbatim des vingt règles initiales ARCH-12 reste à certifier. Ces réserves ne sont pas de nouvelles décisions.
+- Réserve historique conservée à titre de trace : « La méthode technique de comparaison des contributions causales, le changement de maître d'une invocation et la provenance historique du marquage rouge restent à préciser ou vérifier. » Résolutions de conception : ARCH-12.4 règle le traitement des égalités (contributeurs multiples possibles, zéro ou un responsable principal, sans départage arbitraire) ; ARCH-12.5 fixe l'attribution d'une action au maître qui contrôlait effectivement l'invocation à cet instant. Restent ouverts la méthode technique de comparaison des contributions, les paramètres techniques de prise de contrôle (conditions, durée, coût, résistance et autonomie) et la provenance antérieure indépendante du marquage rouge. Le texte brut des validations conversationnelles n'est pas accessible dans les sources consultées : la conformité mot pour mot aux messages de validation reste donc non certifiée. En revanche, la comparaison des 80 règles versionnées dans les propositions des PR #649–#651 avec les 80 règles de ce document est consignée dans la matrice de traçabilité. Ces réserves ne constituent pas de nouvelles décisions.
 
 
 ### Vérification de provenance — règle 19 ARCH-12
