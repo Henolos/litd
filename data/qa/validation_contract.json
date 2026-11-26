@@ -221,7 +221,7 @@
       "mapping_status": "PROPOSED",
       "canonical_source": null,
       "review_channel": "F8",
-      "source_status": "MISSING",
+      "source_status": "CANONICAL_AND_SUPPORTING_UNVERIFIED",
       "acceptance_criteria_status": "PARTIAL",
       "acceptance_criteria": [
         "La fuite volontaire n'est permise qu'aux ennemis portant le statut Némésis et n'est pas systématique; les ennemis sans ce statut ne fuient pas. Les règles des Némésis devenus boss établis et des transformations en boss restent ouvertes, donc leur comportement ne peut pas encore recevoir un verdict complet."
@@ -271,7 +271,7 @@
         "locator": "§2505–2511 (règle validée et cas ouverts)"
       },
       "review_channel": "F8",
-      "source_status": "LINKED_UNVERIFIED",
+      "source_status": "CANONICAL_AND_SUPPORTING_UNVERIFIED",
       "acceptance_criteria_status": "PARTIAL",
       "acceptance_criteria": [
         "La fuite volontaire n'est permise qu'aux ennemis portant le statut Némésis et n'est pas systématique; les ennemis sans ce statut ne fuient pas. Les règles des Némésis devenus boss établis et des transformations en boss restent ouvertes, donc leur comportement ne peut pas encore recevoir un verdict complet."
