@@ -8,7 +8,7 @@ Date d’état : 26 novembre 2026. Base documentaire contrôlée : `main` à `48
 - PR #652 porte sur le contrat QA de 129 contrôles et indique explicitement que les 40 règles ARCH-12.3/.4/.5 sont présentes dans le document maître mais pas encore déclinées en contrôles QA complets. Elle ne modifie pas ce document maître. Cette fiche n'ajoute aucun doublon de ses neuf fichiers.
 - Les règles ci-dessous sont tracées par identifiant et locator, sans recopier leur texte normatif. La présence documentaire est confirmée. Les commits et patches établissent l'origine dans le dépôt, pas l'authenticité d'une conversation utilisateur.
 - Les propositions intégrales des 80 règles ont été récupérées dans les commits de proposition des PR #649, #650 et #651. Leur correspondance avec le document maître actuel est contrôlée ci-dessous. Les messages conversationnels originaux de validation ne sont toujours pas accessibles; cette comparaison ne les authentifie pas et aucune validation manquante n'est reconstruite.
-- Pour chaque ligne, les références, dépendances et exceptions sont vérifiées au niveau du texte source. Main ne fournit pas encore de graphe de dépendances règle-par-règle; les dépendances ci-dessous sont donc des renvois de groupe, et non des liens formels exhaustifs. Cette lacune demeure à traiter avant la couverture de test complète.
+- La cartographie propose, pour chacune des 80 règles, des références, dépendances et exceptions au niveau règle. Les liens sont étiquetés [E-règle] ou [E-groupe] lorsqu'ils sont explicitement fondés sur le texte source et [D] lorsqu'ils sont déduits de l'interaction des règles. Cette analyse préparatoire n'est pas un graphe normatif déjà inscrit dans main; les liens déduits restent à confirmer par revue indépendante avant de servir d'oracles.
 - Implémentation technique ARCH-12 : non attestée. Tests fonctionnels ARCH-12 : non exécutés. Les scénarios de la section suivante sont des propositions de campagne, pas des tests.
 
 
@@ -322,7 +322,7 @@ Les 70 entrées sont des cas candidats reliés aux règles. Leurs assertions con
 ## Conditions préalables à la campagne
 
 1. Retrouver les messages originaux de validation, ou conserver durablement la réserve « verbatim conversationnel non certifié ». Les propositions versionnées du dépôt ont été comparées intégralement à main (80/80).
-2. Compléter les dépendances, exceptions et renvois au niveau de chaque règle, sans ajouter de comportement par déduction.
+2. Faire relire et confirmer la cartographie règle par règle, notamment les liens déduits et les exceptions, puis corriger les erreurs relevées sans ajouter de comportement par déduction.
 3. Fixer des préconditions, données, oracle et résultats attendus pour chaque scénario; couvrir positifs, négatifs, limites, sauvegarde/reprise et déterminisme.
 4. Réserver un sous-ensemble d'évaluation inédit et organiser une revue distincte selon MC-007.
 5. Exécuter uniquement après spécification, sur une branche et un environnement isolés; conserver succès, échecs, ignorés et non exécutés séparément.
