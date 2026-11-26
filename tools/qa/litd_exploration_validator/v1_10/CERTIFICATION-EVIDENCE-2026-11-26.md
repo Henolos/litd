@@ -3,11 +3,11 @@
 Statut : certification ouverte, revue indépendante en attente. Rapport rétrospectif des contrôles effectués dans la conversation, non nouvelle exécution.
 
 - PR #642, fusion 547e8153a45ea87005829b8f220f2ace8852610e.
-- Révision testée bc7ffcd406e3e67b211ba06a1b84379d27fe8b9e.
+- SHA réellement testé : `42f9b16541dae2046a0824dc0d99629948b7ec6e`, confirmé par les métadonnées du run 45410435324 (tentative 2, conclusion success). Le SHA `bc7ffcd406e3e67b211ba06a1b84379d27fe8b9e` cité précédemment est le commit parent/base, pas le commit exécuté; la comparaison Git le confirme.
 - CI : https://github.com/Henolos/litd/actions/runs/45410435324/job/139560963765 ; 84 tests réussis en 5,273 s, Python 3.12, jsonschema 4.26.0.
 - Manifeste commun : dda5c8839e4df653860bb514a47b544d463a8591.
 - 43 SHA-256 recalculés sur les octets décodés base64 par lots sur la branche isolée, fonction JS contrôlée sur vecteur abc. 43 correspondances avec le manifeste. Les blobs relevés ont ensuite été comparés au commit testé : 43 identiques.
-- Diffs retournés par GitHub pour les deux commits : 154619 caractères, égalité exacte, 46 fichiers ajoutés. Historiques divergents, ancêtre commun 7ac9bfffdcc2457b1b26262a1fee7b81c321ba78. Pas de comparaison directe exhaustive des blobs au commit fusionné ; les diffs et le manifeste corroborent la correspondance.
+- Comparaison du commit testé au commit de fusion : SHA d'arbre identique `c1895a2d004e427cae0736e34bbcf15c7c83070c`; le contenu Git des 46 fichiers ajoutés par la PR est ainsi identique entre `42f9b165` et `547e8153`. La branche actuelle `feat/litd-exploration-validator-v18` descend de ce commit; la comparaison Git montre seulement l'ajout ultérieur de ce rapport, sans modification des 46 fichiers de la PR.
 
 | Fichier | SHA-256 attendu | SHA-256 recalculé (résultat historique) | Blob Git commun branche / commit testé |
 |---|---|---|---|
@@ -57,4 +57,4 @@ Statut : certification ouverte, revue indépendante en attente. Rapport rétrosp
 
 ## Limites et clôture
 
-Les valeurs recalculées sont transcrites des résultats historiques conformes, non recalculées lors de la rédaction. Le rapport est hors manifeste initial. Les originaux V0 reconstruits ne sont pas authentifiés. Aucun test Godot, stockage durable ou validation ARCH-12 n'est revendiqué. La revue indépendante MC-007 et la clôture MC-008 restent à effectuer. Score provisoire 90 % (10+10+35+20+15), dernier jalon de 10 % non acquis. Les empreintes des documents de méthode n'ont pas été démontrées malgré une affirmation antérieure.
+Les 43 empreintes SHA-256 ont été recalculées lors du contrôle de reprise du 26 novembre 2026 à partir des contenus UTF-8 récupérés sur la branche dédiée; 43/43 correspondent au manifeste. Ce recalcul vérifie les octets actuellement publiés, tandis que l'égalité des arbres confirme leur conservation entre le commit testé et le commit de fusion. Le rapport est hors manifeste initial. Les originaux V0 reconstruits ne sont pas authentifiés. Aucun test Godot, stockage durable ou validation ARCH-12 n'est revendiqué. La revue indépendante MC-007 et la clôture MC-008 restent à effectuer. Score provisoire 90 % (10+10+35+20+15), dernier jalon de 10 % non acquis. Les empreintes des documents de méthode n'ont pas été démontrées malgré une affirmation antérieure.
