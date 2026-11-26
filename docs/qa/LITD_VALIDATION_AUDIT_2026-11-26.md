@@ -18,6 +18,9 @@
 7. La PR #643 reste ouverte en brouillon, créée sur une base antérieure au main actuel. Elle n’a pas été fusionnée.
 8. Le document maître affirme que les décisions de conception V8.3 et ARCH-12 sont validées, mais non implémentées et non testées en runtime. ARCH-12.3 et ARCH-12.4 figurent avec 10 règles chacune (20 au total) ; ARCH-12.5 figure avec 20 règles. Les preuves consultées ne justifient pas de déclarer ces décisions opérationnelles.
 9. La règle de fuite la plus récente retrouvée réserve la fuite volontaire aux Némésis sous conditions ; les ennemis non Némésis ne fuient pas. La correction du 18 novembre est explicitement remplacée sur ce point. Aucun test runtime n’est revendiqué.
+- Contrôle de contenu séparé : le patch fusionné #650 contient 20 lignes (10 ARCH-12.3, 10 ARCH-12.4) et toutes 20 apparaissent textuellement dans le document maître de main ; le patch #651 contient 20 lignes ARCH-12.5 et les 20 apparaissent. Ce contrôle vérifie la présence après fusion, pas le verbatim des propositions utilisateur originales.
+- Réconciliation des contrats Les Veilleurs : les cinq systèmes du registre sont au niveau technique ; leurs preuves joueur, mobile et production sont vides. Le modèle joueur exige 8 gates et le contrat matériel 8 gates ; aucun rapport de session matériel n’est présent dans l’arbre main. Le template joueur reste entièrement NOT_RUN. Les audits statiques empêchent explicitement la CI de promouvoir ces états.
+
 
 ## Correction préparée dans cette branche
 
@@ -41,9 +44,9 @@
 
 - Sur le commit 9fecb221c7efa53285f301cca691c1e70bbf7d01, le job `quality` s’est terminé avec succès : 1 467 tests Python réussis et deux `SyntaxWarning` existants sur les séquences `\\d` dans `tools/ci/generate_godot_status.py` (lignes 154–155, hors diff).
 - Le job `godot-smoke` a réussi ; `quality-full` a été ignoré.
-- Le contrôle déclaratif non bloquant de la PR a échoué sur la description initiale, qui ne comportait pas les rubriques et le statut requis. La description a été corrigée en sections `PARTIEL`; le contrôle doit encore être relancé sur cette version.
+- Le contrôle déclaratif non bloquant de la PR a échoué sur la description initiale, qui ne comportait pas les rubriques et le statut requis. La description a été corrigée ; le pilote a réussi au run 45774604164 sur le commit fc2c03444520d31854e18398e45323ed6e794cf1.
 - Les contrôles réussis ci-dessus portent sur la CI de la branche ; ils ne valident pas les 129 propriétés métier et n’établissent pas leur conformité en jeu.
 
 ## État
 
-Correction documentaire et garde-fou de traçabilité préparés pour revue. Aucune fusion ni validation gameplay.
+Correction documentaire et garde-fou de traçabilité préparés pour revue. La CI du commit fc2c034 a réussi pour quality et godot-smoke, avec quality-full ignoré. Aucune fusion ni validation gameplay.
