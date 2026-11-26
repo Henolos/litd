@@ -148,4 +148,4 @@ MC-007 : EN ATTENTE. Ce document définit une voie proposée sans reviewer humai
 
 ## Point de reprise
 
-Prochaine action technique : confirmer l’exécution des 7 tests structurels sur le SHA courant, puis formaliser le modèle abstrait des règles déterminées et ses mutations comportementales. Ne pas prétendre valider le gameplay tant que le runtime et les hooks ARCH-12 restent absents.
+Prochaine action technique : relier les oracles déterminés à un runtime ARCH-12 approuvé et ajouter un adaptateur d’exécution; tant que ce runtime et ses hooks sont absents, maintenir les 70 scénarios fonctionnels à 0/70. Ne pas prétendre valider le gameplay tant que le runtime et les hooks ARCH-12 restent absents.
