@@ -31,6 +31,19 @@
 - Un test négatif couvre ce refus.
 - Les statuts des 129 contrôles restent inchangés et non validés. Aucun code de gameplay n’a été modifié.
 
+## Revue des PR brouillons ouvertes (26 novembre 2026)
+
+| PR | État observé | Limite de validation |
+|---|---|---|
+| #652 | Brouillon d’audit, base main à 154a807 | Aucun examen indépendant ni fusion |
+| #643 | Brouillon, base enregistrée ea922120 | Inventaire 129 incomplet ; chemins/localisateurs à réconcilier |
+| #639 | Brouillon, base enregistrée ea922120 | Tests du prototype de sauvegarde réussis, mais fonctions non raccordées à save_game/load_game selon la description |
+| #632 | Brouillon, base enregistrée e9d3a5d | Prototype narratif ; effets proposés, non raccordés à la progression |
+| #622 | Brouillon, base enregistrée 21e9987 | Documentation de recherche ; playtest de la quête non exécuté |
+| #616 | Brouillon, base enregistrée b405f50 ; GitHub indique dirty | Prototype Combat A ; compréhension par joueur non testée |
+
+Les SHA de base des anciennes PR sont antérieurs au main courant ; elles doivent être relues contre la base actuelle avant toute fusion. Cette revue de métadonnées/descriptions n’est pas une inspection complète de leurs diffs.
+
 ## Limites et travaux requis avant toute validation
 
 - Les 73 sources manquantes doivent être retrouvées dans des décisions authentifiées ou rester explicitement non mappées.
@@ -49,4 +62,4 @@
 
 ## État
 
-Correction documentaire et garde-fou de traçabilité préparés pour revue. Sur le commit aa1b0f4, quality (1 467 tests Python) et godot-smoke ont réussi ; quality-full a été ignoré. Le pilote déclaratif a encore échoué uniquement sur le libellé du statut ; sa règle a été lue, la PR corrigée avec « Statut : PARTIEL », et une nouvelle exécution est en attente. Aucune fusion ni validation gameplay.
+Correction documentaire et garde-fou de traçabilité préparés pour revue. Sur le commit 33f68a4, quality (1 467 tests Python), godot-smoke et le pilote déclaratif ont réussi ; quality-full a été ignoré. Aucune fusion ni validation gameplay.
