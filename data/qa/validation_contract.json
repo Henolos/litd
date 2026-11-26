@@ -7,7 +7,8 @@
     "data/veilleurs/system_maturity_registry.json",
     "data/veilleurs/player_validation_contract.json",
     "data/veilleurs/hardware_validation_contract.json",
-    "docs/conception/LITD1_DOCUMENT_MAITRE.md"
+    "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+    "docs/COMBAT_ANATOMIE_AVANCEE.md"
   ],
   "rules": [
     {
@@ -216,7 +217,17 @@
       "canonical_source": null,
       "review_channel": "F8",
       "source_status": "MISSING",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "La fuite volontaire n'est permise qu'aux ennemis portant le statut Némésis et n'est pas systématique; les ennemis sans ce statut ne fuient pas. Les règles des Némésis devenus boss établis et des transformations en boss restent ouvertes, donc leur comportement ne peut pas encore recevoir un verdict complet."
+      ],
+      "supporting_sources": [
+        {
+          "document": "docs/COMBAT_ANATOMIE_AVANCEE.md",
+          "section": "5. IA adaptative après mutilation",
+          "locator": "ligne 103 — fuite volontaire; à lire avec ARCH-05"
+        }
+      ]
     },
     {
       "id": "COM-14",
@@ -251,12 +262,22 @@
       "mapping_status": "PROPOSED",
       "canonical_source": {
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
-        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
-        "locator": "19, 20 (capture et conservation des acquis uniquement)"
+        "section": "ARCH-05 — Exclusivité de la fuite volontaire des Némésis",
+        "locator": "§2505–2511 (règle validée et cas ouverts)"
       },
       "review_channel": "F8",
       "source_status": "LINKED_UNVERIFIED",
-      "acceptance_criteria_status": "NOT_DEFINED"
+      "acceptance_criteria_status": "PARTIAL",
+      "acceptance_criteria": [
+        "La fuite volontaire n'est permise qu'aux ennemis portant le statut Némésis et n'est pas systématique; les ennemis sans ce statut ne fuient pas. Les règles des Némésis devenus boss établis et des transformations en boss restent ouvertes, donc leur comportement ne peut pas encore recevoir un verdict complet."
+      ],
+      "supporting_sources": [
+        {
+          "document": "docs/COMBAT_ANATOMIE_AVANCEE.md",
+          "section": "5. IA adaptative après mutilation",
+          "locator": "ligne 103 — fuite volontaire; à lire avec ARCH-05"
+        }
+      ]
     },
     {
       "id": "COM-16",
