@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0-draft",
+  "version": "1.1.0-draft",
   "baseline_commit": "154a80717a78fcd3d3bb02af445429be1524cc01",
   "references": [
     "data/qa/developer_bot_registry.json",
@@ -21,7 +21,10 @@
         "V11"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "COM-02",
@@ -34,7 +37,10 @@
         "V11"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "COM-03",
@@ -47,7 +53,10 @@
         "V24"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "COM-04",
@@ -60,7 +69,10 @@
         "V11"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "COM-05",
@@ -73,7 +85,10 @@
         "V11"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "COM-06",
@@ -86,7 +101,10 @@
         "V11"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "COM-07",
@@ -99,7 +117,10 @@
         "V11"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "COM-08",
@@ -112,7 +133,10 @@
         "V25"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "COM-09",
@@ -125,7 +149,10 @@
         "V25"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "COM-10",
@@ -138,7 +165,10 @@
         "V11"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "COM-11",
@@ -151,7 +181,10 @@
         "V11"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "COM-12",
@@ -164,7 +197,10 @@
         "V11"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "COM-13",
@@ -177,7 +213,10 @@
         "V20"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "COM-14",
@@ -194,7 +233,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "4, 29"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "COM-15",
@@ -211,7 +253,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "19, 20 (capture et conservation des acquis uniquement)"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "COM-16",
@@ -228,7 +273,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "14–29"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "COM-17",
@@ -240,7 +288,10 @@
         "V23"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "human",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "COM-18",
@@ -252,7 +303,10 @@
         "V24"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "human",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "COM-19",
@@ -266,7 +320,10 @@
         "V16"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "human",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "COM-20",
@@ -279,7 +336,10 @@
         "V25"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "EXP-01",
@@ -296,7 +356,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "1 (topologie à nœuds uniquement)"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "EXP-02",
@@ -309,7 +372,10 @@
         "V28"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "EXP-03",
@@ -322,7 +388,10 @@
         "V28"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "EXP-04",
@@ -335,7 +404,10 @@
         "V28"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "EXP-05",
@@ -352,7 +424,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "1 (chemins cachés uniquement)"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "EXP-06",
@@ -365,7 +440,10 @@
         "V28"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "EXP-07",
@@ -378,7 +456,10 @@
         "V28"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "EXP-08",
@@ -391,7 +472,10 @@
         "V21"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "EXP-09",
@@ -404,7 +488,10 @@
         "V28"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "EXP-10",
@@ -417,7 +504,10 @@
         "V28"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "EXP-11",
@@ -430,7 +520,10 @@
         "V28"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "EXP-12",
@@ -447,7 +540,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "4, 8"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "EXP-13",
@@ -460,7 +556,10 @@
         "V21"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "EXP-14",
@@ -477,7 +576,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "4, 9, 10"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "EXP-15",
@@ -490,7 +592,10 @@
         "V31"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "measurement_and_human",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "EXP-16",
@@ -503,7 +608,10 @@
         "V28"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "EXP-17",
@@ -516,7 +624,10 @@
         "V30"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "measurement_and_human",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "SAV-01",
@@ -532,7 +643,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "30–37"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "SAV-02",
@@ -549,7 +663,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "Règles techniques consolidées des arbitrages 30 à 40",
         "locator": "1. Unité atomique"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "SAV-03",
@@ -566,7 +683,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "Règles techniques consolidées des arbitrages 30 à 40",
         "locator": "3. Validation"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "SAV-04",
@@ -583,7 +703,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "Règles techniques consolidées des arbitrages 30 à 40",
         "locator": "4. Reconstruction"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "SAV-05",
@@ -600,7 +723,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "Règles techniques consolidées des arbitrages 30 à 40",
         "locator": "4. Reconstruction; 5. Invariants"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "SAV-06",
@@ -617,7 +743,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "Règles techniques consolidées des arbitrages 30 à 40",
         "locator": "5. Invariants"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "SAV-07",
@@ -634,7 +763,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "Règles techniques consolidées des arbitrages 30 à 40",
         "locator": "5. Invariants"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "SAV-08",
@@ -651,7 +783,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "Règles techniques consolidées des arbitrages 30 à 40",
         "locator": "1. Unité atomique; 5. Invariants"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "SAV-09",
@@ -668,7 +803,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "Règles techniques consolidées des arbitrages 30 à 40",
         "locator": "5. Invariants"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "SAV-10",
@@ -685,7 +823,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "Règles techniques consolidées des arbitrages 30 à 40",
         "locator": "5. Invariants"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "SAV-11",
@@ -702,7 +843,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "Règles techniques consolidées des arbitrages 30 à 40",
         "locator": "5. Invariants"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "SAV-12",
@@ -719,7 +863,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "Règles techniques consolidées des arbitrages 30 à 40",
         "locator": "5. Invariants (durée et causalité des effets uniquement)"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "SAV-13",
@@ -736,7 +883,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "Règles techniques consolidées des arbitrages 30 à 40",
         "locator": "2. Journal durable"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "SAV-14",
@@ -752,7 +902,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "Registre des décisions complémentaires",
         "locator": "37"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "SAV-15",
@@ -769,7 +922,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "37, 39 (détection divergence et refus de restauration)"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "SAV-16",
@@ -785,7 +941,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "Registre des décisions complémentaires",
         "locator": "38"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "SAV-17",
@@ -801,7 +960,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "Registre des décisions complémentaires",
         "locator": "38"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "SAV-18",
@@ -818,7 +980,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "Registre des décisions complémentaires",
         "locator": "39"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "SAV-19",
@@ -835,7 +1000,9 @@
         "section": "Registre des décisions complémentaires",
         "locator": "40"
       },
-      "review_channel": "physical_windows"
+      "review_channel": "physical_windows",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "SAV-20",
@@ -852,7 +1019,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "Règles techniques consolidées des arbitrages 30 à 40",
         "locator": "4. Reconstruction; 5. Invariants"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "PRO-01",
@@ -869,7 +1039,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "7 (niveau hérité uniquement)"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "PRO-02",
@@ -886,7 +1059,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "11, 12"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "PRO-03",
@@ -903,7 +1079,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "11, 14"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "PRO-04",
@@ -920,7 +1099,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "15–17"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "PRO-05",
@@ -937,7 +1119,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "15–17"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "PRO-06",
@@ -954,7 +1139,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "17, 21, 25"
-      }
+      },
+      "review_channel": "human",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "PRO-07",
@@ -971,7 +1159,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "22, 27"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "PRO-08",
@@ -988,7 +1179,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "27, 28"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "PRO-09",
@@ -1005,7 +1199,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "24–26"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "PRO-10",
@@ -1022,7 +1219,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "7, 11–13"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "PRO-11",
@@ -1039,7 +1239,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "4, 5, 8"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "PRO-12",
@@ -1056,7 +1259,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "7, 11, 13, 29"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "PRO-13",
@@ -1073,7 +1279,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "Règles techniques consolidées des arbitrages 30 à 40",
         "locator": "5. Invariants"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "PRO-14",
@@ -1090,7 +1299,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "Règles techniques consolidées des arbitrages 30 à 40",
         "locator": "5. Invariants"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "REF-01",
@@ -1103,7 +1315,10 @@
         "V10"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "REF-02",
@@ -1116,7 +1331,10 @@
         "V19"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "human",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "REF-03",
@@ -1129,7 +1347,10 @@
         "V21"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "REF-04",
@@ -1146,7 +1367,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "15, 18"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "REF-05",
@@ -1163,7 +1387,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "18"
-      }
+      },
+      "review_channel": "human",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "REF-06",
@@ -1176,7 +1403,10 @@
         "V19"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "REF-07",
@@ -1189,7 +1419,10 @@
         "V19"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "REF-08",
@@ -1202,7 +1435,10 @@
         "V24"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "REF-09",
@@ -1215,7 +1451,10 @@
         "V24"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "human",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "REF-10",
@@ -1232,7 +1471,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "V8.1 Règles actives après Game Over, point 6"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "ANA-01",
@@ -1245,7 +1487,10 @@
         "V11"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "ANA-02",
@@ -1257,7 +1502,10 @@
         "V11"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "ANA-03",
@@ -1270,7 +1518,10 @@
         "V25"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "ANA-04",
@@ -1283,7 +1534,10 @@
         "V24"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "ANA-05",
@@ -1296,7 +1550,10 @@
         "V11"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "ANA-06",
@@ -1309,7 +1566,10 @@
         "V8"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "ANA-07",
@@ -1322,7 +1582,10 @@
         "V11"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "ANA-08",
@@ -1335,7 +1598,10 @@
         "V21"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "ANA-09",
@@ -1348,7 +1614,10 @@
         "V18"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "ANA-10",
@@ -1361,7 +1630,10 @@
         "V25"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "PSY-01",
@@ -1374,7 +1646,10 @@
         "V21"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "PSY-02",
@@ -1387,7 +1662,10 @@
         "V25"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "PSY-03",
@@ -1400,7 +1678,10 @@
         "V20"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "PSY-04",
@@ -1413,7 +1694,10 @@
         "V21"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "PSY-05",
@@ -1430,7 +1714,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "8 (persistance des relations uniquement)"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "PSY-06",
@@ -1443,7 +1730,10 @@
         "V25"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "human",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "PSY-07",
@@ -1456,7 +1746,10 @@
         "V22"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "human",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "PSY-08",
@@ -1469,7 +1762,10 @@
         "V24"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "human",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "UI-01",
@@ -1481,7 +1777,10 @@
         "V10"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "human",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "UI-02",
@@ -1494,7 +1793,10 @@
         "V27"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "human",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "UI-03",
@@ -1507,7 +1809,10 @@
         "V10"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "human",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "UI-04",
@@ -1518,7 +1823,9 @@
       "proposed_bots": [],
       "mapping_status": "PROPOSED",
       "canonical_source": null,
-      "review_channel": "human"
+      "review_channel": "visual",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "UI-05",
@@ -1529,7 +1836,9 @@
       "proposed_bots": [],
       "mapping_status": "PROPOSED",
       "canonical_source": null,
-      "review_channel": "human"
+      "review_channel": "human",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "UI-06",
@@ -1540,7 +1849,9 @@
       "proposed_bots": [],
       "mapping_status": "PROPOSED",
       "canonical_source": null,
-      "review_channel": "visual"
+      "review_channel": "visual",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "UI-07",
@@ -1551,7 +1862,9 @@
       "proposed_bots": [],
       "mapping_status": "PROPOSED",
       "canonical_source": null,
-      "review_channel": "F8"
+      "review_channel": "human",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "UI-08",
@@ -1562,7 +1875,9 @@
       "proposed_bots": [],
       "mapping_status": "PROPOSED",
       "canonical_source": null,
-      "review_channel": "measurement_and_human"
+      "review_channel": "measurement_and_human",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "UI-09",
@@ -1573,7 +1888,9 @@
       "proposed_bots": [],
       "mapping_status": "PROPOSED",
       "canonical_source": null,
-      "review_channel": "human"
+      "review_channel": "human",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "UI-10",
@@ -1584,7 +1901,9 @@
       "proposed_bots": [],
       "mapping_status": "PROPOSED",
       "canonical_source": null,
-      "review_channel": "human"
+      "review_channel": "visual",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "INT-01",
@@ -1597,7 +1916,10 @@
         "V11"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "INT-02",
@@ -1610,7 +1932,10 @@
         "V11"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "INT-03",
@@ -1623,7 +1948,10 @@
         "V20"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "INT-04",
@@ -1636,7 +1964,10 @@
         "V20"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "INT-05",
@@ -1653,7 +1984,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "8, 29 (relations et mémoire uniquement)"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "INT-06",
@@ -1670,7 +2004,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "4, 34"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "INT-07",
@@ -1687,7 +2024,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "15–24"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "INT-08",
@@ -1704,7 +2044,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "27, 28"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "INT-09",
@@ -1721,7 +2064,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "29"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "INT-10",
@@ -1738,7 +2084,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "20"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "INT-11",
@@ -1755,7 +2104,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "19"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "INT-12",
@@ -1768,7 +2120,10 @@
         "V27"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "INT-13",
@@ -1781,7 +2136,10 @@
         "V28"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "INT-14",
@@ -1794,7 +2152,10 @@
         "V28"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "INT-15",
@@ -1807,7 +2168,10 @@
         "V28"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "INT-16",
@@ -1824,7 +2188,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "15, 18, 24"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "INT-17",
@@ -1837,7 +2204,10 @@
         "V19"
       ],
       "mapping_status": "PROPOSED",
-      "canonical_source": null
+      "canonical_source": null,
+      "review_channel": "F8",
+      "source_status": "MISSING",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "INT-18",
@@ -1854,7 +2224,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "Règles techniques consolidées des arbitrages 30 à 40",
         "locator": "1. Unité atomique"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "INT-19",
@@ -1871,7 +2244,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "Règles techniques consolidées des arbitrages 30 à 40",
         "locator": "4. Reconstruction"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     },
     {
       "id": "INT-20",
@@ -1888,7 +2264,10 @@
         "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
         "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
         "locator": "4; V8.1 Règles actives après Game Over, point 6"
-      }
+      },
+      "review_channel": "F8",
+      "source_status": "LINKED_UNVERIFIED",
+      "acceptance_criteria_status": "NOT_DEFINED"
     }
   ]
 }
