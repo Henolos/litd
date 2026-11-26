@@ -1,8 +1,14 @@
+import importlib.util
 from pathlib import Path
 
-from tools.qa.arch12_spec_validator import EXPECTED_IDS, validate_documents
-
 ROOT = Path(__file__).resolve().parents[2]
+MODULE_PATH = ROOT / "tools/qa/arch12_spec_validator.py"
+MODULE_SPEC = importlib.util.spec_from_file_location("arch12_spec_validator", MODULE_PATH)
+assert MODULE_SPEC is not None and MODULE_SPEC.loader is not None
+VALIDATOR = importlib.util.module_from_spec(MODULE_SPEC)
+MODULE_SPEC.loader.exec_module(VALIDATOR)
+EXPECTED_IDS = VALIDATOR.EXPECTED_IDS
+validate_documents = VALIDATOR.validate_documents
 SPEC = ROOT / "docs/qa/ARCH12_FUNCTIONAL_TEST_SPEC_2026-11-26.md"
 TRACEABILITY = ROOT / "docs/qa/ARCH12_TRACEABILITY_AND_SCENARIOS_2026-11-26.md"
 
