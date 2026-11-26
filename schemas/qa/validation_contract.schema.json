@@ -10,7 +10,7 @@
   ],
   "properties": {
     "version": {
-      "const": "1.0.0-draft"
+      "const": "1.1.0-draft"
     },
     "baseline_commit": {
       "type": "string",
@@ -39,7 +39,10 @@
           "blocking",
           "proposed_bots",
           "mapping_status",
-          "canonical_source"
+          "canonical_source",
+          "review_channel",
+          "source_status",
+          "acceptance_criteria_status"
         ],
         "properties": {
           "id": {
@@ -107,6 +110,15 @@
               "measurement_and_human",
               "physical_windows"
             ]
+          },
+          "source_status": {
+            "enum": [
+              "MISSING",
+              "LINKED_UNVERIFIED"
+            ]
+          },
+          "acceptance_criteria_status": {
+            "const": "NOT_DEFINED"
           }
         }
       }
