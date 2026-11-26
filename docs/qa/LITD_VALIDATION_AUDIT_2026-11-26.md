@@ -136,3 +136,16 @@ Ces règles sont extraites de fichiers de données et restent à confirmer comme
 - `Remanence Smoke` : réussi après ajout de l’entrée d’autorisation vérifiant la correction documentaire gelée.
 
 Ces résultats confirment les contrôles CI exécutés sur le commit cité ; ils ne remplacent pas la revue des sources, les essais humains/visuels, ni l’exécution des 129 contrôles métier.
+
+
+## Instantané final de cette passe — commit contractuel d0d5d07d18683dbd73f3d14cc8b20d0270df84f1
+
+État du contrat après les réconciliations documentaires effectuées :
+
+- 129 contrôles inventoriés ; 129/129 ont un canal de revue proposé.
+- 31 critères d’acceptation sont partiellement formulés et sourcés ; 98 restent non définis.
+- Sources : 46 absentes ; 52 liens canoniques non vérifiés ; 26 sources corroborantes non vérifiées ; 5 contrôles combinent un lien canonique et une source corroborante non vérifiés.
+- Aucun des 129 contrôles n’est déclaré validé métier. Les propositions de critères restent partielles, certains locators ou documents corroborants attendent encore leur réconciliation à la décision maîtresse.
+- La branche est publiée dans la PR #652, toujours ouverte en brouillon et non fusionnée. La CI du commit contractuel d0d5d07 a réussi (qualité, Godot smoke, Remanence Smoke ; quality-full ignoré). Le dernier commit de la PR ajoute seulement ce compte rendu documentaire.
+
+La prochaine étape prioritaire est de réconcilier les 98 critères manquants avec les décisions maîtresses et leurs sources exactes, puis d’exécuter les canaux de revue correspondants. Les cas sans décision explicite restent en attente d’arbitrage ; aucun comportement ne doit être inventé à partir du titre des contrôles.
