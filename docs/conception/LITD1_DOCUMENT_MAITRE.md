@@ -3281,3 +3281,30 @@ Modèle D et AFF-01 à AFF-20 explicitement validés en conception.
 - AFF-20 : Conservation des afflictions et de leur progression dans les sauvegardes.
 
 Compléments historiques présentés et consolidation explicitement autorisée le 26 novembre 2026 (provenance originale du 16 novembre non revérifiée) : attaques normales pouvant infliger des dégâts élémentaires et déclencher probabilistiquement une affliction ; attaques dédiées ; résistances et faiblesses globales selon les matériaux équipés ; métal vulnérable à la foudre, bois au feu, conductivité identique pour tous les métaux ; foudre avec impact initial et trois rebonds maximum entre ennemis proches portant du métal, réduction proportionnelle des dégâts aux rebonds. Catalogue de référence : foudre/paralysie, brûlure, poison, gel, saignement, confusion, silence, corrosion, aveuglement, fracture. Effets particuliers, probabilités, durées, coefficients, sélection des cibles et répétition des rebonds restent ouverts. Aucun système général d'usure d'équipement ni ancien catalogue réintroduit. ARCH-12, ANA et INIT applicables. Aucun test moteur exécuté.
+
+## REFONTE-COMP-01 — Bloc 09 : défenses hybrides (validation utilisateur du 26 novembre 2026)
+
+Modèle D et DEF-01 à DEF-20 explicitement validés en conception.
+
+- DEF-01 : Distinction entre garde, parade, esquive et interception.
+- DEF-02 : Distinction entre défenses passives et techniques actives.
+- DEF-03 : Préparation défensive ordinaire consommant 1 PA.
+- DEF-04 : Déclenchement d'une défense préparée sans second PA.
+- DEF-05 : Aucun stockage du PA inutilisé.
+- DEF-06 : Durée et nombre de déclenchements explicitement limités.
+- DEF-07 : Garde pouvant réduire les dégâts reçus.
+- DEF-08 : Parade réservée aux attaques compatibles.
+- DEF-09 : Esquive dépendante des capacités fonctionnelles.
+- DEF-10 : Esquive sans changement automatique de rang.
+- DEF-11 : Interception nécessitant une capacité appropriée.
+- DEF-12 : Interception physique dépendante des rangs, obstacles et capacités locomotrices.
+- DEF-13 : Protection à distance possible selon les propriétés de la compétence.
+- DEF-14 : Conservation des règles antérieures d'interception anatomique.
+- DEF-15 : Vérification des capacités défensives lors du déclenchement.
+- DEF-16 : Possibilité de dégâts résiduels et de blessures malgré une défense.
+- DEF-17 : Aucun déclenchement automatique d'une contre-attaque supplémentaire.
+- DEF-18 : Résolution déterministe des défenses concurrentes, sans chaîne infinie.
+- DEF-19 : Respect des règles de causalité ARCH-12.
+- DEF-20 : Conservation des préparations et déclenchements dans les sauvegardes.
+
+Réconciliation : INIT, MOB, CIB, ANA et ARCH-12 applicables. La préparation dépense le PA, sans stockage du PA inutilisé ; les règles existantes d'interception anatomique sont conservées. Durées, probabilités, priorités concurrentes et coefficients ouverts. Aucun ancien catalogue réintroduit. Aucun test moteur exécuté.
