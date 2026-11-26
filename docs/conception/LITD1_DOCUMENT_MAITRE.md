@@ -3198,3 +3198,30 @@ Modèle D et COL-01 à COL-20 explicitement validés en conception.
 - COL-20 : Conservation des conséquences physiques et causales dans les sauvegardes.
 
 Réconciliation : FORM-16 interdit les dégâts automatiques du resserrement, distinct des projections COL-08. MOB-01 à MOB-20 régissent la mobilité volontaire et assistée ; INIT-09 et INIT-20 restent applicables. ARCH-12 et ses compléments régissent la causalité. Les coefficients, catégories et seuils numériques, règles précises de propagation, résolution anatomique et encombrement multirang restent ouverts. Aucun test moteur exécuté.
+
+## REFONTE-COMP-01 — Bloc 06 : ciblage anatomique hybride (validation utilisateur du 26 novembre 2026)
+
+Modèle D et CIB-01 à CIB-20 explicitement validés en conception.
+
+- CIB-01 : Anatomie définie selon la morphologie réelle du combattant.
+- CIB-02 : Identifiant stable pour chaque partie anatomique.
+- CIB-03 : Une partie absente ne peut pas être directement ciblée.
+- CIB-04 : Une prothèse installée peut constituer une cible physique.
+- CIB-05 : Accessibilité dépendante des rangs tactiques.
+- CIB-06 : Prise en compte de l'encombrement physique.
+- CIB-07 : Accessibilité dépendante de la portée de l'attaque.
+- CIB-08 : Prise en compte des obstacles et protections physiques.
+- CIB-09 : Accessibilité dépendante des propriétés de la compétence.
+- CIB-10 : Prise en compte des capacités fonctionnelles de l'attaquant.
+- CIB-11 : Distinction entre difficulté et impossibilité de ciblage.
+- CIB-12 : Difficulté de ciblage adaptée à la partie anatomique.
+- CIB-13 : Affichage des parties accessibles avant engagement de l'action.
+- CIB-14 : Explication des principales causes d'inaccessibilité.
+- CIB-15 : Inspection anatomique sans consommation de PA.
+- CIB-16 : Vérification de l'accessibilité au moment de la résolution.
+- CIB-17 : Aucun transfert silencieux vers une autre cible, hors mécanismes explicitement autorisés.
+- CIB-18 : Attaques globales et attaques localisées distinctes.
+- CIB-19 : Aucun système spécifique de ciblage des organes internes vitaux.
+- CIB-20 : Conservation de l'identité anatomique, des états et de la causalité dans les sauvegardes.
+
+Réconciliation : complète les règles existantes de ciblage et HUD, FORM, MOB et COL ; conserve les exceptions d'interception explicitement autorisées et ARCH-12 pour la causalité. Les coefficients, conséquences des blessures et modalités de résolution d'une cible devenue inaccessible restent ouverts. Aucun test moteur exécuté.
