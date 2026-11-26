@@ -188,3 +188,17 @@ Les 70 entrées sont déduites des règles présentes. Elles restent au statut �
 ## Point de reprise
 
 La réconciliation documentaire et la matrice sont préparées dans cette branche. Priorité suivante : contrôle distinct du diff, vérification automatisée des comptes 80/70 et des quatre réserves, puis PR. Les sources historiques manquantes, la revue indépendante, la spécification détaillée des tests et les validations techniques restent des blocages explicites.
+
+## Critères d'acceptation et pondération fixés avant les corrections
+
+| Jalon | Poids | Critère d'acceptation | État au 26-11-2026 |
+|---|---:|---|---|
+| Préflight et gouvernance | 15 % | SHA de main, PR concurrentes/historiques, règles actives, approbations, protections et autorisations examinés | Satisfait avec limite documentée : endpoint classique de protection en 403; ruleset actif lu directement |
+| Inventaire qualité | 20 % | Comptage individuel des six ensembles, vérification des références/renvois/exceptions et absence de doublon avec #652 | Partiel : 80/80 présents; aucun graphe de dépendances individuel n'existe dans le texte source, et la couverture QA des 80 n'est pas établie |
+| Authentification historique | 25 % | Matrice 80 règles avec source, validation, verbatim, réconciliation, technique et tests vérifiés ou lacunes sourcées | Partiel : matrice créée et preuves examinées; propositions originales mot pour mot non accessibles, source historique de la règle 19 non retrouvée |
+| Corrections documentaires | 15 % | Quatre réserves anciennes préservées et explicitement réconciliées, sans modifier les règles validées; diff contrôlé | Réalisé et contrôlé sur branche isolée; pas encore fusionné dans main |
+| Preuves V1.10 | 10 % | Run, 84 tests, SHA-256, conservation commit testé/fusionné et état 90 % vérifiés; lacunes signalées | Vérifié : 84/84, 43/43 empreintes, arbres test/fusion identiques; revue MC-007 reste en attente |
+| Scénarios | 10 % | Exactement 70 cas candidats identifiés, liés aux règles, sans prétendre à exécution | Réalisé : 70/70 inscrits, tous non exécutés et sans oracle fonctionnel définitif |
+| PR, CI, approbations, fusion | 5 % | PR appropriée, contrôles requis sur le SHA exact, approbations, Merge Queue et lecture de main après fusion | En cours : PR #654 brouillon, CI réussi; revue humaine et Merge Queue/post-fusion non faites |
+
+Calcul reproductible au point de reprise : jalons terminés = 15 + 15 + 10 + 10 = **50 % du chantier**. Les autres jalons ne rapportent aucun poids tant que leurs critères complets ne sont pas satisfaits. Avancement global LITD 1 : **À évaluer**, car le dénominateur pondéré des chantiers globaux n'est pas disponible.
