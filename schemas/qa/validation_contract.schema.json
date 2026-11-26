@@ -18,7 +18,7 @@
     },
     "references": {
       "type": "array",
-      "minItems": 6,
+      "minItems": 5,
       "uniqueItems": true,
       "items": {
         "type": "string"
