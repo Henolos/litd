@@ -83,3 +83,12 @@ Le contrat a été enrichi pour rendre les lacunes visibles par règle, sans fai
 ### État de la réconciliation
 
 Les canaux de revue sont maintenant renseignés au niveau du contrat, mais aucun des 129 critères d’acceptation n’est encore réconcilié. Les sources se limitent aux pointeurs vers le document maître déjà inventoriés ; les autres documents techniques inspectés restent des candidats de corroboration jusqu’à vérification de leur autorité et de leur cohérence avec les décisions validées. La couverture demeure donc partielle et non exécutable comme certification de conformité.
+
+
+## Correction appliquée — règle de fuite des ennemis
+
+- La phrase contradictoire de `docs/COMBAT_ANATOMIE_AVANCEE.md` (section 5) autorisant la fuite d’une créature ordinaire affaiblie a été remplacée par la règle ARCH-05 du document maître : seuls les Némésis peuvent fuir volontairement, sans fuite systématique ; les cas Némésis devenus boss ou en transformation restent ouverts.
+- COM-15 pointe maintenant vers ARCH-05 et vers le document anatomique corrigé ; COM-13 partage le critère partiel lié au comportement de l’IA.
+- 2 contrôles (COM-13, COM-15) portent un critère partiel explicite ; 127 restent sans critère d’acceptation formulé. La règle d’exclusion des non-Némésis est testable, mais le système de fuite demeure incomplet tant que les cas ouverts et les conditions précises ne sont pas arbitrés.
+- Le schéma et le validateur vérifient désormais que toute source secondaire est déclarée, qu’un critère partiel existe lorsque son statut l’affirme et qu’aucun critère n’est dissimulé sous un statut `NOT_DEFINED`. Des tests dédiés couvrent ces cas.
+- Le statut de la correction est documentaire et non runtime : aucune validation du comportement en jeu n’est revendiquée.
