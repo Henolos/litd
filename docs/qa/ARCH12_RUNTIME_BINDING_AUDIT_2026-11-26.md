@@ -26,6 +26,17 @@ Par conséquent, **0/39 oracles O sont actuellement exécutables comme scénario
 
 Les recherches de l’arbre Git complet (2 095 chemins), des scripts GDScript et des termes de résolution causale/Némésis n’ont pas révélé de runtime ARCH-12 ni d’API de test correspondante. Le répertoire Unreal trouvé dans le dépôt porte LITD2 et n’est pas substitué au runtime LITD 1.
 
+## Candidate historique examinée après la première passe
+
+La recherche a été étendue aux branches et aux PR, et non limitée à `main`. Une candidate LITD 1 existe dans la PR brouillon #616, branche `feat/litd1-combat-prototype-20261112`, head `6989c08621c7b40cb23f88ad23125cd0c7d0cbe0`. Elle reste ouverte, non fusionnée et explicitement décrite comme une expérience jetable de Combat A; elle demande encore une décision issue du playtest avant de construire Combat B.
+
+- **Injection actuellement possible dans le prototype :** appeler `start_encounter()`, `select_target(index)`, `attack()` et `guard()` sur la scène. Le test headless instancie la scène, appelle ces méthodes, puis lit directement les dictionnaires `heroes`/`enemies`, `actor_index`, `phase` et les PV. Ce sont des points de commande propres à cette expérience, pas un contrat d’injection ARCH-12.
+- **Observation actuellement possible :** états en mémoire (PV, garde, acteur, phase) et `log_lines`. Les adversaires sont anonymes et n’ont pas d’identifiants stables; le journal tronque son historique à sept messages. Le test confirme les dégâts ciblés, la garde, les ripostes, la victoire et le redémarrage.
+- **Capacités absentes :** événement causal structuré, auteur/contributeurs, liens parent-enfant entre effets, état de maître à l’instant de l’action, résolution ARCH-12 du décès, Némésis, Archives, snapshots persistants, sauvegarde/rechargement, contrôle déterministe de l’horloge ou de l’aléatoire.
+- **Décision de liaison :** candidate rejetée comme runtime ARCH-12 approuvé. Le prototype pourrait servir d’essai UX ou de source de commandes de test, mais l’étendre pour lui faire porter ces règles créerait un moteur parallèle aux fixtures et violerait son périmètre déclaré. Aucun code ni aucune règle de cette PR n’a été modifié.
+
+Ce résultat précise la recherche précédente : une expérience de combat candidate existe dans une branche de travail, mais aucun runtime de production ou runtime approuvé conforme aux besoins ARCH-12 n’a été trouvé. La conclusion reste donc **0/39 O raccordables à une cible approuvée**.
+
 ## Liaison des oracles O
 
 Les 39 scénarios O sont regroupés ci-dessous par dépendance technique. Dans chaque ligne, « non raccordable » signifie qu’un contrôle de la seule tranche prototype ne pourrait pas vérifier l’oracle attendu. Une animation de PV à zéro ou un texte de journal n’est pas une preuve d’attribution ARCH-12.
@@ -64,6 +75,6 @@ Ces éléments sont des prérequis d’observabilité du banc, pas des décision
 
 ## Prochaine étape et preuve attendue
 
-Prochaine étape : rechercher dans les branches et PR de travail un runtime de combat ARCH-12 déjà en développement, en vérifier l’architecture, puis demander l’approbation de la cible avant d’écrire l’adaptateur. Si aucun runtime n’existe, le chantier reste bloqué à cette dépendance et le contrat d’interface doit être rédigé pour le runtime de production futur, non pour la tranche provisoire.
+La recherche des branches et PR a trouvé #616, mais son prototype est disqualifié comme cible ARCH-12 pour les raisons ci-dessus. La prochaine étape est donc une décision d’architecture : approuver explicitement un futur runtime de combat LITD 1 qui portera ARCH-12, ou identifier une autre cible de production déjà autorisée. Cette décision n’est pas déduite de la PR #616. Une fois la cible déterminée et approuvée, vérifier ses hooks réels avant d’écrire l’adaptateur.
 
 La preuve de liaison devra associer au même commit le runtime, l’adaptateur, les fixtures, les journaux d’exécution et les résultats par scénario. La CI générale, le test de boucle provisoire et le modèle de référence abstrait ne remplaceront pas ces preuves.
