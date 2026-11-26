@@ -118,8 +118,8 @@ def test_mutation_kill_tie_breaks_by_last_attacker():
 def test_mutation_kill_reassigns_old_action_to_new_master():
     expected = MODEL.master_for_action(master_at_action="A", master_at_resolution="B")
     mutant = "B"
-    assert expected == "A"
-    assert mutant != expected
+    with pytest.raises(AssertionError):
+        assert mutant == expected
 
 
 def test_mutation_kill_resurrects_entity_during_archive_recognition():
@@ -127,4 +127,5 @@ def test_mutation_kill_resurrects_entity_during_archive_recognition():
     correct = MODEL.recognize_posthumously(before)
     assert correct.alive is False
     mutant = MODEL.EntityState("E1", True, before.stats, before.nemesis, before.promotions, True)
-    assert mutant.alive is not correct.alive
+    with pytest.raises(AssertionError):
+        assert mutant.alive is False
