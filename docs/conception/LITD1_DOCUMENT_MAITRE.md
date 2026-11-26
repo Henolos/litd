@@ -3022,7 +3022,7 @@ Le système doit identifier le véritable responsable d'une mort définitive lor
 - ARCH-04/07/09/10/11 : mort définitive, restrictions NG+, possession des équipements, dépouilles et simulation événementielle inchangées.
 - V8.3 et Archives : conserver identité, provenance, justification et résolution durable sans duplication ni nouveau tirage au chargement.
 - Cas de contrôle à préparer : poison antérieur au recrutement, recrue décédée, deux poisons conjointement mortels, Némésis existants à égalité, intervention indépendante, piège à installateur distinct du déclencheur, environnement sans responsable, sauvegarde/reprise. Aucun test runtime effectué.
-- Réserve historique conservée : « La méthode technique de comparaison des contributions causales, le changement de maître d'une invocation et la provenance historique du marquage rouge restent à préciser ou vérifier. » ARCH-12.5 résout en conception la question du transfert de responsabilité selon le maître au moment de l'action. Restent ouverts les paramètres techniques de prise de contrôle, durée, coût, résistance et autonomie, ainsi que la méthode de comparaison causale et la provenance antérieure du marquage rouge. Le verbatim des vingt règles initiales ARCH-12 reste à certifier. Ces réserves ne sont pas de nouvelles décisions.
+- La méthode technique de comparaison des contributions causales, le changement de maître d'une invocation et la provenance historique du marquage rouge restent à préciser ou vérifier. Le verbatim des vingt règles initiales ARCH-12 reste à certifier. Ces réserves ne sont pas de nouvelles décisions.
 
 
 ### Vérification de provenance — règle 19 ARCH-12
