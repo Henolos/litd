@@ -26,6 +26,20 @@ Par conséquent, **0/39 oracles O sont actuellement exécutables comme scénario
 
 Les recherches de l’arbre Git complet (2 095 chemins), des scripts GDScript et des termes de résolution causale/Némésis n’ont pas révélé de runtime ARCH-12 ni d’API de test correspondante. Le répertoire Unreal trouvé dans le dépôt porte LITD2 et n’est pas substitué au runtime LITD 1.
 
+## Runtime historique fusionné : source à évaluer, absent de la cible courante
+
+Une recherche complémentaire a retrouvé un système plus complet que les prototypes : la PR #160 « Implémenter la Rémanence persistante des Veilleurs » a bien été fusionnée (merge commit `70741133c77f9cc1703a39e305a28f1548aa689a`). Les fichiers `scripts/core/remanence_runtime.gd`, `remanence_combat_bridge.gd` et `veilleurs_tactical_combat_runtime.gd` sont lisibles à cette révision historique. Les trois chemins renvoient 404 sur `main` au SHA de base actuel : ils ne constituent donc pas un runtime utilisable en l’état sur la branche de production courante.
+
+**Interfaces réelles observées à la révision historique :**
+- Le runtime tactique expose `setup_first_combat`, `resolve_skill`, `enemy_step`, `serialize` et `deserialize`; il utilise des `entity_id` stables, un `action_log`, et un tir déterministe fondé sur les identifiants et le round. Le résultat d’une action contient acteur, cible, compétence, dégâts et état corporel.
+- `RemanenceRuntime` expose `record_event`, `entity_state`, `recent_events`, `serialize` et `deserialize`, avec une timeline séquencée et les liens d’Archives.
+- Le bridge de Rémanence est cependant couplé à des singletons de l’ancienne architecture et détecte certains changements par scrutation. Lorsqu’un héros tombe, il attribue l’événement au dernier acteur ennemi signalé, avec repli sur le premier ennemi vivant. Ce n’est pas une chaîne de causalité complète avec liste de contributeurs.
+- Le test smoke historique couvre rencontres, mutilation, survie/retraite, mort laissant un cadavre persistant, réapparition, adaptations et sérialisation. Il ne couvre pas les 39 oracles O ARCH-12 et n’est pas une preuve de conformité à la version actuelle des règles.
+
+**Décision de réutilisation :** cette implémentation fusionnée est une source historique qui peut informer un portage sélectif (identifiants stables, journal structuré, persistance, test déterministe). Elle ne peut pas être désignée comme runtime courant sans restaurer des fichiers supprimés lors du reset, réconcilier ses contrats et vérifier chaque oracle contre ARCH-12. La restaurer telle quelle risquerait de réintroduire l’architecture que le reset a retirée. Aucune restauration ni adaptation n’est faite.
+
+Cela distingue désormais trois catégories : runtime historique fusionné mais absent de `main`; prototypes présents ou proposés mais provisoires; aucun runtime courant approuvé couvrant ARCH-12.
+
 ## Candidate historique examinée après la première passe
 
 La recherche a été étendue aux branches et aux PR, et non limitée à `main`. Une candidate LITD 1 existe dans la PR brouillon #616, branche `feat/litd1-combat-prototype-20261112`, head `6989c08621c7b40cb23f88ad23125cd0c7d0cbe0`. Elle reste ouverte, non fusionnée et explicitement décrite comme une expérience jetable de Combat A; elle demande encore une décision issue du playtest avant de construire Combat B.
