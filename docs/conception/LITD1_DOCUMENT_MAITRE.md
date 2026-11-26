@@ -3144,3 +3144,30 @@ Modèle D : resserrement automatique avec obstacles physiques. FORM-01 à FORM-2
 Modèle C pour les grandes créatures recrutées, explicitement validé le 26 novembre 2026 : rangs tactiques et encombrement physique distincts ; quatre combattants conservés, représentation physique et accessibilité anatomique adaptées à leur morphologie. FORM-09 reste applicable ; articulation exacte entre occupation multirang et quatre identités tactiques à arbitrer. Aucun changement de PA, aucune réduction automatique de morphologie. Les modalités de mobilité, chevauchement, collision et recrutement restent ouvertes.
 
 Préséance : remplace les hypothèses provisoires de resserrement inconditionnel du bloc formations ; respecte INIT-09, INIT-14, INIT-20 et les invariants de mort permanente et de non-duplication. Aucun test moteur exécuté.
+
+## REFONTE-COMP-01 — Bloc 04 : mobilité hybride (validation utilisateur du 26 novembre 2026)
+
+Modèle D et MOB-01 à MOB-20 explicitement validés en conception.
+
+- MOB-01 : Déplacement volontaire ordinaire coûtant 1 PA.
+- MOB-02 : Déplacement ordinaire limité à un rang adjacent.
+- MOB-03 : Permutation possible avec un allié adjacent.
+- MOB-04 : Seul l'initiateur dépense son PA.
+- MOB-05 : Le déplacement ne modifie pas l'ordre d'initiative du round.
+- MOB-06 : Aucun PA supplémentaire accordé par une permutation.
+- MOB-07 : Mobilité dépendante de l'anatomie fonctionnelle.
+- MOB-08 : Blessures et fractures prises en compte selon leurs conséquences réelles.
+- MOB-09 : Prothèses prises en compte dans la capacité locomotrice.
+- MOB-10 : Immobilisations évaluées selon leur nature.
+- MOB-11 : Impossibilité de traverser un obstacle infranchissable.
+- MOB-12 : Prise en compte de l'encombrement physique des combattants.
+- MOB-13 : Permutation ordinaire impossible si l'un des participants ne peut physiquement l'effectuer.
+- MOB-14 : Déplacement assisté d'un allié possible.
+- MOB-15 : Déplacement assisté coûtant normalement 1 PA à l'intervenant.
+- MOB-16 : Faisabilité de l'assistance dépendante des capacités physiques et de la masse.
+- MOB-17 : Compétences pouvant intégrer attaque et déplacement dans une seule action.
+- MOB-18 : Mobilités spéciales définies selon les capacités du combattant.
+- MOB-19 : Vérification de la faisabilité avant consommation du PA pour une commande ordinaire.
+- MOB-20 : Conservation des positions et conséquences lors de la sauvegarde et de la reprise.
+
+Réconciliation : distinguer déplacement volontaire, assistance, déplacement forcé et resserrement gratuit FORM-13 à FORM-18. MOB-13 concerne la permutation ordinaire, MOB-14 à MOB-16 l'assistance distincte. INIT-09 et INIT-20 restent applicables. Les seuils locomoteurs, modalités multirangs, poussées, attractions et collisions restent à arbitrer. Aucun test moteur exécuté.
