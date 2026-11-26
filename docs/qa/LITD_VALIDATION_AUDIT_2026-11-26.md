@@ -111,3 +111,10 @@ La Bible UX/UI du dépôt fournit des critères textuels pour UI-01, UI-02, UI-0
 Sept contrôles psychologiques (PSY-01 à PSY-04 et PSY-06 à PSY-08) disposent maintenant de critères partiels reliés aux passes 04/05 ou aux données psychologiques. Les critères couvrent les paliers de Peur, les déclencheurs et la répétition d’événements, la sélection de cible et la limite d’une intervention par round, les traces non diagnostiques, la crise à 100 et l’absence de cumul de l’Espoir. Les références sont corroborantes et non vérifiées individuellement contre le maître ; l’exécution/runtime n’est pas prouvée par leur présence.
 
 PSY-05 reste sans critère d’acceptation : son intitulé « Relations » n’est pas suffisamment défini par les seules règles de persistance déjà liées au maître. Après cette passe, le contrat compte 18 critères partiels sur 129 et 111 critères encore non définis.
+
+
+## Extension de la réconciliation exploration
+
+Cinq contrôles supplémentaires ont un critère partiel : EXP-01 et EXP-16 (conformité au schéma graph_v0 et fixtures), EXP-11 et EXP-12 (retour refuge, nœuds visités et non-répétition des événements), EXP-17 (fraîcheur des métadonnées et intégrité des octets du rapport). Les quatre premières vérifications ont des critères de prototype/schema, pas une certification de campagne complète. EXP-17 valide l’intégrité d’une preuve, pas le comportement du jeu, comme le dit le code lui-même.
+
+Les sources de ces lignes sont corroborantes et non réconciliées à la décision maître. Après cette passe, 23/129 critères sont partiellement définis et 106 restent sans critère formulé. Les 23 ne sont pas réputés testés ou validés.
