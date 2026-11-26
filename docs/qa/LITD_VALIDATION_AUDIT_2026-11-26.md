@@ -125,3 +125,14 @@ Les sources de ces lignes sont corroborantes et non réconciliées à la décisi
 Huit contrôles (REF-01, REF-02, REF-03, REF-06, REF-07, REF-08, REF-09 et REF-10) ont désormais des critères partiels dérivés des données v0.7 : boucle refuge, limites et conditions de recrutement, dépendances/niveaux de bâtiments, coûts de soins, déclenchement de la réserve d’urgence, sources/usages des monnaies, protections contre softlock et remboursement avant commit.
 
 Ces règles sont extraites de fichiers de données et restent à confirmer comme exigences courantes face au document maître. Les critères ne prouvent pas que le runtime respecte les valeurs. Après cette passe, 31 contrôles sur 129 ont des critères partiels ; 98 restent sans critère formulé. REF-04/05 sont laissés ouverts, car leurs règles d’entraînement/bonus n’ont pas été retrouvées avec un seuil ou un résultat d’acceptation clair dans les sources inspectées.
+
+
+## Vérification CI après les corrections — commit d0d5d07d18683dbd73f3d14cc8b20d0270df84f1
+
+- Workflow CI `45779723499` : terminé avec succès.
+- Job `quality` : 1 470 tests Python réussis ; deux avertissements `SyntaxWarning` préexistants dans `tools/ci/generate_godot_status.py` (lignes 154–155).
+- Job `godot-smoke` : réussi.
+- Job `quality-full` : ignoré par les conditions du workflow.
+- `Remanence Smoke` : réussi après ajout de l’entrée d’autorisation vérifiant la correction documentaire gelée.
+
+Ces résultats confirment les contrôles CI exécutés sur le commit cité ; ils ne remplacent pas la revue des sources, les essais humains/visuels, ni l’exécution des 129 contrôles métier.
