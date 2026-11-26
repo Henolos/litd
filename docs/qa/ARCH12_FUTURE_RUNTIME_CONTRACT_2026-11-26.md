@@ -5,7 +5,7 @@ Statut : proposition technique non normative, à valider avant toute implémenta
 Base de conception contrôlée : `main` à `e9be0c5959077d748793d68b275fee5d1cc75aaa`.  
 Source des décisions : `docs/conception/LITD1_DOCUMENT_MAITRE.md`, blob `e791e4d0bd1a21b8202a75eb18053d9deef3b35d`.  
 Scénarios : `docs/qa/ARCH12_FUNCTIONAL_TEST_SPEC_2026-11-26.md`, branche de préparation ARCH-12.  
-Garde-fou : ne reprendre aucun code, interface, donnée ou règle supprimé de `main) lors de la remise à zéro.
+Garde-fou : ne reprendre aucun code, interface, donnée ou règle supprimé de `main` lors de la remise à zéro.
 
 ## 1. Objet et limites
 
