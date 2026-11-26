@@ -2910,7 +2910,7 @@ Un ennemi déjà Némésis conserve son statut. Toute nouvelle mort définitive 
 
 Les Archives conservent le héros décédé, la cause de sa mort, son responsable et les circonstances pertinentes.
 
-La décision précédemment validée reste applicable : le Némésis conserve définitivement son nom rouge et sa tête de mort rouge dans les Archives, même après sa propre mort.
+L'index conversationnel accessible rapporte le 16 novembre 2026 qu'un Némésis est affiché avec son nom rouge dans les Archives après sa mort; un autre extrait rapporte la demande d'une tête de mort rouge à côté du nom. Cet index est un résumé, pas le verbatim complet de la conversation. La règle 19 d'ARCH-12 formalise explicitement la conservation du nom rouge et de la tête de mort rouge dans les Archives après la mort du Némésis. La validation de cet ensemble est rapportée dans les sources versionnées du dépôt; faute du transcript brut de validation, sa conformité mot pour mot à la conversation ne peut pas être certifiée.
 
 **Règle 20 — Résolution déterministe**
 
