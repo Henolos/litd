@@ -106,15 +106,15 @@ Cette section prépare la revue indépendante; elle ne la réalise pas et ne fai
 ### Pièces à remettre au réviseur
 
 - Rapport de preuves : tools/qa/litd_exploration_validator/v1_10/CERTIFICATION-EVIDENCE-2026-11-26.md, intégré sur la branche feat/litd-exploration-validator-v18 par #655.
-- Proposition initiale : PR #642; commit testé 42f9b16541dae2046a0824dc0d99629948b7ec6e; commit de fusion dans la branche dédiée 547e8153a45ea87005829b8f220f2ace8852610e.
+- Proposition initiale : PR #642; SHA de tête 42f9b16541dae2046a0824dc0d99629948b7ec6e; commit effectivement extrait par Actions bc7ffcd406e3e67b211ba06a1b84379d27fe8b9e (`refs/remotes/pull/642/merge`); commit de fusion final dans la branche dédiée 547e8153a45ea87005829b8f220f2ace8852610e.
 - Run CI 45410435324, tentative 2; job 139560963765; 84 tests réussis, Python 3.12 et jsonschema 4.26.0.
 - Manifeste de 43 fichiers, identifiant dda5c8839e4df653860bb514a47b544d463a8591; hash recalculé au contrôle du 26-11 : 43/43 correspondances.
-- Arbre du commit testé et de fusion : c1895a2d004e427cae0736e34bbcf15c7c83070c; égalité à confirmer indépendamment.
+- Les arbres du commit extrait par Actions, du SHA de tête et du commit de fusion final sont tous `c1895a2d004e427cae0736e34bbcf15c7c83070c`. Contrôle contradictoire réalisé le 26-11 : égalité constatée; cette passe n'est pas la revue indépendante MC-007.
 
 ### Questions obligatoires de revue
 
-1. Reproduire l'identité des commits testés/fusionnés et confirmer que les 43 fichiers du manifeste sont les mêmes octets, sans se fier uniquement au présent rapport.
-2. Recalculer les empreintes à partir des blobs et du manifeste; documenter l'outil, la version et le résultat.
+1. Confirmer indépendamment que le run a extrait `bc7ffcd` (merge ref) alors que `42f9b16` est la tête de PR, puis reproduire l'identité d'arbre avec `547e815`; confirmer que les 43 fichiers du manifeste sont les mêmes octets, sans se fier uniquement au présent rapport.
+2. Recalculer les empreintes à partir des blobs et du manifeste; documenter l'outil, la version et le résultat. Le contrôle contradictoire a obtenu 43/43 avec Python `hashlib.sha256` sur les octets décodés de l'API GitHub; le reviewer doit refaire ce contrôle et consigner son propre environnement.
 3. Examiner les journaux CI et vérifier que les 84 tests correspondent au commit indiqué, à la dépendance jsonschema épinglée et aux tests revendiqués.
 4. Contrôler la suite, le schéma, les règles d'inclusion/exclusion et les rapports; relever les fichiers reconstruits V0 dont la provenance originale n'est pas authentifiée.
 5. Confirmer que l'égalité d'arbre couvre les fichiers de la PR #642 et que le rapport de preuve ultérieur n'est pas inclus à tort dans le périmètre de test initial.
