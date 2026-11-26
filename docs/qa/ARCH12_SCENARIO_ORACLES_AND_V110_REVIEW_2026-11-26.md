@@ -99,27 +99,28 @@ Précondition générale de chaque ligne : fixture isolée avec identifiants et 
 
 
 
-## Paquet de revue indépendante MC-007 — validateur V1.10
+## Assurance technique automatisée — preuves V1.10 (MC-007-A)
 
-Cette section prépare la revue indépendante; elle ne la réalise pas et ne fait pas passer la certification de 90 % à 100 %.
+Portée : contrôle du dossier de preuves V1.10 uniquement. À la demande du propriétaire du projet du 26-11-2026, le contrôle humain distinct est remplacé pour ce sous-chantier par un ensemble de contrôles automatisés séparés, avec l’analyse IA en appui. Cette voie est qualifiée d’**assurance technique automatisée**; elle ne constitue pas une IV&V formelle et ne clôt pas les autres portées de MC-007, notamment la revue de la cartographie ARCH-12.
 
-### Pièces à remettre au réviseur
+| Contrôle | Vérification reproductible | Preuve et résultat observés |
+|---|---|---|
+| C01 — identité Git | API GitHub des commits et arbres, exécutée dans un job dédié. | Les arbres de la tête PR `42f9b165`, du merge ref Actions `bc7ffcd` et du merge final `547e8153` valent `c1895a2d004e427cae0736e34bbcf15c7c83070c`; les parents du merge ref sont la base `7ac9bfff` et la tête `42f9b165`. |
+| C02 — intégrité du manifeste | SHA-1 de l’objet Git manifeste, puis SHA-256 des octets des fichiers depuis le merge final, exécutés dans un job séparé. | Blob manifeste `dda5c8839e4df653860bb514a47b544d463a8591`; **43/43** empreintes concordantes. Recalcul réalisé avec Python `hashlib.sha256`. |
+| C03 — métadonnées Actions | API des runs et jobs, job isolé. | Run `45410435324`, tentative 2, tête `42f9b165`, run et job `139560963765` en succès. |
+| C04 — journaux Actions | Téléchargement puis analyse du journal du job, job isolé. | Checkout de `refs/remotes/pull/642/merge` à `bc7ffcd`; commande unittest présente; **84 tests**, résultat `OK`; configuration Python 3.12 et jsonschema 4.26.0 confirmée. |
 
-- Rapport de preuves : tools/qa/litd_exploration_validator/v1_10/CERTIFICATION-EVIDENCE-2026-11-26.md, intégré sur la branche feat/litd-exploration-validator-v18 par #655.
-- Proposition initiale : PR #642; SHA de tête 42f9b16541dae2046a0824dc0d99629948b7ec6e; commit effectivement extrait par Actions bc7ffcd406e3e67b211ba06a1b84379d27fe8b9e (`refs/remotes/pull/642/merge`); commit de fusion final dans la branche dédiée 547e8153a45ea87005829b8f220f2ace8852610e.
-- Run CI 45410435324, tentative 2; job 139560963765; 84 tests réussis, Python 3.12 et jsonschema 4.26.0.
-- Manifeste de 43 fichiers, identifiant dda5c8839e4df653860bb514a47b544d463a8591; hash recalculé au contrôle du 26-11 : 43/43 correspondances.
-- Les arbres du commit extrait par Actions, du SHA de tête et du commit de fusion final sont tous `c1895a2d004e427cae0736e34bbcf15c7c83070c`. Contrôle contradictoire réalisé le 26-11 : égalité constatée; cette passe n'est pas la revue indépendante MC-007.
+### Reproductibilité
 
-### Questions obligatoires de revue
+- Vérificateur : `docs/qa/v110_evidence_assurance.py`.
+- Workflow : `.github/workflows/litd-v110-evidence-assurance.yml`.
+- Les quatre contrôles s’exécutent comme jobs séparés et produisent chacun une sortie JSON PASS/FAIL dans les journaux et le résumé Actions. Le workflow exige uniquement les permissions de lecture `actions` et `contents`.
+- Run historique servant de preuve : [Actions 45410435324](https://github.com/Henolos/litd/actions/runs/45410435324). Les contrôles nouvellement automatisés doivent eux-mêmes réussir sur le head de PR avant de clore cette étape.
 
-1. Confirmer indépendamment que le run a extrait `bc7ffcd` (merge ref) alors que `42f9b16` est la tête de PR, puis reproduire l'identité d'arbre avec `547e815`; confirmer que les 43 fichiers du manifeste sont les mêmes octets, sans se fier uniquement au présent rapport.
-2. Recalculer les empreintes à partir des blobs et du manifeste; documenter l'outil, la version et le résultat. Le contrôle contradictoire a obtenu 43/43 avec Python `hashlib.sha256` sur les octets décodés de l'API GitHub; le reviewer doit refaire ce contrôle et consigner son propre environnement.
-3. Examiner les journaux CI et vérifier que les 84 tests correspondent au commit indiqué, à la dépendance jsonschema épinglée et aux tests revendiqués.
-4. Contrôler la suite, le schéma, les règles d'inclusion/exclusion et les rapports; relever les fichiers reconstruits V0 dont la provenance originale n'est pas authentifiée.
-5. Confirmer que l'égalité d'arbre couvre les fichiers de la PR #642 et que le rapport de preuve ultérieur n'est pas inclus à tort dans le périmètre de test initial.
-6. Énoncer séparément ce qui est démontré, ce qui est seulement documenté, ce qui reste sans preuve et les critères qui justifient (ou refusent) les 10 % finaux.
+### Limites et décision de statut
 
-### Indépendance et décision
-
-Le réviseur doit être une personne distincte de l'auteur des changements et du présent contrôle, capable d'examiner les preuves Git/CI. Il doit effectuer une vérification indépendante plutôt que relire seulement le rapport. Consigner son identité, sa date, le commit examiné, les commandes/versions utilisées, les écarts et une conclusion pass/fail. La clôture MC-008 ne peut intervenir qu'après résolution des écarts et décision documentée. Aucun réviseur n'a été identifié ou sollicité dans cette étape; la revue indépendante et les 10 % finaux restent ouverts.
+- Ce dispositif vérifie l’identité des commits, l’intégrité des fichiers et la réalité des preuves CI. Il ne démontre ni l’adéquation fonctionnelle du validateur ni son intégration au moteur Godot.
+- Les 70 scénarios ARCH-12 ne sont pas exécutés. Les fichiers V0 reconstruits restent signalés comme non authentifiés.
+- L’analyse IA sert à repérer des incohérences et à lire les résultats; elle ne compte pas comme un contrôle indépendant.
+- Les contrôles sont séparés par source et par job, mais partagent le vérificateur versionné dans cette PR. Le code du vérificateur est donc lui-même visible dans le diff et constitue un risque de mode commun à examiner; les résultats ne doivent pas être décrits comme une certification formelle.
+- Statut : assurance automatisée définie; exécution du workflow de cette PR en attente. La clôture MC-008 pour V1.10 exige le succès de C01–C04, la conservation des journaux de preuve et l’enregistrement explicite de la substitution. La certification reste à 90 % jusque-là.
