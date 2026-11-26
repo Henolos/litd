@@ -63,3 +63,23 @@ Les SHA de base des anciennes PR sont antérieurs au main courant ; elles doiven
 ## État
 
 Correction documentaire et garde-fou de traçabilité préparés pour revue. Sur le commit 33f68a4, quality (1 467 tests Python), godot-smoke et le pilote déclaratif ont réussi ; quality-full a été ignoré. Aucune fusion ni validation gameplay.
+
+## Réconciliation détaillée — passe 2
+
+Le contrat a été enrichi pour rendre les lacunes visibles par règle, sans faire passer une proposition pour une validation :
+
+- Chaque contrôle des 129 porte maintenant un canal de revue proposé, un état de source et un état du critère d’acceptation.
+- Canaux proposés : F8 106; human 16; measurement_and_human 3; physical_windows 1; visual 3.
+- Les 56 pointeurs de source existants sont marqués `LINKED_UNVERIFIED` : leur chemin est désormais présent, mais le locator et la pertinence de chaque section n’ont pas encore été attestés individuellement.
+- Les 73 contrôles qui n’avaient pas de source restent `MISSING`.
+- Les 129 critères d’acceptation sont explicitement `NOT_DEFINED`. Le titre d’un contrôle ou la présence d’un test d’audit ne suffit pas à définir un résultat métier attendu.
+- Ces canaux sont des propositions de revue, pas une exécution : F8 pour revue d’interaction/runtime, visual pour revue visuelle, human pour évaluation qualitative, measurement_and_human pour performance et lisibilité mesurée, physical_windows pour le test matériel Windows.
+- Le schéma exige désormais ces trois champs. Un test empêche de perdre silencieusement ces indicateurs sur une ligne.
+
+### Contradiction de conception repérée
+
+`docs/COMBAT_ANATOMIE_AVANCEE.md` indique qu’une créature ordinaire affaiblie ayant perdu plusieurs parties peut tenter de fuir (section 5, ligne 103). Cette règle contredit la décision utilisateur plus récente consignée dans le contexte LITD : aucun ennemi ne peut fuir, sauf les Némésis dans les conditions prévues. Le document de combat doit donc être corrigé ou explicitement supersédé et les validations COM-13/COM-15/INT correspondantes mises à jour. Aucun correctif n’est encore appliqué à ce document de gameplay dans cette PR.
+
+### État de la réconciliation
+
+Les canaux de revue sont maintenant renseignés au niveau du contrat, mais aucun des 129 critères d’acceptation n’est encore réconcilié. Les sources se limitent aux pointeurs vers le document maître déjà inventoriés ; les autres documents techniques inspectés restent des candidats de corroboration jusqu’à vérification de leur autorité et de leur cohérence avec les décisions validées. La couverture demeure donc partielle et non exécutable comme certification de conformité.
