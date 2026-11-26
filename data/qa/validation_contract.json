@@ -1,0 +1,1894 @@
+{
+  "version": "1.0.0-draft",
+  "baseline_commit": "154a80717a78fcd3d3bb02af445429be1524cc01",
+  "references": [
+    "data/qa/developer_bot_registry.json",
+    "data/qa/validation_room_matrix.json",
+    "data/veilleurs/system_maturity_registry.json",
+    "data/veilleurs/player_validation_contract.json",
+    "data/veilleurs/hardware_validation_contract.json",
+    "docs/conception/LITD1_DOCUMENT_MAITRE.md"
+  ],
+  "rules": [
+    {
+      "id": "COM-01",
+      "title": "Ordre des tours",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V8",
+        "V11"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "COM-02",
+      "title": "Légalité des actions",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V8",
+        "V11"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "COM-03",
+      "title": "Coûts",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V8",
+        "V24"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "COM-04",
+      "title": "Portée et ciblage",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V8",
+        "V11"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "COM-05",
+      "title": "Déplacements",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V8",
+        "V11"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "COM-06",
+      "title": "Dégâts anatomiques",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V2",
+        "V11"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "COM-07",
+      "title": "Conséquences blessures",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V2",
+        "V11"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "COM-08",
+      "title": "Afflictions",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V11",
+        "V25"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "COM-09",
+      "title": "Cumuls",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V11",
+        "V25"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "COM-10",
+      "title": "Réactions",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V8",
+        "V11"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "COM-11",
+      "title": "Priorités réactions",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V8",
+        "V11"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "COM-12",
+      "title": "Invocations",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V2",
+        "V11"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "COM-13",
+      "title": "IA",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V2",
+        "V20"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "COM-14",
+      "title": "Mort définitive",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V25"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "4, 29"
+      }
+    },
+    {
+      "id": "COM-15",
+      "title": "Capture et retraite",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V2",
+        "V6"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "19, 20 (capture et conservation des acquis uniquement)"
+      }
+    },
+    {
+      "id": "COM-16",
+      "title": "Maîtrise",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V18",
+        "V21"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "14–29"
+      }
+    },
+    {
+      "id": "COM-17",
+      "title": "Stratégies dominantes",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V23"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "COM-18",
+      "title": "Exploits",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V24"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "COM-19",
+      "title": "Équilibrage",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V3",
+        "V4",
+        "V16"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "COM-20",
+      "title": "Blocages",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V8",
+        "V25"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "EXP-01",
+      "title": "Validité cartes",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V1",
+        "V28"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "1 (topologie à nœuds uniquement)"
+      }
+    },
+    {
+      "id": "EXP-02",
+      "title": "Objectifs accessibles",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V1",
+        "V28"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "EXP-03",
+      "title": "Clés consommables",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V24",
+        "V28"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "EXP-04",
+      "title": "Blocages irréversibles",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V24",
+        "V28"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "EXP-05",
+      "title": "Passages secrets",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V24",
+        "V28"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "1 (chemins cachés uniquement)"
+      }
+    },
+    {
+      "id": "EXP-06",
+      "title": "Transformations",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V25",
+        "V28"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "EXP-07",
+      "title": "Stabilité",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V1",
+        "V28"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "EXP-08",
+      "title": "Renouvellement ennemis",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V1",
+        "V21"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "EXP-09",
+      "title": "Chemins sécurisés",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V1",
+        "V28"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "EXP-10",
+      "title": "Guet-apens",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V2",
+        "V28"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "EXP-11",
+      "title": "Retour refuge",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V6",
+        "V28"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "EXP-12",
+      "title": "Persistance monde",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V21"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "4, 8"
+      }
+    },
+    {
+      "id": "EXP-13",
+      "title": "Corps et objets",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V21"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "EXP-14",
+      "title": "Narration",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V21",
+        "V22"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "4, 9, 10"
+      }
+    },
+    {
+      "id": "EXP-15",
+      "title": "Budget calcul",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V28",
+        "V31"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "EXP-16",
+      "title": "Schéma cartes",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V1",
+        "V28"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "EXP-17",
+      "title": "Preuve runtime",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V27",
+        "V30"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "SAV-01",
+      "title": "Intégrité état",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "30–37"
+      }
+    },
+    {
+      "id": "SAV-02",
+      "title": "Atomicité",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V25"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "1. Unité atomique"
+      }
+    },
+    {
+      "id": "SAV-03",
+      "title": "Durabilité",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V25"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "3. Validation"
+      }
+    },
+    {
+      "id": "SAV-04",
+      "title": "Reprise interruption",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V25"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "4. Reconstruction"
+      }
+    },
+    {
+      "id": "SAV-05",
+      "title": "Unicité transactions",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V24"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "4. Reconstruction; 5. Invariants"
+      }
+    },
+    {
+      "id": "SAV-06",
+      "title": "Non résurrection",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V25"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "5. Invariants"
+      }
+    },
+    {
+      "id": "SAV-07",
+      "title": "Unicité héros",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V24"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "5. Invariants"
+      }
+    },
+    {
+      "id": "SAV-08",
+      "title": "Succession unique",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V25"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "1. Unité atomique; 5. Invariants"
+      }
+    },
+    {
+      "id": "SAV-09",
+      "title": "Ressources uniques",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V24"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "5. Invariants"
+      }
+    },
+    {
+      "id": "SAV-10",
+      "title": "Équipements uniques",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V24"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "5. Invariants"
+      }
+    },
+    {
+      "id": "SAV-11",
+      "title": "Progression narrative",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V21"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "5. Invariants"
+      }
+    },
+    {
+      "id": "SAV-12",
+      "title": "Blessures et effets",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V11"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "5. Invariants (durée et causalité des effets uniquement)"
+      }
+    },
+    {
+      "id": "SAV-13",
+      "title": "État aléatoire",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V25"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "2. Journal durable"
+      }
+    },
+    {
+      "id": "SAV-14",
+      "title": "SHA-256",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "Registre des décisions complémentaires",
+        "locator": "37"
+      }
+    },
+    {
+      "id": "SAV-15",
+      "title": "Corruption",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V25"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "37, 39 (détection divergence et refus de restauration)"
+      }
+    },
+    {
+      "id": "SAV-16",
+      "title": "Migrations",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "Registre des décisions complémentaires",
+        "locator": "38"
+      }
+    },
+    {
+      "id": "SAV-17",
+      "title": "Originaux préservés",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "Registre des décisions complémentaires",
+        "locator": "38"
+      }
+    },
+    {
+      "id": "SAV-18",
+      "title": "Récupération",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V25"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "Registre des décisions complémentaires",
+        "locator": "39"
+      }
+    },
+    {
+      "id": "SAV-19",
+      "title": "Fermeture Windows",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "Registre des décisions complémentaires",
+        "locator": "40"
+      },
+      "review_channel": "physical_windows"
+    },
+    {
+      "id": "SAV-20",
+      "title": "Ordre transactions",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V25"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "4. Reconstruction; 5. Invariants"
+      }
+    },
+    {
+      "id": "PRO-01",
+      "title": "Niveaux",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V5",
+        "V21"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "7 (niveau hérité uniquement)"
+      }
+    },
+    {
+      "id": "PRO-02",
+      "title": "Points compétence",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V18",
+        "V21"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "11, 12"
+      }
+    },
+    {
+      "id": "PRO-03",
+      "title": "Passifs",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V18",
+        "V21"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "11, 14"
+      }
+    },
+    {
+      "id": "PRO-04",
+      "title": "Maîtrise fondamentale",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V18",
+        "V21"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "15–17"
+      }
+    },
+    {
+      "id": "PRO-05",
+      "title": "Maîtrise avancée",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V18",
+        "V21"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "15–17"
+      }
+    },
+    {
+      "id": "PRO-06",
+      "title": "Diversité",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V18",
+        "V22"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "17, 21, 25"
+      }
+    },
+    {
+      "id": "PRO-07",
+      "title": "Causalité crédits",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V11",
+        "V18"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "22, 27"
+      }
+    },
+    {
+      "id": "PRO-08",
+      "title": "Contributions différées",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V11",
+        "V18"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "27, 28"
+      }
+    },
+    {
+      "id": "PRO-09",
+      "title": "Anti farming",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V23",
+        "V24"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "24–26"
+      }
+    },
+    {
+      "id": "PRO-10",
+      "title": "Héritage niveau",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V21"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "7, 11–13"
+      }
+    },
+    {
+      "id": "PRO-11",
+      "title": "Acquis collectifs",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V21"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "4, 5, 8"
+      }
+    },
+    {
+      "id": "PRO-12",
+      "title": "Acquis personnels",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V21"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "7, 11, 13, 29"
+      }
+    },
+    {
+      "id": "PRO-13",
+      "title": "Crédit posthume",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V25"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "5. Invariants"
+      }
+    },
+    {
+      "id": "PRO-14",
+      "title": "Unicité crédits",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V24"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "5. Invariants"
+      }
+    },
+    {
+      "id": "REF-01",
+      "title": "Services",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V7",
+        "V10"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "REF-02",
+      "title": "Recrutement",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V7",
+        "V19"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "REF-03",
+      "title": "Bâtiments",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V7",
+        "V21"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "REF-04",
+      "title": "Entraînement",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V18",
+        "V21"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "15, 18"
+      }
+    },
+    {
+      "id": "REF-05",
+      "title": "Bonus",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V18",
+        "V24"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "18"
+      }
+    },
+    {
+      "id": "REF-06",
+      "title": "Soins",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V7",
+        "V19"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "REF-07",
+      "title": "Stocks",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V7",
+        "V19"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "REF-08",
+      "title": "Commerce",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V19",
+        "V24"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "REF-09",
+      "title": "Abus économie",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V23",
+        "V24"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "REF-10",
+      "title": "Investissements",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V21"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "V8.1 Règles actives après Game Over, point 6"
+      }
+    },
+    {
+      "id": "ANA-01",
+      "title": "État anatomique",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V2",
+        "V11"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "ANA-02",
+      "title": "Blessures",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V11"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "ANA-03",
+      "title": "Amputations",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V11",
+        "V25"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "ANA-04",
+      "title": "Soins",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V11",
+        "V24"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "ANA-05",
+      "title": "Prothèses",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V3",
+        "V11"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "ANA-06",
+      "title": "Restrictions équipement",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V3",
+        "V8"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "ANA-07",
+      "title": "Équipement anatomie",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V3",
+        "V11"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "ANA-08",
+      "title": "Persistance",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V21"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "ANA-09",
+      "title": "Compétences",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V8",
+        "V18"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "ANA-10",
+      "title": "Afflictions",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V11",
+        "V25"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "PSY-01",
+      "title": "Évolution",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V20",
+        "V21"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "PSY-02",
+      "title": "Déclenchement",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V11",
+        "V25"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "PSY-03",
+      "title": "Comportement",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V2",
+        "V20"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "PSY-04",
+      "title": "Traumatismes",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V21"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "PSY-05",
+      "title": "Relations",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V20",
+        "V21"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "8 (persistance des relations uniquement)"
+      }
+    },
+    {
+      "id": "PSY-06",
+      "title": "Conséquences",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V20",
+        "V25"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "PSY-07",
+      "title": "Traits",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V20",
+        "V22"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "PSY-08",
+      "title": "Abus",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V23",
+        "V24"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "UI-01",
+      "title": "Navigation",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V10"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "UI-02",
+      "title": "État réel",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V10",
+        "V27"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "UI-03",
+      "title": "Actions",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V8",
+        "V10"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "UI-04",
+      "title": "HUD",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null,
+      "review_channel": "human"
+    },
+    {
+      "id": "UI-05",
+      "title": "Conséquences",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null,
+      "review_channel": "human"
+    },
+    {
+      "id": "UI-06",
+      "title": "Portraits",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null,
+      "review_channel": "visual"
+    },
+    {
+      "id": "UI-07",
+      "title": "Signalement",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null,
+      "review_channel": "F8"
+    },
+    {
+      "id": "UI-08",
+      "title": "Fluidité",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null,
+      "review_channel": "measurement_and_human"
+    },
+    {
+      "id": "UI-09",
+      "title": "Compréhension",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null,
+      "review_channel": "human"
+    },
+    {
+      "id": "UI-10",
+      "title": "Immersion",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null,
+      "review_channel": "human"
+    },
+    {
+      "id": "INT-01",
+      "title": "Blessure compétence",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V8",
+        "V11"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "INT-02",
+      "title": "Amputation équipement",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V3",
+        "V11"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "INT-03",
+      "title": "Blessure psychologie",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V11",
+        "V20"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "INT-04",
+      "title": "Psychologie combat",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V2",
+        "V20"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "INT-05",
+      "title": "Mort relations",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V20",
+        "V25"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "8, 29 (relations et mémoire uniquement)"
+      }
+    },
+    {
+      "id": "INT-06",
+      "title": "Mort succession sauvegarde",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V25"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "4, 34"
+      }
+    },
+    {
+      "id": "INT-07",
+      "title": "Combat maîtrise",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V18",
+        "V21"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "15–24"
+      }
+    },
+    {
+      "id": "INT-08",
+      "title": "Effet différé crédit",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V11",
+        "V18"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "27, 28"
+      }
+    },
+    {
+      "id": "INT-09",
+      "title": "Mort effet crédit",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V11"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "29"
+      }
+    },
+    {
+      "id": "INT-10",
+      "title": "Capture progression",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V2",
+        "V18"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "20"
+      }
+    },
+    {
+      "id": "INT-11",
+      "title": "Retraite acquis",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V6",
+        "V9"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "19"
+      }
+    },
+    {
+      "id": "INT-12",
+      "title": "Exploration combat refuge",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V6",
+        "V27"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "INT-13",
+      "title": "Corps expédition",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V21",
+        "V28"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "INT-14",
+      "title": "Carte objectifs",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V25",
+        "V28"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "INT-15",
+      "title": "Secret narration",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V24",
+        "V28"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "INT-16",
+      "title": "Entraînement farming",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V18",
+        "V24"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "15, 18, 24"
+      }
+    },
+    {
+      "id": "INT-17",
+      "title": "Commerce combat",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V3",
+        "V19"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": null
+    },
+    {
+      "id": "INT-18",
+      "title": "Réaction transaction",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V11"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "1. Unité atomique"
+      }
+    },
+    {
+      "id": "INT-19",
+      "title": "Interruption reprise",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V25"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "Règles techniques consolidées des arbitrages 30 à 40",
+        "locator": "4. Reconstruction"
+      }
+    },
+    {
+      "id": "INT-20",
+      "title": "Succession monde",
+      "design_status": "PENDING_RECONCILIATION",
+      "test_status": "NOT_RUN",
+      "blocking": false,
+      "proposed_bots": [
+        "V9",
+        "V21"
+      ],
+      "mapping_status": "PROPOSED",
+      "canonical_source": {
+        "document": "docs/conception/LITD1_DOCUMENT_MAITRE.md",
+        "section": "V8.1 et V8.2 intégrées — registres des décisions et règles actives; V8.3 pour 37–39",
+        "locator": "4; V8.1 Règles actives après Game Over, point 6"
+      }
+    }
+  ]
+}
