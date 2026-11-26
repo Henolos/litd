@@ -134,6 +134,13 @@
       "authorized_sha256": "0b76f5592013d6efa72ca501fc8207ecb7d14e774b709bd91d34fd9ca538da88",
       "evidence_ref": "docs/knowledge/decisions/ADR-0009-roster-de-depart-a-definir.md",
       "reason": "The approved 2026-11-23 roster decision removes the former quartet designation; this exact document or data update records that decision while retaining the original reset hash for audit."
+    },
+    {
+      "path": "docs/COMBAT_ANATOMIE_AVANCEE.md",
+      "original_sha256": "be959614f21f9102ec8fd194ec23f66ffaf64d8fb577e636242948628cc49b63",
+      "authorized_sha256": "ffe61e30aa8e265263e51e78971f932f8d17b676d0deff21057d3cb55d94a331",
+      "evidence_ref": "docs/qa/evidence/ARCH-05_FUITE_NEMESIS_2026-11-26.md",
+      "reason": "La phrase de fuite des créatures ordinaires contredisait ARCH-05 validé le 25 novembre; cette révision autorise exactement la correction documentaire et conserve l'empreinte gelée d'origine pour l'audit."
     }
   ]
 }
