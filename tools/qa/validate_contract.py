@@ -46,6 +46,15 @@ def validate(contract, schema, root):
         source = rule.get("canonical_source")
         if source is not None and source["document"] not in reference_set:
             raise ValueError(f"Canonical source is not declared in references: {rule['id']}")
+        for support in rule.get("supporting_sources", []):
+            if support["document"] not in reference_set:
+                raise ValueError(f"Supporting source is not declared in references: {rule['id']}")
+        criteria = rule.get("acceptance_criteria", [])
+        criteria_status = rule["acceptance_criteria_status"]
+        if criteria_status == "NOT_DEFINED" and criteria:
+            raise ValueError(f"Criteria supplied while status is NOT_DEFINED: {rule['id']}")
+        if criteria_status == "PARTIAL" and not criteria:
+            raise ValueError(f"Partial criteria missing: {rule['id']}")
 
 if __name__ == "__main__":
     root = Path(__file__).resolve().parents[2]
