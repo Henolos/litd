@@ -51,8 +51,8 @@ def test_every_rule_has_a_review_channel_and_open_reconciliation_statuses():
     validate(contract, schema, ROOT)
     assert all(rule["review_channel"] in {"human", "visual", "F8", "measurement_and_human", "physical_windows"} for rule in contract["rules"])
     assert all(rule["source_status"] in {"MISSING", "LINKED_UNVERIFIED", "SUPPORTING_SOURCE_UNVERIFIED", "CANONICAL_AND_SUPPORTING_UNVERIFIED"} for rule in contract["rules"])
-    assert sum(rule["acceptance_criteria_status"] == "PARTIAL" for rule in contract["rules"]) == 23
-    assert sum(rule["acceptance_criteria_status"] == "NOT_DEFINED" for rule in contract["rules"]) == 106
+    assert sum(rule["acceptance_criteria_status"] == "PARTIAL" for rule in contract["rules"]) == 31
+    assert sum(rule["acceptance_criteria_status"] == "NOT_DEFINED" for rule in contract["rules"]) == 98
     assert all(rule.get("acceptance_criteria") for rule in contract["rules"] if rule["acceptance_criteria_status"] == "PARTIAL")
     assert all(not rule.get("acceptance_criteria") for rule in contract["rules"] if rule["acceptance_criteria_status"] == "NOT_DEFINED")
 
