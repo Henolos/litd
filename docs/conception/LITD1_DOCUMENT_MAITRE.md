@@ -3254,3 +3254,30 @@ Modèle D et ANA-01 à ANA-20 explicitement validés en conception.
 Compléments historiques présentés à l'utilisateur et dont la consolidation est explicitement autorisée le 26 novembre 2026 (date historique du 16 novembre rapportée, provenance originale non revérifiée) : progression de guérison conservée ; séquelles permanentes possibles après traitement ; cicatrices et amputations définitives ; aucune repousse à l'infirmerie ; membre endommagé à 80 % inutilisable, à 100 % amputé. Prothèses : fabrication à la forge, découverte en donjon, plusieurs prothèses possibles correspondant à des amputations réelles ; supériorité possible avec contrepartie négative obligatoire ; entretien et détérioration ; réparation immédiate payante chez le forgeron sans attente ; à 80 % inutilisable, à 100 % brisée ; reconstruction possible ; prothèse brisée occupant une place dans l'inventaire. Pas de microgestion ni d'incitation universelle à l'amputation volontaire. Conditions précises de reconstruction et coefficients intermédiaires ouverts.
 
 Réconciliation : CIB, MOB, COL et ARCH-12 applicables ; aucun système spécifique d'organes vitaux, aucun ancien catalogue réintroduit. Aucun test moteur exécuté.
+
+## REFONTE-COMP-01 — Bloc 08 : afflictions hybrides (validation utilisateur du 26 novembre 2026)
+
+Modèle D et AFF-01 à AFF-20 explicitement validés en conception.
+
+- AFF-01 : Distinguer dégâts directs et afflictions.
+- AFF-02 : Une affliction possède ses propres conditions d'application.
+- AFF-03 : Chaque affliction possède un identifiant stable.
+- AFF-04 : Intensité et durée traitées séparément.
+- AFF-05 : Mode de cumul spécifique à chaque affliction.
+- AFF-06 : Plafonnement adapté aux effets cumulables.
+- AFF-07 : Résistances et immunités adaptées à la nature des créatures.
+- AFF-08 : Distinction entre résistance aux dégâts et résistance aux afflictions.
+- AFF-09 : Afflictions localisées ou globales selon leur nature.
+- AFF-10 : Conséquences anatomiques conformes aux règles ANA.
+- AFF-11 : Moment de résolution déterminé et reproductible.
+- AFF-12 : Aucun contrôle renouvelable indéfiniment sans limite.
+- AFF-13 : Aucun changement ordinaire de l'ordre d'initiative pendant le round.
+- AFF-14 : Distinction entre purification, neutralisation et guérison.
+- AFF-15 : Combinaisons d'afflictions régies par des interactions explicites.
+- AFF-16 : Propagations sans boucle infinie.
+- AFF-17 : Consultation des effets, intensités et durées dans l'interface.
+- AFF-18 : Conservation des contributions de chaque source d'affliction.
+- AFF-19 : Attribution des décès indirects conforme à ARCH-12.
+- AFF-20 : Conservation des afflictions et de leur progression dans les sauvegardes.
+
+Compléments historiques présentés et consolidation explicitement autorisée le 26 novembre 2026 (provenance originale du 16 novembre non revérifiée) : attaques normales pouvant infliger des dégâts élémentaires et déclencher probabilistiquement une affliction ; attaques dédiées ; résistances et faiblesses globales selon les matériaux équipés ; métal vulnérable à la foudre, bois au feu, conductivité identique pour tous les métaux ; foudre avec impact initial et trois rebonds maximum entre ennemis proches portant du métal, réduction proportionnelle des dégâts aux rebonds. Catalogue de référence : foudre/paralysie, brûlure, poison, gel, saignement, confusion, silence, corrosion, aveuglement, fracture. Effets particuliers, probabilités, durées, coefficients, sélection des cibles et répétition des rebonds restent ouverts. Aucun système général d'usure d'équipement ni ancien catalogue réintroduit. ARCH-12, ANA et INIT applicables. Aucun test moteur exécuté.
