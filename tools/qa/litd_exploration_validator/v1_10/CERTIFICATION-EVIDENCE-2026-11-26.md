@@ -3,11 +3,11 @@
 Statut : certification ouverte, revue indépendante en attente. Rapport rétrospectif des contrôles effectués dans la conversation, non nouvelle exécution.
 
 - PR #642, fusion 547e8153a45ea87005829b8f220f2ace8852610e.
-- SHA réellement testé : `42f9b16541dae2046a0824dc0d99629948b7ec6e`, confirmé par les métadonnées du run 45410435324 (tentative 2, conclusion success). Le SHA `bc7ffcd406e3e67b211ba06a1b84379d27fe8b9e` cité précédemment est le commit parent/base, pas le commit exécuté; la comparaison Git le confirme.
+- SHA de tête de PR indiqué par les métadonnées du run 45410435324 (tentative 2, conclusion success) : `42f9b16541dae2046a0824dc0d99629948b7ec6e`. Le commit effectivement extrait par le job est le commit de fusion temporaire `bc7ffcd406e3e67b211ba06a1b84379d27fe8b9e` : les journaux montrent `refs/remotes/pull/642/merge`. Ses parents sont la base `7ac9bfffdcc2457b1b26262a1fee7b81c321ba78` et la tête de PR `42f9b16541dae2046a0824dc0d99629948b7ec6e`.
 - CI : https://github.com/Henolos/litd/actions/runs/45410435324/job/139560963765 ; 84 tests réussis en 5,273 s, Python 3.12, jsonschema 4.26.0.
 - Manifeste commun : dda5c8839e4df653860bb514a47b544d463a8591.
 - 43 SHA-256 recalculés sur les octets décodés base64 par lots sur la branche isolée, fonction JS contrôlée sur vecteur abc. 43 correspondances avec le manifeste. Les blobs relevés ont ensuite été comparés au commit testé : 43 identiques.
-- Comparaison du commit testé au commit de fusion : SHA d'arbre identique `c1895a2d004e427cae0736e34bbcf15c7c83070c`; le contenu Git des 46 fichiers ajoutés par la PR est ainsi identique entre `42f9b165` et `547e8153`. La branche actuelle `feat/litd-exploration-validator-v18` descend de ce commit; la comparaison Git montre seulement l'ajout ultérieur de ce rapport, sans modification des 46 fichiers de la PR.
+- L'arbre du commit extrait par le job (`bc7ffcd`), de la tête de PR (`42f9b165`) et du commit final de fusion (`547e8153a45ea87005829b8f220f2ace8852610e`) est identique : `c1895a2d004e427cae0736e34bbcf15c7c83070c`. Les contenus des 46 fichiers ajoutés sont donc identiques entre la révision testée et la fusion finale. La branche actuelle `feat/litd-exploration-validator-v18` descend de ce commit; la comparaison Git montre seulement l'ajout ultérieur du présent rapport, sans modification de ces 46 fichiers.
 
 | Fichier | SHA-256 attendu | SHA-256 recalculé (résultat historique) | Blob Git commun branche / commit testé |
 |---|---|---|---|
