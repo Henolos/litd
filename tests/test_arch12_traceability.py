@@ -24,7 +24,7 @@ def test_missing_rule_row_is_rejected():
 def test_dangling_rule_reference_is_rejected():
     mutated = TRACE.replace("ARCH-12.4 R1/R3/R5/R8–10", "ARCH-12.4 R1/R3/R5/R8–99", 1)
     errors = checker.validate_texts(mutated, MASTER)
-    assert any("R99" in error for error in errors)
+    assert any("hors plage" in error for error in errors)
 
 
 def test_missing_section_locator_is_rejected():
