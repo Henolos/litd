@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "baseline_commit",
+    "references",
+    "rules"
+  ],
+  "properties": {
+    "version": {
+      "const": "1.1.0-draft"
+    },
+    "baseline_commit": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "references": {
+      "type": "array",
+      "minItems": 5,
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "rules": {
+      "type": "array",
+      "minItems": 129,
+      "maxItems": 129,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "title",
+          "design_status",
+          "test_status",
+          "blocking",
+          "proposed_bots",
+          "mapping_status",
+          "canonical_source",
+          "review_channel",
+          "source_status",
+          "acceptance_criteria_status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^(COM|EXP|SAV|PRO|REF|ANA|PSY|UI|INT)-[0-9]{2}$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "design_status": {
+            "const": "PENDING_RECONCILIATION"
+          },
+          "test_status": {
+            "const": "NOT_RUN"
+          },
+          "blocking": {
+            "const": false
+          },
+          "proposed_bots": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^V([1-9]|[12][0-9]|3[01])$"
+            }
+          },
+          "mapping_status": {
+            "const": "PROPOSED"
+          },
+          "canonical_source": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "document",
+                  "section",
+                  "locator"
+                ],
+                "properties": {
+                  "document": {
+                    "const": "docs/conception/LITD1_DOCUMENT_MAITRE.md"
+                  },
+                  "section": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "locator": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            ]
+          },
+          "review_channel": {
+            "enum": [
+              "human",
+              "visual",
+              "F8",
+              "measurement_and_human",
+              "physical_windows"
+            ]
+          },
+          "source_status": {
+            "enum": [
+              "MISSING",
+              "LINKED_UNVERIFIED",
+              "SUPPORTING_SOURCE_UNVERIFIED",
+              "CANONICAL_AND_SUPPORTING_UNVERIFIED"
+            ]
+          },
+          "acceptance_criteria_status": {
+            "enum": [
+              "NOT_DEFINED",
+              "PARTIAL"
+            ]
+          },
+          "acceptance_criteria": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "supporting_sources": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "document",
+                "section",
+                "locator"
+              ],
+              "properties": {
+                "document": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "section": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "locator": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
