@@ -37,6 +37,13 @@
 - Les décisions ARCH-12.1 à 12.5 doivent être incluses explicitement dans l’inventaire QA si celui-ci se présente comme couvrant les règles actuelles ; leur réconciliation historique et leurs tests runtime restent ouverts.
 - Aucun audit intégral de toutes les ressources et de toutes les validations utilisateur du dépôt n’est certifié par ce rapport. Les sources historiques non accessibles restent à vérifier.
 
+## Vérifications après ouverture de la PR
+
+- Sur le commit 9fecb221c7efa53285f301cca691c1e70bbf7d01, le job `quality` s’est terminé avec succès : 1 467 tests Python réussis et deux `SyntaxWarning` existants sur les séquences `\\d` dans `tools/ci/generate_godot_status.py` (lignes 154–155, hors diff).
+- Le job `godot-smoke` a réussi ; `quality-full` a été ignoré.
+- Le contrôle déclaratif non bloquant de la PR a échoué sur la description initiale, qui ne comportait pas les rubriques et le statut requis. La description a été corrigée en sections `PARTIEL`; le contrôle doit encore être relancé sur cette version.
+- Les contrôles réussis ci-dessus portent sur la CI de la branche ; ils ne valident pas les 129 propriétés métier et n’établissent pas leur conformité en jeu.
+
 ## État
 
-Correction documentaire et garde-fou de traçabilité préparés pour revue. Aucun test de cette nouvelle révision n’a encore été exécuté. Aucune fusion ni validation gameplay.
+Correction documentaire et garde-fou de traçabilité préparés pour revue. Aucune fusion ni validation gameplay.
