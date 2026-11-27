@@ -3784,3 +3784,8 @@ Préséance : CAP-HUB, V7.59/60/69 et V8.3 réconciliés ; saturation du hub ré
 - CAP-I16 : Sauvegarder les états, événements et conséquences sans duplication, résurrection artificielle ni nouveau tirage au rechargement.
 
 AUD-CAP-06 résolu en conception ; CAP-HUB, RET, ARCH-05/06/07/09 et V8.3 restent applicables. CAP-K approuvé par le même accord mais texte exact à retrouver avant transcription. Aucun test runtime ni assurance indépendante.
+
+
+### Actualisation des statuts AUD-CAP (27 novembre 2026)
+
+Les mentions historiques « AUD-CAP-06 reste ouvert » et « CAP-I non validé » sont obsolètes depuis la validation explicite CAP-I enregistrée au commit ee68587581db9c58a397023de29255aea6676570. AUD-CAP-06 est résolu en conception ; CAP-J est également validé en conception. AUD-CAP-07 est hors périmètre (CAP-HUB). AUD-CAP-02 reste ouvert pour transcription fidèle ou nouvelle validation de CAP-K ; AUD-CAP-08 relève du bloc 12.5. Cette actualisation prévaut sur les anciens statuts sans effacer les preuves historiques. Aucun nouvel arbitrage ni validation technique.
