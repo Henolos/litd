@@ -3528,3 +3528,23 @@ Synthèse de règles déjà approuvées, non nouvel arbitrage : V7.46 éligibili
 Préséance : refus définitif historique remplacé par V7.60 ; ancienne restriction NG+ remplacée par ARCH-07 ; clauses anciennes de classes, maîtrise et emplacements suspendues ; CIB-19 exclut simulation spécifique des organes vitaux. Bloc 12.2 ne supprime pas le transport des captifs ennemis. V7.64 texte original introuvable après recherche GitHub et historique conversationnel ; préserver seulement dispositions corroborées (évasion distincte de fuite volontaire Némésis, éligibilité avant probabilité).
 
 Benchmark partiel, sources secondaires Wartales : https://game.wiki/wartales/prisoners ; https://game.wiki/wartales/chains ; https://progameguides.com/wartales/how-to-capture-prisoners-animals-in-wartales/ ; comparaison indicative : équipement, action, accessibilité, confiance et surveillance. Ne pas importer seuil universel ni microgestion. Source éditeur FFT : https://na.finalfantasy.com/en/news/1002770/ (positionnement/recrutement/perte permanente, pas de formule de capture). Benchmark complet non acquis. Arbitrages encore ouverts : coût PA, moment de retrait tactique, sécurisation intégrée ou distincte, résolution des ruptures, capacité et incidents de transport. Aucun choix nouveau validé, aucun test runtime.
+
+
+### Bloc 12.4 — CAP-A : coût hybride (27 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option D et CAP-A01 à CAP-A12.** Accord explicite : « Je valide l'option D et les douze règles CAP-A01 à CAP-A12. Enregistre-les dans la PR #665, vérifie les contrôles et passe à CAP-B. »
+
+- CAP-A01 : Une tentative ordinaire coûte 1 PA.
+- CAP-A02 : L'inspection et la consultation des probabilités sont gratuites.
+- CAP-A03 : Une tentative impossible ne consomme aucun PA.
+- CAP-A04 : Une tentative engagée qui échoue ne rembourse pas le PA.
+- CAP-A05 : Certaines méthodes nécessitent une préparation préalable.
+- CAP-A06 : Une neutralisation préalable ne constitue pas automatiquement une capture.
+- CAP-A07 : Plusieurs combattants peuvent contribuer à une capture.
+- CAP-A08 : Chaque participant dépense ses propres PA pour ses actions actives.
+- CAP-A09 : Une future compétence peut combiner attaque et capture si ses propriétés le permettent.
+- CAP-A10 : Aucun renouvellement de PA ni modification artificielle de l'initiative.
+- CAP-A11 : Les effets des tentatives précédentes sont conservés conformément à V7.51.
+- CAP-A12 : Le résultat confirmé est sauvegardé sans nouveau tirage au rechargement.
+
+Préséance : INIT, COM, MORT, V7.46–48, V7.51 et V8.3 conservés. CAP-A03 concerne l'impossibilité constatée avant engagement ; CAP-A04 concerne l'échec après engagement. Aucun catalogue ancien réintroduit. CAP-B à E ouverts. Aucun test runtime.
