@@ -50,3 +50,31 @@ def test_leg_cap_07_scanner_detects_injected_dependency(tmp_path):
 def test_leg_cap_08_precedence():
     assert "Index de lecture consolidé du bloc 12.4" in master()
     assert "appliquer CAP-HUB et CAP-J" in master()
+
+# Historical keys are indicators, not newly approved numerical rules.
+LEGACY_KEYS = {
+    "LEG-CAP-04": ("max_recruits_per_expedition", "expedition_recruit_limit_not_reached", "refuge_has_slot"),
+    "LEG-CAP-05": ("capture_bonus_per_lost_part", "bond_penalty_per_lost_part", "essence_cost", "max_hp_ratio"),
+}
+
+def legacy_key_hits(root, keys):
+    hits = []
+    for folder in ("scripts", "scenes"):
+        for path in (root / folder).rglob("*"):
+            if path.is_file() and path.suffix in {".gd", ".tscn", ".tres", ".cs"}:
+                for n, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+                    for key in keys:
+                        if re.search(r"\b" + re.escape(key) + r"\b", line):
+                            hits.append((path.relative_to(root).as_posix(), n, key))
+    return hits
+
+@pytest.mark.parametrize("control", sorted(LEGACY_KEYS))
+def test_legacy_parameter_indicators(control):
+    assert legacy_key_hits(ROOT, LEGACY_KEYS[control]) == []
+
+@pytest.mark.parametrize("control,key", [(c,k) for c,ks in LEGACY_KEYS.items() for k in ks])
+def test_legacy_parameter_mutations(tmp_path, control, key):
+    folder = tmp_path / "scripts"
+    folder.mkdir()
+    (folder / "example.gd").write_text(f'var value = data["{key}"]\n', encoding="utf-8")
+    assert legacy_key_hits(tmp_path, LEGACY_KEYS[control]) == [("scripts/example.gd", 1, key)]
