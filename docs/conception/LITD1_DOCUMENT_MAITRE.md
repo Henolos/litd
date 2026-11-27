@@ -3640,3 +3640,17 @@ CAP-D03 conserve le créneau d'initiative du captif pour une tentative de libér
 - CAP-E20 : Les incidents, transferts et changements de possession sont sauvegardés sans duplication ni nouveau tirage.
 
 Capacité initiale, équipements, coûts, probabilités et conservation lors de retraite ouverts. Bloc 12.2 reste applicable aux héros. Aucun test runtime. Audit transversal à effectuer.
+
+
+### Bloc 12.4 — Réconciliation transversale AUD-CAP (27 novembre 2026)
+
+Clarifications documentaires, sans nouvel arbitrage :
+
+- AUD-CAP-01 : CAP-B01/B05/B11 et CAP-D02/D03/D12 distinguent retrait hostile actif et créneau d'initiative conservé pour une tentative admissible de libération, sans renouvellement du PA ou du tour.
+- AUD-CAP-02 : CAP-B01 à B03 et FORM-07/13 à 19 restent conjointement applicables : le captif demeure physiquement présent ; tout resserrement applicable respecte les segments accessibles, l'ordre relatif, les obstacles et l'initiative. Le déclencheur précis en cas de capture reste à préciser si nécessaire ; aucune disparition ou translation automatique du captif n'est ajoutée.
+- AUD-CAP-03 : CAP-B06/B07/B09 et CAP-D14 préservent les afflictions, blessures et états critiques selon leurs règles propres ; MORT et ARCH-12 restent applicables.
+- AUD-CAP-06 : CAP-E16 ne garantit pas la conservation des captifs lors d'une retraite ; RET-14 conserve la confirmation des abandons prévisibles ou nouvellement nécessaires et les conséquences déjà subies. L'application détaillée aux captifs et les conditions de conservation restent ouvertes ; aucune extension de RET-05 au transport des captifs ennemis.
+
+Arbitrages ouverts, non validés : AUD-CAP-04 (défenses préparées et interceptions, DEF-02/04/11 à 15/18), AUD-CAP-05 (liens d'invocation et possession, INV-01/11 à 20 et ARCH-12.5), AUD-CAP-07 (perte de capacité, CAP-E05 à E07/E13). AUD-CAP-08 : dépendance explicite du bloc 12.5, conditions de fin de combat lorsque le dernier hostile est capturé et susceptible de se libérer. Aucun choix anticipé.
+
+Audit non clos ; aucun test runtime ni nouvel arbitrage validé. V7.64 original et conformité verbatim des décisions restent à vérifier.
