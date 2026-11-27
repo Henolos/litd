@@ -256,3 +256,12 @@ Respecter V7.59–60 et V8.3. Confiance : perception de sécurité et fiabilité
 ## Préséance du 27 novembre 2026 — CAP-HUB
 
 Accords utilisateur : « Tous les captifs sont envoyés au hub à la fin du combat » ; « Je valide l'option A pour le transfert automatique des captifs au hub. Réconcilie toutes les règles concernées. » Les transcriptions historiques ci-dessus restent intactes, mais V7.58 et V7.60/69 ne prescrivent plus de transport en exploration : transfert automatique de tous les captifs encore détenus après victoire uniquement, jamais automatiquement après retraite, défaite ou Game Over. Voir la table de préséance CAP-HUB du document maître et le commit https://github.com/Henolos/litd/commit/639d91bd0883627b6a5546454c58aea55a3655f5 . Contention tactique, éligibilité ARCH-07, détention au hub, recrutement différé, possession ARCH-09 et persistance V8.3 conservés. Aucun test runtime ni assurance indépendante.
+
+
+## MC-007 — Journal de contrôle partiel du bloc 12.4 (27 novembre 2026)
+
+Révision inspectée : bc686a79fcb0ac2cd89a4b3db5a5b8d362abfea6. CAP-J : 7d749b6869470a7e0a5ec2055201b0e0eccee91c ; CAP-I : ee68587581db9c58a397023de29255aea6676570 ; statuts : b4c8634070780172c8f069b5f9cedfbe7c997a08 ; CAP-K : bc686a79fcb0ac2cd89a4b3db5a5b8d362abfea6 (nouvelle validation explicite remplaçant le texte original introuvable). 152 identifiants uniques, 13 contrôles structurels réussis lors de l'intervention précédente.
+
+Relecture ciblée : anciennes mentions de transport aux lignes 2617, 2726, 3526, 3528 ; réserves historiques aux lignes 3714 et 3732. Préséance CAP-HUB/I/J/K applicable ; renvois locaux à consolider. ARCH-07 : mini-boss, Némésis et boss capture/recrutement NG+ uniquement, éligibilité individuelle maintenue. Recherche indexée branche principale (captifs transport, ARCH-07, CAP-HUB) sans résultat ; couverture dépôt non démontrée.
+
+Modèle abstrait exploratoire : 2 états NG+, 5 catégories, 2 états éligibilité, 4 issues, 2 états saturation, soit 160 combinaisons ; zéro violation des invariants encodés. Modèle construit à partir des règles, non indépendant, non connecté au moteur ; ne constitue ni preuve d'implémentation ni validation MC-007. Aucun test runtime. AUD-CAP-08 réservé au bloc 12.5. Clôture non autorisée ; audit exhaustif et contrôles indépendants reproductibles restent ouverts.
