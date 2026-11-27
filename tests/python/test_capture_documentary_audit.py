@@ -5,12 +5,9 @@ import pytest
 
 MASTER = Path(__file__).resolve().parents[2] / "docs/conception/LITD1_DOCUMENT_MAITRE.md"
 
-def model(s, mutation="none"):
-    allowed = s.get("eligible", False) and (not s.get("restricted") or s.get("ng") or mutation == "ng")
-    transfer = bool(allowed and (s.get("victory") or mutation == "defeat") and (not s.get("full") or mutation != "full"))
-    return dict(allowed=bool(allowed), transfer=transfer, progress=transfer and mutation != "delay",
-                occupied=mutation != "rank", pa=2 if mutation == "pa" else 1,
-                identities=2 if mutation == "duplicate" else 1, transport=mutation == "transport")
+import runpy
+
+model = runpy.run_path(str(MASTER.parent / "audit/capture_model.py"))["model"]
 
 CASES = [
     ("ng", dict(eligible=True, restricted=True, ng=False, victory=True), "allowed", False),
