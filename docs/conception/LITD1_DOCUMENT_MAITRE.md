@@ -3789,3 +3789,23 @@ AUD-CAP-06 résolu en conception ; CAP-HUB, RET, ARCH-05/06/07/09 et V8.3 resten
 ### Actualisation des statuts AUD-CAP (27 novembre 2026)
 
 Les mentions historiques « AUD-CAP-06 reste ouvert » et « CAP-I non validé » sont obsolètes depuis la validation explicite CAP-I enregistrée au commit ee68587581db9c58a397023de29255aea6676570. AUD-CAP-06 est résolu en conception ; CAP-J est également validé en conception. AUD-CAP-07 est hors périmètre (CAP-HUB). AUD-CAP-02 reste ouvert pour transcription fidèle ou nouvelle validation de CAP-K ; AUD-CAP-08 relève du bloc 12.5. Cette actualisation prévaut sur les anciens statuts sans effacer les preuves historiques. Aucun nouvel arbitrage ni validation technique.
+
+
+### Bloc 12.4 — CAP-K : capture et formations (27 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option D et CAP-K01 à CAP-K12 reconstruits, nouvelle validation remplaçant le texte original introuvable.** Accord explicite : « Je valide explicitement la reconstruction de l'option D et des douze règles CAP-K01 à CAP-K12. Enregistre-les dans la PR #665 comme nouvelle validation remplaçant le texte original introuvable, puis exécute l'audit transversal automatisé du bloc 12.4. »
+
+- CAP-K01 : Distinguer retrait hostile actif et retrait physique du champ de bataille.
+- CAP-K02 : La capture ne libère pas automatiquement les rangs occupés.
+- CAP-K03 : L'encombrement du captif dépend de sa morphologie et de son état réel.
+- CAP-K04 : Un captif multirang conserve son identité unique et son occupation physique réelle.
+- CAP-K05 : Aucun déplacement automatique du captif du seul fait de sa capture.
+- CAP-K06 : Le resserrement reste possible uniquement dans les segments réellement accessibles.
+- CAP-K07 : Aucun franchissement artificiel d'un captif constituant un obstacle physique.
+- CAP-K08 : Le resserrement reste gratuit et conserve l'ordre relatif des combattants concernés.
+- CAP-K09 : Aucun dégât, PA supplémentaire ou renouvellement de tour provoqué automatiquement par le resserrement.
+- CAP-K10 : Les modifications simultanées d'occupation sont résolues avant un resserrement unique.
+- CAP-K11 : Une libération ne provoque aucun repositionnement ni renouvellement artificiel du tour ; les changements physiques réels restent pris en compte.
+- CAP-K12 : Sauvegarder les positions, occupations, contentions et conséquences sans duplication ni nouveau tirage au rechargement.
+
+Fondements : CAP-B01/02/03/12, FORM-07/09/10/13–19, CAP-D10/12/16, INIT-17/20 et AUD-CAP-02. AUD-CAP-02 résolu en conception ; cette décision prévaut sur les mentions antérieures de transcription manquante. AUD-CAP-08 reste réservé au bloc 12.5. Aucun test runtime ni assurance indépendante à ce stade.
