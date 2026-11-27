@@ -3512,3 +3512,10 @@ Chantier ouvert : réconciliation des validations historiques de capture, conten
 - À auditer : décisions explicites de la conversation, notamment abandon des anciens catalogues de classes, compétences, armes et armures. Ne restaurer aucun ancien développement.
 - Traçabilité : texte de validation, date, identifiant, fichier, commit, PR, contrôles et éventuel remplacement. Les preuves manquantes restent signalées ; aucune exhaustivité revendiquée.
 - Benchmark et arbitrages restants à terminer avant validation. Aucun changement moteur, aucun test runtime, aucune fusion de ce bloc autorisée à ce stade.
+
+
+### Registre historique de capture — 27 novembre 2026
+
+Onze sources historiques transcrites dans [REFONTE_COMP_CAPTURE_PREUVES.md](REFONTE_COMP_CAPTURE_PREUVES.md), avec clauses de préséance et limites de réactivation. Registre de preuve, non nouveau catalogue normatif. V7.64 reste incomplet.
+
+Décisions d'abandon rapportées dans le suivi de conversation : anciens catalogues de classes/spécialisations, arbres et compétences/ultimes, armes et armures à reconstruire de zéro ; ne pas réintroduire les anciens systèmes. Identités narratives et références artistiques conservées. Formulations originales et dates à rapprocher des échanges avant certification exhaustive. CIB-19 interdit déjà le système spécifique d'organes internes vitaux. Aucun effacement de fichiers historiques ni changement moteur.
