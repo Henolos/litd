@@ -3548,3 +3548,23 @@ Benchmark partiel, sources secondaires Wartales : https://game.wiki/wartales/pri
 - CAP-A12 : Le résultat confirmé est sauvegardé sans nouveau tirage au rechargement.
 
 Préséance : INIT, COM, MORT, V7.46–48, V7.51 et V8.3 conservés. CAP-A03 concerne l'impossibilité constatée avant engagement ; CAP-A04 concerne l'échec après engagement. Aucun catalogue ancien réintroduit. CAP-B à E ouverts. Aucun test runtime.
+
+
+### Bloc 12.4 — CAP-B : retrait tactique immédiat (27 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et CAP-B01 à CAP-B12.** Accord explicite : « Je valide l'option C et les douze règles CAP-B01 à CAP-B12. Enregistre-les dans la PR #665, vérifie les contrôles et passe à CAP-C. »
+
+- CAP-B01 : Une capture réussie retire immédiatement la cible des combattants hostiles actifs.
+- CAP-B02 : Le captif reste physiquement présent sur le champ de bataille.
+- CAP-B03 : Son encombrement dépend de sa morphologie et de son état.
+- CAP-B04 : La capture ne constitue pas un recrutement immédiat.
+- CAP-B05 : Le captif ne dispose plus d'actions offensives ordinaires tant que la capture reste effective.
+- CAP-B06 : Les blessures, afflictions et états critiques persistent.
+- CAP-B07 : Le captif reste exposé aux effets physiques et environnementaux applicables.
+- CAP-B08 : Aucun désarmement automatique.
+- CAP-B09 : Aucun soin automatique lors de la capture.
+- CAP-B10 : Une rupture de contention peut restaurer le statut hostile selon les capacités réelles.
+- CAP-B11 : Aucun renouvellement artificiel du PA ou du tour lors d'une rupture.
+- CAP-B12 : Identité, position, état de capture et conséquences conservés dans la sauvegarde.
+
+MORT et ARCH-12 régissent la mort éventuelle du captif ; fin du combat à réconcilier au bloc 12.5. CAP-C à E ouverts. Aucun test runtime.
