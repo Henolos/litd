@@ -251,3 +251,8 @@ Source : https://github.com/Henolos/litd/commit/70b4131c711746a0560691045a2c7a39
 18. Barèmes, seuils, effets relationnels et critères précis d'admissibilité après simulations et tests.
 
 Respecter V7.59–60 et V8.3. Confiance : perception de sécurité et fiabilité ; loyauté : attachement et volonté de servir. Compatibilité fonctionnelle pour constructions non conscientes. Barème illustratif hostile 5, méfiant 4, réceptif 3, coopératif 1, loyal 0 non validé numériquement. Expéditions significatives réussies ou non, y compris retraite ou Game Over, candidates au crédit ; critères précis ouverts. Pas de crédit pour expédition de capture du nouveau captif, rechargement ou simple aller-retour. Plusieurs missions dans une expédition ne multiplient pas le crédit. Aucun refus aléatoire d'ordre en combat approuvé. Aucun code ni test modifié. Prochain arbitrage : priorités des réactions et interceptions.
+
+
+## Préséance du 27 novembre 2026 — CAP-HUB
+
+Accords utilisateur : « Tous les captifs sont envoyés au hub à la fin du combat » ; « Je valide l'option A pour le transfert automatique des captifs au hub. Réconcilie toutes les règles concernées. » Les transcriptions historiques ci-dessus restent intactes, mais V7.58 et V7.60/69 ne prescrivent plus de transport en exploration : transfert automatique de tous les captifs encore détenus après victoire uniquement, jamais automatiquement après retraite, défaite ou Game Over. Voir la table de préséance CAP-HUB du document maître et le commit https://github.com/Henolos/litd/commit/639d91bd0883627b6a5546454c58aea55a3655f5 . Contention tactique, éligibilité ARCH-07, détention au hub, recrutement différé, possession ARCH-09 et persistance V8.3 conservés. Aucun test runtime ni assurance indépendante.
