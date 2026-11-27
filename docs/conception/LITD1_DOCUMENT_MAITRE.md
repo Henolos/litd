@@ -3809,3 +3809,8 @@ Les mentions historiques « AUD-CAP-06 reste ouvert » et « CAP-I non validé �
 - CAP-K12 : Sauvegarder les positions, occupations, contentions et conséquences sans duplication ni nouveau tirage au rechargement.
 
 Fondements : CAP-B01/02/03/12, FORM-07/09/10/13–19, CAP-D10/12/16, INIT-17/20 et AUD-CAP-02. AUD-CAP-02 résolu en conception ; cette décision prévaut sur les mentions antérieures de transcription manquante. AUD-CAP-08 reste réservé au bloc 12.5. Aucun test runtime ni assurance indépendante à ce stade.
+
+
+### Index de lecture consolidé du bloc 12.4 (27 novembre 2026)
+
+Les clauses historiques de transport dans ARCH-07 (extension capture), ARCH-09 (réconciliation V7.58), et la synthèse initiale du bloc 12.4 ne sont plus normatives pour le transport en exploration : appliquer CAP-HUB et CAP-J. Les restrictions NG+ et la possession réelle demeurent inchangées. Les réserves de CAP-HUB sur la saturation, le devenir local et le resserrement sont résolues respectivement par CAP-J, CAP-I et CAP-K. Les autres réserves, notamment AUD-CAP-08 et l'ordre de résolution de fin de combat, restent ouvertes. Aucun nouvel arbitrage.
