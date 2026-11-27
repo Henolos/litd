@@ -3088,3 +3088,416 @@ Le principe est de conserver la responsabilité causale de chaque action d'une i
 - Les conditions de prise de contrôle, sa durée, son coût, les résistances et l'accès à l'autonomie restent à concevoir. Aucun mécanisme de contrôle supplémentaire n'est validé.
 - Cas de contrôle à préparer : poison avant transfert, attaque après transfert, contrôle temporaire, retour au maître précédent, décès ou recrutement du maître, autonomie, destruction de l'invocation, égalité causale, sauvegarde pendant transfert.
 - La comparaison technique des contributions causales, les preuves historiques encore manquantes et les tests runtime restent ouverts. Aucun changement moteur ni validation technique revendiqués.
+
+## REFONTE-COMP-01 — Bloc 02 : initiative hybride (validation utilisateur du 26 novembre 2026)
+
+Modèle E et INIT-01 à INIT-20 explicitement validés en conception. Les identifiants sont locaux à ce bloc.
+
+- INIT-01 : Un tour correspond au créneau individuel d'un combattant.
+- INIT-02 : Un round correspond au cycle des tours de tous les combattants admissibles.
+- INIT-03 : Chaque combattant dispose normalement d'un seul tour par round.
+- INIT-04 : Le PA inutilisé à la fin du tour est perdu.
+- INIT-05 : L'initiative est recalculée au début de chaque round.
+- INIT-06 : Elle dépend des caractéristiques et de l'état réel du combattant.
+- INIT-07 : Une composante aléatoire limitée apporte de l'incertitude.
+- INIT-08 : L'ordre d'initiative est visible par le joueur.
+- INIT-09 : L'ordre est verrouillé pendant le round.
+- INIT-10 : Les modifications ordinaires d'initiative prennent effet au round suivant.
+- INIT-11 : Priorité au combattant possédant la meilleure initiative avant aléatoire.
+- INIT-12 : En cas d'égalité persistante, tirage de départage reproductible et mémorisé.
+- INIT-13 : Aucun avantage systématique accordé aux héros ou aux ennemis.
+- INIT-14 : Un combattant mort avant son tour perd définitivement son action.
+- INIT-15 : Une incapacité est évaluée lorsque le combattant atteint son tour.
+- INIT-16 : Les nouveaux combattants rejoignent normalement l'ordre d'initiative au round suivant.
+- INIT-17 : Un changement de contrôle ne renouvelle ni le tour ni le PA du combattant.
+- INIT-18 : Les résultats des tirages d'initiative sont conservés dans la sauvegarde.
+- INIT-19 : Une reprise de partie ne déclenche aucun nouveau tirage pour le round en cours.
+- INIT-20 : Aucun changement d'état, de rang ou de contrôle ne crée automatiquement un PA supplémentaire.
+
+Préséance : complète V4.2–V4.5 ; un PA unique, attaque préventive imputée au premier tour, bonus collectif léger de guet-apens limité au premier round. Compatible avec ARCH-12.5 : aucun renouvellement par transfert de contrôle. Les coefficients, amplitude numérique, réactions, interruptions et exceptions spécifiques restent ouverts. Aucun ancien catalogue de classes, armes, armures ou compétences réintroduit. Aucun test runtime exécuté.
+
+## REFONTE-COMP-01 — Bloc 03 : formations (validation utilisateur du 26 novembre 2026)
+
+Modèle D : resserrement automatique avec obstacles physiques. FORM-01 à FORM-20 explicitement validées.
+
+- FORM-01 : Cadavres possibles dans les deux camps.
+- FORM-02 : Persistance selon la nature physique du corps.
+- FORM-03 : Aucune durée universelle de disparition.
+- FORM-04 : Un cadavre ne possède ni tour ni PA.
+- FORM-05 : Cadavres déplaçables ou destructibles selon leurs propriétés.
+- FORM-06 : Encombrement des cadavres adapté à leur morphologie.
+- FORM-07 : Obstacles dotés de propriétés physiques propres.
+- FORM-08 : Accessibilité dépendante du type d'attaque.
+- FORM-09 : Créatures pouvant occuper plusieurs rangs contigus.
+- FORM-10 : Une créature multirang conserve une seule identité.
+- FORM-11 : Aucun multiplicateur automatique de dégâts lié aux rangs occupés.
+- FORM-12 : Aucun PA supplémentaire lié à la taille.
+- FORM-13 : Resserrement automatique par segments accessibles.
+- FORM-14 : Resserrement gratuit.
+- FORM-15 : Ordre relatif des survivants conservé.
+- FORM-16 : Aucun dégât automatique causé par le resserrement.
+- FORM-17 : Resserrement sans modification de l'ordre d'initiative.
+- FORM-18 : Retraits simultanés résolus avant un resserrement unique.
+- FORM-19 : Conservation des positions et obstacles dans les sauvegardes.
+- FORM-20 : Exploitation éventuelle des cadavres sans annulation de la mort permanente ni duplication d'équipement.
+
+Modèle C pour les grandes créatures recrutées, explicitement validé le 26 novembre 2026 : rangs tactiques et encombrement physique distincts ; quatre combattants conservés, représentation physique et accessibilité anatomique adaptées à leur morphologie. FORM-09 reste applicable ; articulation exacte entre occupation multirang et quatre identités tactiques à arbitrer. Aucun changement de PA, aucune réduction automatique de morphologie. Les modalités de mobilité, chevauchement, collision et recrutement restent ouvertes.
+
+Préséance : remplace les hypothèses provisoires de resserrement inconditionnel du bloc formations ; respecte INIT-09, INIT-14, INIT-20 et les invariants de mort permanente et de non-duplication. Aucun test moteur exécuté.
+
+## REFONTE-COMP-01 — Bloc 04 : mobilité hybride (validation utilisateur du 26 novembre 2026)
+
+Modèle D et MOB-01 à MOB-20 explicitement validés en conception.
+
+- MOB-01 : Déplacement volontaire ordinaire coûtant 1 PA.
+- MOB-02 : Déplacement ordinaire limité à un rang adjacent.
+- MOB-03 : Permutation possible avec un allié adjacent.
+- MOB-04 : Seul l'initiateur dépense son PA.
+- MOB-05 : Le déplacement ne modifie pas l'ordre d'initiative du round.
+- MOB-06 : Aucun PA supplémentaire accordé par une permutation.
+- MOB-07 : Mobilité dépendante de l'anatomie fonctionnelle.
+- MOB-08 : Blessures et fractures prises en compte selon leurs conséquences réelles.
+- MOB-09 : Prothèses prises en compte dans la capacité locomotrice.
+- MOB-10 : Immobilisations évaluées selon leur nature.
+- MOB-11 : Impossibilité de traverser un obstacle infranchissable.
+- MOB-12 : Prise en compte de l'encombrement physique des combattants.
+- MOB-13 : Permutation ordinaire impossible si l'un des participants ne peut physiquement l'effectuer.
+- MOB-14 : Déplacement assisté d'un allié possible.
+- MOB-15 : Déplacement assisté coûtant normalement 1 PA à l'intervenant.
+- MOB-16 : Faisabilité de l'assistance dépendante des capacités physiques et de la masse.
+- MOB-17 : Compétences pouvant intégrer attaque et déplacement dans une seule action.
+- MOB-18 : Mobilités spéciales définies selon les capacités du combattant.
+- MOB-19 : Vérification de la faisabilité avant consommation du PA pour une commande ordinaire.
+- MOB-20 : Conservation des positions et conséquences lors de la sauvegarde et de la reprise.
+
+Réconciliation : distinguer déplacement volontaire, assistance, déplacement forcé et resserrement gratuit FORM-13 à FORM-18. MOB-13 concerne la permutation ordinaire, MOB-14 à MOB-16 l'assistance distincte. INIT-09 et INIT-20 restent applicables. Les seuils locomoteurs, modalités multirangs, poussées, attractions et collisions restent à arbitrer. Aucun test moteur exécuté.
+
+## REFONTE-COMP-01 — Bloc 05 : collisions hybrides (validation utilisateur du 26 novembre 2026)
+
+Modèle D et COL-01 à COL-20 explicitement validés en conception.
+
+- COL-01 : Poussées et attractions distinctes des mouvements volontaires.
+- COL-02 : Déplacements forcés soumis aux résistances physiques.
+- COL-03 : Force de projection opposée aux capacités de résistance.
+- COL-04 : Masse et corpulence traitées séparément.
+- COL-05 : Stabilité dépendante des appuis et de l'anatomie.
+- COL-06 : Ancrages spécifiques pouvant empêcher un déplacement.
+- COL-07 : Poussées ordinaires sans dégâts automatiques de collision.
+- COL-08 : Projections violentes pouvant provoquer des collisions.
+- COL-09 : Cible projetée et cible percutée évaluées séparément.
+- COL-10 : Intensité de l'impact influençant les dégâts.
+- COL-11 : Protections et résistances physiques prises en compte.
+- COL-12 : Blessures localisées possibles selon l'impact.
+- COL-13 : Fractures et amputations soumises aux règles anatomiques.
+- COL-14 : Déséquilibre ordinaire ne supprimant pas automatiquement le tour.
+- COL-15 : Obstacles et cadavres pouvant être percutés.
+- COL-16 : Limites de formation ne provoquant pas automatiquement une sortie du combat.
+- COL-17 : Déplacements en chaîne limités, sans propagation infinie.
+- COL-18 : Aucun PA supplémentaire ni renouvellement de tour.
+- COL-19 : Attribution causale conforme aux règles ARCH-12.
+- COL-20 : Conservation des conséquences physiques et causales dans les sauvegardes.
+
+Réconciliation : FORM-16 interdit les dégâts automatiques du resserrement, distinct des projections COL-08. MOB-01 à MOB-20 régissent la mobilité volontaire et assistée ; INIT-09 et INIT-20 restent applicables. ARCH-12 et ses compléments régissent la causalité. Les coefficients, catégories et seuils numériques, règles précises de propagation, résolution anatomique et encombrement multirang restent ouverts. Aucun test moteur exécuté.
+
+## REFONTE-COMP-01 — Bloc 06 : ciblage anatomique hybride (validation utilisateur du 26 novembre 2026)
+
+Modèle D et CIB-01 à CIB-20 explicitement validés en conception.
+
+- CIB-01 : Anatomie définie selon la morphologie réelle du combattant.
+- CIB-02 : Identifiant stable pour chaque partie anatomique.
+- CIB-03 : Une partie absente ne peut pas être directement ciblée.
+- CIB-04 : Une prothèse installée peut constituer une cible physique.
+- CIB-05 : Accessibilité dépendante des rangs tactiques.
+- CIB-06 : Prise en compte de l'encombrement physique.
+- CIB-07 : Accessibilité dépendante de la portée de l'attaque.
+- CIB-08 : Prise en compte des obstacles et protections physiques.
+- CIB-09 : Accessibilité dépendante des propriétés de la compétence.
+- CIB-10 : Prise en compte des capacités fonctionnelles de l'attaquant.
+- CIB-11 : Distinction entre difficulté et impossibilité de ciblage.
+- CIB-12 : Difficulté de ciblage adaptée à la partie anatomique.
+- CIB-13 : Affichage des parties accessibles avant engagement de l'action.
+- CIB-14 : Explication des principales causes d'inaccessibilité.
+- CIB-15 : Inspection anatomique sans consommation de PA.
+- CIB-16 : Vérification de l'accessibilité au moment de la résolution.
+- CIB-17 : Aucun transfert silencieux vers une autre cible, hors mécanismes explicitement autorisés.
+- CIB-18 : Attaques globales et attaques localisées distinctes.
+- CIB-19 : Aucun système spécifique de ciblage des organes internes vitaux.
+- CIB-20 : Conservation de l'identité anatomique, des états et de la causalité dans les sauvegardes.
+
+Réconciliation : complète les règles existantes de ciblage et HUD, FORM, MOB et COL ; conserve les exceptions d'interception explicitement autorisées et ARCH-12 pour la causalité. Les coefficients, conséquences des blessures et modalités de résolution d'une cible devenue inaccessible restent ouverts. Aucun test moteur exécuté.
+
+## REFONTE-COMP-01 — Bloc 07 : blessures hybrides (validation utilisateur du 26 novembre 2026)
+
+Modèle D et ANA-01 à ANA-20 explicitement validés en conception.
+
+- ANA-01 : Dégradation suivie individuellement pour chaque partie anatomique.
+- ANA-02 : Distinction entre dégâts, blessures, fractures et séquelles.
+- ANA-03 : Pénalités intermédiaires selon un modèle hybride.
+- ANA-04 : Conséquences déterminées par les fonctions anatomiques réelles.
+- ANA-05 : Une partie neutralisée n'entraîne pas automatiquement une incapacité générale.
+- ANA-06 : Une action nécessitant une fonction perdue devient indisponible.
+- ANA-07 : Les fonctions pouvant être compensées restent utilisables selon les capacités restantes.
+- ANA-08 : Compatibilité des prothèses avec la morphologie et la partie manquante.
+- ANA-09 : Installation d'une prothèse sans effacement de l'historique de l'amputation.
+- ANA-10 : Conservation de la dégradation après retrait et réinstallation.
+- ANA-11 : Aucune réparation automatique par changement d'équipement.
+- ANA-12 : Distinction entre guérison biologique et réparation des prothèses.
+- ANA-13 : Affichage des conséquences fonctionnelles dans l'interface.
+- ANA-14 : Application aux héros et aux ennemis selon leur morphologie.
+- ANA-15 : Aucun effacement automatique des blessures lors d'une promotion ou d'un recrutement.
+- ANA-16 : Les prothèses ne doivent pas constituer une stratégie d'optimisation universellement supérieure.
+- ANA-17 : Entretien simplifié, sans microgestion des composants individuels.
+- ANA-18 : Reconstruction d'une prothèse brisée sans duplication de l'objet.
+- ANA-19 : Conservation de la causalité des blessures selon ARCH-12.
+- ANA-20 : Conservation des états anatomiques et des progrès de guérison dans les sauvegardes.
+
+Compléments historiques présentés à l'utilisateur et dont la consolidation est explicitement autorisée le 26 novembre 2026 (date historique du 16 novembre rapportée, provenance originale non revérifiée) : progression de guérison conservée ; séquelles permanentes possibles après traitement ; cicatrices et amputations définitives ; aucune repousse à l'infirmerie ; membre endommagé à 80 % inutilisable, à 100 % amputé. Prothèses : fabrication à la forge, découverte en donjon, plusieurs prothèses possibles correspondant à des amputations réelles ; supériorité possible avec contrepartie négative obligatoire ; entretien et détérioration ; réparation immédiate payante chez le forgeron sans attente ; à 80 % inutilisable, à 100 % brisée ; reconstruction possible ; prothèse brisée occupant une place dans l'inventaire. Pas de microgestion ni d'incitation universelle à l'amputation volontaire. Conditions précises de reconstruction et coefficients intermédiaires ouverts.
+
+Réconciliation : CIB, MOB, COL et ARCH-12 applicables ; aucun système spécifique d'organes vitaux, aucun ancien catalogue réintroduit. Aucun test moteur exécuté.
+
+## REFONTE-COMP-01 — Bloc 08 : afflictions hybrides (validation utilisateur du 26 novembre 2026)
+
+Modèle D et AFF-01 à AFF-20 explicitement validés en conception.
+
+- AFF-01 : Distinguer dégâts directs et afflictions.
+- AFF-02 : Une affliction possède ses propres conditions d'application.
+- AFF-03 : Chaque affliction possède un identifiant stable.
+- AFF-04 : Intensité et durée traitées séparément.
+- AFF-05 : Mode de cumul spécifique à chaque affliction.
+- AFF-06 : Plafonnement adapté aux effets cumulables.
+- AFF-07 : Résistances et immunités adaptées à la nature des créatures.
+- AFF-08 : Distinction entre résistance aux dégâts et résistance aux afflictions.
+- AFF-09 : Afflictions localisées ou globales selon leur nature.
+- AFF-10 : Conséquences anatomiques conformes aux règles ANA.
+- AFF-11 : Moment de résolution déterminé et reproductible.
+- AFF-12 : Aucun contrôle renouvelable indéfiniment sans limite.
+- AFF-13 : Aucun changement ordinaire de l'ordre d'initiative pendant le round.
+- AFF-14 : Distinction entre purification, neutralisation et guérison.
+- AFF-15 : Combinaisons d'afflictions régies par des interactions explicites.
+- AFF-16 : Propagations sans boucle infinie.
+- AFF-17 : Consultation des effets, intensités et durées dans l'interface.
+- AFF-18 : Conservation des contributions de chaque source d'affliction.
+- AFF-19 : Attribution des décès indirects conforme à ARCH-12.
+- AFF-20 : Conservation des afflictions et de leur progression dans les sauvegardes.
+
+Compléments historiques présentés et consolidation explicitement autorisée le 26 novembre 2026 (provenance originale du 16 novembre non revérifiée) : attaques normales pouvant infliger des dégâts élémentaires et déclencher probabilistiquement une affliction ; attaques dédiées ; résistances et faiblesses globales selon les matériaux équipés ; métal vulnérable à la foudre, bois au feu, conductivité identique pour tous les métaux ; foudre avec impact initial et trois rebonds maximum entre ennemis proches portant du métal, réduction proportionnelle des dégâts aux rebonds. Catalogue de référence : foudre/paralysie, brûlure, poison, gel, saignement, confusion, silence, corrosion, aveuglement, fracture. Effets particuliers, probabilités, durées, coefficients, sélection des cibles et répétition des rebonds restent ouverts. Aucun système général d'usure d'équipement ni ancien catalogue réintroduit. ARCH-12, ANA et INIT applicables. Aucun test moteur exécuté.
+
+## REFONTE-COMP-01 — Bloc 09 : défenses hybrides (validation utilisateur du 26 novembre 2026)
+
+Modèle D et DEF-01 à DEF-20 explicitement validés en conception.
+
+- DEF-01 : Distinction entre garde, parade, esquive et interception.
+- DEF-02 : Distinction entre défenses passives et techniques actives.
+- DEF-03 : Préparation défensive ordinaire consommant 1 PA.
+- DEF-04 : Déclenchement d'une défense préparée sans second PA.
+- DEF-05 : Aucun stockage du PA inutilisé.
+- DEF-06 : Durée et nombre de déclenchements explicitement limités.
+- DEF-07 : Garde pouvant réduire les dégâts reçus.
+- DEF-08 : Parade réservée aux attaques compatibles.
+- DEF-09 : Esquive dépendante des capacités fonctionnelles.
+- DEF-10 : Esquive sans changement automatique de rang.
+- DEF-11 : Interception nécessitant une capacité appropriée.
+- DEF-12 : Interception physique dépendante des rangs, obstacles et capacités locomotrices.
+- DEF-13 : Protection à distance possible selon les propriétés de la compétence.
+- DEF-14 : Conservation des règles antérieures d'interception anatomique.
+- DEF-15 : Vérification des capacités défensives lors du déclenchement.
+- DEF-16 : Possibilité de dégâts résiduels et de blessures malgré une défense.
+- DEF-17 : Aucun déclenchement automatique d'une contre-attaque supplémentaire.
+- DEF-18 : Résolution déterministe des défenses concurrentes, sans chaîne infinie.
+- DEF-19 : Respect des règles de causalité ARCH-12.
+- DEF-20 : Conservation des préparations et déclenchements dans les sauvegardes.
+
+Réconciliation : INIT, MOB, CIB, ANA et ARCH-12 applicables. La préparation dépense le PA, sans stockage du PA inutilisé ; les règles existantes d'interception anatomique sont conservées. Durées, probabilités, priorités concurrentes et coefficients ouverts. Aucun ancien catalogue réintroduit. Aucun test moteur exécuté.
+
+## REFONTE-COMP-01 — Bloc 10 : combos progressifs (validation utilisateur du 26 novembre 2026)
+
+Modèle D et COM-01 à COM-20 explicitement validés en conception.
+
+- COM-01 : Distinction entre combos individuels, synergies successives et attaques synchronisées.
+- COM-02 : Combinaisons soumises à des conditions de compatibilité explicites.
+- COM-03 : Découverte des combos inconnus par expérimentation réussie.
+- COM-04 : Conservation collective et permanente des combos découverts.
+- COM-05 : Connaissance distincte de la capacité à exécuter un combo.
+- COM-06 : Attaques synchronisées impliquant deux à quatre combattants.
+- COM-07 : Chaque participant engage son propre PA pendant son tour.
+- COM-08 : Aucun changement de l'ordre d'initiative.
+- COM-09 : Engagements synchronisés réalisés dans le même round.
+- COM-10 : Résolution lorsque toutes les conditions nécessaires sont réunies.
+- COM-11 : Vulnérabilité des combattants pendant leur préparation.
+- COM-12 : Protection possible conformément aux règles DEF.
+- COM-13 : Interruption dépendante des effets subis et des capacités nécessaires.
+- COM-14 : PA déjà engagé perdu en cas d'interruption.
+- COM-15 : PA non encore engagé restant disponible pendant le tour correspondant.
+- COM-16 : Combo réduit possible uniquement si une variante compatible existe.
+- COM-17 : Nouvelle vérification des positions, cibles et capacités avant résolution.
+- COM-18 : Puissance et effets adaptés aux contributions réelles, sans duplication d'actions.
+- COM-19 : Attribution des conséquences conforme aux règles ARCH-12.
+- COM-20 : Conservation des préparations, interruptions et découvertes dans les sauvegardes.
+
+Réconciliation : INIT, DEF, AFF, CIB et ARCH-12 applicables. Conditions précises d'interruption, variantes réduites et coefficients ouverts. Aucun ancien catalogue réintroduit. Aucun test moteur exécuté.
+
+## REFONTE-COMP-01 — Bloc 11 : invocations hybrides (validation utilisateur du 26 novembre 2026)
+
+Modèles D de fonctionnement et D d'occupation de la formation, INV-01 à INV-20 explicitement validés en conception. Quatre combattants principaux conservés ; occupation adaptée à la nature physique et tactique ; possession sans téléportation automatique.
+
+- INV-01 : Distinction entre invocation commandée, semi-autonome, indépendante et possession.
+- INV-02 : Identité unique de chaque entité individualisée.
+- INV-03 : Création d'une invocation par une action coûtant normalement 1 PA.
+- INV-04 : Conditions d'invocation adaptées à la capacité utilisée.
+- INV-05 : Occupation physique adaptée à la morphologie.
+- INV-06 : Aucun remplacement automatique d'un combattant principal.
+- INV-07 : Nombre d'invocations simultanées explicitement limité.
+- INV-08 : Modes de commande et coûts définis selon la nature de l'invocation.
+- INV-09 : Initiative propre pour les invocations disposant d'un tour indépendant.
+- INV-10 : Nouveaux combattants intégrés normalement au round suivant.
+- INV-11 : Possession soumise à des conditions d'éligibilité.
+- INV-12 : Résistance au contrôle adaptée à la nature et à l'état de la cible.
+- INV-13 : Durée du contrôle explicitement définie.
+- INV-14 : Aucun renouvellement du PA ou du tour lors d'un transfert.
+- INV-15 : Aucun effacement des blessures et afflictions par changement de maître.
+- INV-16 : Conséquences du décès du maître adaptées à la nature de l'invocation.
+- INV-17 : Aucune chaîne illimitée d'invocations ou de possessions.
+- INV-18 : Distinction entre disparition, révocation, libération et mort réelle.
+- INV-19 : Respect intégral des règles de responsabilité ARCH-12.5.
+- INV-20 : Conservation des liens de contrôle, états et actions dans les sauvegardes.
+
+Réconciliation : INIT, FORM, ANA, AFF et ARCH-12.5 applicables. Coûts précis de commande, limites numériques, résistance, libération et modalités d'occupation ouverts. Aucun ancien catalogue réintroduit. Aucun test moteur exécuté.
+
+## REFONTE-COMP-01 — Bloc 12.1 — Arbitrages de mortalité (26 novembre 2026)
+
+**VALIDÉ EN CONCEPTION :** passage à zéro PV modèle D (résolution contextuelle) ; résolution D4 (résistance dynamique et exceptions explicites) ; hasard A (aucun tirage supplémentaire après résolution des dégâts) ; évolution critique C (aggravation dynamique selon état et effets subis) ; application héros/ennemis C (principes communs adaptés à la nature de chaque créature).
+
+Réconciliation : mort permanente irréversible ; INIT (aucun renouvellement de PA ni réordonnancement ordinaire), ANA (fonctions anatomiques), AFF (effets persistants), ARCH-12 (causalité), non-létalité directe des pièges d'exploration conservés. Aucun système spécifique d'organes vitaux réintroduit. Les règles MORT, la formule de résistance, les seuils, les modalités de stabilisation et les transitions détaillées restent à valider. Aucun test moteur exécuté.
+
+## REFONTE-COMP-01 — Bloc 12.1 : règles MORT V2 (validation utilisateur du 26 novembre 2026)
+
+MORT-01 à MORT-20 explicitement validées en conception, en complément des cinq arbitrages de mortalité précédents.
+
+- MORT-01 : Séparation des états biologique, fonctionnel, de conscience et de stabilité physique.
+- MORT-02 : Distinction entre incapacité, neutralisation et état critique.
+- MORT-03 : Incapacité locale sans neutralisation générale automatique.
+- MORT-04 : Conservation des actions compatibles avec les fonctions réellement disponibles.
+- MORT-05 : Neutralisation non létale possible, sans perte systématique de tous les PV.
+- MORT-06 : Passage à 0 PV résolu contextuellement selon le modèle D.
+- MORT-07 : Mort immédiate déterminée par une résistance dynamique et des exceptions explicitement définies.
+- MORT-08 : Aucun tirage supplémentaire de survie après résolution des dégâts.
+- MORT-09 : Aggravation critique dynamique selon l'état physique et les effets subis.
+- MORT-10 : Aucune phase d'agonie obligatoire ni durée minimale de survie garantie.
+- MORT-11 : Stabilisation distincte des soins, de la purification et du rétablissement fonctionnel.
+- MORT-12 : Aucun effacement automatique des blessures, amputations ou afflictions lors d'un sauvetage.
+- MORT-13 : Aucun renouvellement du PA ni changement ordinaire d'initiative après rétablissement.
+- MORT-14 : Aucune réinitialisation automatique de la résistance critique par des soins ordinaires ou une stabilisation.
+- MORT-15 : Aucun décès automatique résultant de la seule incapacité à combattre.
+- MORT-16 : Mort définitive irréversible après confirmation.
+- MORT-17 : Principes communs aux héros et ennemis, adaptés à la nature des créatures.
+- MORT-18 : État physique, dangers critiques et possibilités d'intervention communiqués au joueur selon les informations accessibles.
+- MORT-19 : Attribution causale conforme à ARCH-12, y compris pour les décès différés.
+- MORT-20 : Conservation déterministe des états, transitions et conséquences dans les sauvegardes.
+
+Réconciliation : INIT, FORM, MOB, ANA, AFF, INV, ARCH-12 et non-létalité directe des pièges d'exploration préservés. Seuils, coefficients et modalités précises d'intervention ouverts. Aucun système spécifique d'organes vitaux réintroduit. Aucun test moteur exécuté.
+
+## REFONTE-COMP-01 — Bloc 12.2 — Exclusion du transport (26 novembre 2026)
+
+**VALIDÉ EN CONCEPTION — décision directe :** « pas de transport pendant et après le combat. Après un combat si un héros ne peut se déplacer ou on l’abandonne sur place ou on rentre au hub, ce qui termine la quête, mission ».
+
+Aucun système de portage, traînage, transport collectif ou transfert entre porteurs de héros pendant ou après le combat. Les propositions SAUV relatives au transport sont abandonnées. Préséance sur les clauses antérieures autorisant le transport des héros, notamment ARCH-04 règle 2 pour sa composante transport. MOB-14 à MOB-16 : articulation du déplacement assisté avec cette interdiction à clarifier ; ne pas assimiler automatiquement déplacement forcé et transport. Le devenir du héros abandonné reste soumis à ARCH-04. Le retour au hub dans cette situation termine la quête ou mission en cours ; distinction entre fin de tentative et clôture définitive, modalités de retour du héros immobilisé, récupération des dépouilles et transport des captifs à clarifier explicitement. Aucun test moteur exécuté.
+
+## REFONTE-COMP-01 — Bloc 12.2 — Retour au hub et clôture définitive (26 novembre 2026)
+
+**VALIDÉ EN CONCEPTION — accord direct :** « Pour LITD 1, je valide le retour au hub : héros immobilisé option A, devenir de la mission option B. Réconcilie les décisions antérieures en conséquence. »
+
+Après combat, si un héros vivant ne peut se déplacer, le joueur choisit entre l'abandon sur place et le retour au hub. Dans ce dernier cas, le héros immobilisé revient avec la compagnie et peut y être soigné ; la quête ou mission en cours est définitivement terminée et non reprenable. Aucun transport manuel pendant ou après le combat.
+
+Préséance ciblée : V4.9/V5.0 (reprise des missions abandonnées) ne permettent pas de reprendre une mission clôturée par ce retour au hub ; les autres situations de retraite ou abandon ne sont pas redéfinies par cet accord. ARCH-04 : devenir contextuel du héros laissé sur place conservé ; composante transport manuel écartée. Les restrictions de retour liées aux autres situations (captivité, séparation, danger actif) ne sont pas levées implicitement. MORT, ANA, AFF, ARCH-12 et V8.3 : aucune résurrection, guérison automatique, annulation des conséquences ni duplication. Le retour ne garantit pas la survie d'un héros critique. MOB-14 à MOB-16 : déplacement assisté à distinguer du transport interdit ; arbitrage restant. Récupération des dépouilles, extraction des captifs, modalités temporelles du retour et qualification du résultat de mission restent à préciser. Aucun test moteur exécuté.
+
+## REFONTE-COMP-01 — Bloc 12.2 — Consolidation finale (26 novembre 2026)
+
+**VALIDÉ EN CONCEPTION — accord direct :** « Pour LITD 1, je valide le déplacement assisté option B et le devenir des dépouilles option B. Réconcilie les règles et termine le bloc 12.2. »
+
+Synthèse normative des accords du bloc 12.2 :
+- Aucun déplacement assisté volontaire d'un héros ; chaque héros se déplace par ses propres moyens selon ses capacités. MOB-14, MOB-15 et MOB-16 sont abrogées pour le déplacement assisté des héros. MOB-13 et les autres règles compatibles restent applicables.
+- Aucun transport manuel de héros pendant ou après le combat, y compris portage, traînage et transport collectif. ARCH-04 règle 2 est remplacée pour sa composante transport ; libération et secours compatibles restent possibles.
+- Après combat, un héros vivant incapable de se déplacer est abandonné sur place ou revient au hub avec la compagnie ; ce retour clôt définitivement la mission concernée, sans reprise. ARCH-04 régit le devenir du vivant abandonné. V4.9/V5.0 et les règles de reprise ne s'appliquent pas à cette clôture spécifique.
+- Les dépouilles des héros morts restent sur place ; aucune récupération de dépouille au hub. Seuls leurs équipements accessibles peuvent être récupérés selon possession réelle, sans duplication. FORM-05 et FORM-20 ne permettent pas de contourner cette interdiction ; les interactions physiques tactiques compatibles avec FORM et COL restent applicables.
+- Poussées, attractions et déplacements forcés de combat restent distincts du transport et de l'assistance volontaire. MORT, ANA, AFF, INIT, ARCH-12 et V8.3 restent applicables ; aucun soin automatique, résurrection ou effacement des conséquences.
+- Les propositions SAUV antérieures non validées sont abandonnées. Les modalités temporelles du retour, la qualification du résultat de mission et les cas de captifs relèvent des blocs suivants ; aucune extension implicite aux autres retraites ou à l'extraction des captifs.
+
+Bloc 12.2 clos pour les arbitrages de conception. Contrôles transversaux, implémentation et tests runtime non réalisés. Vérifications futures : interdiction d'assistance et de transport ; retour du vivant immobilisé et clôture non reprenable ; abandon sans décès automatique ; dépouille non extraite et équipement unique ; persistance et reprise transactionnelle.
+
+## REFONTE-COMP-01 — Bloc 12.3 — Navigation après retraite (26 novembre 2026)
+
+**VALIDÉ EN CONCEPTION — accord direct :** « Pour LITD 1, je valide les arbitrages de navigation après retraite suivants : franchissement C, position A, persistance des ennemis C, blocage stratégique A. Réconcilie ces décisions avec les règles de combat et révise les règles RET. »
+
+RET-NAV-01 : Le franchissement après retraite dépend des obstacles et conditions réelles ; la fuite ne valide pas automatiquement la rencontre.
+RET-NAV-02 : Retour au nœud d'origine si accessible ; si inaccessible, issue à arbitrer, sans téléportation implicite.
+RET-NAV-03 : Persistance des ennemis et évolution contextuelle selon les règles applicables ; aucune réinitialisation ni résurrection automatique.
+RET-NAV-04 : Blocage stratégique légitime accepté sans création artificielle de passage ; distinct d'un défaut de génération.
+
+Réconciliation : V8.3 n°1, V7.38, V7.43, ARCH-01/02/03 et V7.49 restent applicables. Les itinéraires alternatifs et secrets ne sont utilisables que si réellement accessibles. La stabilité de la carte et les conséquences confirmées sont préservées ; aucun nouveau tirage par fuite. La retraite tactique reste distincte du retour au hub ; le bloc 12.2 interdit transport et assistance des héros et clôt définitivement la mission lors du retour au hub avec héros immobilisé après combat. ARCH-04 régit les abandons, ARCH-05 la fuite ennemie, ARCH-12 la causalité, INIT les PA et l'ordre des tours. Les quatre arbitrages tactiques antérieurement proposés (modèle, rangs, boss, objets), coûts, interruptions, séparation des héros et destination si origine inaccessible restent ouverts. Les propositions RET-01 à RET-30 ne sont pas globalement approuvées par cet accord ; RET-21 à RET-30 doivent être relues à la lumière des quatre règles NAV ci-dessus. Contrôles de graphe à rattacher au validateur existant, non exécutés. Aucun changement moteur.
+
+## REFONTE-COMP-01 — Bloc 12.3 — Retraite exclusivement collective (26 novembre 2026)
+
+**VALIDÉ EN CONCEPTION — accord direct :** « La retraite est pour toute la compagnie ».
+
+RET-COLLECTIF-01 : La commande de retraite concerne exclusivement la compagnie entière. Aucune commande de retraite volontaire individuelle. La proposition RET-02 autorisant la retraite individuelle est écartée. La résolution des cas d'immobilisation et d'abandon reste régie par ARCH-04 et le bloc 12.2, sans transport ni décès automatique. Ne pas assimiler ordre collectif à garantie de sortie de chaque héros ; modalités de résolution, coût en PA, délai, interruption et objets de fuite restent à arbitrer. RET-NAV-01 à 04 conservées. Aucune validation implicite des autres propositions RET. Aucun test moteur.
+
+## REFONTE-COMP-01 — Bloc 12.3 — Arbitrages tactiques collectifs (26 novembre 2026)
+
+**VALIDÉ EN CONCEPTION — accord direct :** « Pour LITD 1, je valide les arbitrages de retraite collective suivants : coût B, conditions de réussite C, interruption C, objets de fuite C, restrictions C. Réconcilie les règles RET et prépare leur validation définitive. »
+
+RET-TACT-01 : Une tentative collective consomme 1 PA du héros actif ; aucune tentative individuelle successive.
+RET-TACT-02 : Conditions physiques obligatoires puis résolution contextuelle du risque ; aucun coefficient ni probabilité fixe validés.
+RET-TACT-03 : Interruption uniquement par capacités et réactions admissibles, sans attaque gratuite systématique ni renouvellement de PA.
+RET-TACT-04 : Objets de fuite comme action indépendante ou intégrée selon leurs propriétés explicites ; aucun contournement implicite des contraintes physiques.
+RET-TACT-05 : Restrictions contextuelles selon positions, obstacles, sorties et capacités ennemies ; aucune interdiction universelle fondée uniquement sur la catégorie boss.
+
+Réconciliation : RET-COLLECTIF-01 et RET-NAV-01 à 04 conservées. INIT et DEF encadrent PA, initiative et réactions ; MOB, FORM, COL, ANA, AFF et MORT encadrent faisabilité physique et conséquences ; ARCH-04 régit les abandons, ARCH-05 la fuite ennemie, ARCH-12 la causalité, V8.3 la persistance. Bloc 12.2 conservé, notamment interdiction de transport et d'assistance volontaire et clôture définitive lors du retour au hub avec héros immobilisé après combat. Aucun nouveau tirage de carte ni passage artificiel.
+
+Les trente propositions RET restent à valider globalement. À préciser avant clôture : héros nouvellement immobilisé pendant la tentative (consentement à l'abandon), destination si origine inaccessible, délai et état tactique lors d'un nouvel affrontement, conditions d'engagement et d'échec. Ne pas déduire une validation de ces modalités du présent accord. Aucun test moteur ni fusion.
+
+## REFONTE-COMP-01 — Bloc 12.3 — Derniers cas limites (26 novembre 2026)
+
+**VALIDÉ EN CONCEPTION — accord direct :** « go, et je valide les réponses C pour les derniers cas limite à résoudre » (trois options C de la proposition précédente).
+
+RET-LIM-01 : Si un héros devient immobilisé pendant une tentative collective, demander une nouvelle confirmation : abandonner ou interrompre la retraite. Aucun retour arrière des dégâts ni restitution du PA engagé.
+RET-LIM-02 : Si le nœud d'origine est inaccessible, retraite possible uniquement par une autre sortie réelle et accessible ; aucun retour automatique au hub ni passage artificiel.
+RET-LIM-03 : Nouvel affrontement selon les conditions réelles, avec conservation des états pertinents ; prévenir les exploitations de PA, initiative, surprise et effets temporaires. Aucun délai chiffré ni algorithme de transition validé.
+
+Réconciliation : RET-COLLECTIF-01, RET-NAV-01 à 04 et RET-TACT-01 à 05 conservées. RET-14 doit inclure la confirmation des abandons nouveaux ; RET-22 inclut l'exception de sortie réelle alternative ; RET-27/28 incluent la continuité des états pertinents lors du nouvel affrontement. ARCH-04, INIT, DEF, V8.3 et bloc 12.2 restent applicables. Validation globale des trente règles RET encore attendue ; aucune implémentation ni fusion.
+
+## REFONTE-COMP-01 — Bloc 12.3 — Registre définitif RET (26 novembre 2026)
+
+**VALIDÉ EN CONCEPTION — accord direct :** « Je valide définitivement les trente règles RET-01 à RET-30 dans leur dernière version consolidée. Enregistre-les, vérifie les contrôles automatisés, clôture la conception du bloc 12.3 et commence le bloc 12.4 consacré à la capture et à la contention. »
+
+- RET-01 : La retraite est distincte du retour au hub.
+- RET-02 : La retraite concerne exclusivement toute la compagnie.
+- RET-03 : La résolution est collective et tient compte de l'état de chaque héros.
+- RET-04 : Les capacités anatomiques réelles conditionnent la fuite.
+- RET-05 : Aucun transport ni déplacement assisté.
+- RET-06 : Une tentative coûte 1 PA au héros actif.
+- RET-07 : Aucun remboursement du PA après une tentative engagée qui échoue ou est interrompue.
+- RET-08 : Aucun renouvellement des PA ni modification artificielle de l'initiative en cas d'échec.
+- RET-09 : Seules les capacités et réactions admissibles peuvent interrompre la retraite.
+- RET-10 : Aucune chaîne illimitée d'interceptions.
+- RET-11 : Les objets de fuite constituent une action indépendante ou intégrée selon leurs propriétés.
+- RET-12 : Aucun objet de fuite universellement efficace.
+- RET-13 : Un héros entravé peut être libéré par des moyens compatibles avant la retraite.
+- RET-14 : Confirmation explicite des abandons prévisibles et nouvellement nécessaires pendant la tentative. Le refus interrompt la retraite sans annuler les conséquences déjà subies.
+- RET-15 : Aucun décès automatique par abandon.
+- RET-16 : Restrictions contextuelles, justifiées et communiquées au joueur.
+- RET-17 : Conservation des conséquences physiques et matérielles.
+- RET-18 : Retraite distincte de la fuite des Némésis.
+- RET-19 : Aucune poursuite continue après la sortie du combat.
+- RET-20 : Persistance déterministe des tentatives et résultats confirmés.
+- RET-21 : Aucune validation automatique de la rencontre.
+- RET-22 : Retour au nœud d'origine accessible ou, à défaut, utilisation d'une autre sortie réelle et accessible.
+- RET-23 : Franchissement conditionné par les obstacles réels.
+- RET-24 : Utilisation des itinéraires alternatifs accessibles.
+- RET-25 : Utilisation des passages secrets accessibles.
+- RET-26 : Aucune création artificielle de passage.
+- RET-27 : Persistance et évolution contextuelle des ennemis, y compris lors d'un nouvel affrontement.
+- RET-28 : Aucune réinitialisation artificielle de la carte, de la rencontre ou des états tactiques pertinents.
+- RET-29 : Blocages stratégiques légitimes autorisés.
+- RET-30 : Détection des blocages accidentels à intégrer au validateur existant.
+
+Bloc 12.3 clos en conception. Paramètres, implémentation, tests runtime et contrôle transversal restent ouverts. Les décisions RET-NAV, RET-COLLECTIF, RET-TACT et RET-LIM sont consolidées par ce registre ; aucune extension aux règles de capture ou extraction de captifs. Bloc 12.4 ouvert en lecture seule.
