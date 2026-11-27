@@ -3588,3 +3588,27 @@ MORT et ARCH-12 régissent la mort éventuelle du captif ; fin du combat à réc
 - CAP-C12 : L'état de contention, les ressources engagées et leurs conséquences sont sauvegardés.
 
 CAP-D et CAP-E restent ouverts. Aucun seuil numérique ni catalogue de compétences validé. Aucun test runtime.
+
+
+### Bloc 12.4 — CAP-D : rupture hybride et contextuelle (27 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option D et CAP-D01 à CAP-D16.** Accord explicite : « Je valide l'option D et les seize règles CAP-D01 à CAP-D16. Enregistre-les dans la PR #665, vérifie les contrôles et passe à CAP-E. »
+
+- CAP-D01 : La rupture de contention dépend des circonstances réelles.
+- CAP-D02 : Un captif suffisamment capable peut tenter activement de se libérer.
+- CAP-D03 : Une tentative active ordinaire utilise son unique PA au créneau prévu par l'initiative.
+- CAP-D04 : Une intervention extérieure compatible peut libérer un captif.
+- CAP-D05 : La dégradation ou l'expiration d'une contention peut provoquer sa rupture.
+- CAP-D06 : Chaque contention possède des propriétés adaptées à sa nature.
+- CAP-D07 : Les capacités anatomiques, physiques ou surnaturelles influencent les possibilités de rupture.
+- CAP-D08 : Une rupture peut être certaine, impossible ou probabiliste selon les conditions.
+- CAP-D09 : Aucun tirage universel obligatoire à chaque round.
+- CAP-D10 : Une rupture partielle peut laisser subsister des entraves fonctionnelles.
+- CAP-D11 : Une libération complète ne garantit pas la capacité de reprendre le combat.
+- CAP-D12 : Aucun PA supplémentaire ni tour artificiellement renouvelé.
+- CAP-D13 : Une nouvelle capture de la même créature reste possible sous réserve d'éligibilité.
+- CAP-D14 : Les blessures, équipements, afflictions et historiques pertinents persistent après libération.
+- CAP-D15 : La rupture ne permet pas de contourner les restrictions de fuite volontaire ARCH-05.
+- CAP-D16 : Les tentatives, ruptures et conséquences sont enregistrées sans nouveau tirage au rechargement.
+
+CAP-D03 conserve le créneau d'initiative du captif pour une tentative de libération, sans actions offensives ordinaires tant que la capture reste effective. Coefficients, fréquences et durées ouverts. CAP-E reste ouvert. Aucun test runtime.
