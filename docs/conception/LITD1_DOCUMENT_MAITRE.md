@@ -3568,3 +3568,23 @@ Préséance : INIT, COM, MORT, V7.46–48, V7.51 et V8.3 conservés. CAP-A03 con
 - CAP-B12 : Identité, position, état de capture et conséquences conservés dans la sauvegarde.
 
 MORT et ARCH-12 régissent la mort éventuelle du captif ; fin du combat à réconcilier au bloc 12.5. CAP-C à E ouverts. Aucun test runtime.
+
+
+### Bloc 12.4 — CAP-C : sécurisation hybride (27 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et CAP-C01 à CAP-C12.** Accord explicite : « Je valide l'option C et les douze règles CAP-C01 à CAP-C12. Enregistre-les dans la PR #665, vérifie les contrôles et passe à CAP-D. »
+
+- CAP-C01 : Distinguer capture effective et niveau de sécurisation.
+- CAP-C02 : Une méthode compatible peut assurer simultanément capture et sécurisation.
+- CAP-C03 : Une sécurisation intégrée ne consomme aucun PA supplémentaire.
+- CAP-C04 : Une sécurisation active distincte coûte normalement 1 PA.
+- CAP-C05 : La contention doit être compatible avec la nature et l'anatomie du captif.
+- CAP-C06 : Un autre combattant peut effectuer la sécurisation.
+- CAP-C07 : Un captif insuffisamment sécurisé présente des risques contextuels de rupture.
+- CAP-C08 : Une contention peut être renforcée, dégradée ou rompue selon ses propriétés.
+- CAP-C09 : Le renforcement ne garantit pas une sécurité absolue dans toutes les situations.
+- CAP-C10 : Le joueur peut consulter gratuitement l'état de sécurisation et les risques connus.
+- CAP-C11 : Aucun désarmement, soin ou transport automatique lors de la sécurisation.
+- CAP-C12 : L'état de contention, les ressources engagées et leurs conséquences sont sauvegardés.
+
+CAP-D et CAP-E restent ouverts. Aucun seuil numérique ni catalogue de compétences validé. Aucun test runtime.
