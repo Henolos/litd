@@ -270,3 +270,8 @@ Modèle abstrait exploratoire : 2 états NG+, 5 catégories, 2 états éligibili
 ## MC-007 — Mutations ciblées (27 novembre 2026)
 
 Index de préséance consolidé : e5ad0fe1dbd1f739615e4b3da4d4e7c5a2597fc1. Suite documentaire autonome : docs/conception/audit/capture_mutations.mjs, commit 1d02c7a210bdd9b6155a8cb72a95bfb33f8a61b9. Relecture du fichier et exécution de sa logique équivalente en JavaScript : 8 assertions de référence réussies, 8 mutations détectées (ng, defeat, full, delay, rank, pa, duplicate, transport). Exécution directe Node.js et CI non réalisées ; modèle et assertions conçus ensemble, indépendance non démontrée ; aucun test moteur. Couverture exhaustive du dépôt non démontrée. MC-007 reste ouvert.
+
+
+## MC-007 — Preuves CI vérifiées (27 novembre 2026)
+
+Commit testé 1a5b2e18aef0674fbc4649282b000b2a3f7ddf11 ; CI https://github.com/Henolos/litd/actions/runs/46005655585 ; job quality 140528024867 réussi, godot-smoke réussi, quality-full ignoré selon configuration PR. Archive 15201970923 téléchargée et SHA-256 recalculé conforme : e0df6c983fcaf54e42dcd5b0d482f0aeaf41b557822169625aa0758b73f2e71d. XML analysé : 1473 tests, 0 échec, erreur ou skip ; 16 cas MC-007 identifiés individuellement réussis dont 8 mutations détectées. Deux SyntaxWarning invalid escape sequence dans tools/ci/generate_godot_status.py lignes 154–155, hors périmètre, non corrigés. Séparation physique du modèle et des assertions aux commits a139d30d94f865077f6a7658c95a2a39742b858f et ce0fa593b3872d2505c8b3f680749398225d2a05 ; nouvelle exécution CI nécessaire. Indépendance de conception et couverture exhaustive non démontrées ; aucun test gameplay capture. MC-007 ouvert.
