@@ -3674,3 +3674,31 @@ Audit non clos ; aucun test runtime ni nouvel arbitrage validé. V7.64 original 
 - CAP-F12 : Sauvegarder les états défensifs et leurs conséquences sans duplication ni nouveau tirage.
 
 AUD-CAP-04 résolu en conception ; DEF, CAP, INIT et ARCH-12 restent applicables. Aucun test runtime ni validation technique. AUD-CAP-05 reste ouvert.
+
+
+### Bloc 12.4 — CAP-G : invocations et possessions (27 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option D et CAP-G01 à CAP-G20.** Accord explicite : « Je valide l'option D et les vingt règles CAP-G01 à CAP-G20. Enregistre-les dans la PR #665, vérifie les contrôles et passe à AUD-CAP-06. »
+
+- CAP-G01 : Distinguer capture, invocation, contrôle et possession.
+- CAP-G02 : Évaluer individuellement l'éligibilité de chaque entité à la capture.
+- CAP-G03 : Respecter intégralement les restrictions ARCH-07.
+- CAP-G04 : La capture d'un invocateur n'entraîne pas automatiquement celle de ses invocations.
+- CAP-G05 : La capture d'une invocation n'entraîne pas automatiquement celle de son invocateur.
+- CAP-G06 : Le maintien d'un lien de contrôle dépend de ses propriétés et des capacités réelles des entités concernées.
+- CAP-G07 : Un captif ne peut pas contourner ses restrictions offensives en donnant de nouveaux ordres à une invocation.
+- CAP-G08 : Les ordres antérieurs peuvent persister lorsque les propriétés du contrôle le permettent.
+- CAP-G09 : Les invocations semi-autonomes peuvent poursuivre leurs comportements compatibles.
+- CAP-G10 : Les invocations indépendantes conservent leurs capacités d'action propres.
+- CAP-G11 : Une manifestation temporaire peut disparaître lorsque ses conditions de maintien ne sont plus satisfaites.
+- CAP-G12 : Distinguer disparition, révocation, libération, capture et mort définitive.
+- CAP-G13 : La capture d'un corps possédé ne garantit pas celle de l'entité qui le possède.
+- CAP-G14 : Une capture simultanée du corps et de l'entité exige une méthode compatible et une éligibilité vérifiée pour chacun.
+- CAP-G15 : Une rupture de possession peut intervenir selon les propriétés du lien et de la méthode employée.
+- CAP-G16 : Aucun renouvellement artificiel des PA, des tours ou des durées de contrôle.
+- CAP-G17 : Aucun effacement des blessures, afflictions ou états persistants lors d'un changement de contrôle.
+- CAP-G18 : Conserver la responsabilité causale des actions conformément à ARCH-12.5.
+- CAP-G19 : Aucun recrutement automatique d'une invocation par le seul recrutement de son maître.
+- CAP-G20 : Sauvegarder les identités, liens, états, captures et conséquences sans duplication ni nouveau tirage au rechargement.
+
+AUD-CAP-05 résolu en conception ; INV, ARCH-07, ARCH-12.5, CAP, INIT et V8.3 restent applicables. Aucun test runtime ni validation technique. AUD-CAP-06 reste ouvert.
