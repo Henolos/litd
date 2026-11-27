@@ -3732,3 +3732,31 @@ AUD-CAP-05 résolu en conception ; INV, ARCH-07, ARCH-12.5, CAP, INIT et V8.3 re
 **Audit :** AUD-CAP-06 : absence de transfert automatique lors de retraite validée ; proposition CAP-H non validée abandonnée pour le transport pendant retraite, sort local des captifs à arbitrer séparément. AUD-CAP-07 : hors périmètre pour perte de capacité de transport en exploration ; ne pas réintroduire ce système. AUD-CAP-08 : bloc 12.5 doit définir la victoire et l'ordre de résolution des évasions, effets critiques et transfert, sans anticiper cet arbitrage. AUD-CAP-02 réserve sur déclencheur du resserrement conservée. Aucun nouveau choix sur saturation du hub, mort simultanée, devenir local après retraite/défaite ou mécanisme narratif de transfert.
 
 Contrôles à réaliser : victoire avec zéro/un/plusieurs captifs, évasion avant victoire, retraite/défaite/Game Over sans transfert automatique, persistance de possession et état, restriction NG+, reprise transactionnelle sans duplication, saturation du hub et ordre de fin de combat après arbitrage. Aucun test runtime ni assurance indépendante MC-007 exécutés.
+
+
+### Bloc 12.4 — CAP-J : accueil et détention au hub (27 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option D et CAP-J01 à CAP-J20.** Accord explicite : « Je valide l'option D et les vingt règles CAP-J01 à CAP-J20. Enregistre-les dans la PR #665, vérifie les contrôles et poursuis les arbitrages restants. »
+
+- CAP-J01 : Tous les captifs encore détenus après une victoire sont transférés au hub.
+- CAP-J02 : Aucune saturation des installations ne bloque leur transfert.
+- CAP-J03 : Distinguer accueil, détention spécialisée et réserves de combattants.
+- CAP-J04 : La capacité d'accueil ne possède aucune limite bloquante.
+- CAP-J05 : Les installations spécialisées possèdent une capacité limitée et évolutive.
+- CAP-J06 : Adapter les installations à la nature des créatures.
+- CAP-J07 : Prévoir un accueil provisoire compatible lorsque les installations sont saturées.
+- CAP-J08 : Aucun abandon ou décès automatique pour manque de place.
+- CAP-J09 : Aucun remplacement obligatoire d'un captif existant.
+- CAP-J10 : Le délai de recrutement commence après l'arrivée effective au hub.
+- CAP-J11 : L'accueil provisoire ne suspend pas la progression normale du recrutement.
+- CAP-J12 : Les installations spécialisées peuvent accélérer le recrutement selon leurs propriétés.
+- CAP-J13 : Respecter le délai maximal fini prévu par V7.69.
+- CAP-J14 : Les améliorations du hub peuvent augmenter les capacités spécialisées.
+- CAP-J15 : Le joueur peut réaffecter les captifs aux installations compatibles.
+- CAP-J16 : Les soins et recherches restent soumis à leurs règles propres.
+- CAP-J17 : Informer le joueur des capacités, occupations et délais de recrutement.
+- CAP-J18 : Conserver les possibilités volontaires de libération ou de remise à la recherche.
+- CAP-J19 : Les capacités des réserves de combattants restent distinctes des capacités de détention.
+- CAP-J20 : Sauvegarder les arrivées, affectations et progressions sans duplication ni nouveau tirage.
+
+Préséance : CAP-HUB, V7.59/60/69 et V8.3 réconciliés ; saturation du hub résolue en conception par accueil non bloquant, sans réintroduire le transport. Paramètres et modalités matérielles ouverts. CAP-I non validé ; AUD-CAP-02 et AUD-CAP-08 restent ouverts. Aucun test runtime ni assurance indépendante MC-007.
