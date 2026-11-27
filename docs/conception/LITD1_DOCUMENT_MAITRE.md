@@ -3760,3 +3760,27 @@ Contrôles à réaliser : victoire avec zéro/un/plusieurs captifs, évasion ava
 - CAP-J20 : Sauvegarder les arrivées, affectations et progressions sans duplication ni nouveau tirage.
 
 Préséance : CAP-HUB, V7.59/60/69 et V8.3 réconciliés ; saturation du hub résolue en conception par accueil non bloquant, sans réintroduire le transport. Paramètres et modalités matérielles ouverts. CAP-I non validé ; AUD-CAP-02 et AUD-CAP-08 restent ouverts. Aucun test runtime ni assurance indépendante MC-007.
+
+
+### Bloc 12.4 — CAP-I : devenir local des captifs (27 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option D et CAP-I01 à CAP-I16.** Accord explicite : « Je valide l'option D et les seize règles CAP-I01 à CAP-I16 ainsi que l'option D et les douze règles CAP-K01 à CAP-K12. Enregistre les décisions sélectionnées dans la PR #665, vérifie les contrôles et poursuis l'audit transversal du bloc 12.4. »
+
+- CAP-I01 : Aucun transfert automatique des captifs après retraite, défaite ou Game Over.
+- CAP-I02 : Les captifs non transférés restent initialement sur le lieu du combat.
+- CAP-I03 : Aucun abandon ne provoque automatiquement une libération.
+- CAP-I04 : Aucun abandon ne provoque automatiquement un décès.
+- CAP-I05 : Les contentions encore fonctionnelles restent applicables.
+- CAP-I06 : Une évasion reste possible selon les propriétés réelles de la contention et du captif.
+- CAP-I07 : Une intervention extérieure compatible peut libérer un captif.
+- CAP-I08 : Les blessures, afflictions et états critiques restent soumis à leurs règles propres.
+- CAP-I09 : Les équipements restent soumis aux règles de possession réelle.
+- CAP-I10 : Informer le joueur avant une retraite volontaire que les captifs ne seront pas transférés au hub.
+- CAP-I11 : Aucun recrutement déclenché par la seule capture suivie d'une retraite ou d'une défaite.
+- CAP-I12 : Une créature retrouvée conserve son identité, son historique et ses particularités persistantes.
+- CAP-I13 : Les évolutions hors combat sont résolues aux événements et transitions pertinents, sans simulation continue obligatoire.
+- CAP-I14 : Une nouvelle capture reste possible si les conditions d'éligibilité sont satisfaites.
+- CAP-I15 : Les Némésis conservent leurs règles spécifiques de persistance et d'évolution.
+- CAP-I16 : Sauvegarder les états, événements et conséquences sans duplication, résurrection artificielle ni nouveau tirage au rechargement.
+
+AUD-CAP-06 résolu en conception ; CAP-HUB, RET, ARCH-05/06/07/09 et V8.3 restent applicables. CAP-K approuvé par le même accord mais texte exact à retrouver avant transcription. Aucun test runtime ni assurance indépendante.
