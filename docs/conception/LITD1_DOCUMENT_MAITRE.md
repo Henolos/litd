@@ -3501,3 +3501,14 @@ Réconciliation : RET-COLLECTIF-01, RET-NAV-01 à 04 et RET-TACT-01 à 05 conser
 - RET-30 : Détection des blocages accidentels à intégrer au validateur existant.
 
 Bloc 12.3 clos en conception. Paramètres, implémentation, tests runtime et contrôle transversal restent ouverts. Les décisions RET-NAV, RET-COLLECTIF, RET-TACT et RET-LIM sont consolidées par ce registre ; aucune extension aux règles de capture ou extraction de captifs. Bloc 12.4 ouvert en lecture seule.
+
+
+## REFONTE-COMP-01 — Bloc 12.4 — Registre de suivi documentaire (27 novembre 2026)
+
+Chantier ouvert : réconciliation des validations historiques de capture, contention, extraction et recrutement. Aucun nouvel arbitrage de gameplay validé par cette ouverture.
+
+- Socle : PR #664 fusionnée, commit 89c1926e979447203f2b4ac5d8a8489e6f30410f ; identité du document fusionné vérifiée et 250 identifiants INIT à RET retrouvés. Les abrogations explicites restent applicables.
+- À réconcilier : V7.46–V7.69 pertinentes, ARCH-05/07/09/12, bloc 12.2 et RET. Vérifier les textes originaux, leur préséance et leur présence effective dans main ou une PR.
+- À auditer : décisions explicites de la conversation, notamment abandon des anciens catalogues de classes, compétences, armes et armures. Ne restaurer aucun ancien développement.
+- Traçabilité : texte de validation, date, identifiant, fichier, commit, PR, contrôles et éventuel remplacement. Les preuves manquantes restent signalées ; aucune exhaustivité revendiquée.
+- Benchmark et arbitrages restants à terminer avant validation. Aucun changement moteur, aucun test runtime, aucune fusion de ce bloc autorisée à ce stade.
