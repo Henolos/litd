@@ -3654,3 +3654,23 @@ Clarifications documentaires, sans nouvel arbitrage :
 Arbitrages ouverts, non validés : AUD-CAP-04 (défenses préparées et interceptions, DEF-02/04/11 à 15/18), AUD-CAP-05 (liens d'invocation et possession, INV-01/11 à 20 et ARCH-12.5), AUD-CAP-07 (perte de capacité, CAP-E05 à E07/E13). AUD-CAP-08 : dépendance explicite du bloc 12.5, conditions de fin de combat lorsque le dernier hostile est capturé et susceptible de se libérer. Aucun choix anticipé.
 
 Audit non clos ; aucun test runtime ni nouvel arbitrage validé. V7.64 original et conformité verbatim des décisions restent à vérifier.
+
+
+### Bloc 12.4 — CAP-F : défenses contextuelles (27 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option D et CAP-F01 à CAP-F12.** Accord explicite : « Je valide l'option D et les douze règles CAP-F01 à CAP-F12. Enregistre-les dans la PR #665, vérifie les contrôles et passe à AUD-CAP-05. »
+
+- CAP-F01 : Distinguer les défenses passives et actives.
+- CAP-F02 : Conserver les protections passives encore fonctionnelles.
+- CAP-F03 : La capture n'annule pas systématiquement les défenses préparées.
+- CAP-F04 : Vérifier leur compatibilité au moment du déclenchement.
+- CAP-F05 : Prendre en compte les blessures, amputations et entraves.
+- CAP-F06 : Interdire les interceptions physiques incompatibles avec la contention.
+- CAP-F07 : Autoriser les protections à distance encore fonctionnelles selon leurs propriétés.
+- CAP-F08 : Interdire tout déclenchement offensif ordinaire du captif.
+- CAP-F09 : Ne rembourser aucun PA déjà dépensé pour une préparation devenue inutilisable.
+- CAP-F10 : Respecter les durées et limites initiales des préparations.
+- CAP-F11 : Une libération ne renouvelle aucune préparation expirée ni aucun PA.
+- CAP-F12 : Sauvegarder les états défensifs et leurs conséquences sans duplication ni nouveau tirage.
+
+AUD-CAP-04 résolu en conception ; DEF, CAP, INIT et ARCH-12 restent applicables. Aucun test runtime ni validation technique. AUD-CAP-05 reste ouvert.
