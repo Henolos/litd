@@ -3612,3 +3612,31 @@ CAP-D et CAP-E restent ouverts. Aucun seuil numérique ni catalogue de compéten
 - CAP-D16 : Les tentatives, ruptures et conséquences sont enregistrées sans nouveau tirage au rechargement.
 
 CAP-D03 conserve le créneau d'initiative du captif pour une tentative de libération, sans actions offensives ordinaires tant que la capture reste effective. Coefficients, fréquences et durées ouverts. CAP-E reste ouvert. Aucun test runtime.
+
+
+### Bloc 12.4 — CAP-E : transport contextualisé (27 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option D et CAP-E01 à CAP-E20.** Accord explicite : « Je valide l'option D et les vingt règles CAP-E01 à CAP-E20. Enregistre-les dans la PR #665, vérifie les contrôles et lance l'audit transversal complet du bloc 12.4. »
+
+- CAP-E01 : Le transport des captifs utilise une capacité distincte de l'inventaire.
+- CAP-E02 : Chaque captif mobilise une capacité adaptée à sa nature et sa morphologie.
+- CAP-E03 : Les moyens de transport doivent être compatibles avec le captif.
+- CAP-E04 : La capacité disponible est consultable avant engagement d'une capture lorsque les informations nécessaires sont connues.
+- CAP-E05 : Une capacité insuffisante ne rend pas automatiquement la capture impossible, mais peut empêcher le transport.
+- CAP-E06 : Aucun dépassement artificiel de la capacité de transport.
+- CAP-E07 : Le joueur peut libérer ou abandonner volontairement un captif pour libérer de la capacité.
+- CAP-E08 : Les captifs transportés n'occupent pas les quatre places des combattants actifs.
+- CAP-E09 : La compagnie peut poursuivre son expédition avec des captifs.
+- CAP-E10 : Les captifs restent exposés aux conséquences pertinentes des rencontres.
+- CAP-E11 : Les risques de transport dépendent de la contention, de l'état du captif et des événements rencontrés.
+- CAP-E12 : Les incidents sont évalués lors de transitions ou d'événements pertinents, sans simulation continue obligatoire.
+- CAP-E13 : Les incidents peuvent affecter la contention, l'intégrité du captif ou les moyens de transport.
+- CAP-E14 : Aucun tirage d'incident déclenché par la simple consultation de la carte.
+- CAP-E15 : Le joueur est informé des risques connus et des conséquences effectivement survenues.
+- CAP-E16 : Une retraite du combat ne garantit pas la conservation de tous les captifs.
+- CAP-E17 : Un Game Over ne transfère pas automatiquement les captifs à la Guilde.
+- CAP-E18 : L'arrivée effective d'un captif éligible dans un état compatible déclenche le processus prévu par V7.60 et V7.69, s'il est conservé pour recrutement.
+- CAP-E19 : Les captifs perdus ou libérés conservent leur identité et leur historique, conformément aux règles de persistance.
+- CAP-E20 : Les incidents, transferts et changements de possession sont sauvegardés sans duplication ni nouveau tirage.
+
+Capacité initiale, équipements, coûts, probabilités et conservation lors de retraite ouverts. Bloc 12.2 reste applicable aux héros. Aucun test runtime. Audit transversal à effectuer.
