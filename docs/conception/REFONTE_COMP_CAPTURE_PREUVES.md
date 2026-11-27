@@ -265,3 +265,8 @@ Révision inspectée : bc686a79fcb0ac2cd89a4b3db5a5b8d362abfea6. CAP-J : 7d749b6
 Relecture ciblée : anciennes mentions de transport aux lignes 2617, 2726, 3526, 3528 ; réserves historiques aux lignes 3714 et 3732. Préséance CAP-HUB/I/J/K applicable ; renvois locaux à consolider. ARCH-07 : mini-boss, Némésis et boss capture/recrutement NG+ uniquement, éligibilité individuelle maintenue. Recherche indexée branche principale (captifs transport, ARCH-07, CAP-HUB) sans résultat ; couverture dépôt non démontrée.
 
 Modèle abstrait exploratoire : 2 états NG+, 5 catégories, 2 états éligibilité, 4 issues, 2 états saturation, soit 160 combinaisons ; zéro violation des invariants encodés. Modèle construit à partir des règles, non indépendant, non connecté au moteur ; ne constitue ni preuve d'implémentation ni validation MC-007. Aucun test runtime. AUD-CAP-08 réservé au bloc 12.5. Clôture non autorisée ; audit exhaustif et contrôles indépendants reproductibles restent ouverts.
+
+
+## MC-007 — Mutations ciblées (27 novembre 2026)
+
+Index de préséance consolidé : e5ad0fe1dbd1f739615e4b3da4d4e7c5a2597fc1. Suite documentaire autonome : docs/conception/audit/capture_mutations.mjs, commit 1d02c7a210bdd9b6155a8cb72a95bfb33f8a61b9. Relecture du fichier et exécution de sa logique équivalente en JavaScript : 8 assertions de référence réussies, 8 mutations détectées (ng, defeat, full, delay, rank, pa, duplicate, transport). Exécution directe Node.js et CI non réalisées ; modèle et assertions conçus ensemble, indépendance non démontrée ; aucun test moteur. Couverture exhaustive du dépôt non démontrée. MC-007 reste ouvert.
