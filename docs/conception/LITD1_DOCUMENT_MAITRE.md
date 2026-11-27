@@ -3702,3 +3702,33 @@ AUD-CAP-04 résolu en conception ; DEF, CAP, INIT et ARCH-12 restent applicables
 - CAP-G20 : Sauvegarder les identités, liens, états, captures et conséquences sans duplication ni nouveau tirage au rechargement.
 
 AUD-CAP-05 résolu en conception ; INV, ARCH-07, ARCH-12.5, CAP, INIT et V8.3 restent applicables. Aucun test runtime ni validation technique. AUD-CAP-06 reste ouvert.
+
+
+### Bloc 12.4 — CAP-HUB : transfert automatique après victoire (27 novembre 2026)
+
+**VALIDÉ EN CONCEPTION — préséance normative sur toute clause incompatible antérieure.** Accords directs : « Tous les captifs sont envoyés au hub à la fin du combat » puis « Je valide l'option A pour le transfert automatique des captifs au hub. Réconcilie toutes les règles concernées. »
+
+- Tous les captifs encore détenus à la fin d'un combat victorieux sont automatiquement transférés au hub (Guilde). Aucun transfert automatique lors d'une retraite, défaite ou Game Over.
+- Aucun transport de captifs par la compagnie entre combats ; aucune capacité, équipement, surveillance ou incident de transport en exploration requis pour ce transfert. La compagnie peut poursuivre l'expédition sans retour obligatoire au hub.
+- Capture, sécurisation, évasion, blessures, défenses et liens de contrôle restent régis par CAP-A/B/C/D/F/G jusqu'au transfert. CAP-C11 reste applicable à la sécurisation elle-même.
+- Le transfert ne constitue pas un recrutement immédiat. ARCH-07, V7.59/60/69, conditions de détention au hub, prise en charge et délai de recrutement restent applicables ; capacité de détention au hub distincte de l'ancienne capacité de transport. Articulation d'une éventuelle saturation du hub avec le transfert de tous les captifs à préciser, sans exception implicite.
+- ARCH-09 : équipements suivant leur détenteur réel ; aucun transfert automatique au coffre, aucun transfert des objets déjà retirés. V8.3 : transfert transactionnel exactement une fois, sans duplication, nouveau tirage, guérison ou résurrection implicite. Bloc 12.2 et RET restent inchangés pour les héros ; aucune extension de ce transfert à ceux-ci ou au butin.
+
+**Table de préséance CAP-E (texte historique conservé, non applicable en cas de contradiction) :**
+- E01–E06 : remplacées pour la capacité et les moyens de transport des captifs.
+- E07 : libération/abandon volontaire conservé selon les règles applicables ; motif de libération de capacité de transport supprimé.
+- E08 : exclusion des captifs des quatre combattants actifs conservée, indépendamment du transport.
+- E09 : poursuite d'expédition conservée, sans captifs transportés.
+- E10–E13 : supprimées pour les incidents et l'exposition des captifs en exploration après victoire ; effets et ruptures pendant combat conservés selon CAP-B/C/D.
+- E14 : aucun tirage à la consultation de carte conservé ; aucun incident de transport en exploration à tirer.
+- E15 : information sur risques et conséquences applicables conservée.
+- E16 : remplacée par absence de transfert automatique lors de retraite ; devenir local précis des captifs restant à déterminer.
+- E17 : conservée, étendue explicitement à la défaite et à la retraite.
+- E18 : arrivée effective par transfert victorieux ; recrutement éligible selon V7.60/69, sans intégration immédiate.
+- E19–E20 : conservées pour identité, historique et persistance transactionnelle.
+
+**Préséance historique :** V7.58 règles 1–4, 6, 8–11 et 14 révisées uniquement pour le transport en exploration, l'interdiction de transfert automatique après victoire et les paramètres associés ; contention tactique, information, libération, identité et conséquences compatibles conservées. Règles 5, 7, 12, 13 conservées (retour des héros distinct ; pas de transfert automatique en défaite/Game Over). V7.60/69 : extraction éligible satisfaite par arrivée effective au hub après victoire, sans risque de transport en exploration. Les références antérieures à V7.58, notamment ARCH-07/09/10, et la synthèse initiale du bloc 12.4 sont historiques pour leurs clauses contraires ; possession réelle et restrictions NG+ inchangées.
+
+**Audit :** AUD-CAP-06 : absence de transfert automatique lors de retraite validée ; proposition CAP-H non validée abandonnée pour le transport pendant retraite, sort local des captifs à arbitrer séparément. AUD-CAP-07 : hors périmètre pour perte de capacité de transport en exploration ; ne pas réintroduire ce système. AUD-CAP-08 : bloc 12.5 doit définir la victoire et l'ordre de résolution des évasions, effets critiques et transfert, sans anticiper cet arbitrage. AUD-CAP-02 réserve sur déclencheur du resserrement conservée. Aucun nouveau choix sur saturation du hub, mort simultanée, devenir local après retraite/défaite ou mécanisme narratif de transfert.
+
+Contrôles à réaliser : victoire avec zéro/un/plusieurs captifs, évasion avant victoire, retraite/défaite/Game Over sans transfert automatique, persistance de possession et état, restriction NG+, reprise transactionnelle sans duplication, saturation du hub et ordre de fin de combat après arbitrage. Aucun test runtime ni assurance indépendante MC-007 exécutés.
