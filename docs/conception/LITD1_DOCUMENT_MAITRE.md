@@ -4110,6 +4110,6 @@ Déductions documentaires des validations existantes ; aucune modification des 1
 - PER, ECO, DEP, RES : les lieux, territoires, identités et conséquences persistantes restent applicables à la carte à nœuds et à ses connexions accessibles ; aucune obligation de déplacement libre 3D.
 - STR et EVT : les transformations des lieux et structures peuvent affecter l'accessibilité des nœuds et connexions, sous ARCH-03, V7.38 et RET-NAV-01 à 04 ; aucun passage artificiel.
 - SIM : les quatre niveaux décrivent le détail logique de simulation, non un rendu spatial 3D ; aucune obligation de simulation physique continue.
-- TEM-02 : texte validé conservé ; le traitement du temps pendant la consultation et le choix d'itinéraire sur la carte reste à préciser explicitement avant implémentation. Ne pas déduire une horloge en temps réel pendant la réflexion, ni un coût fixe par nœud sans arbitrage.
+- **Articulation TEM-02** : texte validé conservé ; le traitement du temps pendant la consultation et le choix d'itinéraire sur la carte reste à préciser explicitement avant implémentation. Ne pas déduire une horloge en temps réel pendant la réflexion, ni un coût fixe par nœud sans arbitrage.
 
 Les 160 règles restent inchangées. Ces articulations documentaires ne constituent pas une validation de nouveaux mécanismes. BOU-A doit partir de cette architecture ; aucun développement moteur autorisé par cette correction.
