@@ -4058,3 +4058,31 @@ Complète ARCH-03, V7.43, V7.29, V7.38 et PER. Aucun test runtime ni autorisatio
 - EVT-20 : Les événements, leurs états, leurs relations causales et leurs conséquences sont sauvegardés de manière atomique, sans duplication ni nouveau tirage au rechargement.
 
 Complète ARCH-11, ARCH-12, V7.38, V7.43 et PER/TEM/ECO/DEP/RES/STR. Fréquences, probabilités, priorités détaillées et limites numériques ouvertes. Aucun test runtime ni autorisation d'implémentation.
+
+
+## Simulation hors présence du joueur — SIM (28 novembre 2026)
+
+**Option C explicitement validée par l'utilisateur : simulation hybride événementielle à plusieurs niveaux de détail.** Quatre niveaux : N1 simulation locale active (déplacements, combats, interactions et comportements détaillés) ; N2 simulation locale simplifiée (zones proches ou directement liées, interactions et déplacements pertinents) ; N3 simulation régionale événementielle (populations, factions, Némésis, ressources et transformations) ; N4 simulation mondiale abstraite (événements majeurs, échéances et conséquences interrégionales sans calcul individuel permanent).
+
+- SIM-01 : Le monde utilise plusieurs niveaux de détail de simulation.
+- SIM-02 : La zone occupée par le joueur bénéficie d'une simulation locale détaillée.
+- SIM-03 : Les zones proches ou directement liées peuvent utiliser une simulation simplifiée.
+- SIM-04 : Les régions éloignées évoluent principalement par simulation événementielle.
+- SIM-05 : Les évolutions mondiales peuvent être représentées de manière abstraite.
+- SIM-06 : Les niveaux de simulation dépendent de la proximité, de la pertinence et de l'importance des événements.
+- SIM-07 : Le changement de niveau de simulation ne modifie pas arbitrairement l'état réel du monde.
+- SIM-08 : Les identités et conséquences persistantes sont conservées à tous les niveaux.
+- SIM-09 : Les évolutions différées respectent l'horloge mondiale et les règles TEM.
+- SIM-10 : Les événements hors présence du joueur sont résolus selon leurs échéances et dépendances causales.
+- SIM-11 : Les événements déjà résolus ne sont jamais recalculés comme de nouveaux événements.
+- SIM-12 : Une zone est actualisée avant que le joueur puisse interagir avec son nouvel état.
+- SIM-13 : Les interactions entre régions respectent les capacités, déplacements et contraintes territoriales.
+- SIM-14 : Les personnages uniques et Némésis conservent leurs identités, états et positions cohérentes.
+- SIM-15 : Les populations ordinaires peuvent être représentées collectivement lorsque leurs identités individuelles ne sont pas nécessaires.
+- SIM-16 : Les évolutions différées peuvent être traitées par lots sans modifier leurs conséquences causales.
+- SIM-17 : La simulation possède des limites de calcul empêchant les blocages et les chaînes infinies.
+- SIM-18 : Les changements de niveau de simulation ne peuvent pas être exploités pour provoquer des renouvellements artificiels.
+- SIM-19 : En cas d'échec de résolution, le système préserve le dernier état valide et applique une procédure de reprise sécurisée.
+- SIM-20 : Les états, échéances, événements et transitions de simulation sont sauvegardés sans perte, duplication ni nouveau tirage des résultats confirmés.
+
+Budgets processeur, fréquences et seuils ouverts. Aucun test runtime ni autorisation d'implémentation.
