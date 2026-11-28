@@ -4030,3 +4030,31 @@ Complète V5.0, V5.1, ARCH-02, PER, TEM, ECO et DEP. Durées, quantités, probab
 - STR-20 : Les transformations et leurs conséquences sont sauvegardées de manière atomique, sans duplication, annulation artificielle ni nouveau tirage au rechargement.
 
 Complète ARCH-03, V7.43, V7.29, V7.38 et PER. Aucun test runtime ni autorisation d'implémentation.
+
+
+## Évolution des événements du monde — EVT (28 novembre 2026)
+
+**Option C explicitement validée par l'utilisateur : événements scénarisés, contextuels et émergents sous contraintes.** Huit familles validées : politiques et territoriaux ; écologiques ; naturels ; surnaturels ; économiques ; individuels ; narratifs ; consécutifs aux actions du joueur.
+
+- EVT-01 : Chaque événement possède une identité, une catégorie et une origine identifiable.
+- EVT-02 : Les événements peuvent être scénarisés, contextuels ou émergents.
+- EVT-03 : Chaque événement possède des conditions de déclenchement propres.
+- EVT-04 : Le déclenchement respecte l'état effectif du monde.
+- EVT-05 : Les événements temporisés utilisent les horloges définies par TEM.
+- EVT-06 : Les événements peuvent se produire indépendamment de la présence du joueur.
+- EVT-07 : Les actions du joueur peuvent déclencher, empêcher ou modifier des événements.
+- EVT-08 : Les événements peuvent provoquer d'autres événements selon des relations causales identifiables.
+- EVT-09 : Les événements incompatibles sont arbitrés selon leurs dépendances et contraintes.
+- EVT-10 : Les événements peuvent être locaux, régionaux, interrégionaux ou mondiaux.
+- EVT-11 : Les conséquences peuvent être immédiates, différées, temporaires ou permanentes.
+- EVT-12 : Les événements peuvent évoluer, être interrompus ou prendre fin selon leurs conditions propres.
+- EVT-13 : Les événements uniques ne peuvent pas être répétés artificiellement.
+- EVT-14 : Les événements récurrents respectent leurs conditions de renouvellement.
+- EVT-15 : Les conséquences narratives et les objectifs obligatoires respectent les contraintes de V7.38.
+- EVT-16 : Les événements respectent les règles particulières des Némésis, boss et personnages uniques.
+- EVT-17 : Les chaînes d'événements possèdent des limites empêchant les boucles infinies et les répétitions artificielles.
+- EVT-18 : Le joueur découvre les événements selon ses observations, renseignements et connaissances accessibles.
+- EVT-19 : Les événements significatifs et leurs conséquences conservent une trace historique consultable selon les connaissances du joueur.
+- EVT-20 : Les événements, leurs états, leurs relations causales et leurs conséquences sont sauvegardés de manière atomique, sans duplication ni nouveau tirage au rechargement.
+
+Complète ARCH-11, ARCH-12, V7.38, V7.43 et PER/TEM/ECO/DEP/RES/STR. Fréquences, probabilités, priorités détaillées et limites numériques ouvertes. Aucun test runtime ni autorisation d'implémentation.
