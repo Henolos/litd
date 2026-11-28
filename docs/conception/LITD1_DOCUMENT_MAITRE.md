@@ -3814,3 +3814,23 @@ Fondements : CAP-B01/02/03/12, FORM-07/09/10/13–19, CAP-D10/12/16, INIT-17/20 
 ### Index de lecture consolidé du bloc 12.4 (27 novembre 2026)
 
 Les clauses historiques de transport dans ARCH-07 (extension capture), ARCH-09 (réconciliation V7.58), et la synthèse initiale du bloc 12.4 ne sont plus normatives pour le transport en exploration : appliquer CAP-HUB et CAP-J. Les restrictions NG+ et la possession réelle demeurent inchangées. Les réserves de CAP-HUB sur la saturation, le devenir local et le resserrement sont résolues respectivement par CAP-J, CAP-I et CAP-K. Les autres réserves, notamment AUD-CAP-08 et l'ordre de résolution de fin de combat, restent ouvertes. Aucun nouvel arbitrage.
+
+
+## Règle permanente de gouvernance — Audit borné et obligation de progression (28 novembre 2026)
+
+**Validée par l'utilisateur.** Un audit doit être limité dans le temps, proportionné aux risques et orienté vers une décision. Il ne doit jamais devenir un chantier permanent qui empêche le projet d'avancer. Cette règle complète la méthode V2.3 sans affaiblir ses garanties critiques.
+
+1. Définir avant chaque audit son périmètre, ses objectifs, ses critères de réussite et ses conditions de clôture.
+2. Limiter par défaut l'audit à trois cycles : audit initial et identification des anomalies ; correction et vérification ; contrôle final et décision de clôture.
+3. Ne jamais répéter un contrôle réussi sans modification pertinente, nouvelle preuve ou risque identifié.
+4. Chaque contrôle supplémentaire doit apporter une garantie nouvelle, mesurable et utile.
+5. Classer les anomalies selon leur gravité et leur caractère bloquant.
+6. Ne pas empêcher la progression pour des réserves non bloquantes ; les consigner avec leurs conditions de résolution.
+7. Si une anomalie bloquante persiste après trois cycles, changer de méthode, isoler le problème ou solliciter un arbitrage motivé.
+8. Ne jamais prolonger automatiquement un audit sans justification documentée.
+9. Clôturer dès que les critères d'acceptation sont satisfaits, sans exiger une certitude absolue inaccessible.
+10. Ne rouvrir un audit clos qu'en présence d'une modification significative, d'une nouvelle anomalie ou d'une preuve contradictoire.
+11. Ne jamais contourner une garantie critique de sécurité, d'intégrité, de sauvegarde ou de conformité pour respecter la limite des trois cycles.
+12. Toute clôture débouche sur une décision explicite et la prochaine étape productive.
+
+Application immédiate : dernier cycle documentaire du bloc 12.4 ; consigner les réserves techniques non bloquantes séparément, décider de MC-007 sur preuves, puis poursuivre le bloc 12.5. Cette règle ne constitue pas une clôture automatique de MC-007 ni une validation runtime.
