@@ -3918,3 +3918,31 @@ Validation de conception uniquement. Aucun barème temporel, algorithme ou test 
 - TEM-20 : Aucun rechargement ne provoque d'avancement temporel supplémentaire ni de nouveau tirage.
 
 Complète PER, V5.1 et ARCH-02. Durées et coefficients ouverts ; aucun test runtime ni autorisation d'implémentation.
+
+
+## Évolution écologique et repeuplement — ECO (28 novembre 2026)
+
+**Option C explicitement validée par l'utilisateur : évolution écologique et territoriale hybride.**
+
+- ECO-01 : Chaque région possède des populations compatibles avec son environnement.
+- ECO-02 : Chaque espèce possède des conditions d'habitat propres.
+- ECO-03 : Les populations peuvent évoluer selon les ressources et les dangers disponibles.
+- ECO-04 : Les relations de prédation, compétition, coopération et parasitisme peuvent influencer les populations.
+- ECO-05 : Les créatures peuvent migrer entre territoires accessibles et compatibles.
+- ECO-06 : Une zone libérée peut être colonisée par une autre population.
+- ECO-07 : Aucun ennemi mort définitivement ne réapparaît sous la même identité par simple renouvellement.
+- ECO-08 : Les nouveaux individus possèdent une identité distincte.
+- ECO-09 : Les populations peuvent diminuer, augmenter ou disparaître localement.
+- ECO-10 : La destruction d'un repaire peut réduire durablement la présence d'une population.
+- ECO-11 : Les repaires peuvent être reconstruits ou remplacés lorsque les conditions le permettent.
+- ECO-12 : Les factions intelligentes peuvent conquérir, défendre ou abandonner des territoires.
+- ECO-13 : Les créatures surnaturelles suivent leurs propriétés propres, sans obligation biologique universelle.
+- ECO-14 : Les événements majeurs peuvent modifier durablement les équilibres régionaux.
+- ECO-15 : Les conséquences des actions du joueur influencent les évolutions futures.
+- ECO-16 : Les populations respectent des limites compatibles avec leur environnement et les contraintes de génération.
+- ECO-17 : Les ennemis uniques, boss et Némésis conservent leurs règles particulières.
+- ECO-18 : Les renouvellements respectent les conditions d'ARCH-02, PER et TEM.
+- ECO-19 : Les changements significatifs peuvent être découverts par les observations, indices et connaissances accessibles au joueur.
+- ECO-20 : Les évolutions confirmées sont sauvegardées sans duplication ni nouveau tirage au rechargement.
+
+Paramètres numériques, fréquences de migration, densités et modèles propres aux espèces ouverts. Validation de conception uniquement ; aucun test runtime ni autorisation d'implémentation.
