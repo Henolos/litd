@@ -55,7 +55,7 @@ def assert_navigation_contract(text):
             active = line.split("Ancienne exploration")[0]
             assert "carte à nœuds" in active
             assert not re.search(r"exploration (?:libre )?3D", active, re.I)
-    assert "le traitement du temps pendant la consultation et le choix d'itinéraire sur la carte reste à préciser" in text
+    assert "consultation des cartes régionales et internes des donjons et réflexion sur l'itinéraire : temps suspendu" in text
 
 def test_navigation_contract():
     assert_navigation_contract(MASTER.read_text(encoding="utf-8"))
@@ -66,7 +66,7 @@ def test_navigation_contract():
     ("les donjons disposent eux aussi d'une carte interactive à nœuds", "les donjons disposent d'une exploration 3D"),
     ("9. Le brouillard de guerre intégral permet la découverte progressive de la nouvelle configuration.", ""),
     ("10. Les retours sur des nœuds déjà visités conservent les découvertes effectuées pendant l'expédition.", ""),
-    ("le traitement du temps pendant la consultation et le choix d'itinéraire sur la carte reste à préciser", "le temps de réflexion est toujours comptabilisé"),
+    ("consultation des cartes régionales et internes des donjons et réflexion sur l'itinéraire : temps suspendu", "le temps de réflexion est toujours comptabilisé"),
 ])
 def test_navigation_regression_rejected(old, new):
     text = MASTER.read_text(encoding="utf-8")
