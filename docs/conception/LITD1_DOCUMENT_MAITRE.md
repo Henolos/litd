@@ -3946,3 +3946,30 @@ Complète PER, V5.1 et ARCH-02. Durées et coefficients ouverts ; aucun test run
 - ECO-20 : Les évolutions confirmées sont sauvegardées sans duplication ni nouveau tirage au rechargement.
 
 Paramètres numériques, fréquences de migration, densités et modèles propres aux espèces ouverts. Validation de conception uniquement ; aucun test runtime ni autorisation d'implémentation.
+
+
+## Devenir des dépouilles et équipements — DEP (28 novembre 2026)
+
+**Option C explicitement validée par l'utilisateur : évolution contextuelle.** Accord sur les règles présentées DEP-01 à DEP-19 ; présentation interrompue avant DEP-20, non validée.
+
+- DEP-01 : Chaque dépouille conserve une identité liée à l'individu décédé.
+- DEP-02 : La mort définitive reste irréversible, indépendamment du devenir du corps.
+- DEP-03 : La décomposition dépend de la nature physique, biologique ou surnaturelle de la dépouille.
+- DEP-04 : Les conditions environnementales peuvent accélérer, ralentir ou empêcher la décomposition.
+- DEP-05 : Certaines dépouilles peuvent se transformer en ossements ou autres vestiges.
+- DEP-06 : Les créatures compatibles peuvent consommer tout ou partie d'une dépouille.
+- DEP-07 : Les créatures peuvent déplacer des dépouilles selon leurs capacités et comportements.
+- DEP-08 : Les dépouilles des héros ne peuvent pas être rapportées au hub.
+- DEP-09 : Une réanimation hostile ne restaure ni l'identité jouable ni la progression du héros décédé.
+- DEP-10 : La disparition d'une dépouille ne provoque pas automatiquement celle de ses équipements.
+- DEP-11 : Les équipements suivent leur détenteur ou leur emplacement réel.
+- DEP-12 : Les créatures compatibles peuvent piller des équipements accessibles.
+- DEP-13 : Un équipement pillé peut être retrouvé auprès de son nouveau détenteur ou à son emplacement ultérieur.
+- DEP-14 : Les objets peuvent se dégrader selon leurs matériaux, propriétés et conditions environnementales.
+- DEP-15 : Les objets uniques respectent leurs règles spécifiques de conservation et de destruction.
+- DEP-16 : Les vestiges peuvent fournir des indices sur les événements survenus dans la zone.
+- DEP-17 : Les transformations des dépouilles suivent TEM et les événements écologiques admissibles.
+- DEP-18 : Les évolutions hors présence du joueur sont résolues sans simulation permanente obligatoire.
+- DEP-19 : La régénération procédurale respecte les conséquences persistantes
+
+Complète ARCH-09/10, FORM, bloc 12.2, PER, TEM et ECO. Aucun changement moteur ni test runtime.
