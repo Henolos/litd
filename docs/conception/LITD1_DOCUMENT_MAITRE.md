@@ -4002,3 +4002,31 @@ Complète ARCH-09/10, FORM, bloc 12.2, PER, TEM et ECO. Aucun changement moteur 
 - RES-20 : Les quantités, récoltes, échéances et résultats de renouvellement sont sauvegardés de manière atomique, sans duplication ni nouveau tirage au rechargement.
 
 Complète V5.0, V5.1, ARCH-02, PER, TEM, ECO et DEP. Durées, quantités, probabilités et fréquences ouvertes. Aucun test runtime ni autorisation d'implémentation.
+
+
+## Transformations physiques des donjons — STR (28 novembre 2026)
+
+**Option C explicitement validée par l'utilisateur : persistance structurelle contextuelle.**
+
+- STR-01 : Les structures persistantes possèdent une identité distincte de leur position dans la carte procédurale.
+- STR-02 : Les transformations physiques possèdent une cause identifiable.
+- STR-03 : Les transformations peuvent être temporaires ou permanentes.
+- STR-04 : Les portes et mécanismes conservent leur état tant qu'aucun événement compatible ne le modifie.
+- STR-05 : Les structures détruites ne sont pas automatiquement restaurées lors d'une nouvelle expédition.
+- STR-06 : Une structure peut être réparée, reconstruite ou remplacée lorsque les conditions le permettent.
+- STR-07 : Les obstacles physiques peuvent apparaître, disparaître ou évoluer selon le contexte.
+- STR-08 : Les pièges déclenchés conservent leur état réel.
+- STR-09 : Un piège ne peut être réarmé que selon ses propriétés ou une intervention compatible.
+- STR-10 : La découverte d'un passage secret reste distincte de son état d'ouverture.
+- STR-11 : Les connaissances acquises sur les structures et passages sont conservées.
+- STR-12 : Les renseignements géographiques peuvent devenir obsolètes après une transformation.
+- STR-13 : Les factions et créatures peuvent modifier leur environnement selon leurs capacités.
+- STR-14 : Les phénomènes naturels et surnaturels peuvent transformer les structures.
+- STR-15 : Les architectures impossibles et dimensions altérées suivent leurs propriétés spécifiques.
+- STR-16 : La recomposition procédurale respecte les transformations persistantes et leurs conséquences.
+- STR-17 : Les transformations ne doivent pas dupliquer ni supprimer arbitrairement les personnages, dépouilles ou objets persistants.
+- STR-18 : Chaque transformation respecte les contraintes narratives et les contrôles de validité V7.38.
+- STR-19 : Les changements significatifs sont révélés selon les connaissances et observations accessibles au joueur.
+- STR-20 : Les transformations et leurs conséquences sont sauvegardées de manière atomique, sans duplication, annulation artificielle ni nouveau tirage au rechargement.
+
+Complète ARCH-03, V7.43, V7.29, V7.38 et PER. Aucun test runtime ni autorisation d'implémentation.
