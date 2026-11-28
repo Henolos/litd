@@ -203,7 +203,7 @@
 
 ## B. Vision de travail et piliers
 
-**LITD 1** : RPG tactique dark fantasy / dungeon crawler, exploration 3D isométrique en temps réel et combats au tour par tour ; atmosphère sombre orientée Berserk et rendu d’exploration évoquant No Rest for the Wicked. Ces références sont des intentions artistiques, pas des preuves de faisabilité.
+**LITD 1** : RPG tactique dark fantasy / dungeon crawler, exploration par grande carte à nœuds ramifiés, retours et chemins cachés, combats 2D au tour par tour ; atmosphère sombre orientée Berserk. Ancienne exploration 3D isométrique remplacée par la décision n°1 du registre ; aucune obligation de rendu 3D.
 
 **Piliers évoqués** : création des personnages ; gore systémique et conséquences corporelles ; philosophie et psychologie ; profondeur humaine accessible ; narration forte ; interconnexion des jeux ; rémanence de la connaissance. La cohérence narrative est transversale.
 
@@ -278,7 +278,7 @@ LITD 1 est un RPG tactique dark fantasy, dungeon crawler à exploration renouvel
 Ce document rassemble les décisions explicitement retenues dans la discussion récente et les décisions antérieures disponibles dans le contexte de continuité. Il ne constitue ni une preuve d'implémentation, ni un audit du dépôt, ni une validation de gameplay. Les détails numériques non arrêtés sont indiqués comme provisoires.
 
 ## 1. Principes directeurs
-- RPG dungeon crawler dark fantasy exigeant, atmosphère proche de Berserk, exploration 3D isométrique et combats tactiques au tour par tour.
+- RPG dungeon crawler dark fantasy exigeant, atmosphère proche de Berserk, exploration par carte à nœuds ramifiés et combats tactiques 2D au tour par tour.
 - Quatre héros en expédition, rangs R1 à R4 et ciblage anatomique.
 - Difficulté punitive mais non arbitraire ; priorité à la compréhension des conséquences et à la lisibilité.
 - Sept piliers narratifs connus : création des personnages ; gore systémique et conséquences corporelles ; philosophie et psychologie ; profondeur humaine accessible ; narration forte ; interconnexion des jeux ; rémanence de la connaissance. Cohérence narrative transversale.
@@ -1131,7 +1131,7 @@ L'utilisateur valide l'**attaque préventive contre un guet-apens uniquement lor
 ### Arbitrages prioritaires
 1. Coût en points d'action et place de l'attaque d'ouverture dans l'initiative.
 2. Effet concret de la détection sur surprise, formation et initiative.
-3. Modalités de localisation et d'accessibilité en exploration 3D isométrique avant transition vers combat 2D.
+3. Modalités de localisation et d'accessibilité sur la carte à nœuds avant transition vers combat 2D.
 4. Réaction des ennemis à une attaque préventive manquée ou partiellement réussie.
 5. Conditions et coûts de préparation avant engagement ; types de guet-apens contournables.
 6. Effets précis des fumigènes et objets de fuite vendus par le marchand.
@@ -4101,3 +4101,15 @@ Déductions documentaires des validations existantes ; aucune modification des 1
 - REC-PER-07 : CAP-I, CAP-J, FIN-17 et TEM-17 restent applicables : transfert seulement après victoire, recrutement selon ses conditions propres ; aucune progression par simple attente.
 - REC-PER-08 : V7.38 et ARCH-03 restent applicables à STR-16/18 et SIM-19 : nouvelle configuration sans perte de conséquences, contrôle avant utilisation, secours validé ou arrêt sécurisé.
 - REC-PER-09 : V8.3 s'applique à toutes les transitions persistantes ; aucune nouvelle architecture de sauvegarde ni garantie runtime déduite.
+
+
+## Réconciliation architecturale — carte à nœuds (28 novembre 2026)
+
+**Architecture active : exploration par grande carte à nœuds ramifiés, retours et chemins cachés ; combats 2D au tour par tour.** Décision n°1 du registre V8.1 conservé, également référencée comme V8.3 n°1. Toute exploration libre 3D isométrique est exclue du périmètre actif et du prototype BOU. Les références artistiques ou ergonomiques historiques ne rétablissent pas ce système.
+
+- PER, ECO, DEP, RES : les lieux, territoires, identités et conséquences persistantes restent applicables à la carte à nœuds et à ses connexions accessibles ; aucune obligation de déplacement libre 3D.
+- STR et EVT : les transformations des lieux et structures peuvent affecter l'accessibilité des nœuds et connexions, sous ARCH-03, V7.38 et RET-NAV-01 à 04 ; aucun passage artificiel.
+- SIM : les quatre niveaux décrivent le détail logique de simulation, non un rendu spatial 3D ; aucune obligation de simulation physique continue.
+- TEM-02 : texte validé conservé ; le traitement du temps pendant la consultation et le choix d'itinéraire sur la carte reste à préciser explicitement avant implémentation. Ne pas déduire une horloge en temps réel pendant la réflexion, ni un coût fixe par nœud sans arbitrage.
+
+Les 160 règles restent inchangées. Ces articulations documentaires ne constituent pas une validation de nouveaux mécanismes. BOU-A doit partir de cette architecture ; aucun développement moteur autorisé par cette correction.
