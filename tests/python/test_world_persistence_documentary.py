@@ -42,3 +42,34 @@ def test_reconciliation_index():
 def test_mutated_rule_detected():
     changed = BASELINE.replace("Le monde conserve les conséquences réelles", "Le monde efface les conséquences réelles", 1)
     assert rules(changed) != rules(BASELINE)
+
+
+def assert_navigation_contract(text):
+    assert "Exploration par grande carte à nœuds ramifiés, retours et chemins cachés ; remplace la 3D isométrique. Combats 2D conservés." in text
+    assert "les donjons disposent eux aussi d'une carte interactive à nœuds" in text
+    assert "12. Les cartes régionales et les donjons respectent les principes de génération hybride, de sauvegarde et de reprise." in text
+    assert "9. Le brouillard de guerre intégral permet la découverte progressive de la nouvelle configuration." in text
+    assert "10. Les retours sur des nœuds déjà visités conservent les découvertes effectuées pendant l'expédition." in text
+    for line in text.splitlines():
+        if line.startswith("**LITD 1** :") or line.startswith("- RPG dungeon crawler dark fantasy exigeant"):
+            active = line.split("Ancienne exploration")[0]
+            assert "carte à nœuds" in active
+            assert not re.search(r"exploration (?:libre )?3D", active, re.I)
+    assert "le traitement du temps pendant la consultation et le choix d'itinéraire sur la carte reste à préciser" in text
+
+def test_navigation_contract():
+    assert_navigation_contract(MASTER.read_text(encoding="utf-8"))
+
+@pytest.mark.parametrize("old,new", [
+    ("exploration par grande carte à nœuds ramifiés", "exploration 3D isométrique"),
+    ("exploration par carte à nœuds ramifiés", "exploration 3D isométrique"),
+    ("les donjons disposent eux aussi d'une carte interactive à nœuds", "les donjons disposent d'une exploration 3D"),
+    ("9. Le brouillard de guerre intégral permet la découverte progressive de la nouvelle configuration.", ""),
+    ("10. Les retours sur des nœuds déjà visités conservent les découvertes effectuées pendant l'expédition.", ""),
+    ("le traitement du temps pendant la consultation et le choix d'itinéraire sur la carte reste à préciser", "le temps de réflexion est toujours comptabilisé"),
+])
+def test_navigation_regression_rejected(old, new):
+    text = MASTER.read_text(encoding="utf-8")
+    assert old in text
+    with pytest.raises(AssertionError):
+        assert_navigation_contract(text.replace(old, new, 1))
