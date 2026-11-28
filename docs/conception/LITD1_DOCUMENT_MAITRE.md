@@ -4113,3 +4113,5 @@ Déductions documentaires des validations existantes ; aucune modification des 1
 - **Articulation TEM-02** : texte validé conservé ; le traitement du temps pendant la consultation et le choix d'itinéraire sur la carte reste à préciser explicitement avant implémentation. Ne pas déduire une horloge en temps réel pendant la réflexion, ni un coût fixe par nœud sans arbitrage.
 
 Les 160 règles restent inchangées. Ces articulations documentaires ne constituent pas une validation de nouveaux mécanismes. BOU-A doit partir de cette architecture ; aucun développement moteur autorisé par cette correction.
+
+**Précision utilisateur :** les donjons disposent eux aussi d'une carte interactive à nœuds. L'exploration interne des donjons n'est pas une exploration libre en 3D. Les règles de génération, de retours, de chemins cachés et de persistance déjà validées restent applicables. Aucun nouveau paramètre de navigation n'est fixé ici.
