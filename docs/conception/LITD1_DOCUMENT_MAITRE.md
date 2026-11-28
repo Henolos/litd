@@ -3501,3 +3501,364 @@ Réconciliation : RET-COLLECTIF-01, RET-NAV-01 à 04 et RET-TACT-01 à 05 conser
 - RET-30 : Détection des blocages accidentels à intégrer au validateur existant.
 
 Bloc 12.3 clos en conception. Paramètres, implémentation, tests runtime et contrôle transversal restent ouverts. Les décisions RET-NAV, RET-COLLECTIF, RET-TACT et RET-LIM sont consolidées par ce registre ; aucune extension aux règles de capture ou extraction de captifs. Bloc 12.4 ouvert en lecture seule.
+
+
+## REFONTE-COMP-01 — Bloc 12.4 — Registre de suivi documentaire (27 novembre 2026)
+
+Chantier ouvert : réconciliation des validations historiques de capture, contention, extraction et recrutement. Aucun nouvel arbitrage de gameplay validé par cette ouverture.
+
+- Socle : PR #664 fusionnée, commit 89c1926e979447203f2b4ac5d8a8489e6f30410f ; identité du document fusionné vérifiée et 250 identifiants INIT à RET retrouvés. Les abrogations explicites restent applicables.
+- À réconcilier : V7.46–V7.69 pertinentes, ARCH-05/07/09/12, bloc 12.2 et RET. Vérifier les textes originaux, leur préséance et leur présence effective dans main ou une PR.
+- À auditer : décisions explicites de la conversation, notamment abandon des anciens catalogues de classes, compétences, armes et armures. Ne restaurer aucun ancien développement.
+- Traçabilité : texte de validation, date, identifiant, fichier, commit, PR, contrôles et éventuel remplacement. Les preuves manquantes restent signalées ; aucune exhaustivité revendiquée.
+- Benchmark et arbitrages restants à terminer avant validation. Aucun changement moteur, aucun test runtime, aucune fusion de ce bloc autorisée à ce stade.
+
+
+### Registre historique de capture — 27 novembre 2026
+
+Onze sources historiques transcrites dans [REFONTE_COMP_CAPTURE_PREUVES.md](REFONTE_COMP_CAPTURE_PREUVES.md), avec clauses de préséance et limites de réactivation. Registre de preuve, non nouveau catalogue normatif. V7.64 reste incomplet.
+
+Décisions d'abandon rapportées dans le suivi de conversation : anciens catalogues de classes/spécialisations, arbres et compétences/ultimes, armes et armures à reconstruire de zéro ; ne pas réintroduire les anciens systèmes. Identités narratives et références artistiques conservées. Formulations originales et dates à rapprocher des échanges avant certification exhaustive. CIB-19 interdit déjà le système spécifique d'organes internes vitaux. Aucun effacement de fichiers historiques ni changement moteur.
+
+
+### Bloc 12.4 — Synthèse de réconciliation documentaire (27 novembre 2026)
+
+Synthèse de règles déjà approuvées, non nouvel arbitrage : V7.46 éligibilité contextuelle (ARCH-07 prévaut : mini-boss, Némésis et boss NG+ exclusivement) ; V7.47 sept familles combinables ; V7.48 moteur probabiliste contextuel à cinq facteurs et probabilité réelle avant engagement ; V7.51 résistance temporaire contextuelle plafonnée ; V7.52 apprentissage collectif ; V7.54 recherches PNJ ; V7.58 sécurisation, contention, transport et extraction distincts, capacité limitée hors inventaire, aucun transfert automatique ; ARCH-09 désarmement physique conditionnel ; V7.60/69 recrutement garanti du captif éligible extrait et conservé, délai fini en expéditions admissibles ; V8.3 persistance sans duplication ni nouveau tirage. Preuves détaillées : REFONTE_COMP_CAPTURE_PREUVES.md.
+
+Préséance : refus définitif historique remplacé par V7.60 ; ancienne restriction NG+ remplacée par ARCH-07 ; clauses anciennes de classes, maîtrise et emplacements suspendues ; CIB-19 exclut simulation spécifique des organes vitaux. Bloc 12.2 ne supprime pas le transport des captifs ennemis. V7.64 texte original introuvable après recherche GitHub et historique conversationnel ; préserver seulement dispositions corroborées (évasion distincte de fuite volontaire Némésis, éligibilité avant probabilité).
+
+Benchmark partiel, sources secondaires Wartales : https://game.wiki/wartales/prisoners ; https://game.wiki/wartales/chains ; https://progameguides.com/wartales/how-to-capture-prisoners-animals-in-wartales/ ; comparaison indicative : équipement, action, accessibilité, confiance et surveillance. Ne pas importer seuil universel ni microgestion. Source éditeur FFT : https://na.finalfantasy.com/en/news/1002770/ (positionnement/recrutement/perte permanente, pas de formule de capture). Benchmark complet non acquis. Arbitrages encore ouverts : coût PA, moment de retrait tactique, sécurisation intégrée ou distincte, résolution des ruptures, capacité et incidents de transport. Aucun choix nouveau validé, aucun test runtime.
+
+
+### Bloc 12.4 — CAP-A : coût hybride (27 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option D et CAP-A01 à CAP-A12.** Accord explicite : « Je valide l'option D et les douze règles CAP-A01 à CAP-A12. Enregistre-les dans la PR #665, vérifie les contrôles et passe à CAP-B. »
+
+- CAP-A01 : Une tentative ordinaire coûte 1 PA.
+- CAP-A02 : L'inspection et la consultation des probabilités sont gratuites.
+- CAP-A03 : Une tentative impossible ne consomme aucun PA.
+- CAP-A04 : Une tentative engagée qui échoue ne rembourse pas le PA.
+- CAP-A05 : Certaines méthodes nécessitent une préparation préalable.
+- CAP-A06 : Une neutralisation préalable ne constitue pas automatiquement une capture.
+- CAP-A07 : Plusieurs combattants peuvent contribuer à une capture.
+- CAP-A08 : Chaque participant dépense ses propres PA pour ses actions actives.
+- CAP-A09 : Une future compétence peut combiner attaque et capture si ses propriétés le permettent.
+- CAP-A10 : Aucun renouvellement de PA ni modification artificielle de l'initiative.
+- CAP-A11 : Les effets des tentatives précédentes sont conservés conformément à V7.51.
+- CAP-A12 : Le résultat confirmé est sauvegardé sans nouveau tirage au rechargement.
+
+Préséance : INIT, COM, MORT, V7.46–48, V7.51 et V8.3 conservés. CAP-A03 concerne l'impossibilité constatée avant engagement ; CAP-A04 concerne l'échec après engagement. Aucun catalogue ancien réintroduit. CAP-B à E ouverts. Aucun test runtime.
+
+
+### Bloc 12.4 — CAP-B : retrait tactique immédiat (27 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et CAP-B01 à CAP-B12.** Accord explicite : « Je valide l'option C et les douze règles CAP-B01 à CAP-B12. Enregistre-les dans la PR #665, vérifie les contrôles et passe à CAP-C. »
+
+- CAP-B01 : Une capture réussie retire immédiatement la cible des combattants hostiles actifs.
+- CAP-B02 : Le captif reste physiquement présent sur le champ de bataille.
+- CAP-B03 : Son encombrement dépend de sa morphologie et de son état.
+- CAP-B04 : La capture ne constitue pas un recrutement immédiat.
+- CAP-B05 : Le captif ne dispose plus d'actions offensives ordinaires tant que la capture reste effective.
+- CAP-B06 : Les blessures, afflictions et états critiques persistent.
+- CAP-B07 : Le captif reste exposé aux effets physiques et environnementaux applicables.
+- CAP-B08 : Aucun désarmement automatique.
+- CAP-B09 : Aucun soin automatique lors de la capture.
+- CAP-B10 : Une rupture de contention peut restaurer le statut hostile selon les capacités réelles.
+- CAP-B11 : Aucun renouvellement artificiel du PA ou du tour lors d'une rupture.
+- CAP-B12 : Identité, position, état de capture et conséquences conservés dans la sauvegarde.
+
+MORT et ARCH-12 régissent la mort éventuelle du captif ; fin du combat à réconcilier au bloc 12.5. CAP-C à E ouverts. Aucun test runtime.
+
+
+### Bloc 12.4 — CAP-C : sécurisation hybride (27 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option C et CAP-C01 à CAP-C12.** Accord explicite : « Je valide l'option C et les douze règles CAP-C01 à CAP-C12. Enregistre-les dans la PR #665, vérifie les contrôles et passe à CAP-D. »
+
+- CAP-C01 : Distinguer capture effective et niveau de sécurisation.
+- CAP-C02 : Une méthode compatible peut assurer simultanément capture et sécurisation.
+- CAP-C03 : Une sécurisation intégrée ne consomme aucun PA supplémentaire.
+- CAP-C04 : Une sécurisation active distincte coûte normalement 1 PA.
+- CAP-C05 : La contention doit être compatible avec la nature et l'anatomie du captif.
+- CAP-C06 : Un autre combattant peut effectuer la sécurisation.
+- CAP-C07 : Un captif insuffisamment sécurisé présente des risques contextuels de rupture.
+- CAP-C08 : Une contention peut être renforcée, dégradée ou rompue selon ses propriétés.
+- CAP-C09 : Le renforcement ne garantit pas une sécurité absolue dans toutes les situations.
+- CAP-C10 : Le joueur peut consulter gratuitement l'état de sécurisation et les risques connus.
+- CAP-C11 : Aucun désarmement, soin ou transport automatique lors de la sécurisation.
+- CAP-C12 : L'état de contention, les ressources engagées et leurs conséquences sont sauvegardés.
+
+CAP-D et CAP-E restent ouverts. Aucun seuil numérique ni catalogue de compétences validé. Aucun test runtime.
+
+
+### Bloc 12.4 — CAP-D : rupture hybride et contextuelle (27 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option D et CAP-D01 à CAP-D16.** Accord explicite : « Je valide l'option D et les seize règles CAP-D01 à CAP-D16. Enregistre-les dans la PR #665, vérifie les contrôles et passe à CAP-E. »
+
+- CAP-D01 : La rupture de contention dépend des circonstances réelles.
+- CAP-D02 : Un captif suffisamment capable peut tenter activement de se libérer.
+- CAP-D03 : Une tentative active ordinaire utilise son unique PA au créneau prévu par l'initiative.
+- CAP-D04 : Une intervention extérieure compatible peut libérer un captif.
+- CAP-D05 : La dégradation ou l'expiration d'une contention peut provoquer sa rupture.
+- CAP-D06 : Chaque contention possède des propriétés adaptées à sa nature.
+- CAP-D07 : Les capacités anatomiques, physiques ou surnaturelles influencent les possibilités de rupture.
+- CAP-D08 : Une rupture peut être certaine, impossible ou probabiliste selon les conditions.
+- CAP-D09 : Aucun tirage universel obligatoire à chaque round.
+- CAP-D10 : Une rupture partielle peut laisser subsister des entraves fonctionnelles.
+- CAP-D11 : Une libération complète ne garantit pas la capacité de reprendre le combat.
+- CAP-D12 : Aucun PA supplémentaire ni tour artificiellement renouvelé.
+- CAP-D13 : Une nouvelle capture de la même créature reste possible sous réserve d'éligibilité.
+- CAP-D14 : Les blessures, équipements, afflictions et historiques pertinents persistent après libération.
+- CAP-D15 : La rupture ne permet pas de contourner les restrictions de fuite volontaire ARCH-05.
+- CAP-D16 : Les tentatives, ruptures et conséquences sont enregistrées sans nouveau tirage au rechargement.
+
+CAP-D03 conserve le créneau d'initiative du captif pour une tentative de libération, sans actions offensives ordinaires tant que la capture reste effective. Coefficients, fréquences et durées ouverts. CAP-E reste ouvert. Aucun test runtime.
+
+
+### Bloc 12.4 — CAP-E : transport contextualisé (27 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option D et CAP-E01 à CAP-E20.** Accord explicite : « Je valide l'option D et les vingt règles CAP-E01 à CAP-E20. Enregistre-les dans la PR #665, vérifie les contrôles et lance l'audit transversal complet du bloc 12.4. »
+
+- CAP-E01 : Le transport des captifs utilise une capacité distincte de l'inventaire.
+- CAP-E02 : Chaque captif mobilise une capacité adaptée à sa nature et sa morphologie.
+- CAP-E03 : Les moyens de transport doivent être compatibles avec le captif.
+- CAP-E04 : La capacité disponible est consultable avant engagement d'une capture lorsque les informations nécessaires sont connues.
+- CAP-E05 : Une capacité insuffisante ne rend pas automatiquement la capture impossible, mais peut empêcher le transport.
+- CAP-E06 : Aucun dépassement artificiel de la capacité de transport.
+- CAP-E07 : Le joueur peut libérer ou abandonner volontairement un captif pour libérer de la capacité.
+- CAP-E08 : Les captifs transportés n'occupent pas les quatre places des combattants actifs.
+- CAP-E09 : La compagnie peut poursuivre son expédition avec des captifs.
+- CAP-E10 : Les captifs restent exposés aux conséquences pertinentes des rencontres.
+- CAP-E11 : Les risques de transport dépendent de la contention, de l'état du captif et des événements rencontrés.
+- CAP-E12 : Les incidents sont évalués lors de transitions ou d'événements pertinents, sans simulation continue obligatoire.
+- CAP-E13 : Les incidents peuvent affecter la contention, l'intégrité du captif ou les moyens de transport.
+- CAP-E14 : Aucun tirage d'incident déclenché par la simple consultation de la carte.
+- CAP-E15 : Le joueur est informé des risques connus et des conséquences effectivement survenues.
+- CAP-E16 : Une retraite du combat ne garantit pas la conservation de tous les captifs.
+- CAP-E17 : Un Game Over ne transfère pas automatiquement les captifs à la Guilde.
+- CAP-E18 : L'arrivée effective d'un captif éligible dans un état compatible déclenche le processus prévu par V7.60 et V7.69, s'il est conservé pour recrutement.
+- CAP-E19 : Les captifs perdus ou libérés conservent leur identité et leur historique, conformément aux règles de persistance.
+- CAP-E20 : Les incidents, transferts et changements de possession sont sauvegardés sans duplication ni nouveau tirage.
+
+Capacité initiale, équipements, coûts, probabilités et conservation lors de retraite ouverts. Bloc 12.2 reste applicable aux héros. Aucun test runtime. Audit transversal à effectuer.
+
+
+### Bloc 12.4 — Réconciliation transversale AUD-CAP (27 novembre 2026)
+
+Clarifications documentaires, sans nouvel arbitrage :
+
+- AUD-CAP-01 : CAP-B01/B05/B11 et CAP-D02/D03/D12 distinguent retrait hostile actif et créneau d'initiative conservé pour une tentative admissible de libération, sans renouvellement du PA ou du tour.
+- AUD-CAP-02 : CAP-B01 à B03 et FORM-07/13 à 19 restent conjointement applicables : le captif demeure physiquement présent ; tout resserrement applicable respecte les segments accessibles, l'ordre relatif, les obstacles et l'initiative. Le déclencheur précis en cas de capture reste à préciser si nécessaire ; aucune disparition ou translation automatique du captif n'est ajoutée.
+- AUD-CAP-03 : CAP-B06/B07/B09 et CAP-D14 préservent les afflictions, blessures et états critiques selon leurs règles propres ; MORT et ARCH-12 restent applicables.
+- AUD-CAP-06 : CAP-E16 ne garantit pas la conservation des captifs lors d'une retraite ; RET-14 conserve la confirmation des abandons prévisibles ou nouvellement nécessaires et les conséquences déjà subies. L'application détaillée aux captifs et les conditions de conservation restent ouvertes ; aucune extension de RET-05 au transport des captifs ennemis.
+
+Arbitrages ouverts, non validés : AUD-CAP-04 (défenses préparées et interceptions, DEF-02/04/11 à 15/18), AUD-CAP-05 (liens d'invocation et possession, INV-01/11 à 20 et ARCH-12.5), AUD-CAP-07 (perte de capacité, CAP-E05 à E07/E13). AUD-CAP-08 : dépendance explicite du bloc 12.5, conditions de fin de combat lorsque le dernier hostile est capturé et susceptible de se libérer. Aucun choix anticipé.
+
+Audit non clos ; aucun test runtime ni nouvel arbitrage validé. V7.64 original et conformité verbatim des décisions restent à vérifier.
+
+
+### Bloc 12.4 — CAP-F : défenses contextuelles (27 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option D et CAP-F01 à CAP-F12.** Accord explicite : « Je valide l'option D et les douze règles CAP-F01 à CAP-F12. Enregistre-les dans la PR #665, vérifie les contrôles et passe à AUD-CAP-05. »
+
+- CAP-F01 : Distinguer les défenses passives et actives.
+- CAP-F02 : Conserver les protections passives encore fonctionnelles.
+- CAP-F03 : La capture n'annule pas systématiquement les défenses préparées.
+- CAP-F04 : Vérifier leur compatibilité au moment du déclenchement.
+- CAP-F05 : Prendre en compte les blessures, amputations et entraves.
+- CAP-F06 : Interdire les interceptions physiques incompatibles avec la contention.
+- CAP-F07 : Autoriser les protections à distance encore fonctionnelles selon leurs propriétés.
+- CAP-F08 : Interdire tout déclenchement offensif ordinaire du captif.
+- CAP-F09 : Ne rembourser aucun PA déjà dépensé pour une préparation devenue inutilisable.
+- CAP-F10 : Respecter les durées et limites initiales des préparations.
+- CAP-F11 : Une libération ne renouvelle aucune préparation expirée ni aucun PA.
+- CAP-F12 : Sauvegarder les états défensifs et leurs conséquences sans duplication ni nouveau tirage.
+
+AUD-CAP-04 résolu en conception ; DEF, CAP, INIT et ARCH-12 restent applicables. Aucun test runtime ni validation technique. AUD-CAP-05 reste ouvert.
+
+
+### Bloc 12.4 — CAP-G : invocations et possessions (27 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option D et CAP-G01 à CAP-G20.** Accord explicite : « Je valide l'option D et les vingt règles CAP-G01 à CAP-G20. Enregistre-les dans la PR #665, vérifie les contrôles et passe à AUD-CAP-06. »
+
+- CAP-G01 : Distinguer capture, invocation, contrôle et possession.
+- CAP-G02 : Évaluer individuellement l'éligibilité de chaque entité à la capture.
+- CAP-G03 : Respecter intégralement les restrictions ARCH-07.
+- CAP-G04 : La capture d'un invocateur n'entraîne pas automatiquement celle de ses invocations.
+- CAP-G05 : La capture d'une invocation n'entraîne pas automatiquement celle de son invocateur.
+- CAP-G06 : Le maintien d'un lien de contrôle dépend de ses propriétés et des capacités réelles des entités concernées.
+- CAP-G07 : Un captif ne peut pas contourner ses restrictions offensives en donnant de nouveaux ordres à une invocation.
+- CAP-G08 : Les ordres antérieurs peuvent persister lorsque les propriétés du contrôle le permettent.
+- CAP-G09 : Les invocations semi-autonomes peuvent poursuivre leurs comportements compatibles.
+- CAP-G10 : Les invocations indépendantes conservent leurs capacités d'action propres.
+- CAP-G11 : Une manifestation temporaire peut disparaître lorsque ses conditions de maintien ne sont plus satisfaites.
+- CAP-G12 : Distinguer disparition, révocation, libération, capture et mort définitive.
+- CAP-G13 : La capture d'un corps possédé ne garantit pas celle de l'entité qui le possède.
+- CAP-G14 : Une capture simultanée du corps et de l'entité exige une méthode compatible et une éligibilité vérifiée pour chacun.
+- CAP-G15 : Une rupture de possession peut intervenir selon les propriétés du lien et de la méthode employée.
+- CAP-G16 : Aucun renouvellement artificiel des PA, des tours ou des durées de contrôle.
+- CAP-G17 : Aucun effacement des blessures, afflictions ou états persistants lors d'un changement de contrôle.
+- CAP-G18 : Conserver la responsabilité causale des actions conformément à ARCH-12.5.
+- CAP-G19 : Aucun recrutement automatique d'une invocation par le seul recrutement de son maître.
+- CAP-G20 : Sauvegarder les identités, liens, états, captures et conséquences sans duplication ni nouveau tirage au rechargement.
+
+AUD-CAP-05 résolu en conception ; INV, ARCH-07, ARCH-12.5, CAP, INIT et V8.3 restent applicables. Aucun test runtime ni validation technique. AUD-CAP-06 reste ouvert.
+
+
+### Bloc 12.4 — CAP-HUB : transfert automatique après victoire (27 novembre 2026)
+
+**VALIDÉ EN CONCEPTION — préséance normative sur toute clause incompatible antérieure.** Accords directs : « Tous les captifs sont envoyés au hub à la fin du combat » puis « Je valide l'option A pour le transfert automatique des captifs au hub. Réconcilie toutes les règles concernées. »
+
+- Tous les captifs encore détenus à la fin d'un combat victorieux sont automatiquement transférés au hub (Guilde). Aucun transfert automatique lors d'une retraite, défaite ou Game Over.
+- Aucun transport de captifs par la compagnie entre combats ; aucune capacité, équipement, surveillance ou incident de transport en exploration requis pour ce transfert. La compagnie peut poursuivre l'expédition sans retour obligatoire au hub.
+- Capture, sécurisation, évasion, blessures, défenses et liens de contrôle restent régis par CAP-A/B/C/D/F/G jusqu'au transfert. CAP-C11 reste applicable à la sécurisation elle-même.
+- Le transfert ne constitue pas un recrutement immédiat. ARCH-07, V7.59/60/69, conditions de détention au hub, prise en charge et délai de recrutement restent applicables ; capacité de détention au hub distincte de l'ancienne capacité de transport. Articulation d'une éventuelle saturation du hub avec le transfert de tous les captifs à préciser, sans exception implicite.
+- ARCH-09 : équipements suivant leur détenteur réel ; aucun transfert automatique au coffre, aucun transfert des objets déjà retirés. V8.3 : transfert transactionnel exactement une fois, sans duplication, nouveau tirage, guérison ou résurrection implicite. Bloc 12.2 et RET restent inchangés pour les héros ; aucune extension de ce transfert à ceux-ci ou au butin.
+
+**Table de préséance CAP-E (texte historique conservé, non applicable en cas de contradiction) :**
+- E01–E06 : remplacées pour la capacité et les moyens de transport des captifs.
+- E07 : libération/abandon volontaire conservé selon les règles applicables ; motif de libération de capacité de transport supprimé.
+- E08 : exclusion des captifs des quatre combattants actifs conservée, indépendamment du transport.
+- E09 : poursuite d'expédition conservée, sans captifs transportés.
+- E10–E13 : supprimées pour les incidents et l'exposition des captifs en exploration après victoire ; effets et ruptures pendant combat conservés selon CAP-B/C/D.
+- E14 : aucun tirage à la consultation de carte conservé ; aucun incident de transport en exploration à tirer.
+- E15 : information sur risques et conséquences applicables conservée.
+- E16 : remplacée par absence de transfert automatique lors de retraite ; devenir local précis des captifs restant à déterminer.
+- E17 : conservée, étendue explicitement à la défaite et à la retraite.
+- E18 : arrivée effective par transfert victorieux ; recrutement éligible selon V7.60/69, sans intégration immédiate.
+- E19–E20 : conservées pour identité, historique et persistance transactionnelle.
+
+**Préséance historique :** V7.58 règles 1–4, 6, 8–11 et 14 révisées uniquement pour le transport en exploration, l'interdiction de transfert automatique après victoire et les paramètres associés ; contention tactique, information, libération, identité et conséquences compatibles conservées. Règles 5, 7, 12, 13 conservées (retour des héros distinct ; pas de transfert automatique en défaite/Game Over). V7.60/69 : extraction éligible satisfaite par arrivée effective au hub après victoire, sans risque de transport en exploration. Les références antérieures à V7.58, notamment ARCH-07/09/10, et la synthèse initiale du bloc 12.4 sont historiques pour leurs clauses contraires ; possession réelle et restrictions NG+ inchangées.
+
+**Audit :** AUD-CAP-06 : absence de transfert automatique lors de retraite validée ; proposition CAP-H non validée abandonnée pour le transport pendant retraite, sort local des captifs à arbitrer séparément. AUD-CAP-07 : hors périmètre pour perte de capacité de transport en exploration ; ne pas réintroduire ce système. AUD-CAP-08 : bloc 12.5 doit définir la victoire et l'ordre de résolution des évasions, effets critiques et transfert, sans anticiper cet arbitrage. AUD-CAP-02 réserve sur déclencheur du resserrement conservée. Aucun nouveau choix sur saturation du hub, mort simultanée, devenir local après retraite/défaite ou mécanisme narratif de transfert.
+
+Contrôles à réaliser : victoire avec zéro/un/plusieurs captifs, évasion avant victoire, retraite/défaite/Game Over sans transfert automatique, persistance de possession et état, restriction NG+, reprise transactionnelle sans duplication, saturation du hub et ordre de fin de combat après arbitrage. Aucun test runtime ni assurance indépendante MC-007 exécutés.
+
+
+### Bloc 12.4 — CAP-J : accueil et détention au hub (27 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option D et CAP-J01 à CAP-J20.** Accord explicite : « Je valide l'option D et les vingt règles CAP-J01 à CAP-J20. Enregistre-les dans la PR #665, vérifie les contrôles et poursuis les arbitrages restants. »
+
+- CAP-J01 : Tous les captifs encore détenus après une victoire sont transférés au hub.
+- CAP-J02 : Aucune saturation des installations ne bloque leur transfert.
+- CAP-J03 : Distinguer accueil, détention spécialisée et réserves de combattants.
+- CAP-J04 : La capacité d'accueil ne possède aucune limite bloquante.
+- CAP-J05 : Les installations spécialisées possèdent une capacité limitée et évolutive.
+- CAP-J06 : Adapter les installations à la nature des créatures.
+- CAP-J07 : Prévoir un accueil provisoire compatible lorsque les installations sont saturées.
+- CAP-J08 : Aucun abandon ou décès automatique pour manque de place.
+- CAP-J09 : Aucun remplacement obligatoire d'un captif existant.
+- CAP-J10 : Le délai de recrutement commence après l'arrivée effective au hub.
+- CAP-J11 : L'accueil provisoire ne suspend pas la progression normale du recrutement.
+- CAP-J12 : Les installations spécialisées peuvent accélérer le recrutement selon leurs propriétés.
+- CAP-J13 : Respecter le délai maximal fini prévu par V7.69.
+- CAP-J14 : Les améliorations du hub peuvent augmenter les capacités spécialisées.
+- CAP-J15 : Le joueur peut réaffecter les captifs aux installations compatibles.
+- CAP-J16 : Les soins et recherches restent soumis à leurs règles propres.
+- CAP-J17 : Informer le joueur des capacités, occupations et délais de recrutement.
+- CAP-J18 : Conserver les possibilités volontaires de libération ou de remise à la recherche.
+- CAP-J19 : Les capacités des réserves de combattants restent distinctes des capacités de détention.
+- CAP-J20 : Sauvegarder les arrivées, affectations et progressions sans duplication ni nouveau tirage.
+
+Préséance : CAP-HUB, V7.59/60/69 et V8.3 réconciliés ; saturation du hub résolue en conception par accueil non bloquant, sans réintroduire le transport. Paramètres et modalités matérielles ouverts. CAP-I non validé ; AUD-CAP-02 et AUD-CAP-08 restent ouverts. Aucun test runtime ni assurance indépendante MC-007.
+
+
+### Bloc 12.4 — CAP-I : devenir local des captifs (27 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option D et CAP-I01 à CAP-I16.** Accord explicite : « Je valide l'option D et les seize règles CAP-I01 à CAP-I16 ainsi que l'option D et les douze règles CAP-K01 à CAP-K12. Enregistre les décisions sélectionnées dans la PR #665, vérifie les contrôles et poursuis l'audit transversal du bloc 12.4. »
+
+- CAP-I01 : Aucun transfert automatique des captifs après retraite, défaite ou Game Over.
+- CAP-I02 : Les captifs non transférés restent initialement sur le lieu du combat.
+- CAP-I03 : Aucun abandon ne provoque automatiquement une libération.
+- CAP-I04 : Aucun abandon ne provoque automatiquement un décès.
+- CAP-I05 : Les contentions encore fonctionnelles restent applicables.
+- CAP-I06 : Une évasion reste possible selon les propriétés réelles de la contention et du captif.
+- CAP-I07 : Une intervention extérieure compatible peut libérer un captif.
+- CAP-I08 : Les blessures, afflictions et états critiques restent soumis à leurs règles propres.
+- CAP-I09 : Les équipements restent soumis aux règles de possession réelle.
+- CAP-I10 : Informer le joueur avant une retraite volontaire que les captifs ne seront pas transférés au hub.
+- CAP-I11 : Aucun recrutement déclenché par la seule capture suivie d'une retraite ou d'une défaite.
+- CAP-I12 : Une créature retrouvée conserve son identité, son historique et ses particularités persistantes.
+- CAP-I13 : Les évolutions hors combat sont résolues aux événements et transitions pertinents, sans simulation continue obligatoire.
+- CAP-I14 : Une nouvelle capture reste possible si les conditions d'éligibilité sont satisfaites.
+- CAP-I15 : Les Némésis conservent leurs règles spécifiques de persistance et d'évolution.
+- CAP-I16 : Sauvegarder les états, événements et conséquences sans duplication, résurrection artificielle ni nouveau tirage au rechargement.
+
+AUD-CAP-06 résolu en conception ; CAP-HUB, RET, ARCH-05/06/07/09 et V8.3 restent applicables. CAP-K approuvé par le même accord mais texte exact à retrouver avant transcription. Aucun test runtime ni assurance indépendante.
+
+
+### Actualisation des statuts AUD-CAP (27 novembre 2026)
+
+Les mentions historiques « AUD-CAP-06 reste ouvert » et « CAP-I non validé » sont obsolètes depuis la validation explicite CAP-I enregistrée au commit ee68587581db9c58a397023de29255aea6676570. AUD-CAP-06 est résolu en conception ; CAP-J est également validé en conception. AUD-CAP-07 est hors périmètre (CAP-HUB). AUD-CAP-02 reste ouvert pour transcription fidèle ou nouvelle validation de CAP-K ; AUD-CAP-08 relève du bloc 12.5. Cette actualisation prévaut sur les anciens statuts sans effacer les preuves historiques. Aucun nouvel arbitrage ni validation technique.
+
+
+### Bloc 12.4 — CAP-K : capture et formations (27 novembre 2026)
+
+**VALIDÉ EN CONCEPTION : option D et CAP-K01 à CAP-K12 reconstruits, nouvelle validation remplaçant le texte original introuvable.** Accord explicite : « Je valide explicitement la reconstruction de l'option D et des douze règles CAP-K01 à CAP-K12. Enregistre-les dans la PR #665 comme nouvelle validation remplaçant le texte original introuvable, puis exécute l'audit transversal automatisé du bloc 12.4. »
+
+- CAP-K01 : Distinguer retrait hostile actif et retrait physique du champ de bataille.
+- CAP-K02 : La capture ne libère pas automatiquement les rangs occupés.
+- CAP-K03 : L'encombrement du captif dépend de sa morphologie et de son état réel.
+- CAP-K04 : Un captif multirang conserve son identité unique et son occupation physique réelle.
+- CAP-K05 : Aucun déplacement automatique du captif du seul fait de sa capture.
+- CAP-K06 : Le resserrement reste possible uniquement dans les segments réellement accessibles.
+- CAP-K07 : Aucun franchissement artificiel d'un captif constituant un obstacle physique.
+- CAP-K08 : Le resserrement reste gratuit et conserve l'ordre relatif des combattants concernés.
+- CAP-K09 : Aucun dégât, PA supplémentaire ou renouvellement de tour provoqué automatiquement par le resserrement.
+- CAP-K10 : Les modifications simultanées d'occupation sont résolues avant un resserrement unique.
+- CAP-K11 : Une libération ne provoque aucun repositionnement ni renouvellement artificiel du tour ; les changements physiques réels restent pris en compte.
+- CAP-K12 : Sauvegarder les positions, occupations, contentions et conséquences sans duplication ni nouveau tirage au rechargement.
+
+Fondements : CAP-B01/02/03/12, FORM-07/09/10/13–19, CAP-D10/12/16, INIT-17/20 et AUD-CAP-02. AUD-CAP-02 résolu en conception ; cette décision prévaut sur les mentions antérieures de transcription manquante. AUD-CAP-08 reste réservé au bloc 12.5. Aucun test runtime ni assurance indépendante à ce stade.
+
+
+### Index de lecture consolidé du bloc 12.4 (27 novembre 2026)
+
+Les clauses historiques de transport dans ARCH-07 (extension capture), ARCH-09 (réconciliation V7.58), et la synthèse initiale du bloc 12.4 ne sont plus normatives pour le transport en exploration : appliquer CAP-HUB et CAP-J. Les restrictions NG+ et la possession réelle demeurent inchangées. Les réserves de CAP-HUB sur la saturation, le devenir local et le resserrement sont résolues respectivement par CAP-J, CAP-I et CAP-K. Les autres réserves, notamment AUD-CAP-08 et l'ordre de résolution de fin de combat, restent ouvertes. Aucun nouvel arbitrage.
+
+
+## Règle permanente de gouvernance — Audit borné et obligation de progression (28 novembre 2026)
+
+**Validée par l'utilisateur.** Un audit doit être limité dans le temps, proportionné aux risques et orienté vers une décision. Il ne doit jamais devenir un chantier permanent qui empêche le projet d'avancer. Cette règle complète la méthode V2.3 sans affaiblir ses garanties critiques.
+
+1. Définir avant chaque audit son périmètre, ses objectifs, ses critères de réussite et ses conditions de clôture.
+2. Limiter par défaut l'audit à trois cycles : audit initial et identification des anomalies ; correction et vérification ; contrôle final et décision de clôture.
+3. Ne jamais répéter un contrôle réussi sans modification pertinente, nouvelle preuve ou risque identifié.
+4. Chaque contrôle supplémentaire doit apporter une garantie nouvelle, mesurable et utile.
+5. Classer les anomalies selon leur gravité et leur caractère bloquant.
+6. Ne pas empêcher la progression pour des réserves non bloquantes ; les consigner avec leurs conditions de résolution.
+7. Si une anomalie bloquante persiste après trois cycles, changer de méthode, isoler le problème ou solliciter un arbitrage motivé.
+8. Ne jamais prolonger automatiquement un audit sans justification documentée.
+9. Clôturer dès que les critères d'acceptation sont satisfaits, sans exiger une certitude absolue inaccessible.
+10. Ne rouvrir un audit clos qu'en présence d'une modification significative, d'une nouvelle anomalie ou d'une preuve contradictoire.
+11. Ne jamais contourner une garantie critique de sécurité, d'intégrité, de sauvegarde ou de conformité pour respecter la limite des trois cycles.
+12. Toute clôture débouche sur une décision explicite et la prochaine étape productive.
+
+Application immédiate : dernier cycle documentaire du bloc 12.4 ; consigner les réserves techniques non bloquantes séparément, décider de MC-007 sur preuves, puis poursuivre le bloc 12.5. Cette règle ne constitue pas une clôture automatique de MC-007 ni une validation runtime.
+
+
+## Bloc 12.5 — Résolution de fin de combat (28 novembre 2026)
+
+**Option D validée explicitement par l'utilisateur :** résolution complète des conséquences engagées avant détermination de l'issue du combat.
+
+- FIN-01 : La neutralisation du dernier hostile actif déclenche une vérification de fin de combat, et non une victoire immédiate.
+- FIN-02 : Toute action engagée doit être intégralement résolue avant de déterminer l'issue du combat.
+- FIN-03 : Les conséquences simultanées d'une même action sont toutes prises en compte.
+- FIN-04 : Les réactions et interruptions valablement déclenchées sont résolues avant la décision finale.
+- FIN-05 : Les afflictions arrivées à leur moment normal de résolution sont appliquées.
+- FIN-06 : Aucun effet différé n'est artificiellement accéléré pour terminer le combat.
+- FIN-07 : Aucun round supplémentaire n'est imposé uniquement pour confirmer une victoire.
+- FIN-08 : Aucun nouveau PA ni renouvellement artificiel de tour n'est accordé pendant la résolution finale.
+- FIN-09 : Les états critiques, incapacités et décès sont déterminés conformément aux règles MORT.
+- FIN-10 : Les captifs restent soumis aux propriétés réelles de leurs contentions jusqu'à leur transfert effectif.
+- FIN-11 : Une évasion valablement déclenchée avant la confirmation de victoire doit être résolue.
+- FIN-12 : Si un hostile retrouve une capacité d'opposition active, les conditions de victoire sont réévaluées.
+- FIN-13 : Aucun tirage supplémentaire d'évasion, de survie ou d'affliction n'est effectué uniquement parce que le combat se termine.
+- FIN-14 : Une victoire exige que les conditions de réussite de la rencontre soient satisfaites.
+- FIN-15 : La défaite prévaut si les conditions de défaite sont effectivement réunies à l'issue de la résolution complète, même si le dernier hostile a été éliminé.
+- FIN-16 : Les invocations, possessions et contrôles sont traités selon leurs propriétés réelles et leurs règles spécifiques.
+- FIN-17 : Le transfert automatique des captifs au hub intervient uniquement après confirmation de la victoire.
+- FIN-18 : Les blessures, afflictions et états persistants ne disparaissent pas automatiquement à la fin du combat.
+- FIN-19 : Les récompenses, crédits, équipements et conséquences sont attribués selon les règles de causalité et de possession réelle.
+- FIN-20 : La résolution finale et ses conséquences sont sauvegardées de manière atomique, sans duplication, nouveau tirage ou double attribution.
+
+AUD-CAP-08 résolu en conception. Les priorités propres des réactions et interruptions restent applicables. Aucun test runtime ni autorisation d'implémentation ; réserves MC-007 maintenues.
