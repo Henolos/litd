@@ -3890,3 +3890,31 @@ AUD-CAP-08 résolu en conception. Les priorités propres des réactions et inter
 - PER-20 : Les transformations sont sauvegardées sans duplication, réinitialisation artificielle ni nouveau tirage au rechargement.
 
 Validation de conception uniquement. Aucun barème temporel, algorithme ou test runtime validé par cette décision.
+
+
+## Horloge du monde — TEM (28 novembre 2026)
+
+**Option C explicitement validée par l'utilisateur : temps hybride.**
+
+- TEM-01 : Une horloge mondiale commune régit le temps du jeu.
+- TEM-02 : Le temps s'écoule continuellement pendant l'exploration active.
+- TEM-03 : Le temps des combats dépend des rounds résolus.
+- TEM-04 : Le temps de réflexion du joueur en combat n'affecte pas l'horloge mondiale.
+- TEM-05 : La pause suspend l'écoulement du temps.
+- TEM-06 : Les menus consultatifs suspendent le temps, sauf situation explicitement non interruptible.
+- TEM-07 : La navigation active dans le hub fait avancer le temps.
+- TEM-08 : Les activités du hub peuvent posséder une durée propre.
+- TEM-09 : Le repos peut accélérer l'écoulement du temps.
+- TEM-10 : L'attente volontaire est possible dans les lieux compatibles.
+- TEM-11 : Le joueur est informé des conséquences prévisibles d'une attente prolongée.
+- TEM-12 : Les déplacements rapides éventuels possèdent une durée cohérente.
+- TEM-13 : Les régions partagent la même chronologie mondiale.
+- TEM-14 : Les dimensions altérées peuvent posséder des règles temporelles spécifiques.
+- TEM-15 : Aucun temps ne s'écoule lorsque le jeu est fermé.
+- TEM-16 : Les événements temporisés progressent selon leur horloge applicable.
+- TEM-17 : Le temps écoulé ne suffit pas à contourner les conditions spécifiques de renouvellement ou de recrutement.
+- TEM-18 : Les événements simultanés respectent leurs dépendances causales.
+- TEM-19 : L'horloge et les échéances sont conservées dans la sauvegarde.
+- TEM-20 : Aucun rechargement ne provoque d'avancement temporel supplémentaire ni de nouveau tirage.
+
+Complète PER, V5.1 et ARCH-02. Durées et coefficients ouverts ; aucun test runtime ni autorisation d'implémentation.
