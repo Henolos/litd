@@ -3974,3 +3974,31 @@ Paramètres numériques, fréquences de migration, densités et modèles propres
 - DEP-20 : Les transformations des dépouilles et les changements de possession, de dégradation ou de destruction des équipements sont sauvegardés de manière atomique, sans duplication, réapparition artificielle ni nouveau tirage au rechargement.
 
 Complète ARCH-09/10, FORM, bloc 12.2, PER, TEM et ECO. Aucun changement moteur ni test runtime.
+
+
+## Régénération des ressources et réapprovisionnement — RES (28 novembre 2026)
+
+**Option C explicitement validée par l'utilisateur : régénération hybride, différenciée et contextuelle.** Six catégories validées : ressources biologiques (croissance, climat, biome) ; minérales (réserves, accessibilité, propriétés du gisement) ; animales (populations et dépouilles) ; surnaturelles (propriétés particulières) ; réserves et coffres (catégorie et contexte territorial) ; ressources et objets uniques (aucun renouvellement ordinaire).
+
+- RES-01 : Chaque ressource appartient à une catégorie déterminant ses conditions de renouvellement.
+- RES-02 : Les ressources biologiques se régénèrent selon leurs propriétés et le temps du jeu.
+- RES-03 : Les conditions environnementales influencent la croissance et la disponibilité des ressources.
+- RES-04 : Une ressource biologique peut être temporairement ou durablement épuisée.
+- RES-05 : Les gisements minéraux possèdent des réserves propres.
+- RES-06 : Un gisement épuisé ne se reconstitue pas automatiquement par simple passage du temps.
+- RES-07 : De nouveaux gisements peuvent devenir accessibles à la suite de transformations compatibles du monde.
+- RES-08 : Les ressources animales dépendent des populations, des créatures et des dépouilles réelles.
+- RES-09 : Les ressources surnaturelles suivent leurs propriétés spécifiques.
+- RES-10 : Les coffres renouvelables sont distingués des coffres uniques et narratifs.
+- RES-11 : Le réapprovisionnement ordinaire des coffres respecte les conditions d'ARCH-02.
+- RES-12 : Le contenu renouvelable dépend du contexte, de la région et de la nature du coffre.
+- RES-13 : Les récompenses uniques déjà obtenues ne peuvent pas être générées une seconde fois par renouvellement ordinaire.
+- RES-14 : Les objets abandonnés ne sont pas assimilés automatiquement à des ressources renouvelables.
+- RES-15 : Les événements majeurs peuvent modifier durablement la disponibilité des ressources.
+- RES-16 : Les évolutions écologiques peuvent influencer l'abondance des ressources.
+- RES-17 : Les récoltes partielles conservent les quantités restantes réellement disponibles.
+- RES-18 : Aucun changement de mission, aller-retour ou rechargement ne provoque artificiellement un renouvellement.
+- RES-19 : Le joueur peut obtenir des informations sur la disponibilité et les conditions de renouvellement des ressources.
+- RES-20 : Les quantités, récoltes, échéances et résultats de renouvellement sont sauvegardés de manière atomique, sans duplication ni nouveau tirage au rechargement.
+
+Complète V5.0, V5.1, ARCH-02, PER, TEM, ECO et DEP. Durées, quantités, probabilités et fréquences ouvertes. Aucun test runtime ni autorisation d'implémentation.
