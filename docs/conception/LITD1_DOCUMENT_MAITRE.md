@@ -203,7 +203,7 @@
 
 ## B. Vision de travail et piliers
 
-**LITD 1** : RPG tactique dark fantasy / dungeon crawler, exploration 3D isométrique en temps réel et combats au tour par tour ; atmosphère sombre orientée Berserk et rendu d’exploration évoquant No Rest for the Wicked. Ces références sont des intentions artistiques, pas des preuves de faisabilité.
+**LITD 1** : RPG tactique dark fantasy / dungeon crawler, exploration par grande carte à nœuds ramifiés, retours et chemins cachés, combats 2D au tour par tour ; atmosphère sombre orientée Berserk. Ancienne exploration 3D isométrique remplacée par la décision n°1 du registre ; aucune obligation de rendu 3D.
 
 **Piliers évoqués** : création des personnages ; gore systémique et conséquences corporelles ; philosophie et psychologie ; profondeur humaine accessible ; narration forte ; interconnexion des jeux ; rémanence de la connaissance. La cohérence narrative est transversale.
 
@@ -278,7 +278,7 @@ LITD 1 est un RPG tactique dark fantasy, dungeon crawler à exploration renouvel
 Ce document rassemble les décisions explicitement retenues dans la discussion récente et les décisions antérieures disponibles dans le contexte de continuité. Il ne constitue ni une preuve d'implémentation, ni un audit du dépôt, ni une validation de gameplay. Les détails numériques non arrêtés sont indiqués comme provisoires.
 
 ## 1. Principes directeurs
-- RPG dungeon crawler dark fantasy exigeant, atmosphère proche de Berserk, exploration 3D isométrique et combats tactiques au tour par tour.
+- RPG dungeon crawler dark fantasy exigeant, atmosphère proche de Berserk, exploration par carte à nœuds ramifiés et combats tactiques 2D au tour par tour.
 - Quatre héros en expédition, rangs R1 à R4 et ciblage anatomique.
 - Difficulté punitive mais non arbitraire ; priorité à la compréhension des conséquences et à la lisibilité.
 - Sept piliers narratifs connus : création des personnages ; gore systémique et conséquences corporelles ; philosophie et psychologie ; profondeur humaine accessible ; narration forte ; interconnexion des jeux ; rémanence de la connaissance. Cohérence narrative transversale.
@@ -1131,7 +1131,7 @@ L'utilisateur valide l'**attaque préventive contre un guet-apens uniquement lor
 ### Arbitrages prioritaires
 1. Coût en points d'action et place de l'attaque d'ouverture dans l'initiative.
 2. Effet concret de la détection sur surprise, formation et initiative.
-3. Modalités de localisation et d'accessibilité en exploration 3D isométrique avant transition vers combat 2D.
+3. Modalités de localisation et d'accessibilité sur la carte à nœuds avant transition vers combat 2D.
 4. Réaction des ennemis à une attaque préventive manquée ou partiellement réussie.
 5. Conditions et coûts de préparation avant engagement ; types de guet-apens contournables.
 6. Effets précis des fumigènes et objets de fuite vendus par le marchand.
@@ -3862,3 +3862,256 @@ Application immédiate : dernier cycle documentaire du bloc 12.4 ; consigner les
 - FIN-20 : La résolution finale et ses conséquences sont sauvegardées de manière atomique, sans duplication, nouveau tirage ou double attribution.
 
 AUD-CAP-08 résolu en conception. Les priorités propres des réactions et interruptions restent applicables. Aucun test runtime ni autorisation d'implémentation ; réserves MC-007 maintenues.
+
+
+## Persistance et évolution du monde — PER (28 novembre 2026)
+
+**Option C explicitement validée par l'utilisateur : persistance hybride et évolution contextuelle.** Les conséquences sont conservées, mais le monde évolue selon ses propres règles physiques, écologiques, temporelles et narratives.
+
+- PER-01 : Le monde conserve les conséquences réelles des actions du joueur.
+- PER-02 : Quitter une zone ne provoque aucune réinitialisation automatique.
+- PER-03 : Les cadavres persistent selon leur nature et leur environnement.
+- PER-04 : La décomposition dépend des propriétés physiques, biologiques ou surnaturelles.
+- PER-05 : Certaines créatures peuvent consommer, déplacer ou transformer des cadavres.
+- PER-06 : Les équipements abandonnés persistent selon leur état et leur environnement.
+- PER-07 : Les objets ordinaires peuvent être récupérés, déplacés, dégradés ou détruits par des événements compatibles.
+- PER-08 : Aucun objet unique ne peut être dupliqué par régénération.
+- PER-09 : Les ennemis survivants conservent leur identité et leurs conséquences persistantes.
+- PER-10 : Aucun ennemi définitivement mort ne ressuscite par simple régénération.
+- PER-11 : De nouveaux ennemis peuvent coloniser les zones libérées.
+- PER-12 : Le renouvellement des populations respecte la cohérence écologique et territoriale.
+- PER-13 : Les Némésis conservent leurs règles spécifiques.
+- PER-14 : Les captifs abandonnés suivent les règles CAP-I.
+- PER-15 : Les ressources renouvelables suivent les règles temporelles V5.1.
+- PER-16 : Les événements majeurs peuvent transformer durablement une région.
+- PER-17 : Les évolutions hors présence du joueur sont résolues aux transitions et événements pertinents, sans simulation continue obligatoire.
+- PER-18 : Les transformations préservent les contraintes narratives et les accès obligatoires.
+- PER-19 : Le joueur reçoit les informations accessibles concernant les transformations du monde.
+- PER-20 : Les transformations sont sauvegardées sans duplication, réinitialisation artificielle ni nouveau tirage au rechargement.
+
+Validation de conception uniquement. Aucun barème temporel, algorithme ou test runtime validé par cette décision.
+
+
+## Horloge du monde — TEM (28 novembre 2026)
+
+**Option C explicitement validée par l'utilisateur : temps hybride.**
+
+- TEM-01 : Une horloge mondiale commune régit le temps du jeu.
+- TEM-02 : Le temps s'écoule continuellement pendant l'exploration active.
+- TEM-03 : Le temps des combats dépend des rounds résolus.
+- TEM-04 : Le temps de réflexion du joueur en combat n'affecte pas l'horloge mondiale.
+- TEM-05 : La pause suspend l'écoulement du temps.
+- TEM-06 : Les menus consultatifs suspendent le temps, sauf situation explicitement non interruptible.
+- TEM-07 : La navigation active dans le hub fait avancer le temps.
+- TEM-08 : Les activités du hub peuvent posséder une durée propre.
+- TEM-09 : Le repos peut accélérer l'écoulement du temps.
+- TEM-10 : L'attente volontaire est possible dans les lieux compatibles.
+- TEM-11 : Le joueur est informé des conséquences prévisibles d'une attente prolongée.
+- TEM-12 : Les déplacements rapides éventuels possèdent une durée cohérente.
+- TEM-13 : Les régions partagent la même chronologie mondiale.
+- TEM-14 : Les dimensions altérées peuvent posséder des règles temporelles spécifiques.
+- TEM-15 : Aucun temps ne s'écoule lorsque le jeu est fermé.
+- TEM-16 : Les événements temporisés progressent selon leur horloge applicable.
+- TEM-17 : Le temps écoulé ne suffit pas à contourner les conditions spécifiques de renouvellement ou de recrutement.
+- TEM-18 : Les événements simultanés respectent leurs dépendances causales.
+- TEM-19 : L'horloge et les échéances sont conservées dans la sauvegarde.
+- TEM-20 : Aucun rechargement ne provoque d'avancement temporel supplémentaire ni de nouveau tirage.
+
+Complète PER, V5.1 et ARCH-02. Durées et coefficients ouverts ; aucun test runtime ni autorisation d'implémentation.
+
+
+## Évolution écologique et repeuplement — ECO (28 novembre 2026)
+
+**Option C explicitement validée par l'utilisateur : évolution écologique et territoriale hybride.**
+
+- ECO-01 : Chaque région possède des populations compatibles avec son environnement.
+- ECO-02 : Chaque espèce possède des conditions d'habitat propres.
+- ECO-03 : Les populations peuvent évoluer selon les ressources et les dangers disponibles.
+- ECO-04 : Les relations de prédation, compétition, coopération et parasitisme peuvent influencer les populations.
+- ECO-05 : Les créatures peuvent migrer entre territoires accessibles et compatibles.
+- ECO-06 : Une zone libérée peut être colonisée par une autre population.
+- ECO-07 : Aucun ennemi mort définitivement ne réapparaît sous la même identité par simple renouvellement.
+- ECO-08 : Les nouveaux individus possèdent une identité distincte.
+- ECO-09 : Les populations peuvent diminuer, augmenter ou disparaître localement.
+- ECO-10 : La destruction d'un repaire peut réduire durablement la présence d'une population.
+- ECO-11 : Les repaires peuvent être reconstruits ou remplacés lorsque les conditions le permettent.
+- ECO-12 : Les factions intelligentes peuvent conquérir, défendre ou abandonner des territoires.
+- ECO-13 : Les créatures surnaturelles suivent leurs propriétés propres, sans obligation biologique universelle.
+- ECO-14 : Les événements majeurs peuvent modifier durablement les équilibres régionaux.
+- ECO-15 : Les conséquences des actions du joueur influencent les évolutions futures.
+- ECO-16 : Les populations respectent des limites compatibles avec leur environnement et les contraintes de génération.
+- ECO-17 : Les ennemis uniques, boss et Némésis conservent leurs règles particulières.
+- ECO-18 : Les renouvellements respectent les conditions d'ARCH-02, PER et TEM.
+- ECO-19 : Les changements significatifs peuvent être découverts par les observations, indices et connaissances accessibles au joueur.
+- ECO-20 : Les évolutions confirmées sont sauvegardées sans duplication ni nouveau tirage au rechargement.
+
+Paramètres numériques, fréquences de migration, densités et modèles propres aux espèces ouverts. Validation de conception uniquement ; aucun test runtime ni autorisation d'implémentation.
+
+
+## Devenir des dépouilles et équipements — DEP (28 novembre 2026)
+
+**Option C explicitement validée par l'utilisateur : évolution contextuelle.** Accord sur DEP-01 à DEP-19, puis validation explicite de DEP-20 le 28 novembre 2026.
+
+- DEP-01 : Chaque dépouille conserve une identité liée à l'individu décédé.
+- DEP-02 : La mort définitive reste irréversible, indépendamment du devenir du corps.
+- DEP-03 : La décomposition dépend de la nature physique, biologique ou surnaturelle de la dépouille.
+- DEP-04 : Les conditions environnementales peuvent accélérer, ralentir ou empêcher la décomposition.
+- DEP-05 : Certaines dépouilles peuvent se transformer en ossements ou autres vestiges.
+- DEP-06 : Les créatures compatibles peuvent consommer tout ou partie d'une dépouille.
+- DEP-07 : Les créatures peuvent déplacer des dépouilles selon leurs capacités et comportements.
+- DEP-08 : Les dépouilles des héros ne peuvent pas être rapportées au hub.
+- DEP-09 : Une réanimation hostile ne restaure ni l'identité jouable ni la progression du héros décédé.
+- DEP-10 : La disparition d'une dépouille ne provoque pas automatiquement celle de ses équipements.
+- DEP-11 : Les équipements suivent leur détenteur ou leur emplacement réel.
+- DEP-12 : Les créatures compatibles peuvent piller des équipements accessibles.
+- DEP-13 : Un équipement pillé peut être retrouvé auprès de son nouveau détenteur ou à son emplacement ultérieur.
+- DEP-14 : Les objets peuvent se dégrader selon leurs matériaux, propriétés et conditions environnementales.
+- DEP-15 : Les objets uniques respectent leurs règles spécifiques de conservation et de destruction.
+- DEP-16 : Les vestiges peuvent fournir des indices sur les événements survenus dans la zone.
+- DEP-17 : Les transformations des dépouilles suivent TEM et les événements écologiques admissibles.
+- DEP-18 : Les évolutions hors présence du joueur sont résolues sans simulation permanente obligatoire.
+- DEP-19 : La régénération procédurale respecte les conséquences persistantes
+- DEP-20 : Les transformations des dépouilles et les changements de possession, de dégradation ou de destruction des équipements sont sauvegardés de manière atomique, sans duplication, réapparition artificielle ni nouveau tirage au rechargement.
+
+Complète ARCH-09/10, FORM, bloc 12.2, PER, TEM et ECO. Aucun changement moteur ni test runtime.
+
+
+## Régénération des ressources et réapprovisionnement — RES (28 novembre 2026)
+
+**Option C explicitement validée par l'utilisateur : régénération hybride, différenciée et contextuelle.** Six catégories validées : ressources biologiques (croissance, climat, biome) ; minérales (réserves, accessibilité, propriétés du gisement) ; animales (populations et dépouilles) ; surnaturelles (propriétés particulières) ; réserves et coffres (catégorie et contexte territorial) ; ressources et objets uniques (aucun renouvellement ordinaire).
+
+- RES-01 : Chaque ressource appartient à une catégorie déterminant ses conditions de renouvellement.
+- RES-02 : Les ressources biologiques se régénèrent selon leurs propriétés et le temps du jeu.
+- RES-03 : Les conditions environnementales influencent la croissance et la disponibilité des ressources.
+- RES-04 : Une ressource biologique peut être temporairement ou durablement épuisée.
+- RES-05 : Les gisements minéraux possèdent des réserves propres.
+- RES-06 : Un gisement épuisé ne se reconstitue pas automatiquement par simple passage du temps.
+- RES-07 : De nouveaux gisements peuvent devenir accessibles à la suite de transformations compatibles du monde.
+- RES-08 : Les ressources animales dépendent des populations, des créatures et des dépouilles réelles.
+- RES-09 : Les ressources surnaturelles suivent leurs propriétés spécifiques.
+- RES-10 : Les coffres renouvelables sont distingués des coffres uniques et narratifs.
+- RES-11 : Le réapprovisionnement ordinaire des coffres respecte les conditions d'ARCH-02.
+- RES-12 : Le contenu renouvelable dépend du contexte, de la région et de la nature du coffre.
+- RES-13 : Les récompenses uniques déjà obtenues ne peuvent pas être générées une seconde fois par renouvellement ordinaire.
+- RES-14 : Les objets abandonnés ne sont pas assimilés automatiquement à des ressources renouvelables.
+- RES-15 : Les événements majeurs peuvent modifier durablement la disponibilité des ressources.
+- RES-16 : Les évolutions écologiques peuvent influencer l'abondance des ressources.
+- RES-17 : Les récoltes partielles conservent les quantités restantes réellement disponibles.
+- RES-18 : Aucun changement de mission, aller-retour ou rechargement ne provoque artificiellement un renouvellement.
+- RES-19 : Le joueur peut obtenir des informations sur la disponibilité et les conditions de renouvellement des ressources.
+- RES-20 : Les quantités, récoltes, échéances et résultats de renouvellement sont sauvegardés de manière atomique, sans duplication ni nouveau tirage au rechargement.
+
+Complète V5.0, V5.1, ARCH-02, PER, TEM, ECO et DEP. Durées, quantités, probabilités et fréquences ouvertes. Aucun test runtime ni autorisation d'implémentation.
+
+
+## Transformations physiques des donjons — STR (28 novembre 2026)
+
+**Option C explicitement validée par l'utilisateur : persistance structurelle contextuelle.**
+
+- STR-01 : Les structures persistantes possèdent une identité distincte de leur position dans la carte procédurale.
+- STR-02 : Les transformations physiques possèdent une cause identifiable.
+- STR-03 : Les transformations peuvent être temporaires ou permanentes.
+- STR-04 : Les portes et mécanismes conservent leur état tant qu'aucun événement compatible ne le modifie.
+- STR-05 : Les structures détruites ne sont pas automatiquement restaurées lors d'une nouvelle expédition.
+- STR-06 : Une structure peut être réparée, reconstruite ou remplacée lorsque les conditions le permettent.
+- STR-07 : Les obstacles physiques peuvent apparaître, disparaître ou évoluer selon le contexte.
+- STR-08 : Les pièges déclenchés conservent leur état réel.
+- STR-09 : Un piège ne peut être réarmé que selon ses propriétés ou une intervention compatible.
+- STR-10 : La découverte d'un passage secret reste distincte de son état d'ouverture.
+- STR-11 : Les connaissances acquises sur les structures et passages sont conservées.
+- STR-12 : Les renseignements géographiques peuvent devenir obsolètes après une transformation.
+- STR-13 : Les factions et créatures peuvent modifier leur environnement selon leurs capacités.
+- STR-14 : Les phénomènes naturels et surnaturels peuvent transformer les structures.
+- STR-15 : Les architectures impossibles et dimensions altérées suivent leurs propriétés spécifiques.
+- STR-16 : La recomposition procédurale respecte les transformations persistantes et leurs conséquences.
+- STR-17 : Les transformations ne doivent pas dupliquer ni supprimer arbitrairement les personnages, dépouilles ou objets persistants.
+- STR-18 : Chaque transformation respecte les contraintes narratives et les contrôles de validité V7.38.
+- STR-19 : Les changements significatifs sont révélés selon les connaissances et observations accessibles au joueur.
+- STR-20 : Les transformations et leurs conséquences sont sauvegardées de manière atomique, sans duplication, annulation artificielle ni nouveau tirage au rechargement.
+
+Complète ARCH-03, V7.43, V7.29, V7.38 et PER. Aucun test runtime ni autorisation d'implémentation.
+
+
+## Évolution des événements du monde — EVT (28 novembre 2026)
+
+**Option C explicitement validée par l'utilisateur : événements scénarisés, contextuels et émergents sous contraintes.** Huit familles validées : politiques et territoriaux ; écologiques ; naturels ; surnaturels ; économiques ; individuels ; narratifs ; consécutifs aux actions du joueur.
+
+- EVT-01 : Chaque événement possède une identité, une catégorie et une origine identifiable.
+- EVT-02 : Les événements peuvent être scénarisés, contextuels ou émergents.
+- EVT-03 : Chaque événement possède des conditions de déclenchement propres.
+- EVT-04 : Le déclenchement respecte l'état effectif du monde.
+- EVT-05 : Les événements temporisés utilisent les horloges définies par TEM.
+- EVT-06 : Les événements peuvent se produire indépendamment de la présence du joueur.
+- EVT-07 : Les actions du joueur peuvent déclencher, empêcher ou modifier des événements.
+- EVT-08 : Les événements peuvent provoquer d'autres événements selon des relations causales identifiables.
+- EVT-09 : Les événements incompatibles sont arbitrés selon leurs dépendances et contraintes.
+- EVT-10 : Les événements peuvent être locaux, régionaux, interrégionaux ou mondiaux.
+- EVT-11 : Les conséquences peuvent être immédiates, différées, temporaires ou permanentes.
+- EVT-12 : Les événements peuvent évoluer, être interrompus ou prendre fin selon leurs conditions propres.
+- EVT-13 : Les événements uniques ne peuvent pas être répétés artificiellement.
+- EVT-14 : Les événements récurrents respectent leurs conditions de renouvellement.
+- EVT-15 : Les conséquences narratives et les objectifs obligatoires respectent les contraintes de V7.38.
+- EVT-16 : Les événements respectent les règles particulières des Némésis, boss et personnages uniques.
+- EVT-17 : Les chaînes d'événements possèdent des limites empêchant les boucles infinies et les répétitions artificielles.
+- EVT-18 : Le joueur découvre les événements selon ses observations, renseignements et connaissances accessibles.
+- EVT-19 : Les événements significatifs et leurs conséquences conservent une trace historique consultable selon les connaissances du joueur.
+- EVT-20 : Les événements, leurs états, leurs relations causales et leurs conséquences sont sauvegardés de manière atomique, sans duplication ni nouveau tirage au rechargement.
+
+Complète ARCH-11, ARCH-12, V7.38, V7.43 et PER/TEM/ECO/DEP/RES/STR. Fréquences, probabilités, priorités détaillées et limites numériques ouvertes. Aucun test runtime ni autorisation d'implémentation.
+
+
+## Simulation hors présence du joueur — SIM (28 novembre 2026)
+
+**Option C explicitement validée par l'utilisateur : simulation hybride événementielle à plusieurs niveaux de détail.** Quatre niveaux : N1 simulation locale active (déplacements, combats, interactions et comportements détaillés) ; N2 simulation locale simplifiée (zones proches ou directement liées, interactions et déplacements pertinents) ; N3 simulation régionale événementielle (populations, factions, Némésis, ressources et transformations) ; N4 simulation mondiale abstraite (événements majeurs, échéances et conséquences interrégionales sans calcul individuel permanent).
+
+- SIM-01 : Le monde utilise plusieurs niveaux de détail de simulation.
+- SIM-02 : La zone occupée par le joueur bénéficie d'une simulation locale détaillée.
+- SIM-03 : Les zones proches ou directement liées peuvent utiliser une simulation simplifiée.
+- SIM-04 : Les régions éloignées évoluent principalement par simulation événementielle.
+- SIM-05 : Les évolutions mondiales peuvent être représentées de manière abstraite.
+- SIM-06 : Les niveaux de simulation dépendent de la proximité, de la pertinence et de l'importance des événements.
+- SIM-07 : Le changement de niveau de simulation ne modifie pas arbitrairement l'état réel du monde.
+- SIM-08 : Les identités et conséquences persistantes sont conservées à tous les niveaux.
+- SIM-09 : Les évolutions différées respectent l'horloge mondiale et les règles TEM.
+- SIM-10 : Les événements hors présence du joueur sont résolus selon leurs échéances et dépendances causales.
+- SIM-11 : Les événements déjà résolus ne sont jamais recalculés comme de nouveaux événements.
+- SIM-12 : Une zone est actualisée avant que le joueur puisse interagir avec son nouvel état.
+- SIM-13 : Les interactions entre régions respectent les capacités, déplacements et contraintes territoriales.
+- SIM-14 : Les personnages uniques et Némésis conservent leurs identités, états et positions cohérentes.
+- SIM-15 : Les populations ordinaires peuvent être représentées collectivement lorsque leurs identités individuelles ne sont pas nécessaires.
+- SIM-16 : Les évolutions différées peuvent être traitées par lots sans modifier leurs conséquences causales.
+- SIM-17 : La simulation possède des limites de calcul empêchant les blocages et les chaînes infinies.
+- SIM-18 : Les changements de niveau de simulation ne peuvent pas être exploités pour provoquer des renouvellements artificiels.
+- SIM-19 : En cas d'échec de résolution, le système préserve le dernier état valide et applique une procédure de reprise sécurisée.
+- SIM-20 : Les états, échéances, événements et transitions de simulation sont sauvegardés sans perte, duplication ni nouveau tirage des résultats confirmés.
+
+Budgets processeur, fréquences et seuils ouverts. Aucun test runtime ni autorisation d'implémentation.
+
+
+## Index de réconciliation PER à SIM — audit cycle 2
+
+Déductions documentaires des validations existantes ; aucune modification des 160 règles ni nouvel arbitrage.
+
+- REC-PER-01 : ARCH-02 prévaut sur les clauses historiques V5.0/V5.1 de renouvellement par nouvelle mission ; RES-11/18 et ECO-18 appliquent cette préséance.
+- REC-PER-02 : TEM-05 à TEM-15 résolvent les anciennes questions de V5.1 relatives aux pauses, menus, hub et hors connexion ; durées et coefficients restent ouverts.
+- REC-PER-03 : SIM-15 autorise uniquement une abstraction sans effacement des identités exigées par PER-09, ECO-07/08 et SIM-08/14 ; aucun captif, détenteur ou survivant suivi ne perd son identité.
+- REC-PER-04 : TEM-14/16 préservent les horloges particulières ; TEM-01/13/18 imposent la cohérence chronologique et causale de leurs interactions. Conversion non arbitrée.
+- REC-PER-05 : SIM-10/11/16/17 et EVT-08/09/17 respectent TEM-18 ; aucun traitement par lots ne change les dépendances ni ne rejoue un résultat confirmé.
+- REC-PER-06 : DEP-02/09 et ARCH-10 préservent la mort définitive et l'interdiction de recruter le héros réanimé, même en NG+ ; PER-10/ECO-07 interdisent la réapparition par renouvellement.
+- REC-PER-07 : CAP-I, CAP-J, FIN-17 et TEM-17 restent applicables : transfert seulement après victoire, recrutement selon ses conditions propres ; aucune progression par simple attente.
+- REC-PER-08 : V7.38 et ARCH-03 restent applicables à STR-16/18 et SIM-19 : nouvelle configuration sans perte de conséquences, contrôle avant utilisation, secours validé ou arrêt sécurisé.
+- REC-PER-09 : V8.3 s'applique à toutes les transitions persistantes ; aucune nouvelle architecture de sauvegarde ni garantie runtime déduite.
+
+
+## Réconciliation architecturale — carte à nœuds (28 novembre 2026)
+
+**Architecture active : exploration par grande carte à nœuds ramifiés, retours et chemins cachés ; combats 2D au tour par tour.** Décision n°1 du registre V8.1 conservé, également référencée comme V8.3 n°1. Toute exploration libre 3D isométrique est exclue du périmètre actif et du prototype BOU. Les références artistiques ou ergonomiques historiques ne rétablissent pas ce système.
+
+- PER, ECO, DEP, RES : les lieux, territoires, identités et conséquences persistantes restent applicables à la carte à nœuds et à ses connexions accessibles ; aucune obligation de déplacement libre 3D.
+- STR et EVT : les transformations des lieux et structures peuvent affecter l'accessibilité des nœuds et connexions, sous ARCH-03, V7.38 et RET-NAV-01 à 04 ; aucun passage artificiel.
+- SIM : les quatre niveaux décrivent le détail logique de simulation, non un rendu spatial 3D ; aucune obligation de simulation physique continue.
+- **Articulation TEM-02 — modèle validé explicitement par l'utilisateur le 28 novembre 2026** : consultation des cartes régionales et internes des donjons et réflexion sur l'itinéraire : temps suspendu ; déplacement entre nœuds : temps avance ; récolte : temps avance selon l'action ; interaction avec un lieu : selon sa nature ; événement actif : selon ses règles propres ; attente volontaire : temps avance ; combat : selon les rounds résolus ; menus consultatifs : temps suspendu sauf exception validée. Les vingt règles TEM sont conservées ; les durées, coefficients et modalités techniques restent ouverts.
+
+Les 160 règles restent inchangées. Ces articulations documentaires ne constituent pas une validation de nouveaux mécanismes. BOU-A doit partir de cette architecture ; aucun développement moteur autorisé par cette correction.
+
+**Précision utilisateur :** les donjons disposent eux aussi d'une carte interactive à nœuds. L'exploration interne des donjons n'est pas une exploration libre en 3D. Les règles de génération, de retours, de chemins cachés et de persistance déjà validées restent applicables. Aucun nouveau paramètre de navigation n'est fixé ici.
