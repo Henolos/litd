@@ -4086,3 +4086,18 @@ Complète ARCH-11, ARCH-12, V7.38, V7.43 et PER/TEM/ECO/DEP/RES/STR. Fréquences
 - SIM-20 : Les états, échéances, événements et transitions de simulation sont sauvegardés sans perte, duplication ni nouveau tirage des résultats confirmés.
 
 Budgets processeur, fréquences et seuils ouverts. Aucun test runtime ni autorisation d'implémentation.
+
+
+## Index de réconciliation PER à SIM — audit cycle 2
+
+Déductions documentaires des validations existantes ; aucune modification des 160 règles ni nouvel arbitrage.
+
+- REC-PER-01 : ARCH-02 prévaut sur les clauses historiques V5.0/V5.1 de renouvellement par nouvelle mission ; RES-11/18 et ECO-18 appliquent cette préséance.
+- REC-PER-02 : TEM-05 à TEM-15 résolvent les anciennes questions de V5.1 relatives aux pauses, menus, hub et hors connexion ; durées et coefficients restent ouverts.
+- REC-PER-03 : SIM-15 autorise uniquement une abstraction sans effacement des identités exigées par PER-09, ECO-07/08 et SIM-08/14 ; aucun captif, détenteur ou survivant suivi ne perd son identité.
+- REC-PER-04 : TEM-14/16 préservent les horloges particulières ; TEM-01/13/18 imposent la cohérence chronologique et causale de leurs interactions. Conversion non arbitrée.
+- REC-PER-05 : SIM-10/11/16/17 et EVT-08/09/17 respectent TEM-18 ; aucun traitement par lots ne change les dépendances ni ne rejoue un résultat confirmé.
+- REC-PER-06 : DEP-02/09 et ARCH-10 préservent la mort définitive et l'interdiction de recruter le héros réanimé, même en NG+ ; PER-10/ECO-07 interdisent la réapparition par renouvellement.
+- REC-PER-07 : CAP-I, CAP-J, FIN-17 et TEM-17 restent applicables : transfert seulement après victoire, recrutement selon ses conditions propres ; aucune progression par simple attente.
+- REC-PER-08 : V7.38 et ARCH-03 restent applicables à STR-16/18 et SIM-19 : nouvelle configuration sans perte de conséquences, contrôle avant utilisation, secours validé ou arrêt sécurisé.
+- REC-PER-09 : V8.3 s'applique à toutes les transitions persistantes ; aucune nouvelle architecture de sauvegarde ni garantie runtime déduite.
