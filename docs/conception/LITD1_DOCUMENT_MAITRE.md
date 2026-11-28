@@ -3950,7 +3950,7 @@ Paramètres numériques, fréquences de migration, densités et modèles propres
 
 ## Devenir des dépouilles et équipements — DEP (28 novembre 2026)
 
-**Option C explicitement validée par l'utilisateur : évolution contextuelle.** Accord sur les règles présentées DEP-01 à DEP-19 ; présentation interrompue avant DEP-20, non validée.
+**Option C explicitement validée par l'utilisateur : évolution contextuelle.** Accord sur DEP-01 à DEP-19, puis validation explicite de DEP-20 le 28 novembre 2026.
 
 - DEP-01 : Chaque dépouille conserve une identité liée à l'individu décédé.
 - DEP-02 : La mort définitive reste irréversible, indépendamment du devenir du corps.
@@ -3971,5 +3971,6 @@ Paramètres numériques, fréquences de migration, densités et modèles propres
 - DEP-17 : Les transformations des dépouilles suivent TEM et les événements écologiques admissibles.
 - DEP-18 : Les évolutions hors présence du joueur sont résolues sans simulation permanente obligatoire.
 - DEP-19 : La régénération procédurale respecte les conséquences persistantes
+- DEP-20 : Les transformations des dépouilles et les changements de possession, de dégradation ou de destruction des équipements sont sauvegardés de manière atomique, sans duplication, réapparition artificielle ni nouveau tirage au rechargement.
 
 Complète ARCH-09/10, FORM, bloc 12.2, PER, TEM et ECO. Aucun changement moteur ni test runtime.
