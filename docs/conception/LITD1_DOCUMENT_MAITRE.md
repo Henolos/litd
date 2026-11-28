@@ -3862,3 +3862,31 @@ Application immédiate : dernier cycle documentaire du bloc 12.4 ; consigner les
 - FIN-20 : La résolution finale et ses conséquences sont sauvegardées de manière atomique, sans duplication, nouveau tirage ou double attribution.
 
 AUD-CAP-08 résolu en conception. Les priorités propres des réactions et interruptions restent applicables. Aucun test runtime ni autorisation d'implémentation ; réserves MC-007 maintenues.
+
+
+## Persistance et évolution du monde — PER (28 novembre 2026)
+
+**Option C explicitement validée par l'utilisateur : persistance hybride et évolution contextuelle.** Les conséquences sont conservées, mais le monde évolue selon ses propres règles physiques, écologiques, temporelles et narratives.
+
+- PER-01 : Le monde conserve les conséquences réelles des actions du joueur.
+- PER-02 : Quitter une zone ne provoque aucune réinitialisation automatique.
+- PER-03 : Les cadavres persistent selon leur nature et leur environnement.
+- PER-04 : La décomposition dépend des propriétés physiques, biologiques ou surnaturelles.
+- PER-05 : Certaines créatures peuvent consommer, déplacer ou transformer des cadavres.
+- PER-06 : Les équipements abandonnés persistent selon leur état et leur environnement.
+- PER-07 : Les objets ordinaires peuvent être récupérés, déplacés, dégradés ou détruits par des événements compatibles.
+- PER-08 : Aucun objet unique ne peut être dupliqué par régénération.
+- PER-09 : Les ennemis survivants conservent leur identité et leurs conséquences persistantes.
+- PER-10 : Aucun ennemi définitivement mort ne ressuscite par simple régénération.
+- PER-11 : De nouveaux ennemis peuvent coloniser les zones libérées.
+- PER-12 : Le renouvellement des populations respecte la cohérence écologique et territoriale.
+- PER-13 : Les Némésis conservent leurs règles spécifiques.
+- PER-14 : Les captifs abandonnés suivent les règles CAP-I.
+- PER-15 : Les ressources renouvelables suivent les règles temporelles V5.1.
+- PER-16 : Les événements majeurs peuvent transformer durablement une région.
+- PER-17 : Les évolutions hors présence du joueur sont résolues aux transitions et événements pertinents, sans simulation continue obligatoire.
+- PER-18 : Les transformations préservent les contraintes narratives et les accès obligatoires.
+- PER-19 : Le joueur reçoit les informations accessibles concernant les transformations du monde.
+- PER-20 : Les transformations sont sauvegardées sans duplication, réinitialisation artificielle ni nouveau tirage au rechargement.
+
+Validation de conception uniquement. Aucun barème temporel, algorithme ou test runtime validé par cette décision.
