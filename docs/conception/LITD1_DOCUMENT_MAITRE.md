@@ -3834,3 +3834,31 @@ Les clauses historiques de transport dans ARCH-07 (extension capture), ARCH-09 (
 12. Toute clôture débouche sur une décision explicite et la prochaine étape productive.
 
 Application immédiate : dernier cycle documentaire du bloc 12.4 ; consigner les réserves techniques non bloquantes séparément, décider de MC-007 sur preuves, puis poursuivre le bloc 12.5. Cette règle ne constitue pas une clôture automatique de MC-007 ni une validation runtime.
+
+
+## Bloc 12.5 — Résolution de fin de combat (28 novembre 2026)
+
+**Option D validée explicitement par l'utilisateur :** résolution complète des conséquences engagées avant détermination de l'issue du combat.
+
+- FIN-01 : La neutralisation du dernier hostile actif déclenche une vérification de fin de combat, et non une victoire immédiate.
+- FIN-02 : Toute action engagée doit être intégralement résolue avant de déterminer l'issue du combat.
+- FIN-03 : Les conséquences simultanées d'une même action sont toutes prises en compte.
+- FIN-04 : Les réactions et interruptions valablement déclenchées sont résolues avant la décision finale.
+- FIN-05 : Les afflictions arrivées à leur moment normal de résolution sont appliquées.
+- FIN-06 : Aucun effet différé n'est artificiellement accéléré pour terminer le combat.
+- FIN-07 : Aucun round supplémentaire n'est imposé uniquement pour confirmer une victoire.
+- FIN-08 : Aucun nouveau PA ni renouvellement artificiel de tour n'est accordé pendant la résolution finale.
+- FIN-09 : Les états critiques, incapacités et décès sont déterminés conformément aux règles MORT.
+- FIN-10 : Les captifs restent soumis aux propriétés réelles de leurs contentions jusqu'à leur transfert effectif.
+- FIN-11 : Une évasion valablement déclenchée avant la confirmation de victoire doit être résolue.
+- FIN-12 : Si un hostile retrouve une capacité d'opposition active, les conditions de victoire sont réévaluées.
+- FIN-13 : Aucun tirage supplémentaire d'évasion, de survie ou d'affliction n'est effectué uniquement parce que le combat se termine.
+- FIN-14 : Une victoire exige que les conditions de réussite de la rencontre soient satisfaites.
+- FIN-15 : La défaite prévaut si les conditions de défaite sont effectivement réunies à l'issue de la résolution complète, même si le dernier hostile a été éliminé.
+- FIN-16 : Les invocations, possessions et contrôles sont traités selon leurs propriétés réelles et leurs règles spécifiques.
+- FIN-17 : Le transfert automatique des captifs au hub intervient uniquement après confirmation de la victoire.
+- FIN-18 : Les blessures, afflictions et états persistants ne disparaissent pas automatiquement à la fin du combat.
+- FIN-19 : Les récompenses, crédits, équipements et conséquences sont attribués selon les règles de causalité et de possession réelle.
+- FIN-20 : La résolution finale et ses conséquences sont sauvegardées de manière atomique, sans duplication, nouveau tirage ou double attribution.
+
+AUD-CAP-08 résolu en conception. Les priorités propres des réactions et interruptions restent applicables. Aucun test runtime ni autorisation d'implémentation ; réserves MC-007 maintenues.
